@@ -74,7 +74,7 @@ The repository has a **Night watch** scripted scenario rather than a literal **N
 7. Jumped to the radar command (tick 37), FPV injection (tick 52), T9 engagement (tick 551) and T10 engagement (tick 591). Pre-engagement reconstruction showed active contacts; play advanced past T10's resolution. Scrubbing Home/End changed the world from T9 absent at tick 0 to T9 impacted/T10 resolved at tick 2250. Pause stopped playback.
 8. Stopped the local server, reloaded the service-worker-cached app and reopened the cached verified AAR in device-only mode. The same canonical evidence, explanation, scores and timeline remained readable. Restarted the server and reopened the review successfully. Repeated authoritative HTTP AAR responses were identical (canonical sorted JSON SHA256 `6dc7fa7891cefff80e10b6487996823baf1019fce0893a86a830211ed19a1890`). Stage 1's completion retry remains in place; Stage 2 adds horizon persistence on both completion and retry, with backend reconstruction/reload tests.
 
-Screenshots: [FPV decision](qa/ghost-fpv-review.jpg), [FPV consequence](qa/ghost-fpv-consequence.jpg), [successful jammer](qa/ghost-success-review.jpg). The Ghost panel scrolls internally to reveal consequences and score impact; the timeline also scrolls internally.
+Screenshots: [FPV decision](qa/ghost-fpv-review.jpg), [successful jammer](qa/ghost-success-review.jpg). Consequences and score impact were verified in the browser's scrolled Ghost panel; full-page captures show the panel's initial view. The timeline also scrolls internally.
 
 ### Measured performance
 
@@ -89,10 +89,10 @@ Full AAR payload: **44,352 bytes** compact UTF-8 JSON, including scenario, actio
 
 ## Acceptance and changed files
 
-Stage 2 acceptance is satisfied by the automated and browser evidence above. Main, `v0.1.0` and baseline history remain preserved; changes belong exclusively to `feature/ghost-aar-v2` with parent `7fc31a6bcdec0e7a684345827375255b7d05ac7a`. The implementation stays within Stage 2.
+Stage 2 acceptance is satisfied by the automated and browser evidence above. Main, `v0.1.0` and baseline history remain preserved; changes belong exclusively to `feature/ghost-aar-v2`, branched from `7fc31a6bcdec0e7a684345827375255b7d05ac7a`. The implementation stays within Stage 2.
 
 - Backend: `server/engine.py`, `server/main.py`, `server/models.py`, `server/storage.py`, new `server/review.py`, `server/review_models.py`, `server/tests/test_ghost.py`.
 - Client: `client/src/App.tsx`, `client/src/sim.ts`, `client/src/types.ts`, `client/src/style.css`, `client/package.json`, new `client/src/Ghost.tsx`, `client/src/ghost.test.tsx`.
-- Evidence/docs: `README.md`, `docs/GHOST-AAR.md`, `scripts/benchmark-aar.py`, `docs/qa/ghost-aar-benchmark.json`, three `docs/qa/ghost-*.jpg` screenshots.
+- Evidence/docs: `README.md`, `docs/GHOST-AAR.md`, `scripts/benchmark-aar.py`, `docs/qa/ghost-aar-benchmark.json`, two `docs/qa/ghost-*.jpg` screenshots.
 
 Next stage: **Stage 3 — AI Threat Director v1: 4-skill adaptive closed loop**. It has not been started.
