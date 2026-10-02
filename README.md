@@ -2,7 +2,7 @@
 
 **Team WhiteList&0** · SIH26247 / target demonstration: **4 October 2026**.
 
-This is the first playable implementation of the supplied plan. It is a local training prototype using illustrative parameters. It does not claim validated military signatures, operational doctrine, or real-world training efficacy.
+This is the playable implementation of the supplied plan. It is a local training prototype using illustrative parameters. It does not claim validated military signatures, operational doctrine, or real-world training efficacy.
 
 ## Start
 
@@ -46,11 +46,24 @@ The Compose file publishes only to this laptop's loopback interface. Multi-lapto
 - Two-skill Beta profile and a seeded Thompson-sampling focus choice. Response-focused drills add a no-RF contact. This is an initial adaptive policy, without calibrated 70% difficulty targeting or anti-rote similarity filtering.
 - 2D tactical fallback and responsive layout.
 
+## Instructor Console v1
+
+Open **http://127.0.0.1:8000/instructor** in a second browser/tab while a trainee exercise runs at `/`. Sessions appear after the first telemetry update. Select an ACTIVE or PAUSED session.
+
+- Pause/resume, hostile RF quad and no-RF FPV injection, and a six-drone swarm.
+- Radar degradation/failure/restoration, RF sensor failure/restoration, and day/night conditions.
+- Actual session discovery, simulation time and active-contact count; stale sessions are RECOVERABLE and finished sessions are COMPLETED.
+- SQLite command ordering, idempotent command IDs, immutable execution acknowledgements and audit history.
+- Worker-controlled execution; server reconstruction and AAR include the same ordered instructor commands.
+- Local IndexedDB recovery includes the command log.
+
+See `docs/INSTRUCTOR-CONTROL.md` for contracts, reconstruction, testing and limitations. The console requires the local server; standalone device practice remains available when it is unreachable.
+
 ## October 4 boundaries
 
 The 75-second scripted drill is playable. The shortened presenter demo pauses at selected contacts and ends early after demonstrating one correct response and one unsuitable response; unhandled contacts continue during scoring, so early ending never hides remaining threats.
 
-The original plan's 12-drone live instructor injection, 3D replay scrubber, advanced Ghost Expert, VR, rural terrain, validated sensors, audio, rapid ID, eight-skill director, unit LAN operations, MongoDB, USB bundle signing, SigNoz and role-based accounts are **not implemented**. The AAR replay is currently a deterministic 2D tactical replay, and the reference debrief is template-based.
+The original plan's 12-drone live injection, 3D replay scrubber, advanced Ghost Expert, VR, rural terrain, validated sensors, audio, rapid ID, eight-skill director, authenticated multi-laptop unit operations, MongoDB, USB bundle signing, SigNoz and role-based accounts are **not implemented**. The AAR replay is currently a deterministic 2D tactical replay, and the reference debrief is template-based.
 
 The 15-point rubric node currently rewards timely threat resolution, not Kendall-tau swarm prioritization. The interface says so. The session averages hostile-contact scores, subtracts 10 per asset impact, and fails on non-hostile engagement. Classification and response percentages include all contacts.
 

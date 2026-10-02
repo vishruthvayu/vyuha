@@ -7,7 +7,7 @@ import copy
 import math
 
 HZ = 30
-ENGINE_VERSION = "vyuha-0.1.0"
+ENGINE_VERSION = "vyuha-0.2.0"
 MASK = 0xFFFFFFFF
 
 
@@ -75,6 +75,12 @@ class Simulation:
         self.scenario = scenario
         self.tick = 0
         self.events = []
+        self.commands = []
+        self.radar_override = None
+        self.radar_status = "normal"
+        self.rf_available = True
+        self.night = scenario["night"]
+        self.paused = False
         self.tracks = [dict(**t, **position(t, 0), active=False, detected=None, designated=None,
                             classification=None, declared=None, resolved=False, impact=False,
                             radar=False, thermal=False, attempts=[]) for t in scenario["tracks"]]
@@ -83,6 +89,8 @@ class Simulation:
     def observe(self):
         s = self.scenario
         jammed = s["jamStart"] <= self.tick < s["jamEnd"]
+        self.radar_status = self.radar_override or ("jammed" if jammed else "normal")
+        factor = 0 if self.radar_status == "failed" else (.2 if self.radar_override == "jammed" else 0) if self.radar_status == "jammed" else 1
         for i, t in enumerate(self.tracks):
             t["active"] = self.tick >= t["spawn"] and not t["resolved"] and not t["impact"]
             if not t["active"]:
@@ -92,7 +100,7 @@ class Simulation:
             d = math.hypot(t["x"], t["z"])
             pr = max(.03, min(.98, 1 - (d/195)**4 - s["fog"]*.15))
             pt = max(.1, .95-s["fog"]*.5)
-            t["radar"] = not jammed and d < 190 and sample(s["seed"], self.tick, i, 0) < pr
+            t["radar"] = factor > 0 and d < 190 and sample(s["seed"], self.tick, i, 0) < pr*factor
             t["thermal"] = d < 145 and sample(s["seed"], self.tick, i, 1) < pt
             if t["detected"] is None and (t["radar"] or t["thermal"]):
                 t["detected"] = self.tick
@@ -100,13 +108,15 @@ class Simulation:
                 t["impact"] = True
                 t["active"] = False
 
-    def step(self):
+    def step(self, force=False):
+        if self.tick >= self.scenario["duration"]*HZ or (self.paused and not force):
+            return
         self.tick += 1
         self.observe()
 
     def act(self, a):
         t = next((t for t in self.tracks if t["id"] == a["track"]), None)
-        if self.tick >= self.scenario["duration"]*HZ or not t or not t["active"] or t["detected"] is None or a["tick"] != self.tick:
+        if self.paused or self.tick >= self.scenario["duration"]*HZ or not t or not t["active"] or t["detected"] is None or a["tick"] != self.tick:
             return False
         if a["k"] == "designate":
             if t["designated"] is None:
@@ -128,19 +138,66 @@ class Simulation:
         self.events.append(copy.deepcopy(a))
         return True
 
+    def control(self, command):
+        if any(c["seq"] == command["seq"] for c in self.commands):
+            return False
+        if command["seq"] != (self.commands[-1]["seq"] if self.commands else 0)+1 or command["tick"] != self.tick or self.tick >= self.scenario["duration"]*HZ:
+            return False
+        self.commands.append(copy.deepcopy(command))
+        kind, payload = command["type"], command["payload"]
+        if kind in ["pause", "resume"]:
+            self.paused = kind == "pause"
+        elif kind in ["inject_contact", "inject_swarm"]:
+            count = 6 if kind == "inject_swarm" else 1
+            aircraft = payload["kind"] if kind == "inject_contact" else "quad"
+            for i in range(count):
+                spec = dict(id=f"T{len(self.tracks)+1}", kind=aircraft, identity="hostile", rf=aircraft == "quad", spawn=self.tick,
+                            bearing=(payload["bearing"]+i*5+360)%360, distance=130+math.floor(sample(self.scenario["seed"],command["seq"],i,7)*12),
+                            speed=2.6 if aircraft == "quad" else 3.8, altitude=20+i%3*3 if aircraft == "quad" else 10)
+                self.tracks.append(dict(**spec, **position(spec,self.tick), active=True, detected=None, designated=None,
+                                        classification=None, declared=None, resolved=False, impact=False, radar=False, thermal=False, attempts=[]))
+        elif kind == "sensor_fault":
+            if payload["sensor"] == "radar":
+                self.radar_override = payload["mode"]
+            else:
+                self.rf_available = False
+        elif kind == "sensor_restore":
+            if payload["sensor"] == "radar":
+                self.radar_override = "normal"
+            else:
+                self.rf_available = True
+        elif kind == "environment":
+            self.night = payload["night"]
+        self.observe()
+        return True
 
-def replay(scenario, events, end_tick):
+
+def replay(scenario, events, end_tick, commands=None):
     sim = Simulation(scenario)
+    commands = commands or []
+    if commands and any("order" not in e for e in events):
+        raise ValueError("Controlled sessions require trainee timeline order")
+    timeline = [(e["tick"],e.get("order",i),"action",e) for i,e in enumerate(events)]
+    timeline += [(c["tick"],c["order"],"command",c) for c in commands]
+    # Do not silently repair malformed trainee logs.
+    if any(events[i]["tick"] > events[i+1]["tick"] for i in range(len(events)-1)):
+        raise ValueError("Events must be ordered")
+    if commands and len({e[1] for e in timeline}) != len(timeline):
+        raise ValueError("Timeline order must be unique")
+    timeline.sort(key=lambda e:(e[0],e[1]))
+    if commands and any(timeline[i][1]>=timeline[i+1][1] for i in range(len(timeline)-1)):
+        raise ValueError("Timeline order must increase with simulation time")
     i = 0
     while sim.tick <= end_tick:
-        while i < len(events) and events[i]["tick"] == sim.tick:
-            if not sim.act(events[i]):
-                raise ValueError(f"Invalid action at tick {sim.tick} for {events[i]['track']}")
+        while i < len(timeline) and timeline[i][0] == sim.tick:
+            _,_,kind,e = timeline[i]
+            if not (sim.control(e) if kind == "command" else sim.act(e)):
+                raise ValueError(f"Invalid {kind} at tick {sim.tick}")
             i += 1
         if sim.tick == end_tick:
             break
-        sim.step()
-    if i != len(events):
+        sim.step(force=True)
+    if i != len(timeline):
         raise ValueError("Events must be ordered and inside the session")
     return sim
 

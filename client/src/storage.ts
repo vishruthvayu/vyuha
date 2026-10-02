@@ -1,10 +1,10 @@
-import type {Action,Record as TrainingRecord} from './types';
+import type {Action,AppliedCommand,Record as TrainingRecord} from './types';
 const DB='vyuha-training-v1';
 async function open(){return new Promise<IDBDatabase>((resolve,reject)=>{const r=indexedDB.open(DB,1);r.onupgradeneeded=()=>{r.result.createObjectStore('records',{keyPath:'id'});r.result.createObjectStore('drafts',{keyPath:'id'});};r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});}
 async function put(store:string,value:unknown){const db=await open();try {await new Promise<void>((resolve,reject)=>{const t=db.transaction(store,'readwrite');t.objectStore(store).put(value);t.oncomplete=()=>resolve();t.onerror=()=>reject(t.error);});}finally{db.close();}}
 export async function saveRecord(record:TrainingRecord){await put('records',record);}
-export type Draft={id:string;events:Action[];scenario:TrainingRecord['scenario'];trainee:string;tick:number;server:boolean;updated_at:string};
-export async function saveDraft(id:string,events:Action[],scenario:TrainingRecord['scenario'],trainee:string,tick:number,server=false){await put('drafts',{id,events,scenario,trainee,tick,server,updated_at:new Date().toISOString()});}
+export type Draft={id:string;events:Action[];scenario:TrainingRecord['scenario'];trainee:string;tick:number;server:boolean;commands?:AppliedCommand[];updated_at:string};
+export async function saveDraft(id:string,events:Action[],scenario:TrainingRecord['scenario'],trainee:string,tick:number,server=false,commands:AppliedCommand[]=[]){await put('drafts',{id,events,scenario,trainee,tick,server,commands,updated_at:new Date().toISOString()});}
 export async function readDrafts(){const db=await open();try{return await new Promise<Draft[]>((resolve,reject)=>{const r=db.transaction('drafts').objectStore('drafts').getAll();r.onsuccess=()=>resolve(r.result.sort((a:Draft,b:Draft)=>b.updated_at.localeCompare(a.updated_at)));r.onerror=()=>reject(r.error);});}finally{db.close();}}
 export async function removeLocal(store:'drafts'|'records',id:string){const db=await open();try{await new Promise<void>((resolve,reject)=>{const t=db.transaction(store,'readwrite');t.objectStore(store).delete(id);t.oncomplete=()=>resolve();t.onerror=()=>reject(t.error);});}finally{db.close();}}
 export async function readRecords(){const db=await open();try{return await new Promise<TrainingRecord[]>((resolve,reject)=>{const r=db.transaction('records').objectStore('records').getAll();r.onsuccess=()=>resolve(r.result.sort((a:TrainingRecord,b:TrainingRecord)=>b.created_at.localeCompare(a.created_at)));r.onerror=()=>reject(r.error);});}finally{db.close();}}

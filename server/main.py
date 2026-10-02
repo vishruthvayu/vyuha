@@ -5,13 +5,15 @@ from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from .engine import ENGINE_VERSION, make_scenario, replay, score
-from .models import Action, Complete, CreateSession, EventBatch, Generate
+from pydantic import TypeAdapter
+
+from .models import Action, Complete, CreateSession, EventBatch, Generate, InstructorCommand, ControlState
 from .storage import connect, dumps, init
 
 
@@ -21,7 +23,7 @@ async def lifespan(app):
     yield
 
 
-app = FastAPI(title="VYUHA local training API", version="0.1.0", lifespan=lifespan)
+app = FastAPI(title="VYUHA local training API", version="0.2.0", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=["http://127.0.0.1:5173", "http://localhost:5173"], allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
 
 
@@ -116,7 +118,7 @@ def complete(session_id: str, req: Complete):
             return json.loads(row["scorecard"])
         log = logged_events(db, session_id)
         try:
-            card = score(replay(json.loads(row["spec"]), log, req.end_tick))
+            card = score(replay(json.loads(row["spec"]), log, req.end_tick, applied_commands(db, session_id)))
         except ValueError as error:
             raise HTTPException(422, str(error)) from error
         db.execute("UPDATE sessions SET status='completed',scorecard=?,end_tick=? WHERE id=?", (dumps(card), req.end_tick, session_id))
@@ -130,7 +132,7 @@ def aar(session_id: str):
         if row["status"] != "completed":
             raise HTTPException(409, "Session not completed")
         return dict(id=row["id"], trainee=row["trainee"], scenario=json.loads(row["spec"]), events=logged_events(db, session_id),
-                    endTick=row["end_tick"], scorecard=json.loads(row["scorecard"]), created_at=row["created_at"], verified=True)
+                    commands=applied_commands(db, session_id), endTick=row["end_tick"], scorecard=json.loads(row["scorecard"]), created_at=row["created_at"], verified=True)
 
 
 @app.get("/api/v1/units/local/dashboard")
@@ -142,7 +144,100 @@ def dashboard():
 
 @app.get("/api/v1/contracts")
 def contracts():
-    return {"Action": Action.model_json_schema(), "engine_version": ENGINE_VERSION}
+    return {"Action": Action.model_json_schema(), "InstructorCommand": TypeAdapter(InstructorCommand).json_schema(), "engine_version": ENGINE_VERSION}
+
+
+def command_records(db, session_id, after=0):
+    return [{**json.loads(r["body"]), "session_id":session_id, "seq":r["seq"], "issued_at":r["issued_at"],
+             "tick":r["tick"], "order":r["timeline_order"]}
+            for r in db.execute("SELECT * FROM instructor_commands WHERE session_id=? AND seq>? ORDER BY seq",(session_id,after))]
+
+
+def applied_commands(db, session_id):
+    return [c for c in command_records(db,session_id) if c["tick"] is not None]
+
+
+def instructor_session(db, session_id):
+    row = session_record(db,session_id)
+    state = json.loads(row["control_state"]) if row["control_state"] else None
+    fresh = row["last_seen"] and (datetime.now(timezone.utc)-datetime.fromisoformat(row["last_seen"])).total_seconds()<6
+    status = "COMPLETED" if row["status"] == "completed" else "RECOVERABLE" if not fresh else "PAUSED" if state and state["paused"] else "ACTIVE"
+    return dict(id=row["id"],trainee=row["trainee"],scenario=json.loads(row["spec"])["title"],status=status,
+                last_seen=row["last_seen"],telemetry=state,commands=command_records(db,session_id))
+
+
+@app.get("/api/v1/instructor/sessions")
+def instructor_sessions():
+    with connect() as db:
+        rows = db.execute("SELECT id FROM sessions ORDER BY created_at DESC LIMIT 100").fetchall()
+        return {"sessions":[instructor_session(db,r["id"]) for r in rows]}
+
+
+@app.get("/api/v1/instructor/sessions/{session_id}")
+def instructor_detail(session_id:str):
+    with connect() as db:
+        return instructor_session(db,session_id)
+
+
+@app.post("/api/v1/instructor/sessions/{session_id}/commands")
+def issue_command(session_id:str, req:InstructorCommand):
+    body = dumps(req.model_dump())
+    with connect() as db:
+        db.execute("BEGIN IMMEDIATE")
+        session = session_record(db,session_id)
+        old = db.execute("SELECT * FROM instructor_commands WHERE session_id=? AND command_id=?",(session_id,req.command_id)).fetchone()
+        if old:
+            if old["body"] != body:
+                raise HTTPException(409,"Command ID cannot be reused with a different payload")
+            return {"command":next(c for c in command_records(db,session_id) if c["seq"]==old["seq"]),"duplicate":True}
+        if session["status"] != "active":
+            raise HTTPException(409,"Session already completed")
+        existing = command_records(db,session_id)
+        if len(existing)>=100:
+            raise HTTPException(422,"Command limit reached")
+        injected = sum(6 if c["type"]=="inject_swarm" else 1 if c["type"]=="inject_contact" else 0 for c in existing)
+        added = 6 if req.type=="inject_swarm" else 1 if req.type=="inject_contact" else 0
+        if injected+added>64:
+            raise HTTPException(422,"Injected contact limit reached")
+        seq = len(existing)+1
+        db.execute("INSERT INTO instructor_commands(session_id,seq,command_id,issued_at,body) VALUES (?,?,?,?,?)",
+                   (session_id,seq,req.command_id,datetime.now(timezone.utc).isoformat(),body))
+        return {"command":command_records(db,session_id,seq-1)[0],"duplicate":False}
+
+
+@app.get("/api/v1/sessions/{session_id}/commands")
+def receive_commands(session_id:str, after:int=Query(default=0,ge=0,le=100)):
+    with connect() as db:
+        session_record(db,session_id)
+        return {"commands":command_records(db,session_id,after)}
+
+
+@app.post("/api/v1/sessions/{session_id}/control-state")
+def control_state(session_id:str, req:ControlState):
+    with connect() as db:
+        db.execute("BEGIN IMMEDIATE")
+        session = session_record(db,session_id)
+        if session["status"] != "active":
+            raise HTTPException(409,"Session already completed")
+        if [a.seq for a in req.applied] != list(range(1,len(req.applied)+1)):
+            raise HTTPException(409,"Command acknowledgements must be a contiguous prefix")
+        existing = applied_commands(db,session_id)
+        if len(req.applied)<len(existing):
+            raise HTTPException(409,"Command history cannot be rolled back")
+        previous_tick, previous_order = -1,-1
+        for ack in req.applied:
+            row = db.execute("SELECT * FROM instructor_commands WHERE session_id=? AND seq=?",(session_id,ack.seq)).fetchone()
+            if not row or ack.tick>req.tick or ack.tick<previous_tick or ack.order<=previous_order:
+                raise HTTPException(422,"Invalid command acknowledgement")
+            if row["tick"] is not None and (row["tick"]!=ack.tick or row["timeline_order"]!=ack.order):
+                raise HTTPException(409,"An applied command is immutable")
+            db.execute("UPDATE instructor_commands SET tick=?,timeline_order=? WHERE session_id=? AND seq=?",
+                       (ack.tick,ack.order,session_id,ack.seq))
+            previous_tick,previous_order = ack.tick,ack.order
+        telemetry = req.model_dump(exclude={"applied"})
+        db.execute("UPDATE sessions SET last_seen=?,control_state=? WHERE id=?",
+                   (datetime.now(timezone.utc).isoformat(),dumps(telemetry),session_id))
+        return {"ack":len(req.applied)}
 
 
 DIST = Path(__file__).resolve().parent.parent / "client" / "dist"

@@ -22,7 +22,14 @@ def init():
                 created_at TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'active', scorecard TEXT, end_tick INTEGER);
             CREATE TABLE IF NOT EXISTS chunks (session_id TEXT NOT NULL, seq INTEGER NOT NULL, payload TEXT NOT NULL,
                 PRIMARY KEY (session_id, seq));
+            CREATE TABLE IF NOT EXISTS instructor_commands (session_id TEXT NOT NULL, seq INTEGER NOT NULL,
+                command_id TEXT NOT NULL, issued_at TEXT NOT NULL, body TEXT NOT NULL, tick INTEGER, timeline_order INTEGER,
+                PRIMARY KEY (session_id, seq), UNIQUE (session_id, command_id));
         """)
+        columns = {r["name"] for r in db.execute("PRAGMA table_info(sessions)")}
+        for name, definition in [("last_seen", "TEXT"), ("control_state", "TEXT")]:
+            if name not in columns:
+                db.execute(f"ALTER TABLE sessions ADD COLUMN {name} {definition}")
 
 
 def dumps(value):
