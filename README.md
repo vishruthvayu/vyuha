@@ -40,7 +40,7 @@ The Compose file publishes only to this laptop's loopback interface. Multi-lapto
 - Range restrictions, an illustrative restricted zone, no-RF jammer failure, protected-asset impacts, and non-hostile engagement failure.
 - Versioned browser and Python replay/scoring engines with cross-language regression tests.
 - Server reconstructs outcomes from its issued scenario plus validated actions; client scores are labelled pending until verified.
-- SQLite session store; idempotent event batches; replay and reference debrief; JSON session export.
+- SQLite session store; idempotent event batches; authoritative Ghost Expert review and tactical replay; JSON session export.
 - IndexedDB records and unfinished-drill recovery. A production service worker precaches all local application assets.
 - Actual trainee/session history and unit skill overview; no invented dashboard results.
 - Two-skill Beta profile and a seeded Thompson-sampling focus choice. Response-focused drills add a no-RF contact. This is an initial adaptive policy, without calibrated 70% difficulty targeting or anti-rote similarity filtering.
@@ -59,11 +59,19 @@ Open **http://127.0.0.1:8000/instructor** in a second browser/tab while a traine
 
 See `docs/INSTRUCTOR-CONTROL.md` for contracts, reconstruction, testing and limitations. The console requires the local server; standalone device practice remains available when it is unreachable.
 
+## Ghost Expert + Time-Machine AAR v2
+
+Ghost Expert is rule-grounded: no LLM is used, and explanations are deterministic templates generated only from reconstructed facts. Server reviews compare detection, classification/IFF and hold/jammer/kinetic decisions with the existing rubric, showing available evidence separately from ground truth, observed consequences, final contact/node scores and four skill tags. A deterministic summary recommends a review focus without changing the current adaptive policy.
+
+The seven-category timeline includes instructor commands, sensor changes and contact outcomes. Play/pause, scrubbing and event jumps reconstruct the actual tactical world, including same-tick pre-action states. Early sessions review only their recorded interval while clearly labelling the preserved 75-second scoring projection. Verified reviews are cached for offline reading; device-only scores do not generate expert expectations.
+
+See [docs/GHOST-AAR.md](docs/GHOST-AAR.md) for the contract, reason codes, validation and measured performance. Threat/sensor parameters remain illustrative, prioritisation remains the simplified timely-resolution metric, and these references are not validated military doctrine.
+
 ## October 4 boundaries
 
 The 75-second scripted drill is playable. The shortened presenter demo pauses at selected contacts and ends early after demonstrating one correct response and one unsuitable response; unhandled contacts continue during scoring, so early ending never hides remaining threats.
 
-The original plan's 12-drone live injection, 3D replay scrubber, advanced Ghost Expert, VR, rural terrain, validated sensors, audio, rapid ID, eight-skill director, authenticated multi-laptop unit operations, MongoDB, USB bundle signing, SigNoz and role-based accounts are **not implemented**. The AAR replay is currently a deterministic 2D tactical replay, and the reference debrief is template-based.
+The original plan's 12-drone live injection, 3D replay scrubber, VR, rural terrain, validated sensors, audio, rapid ID, eight-skill director, authenticated multi-laptop unit operations, MongoDB, USB bundle signing, SigNoz and role-based accounts are **not implemented**. The AAR uses deterministic 2D tactical replay and the rule-grounded Ghost Expert described above.
 
 The 15-point rubric node currently rewards timely threat resolution, not Kendall-tau swarm prioritization. The interface says so. The session averages hostile-contact scores, subtracts 10 per asset impact, and fails on non-hostile engagement. Classification and response percentages include all contacts.
 
@@ -83,6 +91,8 @@ The TypeScript tests invoke the Python interpreter in this checkout to compare s
 ## Validation record
 
 See `docs/VALIDATION.md` for the completed automated and browser checks, and the remaining team-laptop checks. The source ZIP excludes installed dependencies and training history; first setup on another laptop needs internet.
+
+Stage 2 validation: 32 backend tests, 20 frontend tests, both existing parity tests with 51 checkpoints, and production build passed. The night drill with an injected six-drone swarm and no-RF FPV passed the browser walkthrough, including successful RF-linked engagement, reload recovery and cached AAR reading during a server outage. Detailed evidence and measurement scope are in [docs/GHOST-AAR.md](docs/GHOST-AAR.md).
 
 ## Files
 

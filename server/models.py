@@ -44,6 +44,7 @@ class EventBatch(BaseModel):
 
 
 class Complete(BaseModel):
+    execution_tick: int | None = Field(default=None, ge=0, le=2250)
     end_tick: int = Field(default=2250, ge=2250, le=2250)
 
 

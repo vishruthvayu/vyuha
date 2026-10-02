@@ -48,8 +48,8 @@ export class Simulation {
  }
  snapshot():Snapshot{return structuredClone(this.state);}
 }
-export function replay(scenario:Scenario,events:Action[],endTick:number,commands:AppliedCommand[]=[]){
- const sim=new Simulation(scenario);const timeline=[...events.map((a,i)=>({tick:a.tick,order:a.order??i,action:a,command:null as AppliedCommand|null})),...commands.map(c=>({tick:c.tick,order:c.order,action:null as Action|null,command:c}))].filter(e=>e.tick<=endTick).sort((a,b)=>a.tick-b.tick||a.order-b.order);
+export function replay(scenario:Scenario,events:Action[],endTick:number,commands:AppliedCommand[]=[],beforeOrder?:number){
+ const sim=new Simulation(scenario);const timeline=[...events.map((a,i)=>({tick:a.tick,order:a.order??i,action:a,command:null as AppliedCommand|null})),...commands.map(c=>({tick:c.tick,order:c.order,action:null as Action|null,command:c}))].filter(e=>e.tick<endTick||(e.tick===endTick&&(beforeOrder===undefined||e.order<beforeOrder))).sort((a,b)=>a.tick-b.tick||a.order-b.order);
  let i=0;while(sim.state.tick<=endTick){while(i<timeline.length&&timeline[i].tick===sim.state.tick){const e=timeline[i++];if(e.command)sim.control(e.command,e.tick,e.order);else if(e.action)sim.act(e.action);}if(sim.state.tick===endTick||sim.state.done)break;sim.step(true);}return sim;
 }
 export function score(sim:Simulation):ScoreCard {

@@ -15,6 +15,8 @@ from pydantic import TypeAdapter
 
 from .models import Action, Complete, CreateSession, EventBatch, Generate, InstructorCommand, ControlState
 from .storage import connect, dumps, init
+from .review import build_review
+from .review_models import DecisionReview, GhostAAR
 
 
 @asynccontextmanager
@@ -117,34 +119,54 @@ def complete(session_id: str, req: Complete):
         if row["status"] == "completed":
             return json.loads(row["scorecard"])
         log = logged_events(db, session_id)
+        if req.execution_tick is not None and any(e["tick"]>req.execution_tick for e in log+applied_commands(db,session_id)):
+            raise HTTPException(422,"Recorded action exceeds observed exercise horizon")
         try:
             card = score(replay(json.loads(row["spec"]), log, req.end_tick, applied_commands(db, session_id)))
         except ValueError as error:
             raise HTTPException(422, str(error)) from error
-        db.execute("UPDATE sessions SET status='completed',scorecard=?,end_tick=? WHERE id=?", (dumps(card), req.end_tick, session_id))
+        db.execute("UPDATE sessions SET status='completed',scorecard=?,end_tick=?,execution_tick=? WHERE id=?", (dumps(card), req.end_tick, req.execution_tick, session_id))
     return card
 
 
 @app.get("/api/v1/sessions/{session_id}/aar")
-def aar(session_id: str):
+def aar(session_id: str, include_review: bool = True):
     with connect() as db:
         row = session_record(db, session_id)
         if row["status"] != "completed":
             raise HTTPException(409, "Session not completed")
-        return dict(id=row["id"], trainee=row["trainee"], scenario=json.loads(row["spec"]), events=logged_events(db, session_id),
-                    commands=applied_commands(db, session_id), endTick=row["end_tick"], scorecard=json.loads(row["scorecard"]), created_at=row["created_at"], verified=True)
+        log=logged_events(db,session_id);commands=applied_commands(db,session_id)
+        if not include_review:
+            return dict(id=row["id"],trainee=row["trainee"],scenario=json.loads(row["spec"]),events=log,commands=commands,
+                        endTick=row["end_tick"],scorecard=json.loads(row["scorecard"]),created_at=row["created_at"],verified=True)
+        if row["execution_tick"] is not None:
+            observed=row["execution_tick"];source="completion"
+        elif row["control_state"]:
+            observed=json.loads(row["control_state"])["tick"];source="telemetry"
+        else:
+            observed=max([e["tick"] for e in log+commands],default=0);source="last_recorded_event"
+        try:
+            review,reconstructed_card=build_review(json.loads(row["spec"]),log,commands,session_id,observed,source,row["end_tick"])
+        except (ValueError,KeyError,TypeError) as error:
+            raise HTTPException(422,"Stored session cannot be reconstructed for review") from error
+        stored_card=json.loads(row["scorecard"])
+        if {k:v for k,v in reconstructed_card.items() if k!='engine_version'}!={k:v for k,v in stored_card.items() if k!='engine_version'}:
+            raise HTTPException(422,"Stored score disagrees with reconstructed session")
+        return dict(id=row["id"], trainee=row["trainee"], scenario=json.loads(row["spec"]), events=log,
+                    commands=commands,executionTick=observed,endTick=row["end_tick"],scorecard=json.loads(row["scorecard"]),
+                    created_at=row["created_at"],verified=True,**review)
 
 
 @app.get("/api/v1/units/local/dashboard")
 def dashboard():
     with connect() as db:
         rows = db.execute("SELECT id FROM sessions WHERE status='completed' ORDER BY created_at DESC LIMIT 100").fetchall()
-        return {"sessions": [aar(r["id"]) for r in rows]}
+        return {"sessions": [aar(r["id"],include_review=False) for r in rows]}
 
 
 @app.get("/api/v1/contracts")
 def contracts():
-    return {"Action": Action.model_json_schema(), "InstructorCommand": TypeAdapter(InstructorCommand).json_schema(), "engine_version": ENGINE_VERSION}
+    return {"Action": Action.model_json_schema(), "InstructorCommand": TypeAdapter(InstructorCommand).json_schema(), "DecisionReview": DecisionReview.model_json_schema(), "GhostAAR": GhostAAR.model_json_schema(), "engine_version": ENGINE_VERSION}
 
 
 def command_records(db, session_id, after=0):

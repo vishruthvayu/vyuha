@@ -70,6 +70,25 @@ def js_round(x):
     return math.floor(x + .5)
 
 
+def engagement_rule(t, effector):
+    """Shared physical/rubric constraints; used by execution, scoring and AAR."""
+    maximum = 160 if effector == "kinetic" else 180
+    in_range = math.hypot(t["x"], t["z"]) <= maximum
+    restricted = effector == "kinetic" and civil(t)
+    effective = effector != "hold" and in_range and not restricted and (effector != "rf_jam" or t["rf"])
+    return dict(max_range_m=maximum, in_range=in_range, restricted=restricted, effective=effective,
+                rubric_success=effector == ideal(t) and in_range and not restricted)
+
+
+def detection_points(t):
+    latency = None if t["detected"] is None or t["designated"] is None else (t["designated"]-t["detected"])/HZ
+    return 0 if latency is None else js_round(25*max(0, min(1, (20-latency)/17)))
+
+
+def classification_points(t):
+    return 25 if t["classification"] == t["kind"] and t["declared"] == t["identity"] else 12 if t["declared"] == t["identity"] and t["classification"] is not None else 0
+
+
 class Simulation:
     def __init__(self, scenario):
         self.scenario = scenario
@@ -132,7 +151,7 @@ class Simulation:
             effector = a["effector"]
             t["attempts"].append(effector)
             d = math.hypot(t["x"], t["z"])
-            if effector != "hold" and d <= (160 if effector == "kinetic" else 180) and not (effector == "kinetic" and civil(t)) and (effector != "rf_jam" or t["rf"]):
+            if engagement_rule(t, effector)["effective"]:
                 t["resolved"] = True
                 t["active"] = False
         self.events.append(copy.deepcopy(a))
@@ -172,7 +191,7 @@ class Simulation:
         return True
 
 
-def replay(scenario, events, end_tick, commands=None):
+def replay(scenario, events, end_tick, commands=None, observer=None):
     sim = Simulation(scenario)
     commands = commands or []
     if commands and any("order" not in e for e in events):
@@ -187,16 +206,24 @@ def replay(scenario, events, end_tick, commands=None):
     timeline.sort(key=lambda e:(e[0],e[1]))
     if commands and any(timeline[i][1]>=timeline[i+1][1] for i in range(len(timeline)-1)):
         raise ValueError("Timeline order must increase with simulation time")
+    if observer:
+        observer(sim, "initial", None, None)
     i = 0
     while sim.tick <= end_tick:
         while i < len(timeline) and timeline[i][0] == sim.tick:
             _,_,kind,e = timeline[i]
+            if observer and kind == "action":
+                observer(sim, "before_action", e, timeline[i][1])
             if not (sim.control(e) if kind == "command" else sim.act(e)):
                 raise ValueError(f"Invalid {kind} at tick {sim.tick}")
+            if observer:
+                observer(sim, kind, e, timeline[i][1])
             i += 1
         if sim.tick == end_tick:
             break
         sim.step(force=True)
+        if observer:
+            observer(sim, "step", None, None)
     if i != len(timeline):
         raise ValueError("Events must be ordered and inside the session")
     return sim
@@ -209,21 +236,22 @@ def score(sim):
     for t in tracks:
         is_threat = t["identity"] == "hostile"
         latency = None if t["detected"] is None or t["designated"] is None else (t["designated"]-t["detected"])/HZ
-        detect = 0 if latency is None else js_round(25*max(0, min(1, (20-latency)/17)))
-        classify = 25 if t["classification"] == t["kind"] and t["declared"] == t["identity"] else 12 if t["declared"] == t["identity"] and t["classification"] is not None else 0
+        detect = detection_points(t)
+        classify = classification_points(t)
         actions = [a for a in sim.events if a["track"] == t["id"] and a["k"] == "engage"]
         successful, feedback = False, []
         for a in actions:
             temp = {**t, **position(t, a["tick"])}
             d = math.hypot(temp["x"], temp["z"])
-            restricted = a["effector"] == "kinetic" and civil(temp)
+            rule = engagement_rule(temp, a["effector"])
+            restricted = rule["restricted"]
             if restricted:
                 breaches += 1
                 feedback.append("Kinetic action attempted in the restricted zone.")
-            in_range = d <= (160 if a["effector"] == "kinetic" else 180)
-            if a["effector"] != "hold" and in_range and not restricted and (a["effector"] != "rf_jam" or t["rf"]) and not is_threat:
+            in_range = rule["in_range"]
+            if rule["effective"] and not is_threat:
                 fratricide = True
-            if a["effector"] == ideal(t) and in_range and not restricted:
+            if rule["rubric_success"]:
                 successful = True
         wrong = sum(a["effector"] != ideal(t) for a in actions)
         engage = max(0, 35-wrong*7) if successful else 0

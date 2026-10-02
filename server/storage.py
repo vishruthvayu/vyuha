@@ -27,7 +27,7 @@ def init():
                 PRIMARY KEY (session_id, seq), UNIQUE (session_id, command_id));
         """)
         columns = {r["name"] for r in db.execute("PRAGMA table_info(sessions)")}
-        for name, definition in [("last_seen", "TEXT"), ("control_state", "TEXT")]:
+        for name, definition in [("last_seen", "TEXT"), ("control_state", "TEXT"), ("execution_tick", "INTEGER")]:
             if name not in columns:
                 db.execute(f"ALTER TABLE sessions ADD COLUMN {name} {definition}")
 
