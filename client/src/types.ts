@@ -1,0 +1,12 @@
+export type Kind = 'bird'|'quad'|'fixed_wing'|'fiber_fpv';
+export type Identity = 'hostile'|'friendly'|'neutral';
+export type Effector = 'rf_jam'|'kinetic'|'hold';
+export type TrackSpec = {id:string;kind:Kind;identity:Identity;rf:boolean;spawn:number;bearing:number;distance:number;speed:number;altitude:number};
+export type Scenario = {version:1;id:string;seed:number;title:string;duration:number;night:boolean;fog:number;jamStart:number;jamEnd:number;focus:string;tracks:TrackSpec[]};
+export type Action = {tick:number;k:'designate'|'classify'|'engage';track:string;kind?:Kind;identity?:Identity;effector?:Effector};
+export type Track = TrackSpec & {x:number;z:number;active:boolean;detected:number|null;designated:number|null;classification:Kind|null;declared:Identity|null;resolved:boolean;impact:boolean;radar:boolean;thermal:boolean;attempts:Effector[]};
+export type Snapshot = {tick:number;tracks:Track[];jammed:boolean;done:boolean;messages:{tick:number;track:string;text:string}[]};
+export type NodeScore = {id:string;kind:Kind;identity:Identity;detect:number;classify:number;prioritise:number;engage:number;total:number;detected:number|null;designated:number|null;ideal:string;feedback:string[];impact:boolean;attempts:Effector[]};
+export type ScoreCard = {score:number;passed:boolean;fratricide:boolean;roe_breaches:number;leakers:number;threats:number;rows:NodeScore[];skills:{recognition:number;response:number};summary:string;engine_version:string};
+export type Record = {id:string;trainee:string;scenario:Scenario;events:Action[];endTick:number;scorecard:ScoreCard;created_at:string;verified:boolean};
+export const KIND_LABEL:{[K in Kind]:string} = {bird:'Bird',quad:'Quadcopter',fixed_wing:'Fixed-wing',fiber_fpv:'No-RF FPV'};

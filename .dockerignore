@@ -1,0 +1,8 @@
+client/node_modules
+client/dist
+.venv
+.git
+data
+**/__pycache__
+**/.pytest_cache
+docs
