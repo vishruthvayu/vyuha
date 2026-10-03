@@ -42,8 +42,11 @@ The default Compose file publishes only to this laptop's loopback interface. Sta
 - Server reconstructs outcomes from its issued scenario plus validated actions; client scores are labelled pending until verified.
 - SQLite session store; idempotent event batches; authoritative Ghost Expert review and tactical replay; JSON session export.
 - IndexedDB records and unfinished-drill recovery. A production service worker precaches all local application assets.
-- Actual trainee/session history and unit skill overview; no invented dashboard results.
+- Actual trainee/session history and unit skill overview; persisted Beta trends, stored session A/B comparisons and real Director focus history.
 - Four persistent Beta skill profiles from authoritative Ghost outcomes; backend seeded Thompson sampling, three difficulty bands, twelve adaptive templates and recent-template repetition protection. The approximately 70% success target is heuristic, not calibrated.
+- Five deterministic Red Force patterns, three versioned illustrative Doctrine Packs, validated instructor authoring and an immutable playable scenario library.
+- Separate 10–20-round Rapid ID with active-time recovery, per-round review and authoritative classification-only skill updates.
+- Advanced drills score real pairwise hostile prioritisation with auditable risk/time-to-impact facts and grounded Ghost explanations.
 - 2D tactical fallback and responsive layout.
 
 ## Instructor Console v1
@@ -63,9 +66,9 @@ See `docs/INSTRUCTOR-CONTROL.md` for contracts, reconstruction, testing and limi
 
 Ghost Expert is rule-grounded: no LLM is used, and explanations are deterministic templates generated only from reconstructed facts. Server reviews compare detection, classification/IFF and hold/jammer/kinetic decisions with the existing rubric, showing available evidence separately from ground truth, observed consequences, final contact/node scores and four skill tags. A deterministic summary recommends a review focus. The separate Stage 3 Director uses persistent four-skill evidence rather than forcing this last-session recommendation.
 
-The seven-category timeline includes instructor commands, sensor changes and contact outcomes. Play/pause, scrubbing and event jumps reconstruct the actual tactical world, including same-tick pre-action states. Early sessions review only their recorded interval while clearly labelling the preserved 75-second scoring projection. Verified reviews are cached for offline reading; device-only scores do not generate expert expectations.
+The tactical timeline includes instructor commands, sensor changes and contact outcomes. Play/pause, scrubbing and event jumps reconstruct the actual tactical world, including same-tick pre-action states. Early sessions review only their recorded interval while clearly labelling the preserved 75-second scoring projection. Verified reviews are cached for offline reading; device-only scores do not generate expert expectations.
 
-See [docs/GHOST-AAR.md](docs/GHOST-AAR.md) for the contract, reason codes, validation and measured performance. Threat/sensor parameters remain illustrative, prioritisation remains the simplified timely-resolution metric, and these references are not validated military doctrine.
+See [docs/GHOST-AAR.md](docs/GHOST-AAR.md) for the contract, reason codes, validation and measured performance. Threat/sensor parameters remain illustrative. Original Night Watch retains timely-resolution prioritisation; advanced drills use the Stage 5 ranking metric. These references are not validated military doctrine.
 
 ## AI Threat Director v1
 
@@ -73,15 +76,25 @@ Choose a trainee ID and **Adaptive / Skill practice**, then **Prepare adaptive d
 
 Completed verified sessions update `detection`, `classification_iff`, `effector_choice` and `degraded_sensor_response` transactionally and once per session. Profiles preserve Beta(1,1) priors and retain outcome provenance. Zero observations is a baseline prior, and small counts are labelled limited evidence. Percentages are **VYUHA training mastery estimates, not validated operational competence**. No LLM or real-world training-efficacy claim is involved. Approximately 70% success difficulty targeting is a simple heuristic. Scenario and sensor parameters remain illustrative.
 
-Adaptive generation needs the original local server. Instructor Control and Ghost AAR work with adaptive scenarios. See [docs/DIRECTOR-V1.md](docs/DIRECTOR-V1.md) for the mapping, 12-template matrix, deterministic selection, anti-rote fallback, browser proof and measured performance. Stage 4 — Real Unit Mode + Multi-Laptop LAN Training — is implemented, with minimum physical LAN and browser server-outage tests passed. A full WAN-off reload/start check remains pending by user choice. [Unit Mode evidence and limitations](docs/UNIT-MODE.md). Stage 5 has not started.
+Adaptive generation needs the original local server. Instructor Control and Ghost AAR work with adaptive scenarios. See [docs/DIRECTOR-V1.md](docs/DIRECTOR-V1.md) for the mapping, 12-template matrix, deterministic selection, anti-rote fallback, browser proof and measured performance. Stage 4 — Real Unit Mode + Multi-Laptop LAN Training — is implemented, with minimum physical LAN and browser server-outage tests passed. A full WAN-off reload/start check remains pending by user choice. [Unit Mode evidence and limitations](docs/UNIT-MODE.md). Stage 5 implements all six advanced-training systems; [contracts, walkthrough, tests and measurements](docs/STAGE-5-ADVANCED-TRAINING.md). Stage 6 has not started.
+
+## Advanced training v1
+
+At `/`, choose **Adaptive / Skill practice**, **Scripted / Library**, or the preserved **Original Night Watch** drill. Rapid ID and Training history are separate sidebar links. Open `/exercises` from Instructor to select the unit's pack, validate/preview/save an urban 75-second exercise and assign the immutable library scenario to connected trainees. Both tactical modes use the existing verified score, Ghost, replay and profile pipeline.
+
+The three pack versions change effector ranges, restricted kinetic sector, default traffic/fog/time and transparent risk weights. The five Red Force patterns change actual spawn timing, formation and warning opportunity. LOW_APPROACH uses reduced illustrative sensor range, with no terrain occlusion. New advanced scorecards use the preserved 25/25/15/35 rubric with a real pairwise Kendall agreement × engagement coverage prioritisation node. Early ending keeps the 75-second scoring projection visible.
+
+Rapid ID supports 10–20 five-second rounds, pause/reload recovery, actual accuracy/error counts and median client active response time. Each answer updates only classification/IFF once at authoritative session completion. Analytics shows exact ledger estimates, observed session differences, current-cohort unit trends and actual Director focus changes. No training-causation claim is inferred.
+
+See [Stage 5 documentation](docs/STAGE-5-ADVANCED-TRAINING.md) for field constraints, snapshots, scoring edge cases, integrated browser evidence, all test coverage and measured overhead. Crew mode remains future scope.
 
 ## October 4 boundaries
 
 The 75-second scripted drill is playable. The shortened presenter demo pauses at selected contacts and ends early after demonstrating one correct response and one unsuitable response; unhandled contacts continue during scoring, so early ending never hides remaining threats.
 
-The original plan's 12-drone live injection, 3D replay scrubber, VR, rural terrain, validated sensors, audio, rapid ID, eight-skill director, authenticated multi-laptop unit operations, MongoDB, USB bundle signing, SigNoz and role-based accounts are **not implemented**. The AAR uses deterministic 2D tactical replay and the rule-grounded Ghost Expert described above. The four-skill individual Director v1 is implemented; the original eight-skill/unit proposal remains outside this stage.
+The original plan's 12-drone live injection, 3D replay scrubber, VR, rural terrain, validated sensors, audio, eight-skill director, authenticated multi-laptop unit operations, MongoDB, USB bundle signing, SigNoz and role-based accounts are **not implemented**. The AAR uses deterministic 2D tactical replay and the rule-grounded Ghost Expert described above. The four-skill individual Director v1 is implemented; the original eight-skill/unit proposal remains outside this stage.
 
-The 15-point rubric node currently rewards timely threat resolution, not Kendall-tau swarm prioritization. The interface says so. The session averages hostile-contact scores, subtracts 10 per asset impact, and fails on non-hostile engagement. Classification and response percentages include all contacts.
+Original Night Watch retains its historical timely-resolution 15-point node. Advanced scenarios use the documented pairwise Kendall ranking agreement and coverage node, with stored evidence and Ghost review. The session averages hostile-contact scores, subtracts 10 per asset impact, and fails on non-hostile engagement. Classification and response percentages include all contacts.
 
 Checksums and server replay do not make user action logs tamper-proof: an adversarial user can fabricate plausible inputs. This build validates consistency and reproduces outcomes; stronger identity, trusted telemetry, and signatures are separate work.
 
@@ -104,6 +117,8 @@ Stage 2 validation: 32 backend tests, 20 frontend tests, both existing parity te
 
 Stage 3 validation: **50 backend tests, 25 frontend tests, production build and 7 offline assets passed**. The original 51 parity checkpoints remain green, with 72 additional checkpoints across all 12 Director templates. Browser closed-loop proof passed, including profile persistence after server restart. Full evidence and the 50-sample runtime measurements are in [docs/DIRECTOR-V1.md](docs/DIRECTOR-V1.md).
 
+Stage 5 validation: **106 backend tests, 36 frontend tests, 51 original simulation + 72 Director + 135 advanced parity checkpoints**, production build and seven offline assets passed. The integrated UI walkthrough covered pack selection, authored library assignment, poor priority, no-RF jammer failure, verified score/Ghost, profile → Director → next drill, ten-round Rapid ID, exact analytics and real server-process outage recovery. Six simulated advanced trainees completed 18 verified sessions. Measured loopback medians were upload 4.97 ms, poll 2.87 ms, dashboard 105.83 ms and completion 117.17 ms; dashboard/scoring overhead versus the same-run legacy workload is explicitly reported. [Full Stage 5 evidence](docs/STAGE-5-ADVANCED-TRAINING.md). Physical Stage 4 WAN-off cached reload/start remains pending by user choice.
+
 ## Files
 
 - `client/src/sim.ts`, `server/engine.py`: mirrored deterministic training model.
@@ -111,6 +126,9 @@ Stage 3 validation: **50 backend tests, 25 frontend tests, production build and 
 - `server/models.py`, `server/director_models.py`: validation contracts.
 - `server/director.py`, `client/src/Director.tsx`: authoritative skill updates, Director selection/adaptation and profile/decision UI.
 - `server/main.py`: generation, sessions, event upload, completion, AAR, profiles and unit endpoints.
+- `server/exercises.py`, `server/advanced.py`: tactics, versioned packs, authoring/library, Rapid ID and historical analytics.
+- `server/prioritisation.py`, `client/src/prioritisation.ts`: mirrored auditable hostile-order scoring.
+- `client/src/ExerciseStudio.tsx`, `RapidID.tsx`, `Analytics.tsx`: advanced exercise and review interfaces.
 - `docs/OCTOBER-4.md`: rehearsal script and acceptance checklist.
 
 Portal swap permission, official submission deadline, college details and live submission count have not been verified by this build.

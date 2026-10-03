@@ -124,7 +124,7 @@ def status(uid:str):
 def launch_group(uid:str,req:GroupLaunch):
     from .engine import make_scenario
     with connect() as db:
-        db.execute('BEGIN IMMEDIATE');unit(db,uid);body=dumps(req.model_dump());old=db.execute('SELECT * FROM exercise_groups WHERE request_id=?',(req.request_id,)).fetchone()
+        db.execute('BEGIN IMMEDIATE');unit(db,uid);body=dumps(req.model_dump(exclude_none=True));old=db.execute('SELECT * FROM exercise_groups WHERE request_id=?',(req.request_id,)).fetchone()
         if old:
             if old['body']!=body or old['unit_id']!=uid:raise HTTPException(409,'Launch request ID cannot be reused')
             gid=old['id']
@@ -136,7 +136,12 @@ def launch_group(uid:str,req:GroupLaunch):
                 if not db.execute('SELECT 1 FROM connected_clients WHERE trainee=? AND last_seen>?',(tid,cutoff())).fetchone():raise HTTPException(409,'Selected trainee is disconnected')
                 if db.execute("SELECT 1 FROM connected_clients c JOIN sessions s ON s.id=c.session_id WHERE c.trainee=? AND c.last_seen>? AND s.status='active'",(tid,cutoff())).fetchone():raise HTTPException(409,'Selected trainee is already training')
                 if db.execute('SELECT 1 FROM exercise_assignments WHERE trainee=? AND accepted_at IS NULL',(tid,)).fetchone():raise HTTPException(409,'Selected trainee has an unstarted assignment')
-            gid='G_'+uuid.uuid4().hex;spec=make_scenario(req.seed,'recognition',req.night)
+            gid='G_'+uuid.uuid4().hex
+            if req.scenario_id:
+                row=db.execute('SELECT sc.spec FROM scenarios sc JOIN scenario_library l ON l.id=sc.id WHERE sc.id=?',(req.scenario_id,)).fetchone()
+                if not row:raise HTTPException(422,'Saved library scenario not found')
+                spec=json.loads(row['spec'])
+            else:spec=make_scenario(req.seed,'recognition',req.night)
             db.execute('INSERT OR IGNORE INTO scenarios VALUES (?,?)',(spec['id'],dumps(spec)))
             db.execute('INSERT INTO exercise_groups VALUES (?,?,?,?,?,?)',(gid,uid,req.request_id,body,spec['id'],now()))
             for tid in req.trainees:
@@ -176,5 +181,6 @@ def group_results(uid:str,gid:str):
             card=json.loads(r['scorecard']) if r['scorecard'] else None
             hostile=[x for x in card['rows'] if x['identity']=='hostile'] if card else []
             averages={k:round(sum(x[k] for x in hostile)/len(hostile),2) if hostile else None for k in ['detect','classify','engage']}
+            if card and card.get('prioritisation'):averages['prioritise']=card['prioritisation']['points']
             result.append(dict(session_id=r['id'],trainee_id=r['trainee'],callsign=r['callsign'],status=r['status'],score=card['score'] if card else None,node_averages=averages))
         return dict(exercise_group_id=gid,scenario_id=g['scenario_id'],created_at=g['created_at'],results=result)

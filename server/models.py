@@ -26,6 +26,9 @@ class Action(BaseModel):
 
 
 class Generate(BaseModel):
+    advanced: bool = False
+    pack_id: str | None = None
+    tactic: Literal["DIRECT","SATURATION","DECOY_THEN_STRIKE","STAGGERED_WAVES","LOW_APPROACH"] | None = None
     seed: int = Field(default=482913, ge=0, le=4294967295)
     night: bool = True
     mode: Literal["scripted", "adaptive"] = "scripted"

@@ -51,6 +51,12 @@ def review_session(db, row):
 
 
 def profile(trainee):
+    # Established profiles need a consistent read snapshot, not a SQLite writer lock.
+    with connect() as db:
+        db.execute('BEGIN')
+        ready=db.execute('SELECT COUNT(*) FROM skill_profiles WHERE trainee=?',(trainee,)).fetchone()[0]==4
+        pending=db.execute("SELECT 1 FROM sessions s LEFT JOIN skill_outcomes o ON o.session_id=s.id WHERE s.trainee=? AND s.status='completed' AND o.session_id IS NULL LIMIT 1",(trainee,)).fetchone()
+        if ready and not pending:return read_profile(db,trainee,ensure=False)
     with connect() as db:
         db.execute('BEGIN IMMEDIATE')
         pending=db.execute("SELECT s.*,sc.spec FROM sessions s JOIN scenarios sc ON sc.id=s.scenario_id LEFT JOIN skill_outcomes o ON o.session_id=s.id WHERE s.trainee=? AND s.status='completed' AND o.session_id IS NULL ORDER BY s.created_at,s.id",(trainee,)).fetchall()
@@ -73,9 +79,22 @@ def generate(req: Generate):
     if req.mode == 'adaptive':
         snapshot=profile(req.trainee)
         with connect() as db:
-            scenario=adapt_scenario(select_director(snapshot,recent_history(db,req.trainee),req.seed))
+            history=recent_history(db,req.trainee)
+            scenario=adapt_scenario(select_director(snapshot,history,req.seed))
     else:
         scenario=make_scenario(req.seed,req.focus or 'recognition',req.night)
+    if req.advanced:
+        from .exercises import PACKS,enrich,AuthorScenario,compile_authored
+        from .advanced import selected_pack
+        with connect() as db:
+            member=db.execute('SELECT unit_id FROM trainees WHERE id=?',(req.trainee,)).fetchone()
+            pack=req.pack_id or selected_pack(db,member['unit_id'] if member else 'local')
+        if pack not in PACKS:raise HTTPException(422,'Unknown doctrine pack')
+        if req.mode=='adaptive':scenario=enrich(scenario,pack,req.tactic,history)
+        else:
+            p=PACKS[pack]
+            try:scenario=compile_authored(AuthorScenario(name='Pack training exercise',pack_id=pack,seed=req.seed,night=req.night,mix=p['defaults']['mix'],tactic=req.tactic or 'DIRECT'))
+            except ValueError as error:raise HTTPException(422,str(error)) from error
     with connect() as db:
         db.execute("INSERT OR IGNORE INTO scenarios(id,spec) VALUES (?,?)", (scenario['id'],dumps(scenario)))
     return scenario
@@ -302,6 +321,9 @@ def control_state(session_id:str, req:ControlState):
 
 from .units import router as unit_router
 app.include_router(unit_router)
+
+from .advanced import router as advanced_router
+app.include_router(advanced_router)
 
 DIST = Path(__file__).resolve().parent.parent / "client" / "dist"
 if DIST.is_dir():

@@ -1,7 +1,7 @@
 """Extract a compact decision review from the existing authoritative replay."""
 import copy
 import math
-from .engine import HZ, civil, engagement_rule, ideal, replay, score
+from .engine import position,HZ, civil, engagement_rule, ideal, replay, score
 from .review_models import GhostAAR
 
 SKILLS = ['detection', 'classification_iff', 'effector_choice', 'degraded_sensor_response']
@@ -32,7 +32,7 @@ def command_title(command):
 def expected_engagement(t):
     reference=ideal(t)
     rule=engagement_rule(t,reference)
-    return 'hold' if reference!='hold' and (not rule['in_range'] or rule['restricted']) else reference
+    return 'hold' if reference!='hold' and (not rule['allowed'] or not rule['in_range'] or rule['restricted']) else reference
 
 
 def explain(code, t, a, ev, tick, expected):
@@ -58,9 +58,13 @@ def explain(code, t, a, ev, tick, expected):
         'KINETIC_OUT_OF_RANGE':f"The target was {(ev['range_m'] or 0):.1f} m away. Kinetic's effective range is 160 m; the attempt could not resolve it outside that range.",
         'RF_JAM_OUT_OF_RANGE':f"The target was {(ev['range_m'] or 0):.1f} m away. The jammer's effective range is 180 m; the attempt could not resolve it outside that range.",
         'KINETIC_ROE_RESTRICTED':"The target was in the scenario's restricted sector (x < -30 m and z > 20 m). Kinetic was blocked. Use Hold or the permitted reference effector; no additional doctrine is inferred.",
+        'EFFECTOR_UNAVAILABLE':"This response is not available in the session's frozen doctrine pack. Select an allowed response; otherwise Hold and monitor.",
         'WRONG_EFFECTOR':f"The selected response differs from the permitted reconstructed reference at this tick: {LABELS[expected.get('effector') or 'hold']}. Reference success uses the existing RF-link, range and restricted-sector rules.",
         'RESPONSE_NOT_RECORDED':"No engagement was recorded for this classified threat before its observed asset impact. This omission is reviewed against the existing per-contact engagement node.",
     }
+    if t.get('rules'):
+        rules=t['rules'];zone=rules['restricted']
+        templates={k:v.replace('180 m',f"{rules['rf_range']} m").replace('160 m',f"{rules['kinetic_range']} m").replace('x < -30 m and z > 20 m',f"x < {zone['x_lt']} m and z > {zone['z_gt']} m") for k,v in templates.items()}
     text=templates[code]
     if not ev['rf']['available']:
         text+=" RF and IFF evidence were unavailable at this moment. Control-link and identity ground truth were not visible in the RF panel; this review does not claim they should have been known."
@@ -157,7 +161,7 @@ def build_review(scenario, actions, commands, sid, observed_end, horizon_source=
             if not a:code='RESPONSE_NOT_RECORDED'
             else:
                 effector=a['effector'];rule=engagement_rule(t,effector)
-                code='FRIENDLY_ENGAGED' if effector!='hold' and t['identity']=='friendly' else 'NEUTRAL_ENGAGED' if effector!='hold' and t['identity']=='neutral' else 'KINETIC_ROE_RESTRICTED' if rule['restricted'] else 'KINETIC_OUT_OF_RANGE' if effector=='kinetic' and not rule['in_range'] else 'RF_JAM_OUT_OF_RANGE' if effector=='rf_jam' and not rule['in_range'] else 'NO_RF_JAM_INEFFECTIVE' if effector=='rf_jam' and not t['rf'] else 'WRONG_EFFECTOR' if effector!=expected['effector'] else {'hold':'CORRECT_HOLD','kinetic':'CORRECT_KINETIC','rf_jam':'CORRECT_RF_JAM'}[effector]
+                code='FRIENDLY_ENGAGED' if effector!='hold' and t['identity']=='friendly' else 'NEUTRAL_ENGAGED' if effector!='hold' and t['identity']=='neutral' else 'EFFECTOR_UNAVAILABLE' if not rule['allowed'] else 'KINETIC_ROE_RESTRICTED' if rule['restricted'] else 'KINETIC_OUT_OF_RANGE' if effector=='kinetic' and not rule['in_range'] else 'RF_JAM_OUT_OF_RANGE' if effector=='rf_jam' and not rule['in_range'] else 'NO_RF_JAM_INEFFECTIVE' if effector=='rf_jam' and not t['rf'] else 'WRONG_EFFECTOR' if effector!=expected['effector'] else {'hold':'CORRECT_HOLD','kinetic':'CORRECT_KINETIC','rf_jam':'CORRECT_RF_JAM'}[effector]
             verdict='correct' if code.startswith('CORRECT_') else 'incorrect'
         skills=[] if verdict!='incorrect' else [skill]
         if skills and (ev['radar']['state']!='normal' or not ev['rf']['available']):skills.append('degraded_sensor_response')
@@ -180,8 +184,25 @@ def build_review(scenario, actions, commands, sid, observed_end, horizon_source=
                     skill_tags=skills,context_commands=d['context'])
         reviews.append(review)
         if verdict=='incorrect':extractor.event(tick,'score_error',code,f"{t['id']} · {code.replace('_',' ').lower()}",t['id'],d['order'],review['decision_id'],a is not None)
+    if card.get('prioritisation'):
+        report=card['prioritisation']
+        for pair in report['comparisons']:
+            if pair['outcome']=='tie' or pair['tick']>observed_end:continue
+            r=next((r for r in reviews if r['decision_kind']=='engagement' and r['track_id']==pair['chosen']['track_id'] and r['tick']==pair['tick'] and (r['order'] if r['order'] is not None else actions.index(r['trainee_action']))==pair['order']),None)
+            if r is None:continue
+            pr=copy.deepcopy(r);a=pair['chosen'];b=pair['other'];bad=pair['outcome']=='inverted'
+            pr.update(decision_id=f"priority_{len(reviews):04d}",decision_kind='prioritisation',verdict='incorrect' if bad else 'correct',reason_code='PRIORITY_INVERSION' if bad else 'PRIORITY_CORRECT',skill_tags=[])
+            pr['expected_action']['track_id']=pair['expected_first']
+            target=next(t for t in sim.tracks if t['id']==pair['expected_first'])
+            pr['expected_action']['effector']=expected_engagement({**target,**position(target,pair['tick'])})
+            pr['explanation']=f"First non-Hold engagement chose {a['track_id']} while {b['track_id']} was also an observed active hostile. At T+{pair['tick']/HZ:.2f}s: {a['track_id']} time to impact {a['time_to_impact']:.2f}s, risk {a['risk']:.2f}, priority {a['priority']:.6f}; {b['track_id']} time to impact {b['time_to_impact']:.2f}s, risk {b['risk']:.2f}, priority {b['priority']:.6f}. Expected first: {pair['expected_first']}. Priority = risk / max(time to impact, 1/30s). Session ranking agreement {report['agreement']:.3f} × engagement coverage {report['coverage']:.3f} × 15 = {report['points']}/15. Priority orders attention to threats; range and ROE still apply to the permitted response. This is the shared final ranking node, not an additional deduction for this action."
+            pr['score_effect'].update(node='prioritise',points_awarded=report['points'],points_possible=15,session_penalty=0,penalty_basis='none',session_failure=False)
+            reviews.append(pr)
+            if bad:extractor.event(pair['tick'],'score_error','PRIORITY_INVERSION',f"Priority: {b['track_id']} before {a['track_id']}",a['track_id'],pair['order'],pr['decision_id'],True)
+        for phase in scenario.get('red_force',{}).get('phases',[]):
+            if phase['tick']<=observed_end:extractor.event(phase['tick'],'tactic_phase',scenario['red_force']['tactic'],f"Red Force · {phase['role']} · {', '.join(phase['contacts'])}")
     # Attach action timeline entries to their matching review for one-click pre-action seeking.
-    mapping={(r['tick'],r['order'],r['track_id']):r for r in reviews if r['trainee_action']}
+    mapping={(r['tick'],r['order'],r['track_id']):r for r in reviews if r['trainee_action'] and r['decision_kind']!='prioritisation'}
     for event in extractor.timeline:
         if event['category']=='trainee_action':
             r=mapping.get((event['tick'],event['order'],event['track_id']))
@@ -200,12 +221,15 @@ def build_review(scenario, actions, commands, sid, observed_end, horizon_source=
     impact=lambda r:((100 if r['score_effect']['session_failure'] else 0)+r['score_effect']['points_possible']-r['score_effect']['points_awarded']+r['score_effect']['session_penalty'])
     largest=max(errors,key=impact)['decision_id'] if errors else None
     strongest=max(correct,key=lambda r:r['score_effect']['points_awarded'])['decision_id'] if correct else None
-    focus=max(SKILLS,key=lambda s:(losses[s],counts[s],-SKILLS.index(s))) if errors else None
+    focus=max(SKILLS,key=lambda s:(losses[s],counts[s],-SKILLS.index(s))) if any(losses.values()) or any(counts.values()) else None
     relevant=[r for r in card['rows'] if r['identity']=='hostile']
     result=dict(timeline=extractor.timeline,decision_reviews=reviews,
                 ghost_summary=dict(largest_loss=largest,strongest_decision=strongest,mistake_counts=counts,lost_points=losses,recommended_focus=focus,
-                                   no_major_errors=not errors,text='No major decision errors were found in the reviewed interval.' if not errors else f"Recommended training focus: {focus.replace('_',' ')}. Counts are distinct contacts with evidenced errors; sensor context does not prove causation."),
+                                   no_major_errors=not errors,text='No major decision errors were found in the reviewed interval.' if not errors else f"Recommended training focus: {focus.replace('_',' ') if focus else 'prioritisation'}. Counts are distinct contacts with evidenced errors; sensor context does not prove causation."),
                 replay_metadata=dict(observed_end_tick=observed_end,scoring_end_tick=scoring_end,horizon_source=horizon_source,early_end=observed_end<scoring_end,
                                      note='Review and timeline stop at the observed exercise end. Final node scores retain the existing 75-second scoring projection.' if observed_end<scoring_end else 'Review covers the recorded exercise. Paused wall-clock time is excluded.'),
                 node_averages={node:round(sum(r[node] for r in relevant)/len(relevant),2) if relevant else 0.0 for node in ['detect','classify','prioritise','engage']})
-    return GhostAAR.model_validate(result).model_dump(),card
+    validated=GhostAAR.model_validate(result).model_dump()
+    for r in validated['decision_reviews']:
+        if r['expected_action']['track_id'] is None:r['expected_action'].pop('track_id')
+    return validated,card

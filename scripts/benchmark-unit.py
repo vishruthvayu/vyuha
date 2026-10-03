@@ -12,7 +12,7 @@ from server.director import session_outcomes
 ROOT=Path(__file__).resolve().parents[1]
 
 
-def benchmark(count):
+def benchmark(count, advanced=False):
  with tempfile.TemporaryDirectory(prefix='vyuha-unit-load-') as directory:
   with socket.socket() as sock:sock.bind(('127.0.0.1',0));port=sock.getsockname()[1]
   env={**os.environ,'VYUHA_DB':str(Path(directory)/'load.db'),'VYUHA_UNIT_MODE':'1'}
@@ -36,7 +36,7 @@ def benchmark(count):
       return r.json()
      who=req('POST','/units/join',{'callsign':f'LOAD-{index}'})['trainee_id']
      for round_index in range(3):
-      spec=req('POST','/scenarios/generate',{'seed':900+index+round_index*20,'mode':'adaptive','trainee':who})
+      spec=req('POST','/scenarios/generate',{'seed':900+index+round_index*20,'mode':'adaptive','trainee':who,'advanced':advanced})
       sid=req('POST','/sessions',{'scenario_id':spec['id'],'trainee':who})['id'];sim=expert(spec)
       barrier.wait(timeout=60)
       for seq,offset in enumerate(range(0,len(sim.events),3)):

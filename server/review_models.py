@@ -5,7 +5,7 @@ from .models import Action, StrictModel
 
 Skill = Literal['detection', 'classification_iff', 'effector_choice', 'degraded_sensor_response']
 Reason = Literal[
-    'DETECTION_ON_TIME', 'DETECTION_LATE', 'THREAT_MISSED', 'DETECTION_PENDING', 'NO_EVIDENCE_AVAILABLE',
+    'EFFECTOR_UNAVAILABLE', 'PRIORITY_INVERSION', 'PRIORITY_CORRECT', 'DETECTION_ON_TIME', 'DETECTION_LATE', 'THREAT_MISSED', 'DETECTION_PENDING', 'NO_EVIDENCE_AVAILABLE',
     'CORRECT_CLASSIFICATION', 'WRONG_TYPE', 'WRONG_CATEGORY', 'FRIENDLY_MISIDENTIFIED', 'BIRD_MISIDENTIFIED',
     'CLASSIFICATION_NOT_RECORDED', 'CORRECT_HOLD', 'CORRECT_RF_JAM', 'CORRECT_KINETIC',
     'NO_RF_JAM_INEFFECTIVE', 'FRIENDLY_ENGAGED', 'NEUTRAL_ENGAGED', 'KINETIC_OUT_OF_RANGE',
@@ -50,6 +50,7 @@ class GroundTruth(StrictModel):
 
 
 class ExpectedDecision(StrictModel):
+    track_id: str | None = None
     type: Literal['designate', 'classify', 'engage', 'observe']
     kind: str | None = None
     identity: str | None = None
@@ -67,7 +68,7 @@ class Consequence(StrictModel):
 
 class ScoreEffect(StrictModel):
     scope: Literal['final_contact_node'] = 'final_contact_node'
-    node: Literal['detect', 'classify', 'engage']
+    node: Literal['detect', 'classify', 'engage', 'prioritise']
     points_awarded: int
     points_possible: int
     session_penalty: int
@@ -81,7 +82,7 @@ class DecisionReview(StrictModel):
     track_id: str
     tick: int
     order: int | None
-    decision_kind: Literal['detection', 'classification_iff', 'engagement']
+    decision_kind: Literal['detection', 'classification_iff', 'engagement', 'prioritisation']
     evidence: Evidence
     ground_truth: GroundTruth
     trainee_action: Action | None
@@ -99,7 +100,7 @@ class TimelineItem(StrictModel):
     id: str
     tick: int
     order: int | None
-    category: Literal['trainee_action', 'instructor_action', 'sensor_transition', 'contact_detection', 'contact_resolution', 'asset_impact', 'score_error']
+    category: Literal['trainee_action', 'instructor_action', 'sensor_transition', 'contact_detection', 'contact_resolution', 'asset_impact', 'score_error', 'tactic_phase']
     code: str
     title: str
     track_id: str | None = None

@@ -21,7 +21,7 @@ def session_outcomes(review):
     """One observation/contact/skill. Any evidenced error wins over corrections."""
     votes = {skill: {} for skill in SKILLS}
     for r in review['decision_reviews']:
-        if r['verdict'] == 'unassessable':
+        if r['verdict'] == 'unassessable' or r['decision_kind']=='prioritisation':
             continue
         skill = {'detection':'detection', 'classification_iff':'classification_iff', 'engagement':'effector_choice'}[r['decision_kind']]
         targets = [skill]
@@ -41,21 +41,25 @@ def ensure_profile(db, trainee):
 
 def persist_outcomes(db, trainee, sid, review):
     """Caller owns one SQLite transaction covering completion and all four skills."""
+    return persist_skill_results(db,trainee,sid,session_outcomes(review),'director-v1')
+
+
+def persist_skill_results(db,trainee,sid,outcomes,version):
     ensure_profile(db,trainee)
     if db.execute('SELECT 1 FROM skill_outcomes WHERE session_id=?',(sid,)).fetchone():
         return False
-    outcomes=session_outcomes(review)
     stamp=datetime.now(timezone.utc).isoformat()
     db.execute('INSERT INTO skill_outcomes(session_id,trainee,outcomes,processed_at,version) VALUES (?,?,?,?,?)',
-               (sid,trainee,dumps(outcomes),stamp,'director-v1'))
+               (sid,trainee,dumps(outcomes),stamp,version))
     for skill, result in outcomes.items():
+        if result['successes']+result['failures']==0:continue
         db.execute('UPDATE skill_profiles SET alpha=alpha+?,beta=beta+?,updated_at=?,last_session_id=? WHERE trainee=? AND skill=?',
                    (result['successes'],result['failures'],stamp,sid,trainee,skill))
     return True
 
 
-def read_profile(db, trainee, unprocessed=None):
-    ensure_profile(db,trainee)
+def read_profile(db, trainee, unprocessed=None, ensure=True):
+    if ensure:ensure_profile(db,trainee)
     rows={r['skill']:r for r in db.execute('SELECT * FROM skill_profiles WHERE trainee=?',(trainee,))}
     skills={s:dict(alpha=float(rows[s]['alpha']),beta=float(rows[s]['beta']),observations=int(rows[s]['alpha']+rows[s]['beta']-2*PRIOR),
                    mean=rows[s]['alpha']/(rows[s]['alpha']+rows[s]['beta']),updated_at=rows[s]['updated_at'],last_session_id=rows[s]['last_session_id']) for s in SKILLS}

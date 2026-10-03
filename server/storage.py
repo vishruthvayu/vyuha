@@ -17,6 +17,12 @@ def init():
     with connect() as db:
         db.execute("PRAGMA journal_mode=WAL")
         db.executescript("""
+            CREATE TABLE IF NOT EXISTS unit_preferences (unit_id TEXT PRIMARY KEY,pack_id TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS scenario_library (id TEXT PRIMARY KEY,created_at TEXT NOT NULL,body TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS rapid_sessions (id TEXT PRIMARY KEY,request_id TEXT UNIQUE NOT NULL,trainee TEXT NOT NULL,
+                body TEXT NOT NULL,rounds TEXT NOT NULL,created_at TEXT NOT NULL,result TEXT);
+            CREATE TABLE IF NOT EXISTS rapid_answers (session_id TEXT NOT NULL,round_index INTEGER NOT NULL,body TEXT NOT NULL,result TEXT NOT NULL,
+                PRIMARY KEY(session_id,round_index));
             CREATE TABLE IF NOT EXISTS units (id TEXT PRIMARY KEY,name TEXT NOT NULL);
             INSERT OR IGNORE INTO units VALUES ('local','WhiteList Training Unit');
             CREATE TABLE IF NOT EXISTS trainees (id TEXT PRIMARY KEY,unit_id TEXT NOT NULL,callsign TEXT NOT NULL,

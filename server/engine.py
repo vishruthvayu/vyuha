@@ -5,6 +5,7 @@ The scorer reconstructs visibility and outcomes rather than trusting client tele
 """
 import copy
 import math
+from .prioritisation import capture, evaluate
 
 HZ = 30
 ENGINE_VERSION = "vyuha-0.2.0"
@@ -58,8 +59,15 @@ def position(t, tick):
     return dict(x=math.sin(angle) * radius, z=math.cos(angle) * radius)
 
 
+def distance(t):
+    value=math.hypot(t["x"],t["z"])
+    precision=t.get("rules",{}).get("distance_precision")
+    return round(value,precision) if precision is not None else value
+
+
 def civil(t):
-    return t["x"] < -30 and t["z"] > 20
+    zone = t.get("rules", {}).get("restricted", dict(enabled=True,x_lt=-30,z_gt=20))
+    return zone["enabled"] and t["x"] < zone["x_lt"] and t["z"] > zone["z_gt"]
 
 
 def ideal(t):
@@ -72,12 +80,14 @@ def js_round(x):
 
 def engagement_rule(t, effector):
     """Shared physical/rubric constraints; used by execution, scoring and AAR."""
-    maximum = 160 if effector == "kinetic" else 180
-    in_range = math.hypot(t["x"], t["z"]) <= maximum
+    rules = t.get("rules", {})
+    maximum = rules.get("kinetic_range",160) if effector == "kinetic" else rules.get("rf_range",180)
+    allowed = effector in rules.get("effectors",["hold","rf_jam","kinetic"])
+    in_range = (effector == "hold" and rules.get("hold_any_range",False)) or distance(t) <= maximum
     restricted = effector == "kinetic" and civil(t)
-    effective = effector != "hold" and in_range and not restricted and (effector != "rf_jam" or t["rf"])
-    return dict(max_range_m=maximum, in_range=in_range, restricted=restricted, effective=effective,
-                rubric_success=effector == ideal(t) and in_range and not restricted)
+    effective = allowed and effector != "hold" and in_range and not restricted and (effector != "rf_jam" or t["rf"])
+    return dict(allowed=allowed,max_range_m=maximum, in_range=in_range, restricted=restricted, effective=effective,
+                rubric_success=allowed and effector == ideal(t) and in_range and not restricted)
 
 
 def detection_points(t):
@@ -94,6 +104,8 @@ class Simulation:
         self.scenario = scenario
         self.tick = 0
         self.events = []
+        self.priority_decisions = []
+        self.rf_override = None
         self.commands = []
         self.radar_override = None
         self.radar_status = "normal"
@@ -103,12 +115,16 @@ class Simulation:
         self.tracks = [dict(**t, **position(t, 0), active=False, detected=None, designated=None,
                             classification=None, declared=None, resolved=False, impact=False,
                             radar=False, thermal=False, attempts=[]) for t in scenario["tracks"]]
+        if scenario.get("doctrine"):
+            for t in self.tracks:t["rules"] = copy.deepcopy(scenario["doctrine"]["rules"])
         self.observe()
 
     def observe(self):
         s = self.scenario
         jammed = s["jamStart"] <= self.tick < s["jamEnd"]
-        self.radar_status = self.radar_override or ("jammed" if jammed else "normal")
+        failed = s.get("radarFailureStart",2250) <= self.tick < s.get("radarFailureEnd",2250)
+        self.rf_available = self.rf_override if self.rf_override is not None else not (s.get("rfFailureStart",2250) <= self.tick < s.get("rfFailureEnd",2250))
+        self.radar_status = self.radar_override or ("failed" if failed else "jammed" if jammed else "normal")
         factor = 0 if self.radar_status == "failed" else (.2 if self.radar_override == "jammed" else 0) if self.radar_status == "jammed" else 1
         for i, t in enumerate(self.tracks):
             t["active"] = self.tick >= t["spawn"] and not t["resolved"] and not t["impact"]
@@ -116,11 +132,11 @@ class Simulation:
                 t["radar"] = t["thermal"] = False
                 continue
             t.update(position(t, self.tick))
-            d = math.hypot(t["x"], t["z"])
+            d = distance(t)
             pr = max(.03, min(.98, 1 - (d/195)**4 - s["fog"]*.15))
             pt = max(.1, .95-s["fog"]*.5)
-            t["radar"] = factor > 0 and d < 190 and sample(s["seed"], self.tick, i, 0) < pr*factor
-            t["thermal"] = d < 145 and sample(s["seed"], self.tick, i, 1) < pt
+            t["radar"] = factor > 0 and d < t.get("radar_range",190) and sample(s["seed"], self.tick, i, 0) < pr*factor
+            t["thermal"] = d < t.get("thermal_range",145) and sample(s["seed"], self.tick, i, 1) < pt
             if t["detected"] is None and (t["radar"] or t["thermal"]):
                 t["detected"] = self.tick
             if t["identity"] == "hostile" and d <= 8:
@@ -149,8 +165,8 @@ class Simulation:
             if t["designated"] is None or not t["classification"] or not a.get("effector"):
                 return False
             effector = a["effector"]
+            capture(self,t,a)
             t["attempts"].append(effector)
-            d = math.hypot(t["x"], t["z"])
             if engagement_rule(t, effector)["effective"]:
                 t["resolved"] = True
                 t["active"] = False
@@ -173,18 +189,19 @@ class Simulation:
                 spec = dict(id=f"T{len(self.tracks)+1}", kind=aircraft, identity="hostile", rf=aircraft == "quad", spawn=self.tick,
                             bearing=(payload["bearing"]+i*5+360)%360, distance=130+math.floor(sample(self.scenario["seed"],command["seq"],i,7)*12),
                             speed=2.6 if aircraft == "quad" else 3.8, altitude=20+i%3*3 if aircraft == "quad" else 10)
+                if self.scenario.get("doctrine"):spec["rules"] = copy.deepcopy(self.scenario["doctrine"]["rules"])
                 self.tracks.append(dict(**spec, **position(spec,self.tick), active=True, detected=None, designated=None,
                                         classification=None, declared=None, resolved=False, impact=False, radar=False, thermal=False, attempts=[]))
         elif kind == "sensor_fault":
             if payload["sensor"] == "radar":
                 self.radar_override = payload["mode"]
             else:
-                self.rf_available = False
+                self.rf_override = False
         elif kind == "sensor_restore":
             if payload["sensor"] == "radar":
                 self.radar_override = "normal"
             else:
-                self.rf_available = True
+                self.rf_override = True
         elif kind == "environment":
             self.night = payload["night"]
         self.observe()
@@ -233,6 +250,7 @@ def score(sim):
     tracks = [t for t in sim.tracks if sim.tick >= t["spawn"]]
     threats = [t for t in tracks if t["identity"] == "hostile"]
     fratricide, breaches, rows = False, 0, []
+    priority = evaluate(sim) if sim.scenario.get("prioritisation_version") else None
     for t in tracks:
         is_threat = t["identity"] == "hostile"
         latency = None if t["detected"] is None or t["designated"] is None else (t["designated"]-t["detected"])/HZ
@@ -256,6 +274,7 @@ def score(sim):
         wrong = sum(a["effector"] != ideal(t) for a in actions)
         engage = max(0, 35-wrong*7) if successful else 0
         prioritise = (15 if t["resolved"] and not t["impact"] else 0) if is_threat else (15 if "hold" in t["attempts"] else 0)
+        if is_threat and priority is not None:prioritise = priority["points"]
         if latency is None:
             feedback.append("Designate the contact after a sensor first reveals it.")
         elif latency > 3:
@@ -281,4 +300,5 @@ def score(sim):
     summary = "Non-hostile engagement: session failed." if fratricide else f"{leakers} threat{'s' if leakers > 1 else ''} reached the protected asset. Review response selection." if leakers else "Good control. Repeat with a new scenario seed." if result >= 70 else "Review designation, classification, and response before the next drill."
     return dict(score=result, passed=result >= 70 and not fratricide and breaches == 0, fratricide=fratricide,
                 roe_breaches=breaches, leakers=leakers, threats=len(threats), rows=rows,
-                skills=dict(recognition=recognition, response=response), summary=summary, engine_version=ENGINE_VERSION)
+                skills=dict(recognition=recognition, response=response), summary=summary, engine_version="vyuha-0.3.0" if priority is not None else ENGINE_VERSION,
+                **({"prioritisation":priority} if priority is not None else {}))
