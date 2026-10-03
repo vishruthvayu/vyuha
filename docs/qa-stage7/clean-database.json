@@ -1,0 +1,96 @@
+{
+  "scope": "Synthetic QA via real HTTP and ordinary Python engine; disposable fresh database. Not a human test, physical LAN test or WAN-off validation.",
+  "initial_sessions": 0,
+  "initial_trainees": 0,
+  "new_unit": "demo-release",
+  "new_trainee": "T_9910547e160942e481793e",
+  "adaptive_focus": "effector_choice",
+  "session_id": "303311c2-9423-4991-9529-db4c1227081e",
+  "instructor_command": "radar jam acknowledged at tick 30",
+  "verified_score": 83,
+  "ghost": "NO_RF_JAM_INEFFECTIVE present",
+  "time_machine_basis": "Full ordered actions/command timeline returned by verified AAR; UI replay checked separately",
+  "profile_sessions": 1,
+  "next_director": {
+    "mode": "individual",
+    "trainee_id": "T_9910547e160942e481793e",
+    "director_seed": 482914,
+    "focus_skill": "degraded_sensor_response",
+    "mastery_estimate": 0.6666666666666666,
+    "observations": 4,
+    "difficulty": 2,
+    "difficulty_label": "standard",
+    "target_success": 0.7,
+    "target_kind": "heuristic, not calibrated",
+    "reason_code": "LOWEST_SAMPLED_MASTERY",
+    "reason": "The seeded Thompson draw selected this skill from the persistent four-skill profile. Its last five processed sessions contain 3 successful and 1 failed contact observations. The displayed mastery is the Beta mean, not the selection draw.",
+    "recent_successes": 3,
+    "recent_failures": 1,
+    "scenario_template": "degraded_sensor_response/night_gap",
+    "scenario_seed": 990307611,
+    "scenario_features": [
+      "Night",
+      "6 mixed contacts",
+      "Fog parameter 0.25",
+      "No-RF FPV included",
+      "Friendly contact included",
+      "Radar gap T+2\u201320s; RF/IFF remains available",
+      "Threat pattern: SATURATION",
+      "Illustrative pack: Army Forward Post"
+    ],
+    "fingerprint": "5de75fafce9b1194cec1db2c",
+    "anti_rote": {
+      "rejected_candidates": 0,
+      "fallback": false,
+      "history_window": 5
+    },
+    "debug_samples": {
+      "detection": 0.9978723866034273,
+      "classification_iff": 0.9058637459571846,
+      "effector_choice": 0.8550245369698102,
+      "degraded_sensor_response": 0.6884767660523864
+    },
+    "profile_snapshot": {
+      "detection": {
+        "alpha": 7.0,
+        "beta": 1.0,
+        "observations": 6,
+        "mean": 0.875,
+        "updated_at": "2026-10-03T16:35:21.952008+00:00",
+        "last_session_id": "303311c2-9423-4991-9529-db4c1227081e"
+      },
+      "classification_iff": {
+        "alpha": 7.0,
+        "beta": 1.0,
+        "observations": 6,
+        "mean": 0.875,
+        "updated_at": "2026-10-03T16:35:21.952008+00:00",
+        "last_session_id": "303311c2-9423-4991-9529-db4c1227081e"
+      },
+      "effector_choice": {
+        "alpha": 6.0,
+        "beta": 2.0,
+        "observations": 6,
+        "mean": 0.75,
+        "updated_at": "2026-10-03T16:35:21.952008+00:00",
+        "last_session_id": "303311c2-9423-4991-9529-db4c1227081e"
+      },
+      "degraded_sensor_response": {
+        "alpha": 4.0,
+        "beta": 2.0,
+        "observations": 4,
+        "mean": 0.6666666666666666,
+        "updated_at": "2026-10-03T16:35:21.952008+00:00",
+        "last_session_id": "303311c2-9423-4991-9529-db4c1227081e"
+      }
+    }
+  },
+  "rapid": {
+    "rounds": 10,
+    "correct": 10,
+    "timing": "Synthetic 500 ms per answer, not human performance"
+  },
+  "analytics_points": 2,
+  "unit_completed_tactical": 1,
+  "elapsed_seconds": 0.22
+}

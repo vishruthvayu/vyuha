@@ -205,3 +205,15 @@ def test_startup_preflight_errors_are_actionable(tmp_path):
  assert 'database path is not a file' in r.stderr
  r=subprocess.run([sys.executable,'-c',"import sys,runpy;sys.version_info=(3,10);sys.argv=['preflight'];runpy.run_path(sys.argv[1] if len(sys.argv)>1 else "+repr(str(script))+",run_name='__main__')"],capture_output=True,text=True)
  assert 'Python 3.11 or newer' in r.stderr
+
+
+def test_release_manifest_preferred_without_fabricating_wan_pass(client,monkeypatch,tmp_path):
+ from server import evidence
+ docs=tmp_path/'docs';(docs/'qa-stage6').mkdir(parents=True)
+ (docs/'qa-stage6/evidence.json').write_text(json.dumps({'source_tree_sha256':'current','acceptance':'old candidate'}))
+ final={'source_tree_sha256':'current','acceptance':'Software candidate; approved WAN validation limitation','physical':{'wan_off':'NOT PERFORMED BEFORE SUBMISSION','wan_off_reason':'Required physical/network setup unavailable during final validation window.','wan_off_release_blocking':False}}
+ (docs/'release-evidence.json').write_text(json.dumps(final));monkeypatch.setattr(evidence,'ROOT',tmp_path);monkeypatch.setattr(evidence,'source_hash',lambda:'current')
+ result=client.get('/api/v1/system/evidence').json()
+ assert result['physical']==final['physical'] and result['source_matches'] and result['acceptance']==final['acceptance']
+ monkeypatch.setattr(evidence,'source_hash',lambda:'changed')
+ assert client.get('/api/v1/system/evidence').json()['source_matches'] is False

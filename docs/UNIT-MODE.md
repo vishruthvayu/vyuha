@@ -1,5 +1,7 @@
 # Stage 4 — Unit Mode
 
+> Submission acceptance policy update: dedicated physical WAN-off/LAN-on validation is **NOT PERFORMED BEFORE SUBMISSION**. Reason: **Required physical/network setup unavailable during final validation window.** This is a known validation limitation, not a failed architectural test. The user approved proceeding; every other Stage 7 requirement remains mandatory. See [FINAL-VALIDATION.md](FINAL-VALIDATION.md).
+
 VYUHA is a trusted local network prototype for **WhiteList&0**. One officer computer runs FastAPI, SQLite and the built React application. Trainee devices need a modern browser and the same LAN. Scenarios, Instructor commands, authoritative scoring, Ghost AAR, profiles and Director decisions remain on the officer server. Each trainee runs a separate deterministic simulation in its browser Web Worker.
 
 ## Startup
@@ -75,7 +77,7 @@ Diagnostics use SQLite `quick_check`, real fresh session/presence windows and pe
 
 A loaded drill continues locally during loss of the officer server. Actions and applied commands stay in IndexedDB; completed device records remain explicitly unverified until synchronization. Instructor controls are unavailable during an outage. No command is represented as received without an actual server-issued record. A reconnect uploads retained batches, acknowledges existing applied commands and requests authoritative completion. Unverified debriefs retry every five seconds.
 
-Internet loss and LAN/server loss are different. Production's seven assets are officer-served and training has no external API/CDN dependency. The actual browser/server-outage and physical walkthrough evidence is recorded below. The user confirmed phone reload/start over Wi-Fi; that Wi-Fi still had internet. A physical WAN-disconnection test remains pending; do not conflate a server-outage test with one.
+Internet loss and LAN/server loss are different. Production's seven assets are officer-served and training has no external API/CDN dependency. The actual browser/server-outage and physical walkthrough evidence is recorded below. The user confirmed phone reload/start over Wi-Fi; that Wi-Fi still had internet. Dedicated WAN-disconnected physical validation was not performed before submission; do not conflate a server-outage test with one.
 
 ## Validation evidence — 2026-10-03
 
@@ -95,7 +97,7 @@ Browser outage walkthrough: on an isolated test instance with a separate databas
 
 Persisted officer snapshot after restart: 10 registered trainees (including migrated prior-stage QA identities), 18 completed sessions, 11 completed-today using UTC/legacy fallback. Skill means: detection 40.7222%, IFF 63.4524%, effector 58.5714%, degraded response 40.6667%. Degraded sensor response is weakest; 10/10 trainees are below 70%. Ghost heatmap: THREAT_MISSED 40, DETECTION_LATE 5, NO_RF_JAM_INEFFECTIVE 4, FRIENDLY_MISIDENTIFIED 2. Historical no-RF counts include previous stages, not phone actions. Snapshot source: `qa/unit-analytics.json`. Group comparison was displayed on the unit overview.
 
-Final physical WAN-off reload/start check remains pending. The phone successfully reloaded and started another adaptive drill on Wi-Fi, but the user confirmed its internet uplink was still available. Stage 4 is stable and its minimum physical LAN test passed; full acceptance is not declared while this check remains. The user explicitly chose to leave the WAN-off check pending. Stage 5 has not started.
+Dedicated physical WAN-off/LAN-on validation: NOT PERFORMED BEFORE SUBMISSION. The phone successfully reloaded and started another adaptive drill on Wi-Fi, but the user confirmed its internet uplink was still available. Stage 4 is stable and its minimum physical LAN test passed; The submission policy now treats the unperformed WAN check as a disclosed limitation rather than a release blocker. Reason: Required physical/network setup unavailable during final validation window. Stage 5/6 work is documented separately; this report retains its historical Stage 4 measurements.
 
 ## HTTP performance
 

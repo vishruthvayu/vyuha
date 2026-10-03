@@ -1,8 +1,10 @@
 # Stage 6 — Validation, resilience and platform hardening
 
-Branch: `feature/hardening-v1`, from Stage 5 commit `2ad6403bdfab09aa303a802b5282355ba52af318`. Team WhiteList&0. Stage 7 has not started.
+> Submission acceptance policy update: dedicated physical WAN-off/LAN-on validation is **NOT PERFORMED BEFORE SUBMISSION**. Reason: **Required physical/network setup unavailable during final validation window.** This is a known validation limitation, not a failed architectural test. The user approved proceeding; every other Stage 7 requirement remains mandatory. See [FINAL-VALIDATION.md](FINAL-VALIDATION.md).
 
-**Acceptance remains pending the physical WAN-off/LAN-on test, left open by explicit user choice.** Software measurements are recorded separately from those physical requirements. The versioned [evidence manifest](qa-stage6/evidence.json) powers `/system/evidence`; source changes produce a visible stale-evidence warning. Historical Stage 4 phone operation did not disable the router WAN and is not WAN-off proof.
+Branch: `feature/hardening-v1`, from Stage 5 commit `2ad6403bdfab09aa303a802b5282355ba52af318`. Team WhiteList&0. This report records historical Stage 6 evidence; current release work is tracked in FINAL-VALIDATION.md.
+
+**Dedicated physical WAN-off/LAN-on validation: NOT PERFORMED BEFORE SUBMISSION.** The revised submission policy permits release with this disclosed validation limitation. Software measurements are recorded separately from those physical requirements. The historical [Stage 6 manifest](qa-stage6/evidence.json) retains those measurements. The final [release manifest](release-evidence.json) powers `/system/evidence`; source changes produce a visible stale-evidence warning. Historical Stage 4 phone operation did not disable the router WAN and is not WAN-off proof.
 
 ## Deployment and recovery
 
@@ -97,7 +99,7 @@ Imports verify HMAC/schema/version, reconstruct scorecards/skill outcomes and se
 
 Existing and new suites cover duplicate/out-of-order batches, missing batches, stale/duplicate/cross-session commands, forged telemetry, malformed scenarios/packs, recording bounds/nonfinite/deep JSON, consent gates, completion/AAR/Rapid/Director retries, six simultaneous completions, bundle tampering even with re-signed inconsistent score/evidence, atomic conflict rollback, forwarding, installation identity isolation and backup/restore. Assertions preserve canonical card/outcome IDs, no duplicate Beta updates and reconstructed history. Browser process-loss/reload runs are documented independently from in-process API tests.
 
-API POST bodies have an 8 MiB streamed cap, finite JSON values, depth ≤20 and ≤400,000 JSON nodes. Browser imports are bounded and errors displayed; uploaded filenames are not filesystem destinations. IDs/schema/path keys are bounded. React escapes labels. This is input hardening, not security certification. Trusted LAN prototype; no production authentication. Do not expose to public networks. Crew roles are deferred to protect the established single-client timeline; Stage 7 is not started.
+API POST bodies have an 8 MiB streamed cap, finite JSON values, depth ≤20 and ≤400,000 JSON nodes. Browser imports are bounded and errors displayed; uploaded filenames are not filesystem destinations. IDs/schema/path keys are bounded. React escapes labels. This is input hardening, not security certification. Trusted LAN prototype; no production authentication. Do not expose to public networks. Crew roles are deferred to protect the established single-client timeline; Current Stage 7 acceptance is recorded in FINAL-VALIDATION.md.
 
 ## Evidence artifacts
 
@@ -145,4 +147,4 @@ The final synthetic browser walkthrough authored rural night/fog/decoy condition
 | Bundle tamper/conflicting IDs | HMAC rejection, seeded/reconstructed-content rejection even when re-signed, atomic rollback and duplicate forwarding checks |
 | Backup/restore | SQLite quick_check, exclusive new destination, real restored server returns exact AARs/Beta profiles |
 
-The physical WAN-off check is explicitly left pending at the user's request. The weakest currently available team laptop was identified and measured directly after the user clarified that it is the current MacBook Air. Android measurements remain separate device evidence. Stage 6's software candidate is stable; full acceptance is not asserted while the physical WAN-off item remains open. Crew Mode and Stage 7 are not started.
+The physical WAN-off check is NOT PERFORMED BEFORE SUBMISSION: Required physical/network setup unavailable during final validation window. The weakest currently available team laptop was identified and measured directly after the user clarified that it is the current MacBook Air. Android measurements remain separate device evidence. Stage 6's software candidate is stable; Release work may proceed with the dedicated WAN check documented as not performed before submission. Crew Mode remains deferred; Stage 7 release work is tracked separately.

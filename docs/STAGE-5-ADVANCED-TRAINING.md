@@ -1,5 +1,7 @@
 # Stage 5 — Advanced Training Intelligence & Exercise System
 
+> Submission acceptance policy update: dedicated physical WAN-off/LAN-on validation is **NOT PERFORMED BEFORE SUBMISSION**. Reason: **Required physical/network setup unavailable during final validation window.** This is a known validation limitation, not a failed architectural test. The user approved proceeding; every other Stage 7 requirement remains mandatory. See [FINAL-VALIDATION.md](FINAL-VALIDATION.md).
+
 ## Baseline and audit
 
 Branch starts at `5852628086a199cb483865875fe0dffd0b1992ef`. Before editing: backend 65 passed (7.66 s, existing Starlette/httpx warning); frontend 32 passed (5274.84 ms), including unchanged 51 simulation and 72 Director parity checkpoints; production build passed (1609 modules, 4.66 s, seven assets, cb75efb6b806). The first npm launch was blocked by sandbox IPC permissions; it passed after permission was granted.
@@ -8,7 +10,7 @@ The existing scenario holds a deterministic seed, 75-second horizon, contact IDs
 
 Stage 3 has 12 focus templates and three difficulty levels, four Beta profiles and per-trainee recent history. Its Thompson selection remains unchanged. Existing doctrine values are embedded demonstration constants, not a loaded pack system. The 15-point node currently awards timely resolution; a versioned new scenario path will replace that node with auditable ordering agreement. Legacy scenarios retain their old scoring. There is no authored scenario library. SQLite session/command/event/profile tables, Ghost's replay observer, Unit Mode assignment and the Instructor are the extension points; no parallel tactical simulator or database replacement is needed.
 
-Stage 4's physical WAN-off reload/start validation remains pending by user choice. Stage 5 does not claim to close it.
+Stage 5 did not perform the dedicated physical WAN-off/LAN-on test. Its permanent submission status is NOT PERFORMED BEFORE SUBMISSION under the policy above.
 
 ## Implementation and preserved architecture
 
@@ -96,7 +98,7 @@ All Stage 5 browser observations below used a disposable isolated database and s
 5. Rapid ID paused and reloaded with its saved 4.7 seconds remaining, then completed ten UI decisions: **8/10 (80%)**, **349 ms median**, one friendly false-hostile and one bird confusion. Classification alone received eight successes and two failures: Beta(13,3), **81.25%** with 14 observations. Other skills remained unchanged at this point. The A/B view displayed exact 61 vs 0 sessions and the Director's actual 33.33% → 22.22% decrease, with no efficacy claim.
 6. A separate library drill survived a **real server-process outage** on secure loopback: cached reload, indexed draft recovery, local decisions, pending completion, restart against the same database, immutable uploads and subsequent server verification/Ghost succeeded. Its additional outcomes are recorded as the fourth ledger point, separately from the preceding integrated proof.
 
-The authored QA snapshot predates the final optional Hold/range-precision defaults and intentionally remains frozen. Historical scoring stayed 61; final compilation includes the explicit new defaults. Physical **LAN WAN-off cached reload/start remains pending by user choice**. Secure-loopback process-outage recovery does not close that acceptance item; plain HTTP LAN service-worker restrictions also remain documented in Unit Mode.
+The authored QA snapshot predates the final optional Hold/range-precision defaults and intentionally remains frozen. Historical scoring stayed 61; final compilation includes the explicit new defaults. Physical **WAN-off/LAN-on validation: NOT PERFORMED BEFORE SUBMISSION**. Secure-loopback process-outage recovery does not close that acceptance item; plain HTTP LAN service-worker restrictions also remain documented in Unit Mode.
 
 ## Automated validation
 
@@ -141,4 +143,4 @@ The advanced workload adds **31.54 ms dashboard** and **47.21 ms completion** me
 
 All six mandatory Stage 5 acceptance groups have implementation and regression/browser evidence. Optional crew mode is deferred. No classified/validated signatures, official doctrine, combat-readiness score or efficacy claim is made. Sensor ranges and risk weights are illustrative. Urban scenery has no real terrain masking. Authoring is bounded, 75-second urban drills only; the authored difficulty is a label. Beta estimates reflect finite modeled decisions, not real competence. Rapid timing is client-reported and not tamper-proof. Current-cohort unit trends do not reconstruct membership changes. Prototype Instructor/library/pack APIs remain trusted-LAN interfaces without production role authentication. After an ignored SQLite backup and server restart, all 18 existing real session rows remained byte-equivalent by canonical digest, and every stored scorecard/Ghost AAR reconstructed successfully (14 stored v0.2.0 cards and four v0.1.0 cards); SQLite quick_check passed. QA library and skill observations were not copied into the real database. Device queues require the original server and frozen scenario for authoritative completion.
 
-Stage 4's **physical WAN-off cached reload/start remains pending by user choice**; Stage 5 has not declared full Stage 4 acceptance. Stage 6 — **Validation, Resilience, Evidence & Advanced Platform Hardening** — will close that item, evaluate Director versus random selection, support human pilots, scale stress tests, weak-laptop and clean-machine deployment checks, rural terrain/spatial audio, recorded-session import, common sensor/track adapters, portable signed export/import if practical, and submission-candidate hardening. **Stage 6 has not started.**
+This historical Stage 5 report retains its original measurements. Stage 6 software hardening is documented separately. Dedicated physical WAN-off/LAN-on validation is NOT PERFORMED BEFORE SUBMISSION; the reason and revised acceptance exception are recorded above. Current Stage 7 release checks are in FINAL-VALIDATION.md.

@@ -16,7 +16,8 @@ def source_hash():
 
 @router.get('/system/evidence')
 def evidence():
- p=ROOT/'docs/qa-stage6/evidence.json'
+ p=ROOT/'docs/release-evidence.json'
+ if not p.exists():p=ROOT/'docs/qa-stage6/evidence.json'
  if not p.exists():raise HTTPException(503,'Final validation manifest has not been generated yet')
  result=json.loads(p.read_text());result['source_matches']=result.get('source_tree_sha256')==source_hash()
  result['freshness_note']='Manifest source hash matches this checkout.' if result['source_matches'] else 'Source changed after validation. These are historical measurements; rerun release validation before presenting them as current.'

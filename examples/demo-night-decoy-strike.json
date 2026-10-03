@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "name": "DEMO \u2014 NIGHT DECOY STRIKE",
+  "created_by": "DEMO-INSTRUCTOR",
+  "pack_id": "army-forward-post",
+  "seed": 482913,
+  "focus": "effector_choice",
+  "terrain": "rural",
+  "fog": 0.2,
+  "night": true,
+  "tactic": "DECOY_THEN_STRIKE",
+  "mix": [
+    "bird",
+    "friendly_uav",
+    "hostile_quad",
+    "no_rf_fpv",
+    "hostile_quad"
+  ],
+  "sensor_fault": "none",
+  "restricted": true,
+  "duration": 75,
+  "difficulty": "standard"
+}
