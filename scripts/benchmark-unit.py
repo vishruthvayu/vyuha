@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Measured localhost HTTP concurrency; disposable database, not a learner study."""
-import json, os, socket, statistics, subprocess, sys, tempfile, time
+import json, math, os, socket, statistics, subprocess, sys, tempfile, time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from threading import Barrier, Lock
@@ -17,7 +17,7 @@ def benchmark(count, advanced=False):
   with socket.socket() as sock:sock.bind(('127.0.0.1',0));port=sock.getsockname()[1]
   env={**os.environ,'VYUHA_DB':str(Path(directory)/'load.db'),'VYUHA_UNIT_MODE':'1'}
   process=subprocess.Popen([sys.executable,'-m','uvicorn','server.main:app','--host','127.0.0.1','--port',str(port),'--no-access-log'],cwd=ROOT,env=env,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
-  base=f'http://127.0.0.1:{port}/api/v1';samples={};lock=Lock();barrier=Barrier(count)
+  base=f'http://127.0.0.1:{port}/api/v1';samples={};payload_sizes=[];lock=Lock();barrier=Barrier(count)
   try:
    with httpx.Client(base_url=base,timeout=60) as c:
     for attempt in range(100):
@@ -26,6 +26,7 @@ def benchmark(count, advanced=False):
      except httpx.TransportError:pass
      time.sleep(.1)
     else:raise RuntimeError('Benchmark server failed to start')
+   initial_bytes=sum(p.stat().st_size for p in Path(directory).glob('load.db*'))
    def run(index):
     with httpx.Client(base_url=base,timeout=60) as c:
      def req(method,path,body=None,label=None):
@@ -36,7 +37,7 @@ def benchmark(count, advanced=False):
       return r.json()
      who=req('POST','/units/join',{'callsign':f'LOAD-{index}'})['trainee_id']
      for round_index in range(3):
-      spec=req('POST','/scenarios/generate',{'seed':900+index+round_index*20,'mode':'adaptive','trainee':who,'advanced':advanced})
+      spec=req('POST','/scenarios/generate',{'seed':900+index+round_index*20,'mode':'adaptive','trainee':who,'advanced':advanced},'scenario_generation')
       sid=req('POST','/sessions',{'scenario_id':spec['id'],'trainee':who})['id'];sim=expert(spec)
       barrier.wait(timeout=60)
       for seq,offset in enumerate(range(0,len(sim.events),3)):
@@ -53,7 +54,9 @@ def benchmark(count, advanced=False):
       card=req('POST',f'/sessions/{sid}/complete',{'execution_tick':2250},'completion')
       assert card==score(sim)
       assert req('POST',f'/sessions/{sid}/complete',{})==card
-      aar=req('GET',f'/sessions/{sid}/aar');p=req('GET',f'/trainees/{who}/profile')
+      aar=req('GET',f'/sessions/{sid}/aar',label='aar');
+      with lock:payload_sizes.append(len(json.dumps(aar,separators=(',',':')).encode()))
+      p=req('GET',f'/trainees/{who}/profile')
       assert aar['verified'] and aar['trainee']==who and aar['scenario']==spec
       assert p['sessions']==round_index+1 and len(p['outcomes'])==round_index+1
      return sid
@@ -62,7 +65,7 @@ def benchmark(count, advanced=False):
    with httpx.Client(base_url=base,timeout=60) as c:assert c.get('/units/local/status').json()['database']=='ok'
    try:rss=round(int(subprocess.check_output(['ps','-o','rss=','-p',str(process.pid)],text=True).strip())/1024,2)
    except (OSError,subprocess.SubprocessError):rss=None
-   return {'concurrent_clients':count,'completed_sessions':count*3,'server_rss_mib_after_workload':rss,'http_ms':{k:{'n':len(v),'median':round(statistics.median(v),2),'max':round(max(v),2)} for k,v in samples.items()}}
+   return {'database_growth_bytes':sum(p.stat().st_size for p in Path(directory).glob('load.db*'))-initial_bytes,'replay_payload_bytes':{'median':statistics.median(payload_sizes),'max':max(payload_sizes)},'concurrent_clients':count,'completed_sessions':count*3,'server_rss_mib_after_workload':rss,'http_ms':{k:{'n':len(v),'median':round(statistics.median(v),2),'p95':round(sorted(v)[math.ceil(.95*len(v))-1],2),'max':round(max(v),2)} for k,v in samples.items()}}
   finally:
    process.terminate();process.wait(timeout=10)
 

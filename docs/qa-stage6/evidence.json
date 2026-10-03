@@ -1,0 +1,324 @@
+{
+  "schema_version": 1,
+  "validated_at": "2026-10-03T12:34:07.448103+00:00",
+  "source_tree_sha256": "35c940fe0dc7026155486066877bf51bf656d3b27ef2113d93be2ece265a8658",
+  "validation_commit": "2ad6403bdfab09aa303a802b5282355ba52af318",
+  "baseline_commit": "2ad6403bdfab09aa303a802b5282355ba52af318",
+  "automated": {
+    "backend_passed": 133,
+    "frontend_passed": 43,
+    "parity": {
+      "original": 51,
+      "director": 72,
+      "advanced": 135,
+      "rural": 54
+    },
+    "build": "passed",
+    "offline_assets": 22
+  },
+  "acceptance": "Software candidate validated; Stage 6 acceptance pending physical WAN-off and weakest-laptop checks.",
+  "physical": {
+    "wan_off": "Pending physical WAN-off/LAN-on test",
+    "weak_laptop": "Pending team hardware and measurement",
+    "devices": [
+      "Historical Stage 4: Mac officer + Android/Chrome; WAN remained connected."
+    ]
+  },
+  "deployment": {
+    "status": "pending measurement"
+  },
+  "walkthrough": {
+    "status": "pending measurement"
+  },
+  "performance": {
+    "scale": {
+      "schema_version": 1,
+      "environment": {
+        "os": "Darwin",
+        "python": "3.12.7"
+      },
+      "method": "2250 simulation steps per contact size, five Ghost/replay/scoring runs, 50 warm component runs. Local CPU only. Memory is tracemalloc peak, not device RAM or RSS. Empty histories for component dashboard. HTTP concurrency measured separately.",
+      "scale": [
+        {
+          "contacts": 8,
+          "tick": {
+            "n": 2250,
+            "median_ms": 0.0203,
+            "p95_ms": 0.0265
+          },
+          "ghost_replay_scoring": {
+            "n": 5,
+            "median_ms": 45.467,
+            "p95_ms": 45.8621
+          },
+          "python_traced_peak_mib": 0.005,
+          "review_payload_bytes": 14210,
+          "score": 0,
+          "render_fps": null,
+          "note": "All contacts spawn together; unchanged movement/sensor/scoring. Empty trainee decisions test worst missed-contact reconstruction. Python traced allocations are not whole-process RSS. Rendering requires browser benchmark."
+        },
+        {
+          "contacts": 25,
+          "tick": {
+            "n": 2250,
+            "median_ms": 0.0613,
+            "p95_ms": 0.0811
+          },
+          "ghost_replay_scoring": {
+            "n": 5,
+            "median_ms": 137.811,
+            "p95_ms": 148.4248
+          },
+          "python_traced_peak_mib": 0.013,
+          "review_payload_bytes": 39886,
+          "score": 0,
+          "render_fps": null,
+          "note": "All contacts spawn together; unchanged movement/sensor/scoring. Empty trainee decisions test worst missed-contact reconstruction. Python traced allocations are not whole-process RSS. Rendering requires browser benchmark."
+        },
+        {
+          "contacts": 50,
+          "tick": {
+            "n": 2250,
+            "median_ms": 0.1213,
+            "p95_ms": 0.1592
+          },
+          "ghost_replay_scoring": {
+            "n": 5,
+            "median_ms": 272.7536,
+            "p95_ms": 273.8562
+          },
+          "python_traced_peak_mib": 0.024,
+          "review_payload_bytes": 78356,
+          "score": 0,
+          "render_fps": null,
+          "note": "All contacts spawn together; unchanged movement/sensor/scoring. Empty trainee decisions test worst missed-contact reconstruction. Python traced allocations are not whole-process RSS. Rendering requires browser benchmark."
+        },
+        {
+          "contacts": 100,
+          "tick": {
+            "n": 2250,
+            "median_ms": 0.2427,
+            "p95_ms": 0.3188
+          },
+          "ghost_replay_scoring": {
+            "n": 5,
+            "median_ms": 534.6385,
+            "p95_ms": 536.7331
+          },
+          "python_traced_peak_mib": 0.05,
+          "review_payload_bytes": 159204,
+          "score": 0,
+          "render_fps": null,
+          "note": "All contacts spawn together; unchanged movement/sensor/scoring. Empty trainee decisions test worst missed-contact reconstruction. Python traced allocations are not whole-process RSS. Rendering requires browser benchmark."
+        },
+        {
+          "contacts": 200,
+          "tick": {
+            "n": 2250,
+            "median_ms": 0.489,
+            "p95_ms": 0.6376
+          },
+          "ghost_replay_scoring": {
+            "n": 5,
+            "median_ms": 1063.7873,
+            "p95_ms": 1356.7337
+          },
+          "python_traced_peak_mib": 0.105,
+          "review_payload_bytes": 321092,
+          "score": 0,
+          "render_fps": null,
+          "note": "All contacts spawn together; unchanged movement/sensor/scoring. Empty trainee decisions test worst missed-contact reconstruction. Python traced allocations are not whole-process RSS. Rendering requires browser benchmark."
+        }
+      ],
+      "components": {
+        "scenario_generation": {
+          "n": 50,
+          "median_ms": 1.8552,
+          "p95_ms": 4.1937
+        },
+        "director_decision": {
+          "n": 50,
+          "median_ms": 0.0199,
+          "p95_ms": 0.0206
+        },
+        "red_force": {
+          "n": 50,
+          "median_ms": 0.2218,
+          "p95_ms": 0.2272
+        },
+        "rapid_15": {
+          "n": 50,
+          "median_ms": 0.1714,
+          "p95_ms": 0.18
+        },
+        "author_compile": {
+          "n": 50,
+          "median_ms": 0.2964,
+          "p95_ms": 0.316
+        },
+        "dashboard": {
+          "n": 50,
+          "median_ms": 0.6259,
+          "p95_ms": 0.7254
+        }
+      }
+    },
+    "unit": {
+      "method": "Six simulated clients on loopback, three rounds each, unchanged expert policy. Medians/p95 include contention; no physical WAN latency.",
+      "advanced": {
+        "database_growth_bytes": 3192840,
+        "replay_payload_bytes": {
+          "median": 47391.0,
+          "max": 68226
+        },
+        "concurrent_clients": 6,
+        "completed_sessions": 18,
+        "server_rss_mib_after_workload": null,
+        "http_ms": {
+          "scenario_generation": {
+            "n": 18,
+            "median": 34.39,
+            "p95": 88.61,
+            "max": 88.61
+          },
+          "event_upload": {
+            "n": 122,
+            "median": 5.67,
+            "p95": 44.47,
+            "max": 146.39
+          },
+          "command_poll": {
+            "n": 122,
+            "median": 2.84,
+            "p95": 7.88,
+            "max": 31.82
+          },
+          "command_issue": {
+            "n": 18,
+            "median": 7.1,
+            "p95": 49.86,
+            "max": 49.86
+          },
+          "command_response": {
+            "n": 18,
+            "median": 3.62,
+            "p95": 41.98,
+            "max": 41.98
+          },
+          "active_list": {
+            "n": 18,
+            "median": 18.81,
+            "p95": 135.94,
+            "max": 135.94
+          },
+          "dashboard": {
+            "n": 18,
+            "median": 113.74,
+            "p95": 393.21,
+            "max": 393.21
+          },
+          "completion": {
+            "n": 18,
+            "median": 83.32,
+            "p95": 176.74,
+            "max": 176.74
+          },
+          "aar": {
+            "n": 18,
+            "median": 57.93,
+            "p95": 134.34,
+            "max": 134.34
+          }
+        }
+      }
+    },
+    "browser": {
+      "method": "Five sequential 20-second tests in Codex in-app Chromium on development Mac, fixed medium tier, actual visible DOM measurements. Worker clock is quantized to 0.1 ms; zero means below timer resolution. No whole-process/browser memory access. This Mac has not been identified as the weakest team laptop.",
+      "hardware_class": "Development Mac, macOS 27.0.1 arm64; CPU/RAM unavailable to sandbox",
+      "ram_gib": null,
+      "browser": "Codex in-app Chromium",
+      "results": [
+        {
+          "contacts": 8,
+          "graphics": "medium",
+          "seconds": 20,
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0,
+          "p95_sim_tick_ms": 0.1,
+          "memory": null
+        },
+        {
+          "contacts": 25,
+          "graphics": "medium",
+          "seconds": 20,
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0,
+          "p95_sim_tick_ms": 0.1,
+          "memory": null
+        },
+        {
+          "contacts": 50,
+          "graphics": "medium",
+          "seconds": 20,
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0,
+          "p95_sim_tick_ms": 0.1,
+          "memory": null
+        },
+        {
+          "contacts": 100,
+          "graphics": "medium",
+          "seconds": 20,
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0,
+          "p95_sim_tick_ms": 0.2,
+          "memory": null
+        },
+        {
+          "contacts": 200,
+          "graphics": "medium",
+          "seconds": 20,
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0.1,
+          "p95_sim_tick_ms": 0.2,
+          "memory": null
+        }
+      ],
+      "manual_tactical_fallback": "200-contact scene replaced by detected-contact 2D radar; 2D paint FPS not measured",
+      "weakest_laptop": "pending"
+    }
+  },
+  "experiment": {
+    "label": "SIMULATED TRAINING EXPERIMENT \u2014 NOT HUMAN EFFICACY EVIDENCE",
+    "method": "Paired seeds, identical initial hidden probabilities, assessment uniforms and focused learning law. Production Thompson selector/template adapter/Red Force versus uniform random focus/template; identical Beta-based difficulty rule. One abstract Bernoulli assessment per canonical skill/session. Hidden competence is separate from Beta estimates. No tactical physics, human learners or empirical learning-rate calibration.",
+    "summary": {
+      "director": {
+        "learners": 50,
+        "reached_threshold": 8,
+        "median_sessions_among_reached": 21.5,
+        "mean_cumulative_failures": 44,
+        "mean_final_hidden_performance": 0.7343334013125282,
+        "mean_weakest_skill_gain": 0.3023969480968076,
+        "mean_immediate_repeats": 0
+      },
+      "random": {
+        "learners": 50,
+        "reached_threshold": 5,
+        "median_sessions_among_reached": 28,
+        "mean_cumulative_failures": 44.9,
+        "mean_final_hidden_performance": 0.7314997071379368,
+        "mean_weakest_skill_gain": 0.2748240621791998,
+        "mean_immediate_repeats": 2.38
+      }
+    }
+  },
+  "remaining": [
+    "Physical WAN-off/LAN-on and weakest-team-laptop evidence pending.",
+    "No human efficacy study conducted. Consent-gated pre/post tooling is available.",
+    "Trusted LAN prototype. No production authentication; do not expose publicly.",
+    "All threat/sensor/learning/audio values illustrative, not operational validation.",
+    "Plain LAN HTTP cold reload with local server absent is browser-security constrained.",
+    "Rain, crew roles, hardware feeds and production identity remain deferred.",
+    "HMAC integrity is neither donor authentication nor non-repudiation. Recorded practice has no tactical scoring or invented impacts."
+  ]
+}

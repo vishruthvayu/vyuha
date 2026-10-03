@@ -1,0 +1,55 @@
+{
+  "method": "Five sequential 20-second tests in Codex in-app Chromium on development Mac, fixed medium tier, actual visible DOM measurements. Worker clock is quantized to 0.1 ms; zero means below timer resolution. No whole-process/browser memory access. This Mac has not been identified as the weakest team laptop.",
+  "hardware_class": "Development Mac, macOS 27.0.1 arm64; CPU/RAM unavailable to sandbox",
+  "ram_gib": null,
+  "browser": "Codex in-app Chromium",
+  "results": [
+    {
+      "contacts": 8,
+      "graphics": "medium",
+      "seconds": 20,
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0,
+      "p95_sim_tick_ms": 0.1,
+      "memory": null
+    },
+    {
+      "contacts": 25,
+      "graphics": "medium",
+      "seconds": 20,
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0,
+      "p95_sim_tick_ms": 0.1,
+      "memory": null
+    },
+    {
+      "contacts": 50,
+      "graphics": "medium",
+      "seconds": 20,
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0,
+      "p95_sim_tick_ms": 0.1,
+      "memory": null
+    },
+    {
+      "contacts": 100,
+      "graphics": "medium",
+      "seconds": 20,
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0,
+      "p95_sim_tick_ms": 0.2,
+      "memory": null
+    },
+    {
+      "contacts": 200,
+      "graphics": "medium",
+      "seconds": 20,
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0.1,
+      "p95_sim_tick_ms": 0.2,
+      "memory": null
+    }
+  ],
+  "manual_tactical_fallback": "200-contact scene replaced by detected-contact 2D radar; 2D paint FPS not measured",
+  "weakest_laptop": "pending"
+}

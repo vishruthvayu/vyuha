@@ -4,17 +4,19 @@ let sim:Simulation|null=null;
 let localPaused=true;
 let ended=false;
 let order=0;
+let benchmark=false;let tickTimes:number[]=[];
 let timer:ReturnType<typeof setInterval>|null=null;
 function publish(){if(sim)postMessage({type:'snapshot',state:sim.snapshot(),paused:localPaused||sim.state.paused});}
 function finish(){if(!sim||ended)return;ended=true;localPaused=true;publish();postMessage({type:'finalized',events:sim.events,commands:sim.commands});}
-onmessage=(e:MessageEvent<{type:string;scenario?:Scenario;action?:Action;events?:Action[];commands?:AppliedCommand[];command?:InstructorCommand;tick?:number}>)=>{
+onmessage=(e:MessageEvent<{type:string;scenario?:Scenario;action?:Action;events?:Action[];commands?:AppliedCommand[];command?:InstructorCommand;tick?:number;benchmark?:boolean}>)=>{
  const m=e.data;
  if(m.type==='init'&&m.scenario){
+  benchmark=m.benchmark??false;tickTimes=[];
   if(timer)clearInterval(timer);
   sim=m.events?replay(m.scenario,m.events,m.tick??0,m.commands??[]):new Simulation(m.scenario);
   order=Math.max(-1,...sim.events.map(a=>a.order??-1),...sim.commands.map(c=>c.order))+1;
   localPaused=true;ended=false;publish();
-  timer=setInterval(()=>{if(!sim||localPaused||sim.state.paused||sim.state.done||ended)return;sim.step();if(sim.state.tick%3===0||sim.state.done)publish();if(sim.state.done)finish();},1000/30);
+  timer=setInterval(()=>{if(!sim||localPaused||sim.state.paused||sim.state.done||ended)return;const started=benchmark?performance.now():0;sim.step();if(benchmark){tickTimes.push(performance.now()-started);if(tickTimes.length>=30){postMessage({type:'benchmark',tick_ms:tickTimes});tickTimes=[];}}if(sim.state.tick%3===0||sim.state.done)publish();if(sim.state.done)finish();},1000/30);
  }else if(m.type==='play'){localPaused=false;publish();}
  else if(m.type==='pause'){localPaused=true;publish();}
  else if(m.type==='finish')finish();

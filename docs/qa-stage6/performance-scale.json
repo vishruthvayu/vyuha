@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "environment": {
+    "os": "Darwin",
+    "python": "3.12.7"
+  },
+  "method": "2250 simulation steps per contact size, five Ghost/replay/scoring runs, 50 warm component runs. Local CPU only. Memory is tracemalloc peak, not device RAM or RSS. Empty histories for component dashboard. HTTP concurrency measured separately.",
+  "scale": [
+    {
+      "contacts": 8,
+      "tick": {
+        "n": 2250,
+        "median_ms": 0.0203,
+        "p95_ms": 0.0265
+      },
+      "ghost_replay_scoring": {
+        "n": 5,
+        "median_ms": 45.467,
+        "p95_ms": 45.8621
+      },
+      "python_traced_peak_mib": 0.005,
+      "review_payload_bytes": 14210,
+      "score": 0,
+      "render_fps": null,
+      "note": "All contacts spawn together; unchanged movement/sensor/scoring. Empty trainee decisions test worst missed-contact reconstruction. Python traced allocations are not whole-process RSS. Rendering requires browser benchmark."
+    },
+    {
+      "contacts": 25,
+      "tick": {
+        "n": 2250,
+        "median_ms": 0.0613,
+        "p95_ms": 0.0811
+      },
+      "ghost_replay_scoring": {
+        "n": 5,
+        "median_ms": 137.811,
+        "p95_ms": 148.4248
+      },
+      "python_traced_peak_mib": 0.013,
+      "review_payload_bytes": 39886,
+      "score": 0,
+      "render_fps": null,
+      "note": "All contacts spawn together; unchanged movement/sensor/scoring. Empty trainee decisions test worst missed-contact reconstruction. Python traced allocations are not whole-process RSS. Rendering requires browser benchmark."
+    },
+    {
+      "contacts": 50,
+      "tick": {
+        "n": 2250,
+        "median_ms": 0.1213,
+        "p95_ms": 0.1592
+      },
+      "ghost_replay_scoring": {
+        "n": 5,
+        "median_ms": 272.7536,
+        "p95_ms": 273.8562
+      },
+      "python_traced_peak_mib": 0.024,
+      "review_payload_bytes": 78356,
+      "score": 0,
+      "render_fps": null,
+      "note": "All contacts spawn together; unchanged movement/sensor/scoring. Empty trainee decisions test worst missed-contact reconstruction. Python traced allocations are not whole-process RSS. Rendering requires browser benchmark."
+    },
+    {
+      "contacts": 100,
+      "tick": {
+        "n": 2250,
+        "median_ms": 0.2427,
+        "p95_ms": 0.3188
+      },
+      "ghost_replay_scoring": {
+        "n": 5,
+        "median_ms": 534.6385,
+        "p95_ms": 536.7331
+      },
+      "python_traced_peak_mib": 0.05,
+      "review_payload_bytes": 159204,
+      "score": 0,
+      "render_fps": null,
+      "note": "All contacts spawn together; unchanged movement/sensor/scoring. Empty trainee decisions test worst missed-contact reconstruction. Python traced allocations are not whole-process RSS. Rendering requires browser benchmark."
+    },
+    {
+      "contacts": 200,
+      "tick": {
+        "n": 2250,
+        "median_ms": 0.489,
+        "p95_ms": 0.6376
+      },
+      "ghost_replay_scoring": {
+        "n": 5,
+        "median_ms": 1063.7873,
+        "p95_ms": 1356.7337
+      },
+      "python_traced_peak_mib": 0.105,
+      "review_payload_bytes": 321092,
+      "score": 0,
+      "render_fps": null,
+      "note": "All contacts spawn together; unchanged movement/sensor/scoring. Empty trainee decisions test worst missed-contact reconstruction. Python traced allocations are not whole-process RSS. Rendering requires browser benchmark."
+    }
+  ],
+  "components": {
+    "scenario_generation": {
+      "n": 50,
+      "median_ms": 1.8552,
+      "p95_ms": 4.1937
+    },
+    "director_decision": {
+      "n": 50,
+      "median_ms": 0.0199,
+      "p95_ms": 0.0206
+    },
+    "red_force": {
+      "n": 50,
+      "median_ms": 0.2218,
+      "p95_ms": 0.2272
+    },
+    "rapid_15": {
+      "n": 50,
+      "median_ms": 0.1714,
+      "p95_ms": 0.18
+    },
+    "author_compile": {
+      "n": 50,
+      "median_ms": 0.2964,
+      "p95_ms": 0.316
+    },
+    "dashboard": {
+      "n": 50,
+      "median_ms": 0.6259,
+      "p95_ms": 0.7254
+    }
+  }
+}

@@ -123,6 +123,11 @@ def rapid_get(sid:str):
   if not row:raise HTTPException(404,'Rapid session not found')
   return rapid_view(db,row)
 
+def rapid_metrics(answers):
+ success=sum(a['correct'] for a in answers);errors=Counter(f"{a['correct_answer']} → {a['answer'] or 'timeout'}" for a in answers if not a['correct'])
+ summary=dict(rounds=len(answers),correct=success,accuracy=success/len(answers),median_response_ms=statistics.median(a['response_time_ms'] for a in answers),friendly_false_hostile=sum(a['correct_answer']=='friendly_uav' and a['answer'] in ['hostile_quad','no_rf_fpv','fixed_wing'] for a in answers),bird_confusion=sum(not a['correct'] and (a['correct_answer']=='bird' or a['answer']=='bird') for a in answers),error_counts=dict(errors),most_common_error=errors.most_common(1)[0][0] if errors else None,profile_mapping='One classification_iff success per correct round; failure per incorrect/timeout round. Other skills receive zero observations.',verified=True)
+ return summary
+
 @router.post('/rapid-id/{sid}/answers')
 def answer_rapid(sid:str,req:RapidAnswer):
  body=dumps(req.model_dump())
@@ -145,8 +150,7 @@ def answer_rapid(sid:str,req:RapidAnswer):
   db.execute('INSERT INTO rapid_answers VALUES (?,?,?,?)',(sid,count,body,dumps(result)))
   if count+1==len(rounds):
    answers=[json.loads(r['result']) for r in db.execute('SELECT result FROM rapid_answers WHERE session_id=? ORDER BY round_index',(sid,))]
-   success=sum(a['correct'] for a in answers);errors=Counter(f"{a['correct_answer']} → {a['answer'] or 'timeout'}" for a in answers if not a['correct'])
-   summary=dict(rounds=len(answers),correct=success,accuracy=success/len(answers),median_response_ms=statistics.median(a['response_time_ms'] for a in answers),friendly_false_hostile=sum(a['correct_answer']=='friendly_uav' and a['answer'] in ['hostile_quad','no_rf_fpv','fixed_wing'] for a in answers),bird_confusion=sum(not a['correct'] and (a['correct_answer']=='bird' or a['answer']=='bird') for a in answers),error_counts=dict(errors),most_common_error=errors.most_common(1)[0][0] if errors else None,profile_mapping='One classification_iff success per correct round; failure per incorrect/timeout round. Other skills receive zero observations.',verified=True)
+   summary=rapid_metrics(answers);success=summary['correct']
    outcomes={s:dict(successes=success if s=='classification_iff' else 0,failures=len(answers)-success if s=='classification_iff' else 0) for s in SKILLS}
    persist_skill_results(db,row['trainee'],sid,outcomes,'rapid-id-v1');db.execute('UPDATE rapid_sessions SET result=? WHERE id=?',(dumps(summary),sid))
    row=db.execute('SELECT * FROM rapid_sessions WHERE id=?',(sid,)).fetchone()

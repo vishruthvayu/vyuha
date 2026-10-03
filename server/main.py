@@ -28,6 +28,8 @@ async def lifespan(app):
 
 
 app = FastAPI(title="VYUHA local training API", version="0.2.0", lifespan=lifespan)
+from .hardening import BoundedJSON
+app.add_middleware(BoundedJSON)
 app.add_middleware(CORSMiddleware, allow_origins=["http://127.0.0.1:5173", "http://localhost:5173"], allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
 
 
@@ -324,6 +326,15 @@ app.include_router(unit_router)
 
 from .advanced import router as advanced_router
 app.include_router(advanced_router)
+
+from .evidence import router as evidence_router
+app.include_router(evidence_router)
+from .portable import router as portable_router
+app.include_router(portable_router)
+from .recordings import router as recording_router
+from .evaluation import router as evaluation_router
+app.include_router(recording_router)
+app.include_router(evaluation_router)
 
 DIST = Path(__file__).resolve().parent.parent / "client" / "dist"
 if DIST.is_dir():

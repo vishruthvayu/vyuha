@@ -21,12 +21,14 @@ for p in PACKS.values():p.update(allowed_tactics=TACTICS,rubric=dict(detect=25,c
 PRESETS={'bird':('bird','neutral',False),'friendly_uav':('quad','friendly',True),'hostile_quad':('quad','hostile',True),'no_rf_fpv':('fiber_fpv','hostile',False),'fixed_wing':('fixed_wing','hostile',False)}
 
 class AuthorScenario(StrictModel):
+ schema_version:Literal[1,2]=1
  name:str=Field(min_length=3,max_length=70)
  created_by:str=Field(default='LOCAL-INSTRUCTOR',min_length=1,max_length=24,pattern=r'^[A-Za-z0-9_-]+$')
  pack_id:str='army-forward-post'
  seed:int=Field(default=482913,ge=0,le=4294967295)
  focus:Literal['detection','classification_iff','effector_choice','degraded_sensor_response']='effector_choice'
- terrain:Literal['urban']='urban'
+ terrain:Literal['urban','rural']='urban'
+ fog:float|None=Field(default=None,ge=0,le=1,allow_inf_nan=False)
  night:bool=True
  tactic:Tactic='DIRECT'
  mix:list[Literal['bird','friendly_uav','hostile_quad','no_rf_fpv','fixed_wing']]=Field(default_factory=lambda:['bird','friendly_uav','hostile_quad','no_rf_fpv'],min_length=1,max_length=18)
@@ -36,6 +38,7 @@ class AuthorScenario(StrictModel):
  difficulty:Literal['foundational','standard','challenging']='standard'
  @model_validator(mode='after')
  def compatible(self):
+  if self.schema_version==1 and (self.terrain!='urban' or self.fog is not None):raise ValueError('Rural terrain and authored fog require authoring schema_version 2')
   if len(self.name.strip())<3:raise ValueError('Scenario name needs at least three non-space characters')
   if self.pack_id not in PACKS:raise ValueError('Unknown doctrine pack')
   hostile=sum(x in ['hostile_quad','no_rf_fpv','fixed_wing'] for x in self.mix)
@@ -90,8 +93,11 @@ def compile_authored(req):
   tracks.append(dict(id=f'T{i+1}',kind=kind,identity=identity,rf=rf,spawn=0,bearing=int(r()*360),distance=125+int(r()*40),speed={'bird':.65,'quad':2.5,'fiber_fpv':3.8,'fixed_wing':2.8}[kind],altitude={'bird':22,'quad':20,'fiber_fpv':10,'fixed_wing':35}[kind]))
  s.update(title=req.name,focus=req.focus,tracks=tracks,fog=p['defaults']['fog'],jamStart=2250,jamEnd=2250,terrain='urban',difficulty_label=req.difficulty)
  s=enrich(s,req.pack_id,req.tactic);s['doctrine']['rules']['restricted']['enabled']=req.restricted
+ s.update(terrain=req.terrain,terrain_id='rural_forward_base' if req.terrain=='rural' else 'urban_outpost',terrain_version=1)
+ if req.terrain=='rural':s['doctrine']['rules']['restricted'].update(x_lt=-70,z_gt=0)
+ if req.fog is not None:s['fog']=req.fog
  if req.sensor_fault=='radar_degraded':s.update(jamStart=180,jamEnd=660)
  elif req.sensor_fault=='radar_failed':s.update(radarFailureStart=180,radarFailureEnd=660)
  elif req.sensor_fault=='rf_failed':s.update(rfFailureStart=180,rfFailureEnd=660)
- s['authoring']=dict(version=1,created_by=req.created_by,identity_basis='unverified local instructor label',request=req.model_dump())
+ s['authoring']=dict(version=req.schema_version,created_by=req.created_by,identity_basis='unverified local instructor label',request=req.model_dump())
  s['id']=scenario_id(s,'lib');return s

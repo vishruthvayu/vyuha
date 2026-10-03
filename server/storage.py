@@ -1,6 +1,7 @@
 import json
 import os
 import sqlite3
+import uuid
 from pathlib import Path
 
 DB_PATH = Path(os.environ.get("VYUHA_DB", Path(__file__).resolve().parent.parent / "data" / "vyuha.db"))
@@ -17,6 +18,10 @@ def init():
     with connect() as db:
         db.execute("PRAGMA journal_mode=WAL")
         db.executescript("""
+            CREATE TABLE IF NOT EXISTS transfer_origin (singleton INTEGER PRIMARY KEY CHECK(singleton=1),nonce TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS recordings (id TEXT PRIMARY KEY,spec TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS recorded_practice (request_id TEXT PRIMARY KEY,body TEXT NOT NULL,result TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS evaluations (id TEXT PRIMARY KEY,request_id TEXT UNIQUE NOT NULL,body TEXT NOT NULL,created_at TEXT NOT NULL,post_started TEXT);
             CREATE TABLE IF NOT EXISTS unit_preferences (unit_id TEXT PRIMARY KEY,pack_id TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS scenario_library (id TEXT PRIMARY KEY,created_at TEXT NOT NULL,body TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS rapid_sessions (id TEXT PRIMARY KEY,request_id TEXT UNIQUE NOT NULL,trainee TEXT NOT NULL,
@@ -50,6 +55,7 @@ def init():
                 command_id TEXT NOT NULL, issued_at TEXT NOT NULL, body TEXT NOT NULL, tick INTEGER, timeline_order INTEGER,
                 PRIMARY KEY (session_id, seq), UNIQUE (session_id, command_id));
         """)
+        db.execute('INSERT OR IGNORE INTO transfer_origin VALUES (1,?)',(uuid.uuid4().hex,))
         columns = {r["name"] for r in db.execute("PRAGMA table_info(sessions)")}
         for name, definition in [("unit_id", "TEXT NOT NULL DEFAULT 'local'"), ("exercise_group_id", "TEXT"), ("last_seen", "TEXT"), ("control_state", "TEXT"), ("execution_tick", "INTEGER"), ("completed_at", "TEXT")]:
             if name not in columns:
