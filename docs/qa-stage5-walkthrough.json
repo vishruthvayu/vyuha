@@ -658,6 +658,7 @@
     "draft_recovery": true,
     "offline_actions": true,
     "subsequent_verification": true,
-    "physical_WAN_off": "pending by user choice"
+    "physical_WAN_off": "NOT PERFORMED BEFORE SUBMISSION",
+    "physical_WAN_off_reason": "Required physical/network setup unavailable during final validation window."
   }
 }

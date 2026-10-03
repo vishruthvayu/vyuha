@@ -1,0 +1,102 @@
+{
+  "implementation_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
+  "scope": "Actual CUA browser interactions on disposable loopback demo database; synthetic identities. Not a new physical LAN or WAN-off claim.",
+  "preset": {
+    "name": "DEMO \u2014 NIGHT DECOY STRIKE",
+    "seed": 482913,
+    "library_id": "lib_21279143c197e7ed9b18646c",
+    "ordinary_score": 30,
+    "duration_seconds": 75,
+    "terrain": "rural",
+    "night": true,
+    "fog": 0.2,
+    "red_force": "DECOY_THEN_STRIKE",
+    "friendly": "T2",
+    "neutral": "T1",
+    "rf_hostiles": [
+      "T3",
+      "T5"
+    ],
+    "no_rf_fpv": "T4"
+  },
+  "demonstrated": [
+    "actual Director baseline recommendation",
+    "fixed authored drill distinct from Director generation",
+    "correct friendly hold",
+    "correct RF response",
+    "deliberate noRF jammer mistake",
+    "real instructor command acknowledged",
+    "server-verified completion",
+    "Ghost exact noRF reason and conditional reference",
+    "Time Machine decision jump",
+    "updated four-skill profile",
+    "fresh next Director recommendation",
+    "unit training overview",
+    "paused judge Rapid ID with visible evidence",
+    "Scenario Studio preview and saved library",
+    "experimental unscored recorded practice",
+    "Tactical2D rendering fallback",
+    "evidence page exactWANstatus/reason/source freshness"
+  ],
+  "early_end": "Asset penalties project to75seconds; later impacts are not observed facts. Ghost distinguishes observed end.",
+  "primary_capture": "DEMO-01; radar jam AFTER mistake; next Detection33% foundational",
+  "backup_capture": "REH-03; radar jam BEFORE mistake; next degraded_sensor_response standard",
+  "screenshots": {
+    "director.png": {
+      "path": "docs/release-screenshots/director.png",
+      "sha256": "00bc74298e21bd076bae61421d9d2e93e094af82860b1fa6705f14363408691b"
+    },
+    "tactical.png": {
+      "path": "docs/release-screenshots/tactical.png",
+      "sha256": "7731442a3d1c8b31be0c735c0e7a1b12f4122bf5d557839425eb4cf6d8508838"
+    },
+    "instructor.png": {
+      "path": "docs/release-screenshots/instructor.png",
+      "sha256": "b2c1738436fdbb4f0a016edb0df78295aed51ace93ed9e9fb82671e2f26f8368"
+    },
+    "ghost.png": {
+      "path": "docs/release-screenshots/ghost.png",
+      "sha256": "c1838cbd9f6d436f86dbc6aa01d77cefa5a23aebb965d83f269ce3bd07c8c97f"
+    },
+    "time-machine.png": {
+      "path": "docs/release-screenshots/time-machine.png",
+      "sha256": "42aa8dde85e5d4ee80b1a911d97d959a81ba16d5d027ab61bcefd810a98e4ad6"
+    },
+    "unit.png": {
+      "path": "docs/release-screenshots/unit.png",
+      "sha256": "f899e283e0a227c15829e784a78f1db321bac3b7511ea831d04a0649c6fd24bd"
+    },
+    "rapid-id.png": {
+      "path": "docs/release-screenshots/rapid-id.png",
+      "sha256": "6a7a3a18abe908cdebcdd00bbe77e7796afd6fd2a939314da10e3887e77187d4"
+    },
+    "studio-library.png": {
+      "path": "docs/release-screenshots/studio-library.png",
+      "sha256": "a22217f480ac4cc553584490315e4d777227c6eee8266827f8850ec24997f610"
+    },
+    "system-evidence.png": {
+      "path": "docs/release-screenshots/system-evidence.png",
+      "sha256": "297f8f981c75c89ed36ca14964bb213cf0b648ba24fcc73f35762caac4345f20"
+    },
+    "rural.png": {
+      "path": "docs/release-screenshots/rural.png",
+      "sha256": "c2e2e4cfc836bfccf84ca8e75524195a6784f9c4dd5dd63a120a57bb13b1a3e0"
+    },
+    "verified-aar.png": {
+      "path": "docs/release-screenshots/verified-aar.png",
+      "sha256": "6a3a93ceb80cb74fd04b5efd0329df5c239286aa7c3875e64fc877d8102c87cb"
+    },
+    "profile-updated.png": {
+      "path": "docs/release-screenshots/profile-updated.png",
+      "sha256": "cc1b444e97d9a535c205bd50b748e7c396e4700f3b324e0d122836a9c122f4bb"
+    },
+    "director-next.png": {
+      "path": "docs/release-screenshots/director-next.png",
+      "sha256": "5584aaedf1c400db37df1ef80726ecc16cd91c966409b1cb00ffe866dc47d51f"
+    },
+    "recorded.png": {
+      "path": "docs/release-screenshots/recorded.png",
+      "sha256": "bc3962004ef87cd97083686ef718edba3715c142ff70f03160a21d4487ecaa21"
+    }
+  }
+}

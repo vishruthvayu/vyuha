@@ -1,0 +1,51 @@
+{
+  "implementation_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
+  "scope": "Three agent-led single-operator technical browser rehearsals on disposable QA data. No human team or judge/narration rehearsal claim. Fresh uvicorn process/loopback origin before each; ordinary product UI and scoring. Each includes scripted Q&A review and simulated rendering-failure cue recovered through actual Tactical 2D control.",
+  "live_target_seconds": "60-90; second run approximately 60 seconds (57.817), with delivery pacing reserved in runbook",
+  "runs": [
+    {
+      "callsign": "REH-01",
+      "live_seconds": 62.656,
+      "session": "0cb50acc-8dd9-4ed7-bcc7-81662e1c1b03",
+      "result": "Server verified, score30; Ghost noRF reason; replay jump; profile/next Director",
+      "issues": [
+        "Officer automation initially looked for ACTIVE rather than actual PAUSED; resolved from visible state",
+        "Radar command occurred after mistake; do not imply error under degradation"
+      ],
+      "recovery": "Tactical2D selected in prepared next drill"
+    },
+    {
+      "callsign": "REH-02",
+      "live_seconds": 57.817,
+      "session": "83e98877-ff41-46f3-b346-8cb455449b65",
+      "result": "Server verified, score30; Ghost/replay/next Director",
+      "issues": [
+        "Add approximately3 seconds of explanation to live delivery pacing",
+        "Capture viewport changed with app window; fixed1280x720 before final capture"
+      ],
+      "recovery": "Tactical2D selected while paused, resumed, completed and verified",
+      "radar_jam_tick": 123
+    },
+    {
+      "callsign": "REH-03",
+      "live_seconds": 77.106,
+      "session": "029439b1-03fe-4ae8-9cf3-5d7fef7be0a8",
+      "result": "Server verified, score30; Ghost/replay/next Director",
+      "issues": [
+        "Officer poll had not refreshed to PAUSED on first attempt; fresh state resolved; included in elapsed time"
+      ],
+      "recovery": "Actual Tactical2D selection, resume and verified completion"
+    }
+  ],
+  "scripted_questions_and_answers": [
+    "Why simulate: reproducible decision practice; no measured field transfer or cost savings",
+    "AI: four Beta skills, seeded Thompson focus; Ghost deterministic; 70% heuristic",
+    "Verified: server reconstruction of issued scenario/actions/acknowledged controls; fabricated logs remain possible",
+    "Offline: local assets/services by design; physical multi-device LAN validated; WAN test unperformed",
+    "Efficacy: simulated 50 paired profiles x30 sessions only, not humans",
+    "Security: trusted LAN, no authentication; HMAC integrity is not identity",
+    "Scale: six simulated loopback clients; 20-second device runs only",
+    "Failure: 2D fallback, one-laptop mode, backup recording; no new features"
+  ],
+  "feature_freeze": "No new runtime feature/engine changes after rehearsals began"
+}

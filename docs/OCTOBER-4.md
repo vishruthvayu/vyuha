@@ -1,5 +1,7 @@
 # October 4 demonstration
 
+> Historical early prototype preparation. Current submission artifacts, final checks and claims are documented in FINAL-VALIDATION.md and DEMO-RUNBOOK.md. The early v3 deck is obsolete and excluded from the final package.
+
 ## Short presentation script
 
 1. Begin the scripted Night watch exercise, seed **482913**.

@@ -16,19 +16,22 @@
     "build": "passed",
     "offline_assets": 22
   },
-  "acceptance": "Software candidate validated; Stage 6 acceptance pending physical WAN-off/LAN-on.",
+  "acceptance": "Historical Stage 6 software measurements retained. Submission policy revised: dedicated physical WAN-off/LAN-on NOT PERFORMED BEFORE SUBMISSION; approved non-blocking validation limitation. Other Stage 7 checks remain mandatory.",
   "physical": {
-    "wan_off": "Pending by explicit user choice; physical WAN-off/LAN-on acceptance is not closed.",
+    "wan_off": "NOT PERFORMED BEFORE SUBMISSION",
     "weak_laptop": "Measured on user-identified weakest available team laptop: MacBook Air / Apple M1 / 8 GB / macOS 27.0.1 / Codex in-app Chromium. Fixed Medium, Auto off, median 60 FPS at 8/25/50/100/200 contacts, 20 seconds each. No long-duration certification.",
     "devices": [
       "MacBook Air / M1 / 8 GB officer: local/Unit startup, process-loss/reload, and weakest-laptop fixed-Medium 8\u2013200-contact measurements.",
       "Physical Android/Chrome: user supplied 8\u2013200-contact exports, median 60 FPS, Auto final Medium, reported 6 GiB RAM; CPU/model unspecified."
     ],
     "android_performance_artifact": "performance-android.json",
-    "pending_checks": [
-      "physical WAN-off/LAN-on"
-    ],
-    "weak_laptop_performance_artifact": "performance-laptop.json"
+    "pending_checks": [],
+    "weak_laptop_performance_artifact": "performance-laptop.json",
+    "wan_off_reason": "Required physical/network setup unavailable during final validation window.",
+    "architecture_claim": "Physical multi-device LAN training was validated. Runtime assets and services are hosted locally; dedicated WAN-disconnected physical validation remains pending.",
+    "wan_off_release_blocking": false,
+    "wan_off_classification": "Known validation limitation; not a failed architectural test.",
+    "acceptance_policy": "User explicitly approved proceeding without this physical test. No other Stage 7 requirement is waived."
   },
   "deployment": {
     "environment": "Fresh GitHub clone, new .venv and node_modules, disposable DB on the same development Mac; not a second physical OS/machine. npm/pip downloaded dependencies.",
@@ -77,7 +80,8 @@
     "recorded": "Imported bundled example in UI, played 10 seconds, saved three decisions at tick 0; supplied friendly classification correct, tactical score null and no profile update.",
     "portable": "UI export success, HTTP import into clean-clone disposable unit: 3 canonical sessions, duplicate skipped all 3, tamper rejected 422.",
     "audio": "Explicit WebAudio enable and mute both changed UI state without browser error. Audible output was not independently assessed; non-scoring range/observation gates tested.",
-    "physical_WAN": "Pending by user choice; loopback cached reload is not Android/LAN HTTP proof."
+    "physical_WAN": "NOT PERFORMED BEFORE SUBMISSION",
+    "physical_WAN_reason": "Required physical/network setup unavailable during final validation window."
   },
   "performance": {
     "scale": {
@@ -628,12 +632,13 @@
     }
   },
   "remaining": [
-    "Pending acceptance: physical WAN-off/LAN-on.",
+    "Dedicated physical WAN-off/LAN-on validation was not completed before submission. Multi-device LAN operation, local asset serving, process-outage recovery and queued-event resynchronization were validated separately.",
     "No human efficacy study conducted. Consent-gated pre/post tooling is available.",
     "Trusted LAN prototype. No production authentication; do not expose publicly.",
     "All threat/sensor/learning/audio values illustrative, not operational validation.",
     "Plain LAN HTTP cold reload with local server absent is browser-security constrained.",
     "Rain, crew roles, hardware feeds and production identity remain deferred.",
     "HMAC integrity is neither donor authentication nor non-repudiation. Recorded practice has no tactical scoring or invented impacts."
-  ]
+  ],
+  "policy_revision": "2026-10-03 user-authorized exception; historical software test counts and measurement timestamp unchanged"
 }

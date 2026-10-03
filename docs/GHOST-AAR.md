@@ -1,5 +1,7 @@
 # Ghost Expert + Time-Machine AAR v2
 
+> Historical Stage 3 scope. Advanced Stage 5 exercises use auditable pair agreement and engagement coverage for prioritisation; original Night Watch preserves its legacy timely-resolution metric. Current acceptance and limitations are in FINAL-VALIDATION.md.
+
 ## Baseline and audit
 
 Branch `feature/ghost-aar-v2` starts directly from `7fc31a6bcdec0e7a684345827375255b7d05ac7a`. Before edits: pytest 16 passed (1 existing warning); npm test 11 passed, including both three-seed parity tests (51 checkpoints); production build passed, seven offline assets. `main` and `v0.1.0` remain at `6546816`.

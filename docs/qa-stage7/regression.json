@@ -1,0 +1,17 @@
+{
+  "implementation_commit": "0f17830",
+  "backend_passed": 134,
+  "backend_seconds": 403.84,
+  "frontend_passed": 44,
+  "frontend_seconds": 115.449361834,
+  "parity_checkpoints": 312,
+  "production_build": "passed",
+  "build_seconds": 40.48,
+  "offline_assets": 22,
+  "cache_fingerprint": "6ccb96b52205",
+  "warnings": [
+    "Existing Starlette/httpx deprecation",
+    "Existing large shared Three.js chunk"
+  ],
+  "scope": "Release regression on current laptop under high concurrent system load; these durations are not device rendering benchmarks."
+}

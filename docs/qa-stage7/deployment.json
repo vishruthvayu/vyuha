@@ -1,0 +1,27 @@
+{
+  "source_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
+  "archive": "source-candidate.tar.gz",
+  "status": "passed",
+  "method": "Export exact Git blobs with documented exclusions, extract to new temp directory; documented scripts/start-local.sh created fresh venv, pip locked requirements, npm ci, build and started new local server. No existing dependency directory reused. Initial setup used Internet.",
+  "build_assets": 22,
+  "cache_fingerprint": "6ccb96b52205",
+  "runtime": "Python3.13 / Node25.2.1 / same Mac as regression; no second OS claim",
+  "clean_database_http_walkthrough": {
+    "verified_score": 83,
+    "new_unit": true,
+    "new_trainee": true,
+    "profile_sessions": 1,
+    "rapid_correct": 10,
+    "next_focus": "degraded_sensor_response",
+    "scope": "Synthetic QA via real HTTP and ordinary Python engine; disposable fresh database. Not a human test, physical LAN test or WAN-off validation."
+  },
+  "excluded": [
+    "local database and raw private history",
+    "bundle keys",
+    "env overrides and local IP configuration",
+    "venv/node_modules/dist/caches",
+    "legacy QA screenshots/record exports",
+    "obsolete prototype PPTX/previews"
+  ],
+  "final_export_rule": "Final tag archive uses same implementation blobs; final docs/evidence additions are checked separately."
+}

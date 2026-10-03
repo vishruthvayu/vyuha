@@ -210,5 +210,7 @@
     }
   ],
   "physical_wan_reason": "Required physical/network setup unavailable during final validation window.",
-  "physical_wan_release_blocking": false
+  "physical_wan_release_blocking": false,
+  "validated_implementation_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
+  "release_reference": "v1.0.0"
 }

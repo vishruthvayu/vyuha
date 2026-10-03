@@ -24,5 +24,6 @@
   "recorded": "Imported bundled example in UI, played 10 seconds, saved three decisions at tick 0; supplied friendly classification correct, tactical score null and no profile update.",
   "portable": "UI export success, HTTP import into clean-clone disposable unit: 3 canonical sessions, duplicate skipped all 3, tamper rejected 422.",
   "audio": "Explicit WebAudio enable and mute both changed UI state without browser error. Audible output was not independently assessed; non-scoring range/observation gates tested.",
-  "physical_WAN": "Pending by user choice; loopback cached reload is not Android/LAN HTTP proof."
+  "physical_WAN": "NOT PERFORMED BEFORE SUBMISSION",
+  "physical_WAN_reason": "Required physical/network setup unavailable during final validation window."
 }
