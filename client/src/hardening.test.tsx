@@ -48,3 +48,12 @@ test('evaluation enrollment requires participant agreement and pseudonymous IDs'
  const old=globalThis.localStorage;Object.defineProperty(globalThis,'localStorage',{configurable:true,value:{getItem:()=>null}});
  try{const html=renderToStaticMarkup(<Evaluation/>);assert.match(html,/Participant ID/);assert.match(html,/Participant has agreed/);assert.match(html,/disabled=""[^>]*>Create evaluation protocol/);assert.match(html,/No human study is conducted automatically/);}finally{Object.defineProperty(globalThis,'localStorage',{configurable:true,value:old});}
 });
+
+
+test('bulk transfer timeout can exceed the six-second tactical request timeout without changing request payloads',async()=>{
+ const {api}=await import('./storage');const oldFetch=globalThis.fetch,oldTimeout=AbortSignal.timeout;const limits:number[]=[];const requests:RequestInit[]=[];
+ AbortSignal.timeout=(ms:number)=>{limits.push(ms);return new AbortController().signal;};
+ globalThis.fetch=async (_url,options)=>{requests.push(options!);return {ok:true,json:async()=>({accepted:true})} as Response;};
+ try{assert.deepEqual(await api('/health'),{accepted:true});await api('/bundle/import',{schema_version:1},120000);assert.deepEqual(limits,[6000,120000]);assert.equal(requests[0].method,'GET');assert.equal(requests[1].method,'POST');assert.equal(requests[1].body,'{"schema_version":1}');}
+ finally{globalThis.fetch=oldFetch;AbortSignal.timeout=oldTimeout;}
+});

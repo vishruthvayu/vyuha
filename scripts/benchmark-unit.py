@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Measured localhost HTTP concurrency; disposable database, not a learner study."""
-import json, math, os, socket, statistics, subprocess, sys, tempfile, time
+import argparse,json, math, os, socket, statistics, subprocess, sys, tempfile, time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from threading import Barrier, Lock
@@ -70,4 +70,5 @@ def benchmark(count, advanced=False):
    process.terminate();process.wait(timeout=10)
 
 if __name__=='__main__':
- print(json.dumps({'method':'Loopback HTTP, fresh SQLite per scale, 3 rounds/client, simultaneous barriers before uploads; medians include request contention, no WAN/device latency; empty polls plus one queued neutral command response/client/round; queued command intentionally not applied; RSS null if unavailable; CPU not measured.','results':[benchmark(n) for n in [1,3,6]]},indent=2))
+ parser=argparse.ArgumentParser();parser.add_argument('--advanced',action='store_true');parser.add_argument('--clients',type=int,nargs='+',choices=[1,3,6],default=[1,3,6]);args=parser.parse_args()
+ print(json.dumps({'method':'Loopback HTTP, fresh SQLite per scale, 3 rounds/client, simultaneous barriers before uploads; medians include request contention, no WAN/device latency; empty polls plus one queued neutral command response/client/round; queued command intentionally not applied; RSS null if unavailable; CPU not measured.','advanced':args.advanced,'results':[benchmark(n,args.advanced) for n in args.clients]},indent=2))

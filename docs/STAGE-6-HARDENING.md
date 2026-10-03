@@ -39,7 +39,7 @@ Repeatable CPU/contact measurement:
 
 ```sh
 .venv/bin/python scripts/benchmark-hardening.py --output docs/qa-stage6/performance-scale.json
-.venv/bin/python scripts/benchmark-unit.py
+.venv/bin/python scripts/benchmark-unit.py --advanced --clients 6
 ```
 
 The scale fixtures use 8, 25, 50, 100 and 200 contacts with unchanged movement, sensor, scoring and replay logic. They spawn together. Authoring remains bounded to 18 contacts; benchmark and validated portable snapshots permit 200. Recorded sources permit 200 tracks/20,000 total samples. Python memory measurement is traced allocations, not whole-process RAM. The empty-decision Ghost workload exercises missed-contact reconstruction, not the maximum possible decision/prioritisation workload. HTTP measurements use six simulated clients on loopback, not six physical laptops.
@@ -91,7 +91,7 @@ VYUHA_BUNDLE_KEYFILE="$PWD/data/bundle.key" bash scripts/start-unit.sh
 
 Distribute the same private key separately to trusted importing/exporting officers. Do not put it in Git or in a bundle. HMAC-SHA256 checks modifications by parties without that shared key; it is not non-repudiation, identity, or proof of authentic training. Missing keys fail clearly with 503. Never print/export the key. Changing key or discarding the installation namespace changes local export pseudonyms.
 
-Imports verify HMAC/schema/version, reconstruct scorecards/skill outcomes and seeded Rapid evidence before an atomic transaction. Canonical session duplicates skip; altered IDs/histories/unit membership conflict and roll back. Profile estimates are rebuilt from validated outcomes; supplied snapshots are informational. At most 200 tactical/100 Rapid sessions and 20 recordings, 7 MiB export payload and 8 MiB request are supported. Overlimits fail explicitly rather than silently exporting partial history.
+Imports verify HMAC/schema/version, reconstruct scorecards/skill outcomes and seeded Rapid evidence before an atomic transaction. Canonical session duplicates skip; altered IDs/histories/unit membership conflict and roll back. Profile estimates are rebuilt from validated outcomes; supplied snapshots are informational. At most 200 tactical/100 Rapid sessions and 20 recordings, 7 MiB export payload and 8 MiB request are supported. Bulk transfer allows a bounded two-minute response wait and disables duplicate submissions while busy; tactical API requests keep their six-second timeout. A lost response can safely retry the same immutable bundle. Overlimits fail explicitly rather than silently exporting partial history.
 
 ## Failure matrix and security limits
 
