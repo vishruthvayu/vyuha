@@ -1,0 +1,21 @@
+{
+  "environment": "Fresh GitHub clone, new .venv and node_modules, disposable DB on the same development Mac; not a second physical OS/machine. npm/pip downloaded dependencies.",
+  "os": "macOS-27.0.1-arm64-arm-64bit",
+  "python": "3.12.7",
+  "node": "v25.2.1",
+  "tested_commit": "351fee2f366e02963cf9a77dd41d4fdf61152f56",
+  "setup_confirmed_within_seconds": 103.29,
+  "setup_timing_note": "Upper bound from command start to first health observation; includes time between setup completion and probe.",
+  "local_startup": "passed",
+  "unit_startup": "passed after macOS no-argument Bash fix",
+  "backend_passed": 133,
+  "frontend_passed": 44,
+  "production_build": "passed in fresh installation",
+  "prior_failure": "Initial unit startup failed on ${@} under Bash nounset; corrected to \"$@\" and re-tested.",
+  "backend_seconds": 20.33,
+  "frontend_ms": 5578.961125,
+  "build_seconds": 8.38,
+  "offline_assets": 22,
+  "fingerprint": "b7928bbb7ed1",
+  "final_source_regression": "Full backend/frontend/build repeated after pulling final implementation commit."
+}

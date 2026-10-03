@@ -1,5 +1,5 @@
 {
-  "method": "Five sequential 20-second tests in Codex in-app Chromium on development Mac, fixed medium tier, actual visible DOM measurements. Worker clock is quantized to 0.1 ms; zero means below timer resolution. No whole-process/browser memory access. This Mac has not been identified as the weakest team laptop.",
+  "method": "Five sequential 20-second tests in Codex in-app Chromium on development Mac, fixed medium tier, actual visible DOM measurements. Worker clock is quantized to 0.1 ms; zero means below timer resolution. No whole-process/browser memory access. At capture time the Mac had not been identified as the weakest team laptop. The user subsequently identified it; a fresh fixed-tier repeat and verified hardware fields are recorded in performance-laptop.json.",
   "hardware_class": "Development Mac, macOS 27.0.1 arm64; CPU/RAM unavailable to sandbox",
   "ram_gib": null,
   "browser": "Codex in-app Chromium",
@@ -51,5 +51,5 @@
     }
   ],
   "manual_tactical_fallback": "200-contact scene replaced by detected-contact 2D radar; 2D paint FPS not measured",
-  "weakest_laptop": "pending"
+  "weakest_laptop": "Subsequently identified and remeasured; see performance-laptop.json"
 }

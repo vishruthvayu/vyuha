@@ -1,0 +1,28 @@
+{
+  "scope": "Synthetic QA identity and disposable database; not a human pilot. Browser actions on loopback, not a physical LAN session.",
+  "pack": "army-forward-post@1",
+  "terrain": "rural_forward_base@1",
+  "fog": 0.6,
+  "pattern": "DECOY_THEN_STRIKE",
+  "rural_contacts_authored": 5,
+  "instructor_commands": [
+    "radar jam",
+    "no-RF FPV injection"
+  ],
+  "trainee_decisions": "Injected T6 designated, classified no-RF hostile, RF jammer attempted; Ghost explained ineffectiveness.",
+  "observed_end_seconds": 40.53333333333333,
+  "verified_score": 0,
+  "time_machine_jump_seconds": 27.966666666666665,
+  "profile_processed_sessions_after_rural": 1,
+  "director_next_focus": "detection, foundational",
+  "adaptive_completion": "Server verified after active reload recovery",
+  "rapid_qa": "10/10 answers; automated 0.05-second median is QA timing, not human response performance.",
+  "profile_processed_sessions_after_tactical_and_rapid": 3,
+  "analytics": "Exact three-step Beta ledger and unit trend displayed",
+  "server_process_outage": "Real process stopped; simulation continued, three actions queued, paused cached loopback reload restored draft, local completion pending, restart synchronized same card/Ghost.",
+  "active_reload": "Separate adaptive session restored at ~7 seconds and verified at observed end ~13 seconds.",
+  "recorded": "Imported bundled example in UI, played 10 seconds, saved three decisions at tick 0; supplied friendly classification correct, tactical score null and no profile update.",
+  "portable": "UI export success, HTTP import into clean-clone disposable unit: 3 canonical sessions, duplicate skipped all 3, tamper rejected 422.",
+  "audio": "Explicit WebAudio enable and mute both changed UI state without browser error. Audible output was not independently assessed; non-scoring range/observation gates tested.",
+  "physical_WAN": "Pending by user choice; loopback cached reload is not Android/LAN HTTP proof."
+}
