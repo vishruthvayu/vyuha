@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "validated_at": "2026-10-03T18:07:51.197032+00:00",
+  "validated_at": "2026-10-03T18:12:18.138861+00:00",
   "source_tree_sha256": "42c3e6251e9e8fb35a6ff35bdbf31b79bbd6730a8fbc421bdbff3f208672e23a",
   "validation_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
   "baseline_commit": "b974b6fca32fcc2a58d2c3967d29508a11cea8a2",
@@ -13,7 +13,7 @@
     "problem_statement": "SIH26247"
   },
   "release_checks": {
-    "status": "SOFTWARE AND ARTIFACT CHECKS PASSED; SECOND RECORDING COPY PENDING",
+    "status": "ALL MANDATORY PRE-SEAL CHECKS PASSED",
     "implementation_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
     "mandatory": {
       "final_regression": "PASSED 134 backend /44 frontend /312 parity /build22assets",
@@ -27,9 +27,9 @@
       "official_pdf": "PASSED sixpages incltitle; allpage visual review; Software/185350/WhiteList&0",
       "rehearsals": "COMPLETED three single-operator technical browser rehearsals62.656/57.817/77.106s; scriptedQ&A and actual2Dfallback. No human team rehearsal claim.",
       "source_extract_start": "PASSED documented freshdeps install/build/start, freshDBHTTPwalkthrough",
-      "second_recording_copy": "PENDING actual Android/USB saved-file playback confirmation",
-      "immutable_tag_and_remote": "PENDING remaining mandatory second copy; WANtestalone doesnotblock",
-      "submission_package": "PREPARED; finaltag/checksums refresh when secondcopyconfirmed"
+      "second_recording_copy": "CONFIRMED separate Android saved file plays from Downloads",
+      "immutable_tag_and_remote": "v1.0.0 seal; exact target and private remote verification recorded in external RELEASE-RECEIPT.json after tagging",
+      "submission_package": "Final source/tag export and checksum/ZIP verification recorded in external RELEASE-RECEIPT.json"
     },
     "wan_exception": {
       "test": "physical WAN disconnected + LAN retained + separate physical trainee device",
@@ -39,11 +39,9 @@
       "classification": "Known validation limitation, not a failed architectural test.",
       "scope": "No other mandatory acceptance is waived"
     },
-    "remaining_mandatory": [
-      "Second recording copy saved and playable on another physical device/USB",
-      "Immutable v1.0.0 tag and remote verification after acceptance closes"
-    ],
-    "portal_submission": "Prepared only; not uploaded"
+    "remaining_mandatory": [],
+    "portal_submission": "Prepared only; not uploaded",
+    "seal_receipt": "RELEASE-RECEIPT.json in final submission package records the exact immutable commit/tag and remote refs; avoid circular self-hash in tracked docs"
   },
   "automated": {
     "backend_passed": 134,
@@ -57,7 +55,7 @@
     "build": "passed",
     "offline_assets": 22
   },
-  "acceptance": "Final software regression and submission artifact checks passed. NOT READY: required second recording copy on another physical device/USB awaits saved-file playback confirmation. Dedicated physical WAN-off/LAN-on: NOT PERFORMED BEFORE SUBMISSION under the approved non-blocking validation limitation.",
+  "acceptance": "Mandatory software, artifact, rehearsal and recording-redundancy checks passed. Final release v1.0.0 is sealed and verified by the delivered RELEASE-RECEIPT.json. Dedicated physical WAN-off/LAN-on: NOT PERFORMED BEFORE SUBMISSION; approved non-blocking validation limitation.",
   "physical": {
     "wan_off": "NOT PERFORMED BEFORE SUBMISSION",
     "weak_laptop": "Measured on user-identified weakest available team laptop: MacBook Air / Apple M1 / 8 GB / macOS 27.0.1 / Codex in-app Chromium. Fixed Medium, Auto off, median 60 FPS at 8/25/50/100/200 contacts, 20 seconds each. No long-duration certification.",
@@ -288,7 +286,7 @@
       },
       "system-evidence.png": {
         "path": "docs/release-screenshots/system-evidence.png",
-        "sha256": "297f8f981c75c89ed36ca14964bb213cf0b648ba24fcc73f35762caac4345f20"
+        "sha256": "272250e28eadafcff69aff7221b9188b8a6ea5c1e4e7fbb232bac82b792d384f"
       },
       "rural.png": {
         "path": "docs/release-screenshots/rural.png",
@@ -394,9 +392,13 @@
     "narration": "Locally generated eSpeak-NG synthetic en-us voice; verified20 nonempty chapters fit allocated intervals. Not a human narrator.",
     "visual_review": "Primary reviewed at5/60/97/150s; backup15/68/110s; captions legible and actual UI visible. Full media decoding passed.",
     "second_copy": {
-      "status": "PENDING USER CONFIRMATION",
+      "status": "CONFIRMED SAVED AND PLAYABLE",
       "required": true,
-      "method": "Final backup file available for download and playback on Android; streaming alone does not qualify"
+      "device": "Separate physical Android / Chrome device",
+      "confirmation": "User explicitly confirmed: Saved file plays from Downloads",
+      "file": "VYUHA-backup-demo-final.mp4",
+      "sha256": "430c70130dc0a5a036a2888eaaf06c35582d7d1bcd5e578b8cb668c38c426c20",
+      "scope": "User-reported saved-file playback of the served final120second backup; no independent handset hash or WAN-off claim"
     },
     "presentation": {
       "pdf_slides": 6,
@@ -972,7 +974,6 @@
     }
   },
   "remaining": [
-    "Required recording redundancy: second physical device/USB saved-file playback confirmation pending. Final immutable tag and remote verification follow that acceptance.",
     "Dedicated physical WAN-off/LAN-on validation was not completed before submission. Multi-device LAN operation, local asset serving, process-outage recovery and queued-event resynchronization were validated separately.",
     "No human efficacy study conducted. Consent-gated pre/post tooling is available.",
     "Trusted LAN prototype. No production authentication; do not expose publicly.",
@@ -981,5 +982,7 @@
     "Rain, crew roles, hardware feeds and production identity remain deferred.",
     "HMAC integrity is neither donor authentication nor non-repudiation. Recorded practice has no tactical scoring or invented impacts."
   ],
-  "validated_implementation_commit": "0f17830c7fd821f105091400d6ac146e17fbf145"
+  "validated_implementation_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
+  "manifest_preseal_parent_commit": "5db0d66e884c0ddee92d6344a951a016fea102a8",
+  "commit_scope": "Regression validated implementation commit0f17830; final documentation/media commits preserve that exact source_tree_sha256. Resolve immutable v1.0.0 for the full release commit; delivered RELEASE-RECEIPT.json verifies remote identity."
 }

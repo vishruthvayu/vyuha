@@ -29,9 +29,13 @@
   "narration": "Locally generated eSpeak-NG synthetic en-us voice; verified20 nonempty chapters fit allocated intervals. Not a human narrator.",
   "visual_review": "Primary reviewed at5/60/97/150s; backup15/68/110s; captions legible and actual UI visible. Full media decoding passed.",
   "second_copy": {
-    "status": "PENDING USER CONFIRMATION",
+    "status": "CONFIRMED SAVED AND PLAYABLE",
     "required": true,
-    "method": "Final backup file available for download and playback on Android; streaming alone does not qualify"
+    "device": "Separate physical Android / Chrome device",
+    "confirmation": "User explicitly confirmed: Saved file plays from Downloads",
+    "file": "VYUHA-backup-demo-final.mp4",
+    "sha256": "430c70130dc0a5a036a2888eaaf06c35582d7d1bcd5e578b8cb668c38c426c20",
+    "scope": "User-reported saved-file playback of the served final120second backup; no independent handset hash or WAN-off claim"
   },
   "presentation": {
     "pdf_slides": 6,

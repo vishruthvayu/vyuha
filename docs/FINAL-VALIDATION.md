@@ -1,6 +1,6 @@
 # VYUHA final submission validation
 
-Team WhiteList&0, registered Team ID 185350, PS SIH26247, Software. College/member names are omitted at the user's explicit request. Software and submission artifacts have passed their checks. A required second recording copy remains pending user confirmation; no final tag or READY declaration is made yet.
+Team WhiteList&0, registered Team ID 185350, PS SIH26247, Software. College/member names are omitted at the user's explicit request. Software and submission artifacts have passed their checks. The user confirmed that the final backup is saved on a separate Android device and plays from Downloads. Exact immutable tag, private remote and final archive checks are recorded in the delivered RELEASE-RECEIPT.json.
 
 ## Accepted validation exception
 
@@ -16,7 +16,7 @@ Existing evidence includes the Mac officer/server and Android/Chrome trainee, re
 
 ## Release checks
 
-Implementation freeze: `0f17830c7fd821f105091400d6ac146e17fbf145`, based on `b974b6fca32fcc2a58d2c3967d29508a11cea8a2`. Release branch: `release/v1.0.0`. Documentation/media commits preserve the tested implementation source hash; `v1.0.0` will identify the final exact release commit after remaining mandatory acceptance closes.
+Implementation freeze: `0f17830c7fd821f105091400d6ac146e17fbf145`, based on `b974b6fca32fcc2a58d2c3967d29508a11cea8a2`. Release branch: `release/v1.0.0`. Documentation/media commits preserve the tested implementation source hash; `v1.0.0` identifies the final exact release commit. The delivery receipt resolves its numeric commit and verifies remote identity after sealing; no circular self-hash is embedded in the tagged documentation.
 
 | Check | Actual result and scope |
 |---|---|
@@ -29,8 +29,8 @@ Implementation freeze: `0f17830c7fd821f105091400d6ac146e17fbf145`, based on `b97
 | Official presentation | **Six-slide PDF**, including title, official2026 template headings/pointers/branding retained; Software, Team185350, WhiteList&0. College/member names omitted at user request. All6 PPTX and6 PDF page renders visually reviewed; native tables and package geometry/import validation passed. |
 | Claims | Canonical feature manifest used by README/deck; simulated learner results labeled, no human efficacy, validated military doctrine, trusted telemetry, Internet-disconnected physical or operational-readiness claims. |
 | Clean source deployment | Exact Git implementation blobs exported with documented exclusions, extracted to a new temp directory, fresh venv/locked pip install/npm ci/build through `scripts/start-local.sh`, started local server and repeated freshDB HTTP walk. Same Mac, not secondOS. Setup used Internet. |
-| Recording redundancy | **PENDING**: actual saved-file/playback confirmation on Android/USB. The reviewed backup file is available for copying; a second local directory does not count. |
-| Immutable tag / remote | Pending remaining recording-copy acceptance. Main, v0.1.0 and prior stage branches are preserved. |
+| Recording redundancy | **CONFIRMED by user**: final120second backup saved on separate Android/Chrome and plays from Downloads. Filename and served-file hash recorded in `qa-stage7/media.json`; no independent phone hash claim. |
+| Immutable tag / remote | `v1.0.0` on `release/v1.0.0`; exact target/private remote verification in delivered `RELEASE-RECEIPT.json`. Main, v0.1.0 and prior stage branches are preserved. |
 
 Early ending projects score penalties to the75-second horizon. The captured demo's two asset penalties are projections, not observed later impacts. Ghost keeps the observed interval separate. In primary DEMO-01 footage the radar jam follows the deliberate mistake; backup REH-03 applies it first. Narration and captions reflect that difference.
 
@@ -49,4 +49,4 @@ Dedicated physical WAN-off/LAN-on validation was not completed before submission
 - M1/Android measurements lasted 20 seconds per count. Whole-browser memory and sustained-load certification were not measured. Six-client HTTP results are simulated clients on loopback.
 - Crew roles, real hardware feeds, VR, rain modeling and formal field evaluation remain deferred.
 
-Current submission status: **NOT READY — second recording copy pending**. The dedicated physical WAN exception is disclosed and does not block release; no other mandatory check is waived. Portal upload is not performed. After recording redundancy is confirmed, seal the immutable tag, verify private remote references and refresh final source/submission checksums.
+Submission package status: **READY after seal verification in RELEASE-RECEIPT.json**. The dedicated physical WAN exception is disclosed and does not block release; no other mandatory check is waived. Portal upload has not been performed. Team delivery responsibilities and authenticated portal deadline confirmation remain presentation/submission actions, not fabricated validation results.

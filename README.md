@@ -40,6 +40,8 @@ Measured scope: 18 historical completions retained; six simulated concurrent cli
 
 ## Demonstrate and verify
 
+Release branch: `release/v1.0.0`; immutable tag: `v1.0.0`. Official [six-slide PDF](docs/submission/VYUHA-SIH26247-Team185350.pdf), [primary video](docs/submission/VYUHA-primary-demo-final.mp4) and [backup video](docs/submission/VYUHA-backup-demo-final.mp4) are included. Primary170s uses local synthetic narration; backup120s uses chronological actual browser captures with held frames. Separate Android saved-file playback was confirmed by the user. Exact release/remote/source archive receipt accompanies the submission package.
+
 Use the fixed [Night Decoy Strike preset](examples/demo-night-decoy-strike.json), [demo runbook](docs/DEMO-RUNBOOK.md), [judge Q&A](docs/JUDGE-QA.md) and [claim audit](docs/CLAIM-AUDIT.md). An authored scenario is distinct from a Director-generated drill; both use the ordinary scoring pipeline. Early ending visibly preserves the 75-second scoring projection.
 
 ```sh

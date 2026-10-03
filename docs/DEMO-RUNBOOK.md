@@ -51,7 +51,7 @@ Capture only application content at fixed dimensions. Exclude browser address ba
 
 Use the exact validated release commit. Include source, tests, dependency locks, startup scripts, current documentation and illustrative examples. Exclude .venv, node_modules, generated caches, local databases, personal QA records, HMAC keys, environment overrides and OS metadata. Exclude the obsolete prototype PPT from the final submission package. Extract and test startup in a fresh environment before declaring the archive ready.
 
-Package PPTX plus the required six-slide PDF, primary video, minimally edited backup recording, final validation report, live script and Q&A. A second recording copy on another device/USB remains a physical acceptance item until the user confirms it.
+Package PPTX plus the required six-slide PDF, primary video, minimally edited backup recording, final validation report, live script and Q&A. The user confirmed the final backup is saved on a separate Android device and plays from Downloads. The served backup hash and confirmation scope are recorded in qa-stage7/media.json.
 
 Fallbacks: Tactical 2D for rendering failure, one-laptop local mode for LAN failure, verified backup recording for complete live-system failure.
 

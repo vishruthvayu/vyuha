@@ -1,5 +1,5 @@
 {
-  "status": "SOFTWARE AND ARTIFACT CHECKS PASSED; SECOND RECORDING COPY PENDING",
+  "status": "ALL MANDATORY PRE-SEAL CHECKS PASSED",
   "implementation_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
   "mandatory": {
     "final_regression": "PASSED 134 backend /44 frontend /312 parity /build22assets",
@@ -13,9 +13,9 @@
     "official_pdf": "PASSED sixpages incltitle; allpage visual review; Software/185350/WhiteList&0",
     "rehearsals": "COMPLETED three single-operator technical browser rehearsals62.656/57.817/77.106s; scriptedQ&A and actual2Dfallback. No human team rehearsal claim.",
     "source_extract_start": "PASSED documented freshdeps install/build/start, freshDBHTTPwalkthrough",
-    "second_recording_copy": "PENDING actual Android/USB saved-file playback confirmation",
-    "immutable_tag_and_remote": "PENDING remaining mandatory second copy; WANtestalone doesnotblock",
-    "submission_package": "PREPARED; finaltag/checksums refresh when secondcopyconfirmed"
+    "second_recording_copy": "CONFIRMED separate Android saved file plays from Downloads",
+    "immutable_tag_and_remote": "v1.0.0 seal; exact target and private remote verification recorded in external RELEASE-RECEIPT.json after tagging",
+    "submission_package": "Final source/tag export and checksum/ZIP verification recorded in external RELEASE-RECEIPT.json"
   },
   "wan_exception": {
     "test": "physical WAN disconnected + LAN retained + separate physical trainee device",
@@ -25,9 +25,7 @@
     "classification": "Known validation limitation, not a failed architectural test.",
     "scope": "No other mandatory acceptance is waived"
   },
-  "remaining_mandatory": [
-    "Second recording copy saved and playable on another physical device/USB",
-    "Immutable v1.0.0 tag and remote verification after acceptance closes"
-  ],
-  "portal_submission": "Prepared only; not uploaded"
+  "remaining_mandatory": [],
+  "portal_submission": "Prepared only; not uploaded",
+  "seal_receipt": "RELEASE-RECEIPT.json in final submission package records the exact immutable commit/tag and remote refs; avoid circular self-hash in tracked docs"
 }
