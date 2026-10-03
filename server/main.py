@@ -1,4 +1,5 @@
 import json
+import os
 import uuid
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
@@ -32,7 +33,7 @@ app.add_middleware(CORSMiddleware, allow_origins=["http://127.0.0.1:5173", "http
 
 @app.get("/api/v1/health")
 def health():
-    return {"status": "ok", "engine_version": ENGINE_VERSION, "storage": "sqlite", "mode": "local-demo"}
+    return {"status": "ok", "engine_version": ENGINE_VERSION, "storage": "sqlite", "mode": "unit" if os.environ.get("VYUHA_UNIT_MODE")=="1" else "local-demo", "unit_id":"local"}
 
 
 def review_session(db, row):
@@ -84,10 +85,15 @@ def generate(req: Generate):
 def create_session(req: CreateSession):
     session_id = str(uuid.uuid4())
     with connect() as db:
+        db.execute("BEGIN IMMEDIATE")
         spec_row=db.execute("SELECT spec FROM scenarios WHERE id=?", (req.scenario_id,)).fetchone()
         if not spec_row:
             raise HTTPException(404, "Scenario not found")
-        db.execute("INSERT INTO sessions(id,trainee,scenario_id,created_at) VALUES (?,?,?,?)", (session_id, req.trainee, req.scenario_id, datetime.now(timezone.utc).isoformat()))
+        member=db.execute('SELECT unit_id FROM trainees WHERE id=?',(req.trainee,)).fetchone()
+        if not member:
+            if os.environ.get('VYUHA_UNIT_MODE')=='1':raise HTTPException(422,'Join a unit before starting training')
+            db.execute("INSERT INTO trainees VALUES (?,'local',?,?)",(req.trainee,req.trainee,datetime.now(timezone.utc).isoformat()))
+        db.execute("INSERT INTO sessions(id,trainee,scenario_id,created_at,unit_id) VALUES (?,?,?,?,?)", (session_id, req.trainee, req.scenario_id, datetime.now(timezone.utc).isoformat(),member['unit_id'] if member else 'local'))
         decision=json.loads(spec_row['spec']).get('director_decision')
         if decision:
             if decision['trainee_id']!=req.trainee:
@@ -100,6 +106,7 @@ def create_session(req: CreateSession):
 def events(session_id: str, req: EventBatch):
     payload = dumps([e.model_dump(exclude_none=True) for e in req.events])
     with connect() as db:
+        db.execute("BEGIN IMMEDIATE")
         session = db.execute("SELECT status FROM sessions WHERE id=?", (session_id,)).fetchone()
         if not session:
             raise HTTPException(404, "Session not found")
@@ -136,23 +143,26 @@ def logged_events(db, session_id):
 
 @app.post("/api/v1/sessions/{session_id}/complete")
 def complete(session_id: str, req: Complete):
+    # Expensive deterministic reconstruction is outside SQLite's writer lock.
     with connect() as db:
-        db.execute("BEGIN IMMEDIATE")
-        row = session_record(db, session_id)
-        if row["status"] == "completed":
-            return json.loads(row["scorecard"])
-        log = logged_events(db, session_id)
-        if req.execution_tick is not None and any(e["tick"]>req.execution_tick for e in log+applied_commands(db,session_id)):
-            raise HTTPException(422,"Recorded action exceeds observed exercise horizon")
-        try:
-            commands=applied_commands(db,session_id)
-            observed=req.execution_tick if req.execution_tick is not None else json.loads(row['control_state'])['tick'] if row['control_state'] else max([e['tick'] for e in log+commands],default=0)
-            source='completion' if req.execution_tick is not None else 'telemetry' if row['control_state'] else 'last_recorded_event'
-            review,card=build_review(json.loads(row['spec']),log,commands,session_id,observed,source,req.end_tick)
-        except ValueError as error:
-            raise HTTPException(422, str(error)) from error
-        db.execute("UPDATE sessions SET status='completed',scorecard=?,end_tick=?,execution_tick=? WHERE id=?", (dumps(card), req.end_tick, req.execution_tick, session_id))
+        row = session_record(db,session_id)
+        if row['status']=='completed':return json.loads(row['scorecard'])
+        log=logged_events(db,session_id);commands=applied_commands(db,session_id)
+    if req.execution_tick is not None and any(e['tick']>req.execution_tick for e in log+commands):
+        raise HTTPException(422,'Recorded action exceeds observed exercise horizon')
+    observed=req.execution_tick if req.execution_tick is not None else json.loads(row['control_state'])['tick'] if row['control_state'] else max([e['tick'] for e in log+commands],default=0)
+    source='completion' if req.execution_tick is not None else 'telemetry' if row['control_state'] else 'last_recorded_event'
+    try:review,card=build_review(json.loads(row['spec']),log,commands,session_id,observed,source,req.end_tick)
+    except ValueError as error:raise HTTPException(422,str(error)) from error
+    with connect() as db:
+        db.execute('BEGIN IMMEDIATE');latest=session_record(db,session_id)
+        if latest['status']=='completed':return json.loads(latest['scorecard'])
+        if logged_events(db,session_id)!=log or applied_commands(db,session_id)!=commands or req.execution_tick is None and latest['control_state']!=row['control_state']:
+            raise HTTPException(409,'Session changed during scoring; retry completion')
+        db.execute("UPDATE sessions SET status='completed',scorecard=?,end_tick=?,execution_tick=?,completed_at=? WHERE id=?",(dumps(card),req.end_tick,req.execution_tick,datetime.now(timezone.utc).isoformat(),session_id))
         persist_outcomes(db,row['trainee'],session_id,review)
+        from .units import persist_stats
+        persist_stats(db,session_id,review)
     return card
 
 
@@ -164,7 +174,7 @@ def aar(session_id: str, include_review: bool = True):
             raise HTTPException(409, "Session not completed")
         log=logged_events(db,session_id);commands=applied_commands(db,session_id)
         if not include_review:
-            return dict(id=row["id"],trainee=row["trainee"],scenario=json.loads(row["spec"]),events=log,commands=commands,
+            return dict(id=row["id"],trainee=row["trainee"],unit_id=row["unit_id"],exercise_group_id=row["exercise_group_id"],scenario=json.loads(row["spec"]),events=log,commands=commands,
                         endTick=row["end_tick"],scorecard=json.loads(row["scorecard"]),created_at=row["created_at"],verified=True)
         if row["execution_tick"] is not None:
             observed=row["execution_tick"];source="completion"
@@ -179,16 +189,15 @@ def aar(session_id: str, include_review: bool = True):
         stored_card=json.loads(row["scorecard"])
         if {k:v for k,v in reconstructed_card.items() if k!='engine_version'}!={k:v for k,v in stored_card.items() if k!='engine_version'}:
             raise HTTPException(422,"Stored score disagrees with reconstructed session")
-        return dict(id=row["id"], trainee=row["trainee"], scenario=json.loads(row["spec"]), events=log,
+        return dict(id=row["id"], trainee=row["trainee"], unit_id=row["unit_id"], exercise_group_id=row["exercise_group_id"], scenario=json.loads(row["spec"]), events=log,
                     commands=commands,executionTick=observed,endTick=row["end_tick"],scorecard=json.loads(row["scorecard"]),
                     created_at=row["created_at"],verified=True,**review)
 
 
-@app.get("/api/v1/units/local/dashboard")
-def dashboard():
-    with connect() as db:
-        rows = db.execute("SELECT id FROM sessions WHERE status='completed' ORDER BY created_at DESC LIMIT 100").fetchall()
-        return {"sessions": [aar(r["id"],include_review=False) for r in rows]}
+@app.get("/api/v1/units/{unit_id}/dashboard")
+def dashboard(unit_id: str = 'local'):
+    from .units import unit_dashboard
+    return unit_dashboard(unit_id)
 
 
 @app.get("/api/v1/contracts")
@@ -211,14 +220,15 @@ def instructor_session(db, session_id):
     state = json.loads(row["control_state"]) if row["control_state"] else None
     fresh = row["last_seen"] and (datetime.now(timezone.utc)-datetime.fromisoformat(row["last_seen"])).total_seconds()<6
     status = "COMPLETED" if row["status"] == "completed" else "RECOVERABLE" if not fresh else "PAUSED" if state and state["paused"] else "ACTIVE"
-    return dict(id=row["id"],trainee=row["trainee"],scenario=json.loads(row["spec"])["title"],status=status,
+    member=db.execute('SELECT callsign FROM trainees WHERE id=?',(row['trainee'],)).fetchone()
+    return dict(id=row["id"],trainee=row["trainee"],callsign=member['callsign'] if member else row['trainee'],unit_id=row["unit_id"],exercise_group_id=row["exercise_group_id"],scenario=json.loads(row["spec"])["title"],status=status,
                 last_seen=row["last_seen"],telemetry=state,commands=command_records(db,session_id))
 
 
 @app.get("/api/v1/instructor/sessions")
 def instructor_sessions():
     with connect() as db:
-        rows = db.execute("SELECT id FROM sessions ORDER BY created_at DESC LIMIT 100").fetchall()
+        rows = db.execute("SELECT id FROM sessions ORDER BY (status='active') DESC,created_at DESC LIMIT 100").fetchall()
         return {"sessions":[instructor_session(db,r["id"]) for r in rows]}
 
 
@@ -283,11 +293,15 @@ def control_state(session_id:str, req:ControlState):
             db.execute("UPDATE instructor_commands SET tick=?,timeline_order=? WHERE session_id=? AND seq=?",
                        (ack.tick,ack.order,session_id,ack.seq))
             previous_tick,previous_order = ack.tick,ack.order
+        db.execute('UPDATE exercise_assignments SET accepted_at=COALESCE(accepted_at,?) WHERE session_id=?',(datetime.now(timezone.utc).isoformat(),session_id))
         telemetry = req.model_dump(exclude={"applied"})
         db.execute("UPDATE sessions SET last_seen=?,control_state=? WHERE id=?",
                    (datetime.now(timezone.utc).isoformat(),dumps(telemetry),session_id))
         return {"ack":len(req.applied)}
 
+
+from .units import router as unit_router
+app.include_router(unit_router)
 
 DIST = Path(__file__).resolve().parent.parent / "client" / "dist"
 if DIST.is_dir():

@@ -1,0 +1,10 @@
+import type {Action} from './types';
+export type UnitIdentity={trainee_id:string;unit_id:string;callsign:string};
+export const IDENTITY_KEY='vyuha-unit-identity-v1';
+export function readIdentity(storage:Pick<Storage,'getItem'>):UnitIdentity|null{try{const value=JSON.parse(storage.getItem(IDENTITY_KEY)||'null');return value&&typeof value.trainee_id==='string'&&typeof value.unit_id==='string'&&typeof value.callsign==='string'?value:null;}catch{return null;}}
+export function storeIdentity(storage:Pick<Storage,'setItem'>,identity:UnitIdentity){storage.setItem(IDENTITY_KEY,JSON.stringify(identity));}
+export function ownDraft<T extends {trainee:string;tick:number}>(drafts:T[],trainee:string){return drafts.find(d=>d.trainee===trainee&&d.tick<2250)||null;}
+export function newId(source:Pick<Crypto,'getRandomValues'|'randomUUID'>=globalThis.crypto):string{if(typeof source.randomUUID==='function')return source.randomUUID();const b=source.getRandomValues(new Uint8Array(16));b[6]=(b[6]&15)|64;b[8]=(b[8]&63)|128;const hex=Array.from(b,x=>x.toString(16).padStart(2,'0')).join('');return `${hex.slice(0,8)}-${hex.slice(8,12)}-${hex.slice(12,16)}-${hex.slice(16,20)}-${hex.slice(20)}`;}
+export function sealEvents(events:Action[],batches:Action[][]):Action[][]{const prefix=batches.flat();if(prefix.length>events.length||prefix.some((e,i)=>JSON.stringify(e)!==JSON.stringify(events[i])))throw new Error('Local event queue does not match this session. Export before retrying.');return events.length===prefix.length?batches:[...batches,events.slice(prefix.length)];}
+export async function uploadBatches(id:string,batches:Action[][],send:(path:string,body:unknown)=>Promise<unknown>){for(let seq=0;seq<batches.length;seq++)await send(`/sessions/${id}/events`,{seq,events:batches[seq]});}
+export function syncMessage(connected:boolean,sync:'synced'|'syncing'|'queued',running:boolean){return !connected?`SERVER OFFLINE · ${running?'Session continues locally · ':''}Events queued · Instructor control unavailable`:sync==='syncing'?'SERVER CONNECTED · Syncing events…':sync==='queued'?'SERVER CONNECTED · Events queued for verification':'SERVER CONNECTED · Sync up to date';}

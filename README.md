@@ -28,7 +28,7 @@ Docker alternative (Compose configuration checked; the image build is unverified
 docker compose up --build
 ```
 
-The Compose file publishes only to this laptop's loopback interface. Multi-laptop unit training, HTTPS on a LAN, roles, and authorization are later work. Do not expose this unauthenticated demo publicly.
+The default Compose file publishes only to this laptop's loopback interface. Stage 4 adds explicit trusted-LAN startup with `bash scripts/start-unit.sh` and an opt-in Compose override. See [docs/UNIT-MODE.md](docs/UNIT-MODE.md) for joining, Instructor controls, persisted unit analytics and recovery. No authentication/authorization is enabled; do not expose this prototype publicly.
 
 ## Implemented
 
@@ -73,7 +73,7 @@ Choose a trainee ID and **Adaptive / Skill practice**, then **Prepare adaptive d
 
 Completed verified sessions update `detection`, `classification_iff`, `effector_choice` and `degraded_sensor_response` transactionally and once per session. Profiles preserve Beta(1,1) priors and retain outcome provenance. Zero observations is a baseline prior, and small counts are labelled limited evidence. Percentages are **VYUHA training mastery estimates, not validated operational competence**. No LLM or real-world training-efficacy claim is involved. Approximately 70% success difficulty targeting is a simple heuristic. Scenario and sensor parameters remain illustrative.
 
-Adaptive generation needs the original local server. Instructor Control and Ghost AAR work with adaptive scenarios. See [docs/DIRECTOR-V1.md](docs/DIRECTOR-V1.md) for the mapping, 12-template matrix, deterministic selection, anti-rote fallback, browser proof and measured performance. Stage 4 — Real Unit Mode + Multi-Laptop LAN Training — has not started.
+Adaptive generation needs the original local server. Instructor Control and Ghost AAR work with adaptive scenarios. See [docs/DIRECTOR-V1.md](docs/DIRECTOR-V1.md) for the mapping, 12-template matrix, deterministic selection, anti-rote fallback, browser proof and measured performance. Stage 4 — Real Unit Mode + Multi-Laptop LAN Training — is implemented, with minimum physical LAN and browser server-outage tests passed. A full WAN-off reload/start check remains pending by user choice. [Unit Mode evidence and limitations](docs/UNIT-MODE.md). Stage 5 has not started.
 
 ## October 4 boundaries
 

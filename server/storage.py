@@ -17,6 +17,17 @@ def init():
     with connect() as db:
         db.execute("PRAGMA journal_mode=WAL")
         db.executescript("""
+            CREATE TABLE IF NOT EXISTS units (id TEXT PRIMARY KEY,name TEXT NOT NULL);
+            INSERT OR IGNORE INTO units VALUES ('local','WhiteList Training Unit');
+            CREATE TABLE IF NOT EXISTS trainees (id TEXT PRIMARY KEY,unit_id TEXT NOT NULL,callsign TEXT NOT NULL,
+                created_at TEXT NOT NULL,UNIQUE(unit_id,callsign COLLATE NOCASE));
+            CREATE TABLE IF NOT EXISTS join_requests (id TEXT PRIMARY KEY,body TEXT NOT NULL,trainee TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS connected_clients (id TEXT PRIMARY KEY,trainee TEXT NOT NULL,last_seen TEXT NOT NULL,session_id TEXT);
+            CREATE TABLE IF NOT EXISTS session_unit_stats (session_id TEXT PRIMARY KEY,failures TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS exercise_groups (id TEXT PRIMARY KEY,unit_id TEXT NOT NULL,request_id TEXT UNIQUE NOT NULL,
+                body TEXT NOT NULL,scenario_id TEXT NOT NULL,created_at TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS exercise_assignments (session_id TEXT PRIMARY KEY,group_id TEXT NOT NULL,trainee TEXT NOT NULL,
+                accepted_at TEXT,UNIQUE(group_id,trainee));
             CREATE TABLE IF NOT EXISTS scenarios (id TEXT PRIMARY KEY, spec TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS sessions (id TEXT PRIMARY KEY, trainee TEXT NOT NULL, scenario_id TEXT NOT NULL,
                 created_at TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'active', scorecard TEXT, end_tick INTEGER);
@@ -34,9 +45,14 @@ def init():
                 PRIMARY KEY (session_id, seq), UNIQUE (session_id, command_id));
         """)
         columns = {r["name"] for r in db.execute("PRAGMA table_info(sessions)")}
-        for name, definition in [("last_seen", "TEXT"), ("control_state", "TEXT"), ("execution_tick", "INTEGER")]:
+        for name, definition in [("unit_id", "TEXT NOT NULL DEFAULT 'local'"), ("exercise_group_id", "TEXT"), ("last_seen", "TEXT"), ("control_state", "TEXT"), ("execution_tick", "INTEGER"), ("completed_at", "TEXT")]:
             if name not in columns:
                 db.execute(f"ALTER TABLE sessions ADD COLUMN {name} {definition}")
+
+        db.execute("INSERT OR IGNORE INTO trainees(id,unit_id,callsign,created_at) SELECT DISTINCT trainee,'local',trainee,MIN(created_at) FROM sessions GROUP BY trainee")
+        db.execute("CREATE INDEX IF NOT EXISTS sessions_unit_status ON sessions(unit_id,status)")
+        db.execute("CREATE INDEX IF NOT EXISTS sessions_trainee ON sessions(trainee,created_at)")
+        db.execute("CREATE INDEX IF NOT EXISTS presence_seen ON connected_clients(last_seen)")
 
 
 def dumps(value):

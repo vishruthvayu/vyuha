@@ -1,0 +1,395 @@
+{
+  "trainee_count": 10,
+  "session_count": 18,
+  "completed_today": 11,
+  "skill_means": {
+    "detection": 0.4072222222222222,
+    "classification_iff": 0.6345238095238095,
+    "effector_choice": 0.5857142857142856,
+    "degraded_sensor_response": 0.4066666666666666
+  },
+  "weakest_skill": "degraded_sensor_response",
+  "affected_trainees": 10,
+  "failures": {
+    "THREAT_MISSED": 40,
+    "DETECTION_LATE": 5,
+    "NO_RF_JAM_INEFFECTIVE": 4,
+    "FRIENDLY_MISIDENTIFIED": 2
+  },
+  "failure_scope": "latest 100 completed sessions; deduplicated contact/reason per session",
+  "captured_at": "2026-10-03T07:24:32.380313+00:00",
+  "scope": "Existing officer database includes Stage 1\u20133 QA history, not only Stage 4 sessions.",
+  "status": {
+    "status": "healthy",
+    "database": "ok",
+    "active_sessions": 0,
+    "connected_clients": 3,
+    "pending_assignments": 0,
+    "pending_client_sync": null,
+    "sync_note": "Client-local event queues cannot be measured while disconnected.",
+    "offline_assets": "bundled; cached reload requires a browser-trusted secure origin",
+    "security": "trusted local network prototype; no authentication"
+  },
+  "stage4_trainees": [
+    {
+      "trainee_id": "T_847e5fb5f25946d88233e0",
+      "unit_id": "local",
+      "callsign": "QA-U-A",
+      "profile": {
+        "trainee": "T_847e5fb5f25946d88233e0",
+        "sessions": 2,
+        "skills": {
+          "detection": {
+            "alpha": 3.0,
+            "beta": 1.0,
+            "observations": 2,
+            "mean": 0.75,
+            "updated_at": "2026-10-03T07:17:28.017782+00:00",
+            "last_session_id": "4d81a55c-348a-4b26-93d1-3a28d9f953f1"
+          },
+          "classification_iff": {
+            "alpha": 1.0,
+            "beta": 3.0,
+            "observations": 2,
+            "mean": 0.25,
+            "updated_at": "2026-10-03T07:17:28.017782+00:00",
+            "last_session_id": "4d81a55c-348a-4b26-93d1-3a28d9f953f1"
+          },
+          "effector_choice": {
+            "alpha": 3.0,
+            "beta": 1.0,
+            "observations": 2,
+            "mean": 0.75,
+            "updated_at": "2026-10-03T07:17:28.017782+00:00",
+            "last_session_id": "4d81a55c-348a-4b26-93d1-3a28d9f953f1"
+          },
+          "degraded_sensor_response": {
+            "alpha": 1.0,
+            "beta": 2.0,
+            "observations": 1,
+            "mean": 0.3333333333333333,
+            "updated_at": "2026-10-03T07:17:28.017782+00:00",
+            "last_session_id": "4d81a55c-348a-4b26-93d1-3a28d9f953f1"
+          }
+        },
+        "outcomes": [
+          {
+            "session_id": "0e30b3ae-7473-4fb3-b401-585cdb87b195",
+            "skills": {
+              "classification_iff": {
+                "failures": 1,
+                "successes": 0
+              },
+              "degraded_sensor_response": {
+                "failures": 1,
+                "successes": 0
+              },
+              "detection": {
+                "failures": 0,
+                "successes": 1
+              },
+              "effector_choice": {
+                "failures": 0,
+                "successes": 1
+              }
+            },
+            "processed_at": "2026-10-03T06:57:03.679100+00:00",
+            "version": "director-v1"
+          },
+          {
+            "session_id": "4d81a55c-348a-4b26-93d1-3a28d9f953f1",
+            "skills": {
+              "classification_iff": {
+                "failures": 1,
+                "successes": 0
+              },
+              "degraded_sensor_response": {
+                "failures": 0,
+                "successes": 0
+              },
+              "detection": {
+                "failures": 0,
+                "successes": 1
+              },
+              "effector_choice": {
+                "failures": 0,
+                "successes": 1
+              }
+            },
+            "processed_at": "2026-10-03T07:17:28.017782+00:00",
+            "version": "director-v1"
+          }
+        ],
+        "unprocessed_sessions": [],
+        "prior_alpha": 1.0,
+        "prior_beta": 1.0,
+        "version": "director-v1"
+      },
+      "latest_adaptive_focus": "classification_iff"
+    },
+    {
+      "trainee_id": "T_56323efdd59747228e28bc",
+      "unit_id": "local",
+      "callsign": "QA-U-B",
+      "profile": {
+        "trainee": "T_56323efdd59747228e28bc",
+        "sessions": 2,
+        "skills": {
+          "detection": {
+            "alpha": 2.0,
+            "beta": 1.0,
+            "observations": 1,
+            "mean": 0.6666666666666666,
+            "updated_at": "2026-10-03T07:11:56.673766+00:00",
+            "last_session_id": "527daf55-5136-4ddf-b1a1-6fbf051e6e1c"
+          },
+          "classification_iff": {
+            "alpha": 2.0,
+            "beta": 1.0,
+            "observations": 1,
+            "mean": 0.6666666666666666,
+            "updated_at": "2026-10-03T07:11:56.673766+00:00",
+            "last_session_id": "527daf55-5136-4ddf-b1a1-6fbf051e6e1c"
+          },
+          "effector_choice": {
+            "alpha": 2.0,
+            "beta": 1.0,
+            "observations": 1,
+            "mean": 0.6666666666666666,
+            "updated_at": "2026-10-03T07:11:56.673766+00:00",
+            "last_session_id": "527daf55-5136-4ddf-b1a1-6fbf051e6e1c"
+          },
+          "degraded_sensor_response": {
+            "alpha": 1.0,
+            "beta": 1.0,
+            "observations": 0,
+            "mean": 0.5,
+            "updated_at": "2026-10-03T07:11:56.673766+00:00",
+            "last_session_id": "527daf55-5136-4ddf-b1a1-6fbf051e6e1c"
+          }
+        },
+        "outcomes": [
+          {
+            "session_id": "42780d26-ab44-4a75-8f10-c410b52e7c50",
+            "skills": {
+              "classification_iff": {
+                "failures": 0,
+                "successes": 1
+              },
+              "degraded_sensor_response": {
+                "failures": 0,
+                "successes": 0
+              },
+              "detection": {
+                "failures": 0,
+                "successes": 1
+              },
+              "effector_choice": {
+                "failures": 0,
+                "successes": 1
+              }
+            },
+            "processed_at": "2026-10-03T06:57:21.178471+00:00",
+            "version": "director-v1"
+          },
+          {
+            "session_id": "527daf55-5136-4ddf-b1a1-6fbf051e6e1c",
+            "skills": {
+              "classification_iff": {
+                "failures": 0,
+                "successes": 0
+              },
+              "degraded_sensor_response": {
+                "failures": 0,
+                "successes": 0
+              },
+              "detection": {
+                "failures": 0,
+                "successes": 0
+              },
+              "effector_choice": {
+                "failures": 0,
+                "successes": 0
+              }
+            },
+            "processed_at": "2026-10-03T07:11:56.673766+00:00",
+            "version": "director-v1"
+          }
+        ],
+        "unprocessed_sessions": [],
+        "prior_alpha": 1.0,
+        "prior_beta": 1.0,
+        "version": "director-v1"
+      },
+      "latest_adaptive_focus": "classification_iff"
+    },
+    {
+      "trainee_id": "T_68f4b0911cdd40a7a3c644",
+      "unit_id": "local",
+      "callsign": "T",
+      "profile": {
+        "trainee": "T_68f4b0911cdd40a7a3c644",
+        "sessions": 0,
+        "skills": {
+          "detection": {
+            "alpha": 1.0,
+            "beta": 1.0,
+            "observations": 0,
+            "mean": 0.5,
+            "updated_at": null,
+            "last_session_id": null
+          },
+          "classification_iff": {
+            "alpha": 1.0,
+            "beta": 1.0,
+            "observations": 0,
+            "mean": 0.5,
+            "updated_at": null,
+            "last_session_id": null
+          },
+          "effector_choice": {
+            "alpha": 1.0,
+            "beta": 1.0,
+            "observations": 0,
+            "mean": 0.5,
+            "updated_at": null,
+            "last_session_id": null
+          },
+          "degraded_sensor_response": {
+            "alpha": 1.0,
+            "beta": 1.0,
+            "observations": 0,
+            "mean": 0.5,
+            "updated_at": null,
+            "last_session_id": null
+          }
+        },
+        "outcomes": [],
+        "unprocessed_sessions": [],
+        "prior_alpha": 1.0,
+        "prior_beta": 1.0,
+        "version": "director-v1"
+      },
+      "latest_adaptive_focus": null
+    },
+    {
+      "trainee_id": "T_0c64729000114626a31b7e",
+      "unit_id": "local",
+      "callsign": "V",
+      "profile": {
+        "trainee": "T_0c64729000114626a31b7e",
+        "sessions": 3,
+        "skills": {
+          "detection": {
+            "alpha": 1.0,
+            "beta": 14.0,
+            "observations": 13,
+            "mean": 0.06666666666666667,
+            "updated_at": "2026-10-03T07:21:57.293982+00:00",
+            "last_session_id": "98f74e81-35ea-4f60-971b-e7e49efff89c"
+          },
+          "classification_iff": {
+            "alpha": 1.0,
+            "beta": 1.0,
+            "observations": 0,
+            "mean": 0.5,
+            "updated_at": "2026-10-03T07:21:57.293982+00:00",
+            "last_session_id": "98f74e81-35ea-4f60-971b-e7e49efff89c"
+          },
+          "effector_choice": {
+            "alpha": 1.0,
+            "beta": 1.0,
+            "observations": 0,
+            "mean": 0.5,
+            "updated_at": "2026-10-03T07:21:57.293982+00:00",
+            "last_session_id": "98f74e81-35ea-4f60-971b-e7e49efff89c"
+          },
+          "degraded_sensor_response": {
+            "alpha": 1.0,
+            "beta": 5.0,
+            "observations": 4,
+            "mean": 0.16666666666666666,
+            "updated_at": "2026-10-03T07:21:57.293982+00:00",
+            "last_session_id": "98f74e81-35ea-4f60-971b-e7e49efff89c"
+          }
+        },
+        "outcomes": [
+          {
+            "session_id": "c16bfbfa-2d0f-4cc2-acd1-954a13cb1475",
+            "skills": {
+              "classification_iff": {
+                "failures": 0,
+                "successes": 0
+              },
+              "degraded_sensor_response": {
+                "failures": 0,
+                "successes": 0
+              },
+              "detection": {
+                "failures": 6,
+                "successes": 0
+              },
+              "effector_choice": {
+                "failures": 0,
+                "successes": 0
+              }
+            },
+            "processed_at": "2026-10-03T06:55:19.191624+00:00",
+            "version": "director-v1"
+          },
+          {
+            "session_id": "b43c14a7-0228-4566-a959-4fc12bd6733a",
+            "skills": {
+              "classification_iff": {
+                "failures": 0,
+                "successes": 0
+              },
+              "degraded_sensor_response": {
+                "failures": 3,
+                "successes": 0
+              },
+              "detection": {
+                "failures": 4,
+                "successes": 0
+              },
+              "effector_choice": {
+                "failures": 0,
+                "successes": 0
+              }
+            },
+            "processed_at": "2026-10-03T07:15:04.137961+00:00",
+            "version": "director-v1"
+          },
+          {
+            "session_id": "98f74e81-35ea-4f60-971b-e7e49efff89c",
+            "skills": {
+              "classification_iff": {
+                "failures": 0,
+                "successes": 0
+              },
+              "degraded_sensor_response": {
+                "failures": 1,
+                "successes": 0
+              },
+              "detection": {
+                "failures": 3,
+                "successes": 0
+              },
+              "effector_choice": {
+                "failures": 0,
+                "successes": 0
+              }
+            },
+            "processed_at": "2026-10-03T07:21:57.293982+00:00",
+            "version": "director-v1"
+          }
+        ],
+        "unprocessed_sessions": [],
+        "prior_alpha": 1.0,
+        "prior_beta": 1.0,
+        "version": "director-v1"
+      },
+      "latest_adaptive_focus": "degraded_sensor_response"
+    }
+  ]
+}

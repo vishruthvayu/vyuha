@@ -8,7 +8,7 @@ export type Track = TrackSpec & {x:number;z:number;active:boolean;detected:numbe
 export type Snapshot = {tick:number;tracks:Track[];jammed:boolean;radarStatus:'normal'|'jammed'|'failed';rfAvailable:boolean;night:boolean;paused:boolean;done:boolean;messages:{tick:number;track:string;text:string}[]};
 export type NodeScore = {id:string;kind:Kind;identity:Identity;detect:number;classify:number;prioritise:number;engage:number;total:number;detected:number|null;designated:number|null;ideal:string;feedback:string[];impact:boolean;attempts:Effector[]};
 export type ScoreCard = {score:number;passed:boolean;fratricide:boolean;roe_breaches:number;leakers:number;threats:number;rows:NodeScore[];skills:{recognition:number;response:number};summary:string;engine_version:string};
-export type Record = {id:string;trainee:string;scenario:Scenario;events:Action[];commands?:AppliedCommand[];executionTick?:number;endTick:number;scorecard:ScoreCard;created_at:string;verified:boolean}&Partial<GhostAAR>;
+export type Record = {id:string;trainee:string;unit_id?:string;exercise_group_id?:string|null;eventBatches?:Action[][];scenario:Scenario;events:Action[];commands?:AppliedCommand[];executionTick?:number;endTick:number;scorecard:ScoreCard;created_at:string;verified:boolean}&Partial<GhostAAR>;
 export const KIND_LABEL:{[K in Kind]:string} = {bird:'Bird',quad:'Quadcopter',fixed_wing:'Fixed-wing',fiber_fpv:'No-RF FPV'};
 
 export type InstructorIntent =
@@ -20,7 +20,7 @@ export type InstructorIntent =
  | {type:'environment';payload:{night:boolean}};
 export type InstructorCommand = InstructorIntent & {command_id:string;session_id:string;seq:number;issued_at:string;tick?:number|null;order?:number|null};
 export type AppliedCommand = InstructorCommand & {tick:number;order:number};
-export type InstructorSession = {id:string;trainee:string;scenario:string;status:'ACTIVE'|'PAUSED'|'RECOVERABLE'|'COMPLETED';last_seen:string|null;telemetry:ControlTelemetry|null;commands:InstructorCommand[]};
+export type InstructorSession = {id:string;trainee:string;callsign?:string;unit_id?:string;exercise_group_id?:string|null;scenario:string;status:'ACTIVE'|'PAUSED'|'RECOVERABLE'|'COMPLETED';last_seen:string|null;telemetry:ControlTelemetry|null;commands:InstructorCommand[]};
 export type ControlTelemetry = {tick:number;paused:boolean;active_contacts:number;radar_status:Snapshot['radarStatus'];rf_available:boolean;night:boolean};
 
 export type GhostSkill='detection'|'classification_iff'|'effector_choice'|'degraded_sensor_response';
