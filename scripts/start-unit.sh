@@ -5,7 +5,7 @@ cd "$(dirname "$0")/.."
 if [ ! -x .venv/bin/python ]; then
   echo 'Officer setup is missing. Run scripts/start-local.sh once with internet, then stop it.' >&2; exit 1
 fi
-.venv/bin/python scripts/preflight.py "${@}"
+.venv/bin/python scripts/preflight.py "$@"
 .venv/bin/python -c 'import fastapi,uvicorn' || { echo 'Officer dependencies missing. Run scripts/start-local.sh once with internet.' >&2; exit 1; }
 if [ "${1:-}" = '--build' ]; then (cd client && npm run build); fi
 if [ ! -f client/dist/index.html ]; then echo 'Build assets first: cd client && npm run build' >&2; exit 1; fi
