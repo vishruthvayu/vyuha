@@ -1,5 +1,4 @@
 import json
-import random
 import uuid
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
@@ -17,6 +16,8 @@ from .models import Action, Complete, CreateSession, EventBatch, Generate, Instr
 from .storage import connect, dumps, init
 from .review import build_review
 from .review_models import DecisionReview, GhostAAR
+from .director import persist_outcomes, read_profile, recent_history, select_director, adapt_scenario
+from .director_models import DirectorDecision, TrainingProfile
 
 
 @asynccontextmanager
@@ -34,16 +35,31 @@ def health():
     return {"status": "ok", "engine_version": ENGINE_VERSION, "storage": "sqlite", "mode": "local-demo"}
 
 
+def review_session(db, row):
+    log=logged_events(db,row['id']);commands=applied_commands(db,row['id'])
+    observed=row['execution_tick']
+    source='completion'
+    if observed is None:
+        observed=json.loads(row['control_state'])['tick'] if row['control_state'] else max([e['tick'] for e in log+commands],default=0)
+        source='telemetry' if row['control_state'] else 'last_recorded_event'
+    review,card=build_review(json.loads(row['spec']),log,commands,row['id'],observed,source,row['end_tick'])
+    stored=json.loads(row['scorecard'])
+    if {k:v for k,v in card.items() if k!='engine_version'}!={k:v for k,v in stored.items() if k!='engine_version'}:
+        raise ValueError('Stored score disagrees with reconstructed session')
+    return review
+
+
 def profile(trainee):
     with connect() as db:
-        rows = db.execute("SELECT scorecard FROM sessions WHERE trainee=? AND status='completed' ORDER BY created_at", (trainee,)).fetchall()
-    skills = {name: {"alpha": 1., "beta": 1.} for name in ["recognition", "response"]}
-    for row in rows:
-        card = json.loads(row["scorecard"])
-        for name, value in card["skills"].items():
-            skills[name]["alpha"] += value/100
-            skills[name]["beta"] += 1-value/100
-    return {"trainee": trainee, "sessions": len(rows), "skills": skills}
+        db.execute('BEGIN IMMEDIATE')
+        pending=db.execute("SELECT s.*,sc.spec FROM sessions s JOIN scenarios sc ON sc.id=s.scenario_id LEFT JOIN skill_outcomes o ON o.session_id=s.id WHERE s.trainee=? AND s.status='completed' AND o.session_id IS NULL ORDER BY s.created_at,s.id",(trainee,)).fetchall()
+        skipped=[]
+        for row in pending:
+            try:review=review_session(db,row)
+            except (ValueError,KeyError,TypeError,HTTPException):
+                skipped.append(row['id']);continue
+            persist_outcomes(db,trainee,row['id'],review)
+        return read_profile(db,trainee,skipped)
 
 
 @app.get("/api/v1/trainees/{trainee}/profile")
@@ -53,14 +69,14 @@ def get_profile(trainee: str):
 
 @app.post("/api/v1/scenarios/generate")
 def generate(req: Generate):
-    focus = req.focus or "recognition"
-    if req.mode == "adaptive":
-        skills = profile(req.trainee)["skills"]
-        r = random.Random(req.seed)
-        focus = min(skills, key=lambda k: r.betavariate(skills[k]["alpha"], skills[k]["beta"]))
-    scenario = make_scenario(req.seed, focus, req.night)
+    if req.mode == 'adaptive':
+        snapshot=profile(req.trainee)
+        with connect() as db:
+            scenario=adapt_scenario(select_director(snapshot,recent_history(db,req.trainee),req.seed))
+    else:
+        scenario=make_scenario(req.seed,req.focus or 'recognition',req.night)
     with connect() as db:
-        db.execute("INSERT OR IGNORE INTO scenarios(id,spec) VALUES (?,?)", (scenario["id"], dumps(scenario)))
+        db.execute("INSERT OR IGNORE INTO scenarios(id,spec) VALUES (?,?)", (scenario['id'],dumps(scenario)))
     return scenario
 
 
@@ -68,9 +84,15 @@ def generate(req: Generate):
 def create_session(req: CreateSession):
     session_id = str(uuid.uuid4())
     with connect() as db:
-        if not db.execute("SELECT id FROM scenarios WHERE id=?", (req.scenario_id,)).fetchone():
+        spec_row=db.execute("SELECT spec FROM scenarios WHERE id=?", (req.scenario_id,)).fetchone()
+        if not spec_row:
             raise HTTPException(404, "Scenario not found")
         db.execute("INSERT INTO sessions(id,trainee,scenario_id,created_at) VALUES (?,?,?,?)", (session_id, req.trainee, req.scenario_id, datetime.now(timezone.utc).isoformat()))
+        decision=json.loads(spec_row['spec']).get('director_decision')
+        if decision:
+            if decision['trainee_id']!=req.trainee:
+                raise HTTPException(422,'Adaptive scenario belongs to a different trainee')
+            db.execute('INSERT INTO director_history(session_id,trainee,decision) VALUES (?,?,?)',(session_id,req.trainee,dumps(decision)))
     return {"id": session_id}
 
 
@@ -115,6 +137,7 @@ def logged_events(db, session_id):
 @app.post("/api/v1/sessions/{session_id}/complete")
 def complete(session_id: str, req: Complete):
     with connect() as db:
+        db.execute("BEGIN IMMEDIATE")
         row = session_record(db, session_id)
         if row["status"] == "completed":
             return json.loads(row["scorecard"])
@@ -122,10 +145,14 @@ def complete(session_id: str, req: Complete):
         if req.execution_tick is not None and any(e["tick"]>req.execution_tick for e in log+applied_commands(db,session_id)):
             raise HTTPException(422,"Recorded action exceeds observed exercise horizon")
         try:
-            card = score(replay(json.loads(row["spec"]), log, req.end_tick, applied_commands(db, session_id)))
+            commands=applied_commands(db,session_id)
+            observed=req.execution_tick if req.execution_tick is not None else json.loads(row['control_state'])['tick'] if row['control_state'] else max([e['tick'] for e in log+commands],default=0)
+            source='completion' if req.execution_tick is not None else 'telemetry' if row['control_state'] else 'last_recorded_event'
+            review,card=build_review(json.loads(row['spec']),log,commands,session_id,observed,source,req.end_tick)
         except ValueError as error:
             raise HTTPException(422, str(error)) from error
         db.execute("UPDATE sessions SET status='completed',scorecard=?,end_tick=?,execution_tick=? WHERE id=?", (dumps(card), req.end_tick, req.execution_tick, session_id))
+        persist_outcomes(db,row['trainee'],session_id,review)
     return card
 
 
@@ -166,7 +193,7 @@ def dashboard():
 
 @app.get("/api/v1/contracts")
 def contracts():
-    return {"Action": Action.model_json_schema(), "InstructorCommand": TypeAdapter(InstructorCommand).json_schema(), "DecisionReview": DecisionReview.model_json_schema(), "GhostAAR": GhostAAR.model_json_schema(), "engine_version": ENGINE_VERSION}
+    return {"Action": Action.model_json_schema(), "InstructorCommand": TypeAdapter(InstructorCommand).json_schema(), "DecisionReview": DecisionReview.model_json_schema(), "GhostAAR": GhostAAR.model_json_schema(), "DirectorDecision": DirectorDecision.model_json_schema(), "TrainingProfile": TrainingProfile.model_json_schema(), "engine_version": ENGINE_VERSION}
 
 
 def command_records(db, session_id, after=0):

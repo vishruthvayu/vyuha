@@ -43,7 +43,7 @@ The Compose file publishes only to this laptop's loopback interface. Multi-lapto
 - SQLite session store; idempotent event batches; authoritative Ghost Expert review and tactical replay; JSON session export.
 - IndexedDB records and unfinished-drill recovery. A production service worker precaches all local application assets.
 - Actual trainee/session history and unit skill overview; no invented dashboard results.
-- Two-skill Beta profile and a seeded Thompson-sampling focus choice. Response-focused drills add a no-RF contact. This is an initial adaptive policy, without calibrated 70% difficulty targeting or anti-rote similarity filtering.
+- Four persistent Beta skill profiles from authoritative Ghost outcomes; backend seeded Thompson sampling, three difficulty bands, twelve adaptive templates and recent-template repetition protection. The approximately 70% success target is heuristic, not calibrated.
 - 2D tactical fallback and responsive layout.
 
 ## Instructor Console v1
@@ -61,17 +61,25 @@ See `docs/INSTRUCTOR-CONTROL.md` for contracts, reconstruction, testing and limi
 
 ## Ghost Expert + Time-Machine AAR v2
 
-Ghost Expert is rule-grounded: no LLM is used, and explanations are deterministic templates generated only from reconstructed facts. Server reviews compare detection, classification/IFF and hold/jammer/kinetic decisions with the existing rubric, showing available evidence separately from ground truth, observed consequences, final contact/node scores and four skill tags. A deterministic summary recommends a review focus without changing the current adaptive policy.
+Ghost Expert is rule-grounded: no LLM is used, and explanations are deterministic templates generated only from reconstructed facts. Server reviews compare detection, classification/IFF and hold/jammer/kinetic decisions with the existing rubric, showing available evidence separately from ground truth, observed consequences, final contact/node scores and four skill tags. A deterministic summary recommends a review focus. The separate Stage 3 Director uses persistent four-skill evidence rather than forcing this last-session recommendation.
 
 The seven-category timeline includes instructor commands, sensor changes and contact outcomes. Play/pause, scrubbing and event jumps reconstruct the actual tactical world, including same-tick pre-action states. Early sessions review only their recorded interval while clearly labelling the preserved 75-second scoring projection. Verified reviews are cached for offline reading; device-only scores do not generate expert expectations.
 
 See [docs/GHOST-AAR.md](docs/GHOST-AAR.md) for the contract, reason codes, validation and measured performance. Threat/sensor parameters remain illustrative, prioritisation remains the simplified timely-resolution metric, and these references are not validated military doctrine.
 
+## AI Threat Director v1
+
+Choose a trainee ID and **Adaptive / Skill practice**, then **Prepare adaptive drill**. Review the server-selected focus, Beta mean, evidence count, difficulty, reason and actual scenario conditions before **Start adaptive drill**. The Director seed is editable for reproducible selection; the card separately shows the generated simulation seed. The exact returned scenario is launched.
+
+Completed verified sessions update `detection`, `classification_iff`, `effector_choice` and `degraded_sensor_response` transactionally and once per session. Profiles preserve Beta(1,1) priors and retain outcome provenance. Zero observations is a baseline prior, and small counts are labelled limited evidence. Percentages are **VYUHA training mastery estimates, not validated operational competence**. No LLM or real-world training-efficacy claim is involved. Approximately 70% success difficulty targeting is a simple heuristic. Scenario and sensor parameters remain illustrative.
+
+Adaptive generation needs the original local server. Instructor Control and Ghost AAR work with adaptive scenarios. See [docs/DIRECTOR-V1.md](docs/DIRECTOR-V1.md) for the mapping, 12-template matrix, deterministic selection, anti-rote fallback, browser proof and measured performance. Stage 4 — Real Unit Mode + Multi-Laptop LAN Training — has not started.
+
 ## October 4 boundaries
 
 The 75-second scripted drill is playable. The shortened presenter demo pauses at selected contacts and ends early after demonstrating one correct response and one unsuitable response; unhandled contacts continue during scoring, so early ending never hides remaining threats.
 
-The original plan's 12-drone live injection, 3D replay scrubber, VR, rural terrain, validated sensors, audio, rapid ID, eight-skill director, authenticated multi-laptop unit operations, MongoDB, USB bundle signing, SigNoz and role-based accounts are **not implemented**. The AAR uses deterministic 2D tactical replay and the rule-grounded Ghost Expert described above.
+The original plan's 12-drone live injection, 3D replay scrubber, VR, rural terrain, validated sensors, audio, rapid ID, eight-skill director, authenticated multi-laptop unit operations, MongoDB, USB bundle signing, SigNoz and role-based accounts are **not implemented**. The AAR uses deterministic 2D tactical replay and the rule-grounded Ghost Expert described above. The four-skill individual Director v1 is implemented; the original eight-skill/unit proposal remains outside this stage.
 
 The 15-point rubric node currently rewards timely threat resolution, not Kendall-tau swarm prioritization. The interface says so. The session averages hostile-contact scores, subtracts 10 per asset impact, and fails on non-hostile engagement. Classification and response percentages include all contacts.
 
@@ -94,11 +102,14 @@ See `docs/VALIDATION.md` for the completed automated and browser checks, and the
 
 Stage 2 validation: 32 backend tests, 20 frontend tests, both existing parity tests with 51 checkpoints, and production build passed. The night drill with an injected six-drone swarm and no-RF FPV passed the browser walkthrough, including successful RF-linked engagement, reload recovery and cached AAR reading during a server outage. Detailed evidence and measurement scope are in [docs/GHOST-AAR.md](docs/GHOST-AAR.md).
 
+Stage 3 validation: **50 backend tests, 25 frontend tests, production build and 7 offline assets passed**. The original 51 parity checkpoints remain green, with 72 additional checkpoints across all 12 Director templates. Browser closed-loop proof passed, including profile persistence after server restart. Full evidence and the 50-sample runtime measurements are in [docs/DIRECTOR-V1.md](docs/DIRECTOR-V1.md).
+
 ## Files
 
 - `client/src/sim.ts`, `server/engine.py`: mirrored deterministic training model.
 - `client/src/sim.worker.ts`: simulation worker.
-- `server/models.py`: validation contracts.
+- `server/models.py`, `server/director_models.py`: validation contracts.
+- `server/director.py`, `client/src/Director.tsx`: authoritative skill updates, Director selection/adaptation and profile/decision UI.
 - `server/main.py`: generation, sessions, event upload, completion, AAR, profiles and unit endpoints.
 - `docs/OCTOBER-4.md`: rehearsal script and acceptance checklist.
 

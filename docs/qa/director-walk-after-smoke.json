@@ -1,0 +1,136 @@
+{
+  "trainee": "QA-DIRECTOR-WALK",
+  "sessions": 4,
+  "skills": {
+    "detection": {
+      "alpha": 12.0,
+      "beta": 3.0,
+      "observations": 13,
+      "mean": 0.8,
+      "updated_at": "2026-10-03T06:15:18.530510+00:00",
+      "last_session_id": "1409b5c5-f45c-4590-8485-ef13804942d9"
+    },
+    "classification_iff": {
+      "alpha": 13.0,
+      "beta": 1.0,
+      "observations": 12,
+      "mean": 0.9285714285714286,
+      "updated_at": "2026-10-03T06:15:18.530510+00:00",
+      "last_session_id": "1409b5c5-f45c-4590-8485-ef13804942d9"
+    },
+    "effector_choice": {
+      "alpha": 12.0,
+      "beta": 2.0,
+      "observations": 12,
+      "mean": 0.8571428571428571,
+      "updated_at": "2026-10-03T06:15:18.530510+00:00",
+      "last_session_id": "1409b5c5-f45c-4590-8485-ef13804942d9"
+    },
+    "degraded_sensor_response": {
+      "alpha": 2.0,
+      "beta": 1.0,
+      "observations": 1,
+      "mean": 0.6666666666666666,
+      "updated_at": "2026-10-03T06:15:18.530510+00:00",
+      "last_session_id": "1409b5c5-f45c-4590-8485-ef13804942d9"
+    }
+  },
+  "outcomes": [
+    {
+      "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+      "skills": {
+        "classification_iff": {
+          "failures": 0,
+          "successes": 8
+        },
+        "degraded_sensor_response": {
+          "failures": 0,
+          "successes": 0
+        },
+        "detection": {
+          "failures": 0,
+          "successes": 8
+        },
+        "effector_choice": {
+          "failures": 0,
+          "successes": 8
+        }
+      },
+      "processed_at": "2026-10-03T06:10:13.621750+00:00",
+      "version": "director-v1"
+    },
+    {
+      "session_id": "339aa070-5686-483c-9fd6-e5985247d3b9",
+      "skills": {
+        "classification_iff": {
+          "failures": 0,
+          "successes": 1
+        },
+        "degraded_sensor_response": {
+          "failures": 0,
+          "successes": 0
+        },
+        "detection": {
+          "failures": 0,
+          "successes": 1
+        },
+        "effector_choice": {
+          "failures": 1,
+          "successes": 0
+        }
+      },
+      "processed_at": "2026-10-03T06:11:13.234596+00:00",
+      "version": "director-v1"
+    },
+    {
+      "session_id": "afde8e0e-3fb0-49fb-aff6-0ca44c30cea5",
+      "skills": {
+        "classification_iff": {
+          "failures": 0,
+          "successes": 2
+        },
+        "degraded_sensor_response": {
+          "failures": 0,
+          "successes": 0
+        },
+        "detection": {
+          "failures": 2,
+          "successes": 1
+        },
+        "effector_choice": {
+          "failures": 0,
+          "successes": 2
+        }
+      },
+      "processed_at": "2026-10-03T06:13:07.349500+00:00",
+      "version": "director-v1"
+    },
+    {
+      "session_id": "1409b5c5-f45c-4590-8485-ef13804942d9",
+      "skills": {
+        "classification_iff": {
+          "failures": 0,
+          "successes": 1
+        },
+        "degraded_sensor_response": {
+          "failures": 0,
+          "successes": 1
+        },
+        "detection": {
+          "failures": 0,
+          "successes": 1
+        },
+        "effector_choice": {
+          "failures": 0,
+          "successes": 1
+        }
+      },
+      "processed_at": "2026-10-03T06:15:18.530510+00:00",
+      "version": "director-v1"
+    }
+  ],
+  "unprocessed_sessions": [],
+  "prior_alpha": 1.0,
+  "prior_beta": 1.0,
+  "version": "director-v1"
+}

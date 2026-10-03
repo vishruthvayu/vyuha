@@ -20,6 +20,13 @@ def init():
             CREATE TABLE IF NOT EXISTS scenarios (id TEXT PRIMARY KEY, spec TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS sessions (id TEXT PRIMARY KEY, trainee TEXT NOT NULL, scenario_id TEXT NOT NULL,
                 created_at TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'active', scorecard TEXT, end_tick INTEGER);
+            CREATE TABLE IF NOT EXISTS skill_profiles (trainee TEXT NOT NULL, skill TEXT NOT NULL,
+                alpha REAL NOT NULL, beta REAL NOT NULL, updated_at TEXT, last_session_id TEXT,
+                PRIMARY KEY (trainee,skill));
+            CREATE TABLE IF NOT EXISTS skill_outcomes (session_id TEXT PRIMARY KEY, trainee TEXT NOT NULL,
+                outcomes TEXT NOT NULL, processed_at TEXT NOT NULL, version TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS director_history (session_id TEXT PRIMARY KEY, trainee TEXT NOT NULL,
+                decision TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS chunks (session_id TEXT NOT NULL, seq INTEGER NOT NULL, payload TEXT NOT NULL,
                 PRIMARY KEY (session_id, seq));
             CREATE TABLE IF NOT EXISTS instructor_commands (session_id TEXT NOT NULL, seq INTEGER NOT NULL,
