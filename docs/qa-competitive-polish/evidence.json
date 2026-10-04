@@ -1,51 +1,20 @@
 {
   "schema_version": 1,
-  "validated_at": "2026-10-04T05:57:44.494073+00:00",
-  "source_tree_sha256": "147579ef674ee9dab029def4ce9ac7d5cccdef1c856552dde240bcf5efcd0ff4",
-  "validation_commit": null,
-  "baseline_commit": "14a38ad9f8dd6d895f87fd568f0c5865b727e3a4",
-  "release_version": "competitive-polish-v1 candidate",
-  "release_reference": "feature/competitive-polish-v1",
+  "validated_at": "2026-10-04T10:34:10.214072+00:00",
+  "source_tree_sha256": "cd48ae78643b2862b69dd82161aa0d717a50af03e072d524a03017df7177f4c2",
+  "validation_commit": "b88faa92b8455708a98b05723939168e0207d8ee",
+  "baseline_commit": "20e8642782cd13cf6779e5ebd650c2f55c851b37",
+  "release_version": "1.0.1",
+  "release_reference": "v1.0.1",
   "team": {
     "name": "WhiteList&0",
     "id": "185350",
     "category": "Software",
     "problem_statement": "SIH26247"
   },
-  "release_checks": {
-    "status": "ALL MANDATORY PRE-SEAL CHECKS PASSED",
-    "implementation_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
-    "mandatory": {
-      "final_regression": "PASSED 134 backend /44 frontend /312 parity /build22assets",
-      "history": "PASSED all18 historical cards, Ghost/AAR/timeline/profile preservation",
-      "clean_database_walkthrough": "PASSED realHTTP synthetic QA plus actual browser demo",
-      "release_branch": "CREATED release/v1.0.0",
-      "claim_audit": "COMPLETED; scopes and official template/metadata checked",
-      "evidence_manifest": "GENERATED with explicit permanent WANexception and exactsourcehash",
-      "primary_video": "PASSED170s H264/AAC, full decode; synthetic narration",
-      "backup_video": "PASSED120s H264, full decode; captions and held realbrowser frames",
-      "official_pdf": "PASSED sixpages incltitle; allpage visual review; Software/185350/WhiteList&0",
-      "rehearsals": "COMPLETED three single-operator technical browser rehearsals62.656/57.817/77.106s; scriptedQ&A and actual2Dfallback. No human team rehearsal claim.",
-      "source_extract_start": "PASSED documented freshdeps install/build/start, freshDBHTTPwalkthrough",
-      "second_recording_copy": "CONFIRMED separate Android saved file plays from Downloads",
-      "immutable_tag_and_remote": "v1.0.0 seal; exact target and private remote verification recorded in external RELEASE-RECEIPT.json after tagging",
-      "submission_package": "Final source/tag export and checksum/ZIP verification recorded in external RELEASE-RECEIPT.json"
-    },
-    "wan_exception": {
-      "test": "physical WAN disconnected + LAN retained + separate physical trainee device",
-      "status": "NOT PERFORMED BEFORE SUBMISSION",
-      "reason": "Required physical/network setup unavailable during final validation window.",
-      "release_blocking": false,
-      "classification": "Known validation limitation, not a failed architectural test.",
-      "scope": "No other mandatory acceptance is waived"
-    },
-    "remaining_mandatory": [],
-    "portal_submission": "Prepared only; not uploaded",
-    "seal_receipt": "RELEASE-RECEIPT.json in final submission package records the exact immutable commit/tag and remote refs; avoid circular self-hash in tracked docs"
-  },
   "automated": {
     "backend_passed": 139,
-    "frontend_passed": 53,
+    "frontend_passed": 64,
     "parity": {
       "original": 51,
       "director": 72,
@@ -55,10 +24,10 @@
     "build": "passed",
     "offline_assets": 23
   },
-  "acceptance": "Competitive polish software candidate validated; eligible for v1.0.1. Current tests/build and M1 rendering repeats passed. Earlier CPU/network/physical measurements remain dated historical v1.0.0 evidence. The sealed release is not automatically replaced.",
+  "acceptance": "VYUHA v1.0.1 software source: final regression, build and historical compatibility validated. Final immutable commit/tag and remote verification are recorded in the release receipt. Device/network/performance, deployment, simulated experiment and existing media measurements below are dated historical evidence, not new v1.0.1 measurements. Final video/PPT/submission regeneration awaits user review.",
   "physical": {
     "wan_off": "NOT PERFORMED BEFORE SUBMISSION",
-    "weak_laptop": "Measured on user-identified weakest available team laptop: MacBook Air / Apple M1 / 8 GB / macOS 27.0.1 / Codex in-app Chromium. Fixed Medium, Auto off, median 60 FPS at 8/25/50/100/200 contacts, 20 seconds each. No long-duration certification.",
+    "weak_laptop": "Historical Stage 6 measurement: Measured on user-identified weakest available team laptop: MacBook Air / Apple M1 / 8 GB / macOS 27.0.1 / Codex in-app Chromium. Fixed Medium, Auto off, median 60 FPS at 8/25/50/100/200 contacts, 20 seconds each. No long-duration certification.",
     "devices": [
       "MacBook Air / M1 / 8 GB officer: local/Unit startup, process-loss/reload, and weakest-laptop fixed-Medium 8\u2013200-contact measurements.",
       "Physical Android/Chrome: user supplied 8\u2013200-contact exports, median 60 FPS, Auto final Medium, reported 6 GiB RAM; CPU/model unspecified."
@@ -71,7 +40,7 @@
     "wan_off_release_blocking": false,
     "wan_off_classification": "Known validation limitation; not a failed architectural test.",
     "acceptance_policy": "User explicitly approved proceeding without this physical test. No other Stage 7 requirement is waived.",
-    "provenance": "Inherited Stage 4/6 physical validation; this polish stage does not claim a new WAN-disconnected physical test."
+    "provenance": "Historical Stage 4/6 physical evidence, preserved separately from fresh v1.0.1 software QA. No new physical WAN-disconnected test."
   },
   "deployment": {
     "source_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
@@ -216,15 +185,18 @@
   },
   "history": {
     "historical_completed": 18,
+    "additional_current_completed": 3,
+    "all_current_completed_readable": 21,
     "stored_engine_versions": {
-      "vyuha-0.2.0": 14,
+      "vyuha-0.2.0": 17,
       "vyuha-0.1.0": 4
     },
     "exact_stored_cards_preserved": true,
     "all_verified_aar_ghost_timelines_readable": true,
     "all_four_skill_profiles_readable": true,
-    "heatmap_included_historical_sessions": 18,
-    "immutable_fields_sha256": "cce52299fb319073feb81fc0d3f2420a867ff7393421ca9f69940e9aef051b45",
+    "heatmap_included_current_sessions": 21,
+    "historical_immutable_fields_sha256": "cce52299fb319073feb81fc0d3f2420a867ff7393421ca9f69940e9aef051b45",
+    "current_immutable_fields_sha256": "9abdf18414e477e695607dd605da0a51c8a0116fe1acf29097af00f9dfa70593",
     "production_database_unchanged": true,
     "scope": "Aggregate only; raw private records remain outside Git/submission. Checked on a disposable backup."
   },
@@ -703,7 +675,7 @@
       "weakest_laptop": "Subsequently identified and remeasured; see performance-laptop.json"
     },
     "android": {
-      "provenance": "User-supplied physical Android/Chrome benchmark exports; pasted JSON wrapper normalized, numerical data retained. Hardware label did not identify model/CPU. RAM is user-entered; user-agent may reduce platform detail.",
+      "provenance": "Historical Stage 6 device measurement; not repeated for v1.0.1. User-supplied physical Android/Chrome benchmark exports; pasted JSON wrapper normalized, numerical data retained. Hardware label did not identify model/CPU. RAM is user-entered; user-agent may reduce platform detail.",
       "hardware_model": "unspecified",
       "results": [
         {
@@ -906,7 +878,7 @@
       "hardware_class": "MacBook Air, Apple M1, 8-core CPU",
       "ram_gib": 8,
       "browser": "Codex in-app Chromium",
-      "provenance": "Actual completed benchmark UI on 2026-10-04; final production rendering source, fixed Medium, Auto off, 20 seconds. Raw frame samples retained. Builds/tests stopped for these repeats. Short runs are not endurance/device certification. Additional 200-contact stress medians: night 60 FPS, Overview 60 FPS, Follow 58 FPS. Initial transition samples and exploratory build-overlap dip are retained in QA performance.json.",
+      "provenance": "Historical competitive-polish rendering measurement; not repeated for v1.0.1. Actual completed benchmark UI on 2026-10-04; final production rendering source, fixed Medium, Auto off, 20 seconds. Raw frame samples retained. Builds/tests stopped for these repeats. Short runs are not endurance/device certification. Additional 200-contact stress medians: night 60 FPS, Overview 60 FPS, Follow 58 FPS. Initial transition samples and exploratory build-overlap dip are retained in QA performance.json.",
       "results": [
         {
           "schema_version": 1,
@@ -1447,5 +1419,84 @@
     "sealed_assets_unchanged": true,
     "optional_release_created": false,
     "final_video_pdf_regenerated": false
+  },
+  "historical_release_checks": {
+    "status": "ALL MANDATORY PRE-SEAL CHECKS PASSED",
+    "implementation_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
+    "mandatory": {
+      "final_regression": "PASSED 134 backend /44 frontend /312 parity /build22assets",
+      "history": "PASSED all18 historical cards, Ghost/AAR/timeline/profile preservation",
+      "clean_database_walkthrough": "PASSED realHTTP synthetic QA plus actual browser demo",
+      "release_branch": "CREATED release/v1.0.0",
+      "claim_audit": "COMPLETED; scopes and official template/metadata checked",
+      "evidence_manifest": "GENERATED with explicit permanent WANexception and exactsourcehash",
+      "primary_video": "PASSED170s H264/AAC, full decode; synthetic narration",
+      "backup_video": "PASSED120s H264, full decode; captions and held realbrowser frames",
+      "official_pdf": "PASSED sixpages incltitle; allpage visual review; Software/185350/WhiteList&0",
+      "rehearsals": "COMPLETED three single-operator technical browser rehearsals62.656/57.817/77.106s; scriptedQ&A and actual2Dfallback. No human team rehearsal claim.",
+      "source_extract_start": "PASSED documented freshdeps install/build/start, freshDBHTTPwalkthrough",
+      "second_recording_copy": "CONFIRMED separate Android saved file plays from Downloads",
+      "immutable_tag_and_remote": "v1.0.0 seal; exact target and private remote verification recorded in external RELEASE-RECEIPT.json after tagging",
+      "submission_package": "Final source/tag export and checksum/ZIP verification recorded in external RELEASE-RECEIPT.json"
+    },
+    "wan_exception": {
+      "test": "physical WAN disconnected + LAN retained + separate physical trainee device",
+      "status": "NOT PERFORMED BEFORE SUBMISSION",
+      "reason": "Required physical/network setup unavailable during final validation window.",
+      "release_blocking": false,
+      "classification": "Known validation limitation, not a failed architectural test.",
+      "scope": "No other mandatory acceptance is waived"
+    },
+    "remaining_mandatory": [],
+    "portal_submission": "Prepared only; not uploaded",
+    "seal_receipt": "RELEASE-RECEIPT.json in final submission package records the exact immutable commit/tag and remote refs; avoid circular self-hash in tracked docs"
+  },
+  "release_checks": {
+    "status": "ALL SOFTWARE PRE-SEAL CHECKS PASSED",
+    "scope": "Software release only; no media, PDF, submission ZIP or portal upload performed in this finalization task.",
+    "mandatory": {
+      "final_regression": "PASSED 139 backend /64 frontend /312 parity /build23assets",
+      "history": "PASSED18/18 baseline and21/21 current; disposable backup; stored cards and Ghost/AAR/profile evidence preserved",
+      "final_navigation_walkthrough": "PASSED visible UI links in local/Unit modes; desktop/tablet/mobile; Back/Forward/refresh; no console errors"
+    },
+    "wan_exception": {
+      "test": "physical WAN disconnected + LAN retained + separate physical trainee device",
+      "status": "NOT PERFORMED BEFORE SUBMISSION",
+      "reason": "Required physical/network setup unavailable during final validation window.",
+      "release_blocking": false,
+      "classification": "Known validation limitation, not a failed architectural test.",
+      "scope": "No other mandatory acceptance is waived"
+    },
+    "seal_receipt": "outputs/release-v1.0.1/FINAL-RELEASE-RECEIPT.md and release-receipt.json outside the source checkout avoid circular commit references.",
+    "remaining_mandatory": []
+  },
+  "historical_evidence_provenance": {
+    "previous_manifest_git_commit": "20e8642782cd13cf6779e5ebd650c2f55c851b37",
+    "previous_manifest_git_path": "docs/qa-competitive-polish/evidence.json",
+    "previous_manifest_sha256": "0d91b9bac6e20afbbe8a2aa1dadd98d39785b953c1320069d7fd237a91eebb8e",
+    "previous_validated_at": "2026-10-04T05:57:44.494073+00:00",
+    "sections": [
+      "physical",
+      "deployment",
+      "walkthrough",
+      "browser_demo",
+      "rehearsals",
+      "media",
+      "performance",
+      "experiment",
+      "competitive_polish",
+      "historical_release_checks"
+    ],
+    "rule": "These sections retain prior-stage measurements and original source IDs. No claim they were generated from v1.0.1. Only automated regression, history and final navigation evidence are refreshed for this release."
+  },
+  "navigation": {
+    "status": "NAVIGATION AUDIT COMPLETE \u2014 ALL INTENDED USER-FACING PAGES DISCOVERABLE",
+    "canonical_routes": 11,
+    "classification": {
+      "NAVIGATED": 9,
+      "SECONDARY_REACHABLE": 2,
+      "INTENTIONALLY_HIDDEN": 0
+    },
+    "receipt": "docs/release-v1.0.1/browser-walkthrough.json"
   }
 }

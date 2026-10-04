@@ -1,0 +1,20 @@
+{
+  "counts": {
+    "original": 51,
+    "director": 72,
+    "advanced": 135,
+    "rural": 54
+  },
+  "total": 312,
+  "method": "All five cross-language parity tests executed by npm test. Counts derived from current test seed/tick arrays, freshly generated advanced/rural fixture checkpoint arrays and current Director template registry.",
+  "frontend_receipt": "frontend.txt",
+  "fixtures": {
+    "original_seeds": 3,
+    "original_snapshots_per_seed": 7,
+    "command_snapshots_per_seed": 10,
+    "director_templates": 12,
+    "director_ticks_per_template": 6,
+    "advanced_cases": 15,
+    "rural_cases": 6
+  }
+}

@@ -74,3 +74,9 @@ The shared menu is available on every page. Use **Data / operations → Data tra
 **After-action review** opens the history chooser; session/group history rows open refreshable reviews. **Unit training overview** retains the embedded workspace when selected inside training, preserving its worker; other pages use the canonical unit overview. **Adaptive Director** opens the existing adaptive mode within Training ground. All pages work with local and Unit servers; trainee pages retain the existing Unit Mode identity requirement.
 
 Navigation audit: [route matrix](docs/qa-navigation/ROUTE-MATRIX.md) and [audit/results](docs/qa-navigation/NAVIGATION-AUDIT.md). Current navigation checks are 139 backend / 64 frontend / 312 parity with a successful build; historical candidate/release measurements remain dated and are not replaced by these counts.
+
+## Final software source: v1.0.1
+
+Final software release branch: `release/v1.0.1`; immutable tag: `v1.0.1`. This includes competitive polish plus the navigation/discoverability fix. [Final software validation](docs/release-v1.0.1/FINAL-VALIDATION.md) records the fresh 139 backend /64 frontend /312 parity checks, production build, 18/18 baseline and21/21 current history compatibility, and final UI navigation. The served evidence manifest is refreshed; earlier performance/physical/media measurements retain explicit historical provenance.
+
+The exact tagged commit and verified remote refs are in the external `outputs/release-v1.0.1` seal receipt. Use [the final recording-source instructions](docs/DEMO-RUNBOOK.md) for the planned 7–8 minute video. Existing PDF/PPT/video/submission archives remain historical and were not regenerated. Freeze features after the verified tag; any critical blocker needs separate validation and an explicit patch-release decision.
