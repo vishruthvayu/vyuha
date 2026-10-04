@@ -1,0 +1,70 @@
+
+> vyuha-trainer@1.0.0 test
+> tsx --test src/*.test.ts src/*.test.tsx
+
+✔ all 15 tactic/pack combinations retain advanced engine, command and ranking parity at 135 checkpoints (2669.520709ms)
+✔ Rapid ID renders modeled silhouettes without inventing quad-versus-FPV visual discrimination (16.016334ms)
+✔ historical table displays exact persisted point values and truthful priors (30.224333ms)
+✔ recognition monotonic clock excludes pauses, resumes saved elapsed and clamps the deadline (0.319708ms)
+✔ profile renders four canonical skills and truthful baseline uncertainty (20.267292ms)
+✔ Director card shows Beta mean, focus, difficulty, features and heuristic target (5.646083ms)
+✔ updated profile renders changed posterior and observation count (2.2455ms)
+✔ adaptive launch uses the exact prepared server scenario and session ID (2.181875ms)
+✔ all twelve server Director templates preserve browser/Python replay and scoring parity (2348.473375ms)
+✔ timeline decision jump reconstructs the exact pre-action boundary (6.035ms)
+✔ Ghost panel renders actual and authoritative expected decisions (35.989292ms)
+✔ failed RF and IFF evidence renders unavailable without hidden truth (2.093917ms)
+✔ degraded radar evidence and modeled silhouette render grounded values (2.571333ms)
+✔ instructor commands and sensor transitions appear as separate timeline categories (32.10925ms)
+✔ no-RF explanation and score scope come from the server review (11.255834ms)
+✔ device-only scores do not produce client-generated Ghost expectations (1.801834ms)
+✔ same-tick designation seek shows unmodified prior classification (0.792833ms)
+✔ replay contact history uses observed contacts and trainee labels across seek boundaries (4.649625ms)
+✔ rural terrain/fog preserve score and sensor parity at 54 new checkpoints; recorded adapters match (2874.492542ms)
+✔ audio range, observed-contact gate, bird exclusion and fog attenuation prevent omniscient cues (0.3825ms)
+✔ quality changes require sustained measured low FPS and reach tactical fallback (0.207416ms)
+✔ bounded JSON import errors reject malformed/object shape and UTF-8 byte overruns (0.683666ms)
+✔ scale fixtures keep all contact kinds, deterministic positions and supported counts (2.020625ms)
+✔ evidence/import interfaces show limitations without fabricated final validation claims (16.602167ms)
+✔ evaluation enrollment requires participant agreement and pseudonymous IDs (2.623958ms)
+✔ bulk transfer timeout can exceed the six-second tactical request timeout without changing request payloads (1.00225ms)
+✔ disabled reasons follow real phase, selection, designation, classification and frozen effectors (1.622625ms)
+✔ NEXT guidance changes only with current decision state (0.28475ms)
+✔ commands require real server receipt and application tick, including tick zero (0.271083ms)
+✔ failed transport, stale and ended command messages do not invent application (0.265625ms)
+✔ tour start, previous, skip, completion persistence and replay are independent of training (1.896333ms)
+✔ camera presets safely handle absent and ended contacts without mutation (0.678333ms)
+✔ timeline boundary and score stay identical across every camera preset (2.335209ms)
+✔ heatmap displays actual Beta estimate and counts, without meaningful zero-sample 50% (51.6925ms)
+✔ sensor labels, palettes and quality tiers remain presentation settings (3.583833ms)
+✔ scripted scenario is deterministic and changes with seed (8.063459ms)
+✔ example expert clears all hostile contacts with no safety flags (32.986ms)
+✔ no-RF threat survives RF jamming (3.689708ms)
+✔ non-hostile engagement fails the session (76.815ms)
+✔ detection begins at first observation, never before spawn (2.622791ms)
+✔ TypeScript and Python reproduce the same sensors, event outcomes, and score (1440.007458ms)
+✔ instructor pause freezes time, positions and impacts; resume continues (3.825875ms)
+✔ injection is deterministic, duplicate-safe, and enters replay/scoring (10.311625ms)
+✔ injected no-RF contact survives the RF jammer (0.663583ms)
+✔ radar failure, RF failure, restore, and day/night are visible deterministic state (0.803375ms)
+✔ instructor controls and ordered trainee actions retain cross-language parity (2296.240958ms)
+✔ join identity persists server ID, unit and callsign; malformed storage is excluded (3.307458ms)
+✔ unfinished session recovery only selects this browser trainee (0.767792ms)
+✔ HTTP LAN UUID fallback uses crypto random bytes when randomUUID is unavailable (0.809292ms)
+✔ event queue retains immutable batches across lost ACK and appends only new events (1.328541ms)
+✔ connection status distinguishes local continuation, queued events and server sync (0.336292ms)
+✔ unit dashboard renders persisted four-skill aggregates and authoritative failure counts (136.890333ms)
+✔ group comparison renders independent session results and pending values without rankings (3.949583ms)
+ℹ tests 53
+ℹ suites 0
+ℹ pass 53
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5443.499458
+npm notice
+npm notice New minor version of npm available! 11.6.2 -> 11.21.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.0
+npm notice To update run: npm install -g npm@11.21.0
+npm notice

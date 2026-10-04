@@ -325,6 +325,7 @@ from .units import router as unit_router
 app.include_router(unit_router)
 
 from .advanced import router as advanced_router
+from . import heatmap
 app.include_router(advanced_router)
 
 from .evidence import router as evidence_router

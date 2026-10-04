@@ -58,3 +58,11 @@ Tests use disposable databases. Tactical parity covers 312 checkpoints. Release 
 Dedicated physical WAN-off/LAN-on validation was not completed before submission. Multi-device LAN operation, local asset serving, process-outage recovery and queued-event resynchronization were validated separately.
 
 Sensor/threat/effector laws and Doctrine Packs are illustrative. Consistent replay does not attest truthful human inputs; fabricated plausible action logs remain possible. Plain LAN HTTP can constrain cached cold reload when the local origin is absent; active queued actions and subsequent resynchronization were validated separately. Formal human efficacy, field evaluation and operational certification remain future work.
+
+## Competitive polish candidate
+
+`feature/competitive-polish-v1` adds operator guidance and real command lifecycle display, an optional six-stop capability tour, external replay camera presets, a persisted scenario × four-skill heatmap, and illustrative thermal/night presentation. Authoritative simulation/scoring/Director/Ghost and quality contracts are unchanged.
+
+Candidate checks: 139 backend tests, 53 frontend tests, all 312 parity checkpoints, build and 18 historical sessions. Medium live-view medians remain 60 FPS at 8/50/100/200 contacts; 200-contact Follow replay stress measured 58 FPS. See [candidate validation](docs/qa-competitive-polish/FINAL-VALIDATION.md) and [claim audit](docs/qa-competitive-polish/CLAIM-AUDIT.md). `/system/evidence` serves the candidate manifest when present and verifies its source hash.
+
+The sealed v1.0.0 tag, branch and historical submission artifacts remain unchanged. The candidate is eligible for v1.0.1; no optional release/tag or final video/PDF is created automatically. Physical WAN-off/LAN-on validation remains **NOT PERFORMED BEFORE SUBMISSION** for the recorded setup limitation.

@@ -1,0 +1,7 @@
+{
+  "scope": "Loopback HTTP API on one actual completed synthetic-QA session, seven rows/28 cells. Browser also verified data, disclosure and filter. Not a large-history UI benchmark.",
+  "requests": 10,
+  "median_ms": 16.604875003395136,
+  "max_ms": 287.40574999392265,
+  "included_sessions": 1
+}

@@ -1,0 +1,114 @@
+{
+  "scope": "Disposable initially empty database. Software QA operator using ordinary browser controls and HTTP; not human efficacy or new physical-network evidence.",
+  "session_id": "1eb782ed-a0a8-47cd-aad9-2aafcbe13b7e",
+  "trainee": "T_703208fe11eb485ba12313",
+  "director": {
+    "anti_rote": {
+      "fallback": false,
+      "history_window": 5,
+      "rejected_candidates": 0
+    },
+    "debug_samples": {
+      "classification_iff": 0.9437767019129533,
+      "degraded_sensor_response": 0.5212209959704877,
+      "detection": 0.5946955265367871,
+      "effector_choice": 0.22277812899521807
+    },
+    "difficulty": 2,
+    "difficulty_label": "standard",
+    "director_seed": 482913,
+    "fingerprint": "f92162debed06e1413b0f702",
+    "focus_skill": "effector_choice",
+    "mastery_estimate": 0.5,
+    "mode": "individual",
+    "observations": 0,
+    "profile_snapshot": {
+      "classification_iff": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "last_session_id": null,
+        "mean": 0.5,
+        "observations": 0,
+        "updated_at": null
+      },
+      "degraded_sensor_response": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "last_session_id": null,
+        "mean": 0.5,
+        "observations": 0,
+        "updated_at": null
+      },
+      "detection": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "last_session_id": null,
+        "mean": 0.5,
+        "observations": 0,
+        "updated_at": null
+      },
+      "effector_choice": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "last_session_id": null,
+        "mean": 0.5,
+        "observations": 0,
+        "updated_at": null
+      }
+    },
+    "reason": "Limited history available. This initial assessment establishes a baseline.",
+    "reason_code": "INITIAL_ASSESSMENT",
+    "recent_failures": 0,
+    "recent_successes": 0,
+    "scenario_features": [
+      "Day",
+      "6 mixed contacts",
+      "Fog parameter 0.25",
+      "No-RF FPV included",
+      "Friendly contact included",
+      "Initial target outside jammer range",
+      "Threat pattern: DECOY_THEN_STRIKE",
+      "Illustrative pack: Army Forward Post"
+    ],
+    "scenario_seed": 3331019467,
+    "scenario_template": "effector_choice/range_check",
+    "target_kind": "heuristic, not calibrated",
+    "target_success": 0.7,
+    "trainee_id": "T_703208fe11eb485ba12313"
+  },
+  "verified": true,
+  "observed_end_tick": 557,
+  "score": 0,
+  "commands": [
+    {
+      "label": "sensor_fault",
+      "tick": 8,
+      "order": 0,
+      "seq": 1
+    },
+    {
+      "label": "inject_contact",
+      "tick": 8,
+      "order": 1,
+      "seq": 2
+    }
+  ],
+  "mistake": {
+    "reason": "NO_RF_JAM_INEFFECTIVE",
+    "tick": 548,
+    "order": 4,
+    "actual": "rf_jam",
+    "expected": "kinetic"
+  },
+  "profile_sessions": 1,
+  "heatmap_example": {
+    "row": "DECOY_THEN_STRIKE",
+    "skill": "effector_choice",
+    "successes": 0,
+    "failures": 1,
+    "sessions": 1,
+    "observations": 1,
+    "estimate": 0.3333333333333333
+  },
+  "heatmap_matches_persisted_outcomes": true
+}

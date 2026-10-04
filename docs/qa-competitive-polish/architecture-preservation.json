@@ -1,0 +1,16 @@
+{
+  "unchanged_authoritative_files": [
+    "server/engine.py",
+    "server/director.py",
+    "server/review.py",
+    "server/prioritisation.py",
+    "client/src/sim.ts",
+    "client/src/sim.worker.ts",
+    "client/src/scenario.ts",
+    "client/src/Ghost.tsx",
+    "client/src/quality.ts"
+  ],
+  "all_unchanged": true,
+  "dependencies_added": false,
+  "database_migration": false
+}

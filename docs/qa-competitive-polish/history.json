@@ -1,0 +1,14 @@
+{
+  "historical_completed": 18,
+  "stored_engine_versions": {
+    "vyuha-0.2.0": 14,
+    "vyuha-0.1.0": 4
+  },
+  "exact_stored_cards_preserved": true,
+  "all_verified_aar_ghost_timelines_readable": true,
+  "all_four_skill_profiles_readable": true,
+  "heatmap_included_historical_sessions": 18,
+  "immutable_fields_sha256": "cce52299fb319073feb81fc0d3f2420a867ff7393421ca9f69940e9aef051b45",
+  "production_database_unchanged": true,
+  "scope": "Aggregate only; raw private records remain outside Git/submission. Checked on a disposable backup."
+}
