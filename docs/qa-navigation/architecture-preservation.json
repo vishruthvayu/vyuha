@@ -1,0 +1,84 @@
+{
+  "parent": "20e8642782cd13cf6779e5ebd650c2f55c851b37",
+  "protected_files": [
+    {
+      "path": "server/engine.py",
+      "unchanged": true,
+      "sha256": "9fe175d64d806ab29acd2fc5ae93b1159af778d98a0d7cad85affd7a23fed2fc"
+    },
+    {
+      "path": "server/director.py",
+      "unchanged": true,
+      "sha256": "50efb8506757492fab37d20bbbff4aa2bb147ff08b23df1eb4f722f61b202d38"
+    },
+    {
+      "path": "server/review.py",
+      "unchanged": true,
+      "sha256": "8ffbab518915390e394bf69a2415182fe2386f24f0eb230e91198ff2bb901a65"
+    },
+    {
+      "path": "server/prioritisation.py",
+      "unchanged": true,
+      "sha256": "fa0425a02d2babdcb916d1f8232742e7374a6edef797f0c60b2f271d66fc868f"
+    },
+    {
+      "path": "client/src/sim.ts",
+      "unchanged": true,
+      "sha256": "d5aa362457167236fd6ba78b1583166d1a59caa165bbba057cd7daf7367be16e"
+    },
+    {
+      "path": "client/src/sim.worker.ts",
+      "unchanged": true,
+      "sha256": "68ac09390d992fc13936388b09fc295b03cf5d582b6669403afc3814a3979e11"
+    },
+    {
+      "path": "client/src/scenario.ts",
+      "unchanged": true,
+      "sha256": "9f265efb8a8c8c4450bc264f0a4bb77286cec26c564be4ebbf772c8b0e92250d"
+    },
+    {
+      "path": "client/src/Ghost.tsx",
+      "unchanged": true,
+      "sha256": "6e80af86e7dfe52a96dc916f152ad1829f902f22658e5c4c6c26228826c624ed"
+    },
+    {
+      "path": "client/src/quality.ts",
+      "unchanged": true,
+      "sha256": "ad416bc63513d95881b5a54ee92a4e7c374216b32015458eec67c48f53566c8e"
+    },
+    {
+      "path": "client/src/Director.tsx",
+      "unchanged": true,
+      "sha256": "9ef3947654cafce0fa1efb745ef0849564a0ce4a10ff9faa3402c11ca6d4616a"
+    },
+    {
+      "path": "client/src/storage.ts",
+      "unchanged": true,
+      "sha256": "e1e7e4927b3e780ee5437636e34bd4a09c38ccc3458cb482bb3471f3976dfb83"
+    },
+    {
+      "path": "client/src/types.ts",
+      "unchanged": true,
+      "sha256": "6d4954e1323561249f926f1f4239f1726cb787a13dc92bb7a66af1afa593514c"
+    },
+    {
+      "path": "server/storage.py",
+      "unchanged": true,
+      "sha256": "bfcc040ec79ccdbe300901c561a403b826b81c8ec430d8ef134beba66dc2b6fb"
+    },
+    {
+      "path": "server/main.py",
+      "unchanged": true,
+      "sha256": "aa9f2eaa48ca4681f4fbd894d0e32d2b386936b3f96cd8cdefb02c2e885cf1bd"
+    },
+    {
+      "path": "server/models.py",
+      "unchanged": true,
+      "sha256": "465e47d22eee8ea926d21d28cad22c605d51fe2d657ff6090a7962d814ade686"
+    }
+  ],
+  "all_unchanged": true,
+  "dependencies_added": false,
+  "database_migration": false,
+  "release_tags_moved": false
+}

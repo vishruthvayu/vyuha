@@ -1,0 +1,532 @@
+{
+  "date": "2026-10-04",
+  "build_scripts": [
+    "http://127.0.0.1:59402/assets/index-CcqsOdFC.js"
+  ],
+  "canonical_route_checks": [
+    {
+      "mode": "local",
+      "path": "/",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "Training ground"
+        }
+      ],
+      "h1": "Training ground"
+    },
+    {
+      "mode": "local",
+      "path": "/rapid-id",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "Rapid ID"
+        }
+      ],
+      "h1": "Rapid ID"
+    },
+    {
+      "mode": "local",
+      "path": "/unit",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "Unit training overview"
+        }
+      ],
+      "h1": "Unit training overview"
+    },
+    {
+      "mode": "local",
+      "path": "/instructor",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "Instructor console"
+        }
+      ],
+      "h1": "Instructor console"
+    },
+    {
+      "mode": "local",
+      "path": "/analytics",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "Training analytics"
+        }
+      ],
+      "h1": "Training analytics"
+    },
+    {
+      "mode": "local",
+      "path": "/exercises",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "Exercise studio"
+        }
+      ],
+      "h1": "Exercise studio"
+    },
+    {
+      "mode": "local",
+      "path": "/recorded",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "Recorded practice"
+        }
+      ],
+      "h1": "Recorded practice"
+    },
+    {
+      "mode": "local",
+      "path": "/transfer",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "Data transfer"
+        }
+      ],
+      "h1": "Data transfer"
+    },
+    {
+      "mode": "local",
+      "path": "/system/evidence",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "System evidence"
+        }
+      ],
+      "h1": "VYUHA system evidence"
+    },
+    {
+      "mode": "local",
+      "path": "/evaluation",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "location",
+          "label": "Rapid ID"
+        }
+      ],
+      "h1": "Informal evaluation"
+    },
+    {
+      "mode": "local",
+      "path": "/system/benchmark",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "location",
+          "label": "System evidence"
+        }
+      ],
+      "h1": "Device performance check"
+    },
+    {
+      "mode": "unit",
+      "path": "/",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "Training ground"
+        }
+      ],
+      "h1": "Training ground"
+    },
+    {
+      "mode": "unit",
+      "path": "/rapid-id",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "Rapid ID"
+        }
+      ],
+      "h1": "Rapid ID"
+    },
+    {
+      "mode": "unit",
+      "path": "/unit",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "Unit training overview"
+        }
+      ],
+      "h1": "Unit training overview"
+    },
+    {
+      "mode": "unit",
+      "path": "/instructor",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "Instructor console"
+        }
+      ],
+      "h1": "Instructor console"
+    },
+    {
+      "mode": "unit",
+      "path": "/analytics",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "Training analytics"
+        }
+      ],
+      "h1": "Training analytics"
+    },
+    {
+      "mode": "unit",
+      "path": "/exercises",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "Exercise studio"
+        }
+      ],
+      "h1": "Exercise studio"
+    },
+    {
+      "mode": "unit",
+      "path": "/recorded",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "Recorded practice"
+        }
+      ],
+      "h1": "Recorded practice"
+    },
+    {
+      "mode": "unit",
+      "path": "/transfer",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "Data transfer"
+        }
+      ],
+      "h1": "Data transfer"
+    },
+    {
+      "mode": "unit",
+      "path": "/system/evidence",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "page",
+          "label": "System evidence"
+        }
+      ],
+      "h1": "VYUHA system evidence"
+    },
+    {
+      "mode": "unit",
+      "path": "/evaluation",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "location",
+          "label": "Rapid ID"
+        }
+      ],
+      "h1": "Informal evaluation"
+    },
+    {
+      "mode": "unit",
+      "path": "/system/benchmark",
+      "refresh": true,
+      "back_forward": true,
+      "active": [
+        {
+          "current": "location",
+          "label": "System evidence"
+        }
+      ],
+      "h1": "Device performance check"
+    }
+  ],
+  "ui_only_walkthrough": [
+    {
+      "label": "Training ground",
+      "url": "http://127.0.0.1:59402/",
+      "title": "Training ground"
+    },
+    {
+      "label": "After-action review",
+      "url": "http://127.0.0.1:59402/?view=aar",
+      "title": "After-action review"
+    },
+    {
+      "label": "Rapid ID",
+      "url": "http://127.0.0.1:59402/rapid-id",
+      "title": "Rapid ID"
+    },
+    {
+      "label": "Adaptive Director",
+      "url": "http://127.0.0.1:59402/?mode=adaptive",
+      "title": "Training ground"
+    },
+    {
+      "label": "Instructor console",
+      "url": "http://127.0.0.1:59402/instructor",
+      "title": "Instructor console"
+    },
+    {
+      "label": "Training analytics",
+      "url": "http://127.0.0.1:59402/analytics",
+      "title": "Training analytics"
+    },
+    {
+      "label": "Exercise studio",
+      "url": "http://127.0.0.1:59402/exercises",
+      "title": "Exercise studio"
+    },
+    {
+      "label": "Recorded practice",
+      "url": "http://127.0.0.1:59402/recorded",
+      "title": "Recorded practice"
+    },
+    {
+      "label": "Data transfer",
+      "url": "http://127.0.0.1:59402/transfer",
+      "title": "Data transfer"
+    },
+    {
+      "label": "System evidence",
+      "url": "http://127.0.0.1:59402/system/evidence",
+      "title": "VYUHA system evidence"
+    },
+    {
+      "label": "Device benchmark (secondary)",
+      "url": "http://127.0.0.1:59402/system/benchmark"
+    },
+    {
+      "label": "Unit training overview",
+      "url": "http://127.0.0.1:59402/unit"
+    },
+    {
+      "label": "Evaluation protocol (secondary)",
+      "url": "http://127.0.0.1:59402/evaluation"
+    },
+    {
+      "label": "Operator guide",
+      "url": "http://127.0.0.1:59402/evaluation"
+    }
+  ],
+  "embedded_workspace_history": [
+    {
+      "action": "Paused drill → Unit navigation",
+      "url": "http://127.0.0.1:59402/?view=unit"
+    },
+    {
+      "action": "Back restores paused drill",
+      "url": "http://127.0.0.1:59402/",
+      "resume_visible": true
+    },
+    {
+      "action": "End exercise updates verified review URL",
+      "url": "http://127.0.0.1:59402/?view=aar&session=c947cfa2-c8b2-4877-8a3b-d95c4a7c0d36",
+      "server_verified": true
+    },
+    {
+      "action": "Refresh verified review",
+      "url": "http://127.0.0.1:59402/?view=aar&session=c947cfa2-c8b2-4877-8a3b-d95c4a7c0d36"
+    },
+    {
+      "action": "Older history row opens distinct review",
+      "url": "http://127.0.0.1:59402/?view=aar&session=466f89ca-740f-43ec-a75d-f5003a8f1224"
+    },
+    {
+      "action": "Back returns to Unit history",
+      "url": "http://127.0.0.1:59402/?view=unit"
+    },
+    {
+      "action": "Forward reloads selected older review",
+      "url": "http://127.0.0.1:59402/?view=aar&session=466f89ca-740f-43ec-a75d-f5003a8f1224"
+    },
+    {
+      "action": "Training clears stale session parameter",
+      "url": "http://127.0.0.1:59402/"
+    }
+  ],
+  "mobile": [
+    {
+      "label": "Training ground",
+      "url": "http://127.0.0.1:59402/",
+      "collapsed": true,
+      "overflow": false,
+      "viewport": [
+        360,
+        500
+      ]
+    },
+    {
+      "label": "After-action review",
+      "url": "http://127.0.0.1:59402/?view=aar",
+      "collapsed": true,
+      "overflow": false,
+      "viewport": [
+        360,
+        500
+      ]
+    },
+    {
+      "label": "Rapid ID",
+      "url": "http://127.0.0.1:59402/rapid-id",
+      "collapsed": true,
+      "overflow": false,
+      "viewport": [
+        360,
+        500
+      ]
+    },
+    {
+      "label": "Adaptive Director",
+      "url": "http://127.0.0.1:59402/?mode=adaptive",
+      "collapsed": true,
+      "overflow": false,
+      "viewport": [
+        360,
+        500
+      ]
+    },
+    {
+      "label": "Unit training overview",
+      "url": "http://127.0.0.1:59402/?view=unit",
+      "collapsed": true,
+      "overflow": false,
+      "viewport": [
+        360,
+        500
+      ]
+    },
+    {
+      "label": "Instructor console",
+      "url": "http://127.0.0.1:59402/instructor",
+      "collapsed": true,
+      "overflow": false,
+      "viewport": [
+        360,
+        500
+      ]
+    },
+    {
+      "label": "Training analytics",
+      "url": "http://127.0.0.1:59402/analytics",
+      "collapsed": true,
+      "overflow": false,
+      "viewport": [
+        360,
+        500
+      ]
+    },
+    {
+      "label": "Exercise studio",
+      "url": "http://127.0.0.1:59402/exercises",
+      "collapsed": true,
+      "overflow": false,
+      "viewport": [
+        360,
+        500
+      ]
+    },
+    {
+      "label": "Recorded practice",
+      "url": "http://127.0.0.1:59402/recorded",
+      "collapsed": true,
+      "overflow": false,
+      "viewport": [
+        360,
+        500
+      ]
+    },
+    {
+      "label": "Data transfer",
+      "url": "http://127.0.0.1:59402/transfer",
+      "collapsed": true,
+      "overflow": false,
+      "viewport": [
+        360,
+        500
+      ]
+    },
+    {
+      "label": "System evidence",
+      "url": "http://127.0.0.1:59402/system/evidence",
+      "collapsed": true,
+      "overflow": false,
+      "viewport": [
+        360,
+        500
+      ]
+    }
+  ],
+  "tablet": {
+    "clientHeight": 632,
+    "navWidth": 235,
+    "overflow": false,
+    "scrollHeight": 632,
+    "viewport": [
+      900,
+      800
+    ]
+  },
+  "keyboard": {
+    "guide_shift_tab_wrap": "Ready to train",
+    "guide_escape_focus": "Toggle navigation",
+    "drawer_escape": true
+  },
+  "invalid_route": {
+    "path": "/unit-other",
+    "title": "Page not found",
+    "return_home": true
+  },
+  "console_errors": [],
+  "scope": "Final production build. Disposable local/Unit databases. Two synthetic early-ended drills for history and paused-workspace navigation. No production history changed; no WAN validation performed."
+}

@@ -148,3 +148,7 @@ The final synthetic browser walkthrough authored rural night/fog/decoy condition
 | Backup/restore | SQLite quick_check, exclusive new destination, real restored server returns exact AARs/Beta profiles |
 
 The physical WAN-off check is NOT PERFORMED BEFORE SUBMISSION: Required physical/network setup unavailable during final validation window. The weakest currently available team laptop was identified and measured directly after the user clarified that it is the current MacBook Air. Android measurements remain separate device evidence. Stage 6's software candidate is stable; Release work may proceed with the dedicated WAN check documented as not performed before submission. Crew Mode remains deferred; Stage 7 release work is tracked separately.
+
+## Navigation access after the discoverability audit
+
+Use the shared menu **Data / operations → Data transfer** instead of typing `/transfer`; configure the existing shared key before exporting/importing. Use **Exercises → Recorded practice** instead of typing `/recorded`. Optional support tools remain linked from **Rapid ID → Evaluation protocol** and **System evidence → Device benchmark**. The Operator guide is available on all pages, including the scrollable narrow navigation drawer. See [the canonical route matrix](qa-navigation/ROUTE-MATRIX.md) and [navigation validation](qa-navigation/NAVIGATION-AUDIT.md). This access update does not change Stage 6's dated validation counts or transfer/recording/evaluation behavior.

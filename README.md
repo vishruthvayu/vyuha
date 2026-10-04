@@ -66,3 +66,11 @@ Sensor/threat/effector laws and Doctrine Packs are illustrative. Consistent repl
 Candidate checks: 139 backend tests, 53 frontend tests, all 312 parity checkpoints, build and 18 historical sessions. Medium live-view medians remain 60 FPS at 8/50/100/200 contacts; 200-contact Follow replay stress measured 58 FPS. See [candidate validation](docs/qa-competitive-polish/FINAL-VALIDATION.md) and [claim audit](docs/qa-competitive-polish/CLAIM-AUDIT.md). `/system/evidence` serves the candidate manifest when present and verifies its source hash.
 
 The sealed v1.0.0 tag, branch and historical submission artifacts remain unchanged. The candidate is eligible for v1.0.1; no optional release/tag or final video/PDF is created automatically. Physical WAN-off/LAN-on validation remains **NOT PERFORMED BEFORE SUBMISSION** for the recorded setup limitation.
+
+## Navigation and operator access
+
+The shared menu is available on every page. Use **Data / operations → Data transfer** for portable bundles and **Exercises → Recorded practice** for recorded observations; manual URLs are unnecessary. **Rapid ID → Evaluation protocol** opens the optional, agreement-gated pilot tool. **System evidence → Device benchmark** opens engineering measurements. The **Operator guide** remains a separate menu button. On a narrow screen, use **Toggle navigation**; the labelled drawer scrolls to its lower entries.
+
+**After-action review** opens the history chooser; session/group history rows open refreshable reviews. **Unit training overview** retains the embedded workspace when selected inside training, preserving its worker; other pages use the canonical unit overview. **Adaptive Director** opens the existing adaptive mode within Training ground. All pages work with local and Unit servers; trainee pages retain the existing Unit Mode identity requirement.
+
+Navigation audit: [route matrix](docs/qa-navigation/ROUTE-MATRIX.md) and [audit/results](docs/qa-navigation/NAVIGATION-AUDIT.md). Current navigation checks are 139 backend / 64 frontend / 312 parity with a successful build; historical candidate/release measurements remain dated and are not replaced by these counts.

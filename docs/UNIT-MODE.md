@@ -118,3 +118,11 @@ Full samples/counts/maxima and method: `qa/unit-load.json`. At six clients: maxi
 Trusted LAN only, no authentication/authorization; no secure-deployment claim. HTTP LAN lacks service-worker cached reload with the server absent. Identity is scoped to browser origin and retained storage. Unit heatmap/history have a 100-session recent window. Group assignment requires explicit trainee start. No observer stream, broadcast-all control or QR dependency was added. No hosted deployment, MongoDB, production observability or USB/HQ synchronization.
 
 Next is **Stage 5 — Advanced Training Intelligence & Exercise System**: Red Force tactics, Rapid ID, Doctrine Packs, Scenario Authoring Lite, swarm prioritisation, session improvement analytics and optional crew training. These remain unimplemented here.
+
+## Navigation and operator access
+
+The shared menu is available on every page. Use **Data / operations → Data transfer** for portable bundles and **Exercises → Recorded practice** for recorded observations; manual URLs are unnecessary. **Rapid ID → Evaluation protocol** opens the optional, agreement-gated pilot tool. **System evidence → Device benchmark** opens engineering measurements. The **Operator guide** remains a separate menu button. On a narrow screen, use **Toggle navigation**; the labelled drawer scrolls to its lower entries.
+
+**After-action review** opens the history chooser; session/group history rows open refreshable reviews. **Unit training overview** retains the embedded workspace when selected inside training, preserving its worker; other pages use the canonical unit overview. **Adaptive Director** opens the existing adaptive mode within Training ground. All pages work with local and Unit servers; trainee pages retain the existing Unit Mode identity requirement.
+
+Navigation audit: [route matrix](qa-navigation/ROUTE-MATRIX.md) and [audit/results](qa-navigation/NAVIGATION-AUDIT.md). Current navigation checks are 139 backend / 64 frontend / 312 parity with a successful build; historical candidate/release measurements remain dated and are not replaced by these counts.

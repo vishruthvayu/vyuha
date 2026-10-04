@@ -25,3 +25,39 @@
 .command-receipt{padding:12px;border-left:2px solid #abc9e3;background:#202a32}.command-receipt small{display:block;margin-top:6px;color:#b6c4ca}.control-reason{font-size:13px;color:#d9c7a8}
 .tour-launch{position:fixed;right:18px;bottom:16px;z-index:40;border:1px solid #899a7c;background:#202b23;color:#e2f5cd;padding:9px 13px;border-radius:5px}.tour-card{position:fixed;right:18px;bottom:65px;z-index:50;width:min(400px,calc(100vw - 36px));padding:20px;box-shadow:0 10px 40px #0008}.tour-card p{line-height:1.55}.tour-card .control-buttons{margin-top:15px}.tour-card button{background:#2d3b43;color:#e5ebed;padding:8px 12px;border:1px solid #63727a;border-radius:4px}.tour-highlight{outline:2px solid #abc9e3;outline-offset:4px}
 .skill-heatmap th,.skill-heatmap td{min-width:135px}.skill-heatmap summary{cursor:pointer;font-size:18px;list-style:none}.skill-heatmap small{display:block;font-size:11px;margin-top:5px;color:#b8c5ce}.skill-heatmap details div{font-size:12px;line-height:1.6;margin-top:10px;min-width:160px}.replay-camera-controls{padding:10px;flex-wrap:wrap}.replay-scene.scene-container{height:350px}.replay-panel .footnote{padding:0 12px}.scene-container.night::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:1;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}.scene-container.tactical-mode::after{display:none}
+
+/* Shared navigation: scrollable sidebar and narrow-screen drawer. */
+.workspace-navigation .brand{margin-bottom:22px;flex-shrink:0}
+.workspace-navigation{padding-top:24px;padding-bottom:16px}
+.navigation-scroll{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:2px 4px 6px}
+.navigation-group+.navigation-group{margin-top:18px}
+.workspace-navigation .nav-label{margin:0 10px 7px;text-transform:uppercase;font-size:9px;letter-spacing:1px}
+.workspace-navigation .nav-item{padding:10px 10px;font-size:12px;margin:2px 0;min-height:40px;line-height:1.3}
+.workspace-navigation .nav-item>span:first-of-type{overflow-wrap:anywhere}
+.workspace-navigation .sidebar-bottom{flex-shrink:0;border-top:1px solid var(--line);padding-top:5px}
+.workspace-navigation .guide-button{margin:12px 0;min-height:32px}
+.workspace-navigation .exercise-pack{margin:12px 0}
+.navigation-toggle,.navigation-close,.navigation-backdrop{display:none}
+.route-content{margin-left:235px;width:calc(100% - 235px);min-width:0}
+.route-content main{margin:0 auto;width:100%}
+.route-content .page-heading{flex-wrap:wrap;gap:14px}
+.route-content .page-heading>a{max-width:100%}
+@media(max-width:1250px){.route-content{margin-left:200px;width:calc(100% - 200px)}}
+@media(max-width:1000px){
+ .workspace-navigation{width:235px;padding:24px 17px 16px;transform:translateX(-100%);visibility:hidden;z-index:62}
+ .workspace-navigation.navigation-open{transform:none;visibility:visible}
+ .workspace-navigation .brand{margin:0 14px 22px;font-size:24px}
+ .workspace-navigation .brand>span:last-child,.workspace-navigation .nav-label,.workspace-navigation .nav-item>span,.workspace-navigation .sidebar-bottom .exercise-pack,.workspace-navigation .guide-button,.workspace-navigation .user div{display:block}
+ .workspace-navigation .nav-item{justify-content:flex-start;padding:10px;font-size:12px;gap:12px}
+ .workspace-navigation .guide-button{display:flex}
+ .workspace-navigation .nav-item svg{width:19px}
+ .workspace-navigation .sidebar-bottom .user{justify-content:flex-start}
+ .app-shell>main,.route-content{margin-left:0;width:100%;padding-top:54px}
+ .route-content main{padding-top:20px}
+ .navigation-toggle{display:flex;position:fixed;inset:0 0 auto 0;z-index:60;align-items:center;gap:12px;text-align:left;height:54px;background:#0e1516;color:var(--lime);border-bottom:1px solid var(--line);padding:0 18px;font-size:13px}
+ .navigation-toggle span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .navigation-close{display:block;position:absolute;top:12px;right:10px;background:none;color:var(--muted);padding:5px}
+ .navigation-backdrop{display:block;position:fixed;inset:0;background:#0008;z-index:61}
+ .guide-modal{max-height:calc(100dvh - 30px);overflow:auto}
+}
+.modal-backdrop{z-index:70}
