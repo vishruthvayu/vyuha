@@ -106,7 +106,7 @@ export function CrewHistoryResults({ data }: { data: CrewHistoryData }) {
           <h4>Accepted role-attributed decisions</h4>
           {session.timeline_truncated && (
             <p>
-              Showing the latest100 of {session.timeline_total_actions} accepted
+              Showing the latest 100 of {session.timeline_total_actions} accepted
               decisions. Open the AAR for the complete log.
             </p>
           )}
@@ -233,7 +233,7 @@ export default function CrewOfficerTools({ createdId }: { createdId: string }) {
           />
         </label>
         <button
-          className="button"
+          className="button subtle"
           disabled={!crewId || busy}
           onClick={() => void loadMembers()}
         >
@@ -268,14 +268,14 @@ export default function CrewOfficerTools({ createdId }: { createdId: string }) {
                     : new Date(member.expires_at * 1000).toISOString()}
                 </p>
                 <button
-                  className="button"
+                  className="button subtle"
                   disabled={busy}
                   onClick={() => void update(member, "rotate")}
                 >
                   Rotate {member.callsign} code
                 </button>
                 <button
-                  className="button"
+                  className="button subtle"
                   disabled={busy || member.status === "revoked"}
                   onClick={() => void update(member, "revoke")}
                 >
@@ -299,7 +299,7 @@ export default function CrewOfficerTools({ createdId }: { createdId: string }) {
       <section className="panel" id="crew-history">
         <h2>Completed crew coordination history</h2>
         <button
-          className="button"
+          className="button subtle"
           disabled={busy}
           onClick={() => void loadHistory()}
         >

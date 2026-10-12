@@ -12,7 +12,7 @@ test('official requirement subset keeps the OR alternative and excludes quality-
 test('compliance view separates implementation from validation without a fabricated score',()=>{
  const html=renderToStaticMarkup(<ComplianceBoard manifest={manifest}/>);
  assert.match(html,/FINAL ACCEPTANCE PENDING/);assert.match(html,/Implementation and validation are separate/);
- assert.match(html,/A new independent audit score has not been recorded/);assert.match(html,/92 partial/);
+ assert.match(html,/A final independent acceptance score has not been recorded/);assert.match(html,/92 partial/);
  assert.match(html,/Scoped software tests pass; browser proof pending/);assert.match(html,/Physical validation pending/);
  assert.match(html,/not presented as additional verbatim official clauses/);assert.doesNotMatch(html,/Difficulty quality objective/);
 });

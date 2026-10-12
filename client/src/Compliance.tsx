@@ -87,8 +87,8 @@ export function ComplianceBoard({
         </p>
         <p>
           {manifest.independent_score === null
-            ? "A new independent audit score has not been recorded."
-            : `Recorded independent audit score: ${manifest.independent_score}/100.`}{" "}
+            ? "A final independent acceptance score has not been recorded."
+            : `Recorded final independent acceptance score: ${manifest.independent_score}/100.`}{" "}
           {manifest.score_note}
         </p>
         <p>{manifest.source.description}</p>
