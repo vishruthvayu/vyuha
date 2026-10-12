@@ -19,8 +19,8 @@ test('route coverage: every actual renderer has a canonical discoverability poli
   }
  }
 });
-test('navigation policies retain all eleven known page paths and have no duplicate links',()=>{
- assert.deepEqual(routes.map(r=>r.path).sort(),['/','/rapid-id','/unit','/instructor','/analytics','/exercises','/recorded','/transfer','/system/evidence','/evaluation','/system/benchmark'].sort());
+test('navigation policies retain all baseline page paths and finale pages and have no duplicate links',()=>{
+ assert.deepEqual(routes.map(r=>r.path).sort(),['/','/rapid-id','/unit','/instructor','/analytics','/exercises','/recorded','/transfer','/system/evidence','/evaluation','/system/benchmark','/system/compliance','/crew'].sort());
  assert.equal(new Set(routes.map(r=>r.path)).size,routes.length);
  assert.equal(new Set(navigationItems.map(n=>n.id)).size,navigationItems.length);
  assert.equal(new Set(navigationItems.map(n=>n.href)).size,navigationItems.length);

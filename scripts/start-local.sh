@@ -11,6 +11,9 @@ fi
 if [ ! -d client/node_modules ]; then
  (cd client && npm ci --cache "${TMPDIR:-/tmp}/vyuha-npm-cache" --no-audit --no-fund) || { echo 'Frontend setup failed. First installation requires internet.' >&2; exit 1; }
 fi
+if ! .venv/bin/python -c 'from server.auth import credential_path; raise SystemExit(0 if credential_path().is_file() else 1)'; then
+ .venv/bin/python scripts/setup-auth.py
+fi
 (cd client && npm run build)
 port="${VYUHA_PORT:-8000}"
 printf '\nVYUHA is available at http://127.0.0.1:%s\n\n' "$port"

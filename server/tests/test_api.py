@@ -8,7 +8,14 @@ from server.engine import Simulation, ideal, score, civil
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setattr(storage, "DB_PATH", tmp_path / "sessions.db")
+    from server.auth import provision
+    import secrets
+    password=secrets.token_urlsafe(24)
+    provision(password)
     with TestClient(app) as client:
+        login=client.post('/api/v1/auth/login',json={'password':password})
+        assert login.status_code==200
+        client.headers['Authorization']='Bearer '+login.json()['token']
         yield client
 
 

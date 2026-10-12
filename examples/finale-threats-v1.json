@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "id": "illustrative-threat-library-v1",
+  "label": "Illustrative training research parameters; not operational equipment specifications",
+  "units": {
+    "distance": "m",
+    "speed": "m/s",
+    "altitude": "m",
+    "time": "s"
+  },
+  "profiles": {
+    "hostile_quad": {
+      "kind": "quad",
+      "identity": "hostile",
+      "rf": true,
+      "speed_mps": [
+        8,
+        18
+      ],
+      "altitude_m": [
+        15,
+        90
+      ]
+    },
+    "no_rf_fpv": {
+      "kind": "fiber_fpv",
+      "identity": "hostile",
+      "rf": false,
+      "speed_mps": [
+        20,
+        35
+      ],
+      "altitude_m": [
+        4,
+        30
+      ]
+    },
+    "fixed_wing": {
+      "kind": "fixed_wing",
+      "identity": "hostile",
+      "rf": false,
+      "speed_mps": [
+        25,
+        42
+      ],
+      "altitude_m": [
+        40,
+        180
+      ]
+    },
+    "bird": {
+      "kind": "bird",
+      "identity": "neutral",
+      "rf": false,
+      "speed_mps": [
+        4,
+        12
+      ],
+      "altitude_m": [
+        15,
+        80
+      ]
+    },
+    "friendly_uav": {
+      "kind": "quad",
+      "identity": "friendly",
+      "rf": true,
+      "speed_mps": [
+        8,
+        18
+      ],
+      "altitude_m": [
+        20,
+        100
+      ]
+    },
+    "civil_uav": {
+      "kind": "quad",
+      "identity": "neutral",
+      "rf": true,
+      "speed_mps": [
+        8,
+        18
+      ],
+      "altitude_m": [
+        20,
+        100
+      ],
+      "registration_beacon": true
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import {testPython} from './test-python';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
@@ -6,7 +7,7 @@ import {EvidenceView,GhostPanel,GhostTimeline,timelineSeek,actionLabel,ReplayTra
 import {replay} from './sim';
 import type {Record as TrainingRecord} from './types';
 
-const generated=spawnSync('.venv/bin/python',['-c',`import json
+const generated=spawnSync(testPython(),['-c',`import json
 from server.engine import make_scenario
 from server.review import build_review
 spec=make_scenario()
@@ -42,3 +43,5 @@ test('device-only scores do not produce client-generated Ghost expectations',()=
 test('same-tick designation seek shows unmodified prior classification',()=>{const d=record.decision_reviews!.find(d=>d.track_id==='T9'&&d.decision_kind==='detection')!;const state=replay(record.scenario,record.events,d.tick,record.commands,d.order??undefined).state;assert.equal(state.tracks.find(t=>t.id==='T9')!.designated,null);assert.equal(actionLabel(d.trainee_action),'Designate');});
 
 test('replay contact history uses observed contacts and trainee labels across seek boundaries',()=>{const before=renderToStaticMarkup(<ReplayTracks state={replay(record.scenario,record.events,0,record.commands).state} onSelect={()=>{}}/>);assert.doesNotMatch(before,/T9|No-RF FPV/);const after=renderToStaticMarkup(<ReplayTracks state={replay(record.scenario,record.events,31,record.commands).state} onSelect={()=>{}}/>);assert.match(after,/Replay track T9/);assert.match(after,/No-RF FPV/);assert.match(after,/active/);});
+
+test('detection-only optics never print undefined or fabricate identifying shape',()=>{const r=structuredClone(mistake(record));r.evidence.visual={available:true,silhouette:null};const output=renderToStaticMarkup(<EvidenceView review={r}/>);assert.match(output,/Detection only/);assert.doesNotMatch(output,/undefined|<dd>multirotor silhouette<\/dd>/);});

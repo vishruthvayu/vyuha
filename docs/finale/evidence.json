@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-12",
+  "acceptance": "CANDIDATE \u2014 SOFTWARE REGRESSION PASSED; FINAL RELEASE ACCEPTANCE PENDING",
+  "branch": "feature/vyuha-finale-edition",
+  "baseline_commit": "2ca96105044ad6a14952d74db619e20006c26eca",
+  "source_tree_sha256": "580e8fcaf3c9f041c848ab170b630b6b18cca7e5b9a362e452abb3b5011f2633",
+  "historical_wan": {
+    "status": "PASSED \u2014 TEAM CONFIRMED (historical, 2026-10-04)",
+    "reported_scope": "Windows officer laptop + phone browser + common local router. Internet unavailable on both; phone joined/completed a drill; consistent score and officer-visible result. Exact build not supplied; new finale build remains unvalidated physically."
+  },
+  "remaining": [
+    "Remaining42 PARTIAL audit items and independent final acceptance",
+    "Current-build physical/device HTTPS trust and native platform validation",
+    "Complete browser/mobile/recorded/transfer/analytics and performance/concurrency/outage/clean-clone checks",
+    "Validated new release/tag before any final PPT/video/submission media"
+  ],
+  "tests": {
+    "backend": {
+      "passed": 418,
+      "failed": 0,
+      "seconds": 501.31
+    },
+    "frontend": {
+      "passed": 125,
+      "failed": 0,
+      "milliseconds": 97461.306833
+    },
+    "production_build": "PASS",
+    "offline_assets": 26,
+    "offline_cache": "5e9e95c42d37",
+    "historical_baseline": 18,
+    "historical_current": 22,
+    "unchanged_legacy_hashes": true
+  },
+  "parity": {
+    "original": 312,
+    "finale_immediate": {
+      "scenarios": 32,
+      "checkpoints": 544
+    },
+    "finale_delayed": {
+      "scenarios": 18,
+      "checkpoints": 288
+    },
+    "sensor_component": 1920,
+    "motion_component": 7452,
+    "fusion_advice": 64
+  },
+  "independent_audit": {
+    "status": "PROVISIONAL",
+    "score": 81,
+    "final_score": null,
+    "scoped_pass": 50,
+    "partial": 42,
+    "not_applicable": 1
+  },
+  "native_platform_validation": {
+    "status": "PENDING",
+    "reason": "User requested native Windows/Linux validation remain pending on2026-10-12"
+  },
+  "receipts": [
+    "TEST-RESULTS.md",
+    "BROWSER-ACCEPTANCE.json",
+    "TLS-SERVICE-RECEIPT.json",
+    "CREW-TRANSFER-RECEIPT.json",
+    "TRANSFER-FINALE-RECEIPT.json",
+    "INDEPENDENT-CANDIDATE-RECEIPT.json"
+  ]
+}

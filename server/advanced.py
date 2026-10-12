@@ -1,6 +1,7 @@
 """Exercise library, recognition practice and ledger-based historical analytics.
 
-All endpoints are local-network prototype interfaces, without authenticated roles.
+Officer mutations and unit administration require expiring bearer authentication.
+Trainee identity still relies on trusted LAN capabilities.
 """
 import copy,json,statistics,uuid,os
 from collections import Counter

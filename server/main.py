@@ -30,7 +30,9 @@ async def lifespan(app):
 app = FastAPI(title="VYUHA local training API", version="0.2.0", lifespan=lifespan)
 from .hardening import BoundedJSON
 app.add_middleware(BoundedJSON)
-app.add_middleware(CORSMiddleware, allow_origins=["http://127.0.0.1:5173", "http://localhost:5173"], allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
+app.add_middleware(CORSMiddleware, allow_origins=["http://127.0.0.1:5173", "http://localhost:5173"], allow_methods=["GET", "POST"], allow_headers=["Content-Type", "Authorization", "X-VYUHA-Crew-Token"])
+from .auth import install as install_auth
+install_auth(app)
 
 
 @app.get("/api/v1/health")
@@ -56,6 +58,10 @@ def profile(trainee):
     # Established profiles need a consistent read snapshot, not a SQLite writer lock.
     with connect() as db:
         db.execute('BEGIN')
+        from .crew import is_shared_owner
+        if is_shared_owner(db,trainee):
+            from .director import SKILLS
+            return TrainingProfile(trainee=trainee,sessions=0,skills={s:dict(alpha=1.,beta=1.,observations=0,mean=.5,updated_at=None,last_session_id=None) for s in SKILLS},outcomes=[],unprocessed_sessions=[],version='shared-crew-not-individual').model_dump()
         ready=db.execute('SELECT COUNT(*) FROM skill_profiles WHERE trainee=?',(trainee,)).fetchone()[0]==4
         pending=db.execute("SELECT 1 FROM sessions s LEFT JOIN skill_outcomes o ON o.session_id=s.id WHERE s.trainee=? AND s.status='completed' AND o.session_id IS NULL LIMIT 1",(trainee,)).fetchone()
         if ready and not pending:return read_profile(db,trainee,ensure=False)
@@ -89,6 +95,8 @@ def generate(req: Generate):
         from .exercises import PACKS,enrich,AuthorScenario,compile_authored
         from .advanced import selected_pack
         with connect() as db:
+            from .crew import is_shared_owner
+            if is_shared_owner(db,req.trainee):raise HTTPException(422,'Shared crew aggregate cannot own an individual session')
             member=db.execute('SELECT unit_id FROM trainees WHERE id=?',(req.trainee,)).fetchone()
             pack=req.pack_id or selected_pack(db,member['unit_id'] if member else 'local')
         if pack not in PACKS:raise HTTPException(422,'Unknown doctrine pack')
@@ -104,6 +112,9 @@ def generate(req: Generate):
 
 @app.post("/api/v1/sessions", status_code=201)
 def create_session(req: CreateSession):
+    from .crew import is_shared_owner
+    with connect() as db:
+        if is_shared_owner(db,req.trainee):raise HTTPException(422,'Shared crew aggregate cannot own an individual session')
     session_id = str(uuid.uuid4())
     with connect() as db:
         db.execute("BEGIN IMMEDIATE")
@@ -169,6 +180,9 @@ def complete(session_id: str, req: Complete):
         row = session_record(db,session_id)
         if row['status']=='completed':return json.loads(row['scorecard'])
         log=logged_events(db,session_id);commands=applied_commands(db,session_id)
+    spec=json.loads(row['spec'])
+    if req.end_tick!=round(spec['duration']*30):raise HTTPException(422,'Completion must use the frozen scenario duration')
+    if req.execution_tick is not None and req.execution_tick>req.end_tick:raise HTTPException(422,'Observed horizon exceeds frozen duration')
     if req.execution_tick is not None and any(e['tick']>req.execution_tick for e in log+commands):
         raise HTTPException(422,'Recorded action exceeds observed exercise horizon')
     observed=req.execution_tick if req.execution_tick is not None else json.loads(row['control_state'])['tick'] if row['control_state'] else max([e['tick'] for e in log+commands],default=0)
@@ -265,6 +279,7 @@ def issue_command(session_id:str, req:InstructorCommand):
     with connect() as db:
         db.execute("BEGIN IMMEDIATE")
         session = session_record(db,session_id)
+        if req.type in ['sensor_fault','sensor_restore'] and req.payload.sensor in ['eo','ir'] and json.loads(session['spec']).get('engine_version')!='vyuha-0.4.0':raise HTTPException(422,'EO/IR fault controls require a finale scenario')
         old = db.execute("SELECT * FROM instructor_commands WHERE session_id=? AND command_id=?",(session_id,req.command_id)).fetchone()
         if old:
             if old["body"] != body:
@@ -297,6 +312,7 @@ def control_state(session_id:str, req:ControlState):
     with connect() as db:
         db.execute("BEGIN IMMEDIATE")
         session = session_record(db,session_id)
+        if req.tick>round(json.loads(session['spec'])['duration']*30):raise HTTPException(422,'Telemetry exceeds frozen scenario duration')
         if session["status"] != "active":
             raise HTTPException(409,"Session already completed")
         if [a.seq for a in req.applied] != list(range(1,len(req.applied)+1)):
@@ -334,8 +350,25 @@ from .portable import router as portable_router
 app.include_router(portable_router)
 from .recordings import router as recording_router
 from .evaluation import router as evaluation_router
+from .counterfactual import router as counterfactual_router
+from .raid_api import router as raid_router
+from .white_cell import router as white_cell_router
 app.include_router(recording_router)
 app.include_router(evaluation_router)
+app.include_router(counterfactual_router)
+app.include_router(raid_router)
+app.include_router(white_cell_router)
+from .director_v2 import router as director_v2_router
+app.include_router(director_v2_router)
+from .compliance import router as compliance_router
+app.include_router(compliance_router)
+from .crew import router as crew_router,CrewSessionBoundary
+app.include_router(crew_router)
+from .fusion import router as fusion_router
+app.include_router(fusion_router)
+from .reference_policy import router as reference_router
+app.include_router(reference_router)
+app.add_middleware(CrewSessionBoundary)
 
 DIST = Path(__file__).resolve().parent.parent / "client" / "dist"
 if DIST.is_dir():

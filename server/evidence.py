@@ -6,9 +6,9 @@ ROOT=Path(__file__).resolve().parents[1]
 router=APIRouter(prefix='/api/v1')
 def source_hash():
  h=hashlib.sha256()
- for folder in ['server','client/src','client/public','client/scripts','scripts']:
+ for folder in ['server','client/src','client/public','client/scripts','scripts','examples']:
   for p in sorted((ROOT/folder).rglob('*')):
-   if p.is_file() and p.suffix in ['.py','.sh','.ts','.tsx','.css','.svg','.json','.mjs'] and '__pycache__' not in p.parts:
+   if p.is_file() and p.suffix in ['.py','.sh','.ps1','.ts','.tsx','.css','.svg','.json','.mjs'] and '__pycache__' not in p.parts:
     h.update(str(p.relative_to(ROOT)).encode());h.update(p.read_bytes())
  for name in ['client/package.json','client/package-lock.json','server/requirements.lock.txt']:
   p=ROOT/name;h.update(name.encode());h.update(p.read_bytes())
@@ -22,4 +22,8 @@ def evidence():
  if not p.exists():raise HTTPException(503,'Final validation manifest has not been generated yet')
  result=json.loads(p.read_text());result['source_matches']=result.get('source_tree_sha256')==source_hash()
  result['freshness_note']='Manifest source hash matches this checkout.' if result['source_matches'] else 'Source changed after validation. These are historical measurements; rerun release validation before presenting them as current.'
+ candidate=ROOT/'docs/finale/evidence.json'
+ if candidate.exists():
+  result['finale']=json.loads(candidate.read_text())
+  result['finale']['source_matches']=result['finale'].get('source_tree_sha256')==source_hash()
  return result

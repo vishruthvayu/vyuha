@@ -1,0 +1,22 @@
+{
+  "scope": "Candidate software checks on macOS; disposable synthetic databases only",
+  "transfer_reproduction": {
+    "before_browser_roundtrip_status": 422,
+    "before_response": {"detail": "Bundle integrity check failed; no data imported"},
+    "after_browser_roundtrip_status": 200,
+    "after_inserted_sessions": 0,
+    "after_skipped_sessions": 2,
+    "new_format": "vyuha-json-number-v2",
+    "legacy_original_files_supported": true,
+    "hmac_schema_reconstruction_bypassed": false
+  },
+  "targeted_backend": {"passed": 39, "failed": 0, "command": ".venv/bin/python -m pytest -p no:cacheprovider -q server/tests/test_portable_browser.py server/tests/test_local_cert.py server/tests/test_hardening.py"},
+  "combined_frontend_at_check": {"passed": 81, "failed": 0, "skipped": 0, "command": "npm test --prefix client", "note": "Includes simultaneous integrated visibility/clock work at test time; not final release count."},
+  "typescript": {"result": "PASS", "command": "./client/node_modules/.bin/tsc --project client/tsconfig.json --noEmit"},
+  "local_certificate": {"generation": "PASS", "ip_san_verification": "PASS", "dns_san_verification": "PASS", "wrong_ip_rejected": true, "existing_key_overwrite_rejected": true, "private_file_modes_checked_on_macOS": true, "system_trust_modified": false},
+  "physical_windows_launch": "NOT PERFORMED",
+  "physical_linux_launch": "NOT PERFORMED",
+  "powershell_runtime_execution": "NOT PERFORMED; pwsh unavailable on this Mac",
+  "browser_trust_on_separate_devices": "NOT PERFORMED",
+  "limitations": ["Previously rewritten legacy bundle cannot be repaired by bypassing HMAC; use original file or current re-export.", "Instructor authentication integration and final all-suite regression are owned by the integration workstream.", "No new physical network or human training claim follows from these software checks."]
+}

@@ -1,3 +1,4 @@
+import {testPython} from './test-python';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
@@ -8,7 +9,8 @@ import {recordedObservations,type Recording} from './observations';
 import {audioCue} from './LocalAudio';
 import {qualityAfterSamples,pixelRatio} from './quality';
 import {parseJSONImport} from './import-json';
-import {scaleScenario,median} from './Benchmark';
+import {scaleScenario,finaleScaleScenario,median} from './Benchmark';
+import {Simulation} from './sim';
 import Evidence from './Evidence';
 import Transfer from './Transfer';
 import Evaluation from './Evaluation';
@@ -16,7 +18,7 @@ import Recorded from './Recorded';
 import type {Action,Scenario,ScoreCard,Track} from './types';
 
 test('rural terrain/fog preserve score and sensor parity at 54 new checkpoints; recorded adapters match',()=>{
- const r=spawnSync('.venv/bin/python',['-m','server.tests.hardening_fixtures'],{cwd:'..',encoding:'utf8',maxBuffer:8*1024*1024});assert.equal(r.status,0,r.stderr);const f=JSON.parse(r.stdout) as {rural:{scenario:Scenario;events:Action[];checkpoints:{tick:number;radar_status:string;rf_available:boolean;tracks:unknown[]}[];scorecard:ScoreCard}[];recording:Recording;recorded_observations:unknown[]};assert.equal(f.rural.length,6);
+ const r=spawnSync(testPython(),['-m','server.tests.hardening_fixtures'],{cwd:'..',encoding:'utf8',maxBuffer:8*1024*1024});assert.equal(r.status,0,r.stderr);const f=JSON.parse(r.stdout) as {rural:{scenario:Scenario;events:Action[];checkpoints:{tick:number;radar_status:string;rf_available:boolean;tracks:unknown[]}[];scorecard:ScoreCard}[];recording:Recording;recorded_observations:unknown[]};assert.equal(f.rural.length,6);
  for(const x of f.rural){assert.equal(x.scenario.terrain_id,'rural_forward_base');for(const c of x.checkpoints){const s=replay(x.scenario,x.events.filter(e=>e.tick<=c.tick),c.tick).state;assert.deepEqual({tick:s.tick,radar_status:s.radarStatus,rf_available:s.rfAvailable,tracks:s.tracks.map(({id,detected,resolved,impact,radar,thermal,classification,declared,attempts})=>({id,detected,resolved,impact,radar,thermal,classification,declared,attempts}))},c);}assert.deepEqual(score(replay(x.scenario,x.events,2250)),x.scorecard);}
  assert.deepEqual([0,29,30,299,300].map(t=>recordedObservations(f.recording,t)),f.recorded_observations);
 });
@@ -40,7 +42,7 @@ test('scale fixtures keep all contact kinds, deterministic positions and support
 
 test('evidence/import interfaces show limitations without fabricated final validation claims',()=>{
  const e=renderToStaticMarkup(<Evidence/>);assert.match(e,/versioned validation manifest/);assert.doesNotMatch(e,/106 passed|130 passed/);
- const t=renderToStaticMarkup(<Transfer/>);assert.match(t,/HMAC-SHA256/);assert.match(t,/No production authentication/);assert.match(t,/Validate and import bundle/);
+ const t=renderToStaticMarkup(<Transfer/>);assert.match(t,/HMAC-SHA256/);assert.match(t,/Authenticated officer transfer/);assert.match(t,/Validate and import bundle/);
  const r=renderToStaticMarkup(<Recorded/>);assert.match(r,/No tactical score/);assert.match(r,/missing ground truth remains unassessable/);assert.match(r,/Validate and import JSON/);
 });
 
@@ -57,3 +59,5 @@ test('bulk transfer timeout can exceed the six-second tactical request timeout w
  try{assert.deepEqual(await api('/health'),{accepted:true});await api('/bundle/import',{schema_version:1},120000);assert.deepEqual(limits,[6000,120000]);assert.equal(requests[0].method,'GET');assert.equal(requests[1].method,'POST');assert.equal(requests[1].body,'{"schema_version":1}');}
  finally{globalThis.fetch=oldFetch;AbortSignal.timeout=oldTimeout;}
 });
+
+test('Finale benchmark exercises dispatched sensor truth at every supported contact scale',()=>{for(const n of [8,25,50,100,200]){const scenario=finaleScaleScenario(n);const sim=new Simulation(scenario);assert.equal(scenario.version,2);assert.equal(scenario.engine_version,'vyuha-0.4.0');assert.equal(sim.snapshot().tracks.length,n);for(let i=0;i<31;i++)sim.step();assert.ok(sim.snapshot().tracks.every(t=>t.observation?.version==='vyuha-0.4.0'));assert.equal(sim.snapshot().response?.kinetic_ammo_remaining,8);}});

@@ -1,4 +1,4 @@
-"""Small trusted-LAN unit registry/analytics. No authentication or unit Director."""
+"""Small trusted-LAN unit registry/analytics. Officer administration authenticated; trainee callsigns are trusted LAN identities."""
 import json,uuid
 from collections import Counter
 from datetime import datetime,timezone,timedelta
@@ -118,7 +118,7 @@ def status(uid:str):
         active=db.execute("SELECT COUNT(*) FROM sessions WHERE unit_id=? AND status='active' AND last_seen>?",(uid,(datetime.now(timezone.utc)-timedelta(seconds=6)).isoformat())).fetchone()[0]
         pending=db.execute('SELECT COUNT(*) FROM exercise_assignments a JOIN exercise_groups g ON g.id=a.group_id WHERE g.unit_id=? AND a.accepted_at IS NULL',(uid,)).fetchone()[0]
     return dict(status='healthy' if healthy else 'database error',database='ok' if healthy else 'error',active_sessions=active,connected_clients=connected,pending_assignments=pending,
-                pending_client_sync=None,sync_note='Client-local event queues cannot be measured while disconnected.',offline_assets='bundled; cached reload requires a browser-trusted secure origin',security='trusted local network prototype; no authentication')
+                pending_client_sync=None,sync_note='Client-local event queues cannot be measured while disconnected.',offline_assets='bundled; cached reload requires a browser-trusted secure origin',security='Expiring officer authentication protects commands and administration; trainee identity/session URLs still require a trusted LAN; use browser-trusted HTTPS')
 
 @router.post('/units/{uid}/exercises',status_code=201)
 def launch_group(uid:str,req:GroupLaunch):

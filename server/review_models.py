@@ -5,7 +5,7 @@ from .models import Action, StrictModel
 
 Skill = Literal['detection', 'classification_iff', 'effector_choice', 'degraded_sensor_response']
 Reason = Literal[
-    'EFFECTOR_UNAVAILABLE', 'PRIORITY_INVERSION', 'PRIORITY_CORRECT', 'DETECTION_ON_TIME', 'DETECTION_LATE', 'THREAT_MISSED', 'DETECTION_PENDING', 'NO_EVIDENCE_AVAILABLE',
+    'RESPONSE_RESOURCE_BLOCKED', 'EFFECTOR_UNAVAILABLE', 'PRIORITY_INVERSION', 'PRIORITY_CORRECT', 'DETECTION_ON_TIME', 'DETECTION_LATE', 'THREAT_MISSED', 'DETECTION_PENDING', 'NO_EVIDENCE_AVAILABLE',
     'CORRECT_CLASSIFICATION', 'WRONG_TYPE', 'WRONG_CATEGORY', 'FRIENDLY_MISIDENTIFIED', 'BIRD_MISIDENTIFIED',
     'CLASSIFICATION_NOT_RECORDED', 'CORRECT_HOLD', 'CORRECT_RF_JAM', 'CORRECT_KINETIC',
     'NO_RF_JAM_INEFFECTIVE', 'FRIENDLY_ENGAGED', 'NEUTRAL_ENGAGED', 'KINETIC_OUT_OF_RANGE',
@@ -21,7 +21,7 @@ class RadarEvidence(StrictModel):
 class RFEvidence(StrictModel):
     available: bool
     signal: bool | None
-    iff: Literal['friendly_reply', 'no_reply', 'unavailable']
+    iff: Literal['friendly_reply', 'registered_civil', 'no_reply', 'unavailable']
 
 
 class VisualEvidence(StrictModel):

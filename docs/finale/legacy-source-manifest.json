@@ -1,0 +1,31 @@
+{
+  "source_commit": "2ca96105044ad6a14952d74db619e20006c26eca",
+  "files": {
+    "server/engine.py": {
+      "frozen_file": "server/engine_v1_0_1.py",
+      "sha256": "9fe175d64d806ab29acd2fc5ae93b1159af778d98a0d7cad85affd7a23fed2fc",
+      "frozen_sha256": "092229c1ee922543d5621eccf17fde4bbb1de666d64a34446fd893b1849bf0db"
+    },
+    "client/src/sim.ts": {
+      "frozen_file": "client/src/sim_v1_0_1.ts",
+      "sha256": "d5aa362457167236fd6ba78b1583166d1a59caa165bbba057cd7daf7367be16e",
+      "frozen_sha256": "b4ad04b921c0652ec1c1a283c01beb543e1cff1f8a171896a9b8acf509679014"
+    },
+    "server/review.py": {
+      "frozen_file": "server/review_v1_0_1.py",
+      "sha256": "8ffbab518915390e394bf69a2415182fe2386f24f0eb230e91198ff2bb901a65",
+      "frozen_sha256": "088fc768c379b19171963e4061a53a271193173396280f68b31ad55fb3d06526"
+    },
+    "server/prioritisation.py": {
+      "frozen_file": "server/prioritisation_v1_0_1.py",
+      "sha256": "fa0425a02d2babdcb916d1f8232742e7374a6edef797f0c60b2f271d66fc868f",
+      "frozen_sha256": "fa0425a02d2babdcb916d1f8232742e7374a6edef797f0c60b2f271d66fc868f"
+    },
+    "client/src/prioritisation.ts": {
+      "frozen_file": "client/src/prioritisation_v1_0_1.ts",
+      "sha256": "8a6394af08c8278e2a24fcf7daf3fc78f4a893cbb682170a8b0a9aecedd27fa3",
+      "frozen_sha256": "a32f0dd9e07f2b6d96c1300cb027a2cb817aaaaf05054f20ea629b29ce800ff5"
+    }
+  },
+  "note": "Source hashes identify exact released bytes. Frozen files only change relative imports to frozen dependencies; algorithm bodies are unchanged."
+}

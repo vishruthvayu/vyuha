@@ -5,6 +5,7 @@ export const navigationSections = ['Workspace', 'Unit', 'Exercises', 'Data / ope
 // Every renderer must have a policy. These are pages, not API or asset URLs.
 export const routes = [
  {id:'training', path:'/', title:'Training ground', section:'Workspace', policy:'NAVIGATED', identity:true, status:'ACTIVE', audience:'Trainee', reason:'Primary tactical workspace; also contains review, profile and Director.'},
+ {id:'crew', path:'/crew', title:'Shared crew', section:'Workspace', policy:'NAVIGATED', identity:false, status:'EXPERIMENTAL', audience:'Crew / instructor', reason:'Shared authoritative spotter and responder exercise with role capabilities.'},
  {id:'rapid', path:'/rapid-id', title:'Rapid ID', section:'Workspace', policy:'NAVIGATED', identity:true, status:'ACTIVE', audience:'Trainee', reason:'Focused recognition practice.'},
  {id:'unit', path:'/unit', title:'Unit training overview', section:'Unit', policy:'NAVIGATED', identity:false, status:'ACTIVE', audience:'Officer / instructor', reason:'Unit profiles and completed session history.'},
  {id:'instructor', path:'/instructor', title:'Instructor console', section:'Unit', policy:'NAVIGATED', identity:false, status:'ACTIVE', audience:'Instructor', reason:'Independent session monitoring and commands.'},
@@ -12,6 +13,7 @@ export const routes = [
  {id:'exercises', path:'/exercises', title:'Exercise studio', section:'Exercises', policy:'NAVIGATED', identity:false, status:'ACTIVE', audience:'Instructor', reason:'Author, save and assign frozen exercises.'},
  {id:'recorded', path:'/recorded', title:'Recorded practice', section:'Exercises', policy:'NAVIGATED', identity:true, status:'EXPERIMENTAL', audience:'Trainee / instructor', reason:'Implemented bounded, unscored recorded-observation practice.'},
  {id:'transfer', path:'/transfer', title:'Data transfer', section:'Data / operations', policy:'NAVIGATED', identity:false, status:'ACTIVE', audience:'Officer / data operator', reason:'Export/import HMAC bundles; needs a configured shared key for transfer.'},
+ {id:'compliance', path:'/system/compliance', title:'PS compliance board', section:'System / evidence', policy:'NAVIGATED', identity:false, status:'ACTIVE', audience:'All / reviewer', reason:'Official requirement provenance and scoped candidate acceptance.'},
  {id:'evidence', path:'/system/evidence', title:'System evidence', section:'System / evidence', policy:'NAVIGATED', identity:false, status:'ACTIVE', audience:'All / reviewer', reason:'Measured validation evidence and limitations.'},
  {id:'evaluation', path:'/evaluation', title:'Informal evaluation', section:null, policy:'SECONDARY_REACHABLE', identity:true, status:'EXPERIMENTAL', audience:'Consenting pilot participant / facilitator', parent:'/rapid-id', reason:'Opt-in pilot protocol via Rapid ID; not a routine drill or an efficacy claim.'},
  {id:'benchmark', path:'/system/benchmark', title:'Device performance check', section:null, policy:'SECONDARY_REACHABLE', identity:false, status:'INTERNAL', audience:'Operator / engineering', parent:'/system/evidence', reason:'Engineering measurement via System evidence; avoid a frequent-workflow sidebar entry.'},
@@ -25,7 +27,7 @@ export const navigationItems: readonly NavigationItem[] = ([
  {id:'review', href:'/?view=aar', label:'After-action review', section:'Workspace', workspace:'aar'},
  {id:'director', href:'/?mode=adaptive', label:'Adaptive Director', section:'Workspace', workspace:'drill'},
 ] satisfies NavigationItem[]).sort((a,b)=>{
- const order:NavigationId[]=['training','review','rapid','director','unit','instructor','analytics','exercises','recorded','transfer','evidence'];
+ const order:NavigationId[]=['training','review','crew','rapid','director','unit','instructor','analytics','exercises','recorded','transfer','evidence','compliance'];
  return order.indexOf(a.id)-order.indexOf(b.id);
 });
 

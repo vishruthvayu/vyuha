@@ -1,0 +1,11 @@
+{
+ "version":1,
+ "id":"illustrative-local-response-v1",
+ "label":"Illustrative bounded training actions; not real weapon performance or official doctrine",
+ "units":{"distance":"m"},
+ "sensor_geometry":{"radar_range_m":3000,"day_camera_range_m":1500,"thermal_range_m":1200},
+ "effectors":{"hold":{"enabled":true},"rf_jam":{"enabled":true,"max_range_m":1500,"requires_rf_link":true},"kinetic":{"enabled":true,"max_range_m":1000}},
+ "engagement_channels":1,
+ "asset_radius_m":8,
+ "minimum_response_window_s":7
+}

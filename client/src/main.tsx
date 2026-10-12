@@ -6,9 +6,11 @@ import {UnitGateway} from './Unit';
 import Navigation from './Navigation';
 import {pageComponents} from './RoutePages';
 import {resolveRoute} from './routes';
+import OfficerGate from './OfficerGate';
 const route=resolveRoute(window.location.pathname);
 const Page=route&&pageComponents[route.id];
-const content=route&&Page?(route.identity?<UnitGateway fallbackNavigation={route.id==='training'?<Navigation/>:undefined}>{identity=><Page identity={identity}/>}</UnitGateway>:<Page/>):<main className="instructor-page"><h1>Page not found</h1><p>This URL is not a VYUHA workspace.</p><a href="/">Return to Training ground</a></main>;
+const rendered=route&&Page?(route.identity?<UnitGateway fallbackNavigation={route.id==='training'?<Navigation/>:undefined}>{identity=><Page identity={identity}/>}</UnitGateway>:<Page/>):<main className="instructor-page"><h1>Page not found</h1><p>This URL is not a VYUHA workspace.</p><a href="/">Return to Training ground</a></main>;
+const content=route&&['unit','instructor','exercises','transfer','evaluation'].includes(route.id)?<OfficerGate>{rendered}</OfficerGate>:rendered;
 createRoot(document.getElementById('root')!).render(<React.StrictMode><CapabilityTour/>{route?.id==='training'?<Suspense fallback={<><Navigation/><main><h1>Loading VYUHA…</h1><p role="status">Loading bundled application assets.</p></main></>}>{content}</Suspense>:<div className="app-shell route-shell"><Navigation/><div className="route-content"><header className="topbar"><div className="breadcrumb">{route?.section??'SUPPORT'} <span> / {route?.title??'PAGE NOT FOUND'}</span></div></header><Suspense fallback={<main><h1>Loading VYUHA…</h1><p role="status">Loading bundled application assets.</p></main>}>{content}</Suspense></div></div>}</React.StrictMode>);
 function offlineStatus(value:string){document.documentElement.dataset.offlineStatus=value;window.dispatchEvent(new Event('vyuha-offline-status'));}
 if(import.meta.env.PROD){

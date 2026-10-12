@@ -55,6 +55,12 @@ def init():
                 command_id TEXT NOT NULL, issued_at TEXT NOT NULL, body TEXT NOT NULL, tick INTEGER, timeline_order INTEGER,
                 PRIMARY KEY (session_id, seq), UNIQUE (session_id, command_id));
         """)
+        from .crew import ensure_schema as ensure_crew_schema
+        ensure_crew_schema(db)
+        from .fusion import ensure_schema as ensure_fusion_schema
+        ensure_fusion_schema(db)
+        from .portable_crew import ensure_schema as ensure_crew_archive_schema
+        ensure_crew_archive_schema(db)
         db.execute('INSERT OR IGNORE INTO transfer_origin VALUES (1,?)',(uuid.uuid4().hex,))
         columns = {r["name"] for r in db.execute("PRAGMA table_info(sessions)")}
         for name, definition in [("unit_id", "TEXT NOT NULL DEFAULT 'local'"), ("exercise_group_id", "TEXT"), ("last_seen", "TEXT"), ("control_state", "TEXT"), ("execution_tick", "INTEGER"), ("completed_at", "TEXT")]:

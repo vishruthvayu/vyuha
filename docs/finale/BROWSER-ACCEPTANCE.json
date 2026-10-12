@@ -1,0 +1,31 @@
+{
+  "recorded_date": "2026-10-12",
+  "scope": "Real Codex in-app browser UI and production assets on macOS, disposable SQLite DB, localhost; not physical LAN/WAN or platform certification",
+  "database": "disposable",
+  "individual_session": "6197565f-63d3-43e8-a7e5-f67f2ef24b04",
+  "crew_session": "004d97ec-c471-4162-9973-a8c1a80d6667",
+  "verified": [
+    "Officer sign-in and protected authoring",
+    "Compile/save frozen60s engine0.4 raid with Fusion and delayed responses",
+    "Select observed contact, designate, classify, attempt RF response",
+    "Pause with logical pending response, reload, matching callsign draft recovery",
+    "Server score and Ghost preserve observed/scoring horizon distinction",
+    "Fusion3 exposure receipts and1 optional confidence diagnostic after draft recovery",
+    "What-if kinetic branch0\u21925; original0 unchanged",
+    "Evidence-constrained comparison and Time Machine seek/follow",
+    "Two role clients with shared action attribution",
+    "Instructor pause/radar degradation/injected no-RF contact applied at T+29.53s, ordered5/6",
+    "White Cell observed/reference maps and updated9-contact/radar-jammed reconstruction"
+  ],
+  "pending": [
+    "Current-build mobile viewport",
+    "Current-build benchmark matrix",
+    "Recorded practice/analytics/transfer UI finish",
+    "New physical devices/HTTPS trust/native Windows/Linux"
+  ],
+  "limitations": [
+    "Synthetic decisions exercise mechanics; no human training-efficacy result",
+    "First crew rehearsal expired before decisions; second crew run performed attributed actions",
+    "Browser clients share one laptop; no second physical device inferred"
+  ]
+}

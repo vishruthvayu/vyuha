@@ -1,0 +1,25 @@
+{
+  "scope": "Disposable DB and seeded synthetic history; actual API export then standard JavaScript JSON.parse/JSON.stringify. No private history.",
+  "export_status": 200,
+  "original_import": {
+    "status": 200,
+    "json": {
+      "inserted_sessions": 0,
+      "skipped_sessions": 2,
+      "recordings": 1,
+      "profile_basis": "Rebuilt only from validated imported outcome ledger; supplied profile snapshots are informational.",
+      "integrity": "HMAC verified with local shared key; donor identity/authenticity not attested"
+    }
+  },
+  "browser_roundtrip_import": {
+    "status": 422,
+    "json": {
+      "detail": "Bundle integrity check failed; no data imported"
+    }
+  },
+  "numeric_change_example": {
+    "before": "\"alpha\":9.0",
+    "after": "\"alpha\":9"
+  },
+  "body_changed": true
+}

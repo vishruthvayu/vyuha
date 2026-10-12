@@ -1,3 +1,4 @@
+import {testPython} from './test-python';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
@@ -10,7 +11,7 @@ import {Trend} from './Analytics';
 import type {Action,AppliedCommand,Scenario,ScoreCard} from './types';
 
 test('all 15 tactic/pack combinations retain advanced engine, command and ranking parity at 135 checkpoints',()=>{
- const result=spawnSync('.venv/bin/python',['-m','server.tests.stage5_fixtures'],{cwd:'..',encoding:'utf8',maxBuffer:8*1024*1024});assert.equal(result.status,0,result.stderr);
+ const result=spawnSync(testPython(),['-m','server.tests.stage5_fixtures'],{cwd:'..',encoding:'utf8',maxBuffer:8*1024*1024});assert.equal(result.status,0,result.stderr);
  const fixtures=JSON.parse(result.stdout) as {scenario:Scenario;events:Action[];commands:AppliedCommand[];checkpoints:{tick:number;radar_status:string;rf_available:boolean;tracks:unknown[]}[];scorecard:ScoreCard}[];
  assert.equal(fixtures.length,15);
  for(const f of fixtures){for(const c of f.checkpoints){const s=replay(f.scenario,f.events.filter(a=>a.tick<=c.tick),c.tick,f.commands.filter(a=>a.tick<=c.tick)).state;assert.deepEqual({tick:s.tick,radar_status:s.radarStatus,rf_available:s.rfAvailable,tracks:s.tracks.map(({id,detected,resolved,impact,radar,thermal,classification,declared,attempts})=>({id,detected,resolved,impact,radar,thermal,classification,declared,attempts}))},c,`${f.scenario.doctrine?.id}:${f.scenario.red_force?.tactic}:${c.tick}`);}

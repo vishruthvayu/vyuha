@@ -1,0 +1,42 @@
+{
+  "status": "STANDALONE BACKEND VALIDATED; INTEGRATION PENDING",
+  "scope": "Synthetic seeded software checks; no human, physical LAN, calibrated sensor or operational capability claim",
+  "backend": {
+    "tests_passed": 117,
+    "tests_failed": 0,
+    "distinct_boundary_scenarios": 480,
+    "boundary_matrix": {
+      "duration_s": [
+        60,
+        90,
+        120,
+        180
+      ],
+      "difficulty": [
+        "foundational",
+        "standard",
+        "challenging"
+      ],
+      "family_count": 8,
+      "seeds": [
+        0,
+        1,
+        72,
+        482913,
+        4294967295
+      ]
+    },
+    "deterministic_repeat_checked": true,
+    "elapsed_seconds": 43.63
+  },
+  "typescript_motion_parity": "PENDING canonical copy and fixture execution",
+  "configuration": "Frozen explicit illustrative JSON copied into scenario",
+  "integration_dependencies": [
+    "New versioned server/browser engine dispatch",
+    "Sensor model baseline/uncertainty",
+    "API protection and real UI launch",
+    "Variable duration request/control/import schemas",
+    "Scenario Studio and Director integration",
+    "Browser validation and new-vs-historical regression"
+  ]
+}

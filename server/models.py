@@ -4,7 +4,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 class Action(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
-    tick: int = Field(ge=0, le=2250)
+    tick: int = Field(ge=0, le=5400)
     order: int | None = Field(default=None, ge=0, le=100000)
     k: Literal["designate", "classify", "engage"]
     track: str = Field(pattern=r"^T[1-9][0-9]{0,2}$")
@@ -47,8 +47,8 @@ class EventBatch(BaseModel):
 
 
 class Complete(BaseModel):
-    execution_tick: int | None = Field(default=None, ge=0, le=2250)
-    end_tick: int = Field(default=2250, ge=2250, le=2250)
+    execution_tick: int | None = Field(default=None, ge=0, le=5400)
+    end_tick: int = Field(default=2250, ge=1800, le=5400)
 
 
 class StrictModel(BaseModel):
@@ -70,18 +70,18 @@ class SwarmPayload(StrictModel):
 
 
 class FaultPayload(StrictModel):
-    sensor: Literal["radar", "rf"]
+    sensor: Literal["radar", "rf", "eo", "ir"]
     mode: Literal["jammed", "failed"]
 
     @model_validator(mode="after")
     def rf_cannot_jam(self):
-        if self.sensor == "rf" and self.mode != "failed":
-            raise ValueError("RF supports failure or restoration")
+        if self.sensor != "radar" and self.mode != "failed":
+            raise ValueError("RF/EO/IR support failure or restoration")
         return self
 
 
 class RestorePayload(StrictModel):
-    sensor: Literal["radar", "rf"]
+    sensor: Literal["radar", "rf", "eo", "ir"]
 
 
 class EnvironmentPayload(StrictModel):
@@ -127,14 +127,14 @@ InstructorCommand = Annotated[PauseCommand | ContactCommand | SwarmCommand | Fau
 
 class CommandAck(StrictModel):
     seq: int = Field(ge=1, le=100)
-    tick: int = Field(ge=0, le=2250)
+    tick: int = Field(ge=0, le=5400)
     order: int = Field(ge=0, le=100000)
 
 
 class ControlState(StrictModel):
-    tick: int = Field(ge=0, le=2250)
+    tick: int = Field(ge=0, le=5400)
     paused: bool
-    active_contacts: int = Field(ge=0, le=72)
+    active_contacts: int = Field(ge=0, le=264)
     radar_status: Literal["normal", "jammed", "failed"]
     rf_available: bool
     night: bool
