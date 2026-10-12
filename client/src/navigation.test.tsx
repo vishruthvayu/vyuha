@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {NavigationLinks} from './Navigation';
 import {pageComponents} from './RoutePages';
-import {routes,navigationItems,resolveRoute,activeNavigation,workspaceViewFromSearch,workspaceHref} from './routes';
+import {routes,navigationItems,resolveRoute,activeNavigation,workspaceViewFromSearch,workspaceHref,officerReviewRequested,officerReviewHref} from './routes';
 
 test('route coverage: every actual renderer has a canonical discoverability policy',()=>{
  assert.deepEqual(Object.keys(pageComponents).sort(),routes.map(r=>r.id).sort());
@@ -81,7 +81,7 @@ test('secondary workflows retain real links in their parent components',()=>{
  const unit=readFileSync(new URL('./Unit.tsx',import.meta.url),'utf8');
  assert.ok(rapid.includes('href="/evaluation"'));
  assert.ok(evidence.includes('href="/system/benchmark"'));
- assert.ok(unit.includes('/?session=${'));
+ assert.ok(unit.includes('officerReviewHref(r.id)'));
  assert.ok(unit.includes('href="/?view=unit"'));
 });
 
@@ -98,4 +98,16 @@ test('internal view transitions clear stale reviews and retain refreshable sessi
  assert.equal(workspaceHref('aar','','verified-id'),'/?view=aar&session=verified-id');
  assert.equal(workspaceHref('aar','?session=loading-id'),'/?session=loading-id&view=aar');
  assert.equal(workspaceHref('drill','?mode=adaptive&view=aar&session=old-id'),'/?mode=adaptive');
+});
+
+test('officer AAR routing requires explicit complete-review intent and preserves trainee links',()=>{
+ const href=officerReviewHref('session & special');
+ assert.equal(new URL(href,'http://unit.local').searchParams.get('session'),'session & special');
+ assert.equal(officerReviewRequested('/',href.slice(1)),true);
+ for(const search of ['?session=normal','?view=aar','?review=officer','?session=&review=officer','?session=id&review=trainee'])assert.equal(officerReviewRequested('/',search),false);
+ assert.equal(officerReviewRequested('/unit','?session=id&review=officer'),false);
+ const main=readFileSync(new URL('./main.tsx',import.meta.url),'utf8');
+ assert.match(main,/officerReview[\s\S]*?<Page reviewOnly/);
+ assert.match(main,/officerReview \|\|/);
+ assert.match(main,/<OfficerGate>\{rendered\}<\/OfficerGate>/);
 });

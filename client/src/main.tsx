@@ -5,13 +5,19 @@ import "./style.css";
 import { UnitGateway } from "./Unit";
 import Navigation from "./Navigation";
 import { pageComponents } from "./RoutePages";
-import { resolveRoute } from "./routes";
+import { resolveRoute, officerReviewRequested } from "./routes";
 import OfficerGate from "./OfficerGate";
 const route = resolveRoute(window.location.pathname);
 const Page = route && pageComponents[route.id];
+const officerReview = officerReviewRequested(
+  window.location.pathname,
+  window.location.search,
+);
 const rendered =
   route && Page ? (
-    route.identity ? (
+    officerReview ? (
+      <Page reviewOnly />
+    ) : route.identity ? (
       <UnitGateway
         fallbackNavigation={
           route.id === "training" ? <Navigation /> : undefined
@@ -31,14 +37,15 @@ const rendered =
   );
 const content =
   route &&
-  [
-    "unit",
-    "instructor",
-    "exercises",
-    "transfer",
-    "evaluation",
-    "analytics",
-  ].includes(route.id) ? (
+  (officerReview ||
+    [
+      "unit",
+      "instructor",
+      "exercises",
+      "transfer",
+      "evaluation",
+      "analytics",
+    ].includes(route.id)) ? (
     <OfficerGate>{rendered}</OfficerGate>
   ) : (
     rendered

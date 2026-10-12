@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
 """Disposable HTTP release walkthrough using ordinary scoring, never human evidence."""
-import argparse,json,sys,time,urllib.request
+import argparse,json,os,sys,time,urllib.request
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from server.engine import Simulation,ideal,engagement_rule
 from server.advanced import make_rapid
 from server import storage
-p=argparse.ArgumentParser();p.add_argument('--url',default='http://127.0.0.1:8002');p.add_argument('--output',type=Path,required=True);args=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--url',default='http://127.0.0.1:8002');p.add_argument('--output',type=Path,required=True);p.add_argument('--officer-password-env',default='VYUHA_VALIDATION_PASSWORD');args=p.parse_args()
+token=None
 def call(path,body=None):
- req=urllib.request.Request(args.url+'/api/v1'+path,data=json.dumps(body).encode() if body is not None else None,headers={'Content-Type':'application/json'})
- with urllib.request.urlopen(req,timeout=30) as r:return json.load(r)
+ req=urllib.request.Request(args.url+'/api/v1'+path,data=json.dumps(body).encode() if body is not None else None,headers={'Content-Type':'application/json',**({'Authorization':'Bearer '+token} if token else {})})
+ with urllib.request.urlopen(req,timeout=120) as r:return json.load(r)
+password=os.environ.get(args.officer_password_env)
+if not password: p.error('Set the officer password in the requested environment variable; never include it in evidence output.')
+token=call('/auth/login',dict(password=password))['token']
 t0=time.monotonic()
 with storage.connect() as db:
  assert db.execute('SELECT COUNT(*) FROM sessions').fetchone()[0]==0,'Use a completely new disposable DB'

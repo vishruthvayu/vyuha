@@ -63,3 +63,13 @@ export function workspaceHref(view:WorkspaceView,search='',verifiedSession?:stri
  }
  return '/'+(params.size?'?'+params.toString():'');
 }
+
+// Officer links explicitly select a read-only, authenticated workspace.
+// A token's presence alone must not turn a trainee AAR into an officer view.
+export function officerReviewRequested(path:string,search:string){
+ const params=new URLSearchParams(search);
+ return resolveRoute(path)?.id==='training'&&params.get('review')==='officer'&&!!params.get('session');
+}
+export function officerReviewHref(sessionId:string){
+ return '/?'+new URLSearchParams({session:sessionId,review:'officer'}).toString();
+}

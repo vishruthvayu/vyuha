@@ -1,3 +1,4 @@
+import { officerReviewHref } from "./routes";
 import React, { useEffect, useState } from "react";
 import OfficerGate from "./OfficerGate";
 import { RECONSTRUCTION_TIMEOUT_MS, api } from "./storage";
@@ -512,7 +513,7 @@ export default function Crew() {
               <h3>
                 Server-verified shared result: {state.scorecard.score}/100
               </h3>
-              <a href={`/?view=aar&session=${state.session_id}`}>
+              <a href={officerReviewHref(state.session_id)}>
                 Open officer AAR (sign-in required)
               </a>
             </>

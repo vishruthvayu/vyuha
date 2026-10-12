@@ -18,4 +18,4 @@ export const pageComponents = {
  compliance:lazy(()=>import('./Compliance')),
  evaluation:lazy(()=>import('./Evaluation')),
  benchmark:lazy(()=>import('./Benchmark')),
-} satisfies Record<PageId,ComponentType<{identity?:UnitIdentity}>>;
+} satisfies Record<PageId,ComponentType<{identity?:UnitIdentity;reviewOnly?:boolean}>>;

@@ -121,8 +121,10 @@ type View = "drill" | "aar" | "unit";
 type Phase = "ready" | "running" | "paused" | "complete";
 export default function App({
   identity: unitIdentity,
+  reviewOnly = false,
 }: {
   identity?: UnitIdentity;
+  reviewOnly?: boolean;
 }) {
   const [view, setView] = useState<View>(() =>
     workspaceViewFromSearch(window.location.search),
@@ -212,6 +214,7 @@ export default function App({
   const [library, setLibrary] = useState<Scenario[]>([]),
     [libraryId, setLibraryId] = useState("");
   useEffect(() => {
+    if (reviewOnly) return;
     void api<{ scenarios: Scenario[] }>("/scenario-library")
       .then((r) => {
         setLibrary(r.scenarios);
@@ -225,6 +228,7 @@ export default function App({
   useEffect(() => {
     let stopped = false;
     setTrainingProfile(null);
+    if (reviewOnly) return;
     void api<TrainingProfile>(`/trainees/${trainee}/profile`)
       .then((p) => {
         if (!stopped) setTrainingProfile(p);
@@ -334,6 +338,7 @@ export default function App({
     return task;
   };
   useEffect(() => {
+    if (reviewOnly) return;
     let pending = false;
     const timer = setInterval(async () => {
       if (
@@ -374,6 +379,7 @@ export default function App({
     return () => window.removeEventListener("vyuha-offline-status", update);
   }, []);
   const refresh = useCallback(async () => {
+    if (reviewOnly) return;
     const saved = await readRecords().catch(() => []);
     const local = unitIdentity
       ? saved.filter((r) => r.trainee === traineeRef.current)
@@ -418,6 +424,7 @@ export default function App({
   }, [trainee]);
   useEffect(() => {
     let stopped = false;
+    if (reviewOnly) return;
     void readDrafts()
       .then(async (ds) => {
         const draft = ownDraft(ds, trainee);
@@ -449,7 +456,7 @@ export default function App({
     };
   }, [trainee]);
   useEffect(() => {
-    if (!unitIdentity) return;
+    if (reviewOnly || !unitIdentity) return;
     let pending = false;
     const pulse = async () => {
       if (pending) return;
@@ -566,6 +573,7 @@ export default function App({
     finishRef.current = complete;
   }, [complete]);
   useEffect(() => {
+    if (reviewOnly) return;
     const w = new Worker(new URL("./sim.worker.ts", import.meta.url), {
       type: "module",
     });
@@ -1072,7 +1080,7 @@ export default function App({
   };
 
   useEffect(() => {
-    if (!current || current.verified || busy) return;
+    if (reviewOnly || !current || current.verified || busy) return;
     const timer = setInterval(() => void retry(current), 5000);
     return () => clearInterval(timer);
   }, [current?.id, current?.verified, busy]);
@@ -1097,6 +1105,7 @@ export default function App({
               ),
             );
             setView("aar");
+            setOnline(true);
           }
         })
         .catch(() => {
@@ -1132,7 +1141,7 @@ export default function App({
     const update = () => {
       const search = window.location.search,
         params = new URLSearchParams(search),
-        next = workspaceViewFromSearch(search),
+        next = reviewOnly ? "aar" : workspaceViewFromSearch(search),
         id = params.get("session");
       setCurrent((c) =>
         id ? (c?.id === id ? c : null) : next === "aar" ? null : c,
@@ -1181,7 +1190,7 @@ export default function App({
       <Navigation
         view={view}
         reviewCount={records.length}
-        onWorkspaceNavigate={navigateWorkspace}
+        onWorkspaceNavigate={reviewOnly ? undefined : navigateWorkspace}
         footer={
           <>
             <div className="exercise-pack">
@@ -1197,14 +1206,20 @@ export default function App({
             </div>
             <div className="user">
               <span className="avatar">
-                {(unitIdentity?.callsign ?? trainee).slice(-2)}
+                {reviewOnly
+                  ? "OF"
+                  : (unitIdentity?.callsign ?? trainee).slice(-2)}
               </span>
               <div>
-                {unitIdentity?.callsign ?? trainee}
+                {reviewOnly
+                  ? "Officer review"
+                  : (unitIdentity?.callsign ?? trainee)}
                 <small>
-                  {unitIdentity
-                    ? "Unit training profile"
-                    : "Local training profile"}
+                  {reviewOnly
+                    ? "Completed evidence · read only"
+                    : unitIdentity
+                      ? "Unit training profile"
+                      : "Local training profile"}
                 </small>
               </div>
             </div>
@@ -2199,6 +2214,10 @@ export default function App({
                       </button>
                     ))}
                   </div>
+                ) : reviewOnly ? (
+                  <a className="button primary" href="/unit">
+                    Return to unit overview
+                  </a>
                 ) : (
                   <button
                     className="button primary"
@@ -2239,27 +2258,31 @@ export default function App({
                         <>
                           <WifiOff size={14} /> Device score · verification
                           pending{" "}
-                          <button
-                            disabled={busy}
-                            title={
-                              busy
-                                ? "A request or completion is already in progress."
-                                : undefined
-                            }
-                            onClick={() => void retry(current)}
-                          >
-                            Retry verification
-                          </button>
+                          {!reviewOnly && (
+                            <button
+                              disabled={busy}
+                              title={
+                                busy
+                                  ? "A request or completion is already in progress."
+                                  : undefined
+                              }
+                              onClick={() => void retry(current)}
+                            >
+                              Retry verification
+                            </button>
+                          )}
                         </>
                       )}
                     </span>
                   </div>
-                  <button
-                    className="button primary next-drill"
-                    onClick={nextDrill}
-                  >
-                    <RotateCcw size={16} /> Next drill
-                  </button>
+                  {!reviewOnly && (
+                    <button
+                      className="button primary next-drill"
+                      onClick={nextDrill}
+                    >
+                      <RotateCcw size={16} /> Next drill
+                    </button>
+                  )}
                 </div>
                 <div className="metric-grid">
                   <Metric
