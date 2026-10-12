@@ -17,6 +17,7 @@ export function useCommandTransport(options: Options) {
     latest.current = options;
   });
   const { enabled, phase } = options;
+  const sessionId = options.current().id;
   useEffect(() => {
     if (!enabled) return;
     let stopped = false,
@@ -77,5 +78,5 @@ export function useCommandTransport(options: Options) {
       clearInterval(timer);
       controller.abort();
     };
-  }, [enabled, phase]);
+  }, [enabled, phase, sessionId]);
 }

@@ -34,14 +34,16 @@ async function harness(streamAvailable: boolean) {
     after = 0,
     closed = false;
   const accepted: string[] = [];
-  let push: ReadableStreamDefaultController<Uint8Array> | undefined;
+  const pushes = new Map<string, ReadableStreamDefaultController<Uint8Array>>();
+  const urls: string[] = [];
   globalThis.fetch = (async (url, init) => {
     if (String(url).includes("command-stream")) {
       streams++;
+      urls.push(String(url));
       if (!streamAvailable) throw new Error("stream unavailable");
       const body = new ReadableStream<Uint8Array>({
         start(c) {
-          push = c;
+          pushes.set(String(url).includes("/sessions/A/") ? "A" : "B", c);
           c.enqueue(
             new TextEncoder().encode(
               'event: update\ndata: {"commands":[]}\n\n',
@@ -99,17 +101,26 @@ async function harness(streamAvailable: boolean) {
       streams,
       aborted,
       accepted: [...accepted],
+      urls: [...urls],
     }),
     change: async () => {
       id = "B";
       await act(async () => root.render(<Fixture />));
     },
-    push: () =>
-      push?.enqueue(
-        new TextEncoder().encode(
-          'event: update\ndata: {"commands":[{"seq":2,"type":"pause","payload":{}}]}\n\n',
-        ),
-      ),
+    push: (sid = "A") => {
+      try {
+        pushes
+          .get(sid)
+          ?.enqueue(
+            new TextEncoder().encode(
+              'event: update\ndata: {"commands":[{"seq":2,"type":"pause","payload":{}}]}\n\n',
+            ),
+          );
+      } catch (error) {
+        // A genuinely aborted old stream cannot enqueue more bytes.
+        if (!(error instanceof TypeError)) throw error;
+      }
+    },
     close: async () => {
       if (closed) return;
       closed = true;
@@ -159,6 +170,26 @@ test("late command frame from an old session cannot act on the newly selected se
     h.push();
     await new Promise((r) => setTimeout(r, 25));
     assert.deepEqual(h.read().accepted, []);
+  } finally {
+    await h.close();
+  }
+});
+
+test("same-phase session switch aborts the old stream and accepts new-session commands immediately", async () => {
+  const h = await harness(true);
+  try {
+    await h.change();
+    const changed = h.read();
+    assert.equal(changed.aborted, 1);
+    assert.equal(changed.streams, 2);
+    assert.ok(
+      changed.urls.some((url) =>
+        url.includes("/sessions/B/command-stream?after=0"),
+      ),
+    );
+    h.push("B");
+    await new Promise((resolve) => setTimeout(resolve, 25));
+    assert.deepEqual(h.read().accepted, ["B"]);
   } finally {
     await h.close();
   }
