@@ -1,10 +1,10 @@
 # Finale physical and native test results
 
-Prepared 12 October 2026 from starting checkpoint `4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903`. This document records no newly executed physical or native tests. The user retained fresh physical and native validation pending. Update full source/build pins after candidate changes and before execution.
+Prepared 12 October 2026. Validated application source is `4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903`; executable source-and-evidence checkpoint is `b2180f503e4099bf6c7bc4fb2eb6d617ef32efc8` (same application hash). This document records no newly executed physical or native tests. The user retained fresh physical and native validation pending. Update full source/build pins after candidate changes and before execution.
 
 | Execution field | Value |
 | --- | --- |
-| Prepared candidate SHA / branch (not an execution receipt) | 4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903 / feature/vyuha-finale-edition |
+| Prepared source-and-evidence SHA / branch (not an execution receipt) | b2180f503e4099bf6c7bc4fb2eb6d617ef32efc8 / feature/vyuha-finale-edition |
 | Actual executed candidate SHA / branch | PENDING |
 | Source-tree hash / asset cache hash / source_matches | PENDING |
 | Test date/time/timezone / tester | PENDING |

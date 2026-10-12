@@ -1,6 +1,6 @@
 # Windows officer / Android Chrome acceptance runbook
 
-Prepared 12 October 2026. Starting checkpoint: `4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903`. This is an executable handoff, not a receipt. Native Windows/Linux and fresh Finale physical LAN, WAN and Android HTTPS checks remain **PENDING**. Prepared source SHA256: `94d311b647337ea9e1db5cac8cd75fc86b70f46717b5c1e8ad18fffbeb05595e`; asset cache: `72094449dd1b` /26 assets. The tester must confirm these pins on the executed checkout before recording results. Do not infer new candidate acceptance from historical results. Preserve `v1.0.1`.
+Prepared 12 October 2026. Validated application source: `4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903`. Use source-and-evidence checkpoint `b2180f503e4099bf6c7bc4fb2eb6d617ef32efc8` for execution; it adds reconciled evidence without changing application source. This is an executable handoff, not a receipt. Native Windows/Linux and fresh Finale physical LAN, WAN and Android HTTPS checks remain **PENDING**. Prepared source SHA256: `94d311b647337ea9e1db5cac8cd75fc86b70f46717b5c1e8ad18fffbeb05595e`; asset cache: `72094449dd1b` /26 assets. The tester must confirm these pins on the executed checkout before recording results. Do not infer new candidate acceptance from historical results. Preserve `v1.0.1`.
 
 ## Online preparation and exact source pin
 
@@ -11,8 +11,7 @@ git clone --branch feature/vyuha-finale-edition https://github.com/vishruthvayu/
 Set-Location vyuha-finale-test
 git status --short
 git rev-parse HEAD
-$CandidateCommit = '<FULL_CANDIDATE_SHA>'
-if ($CandidateCommit -eq '<FULL_CANDIDATE_SHA>') { throw 'Supply the full accepted candidate SHA.' }
+$CandidateCommit = 'b2180f503e4099bf6c7bc4fb2eb6d617ef32efc8'
 git switch --detach $CandidateCommit
 if ($LASTEXITCODE -ne 0) { throw 'Candidate checkout failed.' }
 if ((git rev-parse HEAD).Trim() -ne $CandidateCommit) { throw 'Source pin mismatch.' }
