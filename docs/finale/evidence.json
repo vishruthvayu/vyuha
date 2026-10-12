@@ -1,35 +1,34 @@
 {
   "schema_version": 1,
   "recorded_at": "2026-10-12",
-  "acceptance": "CANDIDATE \u2014 SOFTWARE REGRESSION PASSED; FINAL RELEASE ACCEPTANCE PENDING",
+  "acceptance": "CANDIDATE \u2014 CYCLE2 SOFTWARE REGRESSION PASSED; FINAL RELEASE ACCEPTANCE PENDING",
   "branch": "feature/vyuha-finale-edition",
   "baseline_commit": "2ca96105044ad6a14952d74db619e20006c26eca",
-  "source_tree_sha256": "3bec6d5e328b412e59a2ba09a0bc90768abac0f25d41b944c9d8a67f4183a4d6",
+  "source_tree_sha256": "94d311b647337ea9e1db5cac8cd75fc86b70f46717b5c1e8ad18fffbeb05595e",
   "historical_wan": {
     "status": "PASSED \u2014 TEAM CONFIRMED (historical, 2026-10-04)",
     "reported_scope": "Windows officer laptop + phone browser + common local router. Internet unavailable on both; phone joined/completed a drill; consistent score and officer-visible result. Exact build not supplied; new finale build remains unvalidated physically."
   },
   "remaining": [
-    "Independent final stable acceptance decision after retained deployment gates",
-    "Native Windows/Linux execution pending by user instruction",
-    "Fresh separate physical device LAN/WAN/HTTPS trust/cold reload pending by user instruction",
-    "Final validated release/tag, competition media, rehearsal and submission",
-    "Optional prototype research/refinements remain explicit in audit matrix"
+    "Fresh physical Finale LAN/WAN/HTTPS trust and cold reload, and native Windows/Linux execution remain pending by user instruction.",
+    "Final stable acceptance and tag after mandatory gates pass.",
+    "Validated-release deck, video, rehearsal and submission.",
+    "Research calibration, human studies and the 39 remaining partial findings are distinguished in the prioritized matrix."
   ],
   "tests": {
     "backend": {
-      "passed": 453,
+      "passed": 482,
       "failed": 0,
-      "seconds": 456.2
+      "seconds": 275.39
     },
     "frontend": {
-      "passed": 133,
+      "passed": 137,
       "failed": 0,
-      "milliseconds": 74163.157125
+      "milliseconds": 43841.548125
     },
     "production_build": "PASS",
     "offline_assets": 26,
-    "offline_cache": "167d3e89736c",
+    "offline_cache": "72094449dd1b",
     "historical_baseline": 18,
     "historical_current": 22,
     "unchanged_legacy_hashes": true
@@ -50,12 +49,12 @@
   },
   "independent_audit": {
     "status": "PROVISIONAL; NO STABLE APPROVAL",
-    "score": 82,
+    "score": 83.5,
     "final_score": null,
-    "scoped_pass": 51,
-    "partial": 41,
+    "scoped_pass": 53,
+    "partial": 39,
     "not_applicable": 1,
-    "prior_provisional_score": 81,
+    "prior_provisional_score": 82,
     "software_acceptance": "PASS_SCOPED; final stable release decision withheld"
   },
   "native_platform_validation": {
@@ -94,9 +93,23 @@
     "EVIDENCE-FRESHNESS-RECEIPT.json",
     "FINAL-SOFTWARE-ACCEPTANCE.md",
     "FINAL-SOFTWARE-ACCEPTANCE.json",
-    "EVIDENCE-CURRENT-20261012.png"
+    "EVIDENCE-CURRENT-20261012.png",
+    "CLEAN-CLONE-CYCLE2-RECEIPT.json",
+    "AUTHORIZATION-CYCLE2-RECEIPT.json",
+    "RAID-VARIATION-CYCLE2.json",
+    "RECONSTRUCTION-CYCLE2-RECEIPT.json",
+    "CREW-HISTORY-CYCLE2.png",
+    "PARTIAL-FINDING-CLASSIFICATION-20261012.json",
+    "WINDOWS-PHONE-ACCEPTANCE-RUNBOOK.md",
+    "PHYSICAL-TEST-RESULTS.md",
+    "CYCLE2-BROWSER-ACCEPTANCE.json",
+    "SIH-PRESENTATION-SOURCE-HANDOFF.md",
+    "FINAL-AUDIT-REASSESSMENT.md",
+    "FINAL-AUDIT-REASSESSMENT.json",
+    "EVIDENCE-CYCLE2.png",
+    "COMPLIANCE-CYCLE2.png"
   ],
-  "candidate_commit": "3ec720d26ef8e556aa392d5adac2218ebde7353a",
+  "candidate_commit": "4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903",
   "performance": {
     "hardware": "MacBook Air / Apple M1 /8GB",
     "graphics": "fixed Medium, auto OFF",
@@ -135,5 +148,13 @@
     "status": "PENDING_BY_USER",
     "reason": "User retained fresh Finale physical validation pending on2026-10-12; no new pass or architectural failure inferred"
   },
-  "final_software_acceptance": "PASS_SCOPED: full regression, history, real browser, clean locked-dependency macOS clone and backup/restore; not a stable release approval"
+  "final_software_acceptance": "PASS_SCOPED: full regression, history, real browser, clean locked-dependency macOS clone and backup/restore; not a stable release approval",
+  "reconstruction_cycle2": {
+    "before_direct_200_median": 9.670718125009444,
+    "after_direct_200_median": 7.141738959006034,
+    "before_http_200_median": 9.753083957999479,
+    "after_http_200_median": 7.3824508329853415,
+    "repeats": 3,
+    "full_review_and_card_equal_all5sizes": true
+  }
 }

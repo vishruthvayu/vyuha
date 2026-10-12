@@ -560,7 +560,7 @@
       "tests": "Mac preflight/source checks and portable/certificate tests; historical Windows WAN result team-reported.",
       "user_visible_proof": "Prepared Windows officer starts unit mode without Unix venv path",
       "status": "PARTIAL",
-      "remaining_limitation": "Current finale Windows and Linux actual installation/start/tests not performed.",
+      "remaining_limitation": "Windows-compatible launchers and runtime path handling are prepared and fixture-tested; no actual current native Windows/Linux execution is claimed.",
       "linked_items": [
         "CH15"
       ],
@@ -854,7 +854,7 @@
       "tests": "Mac preflight/source checks and portable/certificate tests; historical Windows WAN result team-reported.",
       "user_visible_proof": "Prepared Windows officer starts unit mode without Unix venv path",
       "status": "PARTIAL",
-      "remaining_limitation": "Current finale Windows and Linux actual installation/start/tests not performed.",
+      "remaining_limitation": "PowerShell preparation and Git Bash interpreter/path-space fixtures pass on macOS. Actual native Windows/Linux execution remains pending.",
       "linked_items": [
         "CH15"
       ],
@@ -1183,7 +1183,7 @@
       "tests": "Mac preflight/source checks and portable/certificate tests; historical Windows WAN result team-reported.",
       "user_visible_proof": "Prepared Windows officer starts unit mode without Unix venv path",
       "status": "PARTIAL",
-      "remaining_limitation": "Current finale Windows and Linux actual installation/start/tests not performed.",
+      "remaining_limitation": "Bash and PowerShell runtime preparation improved, with interpreter/path/preflight fixtures. Actual native Windows/Linux execution remains pending.",
       "linked_items": [],
       "acceptance_scope": "Implementation or validation gap remains",
       "remaining_category": "External deployment validation retained pending"
@@ -1313,13 +1313,13 @@
       "solution": "Single versioned authoritative exercise with role ownership, attributed events/order, synchronization, reconnect and shared/individual AAR",
       "dependencies": "CH02/CH10/CH11; F01; durable event attribution",
       "implementation": "Server-owned shared simulation with spotter/responder role capabilities, officer control, immutable attribution, idempotent retry, durable paused restart and shared result/AAR. Completed group review now derives per-member stage counts and first-contact logical handoff times from accepted attributed actions; reconnect reads preserve stored history.",
-      "tests": "Crew regressions and12 Crew/Fusion transfer tests; synthetic aggregate cannot receive individual curriculum/profile credit. Independent79 backend run confirms neutral shared priors do not distort individual unit means. Actual responder reconnect showed completed shared0/100 result and three attributed actions; individual cohort isolation covered in434 backend suite. New whole-database readonly reconnect and role-count/timing regression; actual browser3actions/onecontact/.27s/.27s handoff review; no individual skill credit.",
+      "tests": "Current combined regression, independent focused review and actual browser acceptance; see CYCLE2-BROWSER-ACCEPTANCE.json, FINAL-AUDIT-REASSESSMENT.json and evidence.json.",
       "user_visible_proof": "Separate browsers execute observation and response in one coherent exercise; officer monitors it",
-      "status": "PARTIAL",
-      "remaining_limitation": "Per-member coordination counts/timing implemented; longitudinal crew trends, validated role competency/reliance measures and new physical-client breadth remain unvalidated.",
+      "status": "PASS",
+      "remaining_limitation": "Server-owned shared roles, bounded capability expiry/rotation/revocation, completed local roster history and role-attributed accepted actions are validated in real browsers on one workstation. Fresh physical LAN breadth remains SC14/X13; no individual competence claim.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains",
-      "remaining_category": "Acceptance reconciliation or broader workflow validation"
+      "acceptance_scope": "Scoped named software contract; not physical, human or whole-product certification.",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "F07",
@@ -1468,7 +1468,7 @@
       "tests": "Negative-role/auth/ownership/portable Crew and shared aggregate tests; broad415 checkpoint. Actual all28 protected route/method inventory, anonymous/forged401 and authenticated analytics paths; Crew aggregate individual-workflow rejection.",
       "user_visible_proof": "Unauthorized browser cannot mutate or read protected instructor/reference state",
       "status": "PARTIAL",
-      "remaining_limitation": "Ordinary independent trainee/session access remains trusted callsign/UUID model; no account-level adversarial learner identity, expired crew-code lifecycle or military access-control certification.",
+      "remaining_limitation": "Crew codes enforce bounded expiry, revocation and rotation before retries and reads. Ordinary independent trainee identity remains a trusted callsign/UUID model, not secure per-account examination authentication. Physical HTTPS trust remains pending.",
       "linked_items": [],
       "acceptance_scope": "Implementation or validation gap remains",
       "remaining_category": "Future quality refinement; stronger claims require evidence"
@@ -1525,7 +1525,7 @@
       "tests": "Source inspection confirms candidate source_tree_sha256 null and integration/test docs stale before this update.",
       "user_visible_proof": "System Evidence shows new source and exact test/physical/performance scope",
       "status": "PARTIAL",
-      "remaining_limitation": "Final source tree, assets/manifests/test counts/deck/video claims must be regenerated after stabilization.",
+      "remaining_limitation": "Current source, assets, manifest and clean-clone receipts are reconciled. A new stable tag, final validated media and revalidation after future edits remain required.",
       "linked_items": [],
       "acceptance_scope": "Implementation or validation gap remains",
       "remaining_category": "Acceptance reconciliation or broader workflow validation"
@@ -1620,7 +1620,7 @@
       "tests": "Independent79 backend run includes unchanged individual unit means before/after Crew completion, shared owner omitted from individual analytics and denied in individual heatmap; root65 focused and strict Crew/Fusion transfer12 pass earlier. Actual responder reconnect showed completed shared0/100 result and three attributed actions; individual cohort isolation covered in434 backend suite. New whole-database readonly reconnect and role-count/timing regression; actual browser3actions/onecontact/.27s/.27s handoff review; no individual skill credit.",
       "user_visible_proof": "Crew AAR shows who observed/classified/responded and sharedresult",
       "status": "PARTIAL",
-      "remaining_limitation": "Per-member coordination counts/timing implemented; longitudinal crew trends, validated role competency/reliance measures and new physical-client breadth remain unvalidated.",
+      "remaining_limitation": "Completed local roster history includes attributed timelines, counts, handoffs and shared cards. Imported sessions retain evidence but form separate pseudonymous groups. Equivalent imported roster trends and validated individual competence/reliance remain unproved.",
       "linked_items": [],
       "acceptance_scope": "Implementation or validation gap remains",
       "remaining_category": "Future quality refinement; stronger claims require evidence"
@@ -1674,13 +1674,13 @@
       "solution": "Map archived official phrases to true implementation/demo/validation status and live evidence; desktop OR VR choice clear",
       "dependencies": "All workstreams; source/evidence manifest",
       "implementation": "Read-only93-row compliance API/page preserves official-vs-quality provenance, status and whitelisted evidence docs.",
-      "tests": "Independent4 backend/3 frontend previously; navigation renderer present.",
+      "tests": "Current combined regression, independent focused review and actual browser acceptance; see CYCLE2-BROWSER-ACCEPTANCE.json, FINAL-AUDIT-REASSESSMENT.json and evidence.json.",
       "user_visible_proof": "Board opens actualscenario/review/Studio/unit proof from each requirement",
-      "status": "PARTIAL",
-      "remaining_limitation": "Per-row evidence_url all lead to same audit matrix; requested one-click saved-session/preset/unit live proof still missing.",
+      "status": "PASS",
+      "remaining_limitation": "93 unique finding records, 75 workflow starting points with prerequisites and 18 document-only rows. These are not 93 saved-instance demonstrations; one-click saved-instance shortcuts remain a future refinement.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains",
-      "remaining_category": "Future quality refinement; stronger claims require evidence"
+      "acceptance_scope": "Scoped named software contract; not physical, human or whole-product certification.",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "X19",
@@ -1734,7 +1734,7 @@
       "tests": "480 boundary scenarios demonstrate structural difficulty differences.",
       "user_visible_proof": "Studio shows constraints and difficulty basis",
       "status": "PARTIAL",
-      "remaining_limitation": "Legacy authored difficulty label has no behavioral effect; new difficulty is not empirical70%success calibration.",
+      "remaining_limitation": "Legacy Studio difficulty labels record author intent without restructuring the legacy exercise. The UI explains this and directs structural difficulty to Raid Composer. A calibrated legacy difficulty control remains unimplemented.",
       "linked_items": [],
       "acceptance_scope": "Implementation or validation gap remains",
       "remaining_category": "Future quality refinement; stronger claims require evidence"
@@ -1924,7 +1924,7 @@
       "tests": "453backend/133frontend/build, all parity/history, fresh locked macOS clone/empty DB and exact backup/restore; final source pinned.",
       "user_visible_proof": "Judgecanfollowsetup instructionsandmodulemap",
       "status": "PARTIAL",
-      "remaining_limitation": "Native Windows/Linux install/start/backup/restore and broader team deployment remain pending; macOS final locked-dependency clone, local assets, source manifest and backup/restore passed.",
+      "remaining_limitation": "A fresh locked-dependency macOS clone and native Bash startup, including the CLI port override, passed. Actual native Windows/Linux install/start/backup/restore and broader team deployment remain pending.",
       "linked_items": [],
       "acceptance_scope": "Implementation or validation gap remains",
       "remaining_category": "Acceptance reconciliation or broader workflow validation"
@@ -1939,16 +1939,16 @@
       "scope": "Python/TypeScript full-engine deterministic comparison"
     },
     "frontend": {
-      "passed": 133,
+      "passed": 137,
       "failed": 0,
       "provenance": "Root executed complete suite after all client edits",
-      "milliseconds": 74163.157125
+      "milliseconds": 43841.548125
     },
     "backend_broad": {
-      "passed": 453,
+      "passed": 482,
       "failed": 0,
       "provenance": "Root executed latest complete backend suite; no subsequent backend source edits",
-      "seconds": 456.2
+      "seconds": 275.39
     },
     "completion_focused_after_fix": {
       "passed": 5,
@@ -2059,22 +2059,24 @@
       "scope": "six concurrent HTTP completions and 200-contact reconstruction; not endurance or physical clients"
     },
     "final_software_candidate": {
-      "commit": "3ec720d26ef8e556aa392d5adac2218ebde7353a",
-      "source_tree_sha256": "3bec6d5e328b412e59a2ba09a0bc90768abac0f25d41b944c9d8a67f4183a4d6",
-      "backend": 453,
-      "frontend": 133,
+      "commit": "4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903",
+      "source_tree_sha256": "94d311b647337ea9e1db5cac8cd75fc86b70f46717b5c1e8ad18fffbeb05595e",
+      "backend": 482,
+      "frontend": 137,
       "build": "PASS",
-      "cache": "167d3e89736c",
-      "scope": "Final software candidate; physical/native/stable/media acceptance pending"
+      "cache": "72094449dd1b",
+      "scope": "Final software candidate; physical/native/stable/media acceptance pending",
+      "provisional_independent_score": 83.5,
+      "final_score": null
     }
   },
   "unresolved_release_requirements": [
-    "Independent final audit/claim reconciliation and release decision; no provisional score is final",
-    "Broader role longitudinal analytics/maintainability/live-proof refinements stay accurately scoped",
-    "Native Windows/Linux pending by user request; fresh physical LAN/HTTPS/WAN validation where possible; historical WAN report separately retained",
-    "Validated-release demo/PPT/PDF, rehearsal and submission after software freeze"
+    "Fresh physical Finale LAN/WAN/HTTPS trust and cold reload, and native Windows/Linux execution remain pending by user instruction.",
+    "Final stable acceptance and tag after mandatory gates pass.",
+    "Validated-release deck, video, rehearsal and submission.",
+    "Research calibration, human studies and the 39 remaining partial findings are distinguished in the prioritized matrix."
   ],
-  "provisional_candidate_score": 82,
+  "provisional_candidate_score": 83.5,
   "provisional_score_allocation": {
     "PS": 45.5,
     "realism_AI": 18,

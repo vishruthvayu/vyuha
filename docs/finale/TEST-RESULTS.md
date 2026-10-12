@@ -64,3 +64,11 @@ All93 findings remain **51scopedPASS /41PARTIAL /1N/A /0BLOCKED finding rows**. 
 Source SHA256: `3bec6d5e328b412e59a2ba09a0bc90768abac0f25d41b944c9d8a67f4183a4d6`. Stable branch/tagv1.0.1 still resolve to2ca96105044ad6a14952d74db619e20006c26eca.
 
 Final independent software acceptance is **PASS_SCOPED** at3ec720d; exact source/manifest/26cache paths and preserved stable references verified independently. See FINAL-SOFTWARE-ACCEPTANCE.md/json. The82/100score remains provisional, with no final stable acceptance or tag. Four post-metadata compliance checks passed in0.80s; this focused rerun is not added to453backend.
+
+## Cycle 2 regression — 12 October 2026
+
+The final source results and durations are recorded below after the last styling correction. Full suites include versioned engine parity, authorization, transfer integrity and historical compatibility. No tests were disabled or skipped. Focused independent tests are not added to the full-suite totals.
+
+Actual persisted history: 18 baseline and 22 current scorecards remained exact, with no source-database writes. Current Crew lifecycle, history and role-isolation coverage passed. The fresh macOS clone installed locked dependencies, rebuilt local assets and completed an empty-database HTTP walkthrough. Browser Crew history, AAR, What-if and evidence-only replay preserved a whole-database dump exactly. See CYCLE2-BROWSER-ACCEPTANCE.json.
+
+Final code `4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903`; source SHA256 `94d311b647337ea9e1db5cac8cd75fc86b70f46717b5c1e8ad18fffbeb05595e`. **482 backend PASS /0 FAIL /275.39s;137 frontend PASS /0 FAIL /43841.548125ms;production build PASS /26 assets /cache72094449dd1b**. No skips. One existing Starlette/httpx deprecation warning and the retained large Three.js build-chunk warning. The original truncation-disclosure assertion was updated for an intentional whitespace correction after it caught that copy mismatch; all final tests passed. No historical fixture or scorecard was changed.

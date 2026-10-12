@@ -1,3 +1,5 @@
+> Cycle2update: F06andX18 are now scopedsoftwarePASS. NewCrewlifecycle/localhistory/timeline, directprooflinks, Windowsresolver, guardedcopy andcurrentclone areimplemented/tested. Importlocalgroup-equivalence, actualphysical/native execution andremainingresearch/demo gaps stayexplicit. The original41triage below records its8dc startingstate andoriginalcriteria; consultcurrentmatrix for53/39counts.
+
 # Remaining audit gaps — individually inspected, 12 October 2026
 
 Snapshot: `8dc840552778a5996aaad52c52573a1c517254b8` on `feature/vyuha-finale-edition`. All **41 PARTIAL findings** are retained below. This inspection does not change the93-row status matrix or automatically rescore the82/100 provisional audit. Physical/native evidence remains pending; hardware simulation and existing macOS receipts are not substitutes.
@@ -692,4 +694,3 @@ Mandatory stable gates are authoritative in `FINAL-RELEASE-GATES.json`. No confi
 **PASS requires:** Current exact commit installs/starts/backsup/restores on each claimed nativeOS, production assets served locally; documentation makes online preparation vs training runtime explicit.
 
 **Inspected source:** `scripts/preflight.py:1`, `scripts/setup-officer.ps1:1`, `server/portable.py:1`, `docs/finale/CLEAN-CLONE-RECEIPT.json:1`.
-

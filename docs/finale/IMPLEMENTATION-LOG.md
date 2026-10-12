@@ -55,3 +55,11 @@ Profiling identified1,093,022 repeated sensor-configuration validations. Paramet
 Actual180-second200-contact thermal-overview/fixed-Medium browser run: median60FPS;5376logical ticks; tick median4.4ms/p9510.3ms;181 main-page heap samples. The run overlaps software checks and captures allocation/collection, not total process/Worker/GPU memory or a leak-free certification. Raw receipt retained.
 
 App and advanced modules are formatted for walkthrough; App is2538 lines with172-character maximum line. Further hook decomposition, linter and broader maintainability remain refinements. Source is still a candidate until exact source/deployment/independent acceptance reconciliation. Native Windows/Linux remains pending; no new physical test or final competition media is asserted.
+
+## Cycle 2 implementation and validation — 12 October 2026
+
+Crew role capabilities now expire within a bounded assignment window and support officer rotation and revocation. Server validation applies before retries. Completed coordination history shows accepted actions, roles, logical handoffs and shared outcomes without individual learning credit. Imported archives retain sessions but group them separately by pseudonymous Crew ID.
+
+All 93 compliance findings have specific evidence records; 75 include implemented workflow starting points and 18 are document-only. Git Bash detects both POSIX and Windows virtual-environment layouts, preserves incomplete existing environments, and validates startup ports and TLS paths. Native Windows/Linux execution remains pending.
+
+The final current source and exact test durations are pinned in evidence.json and TEST-RESULTS.md. There are 53 scoped PASS findings, 39 PARTIAL and one N/A. The independent score remains provisional; physical/native acceptance and final stable approval remain open. The protected v1.0.1 fallback is unchanged.

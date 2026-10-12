@@ -11,3 +11,9 @@ Crew roles now use hashed, session-scoped capability codes and a server-owned ex
 Actual local HTTPS service verification passed on12 October using a dedicated test CA and both hostname/IP SANs. Untrusted trust was rejected; TLS verification was never disabled. Browser/device trust and Windows ACL/native execution remain pending.
 
 Latest route inventory verifies all28 registered officer-protected path/method pairs deny anonymous/forged requests; positive authenticated analytics/heatmap/roster/dashboard reads pass. Analytics and evaluation follow-up routes are explicitly protected. Completed Crew reconnect is now readonly; group metrics never write individual learning evidence. See AUTHORIZATION-ROUTE-RECEIPT.json and current complete regression. Public trusted-LAN learner routes remain a separate stated access model.
+
+## Cycle 2 authorization and capability checks
+
+All 32 registered sensitive HTTP route/method pairs rejected anonymous, forged and logged-out credentials. The route registry test additionally rejects expired credentials and ambient cookies with an untrusted origin. New Crew lifecycle tests cover expiry, revocation, rotation, reuse, wrong-role and cross-crew access, legacy unbounded codes and completed-session immutability. Capability hashes alone are stored; archive transfer does not restore live role access.
+
+The scoped tracked-file scan is a literal credential-format and private-path check, not a formal security certification. HTTPS trust on a separate physical device and broader authenticated trainee identity remain pending/partial. See AUTHORIZATION-CYCLE2-RECEIPT.json and SCOPED-SECRET-SCAN.json.

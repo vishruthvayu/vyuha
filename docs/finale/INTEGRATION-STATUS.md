@@ -55,3 +55,11 @@ All93 findings remain **51scopedPASS /41PARTIAL /1N/A /0BLOCKED finding rows**. 
 Source SHA256: `3bec6d5e328b412e59a2ba09a0bc90768abac0f25d41b944c9d8a67f4183a4d6`. Stable branch/tagv1.0.1 still resolve to2ca96105044ad6a14952d74db619e20006c26eca.
 
 Final independent software acceptance is **PASS_SCOPED** at3ec720d; exact source/manifest/26cache paths and preserved stable references verified independently. See FINAL-SOFTWARE-ACCEPTANCE.md/json. The82/100score remains provisional, with no final stable acceptance or tag. Four post-metadata compliance checks passed in0.80s; this focused rerun is not added to453backend.
+
+## Cycle 2 implementation and validation — 12 October 2026
+
+Crew role capabilities now expire within a bounded assignment window and support officer rotation and revocation. Server validation applies before retries. Completed coordination history shows accepted actions, roles, logical handoffs and shared outcomes without individual learning credit. Imported archives retain sessions but group them separately by pseudonymous Crew ID.
+
+All 93 compliance findings have specific evidence records; 75 include implemented workflow starting points and 18 are document-only. Git Bash detects both POSIX and Windows virtual-environment layouts, preserves incomplete existing environments, and validates startup ports and TLS paths. Native Windows/Linux execution remains pending.
+
+The final current source and exact test durations are pinned in evidence.json and TEST-RESULTS.md. There are 53 scoped PASS findings, 39 PARTIAL and one N/A. The independent score remains provisional; physical/native acceptance and final stable approval remain open. The protected v1.0.1 fallback is unchanged.

@@ -1,0 +1,132 @@
+{
+  "date": "2026-10-12",
+  "scope": "Independent adversarial code and focused regression review; no implementation edits",
+  "source_commit": "4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903",
+  "source_sha256": "94d311b647337ea9e1db5cac8cd75fc86b70f46717b5c1e8ad18fffbeb05595e",
+  "score": 83.5,
+  "score_status": "PROVISIONAL; FINAL CURRENT-SOURCE RECEIPTS RECONCILED; NO STABLE APPROVAL",
+  "stable_approval": false,
+  "software_review": "PASS_SCOPED",
+  "allocation": {
+    "PS_coverage": [
+      46,
+      50
+    ],
+    "realism_AI": [
+      18,
+      25
+    ],
+    "engineering_demo": [
+      19.5,
+      25
+    ]
+  },
+  "deductions": {
+    "PS_coverage": 4,
+    "realism_AI": 7,
+    "engineering_demo": 5.5,
+    "total": 16.5
+  },
+  "independent_backend": {
+    "passed": 76,
+    "failed": 0,
+    "seconds": 37.92,
+    "warnings": 1
+  },
+  "independent_frontend": {
+    "passed": 8,
+    "failed": 0,
+    "milliseconds": 417.823875
+  },
+  "independent_transfer_reproduction": {
+    "passed": 1,
+    "seconds": 2.98,
+    "local_group_session_counts": [
+      3
+    ],
+    "imported_group_session_counts": [
+      1,
+      1,
+      1
+    ],
+    "sessions_preserved": 3
+  },
+  "root_reported_full": {
+    "backend_passed": 482,
+    "backend_seconds": 275.39,
+    "frontend_passed": 137,
+    "frontend_milliseconds": 43841.548125,
+    "build": "PASS",
+    "historical_baseline_cards": 18,
+    "historical_current_cards": 22
+  },
+  "independent_dist": {
+    "files": 26,
+    "cache": "vyuha-72094449dd1b"
+  },
+  "finding_counts": {
+    "PASS": 53,
+    "PARTIAL": 39,
+    "N/A": 1
+  },
+  "direct_finding_links": 93,
+  "explicit_workflow_links": 75,
+  "new_implementation_defects_found": [],
+  "limitations": [
+    "Imported archives retain each session but do not preserve local declared-roster longitudinal grouping",
+    "Native Windows/Linux pending",
+    "Fresh physical LAN/WAN/HTTPS trust/cold reload pending",
+    "Human efficacy and empirical calibration unsupported",
+    "Stable approval and validated media/rehearsal/submission unfinished"
+  ],
+  "report": "FINAL-AUDIT-REASSESSMENT.md",
+  "actionable_remaining_findings": [],
+  "receipt_reconciliation": {
+    "source_hash_matches_evidence_clone_gates_reconstruction": true,
+    "all_manifest_receipt_paths_exist": false,
+    "all_26_offline_asset_paths_exist": true,
+    "sensor_hash_matches_current_reconstruction": true,
+    "authorization_registered_pairs": 32,
+    "authorization_all_negative_states_401": true,
+    "all_5_reconstruction_review_card_hashes_equal_before_after": true,
+    "clone_execution_attribution": "Root installed fresh locked dependencies at33e150b, fetched final4f1f5d3 delta, reran npmci/build/nativeBash/emptyDB walkthrough/wholeDB backup-restore; independently inspected/reconciled by reviewer",
+    "native_windows_linux": "PENDING_BY_USER",
+    "fresh_physical_lan_wan_https": "PENDING_BY_USER",
+    "all_underlying_measurement_receipt_paths_exist": true,
+    "pending_manifest_paths_staged_in_tmp": [
+      "FINAL-AUDIT-REASSESSMENT.md",
+      "FINAL-AUDIT-REASSESSMENT.json"
+    ]
+  },
+  "score_change_from_previous_82": {
+    "PS_repeated_local_crew_review": 0.5,
+    "engineering_current_pin_clone_scoped_reassessment": 1.0
+  },
+  "resolved_review_findings": [
+    "Four CrewOfficerTools action buttons use explicit subtle colors; broader X11 accessibility remains partial",
+    "Genuine CYCLE2-BROWSER-ACCEPTANCE.json saved and manifest-listed; prior dangling citation resolved"
+  ],
+  "final_delta_independent_checks": {
+    "backend": {
+      "passed": 6,
+      "failed": 0,
+      "seconds": 0.55,
+      "warnings": 1
+    },
+    "frontend": {
+      "passed": 8,
+      "failed": 0,
+      "milliseconds": 321.300459
+    },
+    "scope": "Compliance backend and prior three frontend files after final wording/button/truncation delta; counts not added across runs"
+  },
+  "initial_focused_source_commit": "33e150beb421cc72760e4dcb10b88e7912656f95",
+  "final_browser_receipt": {
+    "saved": true,
+    "whole_database_before_after_equal": true,
+    "local_group_completed_sessions": 2,
+    "role_attributed_actions": 3,
+    "separate_physical_devices": false,
+    "mobile_390px_acceptance": false
+  }
+}

@@ -1,13 +1,13 @@
 {
   "recorded_date": "2026-10-12",
-  "source_tree_sha256": "3bec6d5e328b412e59a2ba09a0bc90768abac0f25d41b944c9d8a67f4183a4d6",
+  "source_tree_sha256": "94d311b647337ea9e1db5cac8cd75fc86b70f46717b5c1e8ad18fffbeb05595e",
   "stable_approval": false,
   "final_audit_score": null,
-  "independent_provisional_score": 82,
+  "independent_provisional_score": 83.5,
   "finding_counts": {
-    "PASS": 51,
+    "PASS": 53,
     "N/A": 1,
-    "PARTIAL": 41
+    "PARTIAL": 39
   },
   "finding_blocked_ids": [],
   "gates": [
@@ -15,7 +15,7 @@
       "id": "G01",
       "requirement": "Final backend/frontend/production regression",
       "status": "PASS",
-      "evidence": "453backend/133frontend/build;456.20s/74163.157ms;26assets/cache167d3e89736c;TEST-RESULTS.md"
+      "evidence": "482 backend /137 frontend /zero failures;275.39s/43841.548125ms;production build26 assets/cache72094449dd1b"
     },
     {
       "id": "G02",
@@ -27,13 +27,13 @@
       "id": "G03",
       "requirement": "Officer authorization, Crew isolation and transfer integrity",
       "status": "PASS_SCOPED",
-      "evidence": "All28protected routes anonymous/forged401; full regression and strict portable fixtures; ordinary learner identity remains trusted LAN"
+      "evidence": "32 actual current HTTP protected pairs reject anonymous/forged/logged-out with401; expired and ambient-cookie cases in registry ASGI tests; Crew lifecycle/isolation/transfer regression passed."
     },
     {
       "id": "G04",
       "requirement": "Real browser AAR/reference/Fusion/Crew/recovery workflows",
       "status": "PASS_SCOPED",
-      "evidence": "Actual browser AAR/reference/Fusion/Crew/outage plus final clean-clone Unit-to-officer-AAR without enrollment or DB mutation; BROWSER-ACCEPTANCE.json"
+      "evidence": "Actual browser Crew revoke/rotate/reconnect/history/AAR/What-if/evidence-only plus prior Fusion/outage checks; whole database unchanged. CYCLE2-BROWSER-ACCEPTANCE.json and dated BROWSER-ACCEPTANCE.json."
     },
     {
       "id": "G05",
@@ -45,13 +45,13 @@
       "id": "G06",
       "requirement": "Exact source/commit/assets/manifest and final clean clone",
       "status": "PASS_SCOPED",
-      "evidence": "Exact source commit/hash; fresh locked Python/npm clone, independently built matching cache, empty-DB HTTP walkthrough, Director v2, macOS backup/restore; CLEAN-CLONE-RECEIPT.json. Native platforms are G09; candidate archive seal is outside Git."
+      "evidence": "Current source/hash/assets; fresh locked-dependency macOS clone, final delta npm ci/rebuild/native Bash CLI port, another empty-DB walkthrough and exact whole-DB backup/restore. CLEAN-CLONE-CYCLE2-RECEIPT.json."
     },
     {
       "id": "G07",
       "requirement": "Independent final claim/acceptance decision",
       "status": "PARTIAL",
-      "evidence": "FINAL-SOFTWARE-ACCEPTANCE.md/json: exact source/manifest/assets and claim review independently complete; no extra software correctness blocker. Stable decision remains pending G08/G09;82provisional is not a final rescore.",
+      "evidence": "Independent final source/receipt review PASS_SCOPED;83.5 provisional with exact deductions. Final stable acceptance remains pending G08/G09. FINAL-AUDIT-REASSESSMENT.md/json.",
       "software_review_status": "PASS_SCOPED"
     },
     {
@@ -87,7 +87,6 @@
     "X02",
     "X07",
     "X15",
-    "X18",
     "X21",
     "X24",
     "X26",
@@ -112,5 +111,5 @@
     "X19"
   ],
   "blocking_scope": "No new stable declaration while required acceptance remains pending; PENDING tests are not failed architectural tests or automatically waived requirements.",
-  "candidate_code_commit": "3ec720d26ef8e556aa392d5adac2218ebde7353a"
+  "candidate_code_commit": "4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903"
 }

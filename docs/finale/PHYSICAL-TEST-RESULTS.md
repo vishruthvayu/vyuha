@@ -1,10 +1,11 @@
 # Finale physical and native test results
 
-Prepared 12 October 2026 from starting checkpoint `8dc8405`. This document records no newly executed physical or native tests. The user retained fresh physical and native validation pending. Update full source/build pins after candidate changes and before execution.
+Prepared 12 October 2026 from starting checkpoint `4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903`. This document records no newly executed physical or native tests. The user retained fresh physical and native validation pending. Update full source/build pins after candidate changes and before execution.
 
 | Execution field | Value |
 | --- | --- |
-| Full candidate SHA / branch | PENDING / feature/vyuha-finale-edition |
+| Prepared candidate SHA / branch (not an execution receipt) | 4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903 / feature/vyuha-finale-edition |
+| Actual executed candidate SHA / branch | PENDING |
 | Source-tree hash / asset cache hash / source_matches | PENDING |
 | Test date/time/timezone / tester | PENDING |
 | Officer model/CPU class / RAM / OS/browser/Python/Node | PENDING |

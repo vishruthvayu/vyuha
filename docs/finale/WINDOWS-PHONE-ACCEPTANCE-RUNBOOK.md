@@ -1,6 +1,6 @@
 # Windows officer / Android Chrome acceptance runbook
 
-Prepared 12 October 2026. Starting checkpoint: `8dc8405`. This is an executable handoff, not a receipt. Native Windows/Linux and fresh Finale physical LAN, WAN and Android HTTPS checks remain **PENDING**. Before execution, the release coordinator must supply the full candidate commit and production asset/source hashes. Do not infer new candidate acceptance from historical results. Preserve `v1.0.1`.
+Prepared 12 October 2026. Starting checkpoint: `4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903`. This is an executable handoff, not a receipt. Native Windows/Linux and fresh Finale physical LAN, WAN and Android HTTPS checks remain **PENDING**. Prepared source SHA256: `94d311b647337ea9e1db5cac8cd75fc86b70f46717b5c1e8ad18fffbeb05595e`; asset cache: `72094449dd1b` /26 assets. The tester must confirm these pins on the executed checkout before recording results. Do not infer new candidate acceptance from historical results. Preserve `v1.0.1`.
 
 ## Online preparation and exact source pin
 
@@ -60,7 +60,7 @@ Do not silently reclassify a public network or open router forwarding. Obtain an
 3. Select Adaptive → Prepare adaptive drill → Start adaptive drill. Record the session UUID and frozen Director v2/raid selection metadata.
 4. Observe a contact, designate, classify and confirm identity from available cues; choose/execute a simulated response. Record actual contact ID and server-accepted action. Unknown cues must not be assumed hostile.
 5. Officer opens `/instructor`, signs in privately and selects that exact session. Send Pause exercise; verify its command UUID acknowledges/applies and the phone pauses. Resume. Send Fail radar and Restore radar; verify degraded/restored trainee state and application ticks. If injecting, record its assigned ID instead of assuming T7.
-6. Officer opens `/white-cell`; verify live observed/reference state and correct selected session, command lifecycle and signed-out rejection. Truth/reference remains officer-only.
+6. Officer opens `/instructor#white-cell`; verify live observed/reference state and correct selected session, command lifecycle and signed-out rejection. Truth/reference remains officer-only.
 7. Phone ends exercise. Require **Server verified**, not merely Session saved. Open Ghost, decision-tree review and Time Machine; compare stored decisions/command chronology. Pending verification requires real retry/result, not a pass.
 8. Run What-If and canonical/evidence-only Reference Run. Record separate provenance/output, return to original result and confirm original score/profile remains unchanged. Canonical policy is not certified human expert performance; evidence-only mode must abstain on unknown identity.
 9. Officer opens `/analytics` and `/unit`, checks the individual result/Director family and protected heatmap. Reload phone and verify its saved accepted decisions/history. If Fusion training assistance is enabled, verify accepted receipts and cues in AAR after reload; separately verify assessment restrictions.
