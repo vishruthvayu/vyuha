@@ -1,7 +1,7 @@
 """Actionable local startup checks; no downloads or database rewrites."""
 import argparse, os, shutil, socket, sys
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--build',action='store_true');p.add_argument('--port',type=int,default=int(os.environ.get('VYUHA_PORT','8000')));a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--build',action='store_true');p.add_argument('--port',type=int,default=os.environ.get('VYUHA_PORT','8000'));a=p.parse_args()
 def fail(message):print('VYUHA startup: '+message,file=sys.stderr);sys.exit(1)
 if sys.version_info < (3,11):fail('Python 3.11 or newer is required. Install it and recreate .venv.')
 if not 1<=a.port<=65535:fail('VYUHA_PORT must be between 1 and 65535.')
@@ -11,6 +11,10 @@ if a.build:
  version=subprocess.check_output(['node','--version'],text=True).strip().lstrip('v').split('.')
  major,minor=map(int,version[:2])
  if not (major==20 and minor>=19 or major==22 and minor>=12 or major>22):fail('Unsupported Node version. Use Node.js 20.19+ or 22.12+.')
+cert=os.environ.get('VYUHA_SSL_CERTFILE','');key=os.environ.get('VYUHA_SSL_KEYFILE','')
+if bool(cert)!=bool(key):fail('Set both VYUHA_SSL_CERTFILE and VYUHA_SSL_KEYFILE for HTTPS.')
+for label,value in [('certificate',cert),('private key',key)]:
+ if value and (not Path(value).is_file() or not os.access(value,os.R_OK)):fail(f'The configured TLS {label} file is missing or unreadable.')
 try:
  with socket.socket() as s:s.bind(('0.0.0.0',a.port))
 except OSError as e:fail(f'Cannot open port {a.port}: {e}. Stop the existing server or set VYUHA_PORT to a free port.')

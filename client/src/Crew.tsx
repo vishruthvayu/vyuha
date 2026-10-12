@@ -1,3 +1,4 @@
+import CrewOfficerTools from "./CrewOfficerTools";
 import { officerReviewHref } from "./routes";
 import React, { useEffect, useState } from "react";
 import OfficerGate from "./OfficerGate";
@@ -75,7 +76,13 @@ class CrewHTTPError extends Error {
 type Issued = {
   id: string;
   session_id: string;
-  members: { callsign: string; role: string; code: string }[];
+  members: {
+    member_id: string;
+    callsign: string;
+    role: string;
+    code: string;
+    expires_at: number;
+  }[];
 };
 const nonce = newId;
 async function requestCrew<T>(
@@ -87,6 +94,7 @@ async function requestCrew<T>(
     `/api/v1/crews/${encodeURIComponent(id)}/${body ? "actions" : "state"}`,
     {
       method: body ? "POST" : "GET",
+      signal: AbortSignal.timeout(6000),
       headers: {
         "Content-Type": "application/json",
         "X-VYUHA-Crew-Token": code,
@@ -254,6 +262,10 @@ export default function Crew() {
           setError("");
         }
       } catch (e) {
+        if (!stopped && e instanceof CrewHTTPError && e.status === 401) {
+          setJoined(false);
+          setState(null);
+        }
         if (!stopped)
           setError(
             (e as Error).message + " Decisions are blocked until reconnection.",
@@ -357,7 +369,7 @@ export default function Crew() {
           Crew ID
           <input
             value={id}
-            disabled={joined}
+            disabled={joined || !!pending}
             onChange={(e) => setId(e.target.value)}
           />
         </label>
@@ -377,7 +389,7 @@ export default function Crew() {
           onClick={() => {
             setJoined((j) => !j);
             setState(null);
-            setPending(null);
+            if (joined) setPending(null);
             setError("");
           }}
         >
@@ -385,7 +397,9 @@ export default function Crew() {
         </button>
         <p>
           Role codes are kept in this page’s memory. Re-enter the same code
-          after a reload to reconnect.
+          after a reload to reconnect while it remains valid. If it expires or
+          is revoked, ask the officer to rotate your code; accepted decisions
+          remain recorded.
         </p>
       </section>
       {error && <p role="alert">{error}</p>}
@@ -521,68 +535,72 @@ export default function Crew() {
         </section>
       )}
       <OfficerGate>
-        <section className="panel">
-          <h2>Officer crew setup</h2>
-          <label>
-            Exercise name
-            <input value={name} onChange={(e) => setName(e.target.value)} />
-          </label>
-          <label>
-            Frozen shared raid
-            <select
-              value={scenario}
-              onChange={(e) => setScenario(e.target.value)}
+        <>
+          <section className="panel">
+            <h2>Officer crew setup</h2>
+            <label>
+              Exercise name
+              <input value={name} onChange={(e) => setName(e.target.value)} />
+            </label>
+            <label>
+              Frozen shared raid
+              <select
+                value={scenario}
+                onChange={(e) => setScenario(e.target.value)}
+              >
+                {library.map((s) => (
+                  <option key={s.id} value={s.id}>
+                    {s.title}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <p>
+              Save a v0.4 raid in Exercise studio first. This setup assigns
+              WATCH / spotter and RESPONSE / responder.
+            </p>
+            <button
+              className="button primary"
+              disabled={!scenario || busy}
+              onClick={() => void create()}
             >
-              {library.map((s) => (
-                <option key={s.id} value={s.id}>
-                  {s.title}
-                </option>
-              ))}
-            </select>
-          </label>
-          <p>
-            Save a v0.4 raid in Exercise studio first. This setup assigns WATCH
-            / spotter and RESPONSE / responder.
-          </p>
-          <button
-            className="button primary"
-            disabled={!scenario || busy}
-            onClick={() => void create()}
-          >
-            Create shared crew
-          </button>
-          {issued && (
-            <>
-              <p>Crew ID: {issued.id}</p>
-              {issued.members.map((m) => (
-                <details key={m.callsign}>
-                  <summary>
-                    {m.callsign} · {m.role} · reveal assigned role code
-                  </summary>
-                  <code style={{ overflowWrap: "anywhere" }}>{m.code}</code>
-                </details>
-              ))}
-              {(["resume", "pause", "complete"] as const).map((v) => (
-                <button
-                  className="button"
-                  key={v}
-                  disabled={busy}
-                  onClick={() => void command(v)}
-                >
-                  {v === "complete"
-                    ? "End and score crew"
-                    : v === "resume"
-                      ? "Start / resume crew"
-                      : "Pause crew"}
-                </button>
-              ))}
-              <p>
-                Save each code before leaving. After server restart, use the
-                instructor console to resume the same session.
-              </p>
-            </>
-          )}
-        </section>
+              Create shared crew
+            </button>
+            {issued && (
+              <>
+                <p>Crew ID: {issued.id}</p>
+                {issued.members.map((m) => (
+                  <details key={m.callsign}>
+                    <summary>
+                      {m.callsign} · {m.role} · reveal assigned role code
+                    </summary>
+                    <p>Expires {new Date(m.expires_at * 1000).toISOString()}</p>
+                    <code style={{ overflowWrap: "anywhere" }}>{m.code}</code>
+                  </details>
+                ))}
+                {(["resume", "pause", "complete"] as const).map((v) => (
+                  <button
+                    className="button"
+                    key={v}
+                    disabled={busy}
+                    onClick={() => void command(v)}
+                  >
+                    {v === "complete"
+                      ? "End and score crew"
+                      : v === "resume"
+                        ? "Start / resume crew"
+                        : "Pause crew"}
+                  </button>
+                ))}
+                <p>
+                  Save each code before leaving. After server restart, use the
+                  instructor console to resume the same session.
+                </p>
+              </>
+            )}
+          </section>
+          <CrewOfficerTools createdId={issued?.id ?? ""} />
+        </>
       </OfficerGate>
     </main>
   );

@@ -22,3 +22,15 @@ test('evidence links and unresolved release work remain visible and immutable',(
  assert.match(html,/Fusion, Crew and resource scoring remain open/);assert.match(html,/final source manifest pending/);
  assert.equal(JSON.stringify(manifest),before);
 });
+
+test('focused finding exposes its own evidence and workflow without passing it automatically',()=>{
+ const record={...manifest.items[0],evidence_url:'/api/v1/system/compliance/findings/SC03',finding_url:'/system/compliance?finding=SC03#finding-SC03',evidence_documents:[{title:'Actual browser evidence',url:'/api/v1/system/compliance/documents/browser-acceptance'}],live_workflow:{url:'/',required_context:'Join a trainee and record an observed decision.',scope:'Relevant workflow; validation requires completing the action.'}};
+ const updated={...manifest,items:[record,...manifest.items.slice(1)]};
+ const before=JSON.stringify(updated),html=renderToStaticMarkup(<ComplianceBoard manifest={updated} initialFinding="SC03"/>);
+ assert.match(html,/id="finding-SC03"/);assert.match(html,/findings\/SC03/);assert.match(html,/Open workflow for SC03/);assert.match(html,/Actual browser evidence/);assert.match(html,/validation requires completing/);
+ assert.doesNotMatch(html,/id="finding-SC12"/);assert.equal(JSON.stringify(updated),before);
+});
+test('unknown focused finding stays explicit instead of presenting unrelated proof',()=>{
+ const html=renderToStaticMarkup(<ComplianceBoard manifest={manifest} initialFinding="UNKNOWN"/>);
+ assert.match(html,/This finding is unavailable/);assert.doesNotMatch(html,/Open workflow for/);
+});

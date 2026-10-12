@@ -7,12 +7,19 @@ $PythonCommand = $null
 $PythonPrefix = @()
 foreach ($Name in @('python', 'python3', 'py')) {
     $Found = Get-Command $Name -ErrorAction SilentlyContinue
-    if ($Found) { $PythonCommand = $Found.Source; if ($Name -eq 'py') { $PythonPrefix = @('-3') }; break }
+    if (-not $Found) { continue }
+    $CandidatePrefix = @()
+    if ($Name -eq 'py') { $CandidatePrefix = @('-3') }
+    try {
+        & $Found.Source @CandidatePrefix -c 'import sys; raise SystemExit(0 if sys.version_info >= (3,11) else 1)' 2>$null
+        if ($LASTEXITCODE -eq 0) { $PythonCommand = $Found.Source; $PythonPrefix = $CandidatePrefix; break }
+    } catch { continue }
 }
 if (-not $PythonCommand) { throw 'Install Python 3.11+ and reopen PowerShell before officer setup.' }
 & $PythonCommand @PythonPrefix scripts/preflight.py --build
 if ($LASTEXITCODE -ne 0) { throw 'Officer preflight failed. Resolve the printed error and retry.' }
 $VenvPython = Join-Path (Get-Location) '.venv/Scripts/python.exe'
+if ((Test-Path '.venv') -and -not (Test-Path $VenvPython)) { throw 'Existing .venv has no Windows interpreter. Preserve data and recreate the virtual environment locally; setup will not overwrite it.' }
 if (-not (Test-Path $VenvPython)) {
     & $PythonCommand @PythonPrefix -m venv .venv
     if ($LASTEXITCODE -ne 0) { throw 'Cannot create the Python virtual environment.' }

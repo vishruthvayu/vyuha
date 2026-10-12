@@ -30,6 +30,7 @@ router=APIRouter(prefix='/api/v1/crews',tags=['Shared Crew'])
 _LOCK=threading.RLock()
 _CACHE=OrderedDict()
 CACHE_LIMIT=64
+DEFAULT_CAPABILITY_MINUTES=480
 
 def ensure_schema(db):
     db.executescript('''
@@ -38,6 +39,11 @@ def ensure_schema(db):
       CREATE TABLE IF NOT EXISTS crew_receipts(crew_id TEXT NOT NULL,request_id TEXT NOT NULL,body TEXT NOT NULL,receipt TEXT NOT NULL,PRIMARY KEY(crew_id,request_id));
       CREATE TABLE IF NOT EXISTS crew_attribution(session_id TEXT NOT NULL,timeline_order INTEGER NOT NULL,member_id TEXT NOT NULL,role TEXT NOT NULL,PRIMARY KEY(session_id,timeline_order));
     ''')
+    columns={row['name'] for row in db.execute('PRAGMA table_info(crew_members)')}
+    for name,kind in [('expires_at','INTEGER'),('revoked_at','TEXT')]:
+        if name not in columns:db.execute(f'ALTER TABLE crew_members ADD COLUMN {name} {kind}')
+    # Older codes had no bounded lifecycle. Keep attribution, but require officer
+    # rotation instead of silently granting another indefinite capability.
 
 def is_shared_session(db,sid):
     if db.execute('SELECT 1 FROM crews WHERE session_id=?',(sid,)).fetchone():return True
@@ -54,6 +60,7 @@ class CreateCrew(StrictModel):
     name:str=Field(min_length=1,max_length=80)
     scenario_id:str=Field(min_length=1,max_length=100)
     members:list[Member]=Field(min_length=2,max_length=8)
+    valid_minutes:int=Field(default=DEFAULT_CAPABILITY_MINUTES,ge=15,le=1440)
     @model_validator(mode='after')
     def distinct(self):
         if set(m.role for m in self.members)!={'spotter','responder'} or len({m.callsign.lower() for m in self.members})!=len(self.members):
@@ -91,10 +98,15 @@ def transaction(cid):
 def clock():return time.monotonic()
 
 def now():return datetime.now(timezone.utc).isoformat()
+def capability_time():return int(time.time())
+
+def capability_valid(row):
+    return bool(row and row['revoked_at'] is None and row['expires_at'] is not None and row['expires_at']>capability_time())
+
 def member(db,cid,request):
     token=request.headers.get('x-vyuha-crew-token','')
     row=db.execute('SELECT * FROM crew_members WHERE crew_id=? AND token_hash=?',(cid,hashlib.sha256(token.encode()).hexdigest())).fetchone() if token else None
-    if row is None:raise HTTPException(401,'A valid crew role code is required')
+    if not capability_valid(row):raise HTTPException(401,'Crew role code expired, revoked or invalid. Ask the officer for a new code.')
     return row
 
 def crew(db,cid):
@@ -170,9 +182,55 @@ def create(req:CreateCrew):
         codes=[]
         for m in req.members:
             code=secrets.token_urlsafe(32);mid='M_'+uuid.uuid4().hex[:16]
-            db.execute('INSERT INTO crew_members VALUES (?,?,?,?,?)',(cid,mid,m.callsign,m.role,hashlib.sha256(code.encode()).hexdigest()))
-            codes.append(dict(member_id=mid,callsign=m.callsign,role=m.role,code=code))
-    return dict(id=cid,session_id=sid,members=codes,note='Save these role codes; only hashes are stored. Share each code with its assigned crew member.')
+            expiry=capability_time()+req.valid_minutes*60
+            db.execute('INSERT INTO crew_members(crew_id,id,callsign,role,token_hash,expires_at,revoked_at) VALUES (?,?,?,?,?,?,NULL)',(cid,mid,m.callsign,m.role,hashlib.sha256(code.encode()).hexdigest(),expiry))
+            codes.append(dict(member_id=mid,callsign=m.callsign,role=m.role,code=code,expires_at=expiry))
+    return dict(id=cid,session_id=sid,members=codes,note='Save these expiring role codes; only hashes are stored. Officer rotation invalidates the old code without changing accepted history.')
+
+class RotateCapability(StrictModel):
+    valid_minutes:int=Field(default=DEFAULT_CAPABILITY_MINUTES,ge=15,le=1440)
+
+
+def capability_status(row):
+    state='revoked' if row['revoked_at'] else 'rotation_required' if row['expires_at'] is None else 'expired' if row['expires_at']<=capability_time() else 'active'
+    return dict(member_id=row['id'],callsign=row['callsign'],role=row['role'],status=state,expires_at=row['expires_at'],revoked_at=row['revoked_at'])
+
+
+@router.get('/history')
+def history(limit:int=100):
+    from .crew_history import completed_history
+    if isinstance(limit,bool) or not 1<=limit<=100:raise HTTPException(422,'History limit must be1–100')
+    with storage.connect() as db:return completed_history(db,limit)
+
+
+@router.get('/{cid}/members')
+def members(cid:str):
+    with storage.connect() as db:
+        row=crew(db,cid)
+        return dict(id=cid,name=row['name'],session_id=row['session_id'],status=row['status'],members=[capability_status(m) for m in db.execute('SELECT * FROM crew_members WHERE crew_id=? ORDER BY callsign',(cid,))])
+
+
+@router.post('/{cid}/members/{mid}/rotate')
+def rotate_capability(cid:str,mid:str,req:RotateCapability):
+    with transaction(cid) as db:
+        crew(db,cid)
+        row=db.execute('SELECT * FROM crew_members WHERE crew_id=? AND id=?',(cid,mid)).fetchone()
+        if row is None:raise HTTPException(404,'Crew member not found')
+        code=secrets.token_urlsafe(32);expiry=capability_time()+req.valid_minutes*60
+        db.execute('UPDATE crew_members SET token_hash=?,expires_at=?,revoked_at=NULL WHERE crew_id=? AND id=?',(hashlib.sha256(code.encode()).hexdigest(),expiry,cid,mid))
+        updated=db.execute('SELECT * FROM crew_members WHERE id=?',(mid,)).fetchone()
+        return dict(**capability_status(updated),code=code,note='Old code invalidated. Accepted decisions, attribution and scores are unchanged.')
+
+
+@router.post('/{cid}/members/{mid}/revoke')
+def revoke_capability(cid:str,mid:str):
+    with transaction(cid) as db:
+        crew(db,cid)
+        row=db.execute('SELECT * FROM crew_members WHERE crew_id=? AND id=?',(cid,mid)).fetchone()
+        if row is None:raise HTTPException(404,'Crew member not found')
+        if row['revoked_at'] is None:db.execute('UPDATE crew_members SET revoked_at=? WHERE id=?',(now(),mid))
+        return capability_status(db.execute('SELECT * FROM crew_members WHERE id=?',(mid,)).fetchone())
+
 
 @router.get('/catalogue')
 def catalogue():
@@ -259,6 +317,6 @@ class CrewSessionBoundary:
                             return await JSONResponse({'detail':'Crew inputs must use the server-owned role endpoints'},status_code=403)(scope,receive,send)
                         if not auth.valid(auth.bearer(headers)):
                             token=headers.get('x-vyuha-crew-token','')
-                            accepted=db.execute('SELECT 1 FROM crew_members WHERE crew_id=? AND token_hash=?',(found['id'],hashlib.sha256(token.encode()).hexdigest())).fetchone() if token else None
-                            if not accepted:return await JSONResponse({'detail':'Crew membership or officer sign-in required'},status_code=401)(scope,receive,send)
+                            accepted=db.execute('SELECT * FROM crew_members WHERE crew_id=? AND token_hash=?',(found['id'],hashlib.sha256(token.encode()).hexdigest())).fetchone() if token else None
+                            if not capability_valid(accepted):return await JSONResponse({'detail':'Crew membership or officer sign-in required'},status_code=401)(scope,receive,send)
         return await self.app(scope,receive,send)

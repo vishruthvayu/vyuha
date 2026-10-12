@@ -173,6 +173,35 @@ def observe_sensors(seed, tick, index, track, environment, memory=None, config=N
     return _observe_sensors(seed, tick, index, track, environment, memory, configuration(config))
 
 
+_MEMORY_FIELDS = frozenset(("key","tick","sweep","paints","misses","confirmed","position","sample_tick","radar_status","last_state"))
+_SCALARS = (str,int,float,bool,type(None))
+
+def _copy_sensor_memory(memory):
+    """Detach the known internal scalar/list/position schema; preserve extensions.
+
+    Public callers may attach arbitrary nested metadata. Those shapes retain the
+    full deepcopy contract; neither path shares mutable paints or positions.
+    """
+    if type(memory) is not dict or not memory.keys() <= _MEMORY_FIELDS or not (_MEMORY_FIELDS-{"last_state"}) <= memory.keys():
+        return copy.deepcopy(memory)
+    paints=memory.get("paints")
+    point=memory.get("position")
+    if type(paints) is not list or any(type(value) is not bool for value in paints):
+        return copy.deepcopy(memory)
+    if any(type(value) not in _SCALARS for key,value in memory.items() if key not in ("paints","position")):
+        return copy.deepcopy(memory)
+    if point is not None and (type(point) is not dict or set(point)!={"x","z","altitude"} or any(type(value) not in (int,float) for value in point.values())):
+        return copy.deepcopy(memory)
+    result=memory.copy()
+    result["paints"]=paints.copy()
+    result["position"]=point.copy() if point is not None else None
+    return result
+
+def _copy_sensor_position(point):
+    if type(point) is dict and set(point)=={"x","z","altitude"} and all(type(value) in (int,float) for value in point.values()):
+        return point.copy()
+    return copy.deepcopy(point)
+
 def _observe_sensors(seed, tick, index, track, environment, memory, c):
     """Engine-only path: environment/config validated once for this logical tick.
 
@@ -188,7 +217,7 @@ def _observe_sensors(seed, tick, index, track, environment, memory, c):
     if memory is None or memory.get("key") != key or tick < memory["tick"]:
         memory = {"key": key, "tick": tick, "sweep": None, "paints": [], "misses": 0, "confirmed": False, "position": None, "sample_tick": None, "radar_status": None}
     else:
-        memory = copy.deepcopy(memory)
+        memory = _copy_sensor_memory(memory)
     memory["tick"] = tick
     active = track.get("active", True)
     radar_status = environment.get("radar_status", "normal")
@@ -214,7 +243,7 @@ def _observe_sensors(seed, tick, index, track, environment, memory, c):
             memory["sweep"] = sweep
             memory["last_state"] = "lost" if lost else "confirmed" if memory["confirmed"] else "tentative" if hit else "none"
         radar.update(state=memory.get("last_state", "none"), detected=memory["confirmed"], fresh=memory["sample_tick"] == tick,
-                     position=copy.deepcopy(memory["position"]) if memory["confirmed"] or memory.get("last_state") == "tentative" else None,
+                     position=_copy_sensor_position(memory["position"]) if memory["confirmed"] or memory.get("last_state") == "tentative" else None,
                      sample_tick=memory["sample_tick"])
     memory["radar_status"] = radar_status
     eo = _optical_observation(seed, tick, index, track, environment, "eo", c)

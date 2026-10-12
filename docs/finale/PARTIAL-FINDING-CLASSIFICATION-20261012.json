@@ -1,0 +1,892 @@
+{
+  "schema_version": 1,
+  "inspected_date": "2026-10-12",
+  "snapshot_commit": "8dc840552778a5996aaad52c52573a1c517254b8",
+  "source_status": "Read-only inspection of source at beginning of engineering cycle; later implementations require updated tests and acceptance.",
+  "total_partial_findings": 41,
+  "automatic_status_changes": false,
+  "provisional_score": 82,
+  "final_audit_score": null,
+  "classification_note": "Categories describe the actual remaining gap, not the original audit severity. Duplicate findings remain separate traceable entries. mandatory release defect includes release acceptance blockers, not an assertion of an application correctness defect.",
+  "category_counts": {
+    "DOCUMENTATION / DEMO GAP": 6,
+    "EXTERNAL DATA / CALIBRATION GAP": 4,
+    "HUMAN STUDY GAP": 1,
+    "IMPLEMENTATION GAP": 6,
+    "INTEGRATION GAP": 4,
+    "JUSTIFIED FUTURE WORK": 2,
+    "PERFORMANCE GAP": 4,
+    "SECURITY GAP": 1,
+    "VALIDATION GAP": 13
+  },
+  "items": [
+    {
+      "id": "SC14",
+      "category": "VALIDATION GAP",
+      "secondary_categories": [
+        "DOCUMENTATION / DEMO GAP"
+      ],
+      "priority_group": "requires physical validation",
+      "current_implementation": "Unit Mode binds locally hosted services and assets; historical multi-device evidence is separately documented.",
+      "remaining_gap": "New Finale Director, Fusion, White Cell and Crew physical-client acceptance has not been performed.",
+      "proposed_measurable_change": "Prepare exact commit-bound laptop/Android runbook and record genuine results when equipment is available.",
+      "pass_criteria": "Separate physical trainee device completes fresh Finale exercise and instructor command, verified AAR; retain measured device/browser/build and HTTPS/WAN evidence as separate subtests.",
+      "source_references": [
+        "scripts/start-unit.sh:19",
+        "scripts/start-unit.ps1:27",
+        "docs/finale/PHYSICAL-LAN-VALIDATION.md:1"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Usable at unit level with minimal special hardware"
+    },
+    {
+      "id": "SC16",
+      "category": "EXTERNAL DATA / CALIBRATION GAP",
+      "secondary_categories": [],
+      "priority_group": "requires external real-world evidence",
+      "current_implementation": "Strict deterministic radar, optical, RF and IFF models, LOS and per-channel hold are executable; model configuration is frozen.",
+      "remaining_gap": "Illustrative parameters have no equipment calibration, measured false-alarm curve or external validity.",
+      "proposed_measurable_change": "Provide licensed data/instrument/units/evaluation contract and evaluate received teammate data without silently replacing synthetic assumptions.",
+      "pass_criteria": "Instrument-specific held-out metrics, provenance and uncertainty justify only the measured modality/conditions; parity remains exact after separately versioned changes.",
+      "source_references": [
+        "server/sensors_v2.py:43",
+        "server/sensors_v2.py:124",
+        "server/sensors_v2.py:147",
+        "server/config/sensors-v2.json:1"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Sensor realism and fusion"
+    },
+    {
+      "id": "SC17",
+      "category": "IMPLEMENTATION GAP",
+      "secondary_categories": [
+        "EXTERNAL DATA / CALIBRATION GAP",
+        "HUMAN STUDY GAP"
+      ],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "Director v2 uses seeded adjusted Thompson sampling over four preserved Beta skills, recent progress and processed-session gaps; immutable selection metadata exists.",
+      "remaining_gap": "No fitted Elo/target70% or night/swarm/weather skill posterior; no human learning superiority.",
+      "proposed_measurable_change": "Implement a separately versioned contextual observation ledger without changing historical four-skill profiles; inspect measured difficulty before fitting target success.",
+      "pass_criteria": "Context ledger exports/imports exact accepted outcomes, excludes crew aggregates and leaves historical profiles/cards unchanged; calibration and human learning claims require separate data.",
+      "source_references": [
+        "server/director_v2.py:151",
+        "server/director_v2.py:163",
+        "server/director_v2.py:200",
+        "server/director.py:77"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Depth of the AI"
+    },
+    {
+      "id": "SC18",
+      "category": "INTEGRATION GAP",
+      "secondary_categories": [
+        "VALIDATION GAP",
+        "PERFORMANCE GAP"
+      ],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "White Cell reconstructs truth versus observed evidence, reference alerts and trainee declarations with a20s/128-entry input-addressed cache.",
+      "remaining_gap": "Teach-pause explanations are not recorded; simultaneous board/trainee acceptance and interaction distributions need fresh proof.",
+      "proposed_measurable_change": "Capture instructor teach-pause notes with session/tick/command provenance, preserve in AAR/transfer; run actual browser board/trainee acceptance.",
+      "pass_criteria": "Auth-protected note with authoritative tick and explicit instructor attribution survives reload, AAR and signed transfer; note never becomes trainee action or scoring input; multi-browser receipt shows current/fault/restored pictures.",
+      "source_references": [
+        "server/white_cell.py:99",
+        "server/white_cell.py:134",
+        "client/src/WhiteCell.tsx:41",
+        "client/src/Instructor.tsx:22"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Instructor live picture"
+    },
+    {
+      "id": "SC19",
+      "category": "VALIDATION GAP",
+      "secondary_categories": [],
+      "priority_group": "requires physical validation",
+      "current_implementation": "Historical team-confirmed WAN exercise and current local runtime architecture are distinct evidence sources.",
+      "remaining_gap": "Historical WAN build is unspecified; fresh candidate dedicated WAN-off/LAN-on physical test remains pending.",
+      "proposed_measurable_change": "Keep historical provenance and new physical test status separate; provide WAN-only disconnect procedure without interrupting LAN.",
+      "pass_criteria": "With measured current commit and separate trainee device, ordinary Internet fails while local join/train/command/verify/Ghost succeeds, followed by restored WAN; no software surrogate.",
+      "source_references": [
+        "docs/finale/PHYSICAL-LAN-VALIDATION.md:1",
+        "scripts/start-unit.sh:19",
+        "client/scripts/offline.mjs:1"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Offline / air-gapped operation"
+    },
+    {
+      "id": "SC22",
+      "category": "DOCUMENTATION / DEMO GAP",
+      "secondary_categories": [
+        "VALIDATION GAP"
+      ],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "Fallback tactical2D, locally saved records and outage resynchronization work; historical media is retained separately.",
+      "remaining_gap": "New stable seeded demonstration DB, complete role script, saved backup video and rehearsal are unfinished.",
+      "proposed_measurable_change": "Prepare repeatable demo fixture/seed script, stepwise role plan and failure ladder now; freeze/record media only from validated release.",
+      "pass_criteria": "Empty fixture load is idempotent, intended live actions produce verified AAR and deterministic review; release-bound saved video plays on second device and actual rehearsal receipt records timing.",
+      "source_references": [
+        "client/src/App.tsx:1775",
+        "docs/finale/PROCESS-OUTAGE-RECEIPT.json:1",
+        "docs/finale/FINAL-RELEASE-GATES.json:69"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Demo reliability"
+    },
+    {
+      "id": "SC23",
+      "category": "VALIDATION GAP",
+      "secondary_categories": [],
+      "priority_group": "requires physical validation",
+      "current_implementation": "PowerShell setup/local/unit entrypoints and native Windows venv resolution exist; portable tests support interpreter override; Bash works on macOS.",
+      "remaining_gap": "Native Windows/Linux install, startup, TLS and backup/restore remain unexecuted.",
+      "proposed_measurable_change": "Finish reproducible platform runbooks/results form and preflight checks; execute on real OS when available.",
+      "pass_criteria": "Record current commit plus successful native locked installation, Unit Mode start, browser training, TLS/trust and exact backup/restore on each claimed OS.",
+      "source_references": [
+        "scripts/setup-officer.ps1:1",
+        "scripts/start-local.ps1:5",
+        "scripts/start-unit.ps1:6",
+        "scripts/preflight.py:1"
+      ],
+      "original_assumption_assessment": "Stale Bash-only/no.ps1 wording is false for current source; remaining native execution evidence gap is accurate",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Runs on the team Windows laptops"
+    },
+    {
+      "id": "P1-03",
+      "category": "VALIDATION GAP",
+      "secondary_categories": [
+        "SECURITY GAP"
+      ],
+      "priority_group": "requires physical validation",
+      "current_implementation": "Local CA/SAN tooling, launcher TLS paths, secret exclusions and macOS TLS receipt exist.",
+      "remaining_gap": "Separate-device browser trust, secure-origin cold reload and current phone HTTPS are pending; generated CA is not production PKI.",
+      "proposed_measurable_change": "Prepare Android trust and cold-cache startup steps; preserve private CA files outside Git and media.",
+      "pass_criteria": "Measured independent client trusts exact certificate, uses HTTPS without bypass warning, receives local assets and survives cold reload; wrong SAN/expired CA/key absence produces clear error.",
+      "source_references": [
+        "scripts/make-cert.py:1",
+        "scripts/start-unit.ps1:23",
+        "scripts/start-unit.sh:15",
+        "docs/finale/TLS-SERVICE-RECEIPT.json:1"
+      ],
+      "original_assumption_assessment": "P1-03 no-CA-helper description is stale; current certificate tooling exists, physical trust acceptance does not",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Ship HTTPS for the LAN"
+    },
+    {
+      "id": "P2-01",
+      "category": "DOCUMENTATION / DEMO GAP",
+      "secondary_categories": [],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "Architecture/design, software evidence and physical validation limits are explicitly separated.",
+      "remaining_gap": "Final presentation narrative/claim audit is incomplete; repeated qualifiers could obscure real completed behavior.",
+      "proposed_measurable_change": "Prepare concise feature-first claim cards with one scope note and exact receipt links; carry limitations into final release handoff.",
+      "pass_criteria": "Each demo assertion maps to implemented code and executed evidence; unsupported military certification/learning/air-gap claims absent; judge-facing narrative is readable.",
+      "source_references": [
+        "client/src/FinaleEvidence.tsx:33",
+        "docs/finale/SIH-PS-COMPLIANCE.md:1",
+        "docs/finale/FINAL-SOFTWARE-ACCEPTANCE.md:1"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Stop over-hedging"
+    },
+    {
+      "id": "P2-02",
+      "category": "IMPLEMENTATION GAP",
+      "secondary_categories": [],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "App and major Finale components were formatted; App is2,538lines and new functions live in separate modules.",
+      "remaining_gap": "App retains multiple independent effect/draft/command/identity concerns; package has no enforced linter/format script.",
+      "proposed_measurable_change": "Extract a cohesive review/draft lifecycle hook with unchanged event order and add narrow deterministic formatting enforcement.",
+      "pass_criteria": "Same frontend/parity/browser workflows pass; new hook prevents stale session writes across navigation/reload; formatter script covers maintained source without rewriting frozen legacy code.",
+      "source_references": [
+        "client/src/App.tsx:1140",
+        "client/src/storage.ts:1",
+        "client/package.json:6"
+      ],
+      "original_assumption_assessment": "App148/166 compressed-line description is stale; maintainability decomposition/enforcement gap remains",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Make the code readable for a walk-through"
+    },
+    {
+      "id": "P2-03",
+      "category": "VALIDATION GAP",
+      "secondary_categories": [],
+      "priority_group": "requires physical validation",
+      "current_implementation": "PowerShell setup/local/unit entrypoints and native Windows venv resolution exist; portable tests support interpreter override; Bash works on macOS.",
+      "remaining_gap": "Native Windows/Linux install, startup, TLS and backup/restore remain unexecuted.",
+      "proposed_measurable_change": "Finish reproducible platform runbooks/results form and preflight checks; execute on real OS when available.",
+      "pass_criteria": "Record current commit plus successful native locked installation, Unit Mode start, browser training, TLS/trust and exact backup/restore on each claimed OS.",
+      "source_references": [
+        "scripts/setup-officer.ps1:1",
+        "scripts/start-local.ps1:5",
+        "scripts/start-unit.ps1:6",
+        "scripts/preflight.py:1"
+      ],
+      "original_assumption_assessment": "Stale Bash-only/no.ps1 wording is false for current source; remaining native execution evidence gap is accurate",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Support Windows"
+    },
+    {
+      "id": "CH08",
+      "category": "EXTERNAL DATA / CALIBRATION GAP",
+      "secondary_categories": [
+        "HUMAN STUDY GAP",
+        "JUSTIFIED FUTURE WORK"
+      ],
+      "priority_group": "requires external real-world evidence",
+      "current_implementation": "Original25/25/15/35 rubric is frozen; delayed response, resource ledger, group outcomes and optional Brier diagnostics supplement review.",
+      "remaining_gap": "No empirically justified new weighted score, calibrated overload penalty or area-effectors model.",
+      "proposed_measurable_change": "Keep scored result unchanged; validate diagnostics and prepare rubric-change evaluation/version contract rather than inventing new weights.",
+      "pass_criteria": "Documented rubric validation with domain/human evidence, versioned score dispatch and golden legacy preservation before claiming scoring v2; diagnostic-only outputs stay explicit.",
+      "source_references": [
+        "client/src/AdvancedAAR.tsx:79",
+        "server/review.py:12",
+        "server/fusion.py:201",
+        "server/response_v2.py:1"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Scoring v2"
+    },
+    {
+      "id": "CH10",
+      "category": "JUSTIFIED FUTURE WORK",
+      "secondary_categories": [
+        "PERFORMANCE GAP"
+      ],
+      "priority_group": "future capability beyond current proof",
+      "current_implementation": "Instructor, White Cell and Crew poll with non-overlap guards and interval cleanup.",
+      "remaining_gap": "No push transport or measured latency superiority.",
+      "proposed_measurable_change": "Measure roundtrip/command application latency first; implement SSE only if observer load requires it, retaining reconnect and cursor semantics.",
+      "pass_criteria": "Same isolation/retry/command order across disconnect/restart, bounded subscribers, cancellation and authenticated streams; measured latency improves at defined load.",
+      "source_references": [
+        "client/src/WhiteCell.tsx:64",
+        "client/src/Instructor.tsx:22",
+        "client/src/Crew.tsx:266"
+      ],
+      "original_assumption_assessment": "Polling is real; absence of push is not by itself a correctness defect or official PS violation",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Push instead of poll"
+    },
+    {
+      "id": "CH12",
+      "category": "VALIDATION GAP",
+      "secondary_categories": [
+        "SECURITY GAP"
+      ],
+      "priority_group": "requires physical validation",
+      "current_implementation": "Local CA/SAN tooling, launcher TLS paths, secret exclusions and macOS TLS receipt exist.",
+      "remaining_gap": "Separate-device browser trust, secure-origin cold reload and current phone HTTPS are pending; generated CA is not production PKI.",
+      "proposed_measurable_change": "Prepare Android trust and cold-cache startup steps; preserve private CA files outside Git and media.",
+      "pass_criteria": "Measured independent client trusts exact certificate, uses HTTPS without bypass warning, receives local assets and survives cold reload; wrong SAN/expired CA/key absence produces clear error.",
+      "source_references": [
+        "scripts/make-cert.py:1",
+        "scripts/start-unit.ps1:23",
+        "scripts/start-unit.sh:15",
+        "docs/finale/TLS-SERVICE-RECEIPT.json:1"
+      ],
+      "original_assumption_assessment": "P1-03 no-CA-helper description is stale; current certificate tooling exists, physical trust acceptance does not",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "LAN HTTPS"
+    },
+    {
+      "id": "CH14",
+      "category": "IMPLEMENTATION GAP",
+      "secondary_categories": [],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "App and major Finale components were formatted; App is2,538lines and new functions live in separate modules.",
+      "remaining_gap": "App retains multiple independent effect/draft/command/identity concerns; package has no enforced linter/format script.",
+      "proposed_measurable_change": "Extract a cohesive review/draft lifecycle hook with unchanged event order and add narrow deterministic formatting enforcement.",
+      "pass_criteria": "Same frontend/parity/browser workflows pass; new hook prevents stale session writes across navigation/reload; formatter script covers maintained source without rewriting frozen legacy code.",
+      "source_references": [
+        "client/src/App.tsx:1140",
+        "client/src/storage.ts:1",
+        "client/package.json:6"
+      ],
+      "original_assumption_assessment": "App148/166 compressed-line description is stale; maintainability decomposition/enforcement gap remains",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Readable code"
+    },
+    {
+      "id": "CH15",
+      "category": "VALIDATION GAP",
+      "secondary_categories": [],
+      "priority_group": "requires physical validation",
+      "current_implementation": "PowerShell setup/local/unit entrypoints and native Windows venv resolution exist; portable tests support interpreter override; Bash works on macOS.",
+      "remaining_gap": "Native Windows/Linux install, startup, TLS and backup/restore remain unexecuted.",
+      "proposed_measurable_change": "Finish reproducible platform runbooks/results form and preflight checks; execute on real OS when available.",
+      "pass_criteria": "Record current commit plus successful native locked installation, Unit Mode start, browser training, TLS/trust and exact backup/restore on each claimed OS.",
+      "source_references": [
+        "scripts/setup-officer.ps1:1",
+        "scripts/start-local.ps1:5",
+        "scripts/start-unit.ps1:6",
+        "scripts/preflight.py:1"
+      ],
+      "original_assumption_assessment": "Stale Bash-only/no.ps1 wording is false for current source; remaining native execution evidence gap is accurate",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Windows support"
+    },
+    {
+      "id": "CH16",
+      "category": "PERFORMANCE GAP",
+      "secondary_categories": [],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "Unit dashboard reads persisted completed failure stats; only missing legacy stats are backfilled outside write transaction.",
+      "remaining_gap": "Repeated roster/profile/Director and live queries have no dedicated query-count/latency budget receipt or cache proof.",
+      "proposed_measurable_change": "Profile dashboard query cost on known roster/history, consolidate N+1 reads or add bounded input-addressed cache with presence/active state uncached.",
+      "pass_criteria": "Paired repeated workload shows fewer queries or latency reduction; DB/path/cohort/completion invalidation exact; TTL does not hide active presence/commands; historical results unchanged.",
+      "source_references": [
+        "server/units.py:78",
+        "server/units.py:86",
+        "server/units.py:96",
+        "server/units.py:104"
+      ],
+      "original_assumption_assessment": "100 full replays per poll allegation is disproven; measurable current query cost remains a valid optimization target",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Dashboard caching"
+    },
+    {
+      "id": "F01",
+      "category": "INTEGRATION GAP",
+      "secondary_categories": [
+        "VALIDATION GAP",
+        "PERFORMANCE GAP"
+      ],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "White Cell reconstructs truth versus observed evidence, reference alerts and trainee declarations with a20s/128-entry input-addressed cache.",
+      "remaining_gap": "Teach-pause explanations are not recorded; simultaneous board/trainee acceptance and interaction distributions need fresh proof.",
+      "proposed_measurable_change": "Capture instructor teach-pause notes with session/tick/command provenance, preserve in AAR/transfer; run actual browser board/trainee acceptance.",
+      "pass_criteria": "Auth-protected note with authoritative tick and explicit instructor attribution survives reload, AAR and signed transfer; note never becomes trainee action or scoring input; multi-browser receipt shows current/fault/restored pictures.",
+      "source_references": [
+        "server/white_cell.py:99",
+        "server/white_cell.py:134",
+        "client/src/WhiteCell.tsx:41",
+        "client/src/Instructor.tsx:22"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "White Cell: live instructor picture of every trainee, truth vs belief, alerts"
+    },
+    {
+      "id": "F05",
+      "category": "EXTERNAL DATA / CALIBRATION GAP",
+      "secondary_categories": [
+        "HUMAN STUDY GAP"
+      ],
+      "priority_group": "requires external real-world evidence",
+      "current_implementation": "Fusion operates on sanitized observations, frozen heuristic cue contributions, training-only recommendations and replay-validated receipts.",
+      "remaining_gap": "No trained likelihood model/calibrated posterior,10krealtrack table or causal over-trust score.",
+      "proposed_measurable_change": "Create data/provenance/evaluation interfaces and reliability plots after genuine data arrives; retain descriptive heuristic UI and bias challenges now.",
+      "pass_criteria": "Held-out modality-specific labels/provenance and calibration intervals; no ground-truth leakage; human reliance claims need independently measured study, not advice alignment alone.",
+      "source_references": [
+        "server/fusion.py:17",
+        "server/fusion.py:73",
+        "server/fusion.py:125",
+        "server/fusion.py:202"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Fusion Assistant with an over-trust score"
+    },
+    {
+      "id": "F06",
+      "category": "IMPLEMENTATION GAP",
+      "secondary_categories": [
+        "VALIDATION GAP",
+        "HUMAN STUDY GAP"
+      ],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "Completed Crew actions have immutable member attribution and logical handoff timing, shared score excluded from individual learning and analytics.",
+      "remaining_gap": "No longitudinal crew coordination history/trend dashboard; role competency/reliance and new physical breadth remain unvalidated.",
+      "proposed_measurable_change": "Add authenticated read-only crew history grouped by declared crew/member labels, trend counts/handoff medians with changing-roster warnings; preserve imported archives.",
+      "pass_criteria": "At least3completed exercises yield ordered distinct session metrics and links; original database/cards/profiles stay unchanged; signed transfer/import retains same aggregate history; counts explicitly not competency.",
+      "source_references": [
+        "server/crew.py:143",
+        "server/crew_metrics.py:6",
+        "client/src/Crew.tsx:157",
+        "server/advanced.py:195"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Crew Mode: observation, classification/response, coordination roles on LAN clients"
+    },
+    {
+      "id": "F07",
+      "category": "IMPLEMENTATION GAP",
+      "secondary_categories": [
+        "EXTERNAL DATA / CALIBRATION GAP",
+        "HUMAN STUDY GAP"
+      ],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "Director v2 uses seeded adjusted Thompson sampling over four preserved Beta skills, recent progress and processed-session gaps; immutable selection metadata exists.",
+      "remaining_gap": "No fitted Elo/target70% or night/swarm/weather skill posterior; no human learning superiority.",
+      "proposed_measurable_change": "Implement a separately versioned contextual observation ledger without changing historical four-skill profiles; inspect measured difficulty before fitting target success.",
+      "pass_criteria": "Context ledger exports/imports exact accepted outcomes, excludes crew aggregates and leaves historical profiles/cards unchanged; calibration and human learning claims require separate data.",
+      "source_references": [
+        "server/director_v2.py:151",
+        "server/director_v2.py:163",
+        "server/director_v2.py:200",
+        "server/director.py:77"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Director v2: learning progress, calibrated difficulty, retention and context skills"
+    },
+    {
+      "id": "X02",
+      "category": "DOCUMENTATION / DEMO GAP",
+      "secondary_categories": [],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "Architecture/design, software evidence and physical validation limits are explicitly separated.",
+      "remaining_gap": "Final presentation narrative/claim audit is incomplete; repeated qualifiers could obscure real completed behavior.",
+      "proposed_measurable_change": "Prepare concise feature-first claim cards with one scope note and exact receipt links; carry limitations into final release handoff.",
+      "pass_criteria": "Each demo assertion maps to implemented code and executed evidence; unsupported military certification/learning/air-gap claims absent; judge-facing narrative is readable.",
+      "source_references": [
+        "client/src/FinaleEvidence.tsx:33",
+        "docs/finale/SIH-PS-COMPLIANCE.md:1",
+        "docs/finale/FINAL-SOFTWARE-ACCEPTANCE.md:1"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Stop over-hedging without erasing limitations"
+    },
+    {
+      "id": "X07",
+      "category": "SECURITY GAP",
+      "secondary_categories": [
+        "VALIDATION GAP"
+      ],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "Officer auth is expiring/revocable bearer; Crew capabilities are hashed and role actions segregated; individual training uses trusted callsign/UUID.",
+      "remaining_gap": "Crew role codes currently have no expiry/revocation; member and shared-AAR middleware accept any stored hash indefinitely.",
+      "proposed_measurable_change": "Add explicit capability expiry/revocation/rotation applied consistently to state/actions/shared review; preserve historical attribution and archive access semantics.",
+      "pass_criteria": "Expired/revoked/old rotated/wrong-crew codes deny all restricted routes; new code rejoins same role; completed history immutable; officer can read archived results; role denial occurs before duplicate receipt return.",
+      "source_references": [
+        "server/crew.py:37",
+        "server/crew.py:94",
+        "server/crew.py:198",
+        "server/crew.py:262",
+        "server/auth.py:64"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Cookie, session ownership, CSRF and role boundaries beyond a PIN"
+    },
+    {
+      "id": "X08",
+      "category": "VALIDATION GAP",
+      "secondary_categories": [
+        "SECURITY GAP"
+      ],
+      "priority_group": "requires physical validation",
+      "current_implementation": "Local CA/SAN tooling, launcher TLS paths, secret exclusions and macOS TLS receipt exist.",
+      "remaining_gap": "Separate-device browser trust, secure-origin cold reload and current phone HTTPS are pending; generated CA is not production PKI.",
+      "proposed_measurable_change": "Prepare Android trust and cold-cache startup steps; preserve private CA files outside Git and media.",
+      "pass_criteria": "Measured independent client trusts exact certificate, uses HTTPS without bypass warning, receives local assets and survives cold reload; wrong SAN/expired CA/key absence produces clear error.",
+      "source_references": [
+        "scripts/make-cert.py:1",
+        "scripts/start-unit.ps1:23",
+        "scripts/start-unit.sh:15",
+        "docs/finale/TLS-SERVICE-RECEIPT.json:1"
+      ],
+      "original_assumption_assessment": "P1-03 no-CA-helper description is stale; current certificate tooling exists, physical trust acceptance does not",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Secrets/private keys/CA trust handling"
+    },
+    {
+      "id": "X09",
+      "category": "VALIDATION GAP",
+      "secondary_categories": [],
+      "priority_group": "requires physical validation",
+      "current_implementation": "Latest macOS clean clone exact backup/restore passed; signed import performs atomic rollback and immutable legacy/finale preservation.",
+      "remaining_gap": "Native platform backup/restore and exact stable deployment rollback rehearsal remain pending.",
+      "proposed_measurable_change": "Prepare cross-platform executable backup/restore examples and compare logical DB/asset/manifest contents; retain original stable fallback.",
+      "pass_criteria": "Fresh native install restores disposable backup with exact rows/profiles/cards and resumes new exercise; rollback to stable uses compatible separate DB without downgrade corruption.",
+      "source_references": [
+        "scripts/backup-data.py:1",
+        "server/portable.py:1",
+        "docs/finale/CLEAN-CLONE-RECEIPT.json:1",
+        "docs/finale/FINAL-RELEASE-GATES.json:65"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Backup and restoration plus rollback compatibility"
+    },
+    {
+      "id": "X10",
+      "category": "DOCUMENTATION / DEMO GAP",
+      "secondary_categories": [],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "Evidence endpoint computes current source hash;8dc8405candidate has pinned software source/assets and completed macOS clone receipt.",
+      "remaining_gap": "Any new source edits invalidate previous receipt; final media and stable approval remain absent.",
+      "proposed_measurable_change": "Regenerate exact source/assets/commit manifest after this cycle and seal candidate archive with machine-checkable hashes.",
+      "pass_criteria": "Evidence source_matches true and offline cache/files exact for same tested code commit; clean tree and archive checksums; no stale test counts/media claims; metadata-only commit references preserved code hash.",
+      "source_references": [
+        "server/evidence.py:7",
+        "server/evidence.py:28",
+        "docs/finale/EVIDENCE-FRESHNESS-RECEIPT.json:1",
+        "docs/finale/FINAL-SOFTWARE-ACCEPTANCE.json:1"
+      ],
+      "original_assumption_assessment": "Generic final source/clean-clone gap was already closed for8dc8405scope; lifecycle freshness and final stable/media remain real",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Source/evidence freshness and feature-status claims"
+    },
+    {
+      "id": "X11",
+      "category": "VALIDATION GAP",
+      "secondary_categories": [
+        "INTEGRATION GAP"
+      ],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "Responsive layouts/ARIA/loading/errors and desktop mobile-sized AAR screenshot exist; phone-browser fresh Finale workflow remains pending.",
+      "remaining_gap": "Complete keyboard/accessibility audit, focus management and actual cross-browser mobile flows are not established.",
+      "proposed_measurable_change": "Run keyboard-only routes/decisions/AAR/role/transfer workflows; fix verified inaccessible controls/focus and prepare real Android checklist.",
+      "pass_criteria": "Keyboard can finish core workflow without inaccessible hidden controls; no horizontal overflow at390x844; loading/errors announced; physical Android and named browser evidence separately recorded.",
+      "source_references": [
+        "client/src/App.tsx:1397",
+        "client/src/AdvancedAAR.tsx:79",
+        "client/src/WhiteCell.tsx:67",
+        "client/src/Crew.tsx:129",
+        "docs/finale/MOBILE-AAR-20261012.png:1"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Mobile responsiveness/accessibility and UI unity"
+    },
+    {
+      "id": "X12",
+      "category": "PERFORMANCE GAP",
+      "secondary_categories": [
+        "VALIDATION GAP"
+      ],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "20/60/180sec benchmark reports renderFPS, worker tick samples and main-page heap;180sec/200contacts and server reconstruction receipts exist.",
+      "remaining_gap": "Worker/GPU/whole-process memory and wider action/ACK latency distributions are absent; no operational endurance guarantee.",
+      "proposed_measurable_change": "Instrument real client action RTT plus server acceptance/apply logical ticks and collect bounded concurrent workflows; report main-page memory scope accurately.",
+      "pass_criteria": "Repeated fixed workload reports raw samples, p50/p95/max for each distinct metric; no renderFPS conflated with scoring latency; optimized complete score/review exactly match before.",
+      "source_references": [
+        "client/src/Benchmark.tsx:200",
+        "client/src/Benchmark.tsx:204",
+        "docs/finale/ENDURANCE-BROWSER-20261012.json:1",
+        "docs/finale/RECONSTRUCTION-PROFILE-RECEIPT.json:1"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Longer performance/endurance and interaction measurements"
+    },
+    {
+      "id": "X13",
+      "category": "VALIDATION GAP",
+      "secondary_categories": [
+        "DOCUMENTATION / DEMO GAP"
+      ],
+      "priority_group": "requires physical validation",
+      "current_implementation": "Unit Mode binds locally hosted services and assets; historical multi-device evidence is separately documented.",
+      "remaining_gap": "New Finale Director, Fusion, White Cell and Crew physical-client acceptance has not been performed.",
+      "proposed_measurable_change": "Prepare exact commit-bound laptop/Android runbook and record genuine results when equipment is available.",
+      "pass_criteria": "Separate physical trainee device completes fresh Finale exercise and instructor command, verified AAR; retain measured device/browser/build and HTTPS/WAN evidence as separate subtests.",
+      "source_references": [
+        "scripts/start-unit.sh:19",
+        "scripts/start-unit.ps1:27",
+        "docs/finale/PHYSICAL-LAN-VALIDATION.md:1"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Physical validation of NEW finale features"
+    },
+    {
+      "id": "X15",
+      "category": "IMPLEMENTATION GAP",
+      "secondary_categories": [
+        "VALIDATION GAP",
+        "HUMAN STUDY GAP"
+      ],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "Completed Crew actions have immutable member attribution and logical handoff timing, shared score excluded from individual learning and analytics.",
+      "remaining_gap": "No longitudinal crew coordination history/trend dashboard; role competency/reliance and new physical breadth remain unvalidated.",
+      "proposed_measurable_change": "Add authenticated read-only crew history grouped by declared crew/member labels, trend counts/handoff medians with changing-roster warnings; preserve imported archives.",
+      "pass_criteria": "At least3completed exercises yield ordered distinct session metrics and links; original database/cards/profiles stay unchanged; signed transfer/import retains same aggregate history; counts explicitly not competency.",
+      "source_references": [
+        "server/crew.py:143",
+        "server/crew_metrics.py:6",
+        "client/src/Crew.tsx:157",
+        "server/advanced.py:195"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Crew individual/group analytics and attribution"
+    },
+    {
+      "id": "X17",
+      "category": "DOCUMENTATION / DEMO GAP",
+      "secondary_categories": [],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "Historical presentation/video exists separately; current candidate screenshots and tests are reproducible evidence.",
+      "remaining_gap": "No final new-release PPT/PDF/narration/subtitles/code/Q&A/submission receipt.",
+      "proposed_measurable_change": "Prepare architecture/workflow/Q&A/storyboard and claim cards now; finalize files only after stable source is approved.",
+      "pass_criteria": "Six official slides and demo align to exact validated release/features/metrics; readable PDF, playable saved video, rehearsed timings and delivered submission package receipts.",
+      "source_references": [
+        "docs/finale/ARCHITECTURE-V2.md:1",
+        "docs/finale/SIH-PS-COMPLIANCE.md:1",
+        "docs/finale/FINAL-RELEASE-GATES.json:69"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Official SIH Canva PPT/PDF, narrated demo/subtitles/code explanation/Q&A/submission receipts"
+    },
+    {
+      "id": "X18",
+      "category": "INTEGRATION GAP",
+      "secondary_categories": [
+        "DOCUMENTATION / DEMO GAP"
+      ],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "Public93-row compliance index preserves official-vs-audit provenance and fixed whitelist docs; allrows have the same matrix evidence URL.",
+      "remaining_gap": "One-click finding-specific preset/session/unit live proof is missing.",
+      "proposed_measurable_change": "Add stable whitelisted workflow paths and row-specific receipt/document references with officer/trainee/setup prerequisites; avoid embedding synthetic fixture IDs as universal live proof.",
+      "pass_criteria": "Official rows and highvalue features open the intended actual route without mutating records; correct sign-in/identity and fallback if saved session absent; evidence links resolve per finding and traceability93rows unchanged.",
+      "source_references": [
+        "server/compliance.py:42",
+        "server/compliance.py:45",
+        "client/src/Compliance.tsx:12"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "PS Compliance Board with direct evidence links"
+    },
+    {
+      "id": "X19",
+      "category": "DOCUMENTATION / DEMO GAP",
+      "secondary_categories": [
+        "VALIDATION GAP"
+      ],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "Fallback tactical2D, locally saved records and outage resynchronization work; historical media is retained separately.",
+      "remaining_gap": "New stable seeded demonstration DB, complete role script, saved backup video and rehearsal are unfinished.",
+      "proposed_measurable_change": "Prepare repeatable demo fixture/seed script, stepwise role plan and failure ladder now; freeze/record media only from validated release.",
+      "pass_criteria": "Empty fixture load is idempotent, intended live actions produce verified AAR and deterministic review; release-bound saved video plays on second device and actual rehearsal receipt records timing.",
+      "source_references": [
+        "client/src/App.tsx:1775",
+        "docs/finale/PROCESS-OUTAGE-RECEIPT.json:1",
+        "docs/finale/FINAL-RELEASE-GATES.json:69"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Demo seed scenarios and reliability fallback ladder"
+    },
+    {
+      "id": "X20",
+      "category": "VALIDATION GAP",
+      "secondary_categories": [],
+      "priority_group": "mandatory release defect",
+      "current_implementation": "Original stable unchanged; latest independent software PASS_SCOPED and82provisional assessment exist with separate deployment gates.",
+      "remaining_gap": "Final independent reassessment/stable decision has not occurred for new cycle; pending physical/native cannot be auto-passed.",
+      "proposed_measurable_change": "Complete cycle tests/receipt reconciliation and independent adversarial reassessment; record release candidate readiness separately from stable approval.",
+      "pass_criteria": "Exact source audited and tests/claims reconciled; each mandatory gate genuinely passes or policy is explicitly changed by user; versioned stable tag only after approval; no automatic100score.",
+      "source_references": [
+        "docs/finale/FINAL-SOFTWARE-ACCEPTANCE.md:1",
+        "docs/finale/FINAL-RELEASE-GATES.json:1",
+        "docs/finale/INDEPENDENT-REVIEW-20261012.md:1"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Independent re-audit and release gates rather than automatic100"
+    },
+    {
+      "id": "X21",
+      "category": "INTEGRATION GAP",
+      "secondary_categories": [
+        "DOCUMENTATION / DEMO GAP"
+      ],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "Legacy Studio sends difficulty string to metadata only; Raid Composer changes hostile concurrency cap3/6/12 and frozen roster constraints.",
+      "remaining_gap": "Legacy label can imply behavior that does not change; no empirically calibrated70% target.",
+      "proposed_measurable_change": "Make legacy authored difficulty explicitly metadata-only in UI and route operational difficulty to Raid Composer rather than altering frozen legacy physics.",
+      "pass_criteria": "UI clearly says label does not tune roster/sensors/scoring; two otherwise same legacy specs differ only metadata; new composer difficulty produces expected verified constraints/valid playback.",
+      "source_references": [
+        "client/src/ExerciseStudio.tsx:32",
+        "server/exercises.py:38",
+        "server/exercises.py:94",
+        "server/raid_v2.py:180",
+        "client/src/RaidStudio.tsx:10"
+      ],
+      "original_assumption_assessment": "Legacy label-only allegation remains true; current Composer already offers actual bounded difficulty behavior",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Scenario Studio difficulty currently only an authored label"
+    },
+    {
+      "id": "X24",
+      "category": "HUMAN STUDY GAP",
+      "secondary_categories": [
+        "EXTERNAL DATA / CALIBRATION GAP"
+      ],
+      "priority_group": "requires human study",
+      "current_implementation": "Assessment mode hides advice; replay validates exposure prefix/config; optional Brier aftercompletion and descriptive alignment are explicit.",
+      "remaining_gap": "Cognitive over-trust, actual viewing and causal reliance are unmeasured.",
+      "proposed_measurable_change": "Prepare human-study tasks, consent/privacy-safe identifiers, counterbalanced advice/bias/assessment conditions and exported decision/exposure protocol.",
+      "pass_criteria": "Real participant records distinguish displayed/exposed/followed/correct/incorrect with preregistered outcomes/uncertainty; no synthetic learner or self-report treated as causal human evidence.",
+      "source_references": [
+        "server/fusion.py:163",
+        "server/fusion.py:201",
+        "server/fusion.py:229",
+        "server/fusion.py:274"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Fusion assessment gating, deception and appropriate-reliance measurements"
+    },
+    {
+      "id": "X26",
+      "category": "EXTERNAL DATA / CALIBRATION GAP",
+      "secondary_categories": [
+        "HUMAN STUDY GAP"
+      ],
+      "priority_group": "requires external real-world evidence",
+      "current_implementation": "Statistical adaptation and inspectable Fusion are legitimate AI; synthetic experiment intervals include zero.",
+      "remaining_gap": "Real learner benefit, calibrated classifier and fitted difficulty remain unsupported.",
+      "proposed_measurable_change": "Prepare real-vs-synthetic reporting and leakage-resistant data splits; keep synthetic experiment reproducible and honest.",
+      "pass_criteria": "Independent real dataset/human-study evidence reports actual metric/uncertainty with no causality overclaim; preserve no-learning baseline and outcome equivalence.",
+      "source_references": [
+        "server/director_v2.py:201",
+        "server/fusion.py:2",
+        "docs/finale/DIRECTOR-V2-SIMULATED-EXPERIMENT.json:1"
+      ],
+      "original_assumption_assessment": "Original categorical no-neural-model therefore invalidAI assumption is false; evaluation depth gap remains",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "No learned model is not proof existing AI invalid; sensor fusion assumptions need evaluation"
+    },
+    {
+      "id": "X27",
+      "category": "JUSTIFIED FUTURE WORK",
+      "secondary_categories": [],
+      "priority_group": "future capability beyond current proof",
+      "current_implementation": "Seeded red-force families and instructor intervention exist; sensor-placement planner and drone-piloting mode do not.",
+      "remaining_gap": "Optional planner/operator extension is absent and not an explicit official clause.",
+      "proposed_measurable_change": "Retain scoped proposal with applicability/design requirements; prioritize sensor/review/crew acceptance over new tactical planning domain.",
+      "pass_criteria": "If later built, planner/operator module has distinct objectives, observer-truth boundaries, deterministic model and domain/user evidence; no competitor capability invented as mandatory requirement.",
+      "source_references": [
+        "server/raid_v2.py:258",
+        "client/src/Instructor.tsx:22",
+        "docs/finale/RESEARCH-NOTES.md:1"
+      ],
+      "original_assumption_assessment": "Absence is real; mandatory necessity is not established by official PS",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Drone-operator/red-side mode and sensor-placement planner transferable proposals"
+    },
+    {
+      "id": "X29",
+      "category": "PERFORMANCE GAP",
+      "secondary_categories": [
+        "VALIDATION GAP"
+      ],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "20/60/180sec benchmark reports renderFPS, worker tick samples and main-page heap;180sec/200contacts and server reconstruction receipts exist.",
+      "remaining_gap": "Worker/GPU/whole-process memory and wider action/ACK latency distributions are absent; no operational endurance guarantee.",
+      "proposed_measurable_change": "Instrument real client action RTT plus server acceptance/apply logical ticks and collect bounded concurrent workflows; report main-page memory scope accurately.",
+      "pass_criteria": "Repeated fixed workload reports raw samples, p50/p95/max for each distinct metric; no renderFPS conflated with scoring latency; optimized complete score/review exactly match before.",
+      "source_references": [
+        "client/src/Benchmark.tsx:200",
+        "client/src/Benchmark.tsx:204",
+        "docs/finale/ENDURANCE-BROWSER-20261012.json:1",
+        "docs/finale/RECONSTRUCTION-PROFILE-RECEIPT.json:1"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Benchmark instrumentation currently measures callbackFPS separately from simulation"
+    },
+    {
+      "id": "X30",
+      "category": "PERFORMANCE GAP",
+      "secondary_categories": [
+        "VALIDATION GAP"
+      ],
+      "priority_group": "meaningful improvement implementable now",
+      "current_implementation": "White Cell has bounded128entry20sTTL cache; Crew runtime64cache and completed polling stops; client polls avoid overlaps and clean intervals.",
+      "remaining_gap": "Broader cancellation/cache-invalidation/load evidence and interaction distributions remain incomplete.",
+      "proposed_measurable_change": "Test timer unmount/stale response/failedrequest recovery and cache bounds across many sessions; collect current dashboard and live-picture latency under bounded concurrent clients.",
+      "pass_criteria": "No stale setState/session cross-contamination; cache caps/DB scope/invalidation exact; request/cancel counts and latency rawreceipt for specified concurrency; no whole-memory leak-free claim.",
+      "source_references": [
+        "server/white_cell.py:27",
+        "server/white_cell.py:155",
+        "server/crew.py:113",
+        "client/src/WhiteCell.tsx:64",
+        "client/src/Crew.tsx:266"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Polling/stream/resource cleanup, cache bounds and instructor performance"
+    },
+    {
+      "id": "X31",
+      "category": "VALIDATION GAP",
+      "secondary_categories": [
+        "DOCUMENTATION / DEMO GAP"
+      ],
+      "priority_group": "requires physical validation",
+      "current_implementation": "Locks, local production assets, portable launchers and strict archive schemas exist; final macOS install/build/backup passed.",
+      "remaining_gap": "Native current Windows/Linux and broader team installation evidence are missing; module walk-through may need simpler handoff.",
+      "proposed_measurable_change": "Provide executable native setup/backup checks and actual module map; run native tests when environments arrive.",
+      "pass_criteria": "Current exact commit installs/starts/backsup/restores on each claimed nativeOS, production assets served locally; documentation makes online preparation vs training runtime explicit.",
+      "source_references": [
+        "scripts/preflight.py:1",
+        "scripts/setup-officer.ps1:1",
+        "server/portable.py:1",
+        "docs/finale/CLEAN-CLONE-RECEIPT.json:1"
+      ],
+      "original_assumption_assessment": "Original gap remains accurate within the stated scope",
+      "status_at_start": "PARTIAL",
+      "status_change_authorized": false,
+      "finding": "Release source/platform/dependency and code-explanation accuracy"
+    }
+  ]
+}

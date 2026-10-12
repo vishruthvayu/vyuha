@@ -64,7 +64,7 @@ export function WhiteCell({selectedSessionId,onSelectSession}:{selectedSessionId
  useEffect(()=>{let stopped=false,pending=false;const update=async()=>{if(pending)return;pending=true;try{const result=await api<{schema_version:1;pictures:PictureEntry[]}>('/white-cell',undefined,10000);if(!stopped){setEntries(result.pictures);setLoaded(true);setError('');setLocalId(id=>result.pictures.some(p=>p.session_id===id)?id:result.pictures[0]?.session_id??'');}}catch(reason){if(!stopped)setError(reason instanceof Error?reason.message:'White Cell unavailable; reconnect to the officer server.');}finally{pending=false;}};void update();const timer=setInterval(()=>void update(),1500);return()=>{stopped=true;clearInterval(timer);};},[refresh]);
  const entry=entries.find(p=>p.session_id===selected)??entries[0];
  function select(id:string){setLocalId(id);onSelectSession?.(id);}
- return <section className="panel" aria-label="White Cell live exercise picture">
+ return <section id="white-cell" className="panel" aria-label="White Cell live exercise picture">
   <div className="panel-header"><strong>White Cell · Instructor situation picture</strong><button className="button subtle" onClick={()=>setRefresh(n=>n+1)}>Refresh picture</button></div>
   <p>Server reconstruction of accepted trainee actions and applied instructor commands. Choose a trainee; use the instructor controls below for interventions.</p>
   <div className="segmented" aria-label="White Cell evidence mode"><button aria-pressed={mode==='observed'} onClick={()=>setMode('observed')}>Observed evidence</button><button aria-pressed={mode==='reference'} onClick={()=>setMode('reference')}>Instructor reference truth</button></div>

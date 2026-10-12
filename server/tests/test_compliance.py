@@ -74,3 +74,37 @@ def test_malformed_or_missing_traceability_fails_closed(compliance_client):
     assert client.get('/api/v1/system/compliance').status_code == 503
     (docs/'audit-backlog.json').unlink()
     assert client.get('/api/v1/system/compliance').status_code == 503
+
+
+def test_finding_links_are_specific_whitelisted_and_have_no_private_session_ids(compliance_client):
+    client, docs = compliance_client
+    (docs/'BROWSER-ACCEPTANCE.json').write_text('{"scope":"Synthetic disposable browser workflow"}')
+    manifest = client.get('/api/v1/system/compliance').json()
+    assert len({row['evidence_url'] for row in manifest['items']}) == 93
+    for row in manifest['items']:
+        detail = client.get(row['evidence_url'])
+        assert detail.status_code == 200 and detail.json()['id'] == row['id']
+        assert detail.json()['status'] == row['status']
+        assert row['id'] in row['finding_url']
+        if row['live_workflow']:
+            assert row['live_workflow']['url'].startswith('/')
+            assert 'session=' not in row['live_workflow']['url']
+            assert row['live_workflow']['required_context']
+            assert 'validation requires' in row['live_workflow']['scope']
+    assert client.get('/api/v1/system/compliance/findings/private-key').status_code == 404
+    assert client.get('/api/v1/system/compliance/findings/F01').json()['live_workflow']['url'] == '/instructor#white-cell'
+    assert client.get('/api/v1/system/compliance/findings/X04').json()['live_workflow']['url'] == '/transfer'
+    assert client.get('/api/v1/system/compliance/findings/SC02').json()['live_workflow'] is None
+
+
+def test_live_finding_proof_does_not_promote_status_or_serve_unlisted_files(compliance_client):
+    client, docs = compliance_client
+    (docs/'BROWSER-ACCEPTANCE.json').write_text('{}')
+    (docs/'credentials.json').write_text('private')
+    before = {p.name:p.read_bytes() for p in docs.iterdir()}
+    result=client.get('/api/v1/system/compliance/findings/SC03').json()
+    assert result['implemented_is_not_validated'] is True
+    assert result['live_workflow']['url'] == '/'
+    assert any(d['url'].endswith('/browser-acceptance') for d in result['evidence_documents'])
+    assert client.get('/api/v1/system/compliance/documents/credentials.json').status_code == 404
+    assert {p.name:p.read_bytes() for p in docs.iterdir()} == before

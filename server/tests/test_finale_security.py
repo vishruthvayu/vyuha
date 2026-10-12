@@ -68,3 +68,32 @@ def test_trainee_paths_do_not_receive_officer_privilege(officer):
     assert c.post('/api/v1/units/join',json={'callsign':'PUBLIC'}).status_code==200
     assert not c.get('/api/v1/auth/session').json()['authenticated']
     assert c.post('/api/v1/auth/login',json={'password':'wrong','role':'instructor'}).status_code==422
+
+
+def test_every_registered_sensitive_route_rejects_expired_revoked_and_ambient_credentials(officer):
+    """Inventory real registrations independently of the middleware selector."""
+    import re
+    c,password=officer
+    def expected(method,path):
+        return (path.startswith(('/api/v1/instructor/','/api/v1/white-cell','/api/v1/raids','/api/v1/evaluations'))
+            or re.fullmatch(r'/api/v1/trainees/[^/]+/analytics',path)
+            or re.fullmatch(r'/api/v1/units/[^/]+/(dashboard|trainees|exercises(?:/[^/]+)?|analytics|skill-heatmap)',path)
+            or path in ('/api/v1/crews/catalogue','/api/v1/crews/history','/api/v1/bundle/import')
+            or re.fullmatch(r'/api/v1/crews/[^/]+/members(?:/[^/]+/(rotate|revoke))?',path)
+            or re.fullmatch(r'/api/v1/units/[^/]+/bundle/export',path)
+            or method=='POST' and (path=='/api/v1/crews' or re.fullmatch(r'/api/v1/crews/[^/]+/(control|complete)',path)
+                or path.startswith('/api/v1/scenario-library') or path=='/api/v1/recordings'
+                or re.fullmatch(r'/api/v1/units/[^/]+/(exercises|doctrine)',path)))
+    routes=[(method.upper(),path) for path,methods in app.openapi()['paths'].items() for method in methods if method.upper() in ('GET','POST','PUT','DELETE','PATCH') and expected(method.upper(),path)]
+    assert len(routes)>=32
+    revoked=c.post('/api/v1/auth/login',json={'password':password}).json()['token']
+    c.post('/api/v1/auth/logout',headers={'Authorization':'Bearer '+revoked},json={})
+    expired=c.post('/api/v1/auth/login',json={'password':password}).json()['token']
+    with auth._LOCK:auth._SESSIONS[auth.token_hash(expired)]=time.monotonic()-1
+    with storage.connect() as db:before=list(db.iterdump())
+    for method,path in routes:
+        url=re.sub(r'\{[^}]+\}','inventory-placeholder',path)
+        for headers in [{},{'Authorization':'Bearer forged'},{'Authorization':'Bearer '+expired},{'Authorization':'Bearer '+revoked},{'Cookie':'officer=pretend','Origin':'https://untrusted.example'}]:
+            result=c.request(method,url,headers=headers,json={} if method!='GET' else None)
+            assert result.status_code==401,(method,path,result.status_code)
+    with storage.connect() as db:assert list(db.iterdump())==before
