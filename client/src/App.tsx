@@ -1188,7 +1188,7 @@ export default function App({
   return (
     <div className="app-shell">
       <Navigation
-        view={view}
+        view={reviewOnly ? undefined : view}
         reviewCount={records.length}
         onWorkspaceNavigate={reviewOnly ? undefined : navigateWorkspace}
         footer={
@@ -2191,13 +2191,16 @@ export default function App({
               <div className="empty-state">
                 <Activity size={40} />
                 <h2>
-                  {records.length
-                    ? "Choose an exercise to review"
-                    : "Your first debrief starts here"}
+                  {reviewOnly
+                    ? "Completed session review"
+                    : records.length
+                      ? "Choose an exercise to review"
+                      : "Your first debrief starts here"}
                 </h2>
                 <p>
-                  Complete a drill to review detection timing, classification,
-                  and responses.
+                  {reviewOnly
+                    ? "Return to the unit overview to choose a completed session if this review is unavailable."
+                    : "Complete a drill to review detection timing, classification, and responses."}
                 </p>
                 {records.length ? (
                   <div className="record-list">
