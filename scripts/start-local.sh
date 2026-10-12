@@ -8,12 +8,15 @@ if ! vyuha_find_venv_python; then
   exit 1
  fi
  vyuha_find_system_python
- "${VYUHA_SYSTEM_PYTHON[@]}" scripts/preflight.py --build
+ "${VYUHA_SYSTEM_PYTHON[@]}" scripts/preflight.py --build "$@"
  "${VYUHA_SYSTEM_PYTHON[@]}" -m venv .venv
  vyuha_find_venv_python || { echo 'VYUHA startup: virtual environment creation did not produce a usable Python interpreter.' >&2; exit 1; }
 fi
-"$VYUHA_PYTHON" scripts/preflight.py --build
+"$VYUHA_PYTHON" scripts/preflight.py --build "$@"
 if ! "$VYUHA_PYTHON" -c 'import fastapi,uvicorn,httpx' 2>/dev/null; then
+ if ! "$VYUHA_PYTHON" -m pip --version >/dev/null 2>&1; then
+  "$VYUHA_PYTHON" -m ensurepip --upgrade || { echo 'Python package installer unavailable in .venv. Recreate this virtual environment with pip enabled; preserve data/.' >&2; exit 1; }
+ fi
  "$VYUHA_PYTHON" -m pip install -r server/requirements.lock.txt || { echo 'Dependency setup failed. First installation requires internet; retry when connected.' >&2; exit 1; }
 fi
 if [ ! -d client/node_modules ]; then
@@ -24,5 +27,12 @@ if ! "$VYUHA_PYTHON" -c 'from server.auth import credential_path; raise SystemEx
 fi
 (cd client && npm run build)
 port="${VYUHA_PORT:-8000}"
+arguments=("$@")
+for ((index=0; index<${#arguments[@]}; index++)); do
+ case "${arguments[index]}" in
+  --port) port="${arguments[index+1]}"; ((index+=1)) ;;
+  --port=*) port="${arguments[index]#--port=}" ;;
+ esac
+done
 printf '\nVYUHA is available at http://127.0.0.1:%s\n\n' "$port"
 exec "$VYUHA_PYTHON" -m uvicorn server.main:app --host 127.0.0.1 --port "$port"

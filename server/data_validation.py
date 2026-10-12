@@ -252,6 +252,15 @@ def validate_records(manifest, rows):
     return rows
 
 
+def artifact_digest(path):
+    """Hash raw recordings in bounded chunks instead of loading them into RAM."""
+    digest=hashlib.sha256();size=0
+    with Path(path).open('rb') as stream:
+        for chunk in iter(lambda:stream.read(1024*1024),b''):
+            size+=len(chunk);digest.update(chunk)
+    return size,digest.hexdigest()
+
+
 def ingest(manifest_path):
     path = Path(manifest_path).resolve()
     manifest = validate_manifest(read_json(path))
@@ -260,8 +269,8 @@ def ingest(manifest_path):
         target = (root / artifact['path']).resolve()
         if not target.is_relative_to(root) or not target.is_file():
             _fail('Artifact is absent or escapes manifest directory (including symlinks)')
-        data = target.read_bytes()
-        if len(data) != artifact['bytes'] or hashlib.sha256(data).hexdigest() != artifact['sha256']:
+        size,digest = artifact_digest(target)
+        if size != artifact['bytes'] or digest != artifact['sha256']:
             _fail(f'Artifact integrity mismatch: {artifact["path"]}')
     lines = (root / manifest['records_artifact']).read_text(encoding='utf-8').splitlines()
     rows = validate_records(manifest, [_json_line(line) for line in lines if line.strip()])

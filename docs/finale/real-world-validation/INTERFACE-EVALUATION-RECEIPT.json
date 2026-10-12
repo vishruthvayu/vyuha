@@ -4,7 +4,7 @@
   "real_datasets_received": 0,
   "human_studies_received": 0,
   "sensor": {
-    "report_sha256": "01f4b649c37a0c89a629f8d508cebef29f4d1c77efe32031ef30ed96f19cbb9d",
+    "report_sha256": "732ba097492f58dd3b9292559f2bc128b72097d26299e78d178bff74b412b410",
     "report": {
       "dataset_id": "INTERFACE-FIXTURE",
       "dataset_version": "1",
@@ -12,7 +12,7 @@
         "Synthetic interface values; no empirical claim"
       ],
       "evaluator": {
-        "module_sha256": "887968b2ea8119a0a474ae662cad72f9a61b02c58931e012d641d38ab4f7f88c",
+        "module_sha256": "4f04dacd91ff3f3bdd8f4ed6b1267e4a04bf1db5d26c4af5bb578017e84ae678",
         "runtime": "3.12.7 | packaged by Anaconda, Inc. | (main, Oct  4 2024, 08:22:19) [Clang 14.0.6 ]"
       },
       "evidence_status": "SYNTHETIC_INTERFACE_EVALUATED",
@@ -508,5 +508,11 @@
       "study_version": "1",
       "trials_sha256": "6dcd105a5508204ce747ba631ce9de5cabe6630e0a90010847590f2204ab49db"
     }
+  },
+  "focused_regression": {
+    "passed": 70,
+    "failed": 0,
+    "duration_seconds": 1.0,
+    "includes": "data intake, study analysis, reliability plotting inputs"
   }
 }

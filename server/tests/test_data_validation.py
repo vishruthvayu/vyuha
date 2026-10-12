@@ -279,3 +279,11 @@ def test_related_recordings_cluster_by_encounter():
     assert result['recording_count']==2
     assert result['independent_acquisition_clusters']==1
     assert result['intervals']['accuracy']['interval_95'] is None
+
+def test_raw_artifact_digest_streams_instead_of_materializing_recording(tmp_path,monkeypatch):
+    from server.data_validation import artifact_digest
+    data=b'bounded-recording-chunk'*100000
+    path=tmp_path/'raw.bin';path.write_bytes(data)
+    def forbidden(*args,**kwargs):raise AssertionError('Raw recordings must not use read_bytes')
+    monkeypatch.setattr(Path,'read_bytes',forbidden)
+    assert artifact_digest(path)==(len(data),hashlib.sha256(data).hexdigest())

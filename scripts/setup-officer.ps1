@@ -29,6 +29,11 @@ if ($LASTEXITCODE -ne 0) { throw 'Virtual environment preflight failed. Recreate
 & $VenvPython -c 'import fastapi, uvicorn, httpx' 2>$null
 if ($LASTEXITCODE -ne 0) {
     Write-Host 'Installing locked server dependencies. Initial setup requires internet.'
+    & $VenvPython -m pip --version 2>$null
+    if ($LASTEXITCODE -ne 0) {
+        & $VenvPython -m ensurepip --upgrade
+        if ($LASTEXITCODE -ne 0) { throw 'Python installer unavailable in .venv. Recreate it with pip enabled; preserve data/.' }
+    }
     & $VenvPython -m pip install -r server/requirements.lock.txt
     if ($LASTEXITCODE -ne 0) { throw 'Server setup failed. Check internet access and retry.' }
 }

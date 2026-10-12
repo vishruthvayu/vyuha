@@ -142,3 +142,35 @@ def test_unit_cli_port_is_identical_in_preflight_and_uvicorn(tmp_path):
         assert calls[0]==['scripts/preflight.py',*args]
         assert calls[-1][-2:]==['--port','9157']
         assert 'http://10.23.4.5:9157' in result.stdout
+
+
+@pytest.mark.parametrize("layout", ["bin/python", "Scripts/python.exe"])
+@pytest.mark.parametrize("args", [["--port", "9157"], ["--port=9157"]])
+def test_local_cli_port_matches_preflight_and_uvicorn(tmp_path, layout, args):
+    root, env = _project(tmp_path, layout)
+    result = subprocess.run(["bash", "scripts/start-local.sh", *args], cwd=root, env=env, capture_output=True, text=True, timeout=10)
+    assert result.returncode == 0, result.stderr
+    calls = [json.loads(line) for line in (root / "python-calls.jsonl").read_text().splitlines()]
+    assert calls[0] == ["scripts/preflight.py", "--build", *args]
+    assert calls[-1][-2:] == ["--port", "9157"]
+    assert "http://127.0.0.1:9157" in result.stdout
+
+
+@pytest.mark.parametrize("bootstrap_ok", [True, False])
+def test_missing_pip_is_bootstrapped_only_for_missing_server_dependencies(tmp_path, bootstrap_ok):
+    root, env = _project(tmp_path, "bin/python")
+    interpreter = root / ".venv/bin/python"
+    text = interpreter.read_text()
+    text += "if sys.argv[1:] == ['-c', 'import fastapi,uvicorn,httpx']: sys.exit(1)\n"
+    text += "if sys.argv[1:] == ['-m', 'pip', '--version']: sys.exit(1)\n"
+    if not bootstrap_ok:
+        text += "if sys.argv[1:] == ['-m', 'ensurepip', '--upgrade']: sys.exit(1)\n"
+    interpreter.write_text(text)
+    result = subprocess.run(["bash", "scripts/start-local.sh"], cwd=root, env=env, capture_output=True, text=True, timeout=10)
+    calls = [json.loads(line) for line in (root / "python-calls.jsonl").read_text().splitlines()]
+    assert ["-m", "ensurepip", "--upgrade"] in calls
+    assert (["-m", "pip", "install", "-r", "server/requirements.lock.txt"] in calls) is bootstrap_ok
+    assert result.returncode == (0 if bootstrap_ok else 1)
+    if not bootstrap_ok:
+        assert "preserve data/" in result.stderr
+        assert not (root / "npm-calls.jsonl").exists()
