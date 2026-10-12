@@ -16,6 +16,7 @@ from pydantic import TypeAdapter
 from .models import Action, Complete, CreateSession, EventBatch, Generate, InstructorCommand, ControlState
 from .storage import connect, dumps, init
 from .review import build_review
+from .teaching import decorate_review
 from .review_models import DecisionReview, GhostAAR
 from .director import persist_outcomes, read_profile, recent_history, select_director, adapt_scenario
 from .director_models import DirectorDecision, TrainingProfile
@@ -24,7 +25,11 @@ from .director_models import DirectorDecision, TrainingProfile
 @asynccontextmanager
 async def lifespan(app):
     init()
-    yield
+    try:
+        yield
+    finally:
+        from .query_cache import clear
+        clear()
 
 
 app = FastAPI(title="VYUHA local training API", version="0.2.0", lifespan=lifespan)
@@ -226,7 +231,7 @@ def aar(session_id: str, include_review: bool = True):
             raise HTTPException(422,"Stored score disagrees with reconstructed session")
         return dict(id=row["id"], trainee=row["trainee"], unit_id=row["unit_id"], exercise_group_id=row["exercise_group_id"], scenario=json.loads(row["spec"]), events=log,
                     commands=commands,executionTick=observed,endTick=row["end_tick"],scorecard=json.loads(row["scorecard"]),
-                    created_at=row["created_at"],verified=True,**review)
+                    created_at=row["created_at"],verified=True,**decorate_review(db,session_id,review))
 
 
 @app.get("/api/v1/units/{unit_id}/dashboard")
@@ -371,6 +376,11 @@ app.include_router(reference_router)
 from .expert_run_api import router as expert_run_router
 app.include_router(expert_run_router)
 app.add_middleware(CrewSessionBoundary)
+
+from .teaching import router as teaching_router
+app.include_router(teaching_router)
+from .streams import router as stream_router
+app.include_router(stream_router)
 
 DIST = Path(__file__).resolve().parent.parent / "client" / "dist"
 if DIST.is_dir():

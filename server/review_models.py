@@ -128,7 +128,17 @@ class ReplayMetadata(StrictModel):
     note: str
 
 
+class TeachingAnnotation(StrictModel):
+    command_seq: int = Field(ge=1,le=100)
+    text: str = Field(min_length=1,max_length=1000)
+    issued_at: str
+    tick: int | None = Field(default=None,ge=0,le=5400)
+    order: int | None = Field(default=None,ge=0,le=100000)
+    status: Literal["applied","awaiting application","not applied before completion"]
+
+
 class GhostAAR(StrictModel):
+    teaching_notes: list[TeachingAnnotation] = Field(default_factory=list)
     timeline: list[TimelineItem]
     decision_reviews: list[DecisionReview]
     ghost_summary: GhostSummary

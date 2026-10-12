@@ -23,3 +23,16 @@ A simulator may be calibrated on training measurements, checked on validation me
 ## Version and historical safety
 
 Record pre-integration frozen review/card outputs and source hash. Put any accepted calibrated model/config behind a new explicit engine/config version with provenance. Re-run strict validation, original/new parity, historical fixtures, backend/frontend tests and build. Preserve earlier Director selections, assistant exposure receipts and verified sessions verbatim. The team must approve a new bounded claim only after dataset review and reproducible results; these documents do not mark a calibration audit finding passed.
+
+## Current evidence ladder and received state
+
+| Stage | Status | Actual evidence / remaining requirement |
+| --- | --- | --- |
+| 1. Synthetic model implemented | IMPLEMENTED | Existing versioned sensor/Fusion/Director training assumptions; no empirical claim |
+| 2. Deterministic model tested | TESTED_SCOPED | Existing parity/history and new strictly synthetic intake/study interface tests; independent final integration checks still required |
+| 3. Compared with public real dataset | NOT RECEIVED / NOT PERFORMED | Reviewed source/version/license, actual grouped records, method and predictions required; no selected/downloaded public data |
+| 4. Externally evaluated defined conditions | NOT RECEIVED / NOT PERFORMED | Independent reproduction under declared instruments/sites/conditions |
+| 5. Relevant hardware calibrated | NOT RECEIVED / NOT PERFORMED | Traceable instruments/settings/units and calibration study; declared schema calibration does not establish this |
+| 6. Human training effectiveness evaluated | NOT RECEIVED / NOT PERFORMED | Reviewed consent/protocol, controlled independently scored baseline/post/retention outcomes and uncertainty |
+
+`EVALUATION-RUNBOOK.md` documents executable per-modality intake, held-out prediction metrics, source-separated recording/encounter-cluster intervals and unapplied parameter proposals. `HUMAN-STUDY-PROTOCOL.md` documents the executable participant-level instrument. Their generated example results are stage-2 software/interface evidence only. SC16, F05, X24 and X26 retain external calibration/human limitations. SC17/F07 scientific claims require genuine fitted difficulty/context predictions and measured human outcomes even if independent context-ledger software is completed.

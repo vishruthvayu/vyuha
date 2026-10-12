@@ -1,4 +1,4 @@
-import type {Action,DoctrineRules,PriorityChoice,PriorityComparison,PriorityFact,PriorityReport,Track} from './types';
+import type {Action,DoctrineRules,PriorityComparison,PriorityFact,PriorityReport,Track} from './types';
 import type {Simulation} from './sim';
 const rounded=(x:number,n:number)=>Math.round(x*10**n)/10**n;
 export function priorityFact(t:Track,rules:DoctrineRules,tick:number):PriorityFact {

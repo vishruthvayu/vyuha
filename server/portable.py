@@ -296,7 +296,8 @@ class UnitRef(StrictModel):
  id:str=Field(pattern=r'^U_[a-f0-9]{20}$')
  name:str=Field(min_length=1,max_length=80)
 
-from .portable_crew import SharedCrewMetadata,shared_metadata,validate_shared,save_archive
+from .portable_crew import SharedCrewMetadata,shared_metadata,validate_shared,save_archive,validate_cohorts,compatible_metadata
+from .portable_teaching import TeachingNote,export_notes,validate_notes,notes_match,insert_notes
 from .fusion import Exposure
 from .portable_fusion import export_exposures,prepare_exposures,verify_existing_exposures,insert_exposures
 
@@ -313,6 +314,7 @@ class TacticalEntry(StrictModel):
  scorecard:dict
  outcomes:dict|None
  shared_crew:SharedCrewMetadata|None=None
+ teaching_notes:list[TeachingNote]=Field(default_factory=list,max_length=100)
  fusion_exposures:list[Exposure]=Field(default_factory=list,max_length=2000)
 
 class RapidEntry(StrictModel):
@@ -423,8 +425,10 @@ def export(uid:str):
    if shared and o:raise HTTPException(422,'Shared crew session has an invalid individual outcome ledger; repair source classification before export')
    if not shared and not o:raise HTTPException(422,'Session has no reconstructable skill outcomes')
    exposures=export_exposures(db,r['id'])
+   try:notes=export_notes(db,r['id'])
+   except ValueError as e:raise HTTPException(422,'Teaching archive source is invalid: '+str(e)) from e
    versions.add(a['scorecard']['engine_version'])
-   entries.append(dict(id=r['id'],trainee=pseudonym(r['trainee'],secret,'P_'),created_at=r['created_at'],processed_at=r['completed_at'] or r['created_at'] if shared else o['processed_at'],scenario=export_scenario(a['scenario'],secret),events=a['events'],commands=a['commands'],execution_tick=a['executionTick'],end_tick=a['endTick'],scorecard=a['scorecard'],outcomes=None if shared else json.loads(o['outcomes']),**({'shared_crew':shared} if shared else {}),**({'fusion_exposures':exposures} if exposures else {})))
+   entries.append(dict(id=r['id'],trainee=pseudonym(r['trainee'],secret,'P_'),created_at=r['created_at'],processed_at=r['completed_at'] or r['created_at'] if shared else o['processed_at'],scenario=export_scenario(a['scenario'],secret),events=a['events'],commands=a['commands'],execution_tick=a['executionTick'],end_tick=a['endTick'],scorecard=a['scorecard'],outcomes=None if shared else json.loads(o['outcomes']),**({'shared_crew':shared} if shared else {}),**({'fusion_exposures':exposures} if exposures else {}),**({'teaching_notes':notes} if notes else {})))
   for r in rr:
    o=db.execute('SELECT processed_at FROM skill_outcomes WHERE session_id=?',(r['id'],)).fetchone()
    if not o:raise HTTPException(422,'Recognition ledger missing')
@@ -460,6 +464,7 @@ def import_bundle(req:Envelope):
  try:
   p=Payload.model_validate(req.payload);ids=[e.id for e in p.sessions]+[e.id for e in p.rapid]
   if len(ids)!=len(set(ids)):raise ValueError('Duplicate canonical session IDs inside bundle')
+  validate_cohorts(p.sessions,p.unit.id)
   from .review import SKILLS
   if len(p.profiles)>1000:raise ValueError('Too many profile snapshots')
   for tid,skills in p.profiles.items():
@@ -497,6 +502,7 @@ def import_bundle(req:Envelope):
    if (card if e.scenario['version']==2 else {k:v for k,v in card.items() if k!='engine_version'})!=(e.scorecard if e.scenario['version']==2 else {k:v for k,v in e.scorecard.items() if k!='engine_version'}):raise ValueError('Stored score disagrees with reconstruction')
    if e.shared_crew:validate_shared(e)
    elif session_outcomes(review)!=e.outcomes:raise ValueError('Skill outcomes disagree with reconstructed Ghost')
+   validate_notes(e)
    fusion_prepared[e.id]=prepare_exposures(e)
    prepared.append((e,review))
   for e in p.rapid:rapid_prepared.append((e,validate_rapid(e)))
@@ -510,6 +516,8 @@ def import_bundle(req:Envelope):
  from .review import SKILLS
  with connect() as db:
   db.execute('BEGIN IMMEDIATE')
+  try:validate_cohorts(p.sessions,p.unit.id,db)
+  except ValueError as e:raise HTTPException(409,str(e)+'; import rolled back') from e
   aliases={pseudonym(r['id'],key(),'P_'):r['id'] for r in db.execute('SELECT id FROM trainees')}
   unit_aliases={pseudonym(r['id'],key(),'U_'):r['id'] for r in db.execute('SELECT id FROM units')}
   unit_id=unit_aliases.get(p.unit.id,p.unit.id)
@@ -538,7 +546,8 @@ def import_bundle(req:Envelope):
     from .main import logged_events,applied_commands
     o=db.execute('SELECT outcomes,processed_at FROM skill_outcomes WHERE session_id=?',(e.id,)).fetchone()
     if old['trainee']!=e.trainee or old['unit_id']!=unit_id or old['status']!='completed' or old['scenario_id']!=e.scenario['id'] or json.loads(old['scorecard'])!=e.scorecard or logged_events(db,e.id)!=[a.model_dump(exclude_none=True) for a in e.events] or applied_commands(db,e.id)!=e.commands or (bool(o) if e.shared_crew else not o or json.loads(o['outcomes'])!=e.outcomes) or old['execution_tick']!=e.execution_tick:raise HTTPException(409,'Canonical session ID conflicts; import rolled back')
-    if shared_metadata(db,e.id,key())!=(e.shared_crew.model_dump() if e.shared_crew else None):raise HTTPException(409,'Shared crew classification or attribution conflicts; import rolled back')
+    if not compatible_metadata(shared_metadata(db,e.id,key()),e.shared_crew):raise HTTPException(409,'Shared crew classification or attribution conflicts; import rolled back')
+    if not notes_match(db,e):raise HTTPException(409,'Teaching notes conflict with immutable history; import rolled back')
     verify_existing_exposures(db,e,fusion_prepared[e.id])
     skipped+=1;continue
    if e.shared_crew and db.execute('SELECT 1 FROM skill_profiles WHERE trainee=? UNION ALL SELECT 1 FROM skill_outcomes WHERE trainee=?',(e.trainee,e.trainee)).fetchone():raise HTTPException(409,'Crew owner conflicts with an individual skill profile; import rolled back')
@@ -547,6 +556,7 @@ def import_bundle(req:Envelope):
    log=[a.model_dump(exclude_none=True) for a in e.events]
    for seq,offset in enumerate(range(0,len(log),2000)):db.execute('INSERT INTO chunks VALUES (?,?,?)',(e.id,seq,dumps(log[offset:offset+2000])))
    for c in e.commands:db.execute('INSERT INTO instructor_commands VALUES (?,?,?,?,?,?,?)',(e.id,c['seq'],c['command_id'],c['issued_at'],dumps({k:c[k] for k in ['command_id','type','payload']}),c['tick'],c['order']))
+   insert_notes(db,e)
    if e.shared_crew:save_archive(db,e.id,e.shared_crew)
    else:
     persist_skill_results(db,e.trainee,e.id,e.outcomes,'director-v1');db.execute('UPDATE skill_outcomes SET processed_at=? WHERE session_id=?',(e.processed_at,e.id))

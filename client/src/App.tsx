@@ -1,3 +1,4 @@
+import { consumeStream, abortableDelay } from "./live-stream";
 import { reportedContacts, visualPosition } from "./observed-contacts";
 import OfficerGate from "./OfficerGate";
 import {
@@ -10,11 +11,7 @@ import {
 } from "./presentation";
 import { SensorBadges } from "./SensorBadges";
 import Navigation from "./Navigation";
-import {
-  workspaceViewFromSearch,
-  workspaceHref,
-  type NavigationItem,
-} from "./routes";
+import { workspaceViewFromSearch } from "./routes";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Activity,
@@ -22,8 +19,6 @@ import {
   Check,
   ChevronRight,
   Crosshair,
-  Eye,
-  Flag,
   Layers,
   Monitor,
   Pause,
@@ -32,7 +27,6 @@ import {
   RotateCcw,
   Shield,
   Target,
-  Users,
   Wifi,
   WifiOff,
   X,
@@ -63,7 +57,10 @@ import { FusionPanel } from "./FusionPanel";
 import type { FusionAdvice } from "./fusion";
 import type { FusionExposure } from "./types";
 import { simulatedObservations } from "./observations";
-import { qualityAfterSamples, type Quality } from "./quality";
+import type { Quality } from "./quality";
+import { useRenderingQuality } from "./useRenderingQuality";
+import { useOfflineStatus } from "./useOfflineStatus";
+import { useWorkspaceNavigation } from "./useWorkspaceNavigation";
 import {
   RECONSTRUCTION_TIMEOUT_MS,
   mergeServerRecord,
@@ -81,7 +78,6 @@ import {
   type Action,
   type AppliedCommand,
   type InstructorCommand,
-  type Effector,
   type Identity,
   type Kind,
   type Record as TrainingRecord,
@@ -98,12 +94,6 @@ const time = (tick: number) =>
     .padStart(2, "0")}:${Math.floor((tick / HZ) % 60)
     .toString()
     .padStart(2, "0")}`;
-const effectLabel = (e: string) =>
-  e === "rf_jam"
-    ? "RF jammer"
-    : e === "kinetic"
-      ? "Kinetic response"
-      : "Hold fire";
 const controlPayload = (
   s: Snapshot,
   cs: AppliedCommand[],
@@ -129,7 +119,6 @@ export default function App({
   const [view, setView] = useState<View>(() =>
     workspaceViewFromSearch(window.location.search),
   );
-  const [routeSearch, setRouteSearch] = useState(window.location.search);
   const [phase, setPhase] = useState<Phase>("ready");
   const [scenario, setScenario] = useState<Scenario>(initial);
   const [state, setState] = useState<Snapshot>(initialState);
@@ -176,7 +165,7 @@ export default function App({
       ...fusionRecords.current,
     ]);
   const [clockNote, setClockNote] = useState("");
-  const [offline, setOffline] = useState("preparing");
+  const offline = useOfflineStatus();
   const [recovery, setRecovery] = useState<Draft | null>(null);
   const [online, setOnline] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -191,26 +180,13 @@ export default function App({
   );
   const [night, setNight] = useState(true);
   const [seed, setSeed] = useState(482913);
-  const [fps, setFps] = useState(0);
   const [sync, setSync] = useState<"synced" | "syncing" | "queued">("synced");
   const [assignment, setAssignment] = useState<Assignment | null>(null);
   const clientId = useRef(newId());
   const eventBatches = useRef<Action[][]>([]);
-  const [quality, setQuality] = useState<Quality>("medium"),
-    [autoQuality, setAutoQuality] = useState(true);
-  const fpsHistory = useRef<number[]>([]);
-  const renderFps = (n: number) => {
-    setFps(n);
-    if (autoQuality) {
-      fpsHistory.current.push(n);
-      const next = qualityAfterSamples(quality, fpsHistory.current);
-      if (next !== quality) {
-        setQuality(next);
-        fpsHistory.current = [];
-        if (next === "tactical") setTactical(true);
-      }
-    }
-  };
+  const enterTactical = useCallback(() => setTactical(true), []);
+  const { fps, quality, setQuality, autoQuality, setAutoQuality, renderFps } =
+    useRenderingQuality(enterTactical);
   const [library, setLibrary] = useState<Scenario[]>([]),
     [libraryId, setLibraryId] = useState("");
   useEffect(() => {
@@ -339,45 +315,81 @@ export default function App({
   };
   useEffect(() => {
     if (reviewOnly) return;
-    let pending = false;
+    let pending = false,
+      streaming = false,
+      stopped = false;
+    const controller = new AbortController();
+    const deliver = async (
+      reply: { commands: InstructorCommand[] },
+      id: string,
+    ) => {
+      if (stopped || finishLock.current || sessionRef.current !== id) return;
+      for (const command of reply.commands)
+        worker.current?.postMessage({ type: "control", command });
+      await flushControls();
+    };
+    const live = async () => {
+      while (!stopped) {
+        if (
+          serverSessionRef.current &&
+          sessionRef.current &&
+          !finishLock.current &&
+          (phase === "running" || phase === "paused")
+        ) {
+          const id = sessionRef.current;
+          try {
+            await consumeStream<{ commands: InstructorCommand[] }>(
+              `/sessions/${id}/command-stream?after=${commands.current.at(-1)?.seq ?? 0}`,
+              async (reply) => {
+                streaming = true;
+                await deliver(reply, id);
+              },
+              controller.signal,
+            );
+          } catch {
+            /* ordinary polling preserves the existing recovery contract */
+          }
+          streaming = false;
+        }
+        await abortableDelay(1000, controller.signal);
+      }
+    };
+    void live();
     const timer = setInterval(async () => {
       if (
         pending ||
+        streaming ||
         !serverSessionRef.current ||
         !sessionRef.current ||
         finishLock.current
       )
         return;
       pending = true;
+      const id = sessionRef.current;
       try {
         const reply = await api<{ commands: InstructorCommand[] }>(
-          `/sessions/${sessionRef.current}/commands?after=${commands.current.at(-1)?.seq ?? 0}`,
+          `/sessions/${id}/commands?after=${commands.current.at(-1)?.seq ?? 0}`,
         );
-        if (!finishLock.current) {
-          for (const command of reply.commands)
-            worker.current?.postMessage({ type: "control", command });
-          await flushControls();
-        }
+        if (!streaming) await deliver(reply, id);
       } catch {
-        setOnline(false);
-        setSync("queued");
+        if (!stopped) {
+          setOnline(false);
+          setSync("queued");
+        }
       } finally {
         pending = false;
       }
     }, 500);
-    return () => clearInterval(timer);
-  }, []);
+    return () => {
+      stopped = true;
+      clearInterval(timer);
+      controller.abort();
+    };
+  }, [phase]);
   const visible = reportedContacts(state);
   const target = visible.find((t) => t.id === selected);
   const opticalPosition = visualPosition(target, vision);
   const running = phase === "running";
-  useEffect(() => {
-    const update = () =>
-      setOffline(document.documentElement.dataset.offlineStatus || "preparing");
-    update();
-    window.addEventListener("vyuha-offline-status", update);
-    return () => window.removeEventListener("vyuha-offline-status", update);
-  }, []);
   const refresh = useCallback(async () => {
     if (reviewOnly) return;
     const saved = await readRecords().catch(() => []);
@@ -1084,6 +1096,18 @@ export default function App({
     const timer = setInterval(() => void retry(current), 5000);
     return () => clearInterval(timer);
   }, [current?.id, current?.verified, busy]);
+  const { routeSearch, navigateWorkspace, openReview } = useWorkspaceNavigation(
+    {
+      view,
+      current,
+      reviewOnly,
+      setView,
+      setCurrent,
+      setReplayPlay,
+      setReplayTick,
+      setMode,
+    },
+  );
   useEffect(() => {
     let stopped = false;
     const id = new URLSearchParams(routeSearch).get("session");
@@ -1133,49 +1157,6 @@ export default function App({
     [cameraPreset, setCameraPreset] = useState<CameraPreset>("overview"),
     [replayTactical, setReplayTactical] = useState(false),
     [replayFps, setReplayFps] = useState(0);
-  const navigateWorkspace = (item: NavigationItem) => {
-    window.history.pushState(null, "", item.href);
-    window.dispatchEvent(new PopStateEvent("popstate"));
-  };
-  useEffect(() => {
-    const update = () => {
-      const search = window.location.search,
-        params = new URLSearchParams(search),
-        next = reviewOnly ? "aar" : workspaceViewFromSearch(search),
-        id = params.get("session");
-      setCurrent((c) =>
-        id ? (c?.id === id ? c : null) : next === "aar" ? null : c,
-      );
-      setRouteSearch(search);
-      setView(next);
-      setReplayPlay(false);
-      if (params.get("mode") === "adaptive") setMode("adaptive");
-    };
-    window.addEventListener("popstate", update);
-    return () => window.removeEventListener("popstate", update);
-  }, []);
-  // Internal buttons and history selections share the same refreshable workspace URL.
-  useEffect(() => {
-    const href = workspaceHref(
-      view,
-      window.location.search,
-      current?.verified ? current.id : undefined,
-    );
-    if (href !== window.location.pathname + window.location.search) {
-      window.history.replaceState(null, "", href);
-      window.dispatchEvent(new Event("vyuha-workspace-navigation"));
-    }
-  }, [view, current?.id, current?.verified]);
-  const openReview = (record: TrainingRecord) => {
-    window.history.pushState(
-      null,
-      "",
-      workspaceHref("aar", "", record.verified ? record.id : undefined),
-    );
-    window.dispatchEvent(new PopStateEvent("popstate"));
-    setCurrent(record);
-    setReplayTick(0);
-  };
   const replayState = current
     ? replay(
         current.scenario,
@@ -1226,7 +1207,7 @@ export default function App({
           </>
         }
       />
-      <main>
+      <main id="workspace-content" tabIndex={-1}>
         <header className="topbar">
           <div className="breadcrumb">
             WORKSPACE <ChevronRight size={13} />{" "}
@@ -1561,7 +1542,6 @@ export default function App({
                   value={autoQuality ? "auto" : quality}
                   onChange={(e) => {
                     setAutoQuality(e.target.value === "auto");
-                    fpsHistory.current = [];
                     if (e.target.value === "auto") {
                       setQuality("medium");
                       setTactical(false);
@@ -2408,6 +2388,7 @@ export default function App({
                       </button>
                       <input
                         aria-label="Replay time"
+                        aria-valuetext={`${time(replayTick)} of ${time(replayEnd)}`}
                         type="range"
                         min={0}
                         max={replayEnd}

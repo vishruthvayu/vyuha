@@ -28,4 +28,10 @@ Each accepted handoff should record dataset ID/version/hash, reviewer/date, righ
 
 ## Parallel work while awaiting data
 
-Engineering continues strict configuration checks, observation truth boundaries, synthetic variation/parity, UI uncertainty, immutable replay, protected endpoints and local deployment acceptance. Prepare data adapters only after real schema/units arrive; do not invent paired multi-modal observations or change scoring to improve presentation metrics. Calibration, real-world generalization and human learning remain separate external-evidence gates.
+Engineering continues strict configuration checks, observation truth boundaries, synthetic variation/parity, UI uncertainty, immutable replay, protected endpoints and local deployment acceptance. Use the strict offline canonical export/metric interface in `EVALUATION-RUNBOOK.md` and the study instrument in `HUMAN-STUDY-PROTOCOL.md`. Prepare raw-data adapters only after actual source schema/units arrive; do not invent paired multi-modal observations or change scoring to improve presentation metrics. Calibration, real-world generalization and human learning remain separate external-evidence gates.
+
+## Current executable handoff
+
+At originating candidate `2bf90130eb02def330292673f18d1658f8259488`, scoped repository, VYUHA project-work and Downloads report/notebook searches found no relevant received measured sensor export or human study. The available Downloads notebooks did not contain drone/radar/thermal/DroneRF references; other SIH project datasets are not VYUHA evidence. This is a scoped inventory, not a claim that all devices/storage were searched. No public dataset was selected, downloaded or evaluated, so no source/license was borrowed or implicitly verified.
+
+Teammates can now run strict artifact/record ingestion and prediction metrics using `scripts/evaluate-real-data.py`, and sanitized human-study analysis using `scripts/evaluate-study.py`. Examples are explicitly synthetic. Review the actual source/license and fill the exact manifest; do not relabel the example as real. Use the smallest sanitized exported record/prediction/lock handoff first, together with the existing review checklist. Raw modality adapters, data fitting and independent reproduction remain dependent on receiving genuine data.

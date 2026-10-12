@@ -63,3 +63,9 @@ Crew role capabilities now expire within a bounded assignment window and support
 All 93 compliance findings have specific evidence records; 75 include implemented workflow starting points and 18 are document-only. Git Bash detects both POSIX and Windows virtual-environment layouts, preserves incomplete existing environments, and validates startup ports and TLS paths. Native Windows/Linux execution remains pending.
 
 The final current source and exact test durations are pinned in evidence.json and TEST-RESULTS.md. There are 53 scoped PASS findings, 39 PARTIAL and one N/A. The independent score remains provisional; physical/native acceptance and final stable approval remain open. The protected v1.0.1 fallback is unchanged.
+
+## Software-only mission integration — 12 October 2026
+
+Recovered and preserved mission-crew, mission-accessibility and mission-data worktree outputs before integration. New software includes versioned signed pseudonymous Crew cohort transfer, applied/pending teaching annotations outside scoring, officer-safe White Cell review navigation, modal/drawer focus isolation and keyboard semantics, three extracted workspace/render/offline hooks, pinned lint/format/axe tools, strict sensor/study evaluation interfaces, bounded authenticated SSE with immutable POST acknowledgments and polling fallback, and SQLite revision-checked dashboard caching. No PPT, video, promotional or SIH submission work is included in this mission.
+
+After integrated source:589 backend PASS/0FAIL/408.97s;153 frontend PASS/0FAIL/56918.641917ms;lint/format/build PASS. Focused runs152 backend and27 later backend plus20 frontend are not additive totals. Browser/performance/source manifest/clean-clone/current audit reconciliation remains underway; do not treat this intermediate integration commit as final acceptance. Protected stable references remain unchanged. Parallel agents reached their usage limit; all available source was recovered.

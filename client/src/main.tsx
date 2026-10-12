@@ -58,7 +58,7 @@ createRoot(document.getElementById("root")!).render(
         fallback={
           <>
             <Navigation />
-            <main>
+            <main id="workspace-content" tabIndex={-1}>
               <h1>Loading VYUHA…</h1>
               <p role="status">Loading bundled application assets.</p>
             </main>
@@ -70,7 +70,7 @@ createRoot(document.getElementById("root")!).render(
     ) : (
       <div className="app-shell route-shell">
         <Navigation />
-        <div className="route-content">
+        <div className="route-content" id="workspace-content" tabIndex={-1}>
           <header className="topbar">
             <div className="breadcrumb">
               {route?.section ?? "SUPPORT"}{" "}

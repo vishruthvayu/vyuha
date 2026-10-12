@@ -1,0 +1,19 @@
+{
+  "assignment_reference": "Fixture assignment",
+  "bootstrap_replicates": 100,
+  "bootstrap_seed": 1,
+  "consent_reference": "No participants",
+  "consent_status": "not_applicable",
+  "design": "parallel_assigned",
+  "ethics_reference": "No participants; synthetic fixture",
+  "limitations": [
+    "Synthetic interface only; no human learning result"
+  ],
+  "preregistration_reference": "Fixture planned analysis",
+  "schema_version": 1,
+  "scoring_reference": "Generated fixture correctness",
+  "source_kind": "synthetic",
+  "source_revision": "2bf90130eb02def330292673f18d1658f8259488",
+  "study_id": "STUDY-INTERFACE-FIXTURE",
+  "version": "1"
+}

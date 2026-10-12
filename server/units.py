@@ -76,6 +76,10 @@ def roster(uid:str):
 
 
 def unit_dashboard(uid):
+    from .query_cache import cached
+    return cached("unit_dashboard",(uid,now()[:10]),lambda:_build_unit_dashboard(uid))
+
+def _build_unit_dashboard(uid):
     from .main import profile,aar,review_session,instructor_session
     with connect() as db:
         u=unit(db,uid)

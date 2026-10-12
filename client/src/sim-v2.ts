@@ -5,7 +5,7 @@ import {raidPosition as position} from './raid-v2';
 import {observeSensors,falseTracks,type SensorMemory} from './sensors-v2';
 import {createResponseState,attemptResponse,advanceResponse,responseSnapshot,responseReport,type ResponseState,type ResponseConfig,type PublicResponseState} from './response-v2';
 import type {Action,AppliedCommand,InstructorCommand,Scenario,Track,Snapshot,NodeScore,ScoreCard} from './types';
-const {HZ,idealFor,inCivilZone,engagementRule}=legacy;
+const {HZ,idealFor,engagementRule}=legacy;
 export const ENGINE_VERSION='vyuha-0.4.0';
 type ResponseScenario=Scenario&{response_model?:Partial<ResponseConfig>};
 type ResponseSnapshot=Snapshot&{response?:PublicResponseState};

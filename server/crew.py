@@ -300,7 +300,7 @@ class CrewSessionBoundary:
     def __init__(self,app):self.app=app
     async def __call__(self,scope,receive,send):
         if scope['type']=='http':
-            match=re.fullmatch(r'/api/v1/sessions/([^/]+)/(events|complete|control-state|commands|aar|what-if|fusion-exposures|fusion-review|reference-policy|expert-run)',scope['path'])
+            match=re.fullmatch(r'/api/v1/sessions/([^/]+)/(events|complete|control-state|commands|command-stream|aar|what-if|fusion-exposures|fusion-review|reference-policy|expert-run)',scope['path'])
             if match:
                 with storage.connect() as db:
                     found=db.execute('SELECT id FROM crews WHERE session_id=?',(match[1],)).fetchone()

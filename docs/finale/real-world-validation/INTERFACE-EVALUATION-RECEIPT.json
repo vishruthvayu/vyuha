@@ -1,0 +1,512 @@
+{
+  "date": "2026-10-12",
+  "scope": "Synthetic fixtures validate executable data/study interfaces only; no real sensor or participant measured",
+  "real_datasets_received": 0,
+  "human_studies_received": 0,
+  "sensor": {
+    "report_sha256": "01f4b649c37a0c89a629f8d508cebef29f4d1c77efe32031ef30ed96f19cbb9d",
+    "report": {
+      "dataset_id": "INTERFACE-FIXTURE",
+      "dataset_version": "1",
+      "domain_limitations": [
+        "Synthetic interface values; no empirical claim"
+      ],
+      "evaluator": {
+        "module_sha256": "887968b2ea8119a0a474ae662cad72f9a61b02c58931e012d641d38ab4f7f88c",
+        "runtime": "3.12.7 | packaged by Anaconda, Inc. | (main, Oct  4 2024, 08:22:19) [Clang 14.0.6 ]"
+      },
+      "evidence_status": "SYNTHETIC_INTERFACE_EVALUATED",
+      "limitation": "Offline supplied-export evaluation only; no equipment calibration, hostile-intent inference, simultaneous sensor fusion or human training benefit is established.",
+      "manifest_sha256": "38745ea760e3a92d5b2ffef05b91be366f31e92a4adb33d3745fad1dfa9f52cb",
+      "metric_plan": {
+        "bootstrap_replicates": 100,
+        "bootstrap_seed": 41,
+        "range_bins_m": [
+          0,
+          500,
+          1000
+        ],
+        "reference": "test preregistration",
+        "reliability_bins": 5,
+        "task": "classification"
+      },
+      "modality": "radar",
+      "predictions_sha256": "2cb2b7222454b05cb063a96ceefeb84b0a9d8106a6b35c9d26f4268823335587",
+      "processing": {
+        "code_revision": "2bf90130eb02def330292673f18d1658f8259488",
+        "dependency_lock_artifact": "dependencies.lock.txt",
+        "dependency_lock_sha256": "40d042005fe63d3ff8d3b802c75826dc2a8dcdf0bfb66c7b81046d8c162c64b6",
+        "fitting_splits": [
+          "train"
+        ],
+        "runtime": "Python standard-library fixture",
+        "seed": 42
+      },
+      "promotion": "No application writes or audit promotion. Independent provenance/rights/reproduction review required.",
+      "schema_version": 1,
+      "source_counts": {
+        "synthetic": 8
+      },
+      "split_counts": {
+        "test": 4,
+        "train": 2,
+        "validation": 2
+      },
+      "strata": {
+        "synthetic": {
+          "context_metrics": [
+            {
+              "context": {
+                "lighting": "synthetic-day",
+                "weather": "synthetic-clear"
+              },
+              "metrics": {
+                "abstentions": 0,
+                "accuracy": 1.0,
+                "brier": 0.07999999999999999,
+                "class_support": {
+                  "background": 2,
+                  "drone": 2
+                },
+                "conditional_accuracy": 1.0,
+                "confusion": {
+                  "background": {
+                    "abstain": 0,
+                    "background": 2,
+                    "drone": 0
+                  },
+                  "drone": {
+                    "abstain": 0,
+                    "background": 0,
+                    "drone": 2
+                  }
+                },
+                "coverage": 1.0,
+                "expected_calibration_error": 0.19999999999999996,
+                "labelled_samples": 4,
+                "log_loss": 0.2231435513142097,
+                "macro_f1": 1.0,
+                "predicted_labelled_samples": 4,
+                "reliability": [
+                  {
+                    "accuracy": null,
+                    "count": 0,
+                    "lower": 0.0,
+                    "mean_confidence": null,
+                    "upper": 0.2
+                  },
+                  {
+                    "accuracy": null,
+                    "count": 0,
+                    "lower": 0.2,
+                    "mean_confidence": null,
+                    "upper": 0.4
+                  },
+                  {
+                    "accuracy": null,
+                    "count": 0,
+                    "lower": 0.4,
+                    "mean_confidence": null,
+                    "upper": 0.6
+                  },
+                  {
+                    "accuracy": null,
+                    "count": 0,
+                    "lower": 0.6,
+                    "mean_confidence": null,
+                    "upper": 0.8
+                  },
+                  {
+                    "accuracy": 1.0,
+                    "count": 4,
+                    "lower": 0.8,
+                    "mean_confidence": 0.8,
+                    "upper": 1.0
+                  }
+                ],
+                "test_samples": 4,
+                "unknown_labels": 0
+              },
+              "recording_count": 2
+            }
+          ],
+          "encounter_count": 2,
+          "independent_acquisition_clusters": 2,
+          "interval_limit": "Assumes independent acquisition clusters; selection bias/domain transfer and reused sites/devices are not captured",
+          "interval_method": "Seeded recording/encounter connected-cluster percentile bootstrap; null when fewer than 2 clusters or fewer than 100 valid resamples",
+          "intervals": {
+            "accuracy": {
+              "interval_95": [
+                1.0,
+                1.0
+              ],
+              "valid_replicates": 100
+            },
+            "brier": {
+              "interval_95": [
+                0.07999999999999999,
+                0.07999999999999999
+              ],
+              "valid_replicates": 100
+            },
+            "expected_calibration_error": {
+              "interval_95": [
+                0.19999999999999996,
+                0.19999999999999996
+              ],
+              "valid_replicates": 100
+            },
+            "log_loss": {
+              "interval_95": [
+                0.2231435513142097,
+                0.2231435513142097
+              ],
+              "valid_replicates": 100
+            },
+            "macro_f1": {
+              "interval_95": [
+                1.0,
+                1.0
+              ],
+              "valid_replicates": 100
+            }
+          },
+          "metrics": {
+            "abstentions": 0,
+            "accuracy": 1.0,
+            "brier": 0.07999999999999999,
+            "class_support": {
+              "background": 2,
+              "drone": 2
+            },
+            "conditional_accuracy": 1.0,
+            "confusion": {
+              "background": {
+                "abstain": 0,
+                "background": 2,
+                "drone": 0
+              },
+              "drone": {
+                "abstain": 0,
+                "background": 0,
+                "drone": 2
+              }
+            },
+            "coverage": 1.0,
+            "expected_calibration_error": 0.19999999999999996,
+            "labelled_samples": 4,
+            "log_loss": 0.2231435513142097,
+            "macro_f1": 1.0,
+            "predicted_labelled_samples": 4,
+            "reliability": [
+              {
+                "accuracy": null,
+                "count": 0,
+                "lower": 0.0,
+                "mean_confidence": null,
+                "upper": 0.2
+              },
+              {
+                "accuracy": null,
+                "count": 0,
+                "lower": 0.2,
+                "mean_confidence": null,
+                "upper": 0.4
+              },
+              {
+                "accuracy": null,
+                "count": 0,
+                "lower": 0.4,
+                "mean_confidence": null,
+                "upper": 0.6
+              },
+              {
+                "accuracy": null,
+                "count": 0,
+                "lower": 0.6,
+                "mean_confidence": null,
+                "upper": 0.8
+              },
+              {
+                "accuracy": 1.0,
+                "count": 4,
+                "lower": 0.8,
+                "mean_confidence": 0.8,
+                "upper": 1.0
+              }
+            ],
+            "test_samples": 4,
+            "unknown_labels": 0
+          },
+          "range_metrics": [
+            {
+              "lower_m": 0,
+              "metrics": {
+                "abstentions": 0,
+                "accuracy": 1.0,
+                "brier": 0.07999999999999999,
+                "class_support": {
+                  "background": 0,
+                  "drone": 1
+                },
+                "conditional_accuracy": 1.0,
+                "confusion": {
+                  "background": {
+                    "abstain": 0,
+                    "background": 0,
+                    "drone": 0
+                  },
+                  "drone": {
+                    "abstain": 0,
+                    "background": 0,
+                    "drone": 1
+                  }
+                },
+                "coverage": 1.0,
+                "expected_calibration_error": 0.19999999999999996,
+                "labelled_samples": 1,
+                "log_loss": 0.2231435513142097,
+                "macro_f1": 1.0,
+                "predicted_labelled_samples": 1,
+                "reliability": [
+                  {
+                    "accuracy": null,
+                    "count": 0,
+                    "lower": 0.0,
+                    "mean_confidence": null,
+                    "upper": 0.2
+                  },
+                  {
+                    "accuracy": null,
+                    "count": 0,
+                    "lower": 0.2,
+                    "mean_confidence": null,
+                    "upper": 0.4
+                  },
+                  {
+                    "accuracy": null,
+                    "count": 0,
+                    "lower": 0.4,
+                    "mean_confidence": null,
+                    "upper": 0.6
+                  },
+                  {
+                    "accuracy": null,
+                    "count": 0,
+                    "lower": 0.6,
+                    "mean_confidence": null,
+                    "upper": 0.8
+                  },
+                  {
+                    "accuracy": 1.0,
+                    "count": 1,
+                    "lower": 0.8,
+                    "mean_confidence": 0.8,
+                    "upper": 1.0
+                  }
+                ],
+                "test_samples": 1,
+                "unknown_labels": 0
+              },
+              "right_boundary_included": false,
+              "upper_m": 500
+            },
+            {
+              "lower_m": 500,
+              "metrics": {
+                "abstentions": 0,
+                "accuracy": 1.0,
+                "brier": 0.07999999999999999,
+                "class_support": {
+                  "background": 2,
+                  "drone": 1
+                },
+                "conditional_accuracy": 1.0,
+                "confusion": {
+                  "background": {
+                    "abstain": 0,
+                    "background": 2,
+                    "drone": 0
+                  },
+                  "drone": {
+                    "abstain": 0,
+                    "background": 0,
+                    "drone": 1
+                  }
+                },
+                "coverage": 1.0,
+                "expected_calibration_error": 0.19999999999999984,
+                "labelled_samples": 3,
+                "log_loss": 0.2231435513142097,
+                "macro_f1": 1.0,
+                "predicted_labelled_samples": 3,
+                "reliability": [
+                  {
+                    "accuracy": null,
+                    "count": 0,
+                    "lower": 0.0,
+                    "mean_confidence": null,
+                    "upper": 0.2
+                  },
+                  {
+                    "accuracy": null,
+                    "count": 0,
+                    "lower": 0.2,
+                    "mean_confidence": null,
+                    "upper": 0.4
+                  },
+                  {
+                    "accuracy": null,
+                    "count": 0,
+                    "lower": 0.4,
+                    "mean_confidence": null,
+                    "upper": 0.6
+                  },
+                  {
+                    "accuracy": null,
+                    "count": 0,
+                    "lower": 0.6,
+                    "mean_confidence": null,
+                    "upper": 0.8
+                  },
+                  {
+                    "accuracy": 1.0,
+                    "count": 3,
+                    "lower": 0.8,
+                    "mean_confidence": 0.8000000000000002,
+                    "upper": 1.0
+                  }
+                ],
+                "test_samples": 3,
+                "unknown_labels": 0
+              },
+              "right_boundary_included": true,
+              "upper_m": 1000
+            },
+            {
+              "outside_or_missing_range_samples": 0
+            }
+          ],
+          "recording_count": 2
+        }
+      }
+    }
+  },
+  "study": {
+    "report_sha256": "37f1ae74da5708b6f2271b0e66188269b896ae20a58b778c7e517e76e78d1384",
+    "report": {
+      "advice_descriptive_counts": {
+        "correct_advice": 0,
+        "followed_correct": 0,
+        "followed_incorrect": 0,
+        "improved": 0,
+        "incorrect_advice": 0,
+        "rejected_correct": 0,
+        "rejected_incorrect": 0,
+        "unverified_trials": 0,
+        "verified_trials": 0,
+        "worsened": 0
+      },
+      "arms": {
+        "adaptive": {
+          "participants": 2,
+          "phases": {
+            "baseline": {
+              "mean_participant_accuracy": 0.0,
+              "participants": 2
+            },
+            "post": {
+              "mean_participant_accuracy": 1.0,
+              "participants": 2
+            },
+            "retention": {
+              "mean_participant_accuracy": 1.0,
+              "participants": 2
+            }
+          }
+        },
+        "control": {
+          "participants": 2,
+          "phases": {
+            "baseline": {
+              "mean_participant_accuracy": 0.0,
+              "participants": 2
+            },
+            "post": {
+              "mean_participant_accuracy": 0.0,
+              "participants": 2
+            },
+            "retention": {
+              "mean_participant_accuracy": 0.0,
+              "participants": 2
+            }
+          }
+        }
+      },
+      "configuration": {
+        "assignment_reference": "Fixture assignment",
+        "bootstrap_replicates": 100,
+        "bootstrap_seed": 1,
+        "consent_reference": "No participants",
+        "consent_status": "not_applicable",
+        "design": "parallel_assigned",
+        "ethics_reference": "No participants; synthetic fixture",
+        "limitations": [
+          "Synthetic interface only; no human learning result"
+        ],
+        "preregistration_reference": "Fixture planned analysis",
+        "schema_version": 1,
+        "scoring_reference": "Generated fixture correctness",
+        "source_kind": "synthetic",
+        "source_revision": "2bf90130eb02def330292673f18d1658f8259488",
+        "study_id": "STUDY-INTERFACE-FIXTURE",
+        "version": "1"
+      },
+      "contrasts": {
+        "post": {
+          "adaptive_minus_control_change": 1.0,
+          "interpretation": "Unreviewed export contrast; causal attribution requires valid assignment/control/scoring, attrition analysis and external review",
+          "interval_95": [
+            1.0,
+            1.0
+          ],
+          "interval_method": "Seeded participant bootstrap within assignment arms; paired baseline/follow-up change. Null below two paired participants per arm",
+          "missing_paired_participants": {
+            "adaptive": 0,
+            "control": 0
+          },
+          "paired_participants": {
+            "adaptive": 2,
+            "control": 2
+          }
+        },
+        "retention": {
+          "adaptive_minus_control_change": 1.0,
+          "interpretation": "Unreviewed export contrast; causal attribution requires valid assignment/control/scoring, attrition analysis and external review",
+          "interval_95": [
+            1.0,
+            1.0
+          ],
+          "interval_method": "Seeded participant bootstrap within assignment arms; paired baseline/follow-up change. Null below two paired participants per arm",
+          "missing_paired_participants": {
+            "adaptive": 0,
+            "control": 0
+          },
+          "paired_participants": {
+            "adaptive": 2,
+            "control": 2
+          }
+        }
+      },
+      "evaluation_module_sha256": "34d5fa1adbcd3dde46df12314787b603fd42f884c8513a9bfa2bf3c681dc3f44",
+      "evidence_status": "SYNTHETIC_STUDY_INTERFACE_TESTED",
+      "limitation": "Supplied-study export analysis; consent, assignment, independent scoring and verified viewing require researcher review. Descriptive advice correctness/alignment does not establish cognitive over-trust.",
+      "manifest_sha256": "c3aec5ee6b8536a483fce99d907d6b3e28cdb021b31fc537923f5b8c2a892f1f",
+      "schema_version": 1,
+      "source_kind": "synthetic",
+      "study_id": "STUDY-INTERFACE-FIXTURE",
+      "study_version": "1",
+      "trials_sha256": "6dcd105a5508204ce747ba631ce9de5cabe6630e0a90010847590f2204ab49db"
+    }
+  }
+}

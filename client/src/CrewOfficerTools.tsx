@@ -52,6 +52,7 @@ export type CrewHistoryData = {
     group_id: string;
     name: string;
     source: string;
+    grouping_basis?: string;
     session_count: number;
     median_designation_to_classification_s: number | null;
     median_classification_to_response_s: number | null;
@@ -74,6 +75,7 @@ export function CrewHistoryResults({ data }: { data: CrewHistoryData }) {
             {group.name} · {group.session_count} sessions
           </h4>
           <p>{group.source.replaceAll("_", " ")}</p>
+          {group.grouping_basis && <p>{group.grouping_basis}</p>}
           <p>
             Designation → classification:{" "}
             {seconds(group.median_designation_to_classification_s)}.
@@ -307,7 +309,9 @@ export default function CrewOfficerTools({ createdId }: { createdId: string }) {
         </button>
         {history && <CrewHistoryResults data={history} />}
       </section>
-      {error && <p role="alert">{error}</p>}
+      <p role="status" aria-live="polite">
+        {busy ? "Loading crew records…" : error}
+      </p>
     </>
   );
 }

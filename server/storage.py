@@ -55,6 +55,8 @@ def init():
                 command_id TEXT NOT NULL, issued_at TEXT NOT NULL, body TEXT NOT NULL, tick INTEGER, timeline_order INTEGER,
                 PRIMARY KEY (session_id, seq), UNIQUE (session_id, command_id));
         """)
+        from .teaching import ensure_schema as ensure_teaching_schema
+        ensure_teaching_schema(db)
         from .crew import ensure_schema as ensure_crew_schema
         ensure_crew_schema(db)
         from .fusion import ensure_schema as ensure_fusion_schema
