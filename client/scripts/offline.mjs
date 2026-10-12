@@ -8,7 +8,11 @@ const version=createHash('sha256').update(await readFile('dist/index.html')).dig
 const workerSource=`const CACHE='vyuha-${version}';const ASSETS=${JSON.stringify(urls)};
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS.map(url=>new Request(url,{cache:'reload'})))).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(self.clients.claim()));
-self.addEventListener('fetch',event=>{const url=new URL(event.request.url);if(url.origin!==location.origin||event.request.method!=='GET'||url.pathname.startsWith('/api/'))return;event.respondWith(caches.open(CACHE).then(cache=>cache.match(url.pathname,{ignoreSearch:true,ignoreVary:true})).then(async cached=>cached||await caches.match(event.request)||fetch(event.request).catch(()=>event.request.mode==='navigate'?caches.match('/index.html'):Response.error())));});`;
+self.addEventListener('fetch',event=>{const url=new URL(event.request.url);if(url.origin!==location.origin||event.request.method!=='GET'||url.pathname.startsWith('/api/'))return;
+// Online navigation always sees the deployed entry. Do not overwrite installed
+// HTML: its precached hashed assets must remain coherent until a new install completes.
+if(event.request.mode==='navigate'){event.respondWith(fetch(new Request(event.request,{cache:'no-store'})).catch(()=>caches.open(CACHE).then(cache=>cache.match('/index.html'))));return;}
+event.respondWith(caches.open(CACHE).then(cache=>cache.match(url.pathname,{ignoreSearch:true,ignoreVary:true})).then(async cached=>cached||await caches.match(event.request)||fetch(event.request)));});`;
 new Script(workerSource); // Fail the build if the emitted service worker cannot parse.
 await writeFile('dist/sw.js',workerSource);
 console.log(`Offline cache: ${urls.length} local assets (${version})`);

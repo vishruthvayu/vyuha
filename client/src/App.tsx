@@ -1,4 +1,4 @@
-import { consumeStream, abortableDelay } from "./live-stream";
+import { useCommandTransport } from "./useCommandTransport";
 import { reportedContacts, visualPosition } from "./observed-contacts";
 import OfficerGate from "./OfficerGate";
 import {
@@ -77,7 +77,6 @@ import {
   KIND_LABEL,
   type Action,
   type AppliedCommand,
-  type InstructorCommand,
   type Identity,
   type Kind,
   type Record as TrainingRecord,
@@ -313,79 +312,26 @@ export default function App({
     controlQueue.current = task;
     return task;
   };
-  useEffect(() => {
-    if (reviewOnly) return;
-    let pending = false,
-      streaming = false,
-      stopped = false;
-    const controller = new AbortController();
-    const deliver = async (
-      reply: { commands: InstructorCommand[] },
-      id: string,
-    ) => {
-      if (stopped || finishLock.current || sessionRef.current !== id) return;
-      for (const command of reply.commands)
+  useCommandTransport({
+    enabled: !reviewOnly,
+    phase,
+    current: () => ({
+      id: sessionRef.current,
+      after: commands.current.at(-1)?.seq ?? 0,
+      active:
+        serverSessionRef.current && !!sessionRef.current && !finishLock.current,
+    }),
+    accept: (received, id) => {
+      if (finishLock.current || sessionRef.current !== id) return;
+      for (const command of received)
         worker.current?.postMessage({ type: "control", command });
-      await flushControls();
-    };
-    const live = async () => {
-      while (!stopped) {
-        if (
-          serverSessionRef.current &&
-          sessionRef.current &&
-          !finishLock.current &&
-          (phase === "running" || phase === "paused")
-        ) {
-          const id = sessionRef.current;
-          try {
-            await consumeStream<{ commands: InstructorCommand[] }>(
-              `/sessions/${id}/command-stream?after=${commands.current.at(-1)?.seq ?? 0}`,
-              async (reply) => {
-                streaming = true;
-                await deliver(reply, id);
-              },
-              controller.signal,
-            );
-          } catch {
-            /* ordinary polling preserves the existing recovery contract */
-          }
-          streaming = false;
-        }
-        await abortableDelay(1000, controller.signal);
-      }
-    };
-    void live();
-    const timer = setInterval(async () => {
-      if (
-        pending ||
-        streaming ||
-        !serverSessionRef.current ||
-        !sessionRef.current ||
-        finishLock.current
-      )
-        return;
-      pending = true;
-      const id = sessionRef.current;
-      try {
-        const reply = await api<{ commands: InstructorCommand[] }>(
-          `/sessions/${id}/commands?after=${commands.current.at(-1)?.seq ?? 0}`,
-        );
-        if (!streaming) await deliver(reply, id);
-      } catch {
-        if (!stopped) {
-          setOnline(false);
-          setSync("queued");
-        }
-      } finally {
-        pending = false;
-      }
-    }, 500);
-    return () => {
-      stopped = true;
-      clearInterval(timer);
-      controller.abort();
-    };
-  }, [phase]);
+    },
+    heartbeat: flushControls,
+    unavailable: () => {
+      setOnline(false);
+      setSync("queued");
+    },
+  });
   const visible = reportedContacts(state);
   const target = visible.find((t) => t.id === selected);
   const opticalPosition = visualPosition(target, vision);
