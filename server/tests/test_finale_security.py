@@ -24,7 +24,14 @@ def officer(tmp_path,monkeypatch):
  ('POST','/api/v1/scenario-library/preview'),('POST','/api/v1/scenario-library'),
  ('POST','/api/v1/units/local/bundle/export'),('POST','/api/v1/bundle/import'),
  ('POST','/api/v1/recordings'),('POST','/api/v1/evaluations'),
- ('GET','/api/v1/white-cell/sessions')])
+ ('GET','/api/v1/white-cell/sessions'),('GET','/api/v1/white-cell/sessions/other'),
+ ('GET','/api/v1/units/local/dashboard'),('GET','/api/v1/units/local/trainees'),
+ ('GET','/api/v1/units/local/analytics'),('GET','/api/v1/units/local/skill-heatmap'),
+ ('GET','/api/v1/trainees/OTHER/analytics'),('GET','/api/v1/units/local/exercises/other'),
+ ('GET','/api/v1/raids'),('GET','/api/v1/raids/other'),('POST','/api/v1/raids'),
+ ('GET','/api/v1/crews/catalogue'),('POST','/api/v1/crews'),
+ ('POST','/api/v1/crews/other/control'),('POST','/api/v1/crews/other/complete'),
+ ('GET','/api/v1/evaluations/other'),('POST','/api/v1/evaluations/other/post')])
 def test_officer_operations_fail_closed(officer,method,path):
     c,_=officer
     with storage.connect() as db:before=list(db.iterdump())

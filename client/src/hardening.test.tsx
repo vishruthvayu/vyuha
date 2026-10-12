@@ -53,11 +53,13 @@ test('evaluation enrollment requires participant agreement and pseudonymous IDs'
 
 
 test('bulk transfer timeout can exceed the six-second tactical request timeout without changing request payloads',async()=>{
- const {api}=await import('./storage');const oldFetch=globalThis.fetch,oldTimeout=AbortSignal.timeout;const limits:number[]=[];const requests:RequestInit[]=[];
+ const {api,RECONSTRUCTION_TIMEOUT_MS}=await import('./storage');const oldFetch=globalThis.fetch,oldTimeout=AbortSignal.timeout;const limits:number[]=[];const requests:RequestInit[]=[];
  AbortSignal.timeout=(ms:number)=>{limits.push(ms);return new AbortController().signal;};
  globalThis.fetch=async (_url,options)=>{requests.push(options!);return {ok:true,json:async()=>({accepted:true})} as Response;};
- try{assert.deepEqual(await api('/health'),{accepted:true});await api('/bundle/import',{schema_version:1},120000);assert.deepEqual(limits,[6000,120000]);assert.equal(requests[0].method,'GET');assert.equal(requests[1].method,'POST');assert.equal(requests[1].body,'{"schema_version":1}');}
+ try{assert.deepEqual(await api('/health'),{accepted:true});await api('/bundle/import',{schema_version:1},120000);await api('/sessions/synthetic/complete',{end_tick:1800},RECONSTRUCTION_TIMEOUT_MS);assert.deepEqual(limits,[6000,120000,120000]);assert.equal(requests[2].method,'POST');assert.equal(requests[2].body,'{"end_tick":1800}');assert.equal(requests[0].method,'GET');assert.equal(requests[1].method,'POST');assert.equal(requests[1].body,'{"schema_version":1}');}
  finally{globalThis.fetch=oldFetch;AbortSignal.timeout=oldTimeout;}
 });
 
 test('Finale benchmark exercises dispatched sensor truth at every supported contact scale',()=>{for(const n of [8,25,50,100,200]){const scenario=finaleScaleScenario(n);const sim=new Simulation(scenario);assert.equal(scenario.version,2);assert.equal(scenario.engine_version,'vyuha-0.4.0');assert.equal(sim.snapshot().tracks.length,n);for(let i=0;i<31;i++)sim.step();assert.ok(sim.snapshot().tracks.every(t=>t.observation?.version==='vyuha-0.4.0'));assert.equal(sim.snapshot().response?.kinetic_ammo_remaining,8);}});
+
+test('longer Finale stress fixture keeps a full logical horizon and rejects unsupported durations',()=>{const scenario=finaleScaleScenario(200,180);assert.equal(scenario.duration,180);assert.equal(scenario.tracks.length,200);assert.equal(new Simulation(scenario).snapshot().done,false);assert.throws(()=>finaleScaleScenario(200,65));});

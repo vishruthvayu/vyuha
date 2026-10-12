@@ -1,0 +1,48 @@
+{
+  "recorded_date": "2026-10-12",
+  "scope": "Actual disposable uvicorn process shutdown/restart and production browser on macOS; not router WAN loss or separate physical device",
+  "session_id": "a4594d3c-4c4d-48aa-a87d-6982d73d5356",
+  "scenario_id": "raid_e185bbd9978ee54b0a834b31",
+  "engine": "vyuha-0.4.0",
+  "status": "PASS within stated scope",
+  "process_stopped": true,
+  "health_connection_refused": true,
+  "offline_banner_observed": true,
+  "events_recorded_while_server_stopped": [
+    {
+      "k": "designate",
+      "order": 0,
+      "tick": 879,
+      "track": "T1"
+    },
+    {
+      "identity": "hostile",
+      "k": "classify",
+      "kind": "fiber_fpv",
+      "order": 1,
+      "tick": 885,
+      "track": "T1"
+    },
+    {
+      "effector": "hold",
+      "k": "engage",
+      "order": 2,
+      "tick": 895,
+      "track": "T1"
+    }
+  ],
+  "device_record_saved_before_restart": true,
+  "device_verification_pending_before_restart": true,
+  "automatic_resynchronization": true,
+  "server_status": "completed",
+  "server_score": 0,
+  "server_execution_tick": 904,
+  "accepted_events": 3,
+  "persisted_fusion_exposures": 3,
+  "ghost_review_loaded": true,
+  "limitations": [
+    "No router/WAN disconnection performed",
+    "Browser remained loaded during the outage; separate prior reload/draft test recorded independently",
+    "Single Mac browser/process; no native Windows/Linux or new physical Android acceptance"
+  ]
+}

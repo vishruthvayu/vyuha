@@ -4,14 +4,15 @@ from fastapi import HTTPException
 from .storage import connect
 from .review import SKILLS
 from .advanced import router
-FAMILIES=['DIRECT','SATURATION','DECOY_THEN_STRIKE','STAGGERED_WAVES','LOW_APPROACH','LEGACY','RAPID_ID']
+FAMILIES=['DIRECT','SATURATION','DECOY_THEN_STRIKE','STAGGERED_WAVES','LOW_APPROACH','SPLIT_SWARM','PROBE_AND_RETREAT','BLIND_SECTOR','LEGACY','RAPID_ID']
 
 @router.get('/units/{uid}/skill-heatmap')
 def skill_heatmap(uid:str,trainee:str|None=None):
  from .main import profile
  with connect() as db:
   if not db.execute('SELECT 1 FROM units WHERE id=?',(uid,)).fetchone():raise HTTPException(404,'Unit not found')
-  members=[r['id'] for r in db.execute('SELECT id FROM trainees WHERE unit_id=?',(uid,))]
+  from .crew import is_shared_owner
+  members=[r['id'] for r in db.execute('SELECT id FROM trainees WHERE unit_id=?',(uid,)) if not is_shared_owner(db,r['id'])]
  if trainee is not None and trainee not in members:raise HTTPException(404,'Trainee not in this unit')
  # Use the existing idempotent legacy backfill, never a second outcome evaluator.
  for tid in ([trainee] if trainee is not None else members):profile(tid)
@@ -25,10 +26,11 @@ def skill_heatmap(uid:str,trainee:str|None=None):
  cells={f:{k:dict(successes=0,failures=0,sessions=0) for k in SKILLS} for f in FAMILIES}
  counts={f:0 for f in FAMILIES};excluded=0
  for row in rows:
+  if row['trainee'] not in members:excluded+=1;continue
   if row['version']=='rapid-id-v1' and row['rapid_result'] is not None:family='RAPID_ID'
   elif row['status']=='completed' and row['spec']:
    tactic=(json.loads(row['spec']).get('red_force') or {}).get('tactic')
-   family=tactic if tactic in FAMILIES[:5] else 'LEGACY'
+   family=tactic if tactic in FAMILIES[:-2] else 'LEGACY'
   else:excluded+=1;continue
   counts[family]+=1
   outcomes=json.loads(row['outcomes'])

@@ -139,3 +139,29 @@ def test_failed_commit_restores_cache_and_durable_checkpoint(shared,monkeypatch)
     after=shared['state']()
     assert after['tick']==before['tick'] and after['contacts']==before['contacts'] and after['attribution']==[]
     assert shared['act'](0,'commit-retry','designate',tid).status_code==200
+
+
+def test_completed_crew_reconnection_is_read_only_and_reports_coordination_without_profile_credit(shared):
+    track=visible(shared)
+    assert shared['act'](0,'metrics-designate','designate',track).status_code==200
+    shared['stamp'][0]+=.5
+    assert shared['act'](1,'metrics-classify','classify',track,kind='quad',identity='hostile').status_code==200
+    shared['stamp'][0]+=.2
+    assert shared['act'](1,'metrics-respond','engage',track,effector='hold').status_code==200
+    result=shared['client'].post(f"/api/v1/crews/{shared['cid']}/complete",json={})
+    assert result.status_code==200
+    with storage.connect() as db:before=list(db.iterdump())
+    crew._CACHE.clear();shared['stamp'][0]+=100
+    for role in [0,1,1]:
+        state=shared['state'](role)
+        assert state['status']=='completed' and state['scorecard']==result.json()
+        assert 'history is frozen' in state['clock_note']
+        metrics=state['coordination_metrics']
+        assert metrics['accepted_actions']==metrics['attributed_actions']==3
+        assert metrics['unattributed_actions']==0 and metrics['contacts_with_actions']==1
+        assert metrics['median_designation_to_classification_s']==.5
+        assert metrics['median_classification_to_response_s']==.2
+        member={m['role']:m for m in metrics['members']}
+        assert member['spotter']['designations']==1 and member['spotter']['accepted_actions']==1
+        assert member['responder']['classifications']==member['responder']['responses']==1
+    with storage.connect() as db:assert list(db.iterdump())==before

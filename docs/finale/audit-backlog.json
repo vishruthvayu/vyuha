@@ -14,7 +14,7 @@
   "status_policy": "PASS closes the named functional software/documented-evidence finding using integrated source and scoped receipts; scientific/deployment limits remain explicit. PARTIAL retains concrete unimplemented behavior or validation requirement. N/A only official desktop OR VR. No count or PASS row means stable release/product certification.",
   "sources": [
     {
-      "path": "/Users/seemalanaveenyadav/Downloads/VYUHA (SIH26247) — Competitive Audit & Finale Roadmap.md",
+      "path": "/Users/seemalanaveenyadav/Downloads/VYUHA (SIH26247) \u2014 Competitive Audit & Finale Roadmap.md",
       "sha256": "87c34318e8e6cbc783903502c7fc097712f6b04bf9f025c88b9975bbcaf4959e"
     },
     {
@@ -104,7 +104,8 @@
       "linked_items": [
         "CH15"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "SC02",
@@ -122,7 +123,8 @@
       "status": "N/A",
       "remaining_limitation": "No headset/WebXR claim made.",
       "linked_items": [],
-      "acceptance_scope": "Official alternative, not a skipped mandatory requirement"
+      "acceptance_scope": "Official alternative, not a skipped mandatory requirement",
+      "remaining_category": "Justified optional desktop OR VR alternative"
     },
     {
       "id": "SC03",
@@ -142,7 +144,8 @@
       "linked_items": [
         "CH01"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "SC04",
@@ -153,16 +156,17 @@
       "problem_statement_relevance": "Explicit",
       "severity": "P0",
       "solution": "Frozen seeded waves/groups/background/composition/order/spawn/motion; constraints and response-window solvability; fingerprint anti-repeat; workload/group assessment",
-      "dependencies": "CH02/CH05–CH08; F07",
+      "dependencies": "CH02/CH05\u2013CH08; F07",
       "implementation": "Eight-family seeded raid grammar, varied roster/waves/timing/motion, coordinated formations/split and signature anti-repeat; group outcome diagnostics.",
-      "tests": "117 component tests/480 boundary scenarios,7,452 coordinates; full-engine parity; root-reported compile→live60-second raid.",
+      "tests": "117 component tests/480 boundary scenarios,7,452 coordinates; full-engine parity; root-reported compile\u2192live60-second raid.",
       "user_visible_proof": "Same focus/difficulty with two seeds has different raid makeup/waves; coordinated split/saturation visible",
       "status": "PASS",
       "remaining_limitation": "Geometric window checks are not certified human solvability. Weak sector uses supplied input, not automatically measured curriculum weakness; calibrated Elo difficulty absent.",
       "linked_items": [
         "F02"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "SC05",
@@ -173,7 +177,7 @@
       "problem_statement_relevance": "Explicit",
       "severity": "P0",
       "solution": "Versioned kilometre units with similar playable TTI; configurable evidence reliability, detection/recognition/identification, LOS, recovery and model documentation",
-      "dependencies": "CH02–CH07; frozen sensor parameters",
+      "dependencies": "CH02\u2013CH07; frozen sensor parameters",
       "implementation": "Metre-scale Sensor Truth v0.4 with current evidence, separate reference, meaningful night/weather/degradation/LOS/ambiguous RF and IFF.",
       "tests": "Sensor1,920/full-engine544 checkpoints, White Cell15, broad415/123 checkpoint and root-reported browser v0.4 run.",
       "user_visible_proof": "Sensor panel explains available channels and why identity remains uncertain at range/night",
@@ -182,7 +186,8 @@
       "linked_items": [
         "F03"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "SC06",
@@ -193,7 +198,7 @@
       "problem_statement_relevance": "Explicit",
       "severity": "P0",
       "solution": "Versioned kilometre units with similar playable TTI; configurable evidence reliability, detection/recognition/identification, LOS, recovery and model documentation",
-      "dependencies": "CH02–CH07; frozen sensor parameters",
+      "dependencies": "CH02\u2013CH07; frozen sensor parameters",
       "implementation": "Metre-scale Sensor Truth v0.4 with current evidence, separate reference, meaningful night/weather/degradation/LOS/ambiguous RF and IFF.",
       "tests": "Sensor1,920/full-engine544 checkpoints, White Cell15, broad415/123 checkpoint and root-reported browser v0.4 run.",
       "user_visible_proof": "Sensor panel explains available channels and why identity remains uncertain at range/night",
@@ -202,7 +207,8 @@
       "linked_items": [
         "F03"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "SC07",
@@ -222,7 +228,8 @@
       "linked_items": [
         "CH07"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "SC08",
@@ -233,7 +240,7 @@
       "problem_statement_relevance": "Explicit",
       "severity": "P0",
       "solution": "Freeze exact actual legacy implementation; explicit scenario engine/schema dispatch; absent engine defaults to legacy; reject unknown versions",
-      "dependencies": "Foundation for CH03–CH08 and F01–F07",
+      "dependencies": "Foundation for CH03\u2013CH08 and F01\u2013F07",
       "implementation": "Frozen engine_v1_0_1/review_v1_0_1 and explicit legacy 0.2/0.3/absent versus schema2 v0.4 dispatch; unknown versions reject.",
       "tests": "Historical dispatch/golden checks, 544 checkpoints over32 full-engine scenarios, 30 finale transfer tests, broad415 backend checkpoint.",
       "user_visible_proof": "Open old and new reviews; engine/version visible; original cards unchanged",
@@ -242,7 +249,8 @@
       "linked_items": [
         "CH02"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "SC09",
@@ -253,16 +261,17 @@
       "problem_statement_relevance": "Explicit",
       "severity": "P0",
       "solution": "Frozen seeded waves/groups/background/composition/order/spawn/motion; constraints and response-window solvability; fingerprint anti-repeat; workload/group assessment",
-      "dependencies": "CH02/CH05–CH08; F07",
+      "dependencies": "CH02/CH05\u2013CH08; F07",
       "implementation": "Eight-family seeded raid grammar, varied roster/waves/timing/motion, coordinated formations/split and signature anti-repeat; group outcome diagnostics.",
-      "tests": "117 component tests/480 boundary scenarios,7,452 coordinates; full-engine parity; root-reported compile→live60-second raid.",
+      "tests": "117 component tests/480 boundary scenarios,7,452 coordinates; full-engine parity; root-reported compile\u2192live60-second raid.",
       "user_visible_proof": "Same focus/difficulty with two seeds has different raid makeup/waves; coordinated split/saturation visible",
       "status": "PASS",
       "remaining_limitation": "Geometric window checks are not certified human solvability. Weak sector uses supplied input, not automatically measured curriculum weakness; calibrated Elo difficulty absent.",
       "linked_items": [
         "F02"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "SC10",
@@ -272,7 +281,7 @@
       "reproduction": "Confirmed: node data exists; no visual per-contact branch diagram",
       "problem_statement_relevance": "Explicit scoring, notnecessarilytreegraphic",
       "severity": "P1",
-      "solution": "Accessible Detect→Classify→Prioritise→Respond diagram from authoritative review with actual/expected paths and deductions",
+      "solution": "Accessible Detect\u2192Classify\u2192Prioritise\u2192Respond diagram from authoritative review with actual/expected paths and deductions",
       "dependencies": "CH08 for new rubric; F04 for comparison",
       "implementation": "AdvancedAAR shows Detect/Classify/Prioritize/Respond node points, accepted decision/evidence, basis and consequence; Ghost and Time Machine integrated.",
       "tests": "Root-reported real browser verified AAR/What-if/Time Machine; reference-policy independently9 backend/3 frontend.",
@@ -282,7 +291,8 @@
       "linked_items": [
         "CH09"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "SC11",
@@ -294,15 +304,16 @@
       "severity": "P1",
       "solution": "Immutable labelled counterfactual branch from selected decision; normal scorer/replay; evidence-constrained reference policy; diff without skill/profile writes",
       "dependencies": "CH02/CH08/CH09; observation contract",
-      "implementation": "Read-only frozen What-if branch and all-engagement evidence-constrained response comparison, uncertainty-aware Hold and separately labelled rubric/type-range reference.",
-      "tests": "Independent reference9 backend/3 frontend; root-reported browser What-if0→5 score and original unchanged; counterfactual history isolation.",
+      "implementation": "Read-only frozen What-if branch and all-engagement evidence-constrained response comparison, uncertainty-aware Hold and separately labelled rubric/type-range reference. Subsequent autonomous rollout: server/expert_run.py, expert_run_api.py and client/ReferenceRun.tsx implement completed-only separate autonomous full-horizon rollouts: own designation/classification/response actions, resource/cooldown/channel waits, preserved original commands and independent playback/export. Canonical mode explicitly uses after-AAR truth; evidence-only mode uses a sanitized observation projection and abstains on unresolved intent. Existing immutable What-if and all-recorded-engagement comparison remain.",
+      "tests": "Independent reference9 backend/3 frontend; root-reported browser What-if0\u21925 score and original unchanged; counterfactual history isolation. Independent canonical 79 backend PASS (56.65 s) over expert rollout/API, integration, unit, analytics and heatmap suites; 2 ReferenceSummary frontend PASS. Root-reported original 0\u2192canonical reference 90/100 with 25 independently accepted decisions and own slider, frozen60-second projection vs original observed30.30seconds. Independent post-guard API/heatmap/integration rerun13 PASS (22.94 s); ReferenceSummary2 PASS. Request/session/mode binding source inspected before effects; full eight-family grouping tested.",
       "user_visible_proof": "Change one choice in Ghost and see hypothetical consequences next to original; inspect reference assumptions",
       "status": "PASS",
       "remaining_limitation": "Existing individual/unit repeated-session dashboard and fresh verified AAR operate. New crew longitudinal efficacy and new physical feature deployment remain unvalidated.",
       "linked_items": [
         "F04"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "SC12",
@@ -315,34 +326,36 @@
       "solution": "Extend interpretable uncertainty-aware evidence with family/context estimates, measured difficulty/calibration and retention/progress; preserve old four-skill semantics; benchmark before replacing Thompson",
       "dependencies": "CH02; F02/F03; CH08; no duplicate learning ledger",
       "implementation": "Adjusted seeded Thompson curriculum reads original four Beta skills; adds uncertainty/recent-progress/session-gap heuristics, family difficulty and frozen HMAC-owner-bound snapshots.",
-      "tests": "Director8 focused checks reported; experiment6 tests,8,640 synthetic selection steps/24 paired seeds×3 regimes; portable metadata validation.",
+      "tests": "Director8 focused checks reported; experiment6 tests,8,640 synthetic selection steps/24 paired seeds\u00d73 regimes; portable metadata validation.",
       "user_visible_proof": "Next-drill panel explains evidence, difficulty prediction versus observed outcomes and anti-repeat choice",
       "status": "PASS",
       "remaining_limitation": "Adjustable structural raid difficulty passes; predicted70%success/empirical Elo calibration does not.",
       "linked_items": [
         "F07"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "SC13",
       "source_section": "Executive scorecard #13",
       "audit_finding": "Randomisation to prevent rote learning",
-      "current_code_evidence": "seed±9 bearing;template-name anti-repeat;some Director variants; see F02",
+      "current_code_evidence": "seed\u00b19 bearing;template-name anti-repeat;some Director variants; see F02",
       "reproduction": "Confirmed limited procedural and group depth",
       "problem_statement_relevance": "Proceduraltrainingquality; no standaloneclausevisibleinarchivedofficialPS",
       "severity": "P0",
       "solution": "Frozen seeded waves/groups/background/composition/order/spawn/motion; constraints and response-window solvability; fingerprint anti-repeat; workload/group assessment",
-      "dependencies": "CH02/CH05–CH08; F07",
+      "dependencies": "CH02/CH05\u2013CH08; F07",
       "implementation": "Eight-family seeded raid grammar, varied roster/waves/timing/motion, coordinated formations/split and signature anti-repeat; group outcome diagnostics.",
-      "tests": "117 component tests/480 boundary scenarios,7,452 coordinates; full-engine parity; root-reported compile→live60-second raid.",
+      "tests": "117 component tests/480 boundary scenarios,7,452 coordinates; full-engine parity; root-reported compile\u2192live60-second raid.",
       "user_visible_proof": "Same focus/difficulty with two seeds has different raid makeup/waves; coordinated split/saturation visible",
       "status": "PASS",
       "remaining_limitation": "Geometric window checks are not certified human solvability. Weak sector uses supplied input, not automatically measured curriculum weakness; calibrated Elo difficulty absent.",
       "linked_items": [
         "F02"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "SC14",
@@ -362,18 +375,19 @@
       "linked_items": [
         "X13"
       ],
-      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation"
+      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation",
+      "remaining_category": "External deployment validation retained pending"
     },
     {
       "id": "SC15",
       "source_section": "Executive scorecard #15",
       "audit_finding": "Believable ranges, speeds and threat types",
-      "current_code_evidence": "190 m radar;effectorranges160/180;speed 0.65–3.8;fourkinds; see F03",
+      "current_code_evidence": "190 m radar;effectorranges160/180;speed 0.65\u20133.8;fourkinds; see F03",
       "reproduction": "Confirmed baseline training scale/model limits",
       "problem_statement_relevance": "Realistic scenarioquality",
       "severity": "P0",
       "solution": "Versioned kilometre units with similar playable TTI; configurable evidence reliability, detection/recognition/identification, LOS, recovery and model documentation",
-      "dependencies": "CH02–CH07; frozen sensor parameters",
+      "dependencies": "CH02\u2013CH07; frozen sensor parameters",
       "implementation": "Metre-scale Sensor Truth v0.4 with current evidence, separate reference, meaningful night/weather/degradation/LOS/ambiguous RF and IFF.",
       "tests": "Sensor1,920/full-engine544 checkpoints, White Cell15, broad415/123 checkpoint and root-reported browser v0.4 run.",
       "user_visible_proof": "Sensor panel explains available channels and why identity remains uncertain at range/night",
@@ -382,7 +396,8 @@
       "linked_items": [
         "F03"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "SC16",
@@ -393,7 +408,7 @@
       "problem_statement_relevance": "Realistic scenarioquality",
       "severity": "P0",
       "solution": "Versioned kilometre units with similar playable TTI; configurable evidence reliability, detection/recognition/identification, LOS, recovery and model documentation",
-      "dependencies": "CH02–CH07; frozen sensor parameters",
+      "dependencies": "CH02\u2013CH07; frozen sensor parameters",
       "implementation": "Metre-scale Sensor Truth v0.4 with current evidence, separate reference, meaningful night/weather/degradation/LOS/ambiguous RF and IFF.",
       "tests": "Sensor1,920/full-engine544 checkpoints, White Cell15, broad415/123 checkpoint and root-reported browser v0.4 run.",
       "user_visible_proof": "Sensor panel explains available channels and why identity remains uncertain at range/night",
@@ -402,7 +417,8 @@
       "linked_items": [
         "F03"
       ],
-      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation"
+      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "SC17",
@@ -415,14 +431,15 @@
       "solution": "Extend interpretable uncertainty-aware evidence with family/context estimates, measured difficulty/calibration and retention/progress; preserve old four-skill semantics; benchmark before replacing Thompson",
       "dependencies": "CH02; F02/F03; CH08; no duplicate learning ledger",
       "implementation": "Adjusted seeded Thompson curriculum reads original four Beta skills; adds uncertainty/recent-progress/session-gap heuristics, family difficulty and frozen HMAC-owner-bound snapshots.",
-      "tests": "Director8 focused checks reported; experiment6 tests,8,640 synthetic selection steps/24 paired seeds×3 regimes; portable metadata validation.",
+      "tests": "Director8 focused checks reported; experiment6 tests,8,640 synthetic selection steps/24 paired seeds\u00d73 regimes; portable metadata validation.",
       "user_visible_proof": "Next-drill panel explains evidence, difficulty prediction versus observed outcomes and anti-repeat choice",
       "status": "PARTIAL",
       "remaining_limitation": "No calibrated Elo target70%, new night/swarm/weather skill posterior or demonstrated human learning advantage. Synthetic paired effect intervals include zero.",
       "linked_items": [
         "F07"
       ],
-      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation"
+      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "SC18",
@@ -442,7 +459,8 @@
       "linked_items": [
         "F01"
       ],
-      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation"
+      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation",
+      "remaining_category": "Acceptance reconciliation or broader workflow validation"
     },
     {
       "id": "SC19",
@@ -462,7 +480,8 @@
       "linked_items": [
         "X01"
       ],
-      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation"
+      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation",
+      "remaining_category": "External deployment validation retained pending"
     },
     {
       "id": "SC20",
@@ -482,7 +501,8 @@
       "linked_items": [
         "CH11"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "SC21",
@@ -494,15 +514,16 @@
       "severity": "P1",
       "solution": "Immutable labelled counterfactual branch from selected decision; normal scorer/replay; evidence-constrained reference policy; diff without skill/profile writes",
       "dependencies": "CH02/CH08/CH09; observation contract",
-      "implementation": "Read-only frozen What-if branch and all-engagement evidence-constrained response comparison, uncertainty-aware Hold and separately labelled rubric/type-range reference.",
-      "tests": "Independent reference9 backend/3 frontend; root-reported browser What-if0→5 score and original unchanged; counterfactual history isolation.",
+      "implementation": "Read-only frozen What-if branch and all-engagement evidence-constrained response comparison, uncertainty-aware Hold and separately labelled rubric/type-range reference. Subsequent autonomous rollout: server/expert_run.py, expert_run_api.py and client/ReferenceRun.tsx implement completed-only separate autonomous full-horizon rollouts: own designation/classification/response actions, resource/cooldown/channel waits, preserved original commands and independent playback/export. Canonical mode explicitly uses after-AAR truth; evidence-only mode uses a sanitized observation projection and abstains on unresolved intent. Existing immutable What-if and all-recorded-engagement comparison remain.",
+      "tests": "Independent reference9 backend/3 frontend; root-reported browser What-if0\u21925 score and original unchanged; counterfactual history isolation. Independent canonical 79 backend PASS (56.65 s) over expert rollout/API, integration, unit, analytics and heatmap suites; 2 ReferenceSummary frontend PASS. Root-reported original 0\u2192canonical reference 90/100 with 25 independently accepted decisions and own slider, frozen60-second projection vs original observed30.30seconds. Independent post-guard API/heatmap/integration rerun13 PASS (22.94 s); ReferenceSummary2 PASS. Request/session/mode binding source inspected before effects; full eight-family grouping tested.",
       "user_visible_proof": "Change one choice in Ghost and see hypothetical consequences next to original; inspect reference assumptions",
       "status": "PASS",
-      "remaining_limitation": "No full independent autonomous Expert Run from first detection through raid end, expert Time Machine track or certified military expert equivalence.",
+      "remaining_limitation": "Autonomous inspectable hypothetical policy, not a certified human expert or an optimal result. Canonical mode consults reference truth after AAR; evidence-only has no independent hostile-intent cue and can leave contacts unresolved. Commands preserve tick/payload/sequence but use fresh autonomous ordering, not original trainee interleaving. Full projected scoring horizon may exceed original observation. Archived0.1 score contract rejects explicitly without relabelling. Physical/human efficacy and fresh performance remain unvalidated.",
       "linked_items": [
         "F04"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "SC22",
@@ -515,14 +536,15 @@
       "solution": "Freeze solvable NightDecoy/DawnSaturation/CivilAmbiguity/twoseed examples; pseudonymous synthetichistory labelled; preload AAR and2D/video fallback",
       "dependencies": "F01/F02/F03/F04/F07; X17",
       "implementation": "Legacy fallback2 D/queued history/preloaded review/video exists; candidate browser recovery exercised once.",
-      "tests": "Root reported compile60 s→pause/reload→draft recovery→verifiedAAR; new7 minute/3 minute demo not recorded.",
-      "user_visible_proof": "Officerlaunch→fault→mistake→verifiedGhost/whatif→Director→unit→compliance",
+      "tests": "Root reported compile60 s\u2192pause/reload\u2192draft recovery\u2192verifiedAAR; new7 minute/3 minute demo not recorded.",
+      "user_visible_proof": "Officerlaunch\u2192fault\u2192mistake\u2192verifiedGhost/whatif\u2192Director\u2192unit\u2192compliance",
       "status": "PARTIAL",
       "remaining_limitation": "Freeze final seeds/empty demo DB, role script, fallback saved new video and rehearse before submission.",
       "linked_items": [
         "X19"
       ],
-      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation"
+      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation",
+      "remaining_category": "Post-validation submission deliverable"
     },
     {
       "id": "SC23",
@@ -542,7 +564,8 @@
       "linked_items": [
         "CH15"
       ],
-      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation"
+      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation",
+      "remaining_category": "External deployment validation retained pending"
     },
     {
       "id": "P0-01",
@@ -562,18 +585,19 @@
       "linked_items": [
         "CH01"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "P0-02",
       "source_section": "Priority checklist P0-02",
       "audit_finding": "Make night and fog change detection, not just colours",
-      "current_code_evidence": "engine.py radar190/thermal145; speed 0.65–3.8; observe night-independent; perfect RF/IFF; no EO fault/recognition",
+      "current_code_evidence": "engine.py radar190/thermal145; speed 0.65\u20133.8; observe night-independent; perfect RF/IFF; no EO fault/recognition",
       "reproduction": "Confirmed baseline training scale/model limits",
       "problem_statement_relevance": "Explicit varied realistic day/night/degraded/terrain scenarios",
       "severity": "P0",
       "solution": "Versioned kilometre units with similar playable TTI; configurable evidence reliability, detection/recognition/identification, LOS, recovery and model documentation",
-      "dependencies": "CH02–CH07; frozen sensor parameters",
+      "dependencies": "CH02\u2013CH07; frozen sensor parameters",
       "implementation": "Metre-scale Sensor Truth v0.4 with current evidence, separate reference, meaningful night/weather/degradation/LOS/ambiguous RF and IFF.",
       "tests": "Sensor1,920/full-engine544 checkpoints, White Cell15, broad415/123 checkpoint and root-reported browser v0.4 run.",
       "user_visible_proof": "Sensor panel explains available channels and why identity remains uncertain at range/night",
@@ -582,18 +606,19 @@
       "linked_items": [
         "F03"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "P0-03",
       "source_section": "Priority checklist P0-03",
       "audit_finding": "Rescale to believable numbers",
-      "current_code_evidence": "engine.py radar190/thermal145; speed 0.65–3.8; observe night-independent; perfect RF/IFF; no EO fault/recognition",
+      "current_code_evidence": "engine.py radar190/thermal145; speed 0.65\u20133.8; observe night-independent; perfect RF/IFF; no EO fault/recognition",
       "reproduction": "Confirmed baseline training scale/model limits",
       "problem_statement_relevance": "Explicit varied realistic day/night/degraded/terrain scenarios",
       "severity": "P0",
       "solution": "Versioned kilometre units with similar playable TTI; configurable evidence reliability, detection/recognition/identification, LOS, recovery and model documentation",
-      "dependencies": "CH02–CH07; frozen sensor parameters",
+      "dependencies": "CH02\u2013CH07; frozen sensor parameters",
       "implementation": "Metre-scale Sensor Truth v0.4 with current evidence, separate reference, meaningful night/weather/degradation/LOS/ambiguous RF and IFF.",
       "tests": "Sensor1,920/full-engine544 checkpoints, White Cell15, broad415/123 checkpoint and root-reported browser v0.4 run.",
       "user_visible_proof": "Sensor panel explains available channels and why identity remains uncertain at range/night",
@@ -602,7 +627,8 @@
       "linked_items": [
         "F03"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "P0-04",
@@ -613,16 +639,17 @@
       "problem_statement_relevance": "Explicit procedural scenarios and single/swarm threats; anti-rote objective",
       "severity": "P0",
       "solution": "Frozen seeded waves/groups/background/composition/order/spawn/motion; constraints and response-window solvability; fingerprint anti-repeat; workload/group assessment",
-      "dependencies": "CH02/CH05–CH08; F07",
+      "dependencies": "CH02/CH05\u2013CH08; F07",
       "implementation": "Eight-family seeded raid grammar, varied roster/waves/timing/motion, coordinated formations/split and signature anti-repeat; group outcome diagnostics.",
-      "tests": "117 component tests/480 boundary scenarios,7,452 coordinates; full-engine parity; root-reported compile→live60-second raid.",
+      "tests": "117 component tests/480 boundary scenarios,7,452 coordinates; full-engine parity; root-reported compile\u2192live60-second raid.",
       "user_visible_proof": "Same focus/difficulty with two seeds has different raid makeup/waves; coordinated split/saturation visible",
       "status": "PASS",
       "remaining_limitation": "Geometric window checks are not certified human solvability. Weak sector uses supplied input, not automatically measured curriculum weakness; calibrated Elo difficulty absent.",
       "linked_items": [
         "F02"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "P0-05",
@@ -633,16 +660,17 @@
       "problem_statement_relevance": "Explicit procedural scenarios and single/swarm threats; anti-rote objective",
       "severity": "P0",
       "solution": "Frozen seeded waves/groups/background/composition/order/spawn/motion; constraints and response-window solvability; fingerprint anti-repeat; workload/group assessment",
-      "dependencies": "CH02/CH05–CH08; F07",
+      "dependencies": "CH02/CH05\u2013CH08; F07",
       "implementation": "Eight-family seeded raid grammar, varied roster/waves/timing/motion, coordinated formations/split and signature anti-repeat; group outcome diagnostics.",
-      "tests": "117 component tests/480 boundary scenarios,7,452 coordinates; full-engine parity; root-reported compile→live60-second raid.",
+      "tests": "117 component tests/480 boundary scenarios,7,452 coordinates; full-engine parity; root-reported compile\u2192live60-second raid.",
       "user_visible_proof": "Same focus/difficulty with two seeds has different raid makeup/waves; coordinated split/saturation visible",
       "status": "PASS",
       "remaining_limitation": "Geometric window checks are not certified human solvability. Weak sector uses supplied input, not automatically measured curriculum weakness; calibrated Elo difficulty absent.",
       "linked_items": [
         "F02"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "P1-01",
@@ -662,7 +690,8 @@
       "linked_items": [
         "X01"
       ],
-      "acceptance_scope": "Historical team-reported WAN exercise/documentation; not finale build"
+      "acceptance_scope": "Historical team-reported WAN exercise/documentation; not finale build",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "P1-02",
@@ -682,7 +711,8 @@
       "linked_items": [
         "CH11"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "P1-03",
@@ -702,18 +732,19 @@
       "linked_items": [
         "CH12"
       ],
-      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation"
+      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation",
+      "remaining_category": "External deployment validation retained pending"
     },
     {
       "id": "P1-04",
       "source_section": "Priority checklist P1-04",
       "audit_finding": "Add ambiguity to RF and IFF",
-      "current_code_evidence": "engine.py radar190/thermal145; speed 0.65–3.8; observe night-independent; perfect RF/IFF; no EO fault/recognition",
+      "current_code_evidence": "engine.py radar190/thermal145; speed 0.65\u20133.8; observe night-independent; perfect RF/IFF; no EO fault/recognition",
       "reproduction": "Confirmed baseline training scale/model limits",
       "problem_statement_relevance": "Explicit varied realistic day/night/degraded/terrain scenarios",
       "severity": "P1",
       "solution": "Versioned kilometre units with similar playable TTI; configurable evidence reliability, detection/recognition/identification, LOS, recovery and model documentation",
-      "dependencies": "CH02–CH07; frozen sensor parameters",
+      "dependencies": "CH02\u2013CH07; frozen sensor parameters",
       "implementation": "Metre-scale Sensor Truth v0.4 with current evidence, separate reference, meaningful night/weather/degradation/LOS/ambiguous RF and IFF.",
       "tests": "Sensor1,920/full-engine544 checkpoints, White Cell15, broad415/123 checkpoint and root-reported browser v0.4 run.",
       "user_visible_proof": "Sensor panel explains available channels and why identity remains uncertain at range/night",
@@ -722,7 +753,8 @@
       "linked_items": [
         "F03"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "P1-05",
@@ -742,7 +774,8 @@
       "linked_items": [
         "F01"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "P1-06",
@@ -752,7 +785,7 @@
       "reproduction": "Confirmed: node data exists; no visual per-contact branch diagram",
       "problem_statement_relevance": "Explicit decision-tree-based scoring; visual tree supports proof, not a separately explicit tree-render mandate",
       "severity": "P1",
-      "solution": "Accessible Detect→Classify→Prioritise→Respond diagram from authoritative review with actual/expected paths and deductions",
+      "solution": "Accessible Detect\u2192Classify\u2192Prioritise\u2192Respond diagram from authoritative review with actual/expected paths and deductions",
       "dependencies": "CH08 for new rubric; F04 for comparison",
       "implementation": "AdvancedAAR shows Detect/Classify/Prioritize/Respond node points, accepted decision/evidence, basis and consequence; Ghost and Time Machine integrated.",
       "tests": "Root-reported real browser verified AAR/What-if/Time Machine; reference-policy independently9 backend/3 frontend.",
@@ -762,7 +795,8 @@
       "linked_items": [
         "CH09"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "P2-01",
@@ -782,7 +816,8 @@
       "linked_items": [
         "X02"
       ],
-      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation"
+      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "P2-02",
@@ -794,15 +829,16 @@
       "severity": "P2",
       "solution": "Formatter/linter, extract cohesive worker/sync/drill/AAR hooks/components; preserve behavior and update source manifest",
       "dependencies": "After behavioral interfaces stabilize; CH02; X10",
-      "implementation": "New concerns extracted to modules, but App remains166 lines with longest2,650 characters at independent inspection.",
-      "tests": "Actual source line measurement on candidate; all-suite tests do not establish readability.",
+      "implementation": "Advanced concerns extracted to named modules; App, storage, Crew, references, analytics, evidence and benchmark formatted with pinned Prettier3.6.2.",
+      "tests": "Final132 frontend and production build PASS; App2538lines/max172characters; frozen legacy files untouched.",
       "user_visible_proof": "Codebase explanation can follow named modules/functions",
       "status": "PARTIAL",
-      "remaining_limitation": "Formatting and further safe decomposition still needed for code walkthrough.",
+      "remaining_limitation": "Further cohesive hook decomposition and linter enforcement remain; formatting is not proof of architectural simplicity.",
       "linked_items": [
         "CH14"
       ],
-      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation"
+      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "P2-03",
@@ -822,7 +858,8 @@
       "linked_items": [
         "CH15"
       ],
-      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation"
+      "acceptance_scope": "Unclosed acceptance or scientific/deployment quality expectation",
+      "remaining_category": "External deployment validation retained pending"
     },
     {
       "id": "P2-04",
@@ -832,9 +869,9 @@
       "reproduction": "Confirmed: duration120 and endtick3600 rejected by pinned models",
       "problem_statement_relevance": "Varied raids/endurance usability enhancement",
       "severity": "P2",
-      "solution": "Versioned duration60–180s, derive endtick from issued scenario in every API/worker/review/import; old75 semantics retained",
+      "solution": "Versioned duration60\u2013180s, derive endtick from issued scenario in every API/worker/review/import; old75 semantics retained",
       "dependencies": "CH02; F02; CH05",
-      "implementation": "Frozen schema2 duration60–180; dynamic API/replay/import horizons, completion minimum repair and displayed mission duration.",
+      "implementation": "Frozen schema2 duration60\u2013180; dynamic API/replay/import horizons, completion minimum repair and displayed mission duration.",
       "tests": "480 boundary scenarios;30 transfer tests including180 seconds/actions after2250; root broad415 checkpoint and actual60-second walkthrough.",
       "user_visible_proof": "Studio/Composer select duration; clock and AAR use same frozen horizon",
       "status": "PASS",
@@ -842,7 +879,8 @@
       "linked_items": [
         "X03"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "P2-05",
@@ -862,7 +900,8 @@
       "linked_items": [
         "CH13"
       ],
-      "acceptance_scope": "Functional software criterion; described limitations retained"
+      "acceptance_scope": "Functional software criterion; described limitations retained",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "CH01",
@@ -880,7 +919,8 @@
       "status": "PASS",
       "remaining_limitation": "GUI evidence boundary only: individual browser simulation receives the frozen scenario, so devtools are not an adversarial truth boundary.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "CH02",
@@ -891,14 +931,15 @@
       "problem_statement_relevance": "Historical evidence and deterministic replay engineering requirement",
       "severity": "P0",
       "solution": "Freeze exact actual legacy implementation; explicit scenario engine/schema dispatch; absent engine defaults to legacy; reject unknown versions",
-      "dependencies": "Foundation for CH03–CH08 and F01–F07",
+      "dependencies": "Foundation for CH03\u2013CH08 and F01\u2013F07",
       "implementation": "Frozen engine_v1_0_1/review_v1_0_1 and explicit legacy 0.2/0.3/absent versus schema2 v0.4 dispatch; unknown versions reject.",
       "tests": "Historical dispatch/golden checks, 544 checkpoints over32 full-engine scenarios, 30 finale transfer tests, broad415 backend checkpoint.",
       "user_visible_proof": "Open old and new reviews; engine/version visible; original cards unchanged",
       "status": "PASS",
       "remaining_limitation": "Final source manifest and post-edit release regression remain separate gates.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "CH03",
@@ -916,7 +957,8 @@
       "status": "PASS",
       "remaining_limitation": "Formula-shaped illustrative training model, not equipment calibration or physical accuracy.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "CH04",
@@ -934,7 +976,8 @@
       "status": "PASS",
       "remaining_limitation": "Synthetic clutter design is not real-world detection/false-alarm-rate validation; mobile visual comprehension remains untested.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "CH05",
@@ -952,7 +995,8 @@
       "status": "PASS",
       "remaining_limitation": "Only Hold/RF jammer/Kinetic operational in this prototype; interceptor/GNSS expansion is absent. Values are illustrative.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "CH06",
@@ -970,7 +1014,8 @@
       "status": "PASS",
       "remaining_limitation": "Closed-form coordinated behavior, not autonomous adversarial swarm intelligence or calibrated aerodynamics.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "CH07",
@@ -988,7 +1033,8 @@
       "status": "PASS",
       "remaining_limitation": "Simplified boxes and a restricted-sector predicate; no full GIS or trajectory/collateral/effector occlusion model.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "CH08",
@@ -1006,7 +1052,8 @@
       "status": "PARTIAL",
       "remaining_limitation": "No new validated Brier-weighted score/rubric, calibrated overload cost, measured confidence calibration or area effectors. Diagnostics must not be described as new score weighting.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "CH09",
@@ -1016,7 +1063,7 @@
       "reproduction": "Confirmed: node data exists; no visual per-contact branch diagram",
       "problem_statement_relevance": "Explicit decision-tree-based scoring; visual tree supports proof, not a separately explicit tree-render mandate",
       "severity": "P1",
-      "solution": "Accessible Detect→Classify→Prioritise→Respond diagram from authoritative review with actual/expected paths and deductions",
+      "solution": "Accessible Detect\u2192Classify\u2192Prioritise\u2192Respond diagram from authoritative review with actual/expected paths and deductions",
       "dependencies": "CH08 for new rubric; F04 for comparison",
       "implementation": "AdvancedAAR shows Detect/Classify/Prioritize/Respond node points, accepted decision/evidence, basis and consequence; Ghost and Time Machine integrated.",
       "tests": "Root-reported real browser verified AAR/What-if/Time Machine; reference-policy independently9 backend/3 frontend.",
@@ -1024,7 +1071,8 @@
       "status": "PASS",
       "remaining_limitation": "Node-path cards with textual branch explanations; no claim of an elaborate graphical branching-tree renderer or user comprehension study.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "CH10",
@@ -1038,11 +1086,12 @@
       "dependencies": "CH11; F01; event sequencing",
       "implementation": "Instructor/White Cell/Crew use bounded non-overlapping polling with cleanup; no SSE/WebSocket push implemented.",
       "tests": "Source inspection of500 ms/1,500 ms intervals and pending/stopped guards.",
-      "user_visible_proof": "Command lifecycle remains SENDING→ACKNOWLEDGED→APPLIED during reconnect",
+      "user_visible_proof": "Command lifecycle remains SENDING\u2192ACKNOWLEDGED\u2192APPLIED during reconnect",
       "status": "PARTIAL",
       "remaining_limitation": "Push transport proposal remains unimplemented; no measured latency advantage claimed.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "CH11",
@@ -1060,7 +1109,8 @@
       "status": "PASS",
       "remaining_limitation": "Officer protection on trusted unit LAN; independent trainee identity is callsign/UUID, not a secure-exam authenticated learner system. Confidentiality requires trusted HTTPS.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "CH12",
@@ -1078,7 +1128,8 @@
       "status": "PARTIAL",
       "remaining_limitation": "No new finale separate-device CA trust, secure-origin cold reload or physical HTTPS acceptance.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "External deployment validation retained pending"
     },
     {
       "id": "CH13",
@@ -1096,7 +1147,8 @@
       "status": "PASS",
       "remaining_limitation": "Logical time can lag wall time after stalls; no uninterrupted background real-time or fresh endurance proof.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "CH14",
@@ -1108,13 +1160,14 @@
       "severity": "P2",
       "solution": "Formatter/linter, extract cohesive worker/sync/drill/AAR hooks/components; preserve behavior and update source manifest",
       "dependencies": "After behavioral interfaces stabilize; CH02; X10",
-      "implementation": "New concerns extracted to modules, but App remains166 lines with longest2,650 characters at independent inspection.",
-      "tests": "Actual source line measurement on candidate; all-suite tests do not establish readability.",
+      "implementation": "Advanced concerns extracted to named modules; App, storage, Crew, references, analytics, evidence and benchmark formatted with pinned Prettier3.6.2.",
+      "tests": "Final132 frontend and production build PASS; App2538lines/max172characters; frozen legacy files untouched.",
       "user_visible_proof": "Codebase explanation can follow named modules/functions",
       "status": "PARTIAL",
-      "remaining_limitation": "Formatting and further safe decomposition still needed for code walkthrough.",
+      "remaining_limitation": "Further cohesive hook decomposition and linter enforcement remain; formatting is not proof of architectural simplicity.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "CH15",
@@ -1132,7 +1185,8 @@
       "status": "PARTIAL",
       "remaining_limitation": "Current finale Windows and Linux actual installation/start/tests not performed.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "External deployment validation retained pending"
     },
     {
       "id": "CH16",
@@ -1150,7 +1204,8 @@
       "status": "PARTIAL",
       "remaining_limitation": "Dedicated dashboard query/cache/endurance latency measurement remains absent; do not claim imagined bottleneck was fixed.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "F01",
@@ -1168,7 +1223,8 @@
       "status": "PARTIAL",
       "remaining_limitation": "No recorded teach-pause explanation capture, simultaneous live board/trainee browser demonstration or 20-client latency/endurance measurement. Horizon is advisory client telemetry.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Acceptance reconciliation or broader workflow validation"
     },
     {
       "id": "F02",
@@ -1179,14 +1235,15 @@
       "problem_statement_relevance": "Explicit procedural scenarios and single/swarm threats; anti-rote objective",
       "severity": "P0",
       "solution": "Frozen seeded waves/groups/background/composition/order/spawn/motion; constraints and response-window solvability; fingerprint anti-repeat; workload/group assessment",
-      "dependencies": "CH02/CH05–CH08; F07",
+      "dependencies": "CH02/CH05\u2013CH08; F07",
       "implementation": "Eight-family seeded raid grammar, varied roster/waves/timing/motion, coordinated formations/split and signature anti-repeat; group outcome diagnostics.",
-      "tests": "117 component tests/480 boundary scenarios,7,452 coordinates; full-engine parity; root-reported compile→live60-second raid.",
+      "tests": "117 component tests/480 boundary scenarios,7,452 coordinates; full-engine parity; root-reported compile\u2192live60-second raid.",
       "user_visible_proof": "Same focus/difficulty with two seeds has different raid makeup/waves; coordinated split/saturation visible",
       "status": "PASS",
       "remaining_limitation": "Geometric window checks are not certified human solvability. Weak sector uses supplied input, not automatically measured curriculum weakness; calibrated Elo difficulty absent.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "F03",
@@ -1197,32 +1254,34 @@
       "problem_statement_relevance": "Explicit varied realistic day/night/degraded/terrain scenarios",
       "severity": "P0",
       "solution": "Versioned kilometre units with similar playable TTI; configurable evidence reliability, detection/recognition/identification, LOS, recovery and model documentation",
-      "dependencies": "CH02–CH07; frozen sensor parameters",
+      "dependencies": "CH02\u2013CH07; frozen sensor parameters",
       "implementation": "Metre-scale Sensor Truth v0.4 with current evidence, separate reference, meaningful night/weather/degradation/LOS/ambiguous RF and IFF.",
       "tests": "Sensor1,920/full-engine544 checkpoints, White Cell15, broad415/123 checkpoint and root-reported browser v0.4 run.",
       "user_visible_proof": "Sensor panel explains available channels and why identity remains uncertain at range/night",
       "status": "PASS",
       "remaining_limitation": "No sensor hardware-in-loop, field calibration, certified signature fidelity or measured operational false-alarm rates.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "F04",
       "source_section": "Major feature rank4 / Workstream E",
       "audit_finding": "What-If Rewind + Expert Run",
-      "current_code_evidence": "Read-only frozen What-if branch and all-engagement evidence-constrained response comparison, uncertainty-aware Hold and separately labelled rubric/type-range reference.",
-      "reproduction": "Confirmed absent",
+      "current_code_evidence": "server/expert_run.py, expert_run_api.py and client/ReferenceRun.tsx implement completed-only separate autonomous full-horizon rollouts: own designation/classification/response actions, resource/cooldown/channel waits, preserved original commands and independent playback/export. Canonical mode explicitly uses after-AAR truth; evidence-only mode uses a sanitized observation projection and abstains on unresolved intent. Existing immutable What-if and all-recorded-engagement comparison remain.",
+      "reproduction": "Absent in pinned baseline; subsequent completed-session autonomous module implemented and independently tested.",
       "problem_statement_relevance": "Evidence-based AAR enhancement",
       "severity": "P1",
       "solution": "Immutable labelled counterfactual branch from selected decision; normal scorer/replay; evidence-constrained reference policy; diff without skill/profile writes",
       "dependencies": "CH02/CH08/CH09; observation contract",
-      "implementation": "Read-only frozen What-if branch and all-engagement evidence-constrained response comparison, uncertainty-aware Hold and separately labelled rubric/type-range reference.",
-      "tests": "Independent reference9 backend/3 frontend; root-reported browser What-if0→5 score and original unchanged; counterfactual history isolation.",
+      "implementation": "server/expert_run.py, expert_run_api.py and client/ReferenceRun.tsx implement completed-only separate autonomous full-horizon rollouts: own designation/classification/response actions, resource/cooldown/channel waits, preserved original commands and independent playback/export. Canonical mode explicitly uses after-AAR truth; evidence-only mode uses a sanitized observation projection and abstains on unresolved intent. Existing immutable What-if and all-recorded-engagement comparison remain.",
+      "tests": "Independent canonical 79 backend PASS (56.65 s) over expert rollout/API, integration, unit, analytics and heatmap suites; 2 ReferenceSummary frontend PASS. Root-reported original 0\u2192canonical reference 90/100 with 25 independently accepted decisions and own slider, frozen60-second projection vs original observed30.30seconds. Independent post-guard API/heatmap/integration rerun13 PASS (22.94 s); ReferenceSummary2 PASS. Request/session/mode binding source inspected before effects; full eight-family grouping tested.",
       "user_visible_proof": "Change one choice in Ghost and see hypothetical consequences next to original; inspect reference assumptions",
-      "status": "PARTIAL",
-      "remaining_limitation": "No full independent autonomous Expert Run from first detection through raid end, expert Time Machine track or certified military expert equivalence.",
+      "status": "PASS",
+      "remaining_limitation": "Autonomous inspectable hypothetical policy, not a certified human expert or an optimal result. Canonical mode consults reference truth after AAR; evidence-only has no independent hostile-intent cue and can leave contacts unresolved. Commands preserve tick/payload/sequence but use fresh autonomous ordering, not original trainee interleaving. Full projected scoring horizon may exceed original observation. Archived0.1 score contract rejects explicitly without relabelling. Physical/human efficacy and fresh performance remain unvalidated.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Completed-session autonomous/What-if software contract and labelled modes, not certified expert or final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "F05",
@@ -1240,7 +1299,8 @@
       "status": "PARTIAL",
       "remaining_limitation": "Not trained Naive Bayes likelihoods/10,000-track table, calibrated posterior or causal over-trust score. Client association/viewing is self-report; alignment is descriptive.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "F06",
@@ -1252,13 +1312,14 @@
       "severity": "P1",
       "solution": "Single versioned authoritative exercise with role ownership, attributed events/order, synchronization, reconnect and shared/individual AAR",
       "dependencies": "CH02/CH10/CH11; F01; durable event attribution",
-      "implementation": "Server-owned shared simulation with spotter/responder role capabilities, officer control, immutable attribution, idempotent retry, durable paused restart and shared result/AAR.",
-      "tests": "Crew regressions and12 Crew/Fusion transfer tests; synthetic aggregate cannot receive individual curriculum/profile credit.",
+      "implementation": "Server-owned shared simulation with spotter/responder role capabilities, officer control, immutable attribution, idempotent retry, durable paused restart and shared result/AAR. Completed group review now derives per-member stage counts and first-contact logical handoff times from accepted attributed actions; reconnect reads preserve stored history.",
+      "tests": "Crew regressions and12 Crew/Fusion transfer tests; synthetic aggregate cannot receive individual curriculum/profile credit. Independent79 backend run confirms neutral shared priors do not distort individual unit means. Actual responder reconnect showed completed shared0/100 result and three attributed actions; individual cohort isolation covered in434 backend suite. New whole-database readonly reconnect and role-count/timing regression; actual browser3actions/onecontact/.27s/.27s handoff review; no individual skill credit.",
       "user_visible_proof": "Separate browsers execute observation and response in one coherent exercise; officer monitors it",
       "status": "PARTIAL",
-      "remaining_limitation": "No fresh physical role-device demonstration, crew learning/coordination efficacy or longitudinal individual role mastery. Officer serves coordination; two trainee roles implemented.",
+      "remaining_limitation": "Per-member coordination counts/timing implemented; longitudinal crew trends, validated role competency/reliance measures and new physical-client breadth remain unvalidated.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Acceptance reconciliation or broader workflow validation"
     },
     {
       "id": "F07",
@@ -1271,12 +1332,13 @@
       "solution": "Extend interpretable uncertainty-aware evidence with family/context estimates, measured difficulty/calibration and retention/progress; preserve old four-skill semantics; benchmark before replacing Thompson",
       "dependencies": "CH02; F02/F03; CH08; no duplicate learning ledger",
       "implementation": "Adjusted seeded Thompson curriculum reads original four Beta skills; adds uncertainty/recent-progress/session-gap heuristics, family difficulty and frozen HMAC-owner-bound snapshots.",
-      "tests": "Director8 focused checks reported; experiment6 tests,8,640 synthetic selection steps/24 paired seeds×3 regimes; portable metadata validation.",
+      "tests": "Director8 focused checks reported; experiment6 tests,8,640 synthetic selection steps/24 paired seeds\u00d73 regimes; portable metadata validation.",
       "user_visible_proof": "Next-drill panel explains evidence, difficulty prediction versus observed outcomes and anti-repeat choice",
       "status": "PARTIAL",
       "remaining_limitation": "No calibrated Elo target70%, new night/swarm/weather skill posterior or demonstrated human learning advantage. Synthetic paired effect intervals include zero.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "X01",
@@ -1294,7 +1356,8 @@
       "status": "PASS",
       "remaining_limitation": "This PASS is historical reported exercise/documentation scope only. No new finale WAN/officer-command/Ghost workflow inferred.",
       "linked_items": [],
-      "acceptance_scope": "Historical reported test/documentation only"
+      "acceptance_scope": "Historical reported test/documentation only",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "X02",
@@ -1312,30 +1375,32 @@
       "status": "PARTIAL",
       "remaining_limitation": "Final deck/demo/claim audit incomplete; retain concise honest limits without deleting material uncertainty.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "X03",
       "source_section": "Additional audit/mission gap",
       "audit_finding": "Lift75-second cap / variable duration",
-      "current_code_evidence": "Frozen schema2 duration60–180; dynamic API/replay/import horizons, completion minimum repair and displayed mission duration.",
+      "current_code_evidence": "Frozen schema2 duration60\u2013180; dynamic API/replay/import horizons, completion minimum repair and displayed mission duration.",
       "reproduction": "Confirmed: duration120 and endtick3600 rejected by pinned models",
       "problem_statement_relevance": "Varied raids/endurance usability enhancement",
       "severity": "P2",
-      "solution": "Versioned duration60–180s, derive endtick from issued scenario in every API/worker/review/import; old75 semantics retained",
+      "solution": "Versioned duration60\u2013180s, derive endtick from issued scenario in every API/worker/review/import; old75 semantics retained",
       "dependencies": "CH02; F02; CH05",
-      "implementation": "Frozen schema2 duration60–180; dynamic API/replay/import horizons, completion minimum repair and displayed mission duration.",
+      "implementation": "Frozen schema2 duration60\u2013180; dynamic API/replay/import horizons, completion minimum repair and displayed mission duration.",
       "tests": "480 boundary scenarios;30 transfer tests including180 seconds/actions after2250; root broad415 checkpoint and actual60-second walkthrough.",
       "user_visible_proof": "Studio/Composer select duration; clock and AAR use same frozen horizon",
       "status": "PASS",
       "remaining_limitation": "Legacy75-second scenario semantics preserved; final post-UI-edit regression remains pending.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "X04",
       "source_section": "Additional audit/mission gap",
-      "audit_finding": "Transfer export→untouched import HTTP422 observed in prior demo",
+      "audit_finding": "Transfer export\u2192untouched import HTTP422 observed in prior demo",
       "current_code_evidence": "Raw legacy signed spelling preserved; new declared numeric canonicalization passes actual JavaScript JSON roundtrip plus clean-database strict reconstruction.",
       "reproduction": "Unverified: capture exact browser/API body; valid tests do not disprove specific failing history",
       "problem_statement_relevance": "Reliable portable evidence/deployment",
@@ -1348,7 +1413,8 @@
       "status": "PASS",
       "remaining_limitation": "Previously rewritten invalid legacy signatures still cannot be bypassed; original file or authenticated re-export needed.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "X05",
@@ -1366,7 +1432,8 @@
       "status": "PASS",
       "remaining_limitation": "GUI secrecy only; ordinary local client still owns frozen truth for simulation. Do not claim adversarial anti-cheat or hidden-scenario confidentiality.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "X06",
@@ -1384,7 +1451,8 @@
       "status": "PASS",
       "remaining_limitation": "Version labels are provenance, not proof of equipment/operational validation.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "X07",
@@ -1397,12 +1465,13 @@
       "solution": "Server-side role/session scope, protected mutations/reads, safe cookie lifecycle, CSRF/origin checking and rate limits where justified",
       "dependencies": "CH11/CH12/F06",
       "implementation": "No ambient auth cookies; officer-only APIs protected; shared Crew role/member endpoints and imports archived read-only; Director bound to owner.",
-      "tests": "Negative-role/auth/ownership/portable Crew and shared aggregate tests; broad415 checkpoint.",
+      "tests": "Negative-role/auth/ownership/portable Crew and shared aggregate tests; broad415 checkpoint. Actual all28 protected route/method inventory, anonymous/forged401 and authenticated analytics paths; Crew aggregate individual-workflow rejection.",
       "user_visible_proof": "Unauthorized browser cannot mutate or read protected instructor/reference state",
       "status": "PARTIAL",
       "remaining_limitation": "Ordinary independent trainee/session access remains trusted callsign/UUID model; no account-level adversarial learner identity, expired crew-code lifecycle or military access-control certification.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "X08",
@@ -1420,7 +1489,8 @@
       "status": "PARTIAL",
       "remaining_limitation": "Separate-device certificate trust and full final package secret scan/source manifest still pending. Generated CA is not production PKI.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "External deployment validation retained pending"
     },
     {
       "id": "X09",
@@ -1438,7 +1508,8 @@
       "status": "PARTIAL",
       "remaining_limitation": "Physical Windows/Linux backup/restore and exact final deployment artifact rollback rehearsal not recorded.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Acceptance reconciliation or broader workflow validation"
     },
     {
       "id": "X10",
@@ -1456,7 +1527,8 @@
       "status": "PARTIAL",
       "remaining_limitation": "Final source tree, assets/manifests/test counts/deck/video claims must be regenerated after stabilization.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Acceptance reconciliation or broader workflow validation"
     },
     {
       "id": "X11",
@@ -1467,14 +1539,15 @@
       "problem_statement_relevance": "Minimal-special-hardware unit usability",
       "severity": "P2",
       "solution": "Common layout/navigation/status/error/keyboard patterns across all systems; usable touch controls and charts",
-      "dependencies": "F01–F07; CH14",
+      "dependencies": "F01\u2013F07; CH14",
       "implementation": "Navigation routes, role pages, errors/loading/ARIA and tactical2 D fallback present; real desktop-browser candidate training/AAR recovery walked.",
       "tests": "Frontend123 checkpoint plus root real-browser60 second drill/reload/AAR/What-if/Fusion receipts.",
       "user_visible_proof": "Phone can complete training/review and role flow without manualURLs",
       "status": "PARTIAL",
       "remaining_limitation": "No complete fresh Android/tablet workflow, keyboard/accessibility audit or cross-browser screenshots on finale.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Acceptance reconciliation or broader workflow validation"
     },
     {
       "id": "X12",
@@ -1487,12 +1560,13 @@
       "solution": "Repeat ordinary/high-contact/heavy-view/multiple-client/longer run memory/worker/UI/backend/action latency measurements",
       "dependencies": "Integrated built finale; CH13/CH16/F01/F06",
       "implementation": "Version-selectable benchmark now defaults to v0.4 synthetic stress fixture and records render/tick samples.",
-      "tests": "Independent source confirms v0.4 fixture8/25/50/100/200; measurement run not supplied.",
+      "tests": "Independent source confirms v0.4 fixture8/25/50/100/200; measurement run not supplied. Later root receipts: actual fixed-Medium8/25/50/100/200 workload; six HTTP completions and200-contact AAR; actual process-outage3-event/3-Fusion resynchronization. See measured receipts. Actual180s/200contact workload and181 main-page heap samples; full453/132 regression; measured config validation optimization with exact review/card.",
       "user_visible_proof": "Benchmark receipt on specified hardware; graceful 2D fallback",
       "status": "PARTIAL",
-      "remaining_limitation": "Fresh fixed-tier device FPS/tick/p95 HTTP/event latency/memory and endurance/concurrency data absent; historical callbackFPS does not certify candidate.",
+      "remaining_limitation": "Scoped180s browser run and reconstruction/completion loads measured. Whole-process/Worker/GPU memory, wider Crew/interaction latency distributions and operational endurance are not certified.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Acceptance reconciliation or broader workflow validation"
     },
     {
       "id": "X13",
@@ -1510,7 +1584,8 @@
       "status": "PARTIAL",
       "remaining_limitation": "Fresh shared-role/White Cell/Fusion/Director physical multi-device and HTTPS/WAN checks pending; never replace with simulated pass.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "External deployment validation retained pending"
     },
     {
       "id": "X14",
@@ -1528,7 +1603,8 @@
       "status": "PASS",
       "remaining_limitation": "Accepted logical history is not proof of human provenance, wall-clock timing authenticity or legitimate learner identity.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "X15",
@@ -1540,13 +1616,14 @@
       "severity": "P1",
       "solution": "Explicit role/user attribution and documented group versus individual learning update policy in existing ledger",
       "dependencies": "F06/F07/CH08",
-      "implementation": "Shared attribution exports pseudonymously; aggregate excluded from individual Beta backfill/export/curriculum and duplicate learning.",
-      "tests": "Crew completion/role/retry/12 transfer checks; root cross-module3 focused tests.",
+      "implementation": "Shared role attribution and aggregate exclusion from individual Beta backfill/export/curriculum, unit mastery denominator, active-individual count, analytics and heatmap; shared history/score remains separately visible. Completed group review now derives per-member stage counts and first-contact logical handoff times from accepted attributed actions; reconnect reads preserve stored history.",
+      "tests": "Independent79 backend run includes unchanged individual unit means before/after Crew completion, shared owner omitted from individual analytics and denied in individual heatmap; root65 focused and strict Crew/Fusion transfer12 pass earlier. Actual responder reconnect showed completed shared0/100 result and three attributed actions; individual cohort isolation covered in434 backend suite. New whole-database readonly reconnect and role-count/timing regression; actual browser3actions/onecontact/.27s/.27s handoff review; no individual skill credit.",
       "user_visible_proof": "Crew AAR shows who observed/classified/responded and sharedresult",
       "status": "PARTIAL",
-      "remaining_limitation": "Longitudinal crew/team metric dashboard and human per-role assessment remain limited; no individual competence credit.",
+      "remaining_limitation": "Per-member coordination counts/timing implemented; longitudinal crew trends, validated role competency/reliance measures and new physical-client breadth remain unvalidated.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "X16",
@@ -1564,7 +1641,8 @@
       "status": "PASS",
       "remaining_limitation": "Stated formulas and bounds establish model contract, not empirical calibration; source citations do not validate chosen parameters.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "X17",
@@ -1582,7 +1660,8 @@
       "status": "PARTIAL",
       "remaining_limitation": "New media/package must use actual implemented scope and provisional evidence, not inherited full-acceptance claims.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Post-validation submission deliverable"
     },
     {
       "id": "X18",
@@ -1600,7 +1679,8 @@
       "status": "PARTIAL",
       "remaining_limitation": "Per-row evidence_url all lead to same audit matrix; requested one-click saved-session/preset/unit live proof still missing.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "X19",
@@ -1613,12 +1693,13 @@
       "solution": "Freeze solvable NightDecoy/DawnSaturation/CivilAmbiguity/twoseed examples; pseudonymous synthetichistory labelled; preload AAR and2D/video fallback",
       "dependencies": "F01/F02/F03/F04/F07; X17",
       "implementation": "Legacy fallback2 D/queued history/preloaded review/video exists; candidate browser recovery exercised once.",
-      "tests": "Root reported compile60 s→pause/reload→draft recovery→verifiedAAR; new7 minute/3 minute demo not recorded.",
-      "user_visible_proof": "Officerlaunch→fault→mistake→verifiedGhost/whatif→Director→unit→compliance",
+      "tests": "Root reported compile60 s\u2192pause/reload\u2192draft recovery\u2192verifiedAAR; new7 minute/3 minute demo not recorded.",
+      "user_visible_proof": "Officerlaunch\u2192fault\u2192mistake\u2192verifiedGhost/whatif\u2192Director\u2192unit\u2192compliance",
       "status": "PARTIAL",
       "remaining_limitation": "Freeze final seeds/empty demo DB, role script, fallback saved new video and rehearse before submission.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Post-validation submission deliverable"
     },
     {
       "id": "X20",
@@ -1636,7 +1717,8 @@
       "status": "PARTIAL",
       "remaining_limitation": "No stable finale source/tag, complete platform/performance/physical evidence or100/100 earned. Software PASS rows are not release acceptance.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Acceptance reconciliation or broader workflow validation"
     },
     {
       "id": "X21",
@@ -1654,7 +1736,8 @@
       "status": "PARTIAL",
       "remaining_limitation": "Legacy authored difficulty label has no behavioral effect; new difficulty is not empirical70%success calibration.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "X22",
@@ -1666,13 +1749,14 @@
       "severity": "P0",
       "solution": "Dedicated non-destructive read/replay branch contract; validate selected decision/replacement; impossible choice explanatory response; suppress learning writes",
       "dependencies": "F04/CH02/CH14",
-      "implementation": "Completed-only read-only What-if rejects invalid immediate alternative, drops explicitly invalidated later actions and leaves original history/profile intact.",
-      "tests": "Counterfactual immutability/invalid branch tests; browser0→5 branch original unchanged; reference API entire DB immutable.",
+      "implementation": "Completed-only read-only What-if rejects invalid immediate alternative, drops explicitly invalidated later actions and leaves original history/profile intact. Subsequent autonomous rollout: server/expert_run.py, expert_run_api.py and client/ReferenceRun.tsx implement completed-only separate autonomous full-horizon rollouts: own designation/classification/response actions, resource/cooldown/channel waits, preserved original commands and independent playback/export. Canonical mode explicitly uses after-AAR truth; evidence-only mode uses a sanitized observation projection and abstains on unresolved intent. Existing immutable What-if and all-recorded-engagement comparison remain.",
+      "tests": "Counterfactual immutability/invalid branch tests; browser0\u21925 branch original unchanged; reference API entire DB immutable. Independent canonical 79 backend PASS (56.65 s) over expert rollout/API, integration, unit, analytics and heatmap suites; 2 ReferenceSummary frontend PASS. Root-reported original 0\u2192canonical reference 90/100 with 25 independently accepted decisions and own slider, frozen60-second projection vs original observed30.30seconds. Independent post-guard API/heatmap/integration rerun13 PASS (22.94 s); ReferenceSummary2 PASS. Request/session/mode binding source inspected before effects; full eight-family grouping tested.",
       "user_visible_proof": "What-if labelled hypothetical, original card still visible",
       "status": "PASS",
       "remaining_limitation": "Hypothetical simulated branch, not prediction of real operational outcome or score/profile update.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "X23",
@@ -1684,13 +1768,14 @@
       "severity": "P0",
       "solution": "Reference policy uses available observations and abstains when uncertain; separate privileged rubric truth from policy input",
       "dependencies": "F04/F03; CH01",
-      "implementation": "reference_policy calls evidence-only helper at every original before_action boundary; no canonical kind/identity/rf/position passed. No-reply is not hostility; rubric truth separate.",
-      "tests": "Independent canonical9 backend/3 frontend: one replay, every engagement, prior-classification timing, IFF override, fault order and masked input.",
+      "implementation": "reference_policy calls evidence-only helper at every original before_action boundary; no canonical kind/identity/rf/position passed. No-reply is not hostility; rubric truth separate. Subsequent autonomous rollout: server/expert_run.py, expert_run_api.py and client/ReferenceRun.tsx implement completed-only separate autonomous full-horizon rollouts: own designation/classification/response actions, resource/cooldown/channel waits, preserved original commands and independent playback/export. Canonical mode explicitly uses after-AAR truth; evidence-only mode uses a sanitized observation projection and abstains on unresolved intent. Existing immutable What-if and all-recorded-engagement comparison remain.",
+      "tests": "Independent canonical9 backend/3 frontend: one replay, every engagement, prior-classification timing, IFF override, fault order and masked input. Independent canonical 79 backend PASS (56.65 s) over expert rollout/API, integration, unit, analytics and heatmap suites; 2 ReferenceSummary frontend PASS. Root-reported original 0\u2192canonical reference 90/100 with 25 independently accepted decisions and own slider, frozen60-second projection vs original observed30.30seconds. Independent post-guard API/heatmap/integration rerun13 PASS (22.94 s); ReferenceSummary2 PASS. Request/session/mode binding source inspected before effects; full eight-family grouping tested.",
       "user_visible_proof": "Reference-policy assumptions and uncertainty visible",
       "status": "PASS",
-      "remaining_limitation": "Recorded hostile identity remains operator declaration. Static truth reference is not resource-aware exact success prediction or certified expert policy.",
+      "remaining_limitation": "Autonomous inspectable hypothetical policy, not a certified human expert or an optimal result. Canonical mode consults reference truth after AAR; evidence-only has no independent hostile-intent cue and can leave contacts unresolved. Commands preserve tick/payload/sequence but use fresh autonomous ordering, not original trainee interleaving. Full projected scoring horizon may exceed original observation. Archived0.1 score contract rejects explicitly without relabelling. Physical/human efficacy and fresh performance remain unvalidated.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "X24",
@@ -1708,7 +1793,8 @@
       "status": "PARTIAL",
       "remaining_limitation": "No causal cognitive over-trust, calibrated appropriate reliance score or verified human viewing. UI/tests do not establish human automation bias.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "X25",
@@ -1726,7 +1812,8 @@
       "status": "PASS",
       "remaining_limitation": "Illustrative civil identity cue, not official Digital Sky/API integration or validated broadcast standard.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "X26",
@@ -1744,7 +1831,8 @@
       "status": "PARTIAL",
       "remaining_limitation": "No real learner experiment, calibrated classifier, difficulty fit or operational training benefit established.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "X27",
@@ -1762,7 +1850,8 @@
       "status": "PARTIAL",
       "remaining_limitation": "No automatic requirement invention from competitor capability; proposals explicitly absent.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "X28",
@@ -1780,7 +1869,8 @@
       "status": "PASS",
       "remaining_limitation": "Simplified physical equations do not certify tactics/signatures/aerodynamics; Johnson attribution remains research context rather than measured equipment.",
       "linked_items": [],
-      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance"
+      "acceptance_scope": "Named finding software contract on candidate, not final release acceptance",
+      "remaining_category": "Closed scoped finding"
     },
     {
       "id": "X29",
@@ -1793,12 +1883,13 @@
       "solution": "Persistmeasurementmetadata/raw samples/render FPS/worker steps/request latency/action ACK/apply time; performancebudget assertionswhereuseful",
       "dependencies": "CH13/CH16/F01/F06; X12",
       "implementation": "Benchmark distinguishes callback/render FPS from30 Hz logical tick cost, defaults to current synthetic stress with auto quality off.",
-      "tests": "Source inspection of sampling/config/median; frontend benchmark tests.",
+      "tests": "Source inspection of sampling/config/median; frontend benchmark tests. Later root receipts: actual fixed-Medium8/25/50/100/200 workload; six HTTP completions and200-contact AAR; actual process-outage3-event/3-Fusion resynchronization. See measured receipts. Actual180s/200contact workload and181 main-page heap samples; full453/132 regression; measured config validation optimization with exact review/card.",
       "user_visible_proof": "Exportbenchmark clearlyidentifiesrender/tick/API/actionmetrics",
       "status": "PARTIAL",
-      "remaining_limitation": "No actual new raw measurement exports/device hardware receipt;20 seconds insufficient endurance or hardware certification.",
+      "remaining_limitation": "Scoped180s browser run and reconstruction/completion loads measured. Whole-process/Worker/GPU memory, wider Crew/interaction latency distributions and operational endurance are not certified.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "X30",
@@ -1811,12 +1902,13 @@
       "solution": "Boundedcache eviction/version reset; snapshot invalidation; stream cancellation/heartbeat; no expensiveperclientfull replay",
       "dependencies": "F01/CH10/CH16",
       "implementation": "Polling guards/cleanup, bounded White Cell128 TTLcache and Crew64 runtime cache; no unbounded global shared simulation reuse.",
-      "tests": "White Cell cache/invalidation/immutability and Crew rollback/restart regressions.",
+      "tests": "White Cell cache/invalidation/immutability and Crew rollback/restart regressions. Later root receipts: actual fixed-Medium8/25/50/100/200 workload; six HTTP completions and200-contact AAR; actual process-outage3-event/3-Fusion resynchronization. See measured receipts. Actual180s/200contact workload and181 main-page heap samples; full453/132 regression; measured config validation optimization with exact review/card.",
       "user_visible_proof": "Officerboard remainsresponsive with measuredclients",
       "status": "PARTIAL",
-      "remaining_limitation": "Fresh multi-session HTTPp95/memory/endurance measurements and incremental-versus-full performance report absent; poll approach remains.",
+      "remaining_limitation": "Scoped180s browser run and reconstruction/completion loads measured. Whole-process/Worker/GPU memory, wider Crew/interaction latency distributions and operational endurance are not certified.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Future quality refinement; stronger claims require evidence"
     },
     {
       "id": "X31",
@@ -1834,26 +1926,29 @@
       "status": "PARTIAL",
       "remaining_limitation": "Final clean-clone/dependency/Windows/Linux/backuprestore/offline asset package checks must be rerun after final source stabilization.",
       "linked_items": [],
-      "acceptance_scope": "Implementation or validation gap remains"
+      "acceptance_scope": "Implementation or validation gap remains",
+      "remaining_category": "Acceptance reconciliation or broader workflow validation"
     }
   ],
   "candidate_checkpoints": {
     "recorded_date": "2026-10-12",
-    "provenance": "Root-reported integrated checkpoint415 backend/123 frontend; audit independently reran reference9 and cross-module suites. Not the final post-edit receipt.",
+    "provenance": "Root-reported completed432 backend/127 frontend earlier full checkpoint; independent79 backend rollout/cohort and post-guard13 checks plus2frontend summary checks. Final post-edit broad acceptance/source closure pending.",
     "full_engine_parity": {
       "checkpoints_passed": 544,
       "scenarios": 32,
       "scope": "Python/TypeScript full-engine deterministic comparison"
     },
     "frontend": {
-      "passed": 123,
+      "passed": 132,
       "failed": 0,
-      "scope": "Latest root-reported full checkpoint, subsequent UI edits pending rerun"
+      "provenance": "Root executed complete suite after all client edits",
+      "milliseconds": 91363.281208
     },
     "backend_broad": {
-      "passed": 415,
+      "passed": 453,
       "failed": 0,
-      "scope": "Latest root-reported full checkpoint; final rerun after Ghost/EO-IR/benchmark/Crew edits pending"
+      "provenance": "Root executed latest complete backend suite; no subsequent backend source edits",
+      "seconds": 451.77
     },
     "completion_focused_after_fix": {
       "passed": 5,
@@ -1893,7 +1988,7 @@
     },
     "actual_browser": {
       "provenance": "Performed/reported by integration owner on candidate disposable data",
-      "scope": "60-second compile, designation/classification/delayed response, pause/reload/own draft recovery, server-verified AAR, Fusion3/Brier1, What-if kinetic0→5 with original unchanged, reference comparison and Time Machine",
+      "scope": "60-second compile, designation/classification/delayed response, pause/reload/own draft recovery, server-verified AAR, Fusion3/Brier1, What-if kinetic0\u21925 with original unchanged, reference comparison and Time Machine",
       "physical_devices": "No separate-device proof inferred"
     },
     "independent_cross_module_backend": {
@@ -1911,137 +2006,73 @@
         "test_portable_finale.py"
       ],
       "scope": "Officer auth, history, delayed-review semantics, Crew aggregate/limit, What-if immutability and strict clean-database transfer; not final all-suite release acceptance"
+    },
+    "independent_autonomous_cohort_backend": {
+      "passed": 79,
+      "failed": 0,
+      "seconds": 56.65,
+      "canonical": true,
+      "suites": [
+        "test_expert_run.py",
+        "test_expert_run_api.py",
+        "test_finale_integration.py",
+        "test_units.py",
+        "test_advanced.py",
+        "test_heatmap.py"
+      ],
+      "scope": "Full canonical and conservative evidence-only autonomous policies/API plus cohort isolation"
+    },
+    "reference_summary_frontend": {
+      "passed": 2,
+      "failed": 0,
+      "scope": "Independent canonical/evidence-only labels and projected versus observed horizon"
+    },
+    "autonomous_reference_browser": {
+      "provenance": "Root-performed actual desktop browser",
+      "original_score": 0,
+      "canonical_reference_score": 90,
+      "own_accepted_decisions": 25,
+      "projection_seconds": 60,
+      "original_observed_seconds": 30.3,
+      "own_replay_slider": true,
+      "limits": "Hypothetical canonical after-AAR truth; not evidence-only operator equivalence or human efficacy"
+    },
+    "post_guard_family_cohort_focused": {
+      "passed": 13,
+      "failed": 0,
+      "seconds": 22.94,
+      "canonical": true,
+      "scope": "Expert API/session binding, Crew role boundary, full eight-family heatmap grouping and cohort means integration"
+    },
+    "final_post_edit_broad": "453backend/132frontend/build PASS; exact source/deployment/independent final acceptance still open",
+    "production_build": {
+      "status": "PASS",
+      "offline_assets": 26,
+      "cache": "776beb4652c2"
+    },
+    "process_outage": {
+      "receipt": "PROCESS-OUTAGE-RECEIPT.json",
+      "scope": "actual disposable macOS process and loaded browser; three queued actions/Fusion receipts"
+    },
+    "runtime_load": {
+      "receipt": "RUNTIME-LOAD-RECEIPT.json",
+      "scope": "six concurrent HTTP completions and 200-contact reconstruction; not endurance or physical clients"
     }
   },
   "unresolved_release_requirements": [
-    "Final post-edit all-suite/production build and exact source/assets/evidence manifest",
-    "New candidate fixed-tier8/25/50/100/200 performance, HTTP/event latency, memory/endurance/concurrent measurements",
-    "New physical multi-device LAN/HTTPS trust/WAN tests; retain historical reported WAN PASS separately",
-    "Current Windows/Linux installation/start/backuprestore execution; final clean-clone deployment",
-    "Fresh Android/mobile/keyboard/accessibility/browser and shared-role/White Cell live demonstrations",
-    "Full autonomous Expert Run; trained/calibrated Fusion and human reliance evidence; Elo/context mastery are absent and must not be claimed",
-    "Push transport/readability/cache measurements and compliance live proof links retain explicit gap status",
-    "Independent final claim audit, stable release/tag then new demo/video/six-slide PPT/PDF/rehearsal/submission"
+    "Exact code/source/assets/evidence pinning and final clean-clone deployment package",
+    "Independent final audit/claim reconciliation and release decision; no provisional score is final",
+    "Broader role longitudinal analytics/maintainability/live-proof refinements stay accurately scoped",
+    "Native Windows/Linux pending by user request; fresh physical LAN/HTTPS/WAN validation where possible; historical WAN report separately retained",
+    "Validated-release demo/PPT/PDF, rehearsal and submission after software freeze"
   ],
-  "provisional_candidate_score": {
-    "score": 81,
-    "maximum": 100,
-    "status": "PROVISIONAL CANDIDATE — NOT A FINAL RELEASE AUDIT",
-    "recorded_date": "2026-10-12",
-    "basis": "Independent current source and receipt review; no rerating of unseen physical equipment or human outcomes",
-    "areas": [
-      {
-        "area": "PS coverage",
-        "maximum": 50,
-        "score": 45.5,
-        "deductions": "Single-drill breadth0.5; swarm depth1; degraded UI/physical breadth0.5; terrain0.5; anti-rote human breadth0.5; decision path comprehension0.5; repeated-unit new workflow0.5; candidate minimal-hardware measurement0.5."
-      },
-      {
-        "area": "Realism and AI depth",
-        "maximum": 25,
-        "score": 18,
-        "deductions": "Sensor/fusion empirical likelihood/calibration2; coordinated rather than autonomous/area swarm1; limited resource/effector breadth1; no Elo/context posterior/human-efficacy evidence3."
-      },
-      {
-        "area": "Engineering and demo reliability",
-        "maximum": 25,
-        "score": 17.5,
-        "deductions": "Final post-edit/source closure0.5; ordinary learner identity/HTTPS trust1; fresh endurance/performance/recovery breadth1; unexecuted current Windows/Linux1.5; new stable release/deck/video/rehearsal/submission3.5."
-      }
-    ],
-    "uncertainty": "These engineering judgement weights are stated, not an official SIH numeric marking scheme or measured win probability. Further runtime failures may lower the estimate; earned receipts may remove named deductions."
-  },
+  "provisional_candidate_score": 82,
   "provisional_score_allocation": {
-    "PS coverage": {
-      "desktop": [
-        3,
-        3
-      ],
-      "single_drone": [
-        6,
-        5.5
-      ],
-      "swarm": [
-        5,
-        4
-      ],
-      "day_night": [
-        5,
-        5
-      ],
-      "degraded_sensors": [
-        5,
-        4.5
-      ],
-      "terrain": [
-        4,
-        3.5
-      ],
-      "scripted": [
-        3,
-        3
-      ],
-      "procedural": [
-        5,
-        4.5
-      ],
-      "decision_scoring": [
-        6,
-        5.5
-      ],
-      "individual_unit_AAR": [
-        5,
-        4.5
-      ],
-      "minimal_hardware": [
-        3,
-        2.5
-      ]
-    },
-    "realism_ai": {
-      "sensor_fusion": [
-        8,
-        6
-      ],
-      "swarm_motion": [
-        5,
-        4
-      ],
-      "response_resources": [
-        4,
-        3
-      ],
-      "adaptive_AI": [
-        6,
-        3
-      ],
-      "scientific_claim_discipline": [
-        2,
-        2
-      ]
-    },
-    "engineering": {
-      "regression_history": [
-        8,
-        7.5
-      ],
-      "access_boundaries": [
-        5,
-        4
-      ],
-      "recovery_performance": [
-        5,
-        4
-      ],
-      "platform_execution": [
-        3,
-        1.5
-      ],
-      "release_demo_media": [
-        4,
-        0.5
-      ]
-    }
+    "PS": 45.5,
+    "realism_AI": 18,
+    "engineering_demo": 18.5,
+    "total": 82,
+    "status": "PROVISIONAL; no stable approval"
   },
   "independent_source_inspection": {
     "recorded_date": "2026-10-12",
@@ -2050,5 +2081,13 @@
     "security_scope": "Officer authentication and Crew role capability; ordinary independent trainee callsign/UUID is a trusted-LAN model",
     "live_links": "Compliance per-row evidence_url currently shared audit matrix, not per-row live demonstration",
     "known_data_staleness": "Existing integration/test/evidence placeholders still need root-wide reconciliation; do not claim fresh source hash"
+  },
+  "independent_review_addendum": {
+    "report": "INDEPENDENT-REVIEW-20261012.md",
+    "receipt": "INDEPENDENT-REVIEW-20261012.json",
+    "passed_backend": 72,
+    "passed_frontend": 6,
+    "score": 82,
+    "final_score": null
   }
 }

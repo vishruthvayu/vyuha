@@ -1,24 +1,333 @@
-import {useEffect,useState} from 'react';
-import SkillHeatmap from './SkillHeatmap';
-import {api} from './storage';
-import type {UnitIdentity} from './unit-state';
-import type {GhostSkill} from './types';
-import {skillLabel} from './Ghost';
-type Point={sequence:number;session_id:string;kind:string;processed_at:string;means:Record<GhostSkill,number>;director_focus:GhostSkill|null;director_mastery_before:number|null};
-type Session={id:string;title:string;pack:string;seed:number;observed_tick:number|null;score:number;nodes:{detect:number;classify:number;prioritise:number;engage:number};leakers:number;roe_breaches:number;failures:Record<string,number>};
-type History={prior:Record<GhostSkill,number>;points:Point[];sessions:Session[];note:string};
-export function Trend({history}:{history:{points:Point[];note:string}}){return <><p>{history.note}</p><div className="table-scroll"><table><thead><tr><th>Sequence</th><th>Session / processed</th>{Object.values(skillLabel).map(label=><th key={label}>{label}</th>)}</tr></thead><tbody><tr><td>Prior</td><td>Beta(1,1), before observations</td>{Object.keys(skillLabel).map(s=><td key={s}>50.00%</td>)}</tr>{history.points.map(p=><tr key={p.session_id}><td>{p.sequence} · {p.kind}</td><td title={p.session_id}>{p.session_id.slice(0,10)}<small>{new Date(p.processed_at).toLocaleString()}</small></td>{Object.keys(skillLabel).map(s=><td key={s}>{(100*p.means[s as GhostSkill]).toFixed(2)}%</td>)}</tr>)}</tbody></table></div>{!history.points.length&&<p>No completed training observations yet. Only baseline priors are available.</p>}</>;}
-export default function Analytics({identity}:{identity?:UnitIdentity}){
- const [trainees,setTrainees]=useState<UnitIdentity[]>([]),[tid,setTid]=useState(identity?.trainee_id??'CADET-01'),[unit,setUnit]=useState(identity?.unit_id??'local'),[units,setUnits]=useState<{id:string;name:string}[]>([]),[history,setHistory]=useState<History|null>(null),[unitHistory,setUnitHistory]=useState<{points:Point[];note:string}|null>(null),[a,setA]=useState(''),[b,setB]=useState(''),[error,setError]=useState('');
- useEffect(()=>{void api<{units:{id:string;name:string}[]}>('/units').then(r=>setUnits(r.units)).catch(e=>setError(e.message));},[]);
- useEffect(()=>{let stopped=false;void Promise.all([api<{trainees:UnitIdentity[]}>(`/units/${unit}/trainees`),api<{points:Point[];note:string}>(`/units/${unit}/analytics`)]).then(([r,u])=>{if(!stopped){setTrainees(r.trainees);setTid(old=>r.trainees.some(t=>t.trainee_id===old)?old:r.trainees[0]?.trainee_id??'');setUnitHistory(u);}}).catch(e=>setError(e.message));return()=>{stopped=true;};},[unit]);
- useEffect(()=>{let stopped=false;setHistory(null);setError('');if(!tid)return()=>{stopped=true;};void api<History>(`/trainees/${tid}/analytics`).then(h=>{if(stopped)return;setHistory(h);setA(h.sessions.at(-2)?.id??h.sessions[0]?.id??'');setB(h.sessions.at(-1)?.id??'');}).catch(e=>setError(e.message));return()=>{stopped=true;};},[tid]);
- const left=history?.sessions.find(s=>s.id===a),right=history?.sessions.find(s=>s.id===b);
- const metrics:([string,(s:Session)=>number])[]=[['Detection / 25',s=>s.nodes.detect],['Classification / 25',s=>s.nodes.classify],['Prioritisation / 15',s=>s.nodes.prioritise],['Engagement / 35',s=>s.nodes.engage],['Late detections',s=>s.failures.DETECTION_LATE??0],['Wrong effector / ineffective RF',s=>(s.failures.WRONG_EFFECTOR??0)+(s.failures.NO_RF_JAM_INEFFECTIVE??0)],['Asset impacts',s=>s.leakers],['ROE breaches',s=>s.roe_breaches]];
- return <main className="instructor-page advanced-page"><header className="page-heading"><div><div className="eyebrow">PERSISTED TRAINING EVIDENCE</div><h1>Training analytics</h1><p>Historical estimates and observed differences.</p></div><nav className="advanced-nav"><a href="/">Training home</a><a href="/instructor">Instructor console</a><a href="/exercises">Exercise studio</a></nav></header>{error&&<p role="alert">{error}</p>}
- <div className="studio-fields"><label>Unit<select value={unit} onChange={e=>setUnit(e.target.value)}>{units.map(u=><option key={u.id} value={u.id}>{u.name}</option>)}</select></label><label>Trainee<select value={tid} onChange={e=>setTid(e.target.value)}><option value={tid}>{trainees.find(t=>t.trainee_id===tid)?.callsign??(tid||'No trainees in this unit')}</option>{trainees.filter(t=>t.trainee_id!==tid).map(t=><option key={t.trainee_id} value={t.trainee_id}>{t.callsign}</option>)}</select></label></div>
- <SkillHeatmap unit={unit} trainee={tid}/>
- {history&&<><section className="panel advanced-card"><h2>Trainee skill trend</h2><Trend history={history}/></section><section className="panel advanced-card"><h2>Session A vs Session B</h2><div className="studio-fields">{[['A',a,setA],['B',b,setB]].map(([label,id,set])=><label key={label as string}>Session {label as string}<select value={id as string} onChange={e=>(set as (id:string)=>void)(e.target.value)}><option value="">Select session</option>{history.sessions.map(s=><option key={s.id} value={s.id}>{s.title} · {s.id.slice(0,8)} · {s.score}/100</option>)}</select></label>)}</div>{left&&right?<><p>A: {left.pack}, seed {left.seed}, observed T+{left.observed_tick===null?'unknown':(left.observed_tick/30).toFixed(2)}s. B: {right.pack}, seed {right.seed}, observed T+{right.observed_tick===null?'unknown':(right.observed_tick/30).toFixed(2)}s.</p><table><thead><tr><th>Metric</th><th>A</th><th>B</th><th>Observed difference B − A</th></tr></thead><tbody>{metrics.map(([label,value])=><tr key={label}><td>{label}</td><td>{value(left)}</td><td>{value(right)}</td><td>{(value(right)-value(left)).toFixed(2)}</td></tr>)}</tbody></table><p>Node scores average hostile contacts before penalties; failure counts use distinct contact/reason pairs. Differences do not establish that training caused improvement.</p></>:<p>Complete two tactical sessions for a comparison.</p>}</section><section className="panel advanced-card"><h2>Director focus history</h2><table><thead><tr><th>Session</th><th>Selected focus</th><th>Estimate before</th><th>Estimate after completion</th></tr></thead><tbody>{history.points.filter(p=>p.director_focus).map(p=><tr key={p.session_id}><td>{p.sequence} · {p.session_id.slice(0,8)}</td><td>{skillLabel[p.director_focus!]}</td><td>{((p.director_mastery_before??.5)*100).toFixed(2)}%</td><td>{(p.means[p.director_focus!]*100).toFixed(2)}%</td></tr>)}</tbody></table><p>Selection and outcome history make adaptation visible; these are Bayesian estimates, not calibrated readiness or efficacy measurements.</p></section></>}
- {unitHistory&&<section className="panel advanced-card"><h2>Unit skill trend</h2><Trend history={unitHistory}/></section>}
- </main>;
+import { useEffect, useState } from "react";
+import SkillHeatmap from "./SkillHeatmap";
+import { api } from "./storage";
+import type { UnitIdentity } from "./unit-state";
+import type { GhostSkill } from "./types";
+import { skillLabel } from "./Ghost";
+type Point = {
+  sequence: number;
+  session_id: string;
+  kind: string;
+  processed_at: string;
+  means: Record<GhostSkill, number>;
+  director_focus: GhostSkill | null;
+  director_mastery_before: number | null;
+};
+type Session = {
+  id: string;
+  title: string;
+  pack: string;
+  seed: number;
+  observed_tick: number | null;
+  score: number;
+  nodes: {
+    detect: number;
+    classify: number;
+    prioritise: number;
+    engage: number;
+  };
+  leakers: number;
+  roe_breaches: number;
+  failures: Record<string, number>;
+};
+type History = {
+  prior: Record<GhostSkill, number>;
+  points: Point[];
+  sessions: Session[];
+  note: string;
+};
+export function Trend({
+  history,
+}: {
+  history: { points: Point[]; note: string };
+}) {
+  return (
+    <>
+      <p>{history.note}</p>
+      <div className="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Sequence</th>
+              <th>Session / processed</th>
+              {Object.values(skillLabel).map((label) => (
+                <th key={label}>{label}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Prior</td>
+              <td>Beta(1,1), before observations</td>
+              {Object.keys(skillLabel).map((s) => (
+                <td key={s}>50.00%</td>
+              ))}
+            </tr>
+            {history.points.map((p) => (
+              <tr key={p.session_id}>
+                <td>
+                  {p.sequence} · {p.kind}
+                </td>
+                <td title={p.session_id}>
+                  {p.session_id.slice(0, 10)}
+                  <small>{new Date(p.processed_at).toLocaleString()}</small>
+                </td>
+                {Object.keys(skillLabel).map((s) => (
+                  <td key={s}>
+                    {(100 * p.means[s as GhostSkill]).toFixed(2)}%
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {!history.points.length && (
+        <p>
+          No completed training observations yet. Only baseline priors are
+          available.
+        </p>
+      )}
+    </>
+  );
+}
+export default function Analytics({ identity }: { identity?: UnitIdentity }) {
+  const [trainees, setTrainees] = useState<UnitIdentity[]>([]),
+    [tid, setTid] = useState(identity?.trainee_id ?? "CADET-01"),
+    [unit, setUnit] = useState(identity?.unit_id ?? "local"),
+    [units, setUnits] = useState<{ id: string; name: string }[]>([]),
+    [history, setHistory] = useState<History | null>(null),
+    [unitHistory, setUnitHistory] = useState<{
+      points: Point[];
+      note: string;
+    } | null>(null),
+    [a, setA] = useState(""),
+    [b, setB] = useState(""),
+    [error, setError] = useState("");
+  useEffect(() => {
+    void api<{ units: { id: string; name: string }[] }>("/units")
+      .then((r) => setUnits(r.units))
+      .catch((e) => setError(e.message));
+  }, []);
+  useEffect(() => {
+    let stopped = false;
+    void Promise.all([
+      api<{ trainees: UnitIdentity[] }>(`/units/${unit}/trainees`),
+      api<{ points: Point[]; note: string }>(`/units/${unit}/analytics`),
+    ])
+      .then(([r, u]) => {
+        if (!stopped) {
+          setTrainees(r.trainees);
+          setTid((old) =>
+            r.trainees.some((t) => t.trainee_id === old)
+              ? old
+              : (r.trainees[0]?.trainee_id ?? ""),
+          );
+          setUnitHistory(u);
+        }
+      })
+      .catch((e) => setError(e.message));
+    return () => {
+      stopped = true;
+    };
+  }, [unit]);
+  useEffect(() => {
+    let stopped = false;
+    setHistory(null);
+    setError("");
+    if (!tid)
+      return () => {
+        stopped = true;
+      };
+    void api<History>(`/trainees/${tid}/analytics`)
+      .then((h) => {
+        if (stopped) return;
+        setHistory(h);
+        setA(h.sessions.at(-2)?.id ?? h.sessions[0]?.id ?? "");
+        setB(h.sessions.at(-1)?.id ?? "");
+      })
+      .catch((e) => setError(e.message));
+    return () => {
+      stopped = true;
+    };
+  }, [tid]);
+  const left = history?.sessions.find((s) => s.id === a),
+    right = history?.sessions.find((s) => s.id === b);
+  const metrics: [string, (s: Session) => number][] = [
+    ["Detection / 25", (s) => s.nodes.detect],
+    ["Classification / 25", (s) => s.nodes.classify],
+    ["Prioritisation / 15", (s) => s.nodes.prioritise],
+    ["Engagement / 35", (s) => s.nodes.engage],
+    ["Late detections", (s) => s.failures.DETECTION_LATE ?? 0],
+    [
+      "Wrong effector / ineffective RF",
+      (s) =>
+        (s.failures.WRONG_EFFECTOR ?? 0) +
+        (s.failures.NO_RF_JAM_INEFFECTIVE ?? 0),
+    ],
+    ["Asset impacts", (s) => s.leakers],
+    ["ROE breaches", (s) => s.roe_breaches],
+  ];
+  return (
+    <main className="instructor-page advanced-page">
+      <header className="page-heading">
+        <div>
+          <div className="eyebrow">PERSISTED TRAINING EVIDENCE</div>
+          <h1>Training analytics</h1>
+          <p>Historical estimates and observed differences.</p>
+        </div>
+        <nav className="advanced-nav">
+          <a href="/">Training home</a>
+          <a href="/instructor">Instructor console</a>
+          <a href="/exercises">Exercise studio</a>
+        </nav>
+      </header>
+      {error && <p role="alert">{error}</p>}
+      <div className="studio-fields">
+        <label>
+          Unit
+          <select value={unit} onChange={(e) => setUnit(e.target.value)}>
+            {units.map((u) => (
+              <option key={u.id} value={u.id}>
+                {u.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Trainee
+          <select value={tid} onChange={(e) => setTid(e.target.value)}>
+            <option value={tid}>
+              {trainees.find((t) => t.trainee_id === tid)?.callsign ??
+                (tid || "No trainees in this unit")}
+            </option>
+            {trainees
+              .filter((t) => t.trainee_id !== tid)
+              .map((t) => (
+                <option key={t.trainee_id} value={t.trainee_id}>
+                  {t.callsign}
+                </option>
+              ))}
+          </select>
+        </label>
+      </div>
+      <SkillHeatmap unit={unit} trainee={tid} />
+      {history && (
+        <>
+          <section className="panel advanced-card">
+            <h2>Trainee skill trend</h2>
+            <Trend history={history} />
+          </section>
+          <section className="panel advanced-card">
+            <h2>Session A vs Session B</h2>
+            <div className="studio-fields">
+              {[
+                ["A", a, setA],
+                ["B", b, setB],
+              ].map(([label, id, set]) => (
+                <label key={label as string}>
+                  Session {label as string}
+                  <select
+                    value={id as string}
+                    onChange={(e) =>
+                      (set as (id: string) => void)(e.target.value)
+                    }
+                  >
+                    <option value="">Select session</option>
+                    {history.sessions.map((s) => (
+                      <option key={s.id} value={s.id}>
+                        {s.title} · {s.id.slice(0, 8)} · {s.score}/100
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ))}
+            </div>
+            {left && right ? (
+              <>
+                <p>
+                  A: {left.pack}, seed {left.seed}, observed T+
+                  {left.observed_tick === null
+                    ? "unknown"
+                    : (left.observed_tick / 30).toFixed(2)}
+                  s. B: {right.pack}, seed {right.seed}, observed T+
+                  {right.observed_tick === null
+                    ? "unknown"
+                    : (right.observed_tick / 30).toFixed(2)}
+                  s.
+                </p>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Metric</th>
+                      <th>A</th>
+                      <th>B</th>
+                      <th>Observed difference B − A</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {metrics.map(([label, value]) => (
+                      <tr key={label}>
+                        <td>{label}</td>
+                        <td>{value(left)}</td>
+                        <td>{value(right)}</td>
+                        <td>{(value(right) - value(left)).toFixed(2)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <p>
+                  Node scores average hostile contacts before penalties; failure
+                  counts use distinct contact/reason pairs. Differences do not
+                  establish that training caused improvement.
+                </p>
+              </>
+            ) : (
+              <p>Complete two tactical sessions for a comparison.</p>
+            )}
+          </section>
+          <section className="panel advanced-card">
+            <h2>Director focus history</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Session</th>
+                  <th>Selected focus</th>
+                  <th>Estimate before</th>
+                  <th>Estimate after completion</th>
+                </tr>
+              </thead>
+              <tbody>
+                {history.points
+                  .filter((p) => p.director_focus)
+                  .map((p) => (
+                    <tr key={p.session_id}>
+                      <td>
+                        {p.sequence} · {p.session_id.slice(0, 8)}
+                      </td>
+                      <td>{skillLabel[p.director_focus!]}</td>
+                      <td>
+                        {((p.director_mastery_before ?? 0.5) * 100).toFixed(2)}%
+                      </td>
+                      <td>{(p.means[p.director_focus!] * 100).toFixed(2)}%</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+            <p>
+              Selection and outcome history make adaptation visible; these are
+              Bayesian estimates, not calibrated readiness or efficacy
+              measurements.
+            </p>
+          </section>
+        </>
+      )}
+      {unitHistory && (
+        <section className="panel advanced-card">
+          <h2>Unit skill trend</h2>
+          <Trend history={unitHistory} />
+        </section>
+      )}
+    </main>
+  );
 }

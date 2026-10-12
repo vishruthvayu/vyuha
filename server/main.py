@@ -368,6 +368,8 @@ from .fusion import router as fusion_router
 app.include_router(fusion_router)
 from .reference_policy import router as reference_router
 app.include_router(reference_router)
+from .expert_run_api import router as expert_run_router
+app.include_router(expert_run_router)
 app.add_middleware(CrewSessionBoundary)
 
 DIST = Path(__file__).resolve().parent.parent / "client" / "dist"

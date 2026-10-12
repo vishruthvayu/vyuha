@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-12",
+  "scope": "Same200-contact/1800-tick frozen completed scenario on M1/8GB; observed horizon0, empty action log; no score/review change",
+  "before_http_completion_seconds": 27.38125,
+  "before_profiled_seconds": 85.7404155,
+  "after": {
+    "unprofiled_seconds": [
+      11.025263,
+      11.001499,
+      11.892299
+    ],
+    "median_seconds": 11.025263,
+    "profiled_seconds": 40.19866487500258,
+    "complete_review_and_card_equal_to_preoptimization": true
+  },
+  "before_profile_calls": [
+    {
+      "function": "configuration",
+      "file": "sensors_v2.py",
+      "calls": 1093022,
+      "cumulative_seconds": 39.219667
+    },
+    {
+      "function": "deepcopy",
+      "file": "copy.py",
+      "calls": 12782749,
+      "cumulative_seconds": 22.188587
+    },
+    {
+      "function": "observe_sensors",
+      "file": "sensors_v2.py",
+      "calls": 360200,
+      "cumulative_seconds": 80.275556
+    },
+    {
+      "function": "optical_observation",
+      "file": "sensors_v2.py",
+      "calls": 720400,
+      "cumulative_seconds": 39.257381
+    }
+  ],
+  "after_profile_calls": [
+    {
+      "function": "configuration",
+      "file": "sensors_v2.py",
+      "calls": 3602,
+      "cumulative_seconds": 0.165714
+    },
+    {
+      "function": "deepcopy",
+      "file": "copy.py",
+      "calls": 12782749,
+      "cumulative_seconds": 21.041099
+    },
+    {
+      "function": "_optical_observation",
+      "file": "sensors_v2.py",
+      "calls": 720400,
+      "cumulative_seconds": 10.956584
+    },
+    {
+      "function": "_observe_sensors",
+      "file": "sensors_v2.py",
+      "calls": 360200,
+      "cumulative_seconds": 35.71706
+    }
+  ],
+  "dominant_cost_before": "Repeated sensor configuration validation;1,093,022 calls with39.220s cumulative profiled cost",
+  "change": "Validate shared environment/configuration once per logical engine observe tick. Public sensor entry points retain strict validation; helpers reuse the validated parameters without changing the formulas or memory copying. No global configuration cache or fidelity reduction.",
+  "remaining_cost": "Per-contact isolated memory deep copies and optical/geometry computation now dominate",
+  "comparison_limits": [
+    "Before HTTP time is one real service observation; after unprofiled times are three direct full-review reconstructions, not a paired HTTP benchmark",
+    "cProfile has instrumentation overhead and cumulative costs overlap; profiled seconds are not runtime latency",
+    "Complete review and card compared exactly against pre-optimization serialized result in all four optimized runs",
+    "Full parity/current backend regression and real browser acceptance are recorded separately"
+  ]
+}

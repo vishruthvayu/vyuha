@@ -158,3 +158,33 @@ def test_invalid_environment_cannot_silently_become_available_evidence():
             observe_sensors(17, 0, 0, TRACK, environment)
     with pytest.raises(ValueError):
         false_tracks(17, -1, ENV)
+
+
+def test_engine_prepared_context_matches_public_sensor_contract_with_fault_changes():
+    from server.engine_v2 import Simulation
+    from server.raid_v2 import compose_raid
+    scenario=compose_raid({'seed':17,'duration':60,'difficulty':'foundational','family':'DIRECT'})
+    sim=Simulation(scenario);memory={}
+    # Include first paint, confirm/coast, optical sample boundaries and faults.
+    for tick in range(121):
+        if tick in (40,70):
+            sim.rf_override=tick==70;sim.eo_status='failed' if tick==40 else 'normal'
+            sim.observe()
+        env=dict(night=sim.night,fog=scenario['fog'],radar_status=sim.radar_status,rf_available=sim.rf_available,eo_status=sim.eo_status,ir_status=sim.ir_status,terrain=scenario.get('terrain_boxes',[]))
+        for i,track in enumerate(sim.tracks):
+            result=observe_sensors(scenario['seed'],tick,i,track,env,memory.get(track['id']),scenario.get('sensor_config'))
+            assert result['observation']==track['observation']
+            memory[track['id']]=result['memory']
+        if tick<120:sim.step()
+
+
+def test_engine_revalidates_changed_sensor_settings_each_tick_and_keeps_sessions_separate():
+    from server.engine_v2 import Simulation
+    from server.raid_v2 import compose_raid
+    spec=compose_raid({'seed':17,'duration':60,'difficulty':'foundational','family':'DIRECT'})
+    other=Simulation(copy.deepcopy(spec));sim=Simulation(copy.deepcopy(spec))
+    before=copy.deepcopy(other.sensor_memory)
+    sim.scenario['sensor_config']={'radar_pfa':0}
+    with pytest.raises(ValueError,match='outside bounds'):sim.observe()
+    assert other.sensor_memory==before
+    other.observe()  # Another session never uses the invalid configuration.

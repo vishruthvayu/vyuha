@@ -106,6 +106,8 @@ def start_rapid(req:RapidStart):
  rounds=make_rapid(req.seed,req.rounds);body=dumps(req.model_dump())
  with connect() as db:
   db.execute('BEGIN IMMEDIATE')
+  from .crew import is_shared_owner
+  if is_shared_owner(db,req.trainee_id):raise HTTPException(422,'Shared crew aggregates cannot start individual Rapid ID')
   if not db.execute('SELECT 1 FROM trainees WHERE id=?',(req.trainee_id,)).fetchone():
    if os.environ.get('VYUHA_UNIT_MODE')=='1':raise HTTPException(422,'Join a unit before Rapid ID')
    db.execute('INSERT INTO trainees VALUES (?,?,?,?)',(req.trainee_id,'local',req.trainee_id,now()))
@@ -169,6 +171,9 @@ def trend(rows,trainees):
 @router.get('/trainees/{tid}/analytics')
 def trainee_analytics(tid:str):
  from .main import profile
+ from .crew import is_shared_owner
+ with connect() as db:
+  if is_shared_owner(db,tid):raise HTTPException(422,'Shared crew results have no individual learning analytics')
  profile(tid)
  with connect() as db:
   rows=db.execute('SELECT * FROM skill_outcomes WHERE trainee=? ORDER BY processed_at,rowid',(tid,)).fetchall()
@@ -187,7 +192,8 @@ def unit_analytics(uid:str):
  from .main import profile
  with connect() as db:
   if not db.execute('SELECT 1 FROM units WHERE id=?',(uid,)).fetchone():raise HTTPException(404,'Unit not found')
-  trainees=[r['id'] for r in db.execute('SELECT id FROM trainees WHERE unit_id=?',(uid,))]
+  from .crew import is_shared_owner
+  trainees=[r['id'] for r in db.execute('SELECT id FROM trainees WHERE unit_id=?',(uid,)) if not is_shared_owner(db,r['id'])]
  for tid in trainees:profile(tid)
- with connect() as db:rows=db.execute('SELECT o.* FROM skill_outcomes o JOIN trainees t ON t.id=o.trainee WHERE t.unit_id=? ORDER BY o.processed_at,o.rowid',(uid,)).fetchall()
- return dict(unit_id=uid,trainee_count=len(trainees),prior={s:.5 for s in SKILLS},points=trend(rows,trainees),note='Retrospective mean of current registered cohort, including priors for trainees without observations; sequence windows, not calendar trends or efficacy evidence.')
+ with connect() as db:rows=[r for r in db.execute('SELECT o.* FROM skill_outcomes o JOIN trainees t ON t.id=o.trainee WHERE t.unit_id=? ORDER BY o.processed_at,o.rowid',(uid,)).fetchall() if r['trainee'] in trainees]
+ return dict(unit_id=uid,trainee_count=len(trainees),prior={s:.5 for s in SKILLS},points=trend(rows,trainees),note='Retrospective mean of registered individual trainees, excluding shared crew aggregate owners and including priors for trainees without observations; sequence windows, not calendar trends or efficacy evidence.')

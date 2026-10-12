@@ -1,0 +1,114 @@
+{
+  "recorded_date": "2026-10-12",
+  "source_tree_sha256": "03a67abdd9cb5cf3fed05ddd4b3511d7297acc4eac0c3573cfc5e86273188e48",
+  "stable_approval": false,
+  "final_audit_score": null,
+  "independent_provisional_score": 82,
+  "finding_counts": {
+    "PASS": 51,
+    "N/A": 1,
+    "PARTIAL": 41
+  },
+  "finding_blocked_ids": [],
+  "gates": [
+    {
+      "id": "G01",
+      "requirement": "Final backend/frontend/production regression",
+      "status": "PASS",
+      "evidence": "453/132/build; TEST-RESULTS.md"
+    },
+    {
+      "id": "G02",
+      "requirement": "Full versioned parity and exact historical compatibility",
+      "status": "PASS",
+      "evidence": "Original312, immediate544/32, delayed288/18;18baseline/22current exact;HISTORY-RECEIPT.json"
+    },
+    {
+      "id": "G03",
+      "requirement": "Officer authorization, Crew isolation and transfer integrity",
+      "status": "PASS_SCOPED",
+      "evidence": "All28protected routes anonymous/forged401; full regression and strict portable fixtures; ordinary learner identity remains trusted LAN"
+    },
+    {
+      "id": "G04",
+      "requirement": "Real browser AAR/reference/Fusion/Crew/recovery workflows",
+      "status": "PASS_SCOPED",
+      "evidence": "BROWSER-ACCEPTANCE.json and scoped actual receipts"
+    },
+    {
+      "id": "G05",
+      "requirement": "Bounded performance/longer runtime measurements",
+      "status": "PASS_SCOPED",
+      "evidence": "Fixed8/25/50/100/200 runs,180sworker/render/heap,6HTTP completion clients, exact-output reconstruction profile; not total-memory certification"
+    },
+    {
+      "id": "G06",
+      "requirement": "Exact source/commit/assets/manifest and final clean clone",
+      "status": "PARTIAL",
+      "evidence": "Source hash reconciled; commit and fresh dependency clone pending"
+    },
+    {
+      "id": "G07",
+      "requirement": "Independent final claim/acceptance decision",
+      "status": "PARTIAL",
+      "evidence": "Critical review completed82provisional; no final stable approval"
+    },
+    {
+      "id": "G08",
+      "requirement": "New separate physical device LAN/WAN/HTTPS trust/cold reload",
+      "status": "PENDING_BY_USER",
+      "evidence": "User explicitly retained new physical validation pending; no test claimed passed; historical WAN report remains separate"
+    },
+    {
+      "id": "G09",
+      "requirement": "Current native Windows/Linux startup/install/backup/restore",
+      "status": "PENDING_BY_USER",
+      "evidence": "User retained native validation pending; macOS tested; no native pass invented"
+    },
+    {
+      "id": "G10",
+      "requirement": "Validated-release competition media/rehearsal/submission",
+      "status": "NOT_STARTED_REQUIRES_VALIDATED_RELEASE",
+      "evidence": "User forbids final PPT/video from unvalidated candidate"
+    }
+  ],
+  "optional_future_refinements": [
+    "CH08",
+    "CH10",
+    "CH14",
+    "CH16",
+    "F05",
+    "F07",
+    "P2-01",
+    "P2-02",
+    "SC16",
+    "SC17",
+    "X02",
+    "X07",
+    "X15",
+    "X18",
+    "X21",
+    "X24",
+    "X26",
+    "X27",
+    "X29",
+    "X30"
+  ],
+  "external_validation_finding_ids": [
+    "CH12",
+    "CH15",
+    "P1-03",
+    "P2-03",
+    "SC14",
+    "SC19",
+    "SC23",
+    "X08",
+    "X13"
+  ],
+  "submission_finding_ids": [
+    "SC22",
+    "X17",
+    "X19"
+  ],
+  "blocking_scope": "No new stable declaration while required acceptance remains pending; PENDING tests are not failed architectural tests or automatically waived requirements."
+}

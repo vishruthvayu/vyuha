@@ -29,6 +29,10 @@ def test_crew_aggregate_rejected_as_individual_owner_without_any_profile_write(s
         before=list(db.iterdump())
     assert c.post('/api/v1/sessions',json={'scenario_id':shared['scenario']['id'],'trainee':owner}).status_code==422
     assert c.post('/api/v1/director-v2/prepare',json={'seed':2,'trainee':owner,'duration':60}).status_code==422
+    assert c.post('/api/v1/rapid-id',json={'request_id':'crew-rapid-denied','trainee_id':owner,'seed':2,'rounds':10}).status_code==422
+    assert c.post('/api/v1/evaluations',json={'request_id':'crew-eval-denied','trainee_id':owner,'participant':'P01','consent':True}).status_code==422
+    assert c.get('/api/v1/trainees/'+owner+'/analytics').status_code==422
+    assert all(t['trainee_id']!=owner for t in c.get('/api/v1/units/local/trainees').json()['trainees'])
     with storage.connect() as db:assert list(db.iterdump())==before
 
 
@@ -47,3 +51,21 @@ def test_crew_action_limit_preserves_exact_retry_receipts(shared):
     retry=shared['act'](0,'limit-retry','designate',tid)
     assert retry.status_code==200 and retry.json()==original.json()
     assert shared['act'](0,'over-limit','designate',tid).status_code==422
+
+
+def test_shared_crew_neutral_prior_never_distorts_individual_unit_averages(shared):
+    c=shared['client']
+    spec=c.post('/api/v1/scenarios/generate',json={}).json()
+    r=c.post('/api/v1/sessions',json={'scenario_id':spec['id'],'trainee':'COHORT-INDIVIDUAL'})
+    assert r.status_code==201
+    sid=r.json()['id'];assert c.post(f'/api/v1/sessions/{sid}/complete',json={}).status_code==200
+    prior=c.get('/api/v1/units/local/dashboard').json()
+    assert prior['trainee_count']==1 and prior['shared_aggregate_count']==1
+    assert c.post('/api/v1/crews/'+shared['cid']+'/complete',json={}).status_code==200
+    after=c.get('/api/v1/units/local/dashboard').json()
+    assert after['trainee_count']==1 and after['skill_means']==prior['skill_means']
+    assert c.get('/api/v1/units/local/analytics').json()['trainee_count']==1
+    with storage.connect() as db:
+        owner=db.execute('SELECT trainee FROM sessions WHERE id=?',(shared['issued']['session_id'],)).fetchone()[0]
+        assert db.execute('SELECT COUNT(*) FROM skill_profiles WHERE trainee=?',(owner,)).fetchone()[0]==0
+    assert c.get('/api/v1/units/local/skill-heatmap',params={'trainee':owner}).status_code==404

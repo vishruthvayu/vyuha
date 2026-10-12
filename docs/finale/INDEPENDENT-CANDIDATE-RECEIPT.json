@@ -22,17 +22,48 @@
       "passed": 72,
       "failed": 0,
       "seconds": 269.9
+    },
+    {
+      "suites": [
+        "test_expert_run.py",
+        "test_expert_run_api.py",
+        "test_finale_integration.py",
+        "test_units.py",
+        "test_advanced.py",
+        "test_heatmap.py"
+      ],
+      "passed": 79,
+      "failed": 0,
+      "seconds": 56.65,
+      "scope": "Autonomous full canonical/evidence-only rollout, completed-only API, commands/resource waits, no history writes, masked evidence and individual/shared cohort regression"
+    },
+    {
+      "suite": "client/src/reference-run.test.tsx",
+      "passed": 2,
+      "failed": 0,
+      "scope": "Reference summary canonical/evidence labels, own actions and projected versus original-observed horizon"
+    },
+    {
+      "suites": [
+        "test_heatmap.py",
+        "test_expert_run_api.py",
+        "test_finale_integration.py"
+      ],
+      "passed": 13,
+      "failed": 0,
+      "seconds": 22.94,
+      "scope": "Post-guard and full eight-family targeted canonical rerun"
     }
   ],
   "reported_full_checkpoint": {
-    "backend": 415,
-    "frontend": 123,
-    "provenance": "Integration owner; final post-edit rerun pending"
+    "backend": 434,
+    "frontend": 129,
+    "provenance": "Root-executed latest backend source and complete post-client-edit frontend/build; distinct from independent focused runs"
   },
   "findings": {
     "retained": 93,
-    "PASS": 50,
-    "PARTIAL": 42,
+    "PASS": 51,
+    "PARTIAL": 41,
     "N/A": 1
   },
   "provisional_score": 81,
@@ -44,11 +75,22 @@
   ],
   "test_source_sha256": {
     "test_finale_security.py": "6aa2817b68ca0a89eaaab8b610901867357ce7b50902e2104bca59cde6614eed",
-    "test_finale_integration.py": "e0c930b25fda5338fd52b6a7378c67043e679146ecffec49e9b8872d75167db1",
+    "test_finale_integration.py": "edb09d171274614e4d8c2c7ccf2b9fea02ae8f8de35baa410a77740ca3ea7478",
     "test_historical_dispatch.py": "dcf5ba0c59301309d30d6a98f18d89eccffcdbf6292c32dd72f7f797c46388d0",
     "test_counterfactual.py": "0310810494ca1b36bf5a957a994e45c768ca67691c43a3b916fc8e35cc406514",
     "test_portable_crew.py": "32e82050d0c73651937b3db40e2b9ad30c1369e558810b0bb2a6aa745bc09b8c",
     "test_portable_finale.py": "209a8d58c9f3b64d80f985d1fbde41cd33cf3639d2606c12799caf921b649835",
-    "test_reference_policy.py": "8b95786f096f8d583aed75d7390ce1b4c34bd2410f10ba0f14147bcdb8b7a771"
+    "test_reference_policy.py": "8b95786f096f8d583aed75d7390ce1b4c34bd2410f10ba0f14147bcdb8b7a771",
+    "test_expert_run.py": "76b66b856314f559c473970968f720c1e05db36d7967045d733fb733e652bfd2",
+    "test_expert_run_api.py": "3e7123f897cbde7c5940fdb219536d2266d981326eb79fe8bc43e3a092e0046f",
+    "test_units.py": "b8ff697dc200ba872bebca2064a134154712a35115c46212536fc82bd2ea033d",
+    "test_advanced.py": "21da5e7e530772cdc4e84d1306673624168e6ccd066111e9ce53acd7313f419f",
+    "test_heatmap.py": "9c4b22e6b9bf616c78e8a21ede75d44e8bd7ac24d0b5ad4065b28c9727504b05"
+  },
+  "review_addendum": {
+    "autonomous_rollout": "Implemented canonical after-AAR truth plus evidence-only conservative policy; no certified expert/optimality claim",
+    "cohort": "Individual means/cohort exclude shared owners; heatmap filters rows and all eight families. Unit analytics rows depend on protected no-shared-outcomes invariant.",
+    "ui_binding": "App mounts keyed by session; explicit reusable component request/session/mode guard under root hardening, not a reproduced actual keyed navigation failure",
+    "final_scoped_status": "F04 software PASS; original full-rollout absence superseded. No release or certified-expert PASS."
   }
 }

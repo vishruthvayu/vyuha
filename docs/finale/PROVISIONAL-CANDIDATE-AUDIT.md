@@ -6,9 +6,9 @@ The original outside report's67/100 describes its baseline review. This review i
 
 ## Evidence and attribution
 
-Independently inspected current auth, shared Crew authority/role permissions, Director metadata and policy, current sensor/motion/response integration, Fusion exposure replay, What-if/reference policy, navigation, App, benchmark, White Cell, compliance and evidence manifests. All93 original findings remain with50 scoped PASS,42 PARTIAL and1 N/A. A scoped PASS means the named software/documented-evidence contract is closed; remaining scientific and deployment limits are explicit.
+Independently inspected current auth, shared Crew authority/role permissions, Director metadata and policy, current sensor/motion/response integration, Fusion exposure replay, What-if/reference policy, navigation, App, benchmark, White Cell, compliance and evidence manifests. All 93 original findings remain with 51 scoped PASS, 41 PARTIAL and 1 N/A after the subsequent autonomous rollout review. A scoped PASS means the named software/documented-evidence contract is closed; remaining scientific and deployment limits are explicit.
 
-The integration owner reports the latest full415 backend/123 frontend passing checkpoint, and a real candidate browser walkthrough: compiled60-second v0.4 raid, designation/classification/delayed response, pause/reload/draft recovery, server-verified AAR, three Fusion receipts and one Brier diagnostic, What-if0→5 with original unchanged, reference comparison and Time Machine. Final broad regression after latest UI/Ghost/EO-IR/benchmark fixes remains required.
+The integration owner initially reported a full415 backend/123 frontend passing checkpoint, subsequently followed by432 backend/127 frontend/build, and a real candidate browser walkthrough: compiled60-second v0.4 raid, designation/classification/delayed response, pause/reload/draft recovery, server-verified AAR, three Fusion receipts and one Brier diagnostic, What-if0→5 with original unchanged, reference comparison and Time Machine. Final broad regression after latest UI/Ghost/EO-IR/benchmark fixes remains required.
 
 This audit independently reran canonical reference-policy9 backend tests (9.68 s) plus72 cross-module backend tests (269.90 s);3 frontend passed previously. Earlier independent canonical checks: White Cell15 backend/4 frontend and Compliance4 backend/3 frontend. The owner-reported strict transfer receipts show30 finale-transfer and12 Crew/Fusion-transfer tests, including actual JavaScript number reencoding and clean-database reconstruction. Full-engine parity is544 checkpoints across32 scenarios, distinct from1,920 sensor and7,452 motion component checkpoints. These counts must not be added into a fictional single suite total.
 
@@ -42,7 +42,7 @@ Difficulty/anti-rote and instructor/security/scientific quality objectives remai
 
 Fusion is a deterministic cue-weighting heuristic with confidence/reliance diagnostics. It is not the roadmap's10,000-track-trained Naive Bayes model. Alignment with reconstructed advice plus client association is not a causal over-trust metric. Optional multiclass Brier is not a new mastery or score component. Synthetic Director differences have intervals including zero, so an improvement claim is not established.
 
-What-if and all-recorded-engagement comparison are present. A complete independent autonomous Expert Run, originating its own designation/classification/response actions and second replay track, is absent. “Expert on this exact drill” must not imply that absent capability. Evidence-only comparison uses operator-declared identity and allows abstention; the separately labelled canonical rubric/type-range reference is not resource-aware exact-success prediction.
+What-if and all-recorded-engagement comparison are present. Subsequent completed-only autonomous rollout now generates its own accepted designation/classification/response actions and independent replay/export. Canonical mode explicitly uses after-AAR truth; evidence-only mode remains conservative and abstains on unresolved intent. This supersedes the earlier absence finding, with no certified expert/optimality claim. Evidence-only comparison uses operator-declared identity and allows abstention; the separately labelled canonical rubric/type-range reference is not resource-aware exact-success prediction.
 
 ## Engineering/demo:17.5/25
 
@@ -63,3 +63,41 @@ The historical WAN test is **PASSED — TEAM CONFIRMED**, dated October4: Window
 Fresh final build multi-device LAN/WAN/HTTPS-trust validation, current Windows/Linux runtime, fixed-tier8/25/50/100/200 benchmarks, latency/memory/endurance/concurrency, phone/accessibility and shared-role/White Cell live proofs remain pending. Final manifest/test/integration docs are stale and must be regenerated after stabilization. Current App is166 lines with a2,650-character longest line; readability remains open. Poll transport remains; no SSE/WebSocket. Compliance rows currently link to the generic matrix, not directly to per-row live saved examples.
 
 This provisional estimate can rise only when its named deductions are removed by real implementation/evidence, or fall if final runtime checks reveal defects. It does not authorize skipping a mandatory acceptance requirement. Stable tagging and competition media need a separate complete release checklist.
+
+## Later root receipts — not a rescore
+
+After this independent review, root completed418/125 final regression, verified local HTTPS service, actual fixed-Medium8/25/50/100/200 Sensor Truth benchmarks,390 px mobile-sized AAR without horizontal document overflow and prepared macOS clean-clone startup/session reconstruction. See dated receipts. These supplement the provisional review; native Windows/Linux, physical device trust, endurance/concurrency and remaining AI/audit work still require explicit closure.81/100 remains the original provisional assessment, not a final approval.
+
+## Subsequent review addendum
+
+Autonomous full-horizon rollout and cohort repairs independently passed79 backend checks (56.65 seconds);2 summary frontend checks passed. F04 is now a scoped software PASS. Root reported real browser original0→canonical reference90/100 with25 own accepted decisions and independent slider,60 second projection versus original observed30.30 seconds. Neither the score delta nor abstaining evidence-only mode establishes human efficacy or a certified expert. App keyed sessions already protected actual navigation; explicit request/session/mode guards harden independent component reuse. Shared aggregate priors/outcomes no longer dilute individual unit means/heatmaps.
+
+Keep the dated81/100 estimate. Remaining named deductions still concern measured realism/learning, current platform/performance/physical evidence and final release/media acceptance; a new module alone does not automatically award points or100/100.
+
+Current receipt chronology retains earlier counts rather than combining them. The completed432 backend/127 frontend/build is an earlier full checkpoint; final post-guard/family full rerun remains pending. Independent focused suites do not add to its total.
+
+## Reconstruction, durability and process-recovery checkpoint — 12 October 2026
+
+Latest backend source suite: **434 PASS, 0 FAIL, 367.35s**. After all subsequent client edits: **129 frontend PASS, 0 FAIL, 87538.394ms**, production build PASS, **26 local assets / cache 3e5dbd427cab**. Backend source did not change during these client fixes. No tests were skipped or disabled.
+
+Completed AAR refresh preserves matching-session pending Fusion requests and upload batches while taking the authoritative server score. Completion, AAR, What-if and reference reconstruction requests use a 120-second budget; ordinary tactical requests retain six seconds. A verified session is retained even if optional Fusion receipt upload fails. Analytics now checks officer sign-in before mounting its unit controls.
+
+Actual macOS process outage: health connection refused after shutdown; three browser decisions were recorded offline and a device-only AAR saved. After restart, automatic resynchronization produced a server-verified completed record, exact three accepted decisions and three persisted Fusion receipts. Ghost loaded. See PROCESS-OUTAGE-RECEIPT.json and before/after screenshots. This does not attest WAN loss or another physical device.
+
+Six synthetic HTTP clients completed concurrently in 5.231s total. A 200-contact roster (197 birds / three hostiles) took 27,381.25ms to reconstruct and its full 200-row server-verified AAR loaded in the browser. See RUNTIME-LOAD-RECEIPT.json. These are scoped throughput observations, not a full endurance or physical multi-device certificate.
+
+All 93 audit rows are retained: 51 scoped PASS, 41 PARTIAL, one justified N/A. The dated provisional assessment remains 81/100; final score/release approval are unset. Native Windows/Linux validation remains pending by user instruction. Scientific calibration, remaining implementation/identity/cache/readability/live-proof gaps, endurance/accessibility/physical acceptance and final media/submission are still open. Stable release/v1.0.1 and tag v1.0.1 remain unchanged.
+
+## Final runtime correction and source checkpoint
+
+After the completed-Crew readonly/coordination changes: **453 backend PASS, 0 FAIL, 451.77s**. After all client changes and formatting: **132 frontend PASS, 0 FAIL, 91363.281ms; build PASS, 26 local assets / cache776beb4652c2**. One existing Starlette/httpx deprecation warning; no skipped or disabled checks. Earlier434/129 and452/130 results above are historical checkpoints.
+
+Analytics mounts after officer sign-in; its route does not enroll an officer as a trainee. All28 registered officer-protected API route/method pairs rejected anonymous and forged bearer requests in a real disposable service. Unit roster/means/trends exclude Crew aggregates; individual analytics, Rapid ID and evaluation enrollment reject aggregate owners without changing profiles.
+
+A failed whole-service immutability probe exposed completed Crew polls updating telemetry. Completed runtime reads now preserve every stored field after cache/process recovery; a whole-database-dump regression passed. Completed browser roles display counts by member and logical handoff medians, no individual tactical score or profile credit, and stop polling after completion. Whole target-session evidence (scenario, inputs, card, personal profiles/outcomes, Fusion and statistics) remained exact across actual evidence-only and What-if UI requests.
+
+Profiling identified1,093,022 repeated sensor-configuration validations. Parameters are now validated once per logical tick, with public entry-point validation intact; complete review/card equality and full Python/TypeScript parity pass. Three direct200-contact review reconstructions measured11.025263/11.001499/11.892299s (median11.025263s). Earlier27.38125s is a real HTTP completion observation, not a paired direct benchmark.
+
+Actual180-second200-contact thermal-overview/fixed-Medium browser run: median60FPS;5376logical ticks; tick median4.4ms/p9510.3ms;181 main-page heap samples. The run overlaps software checks and captures allocation/collection, not total process/Worker/GPU memory or a leak-free certification. Raw receipt retained.
+
+App and advanced modules are formatted for walkthrough; App is2538 lines with172-character maximum line. Further hook decomposition, linter and broader maintainability remain refinements. Source is still a candidate until exact source/deployment/independent acceptance reconciliation. Native Windows/Linux remains pending; no new physical test or final competition media is asserted.

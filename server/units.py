@@ -69,15 +69,20 @@ def trainee_sessions(tid:str):
 
 @router.get('/units/{uid}/trainees')
 def roster(uid:str):
+    from .crew import is_shared_owner
     with connect() as db:
         unit(db,uid)
-        return {'trainees':[{**identity(r),'connected':bool(db.execute('SELECT 1 FROM connected_clients WHERE trainee=? AND last_seen>?',(r['id'],cutoff())).fetchone()),'busy':bool(db.execute("SELECT 1 FROM connected_clients c JOIN sessions s ON s.id=c.session_id WHERE c.trainee=? AND c.last_seen>? AND s.status='active'",(r['id'],cutoff())).fetchone())} for r in db.execute('SELECT * FROM trainees WHERE unit_id=? ORDER BY callsign',(uid,)).fetchall()]}
+        return {'trainees':[{**identity(r),'connected':bool(db.execute('SELECT 1 FROM connected_clients WHERE trainee=? AND last_seen>?',(r['id'],cutoff())).fetchone()),'busy':bool(db.execute("SELECT 1 FROM connected_clients c JOIN sessions s ON s.id=c.session_id WHERE c.trainee=? AND c.last_seen>? AND s.status='active'",(r['id'],cutoff())).fetchone())} for r in db.execute('SELECT * FROM trainees WHERE unit_id=? ORDER BY callsign',(uid,)).fetchall() if not is_shared_owner(db,r['id'])]}
 
 
 def unit_dashboard(uid):
     from .main import profile,aar,review_session,instructor_session
     with connect() as db:
-        u=unit(db,uid);members=[dict(r) for r in db.execute('SELECT * FROM trainees WHERE unit_id=? ORDER BY callsign',(uid,))]
+        u=unit(db,uid)
+        from .crew import is_shared_owner
+        all_members=[dict(r) for r in db.execute('SELECT * FROM trainees WHERE unit_id=? ORDER BY callsign',(uid,))]
+        members=[m for m in all_members if not is_shared_owner(db,m['id'])]
+        shared_aggregate_count=len(all_members)-len(members)
         rows=db.execute("SELECT s.*,sc.spec FROM sessions s JOIN scenarios sc ON sc.id=s.scenario_id WHERE s.unit_id=? AND s.status='completed' ORDER BY s.created_at DESC LIMIT 100",(uid,)).fetchall()
         missing=[r for r in rows if not db.execute('SELECT 1 FROM session_unit_stats WHERE session_id=?',(r['id'],)).fetchone()]
     # Legacy backfill reconstructs outside the write transaction. New completions already store these counts.
@@ -102,9 +107,10 @@ def unit_dashboard(uid):
         for r in rows:
             stat=db.execute('SELECT failures FROM session_unit_stats WHERE session_id=?',(r['id'],)).fetchone()
             if stat:counts.update(json.loads(stat['failures']))
+        active_individual_count=len({s['trainee'] for s in live if not is_shared_owner(db,s['trainee'])})
         completed=db.execute("SELECT COUNT(*) FROM sessions WHERE unit_id=? AND status='completed'",(uid,)).fetchone()[0]
         today=db.execute("SELECT COUNT(*) FROM sessions WHERE unit_id=? AND status='completed' AND substr(COALESCE(completed_at,created_at),1,10)=?",(uid,now()[:10])).fetchone()[0]
-    return dict(unit=u,trainee_count=len(people),session_count=completed,active_trainees=len({s['trainee'] for s in live}),completed_today=today,day_basis='UTC',skill_means=means,weakest_skill=weakest,
+    return dict(unit=u,trainee_count=len(people),session_count=completed,shared_aggregate_count=shared_aggregate_count,individual_cohort_scope='Shared crew aggregate owners are excluded from individual mastery averages',active_trainees=active_individual_count,completed_today=today,day_basis='UTC',skill_means=means,weakest_skill=weakest,
                 affected_trainees=sum(p['profile']['skills'][weakest]['mean']<.7 for p in people) if weakest else 0,affected_threshold=.7,trainees=people,
                 failures=dict(sorted(counts.items(),key=lambda kv:(-kv[1],kv[0]))),failure_scope='latest 100 completed sessions; deduplicated contact/reason per session',excluded_reviews=excluded,
                 sessions=[aar(r['id'],include_review=False) for r in rows],active_sessions=active)

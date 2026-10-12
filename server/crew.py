@@ -113,6 +113,9 @@ def runtime(db,row):
         while len(_CACHE)>CACHE_LIMIT:_CACHE.popitem(last=False)
     _CACHE.move_to_end(key)
     rt=_CACHE[key];sim=rt['sim'];stamp=clock()
+    if row['status']=='completed':
+        rt['note']='Completed shared exercise; accepted history is frozen.'
+        return rt
     elapsed=max(0,stamp-rt['anchor'])
     if not sim.paused and row['status']=='active':
         steps=min(30,math.floor(elapsed*HZ))
@@ -146,7 +149,12 @@ def picture(db,row,rt,actor):
     roster=[dict(id=m['id'],callsign=m['callsign'],role=m['role']) for m in db.execute('SELECT * FROM crew_members WHERE crew_id=? ORDER BY id',(row['id'],))]
     attribution=[dict(r) for r in db.execute('SELECT a.timeline_order,a.member_id,a.role,m.callsign FROM crew_attribution a JOIN crew_members m ON m.id=a.member_id WHERE a.session_id=? ORDER BY a.timeline_order',(row['session_id'],))]
     card=db.execute('SELECT scorecard FROM sessions WHERE id=?',(row['session_id'],)).fetchone()['scorecard']
-    return dict(id=row['id'],name=row['name'],session_id=row['session_id'],role=actor['role'],member_id=actor['id'],tick=sim.tick,duration=sim.scenario['duration'],paused=sim.paused,done=sim.tick>=sim.scenario['duration']*HZ,status=row['status'],contacts=observed,roster=roster,attribution=attribution,scorecard=json.loads(card) if card else None,clock_note=rt['note'],note='Single server-owned simulation. Role codes are LAN capabilities; use trusted HTTPS. Shared score is not copied into individual skill profiles.')
+    metrics=None
+    if row['status']=='completed':
+        from .main import logged_events
+        from .crew_metrics import coordination_summary
+        metrics=coordination_summary(logged_events(db,row['session_id']),attribution,roster)
+    return dict(id=row['id'],name=row['name'],session_id=row['session_id'],role=actor['role'],member_id=actor['id'],tick=sim.tick,duration=sim.scenario['duration'],paused=sim.paused,done=sim.tick>=sim.scenario['duration']*HZ,status=row['status'],contacts=observed,roster=roster,attribution=attribution,scorecard=json.loads(card) if card else None,coordination_metrics=metrics,clock_note=rt['note'],note='Single server-owned simulation. Role codes are LAN capabilities; use trusted HTTPS. Shared score is not copied into individual skill profiles.')
 
 @router.post('',status_code=201)
 def create(req:CreateCrew):
@@ -234,7 +242,7 @@ class CrewSessionBoundary:
     def __init__(self,app):self.app=app
     async def __call__(self,scope,receive,send):
         if scope['type']=='http':
-            match=re.fullmatch(r'/api/v1/sessions/([^/]+)/(events|complete|control-state|commands|aar|what-if|fusion-exposures|fusion-review|reference-policy)',scope['path'])
+            match=re.fullmatch(r'/api/v1/sessions/([^/]+)/(events|complete|control-state|commands|aar|what-if|fusion-exposures|fusion-review|reference-policy|expert-run)',scope['path'])
             if match:
                 with storage.connect() as db:
                     found=db.execute('SELECT id FROM crews WHERE session_id=?',(match[1],)).fetchone()

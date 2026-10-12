@@ -50,10 +50,12 @@ def verify(password):
 def protected(method,path):
     if path.startswith('/api/v1/instructor/') or path.startswith('/api/v1/white-cell') or path.startswith('/api/v1/raids'):
         return True
+    if re.fullmatch(r'/api/v1/trainees/[^/]+/analytics',path) or path=='/api/v1/evaluations' or path.startswith('/api/v1/evaluations/'):
+        return True
     if path=='/api/v1/crews/catalogue':return True
     if method=='POST' and (path=='/api/v1/crews' or re.fullmatch(r'/api/v1/crews/[^/]+/(control|complete)',path)):return True
     if path in ['/api/v1/bundle/import'] or re.fullmatch(r'/api/v1/units/[^/]+/bundle/export',path):return True
-    if re.fullmatch(r'/api/v1/units/[^/]+/(dashboard|trainees|exercises(?:/[^/]+)?|analytics)',path):return True
+    if re.fullmatch(r'/api/v1/units/[^/]+/(dashboard|trainees|exercises(?:/[^/]+)?|analytics|skill-heatmap)',path):return True
     if method=='POST' and (path.startswith('/api/v1/scenario-library') or path=='/api/v1/recordings' or path=='/api/v1/evaluations' or re.fullmatch(r'/api/v1/units/[^/]+/(exercises|doctrine)',path)):
         return True
     return False

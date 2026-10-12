@@ -111,7 +111,10 @@ def range_m(track, environment):
 
 def radar_probability(seed, index, track, environment, config=None):
     validate_environment(environment)
-    c = configuration(config)
+    return _radar_probability(seed, index, track, environment, configuration(config))
+
+
+def _radar_probability(seed, index, track, environment, c):
     if environment.get("radar_status", "normal") == "failed":
         return 0.0
     distance = max(1, range_m(track, environment))
@@ -137,7 +140,10 @@ def optical_probability(line_pairs, threshold):
 
 def optical_observation(seed, tick, index, track, environment, channel, config=None):
     validate_environment(environment)
-    c = configuration(config)
+    return _optical_observation(seed, tick, index, track, environment, channel, configuration(config))
+
+
+def _optical_observation(seed, tick, index, track, environment, channel, c):
     available = environment.get(f"{channel}_status", "normal") != "failed" and (channel != "eo" or not environment.get("night", False))
     result = {"available": available, "level": "none", "position": None, "silhouette": None, "sample_tick": None}
     if not available or not track.get("active", True) or not line_of_sight(track, environment):
@@ -164,12 +170,20 @@ def optical_observation(seed, tick, index, track, environment, channel, config=N
 
 def observe_sensors(seed, tick, index, track, environment, memory=None, config=None):
     validate_environment(environment)
+    return _observe_sensors(seed, tick, index, track, environment, memory, configuration(config))
+
+
+def _observe_sensors(seed, tick, index, track, environment, memory, c):
+    """Engine-only path: environment/config validated once for this logical tick.
+
+    Public sensor functions still validate every call. The engine never caches
+    mutable scenario configuration across ticks or shares it between sessions.
+    """
     if not isinstance(tick, int) or tick < 0 or not isinstance(index, int) or index < 0:
         raise ValueError("Sensor tick/index must be nonnegative integers")
     for axis in ("x", "z", "altitude"):
         if not math.isfinite(track[axis]):
             raise ValueError("Sensor positions must be finite")
-    c = configuration(config)
     key = f"{seed}:{index}:{track['id']}"
     if memory is None or memory.get("key") != key or tick < memory["tick"]:
         memory = {"key": key, "tick": tick, "sweep": None, "paints": [], "misses": 0, "confirmed": False, "position": None, "sample_tick": None, "radar_status": None}
@@ -190,7 +204,7 @@ def observe_sensors(seed, tick, index, track, environment, memory=None, config=N
             if memory["sweep"] is not None and sweep - memory["sweep"] > 1:
                 memory.update(paints=[], misses=0, confirmed=False, position=None, sample_tick=None)
             sweep_tick = sweep * int(c["radar_sweep_ticks"])
-            hit = sample(seed, sweep_tick, index, 31) < radar_probability(seed, index, track, environment, c)
+            hit = sample(seed, sweep_tick, index, 31) < _radar_probability(seed, index, track, environment, c)
             memory["paints"] = (memory["paints"] + [hit])[-int(c["radar_window_sweeps"]):]
             memory["misses"] = 0 if hit else memory["misses"] + 1
             if hit:
@@ -203,8 +217,8 @@ def observe_sensors(seed, tick, index, track, environment, memory=None, config=N
                      position=copy.deepcopy(memory["position"]) if memory["confirmed"] or memory.get("last_state") == "tentative" else None,
                      sample_tick=memory["sample_tick"])
     memory["radar_status"] = radar_status
-    eo = optical_observation(seed, tick, index, track, environment, "eo", c)
-    ir = optical_observation(seed, tick, index, track, environment, "ir", c)
+    eo = _optical_observation(seed, tick, index, track, environment, "eo", c)
+    ir = _optical_observation(seed, tick, index, track, environment, "ir", c)
     distance = range_m(track, environment)
     rf_available = environment.get("rf_available", True)
     rf = {"available": rf_available, "detected": False, "band_ghz": None, "bearing_deg": None}

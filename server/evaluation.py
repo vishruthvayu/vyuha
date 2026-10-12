@@ -20,6 +20,8 @@ def create(req:PilotStart):
  if not req.consent:raise HTTPException(422,'Participant agreement is required; do not enroll automatically')
  body=dumps(req.model_dump());eid='E_'+uuid.uuid4().hex
  with connect() as db:
+  from .crew import is_shared_owner
+  if is_shared_owner(db,req.trainee_id):raise HTTPException(422,'Shared crew aggregates cannot enroll in individual evaluation')
   if not db.execute('SELECT 1 FROM trainees WHERE id=?',(req.trainee_id,)).fetchone():raise HTTPException(422,'Join a unit before an evaluation')
   db.execute('BEGIN IMMEDIATE');old=db.execute('SELECT id,body FROM evaluations WHERE request_id=?',(req.request_id,)).fetchone()
   if old:

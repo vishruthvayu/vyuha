@@ -1,9 +1,9 @@
-# Independent candidate review — final acceptance pending
+# Independent final candidate audit — stable acceptance pending
 
-An independent agent inspected current code and all93 audit rows, and separately executed72 cross-module backend tests plus9 reference-policy tests. The provisional assessment is81/100: PS coverage45.5/50, realism/AI18/25, engineering/demo17.5/25. See PROVISIONAL-CANDIDATE-AUDIT.md and INDEPENDENT-CANDIDATE-RECEIPT.json for scope and deductions. The final release score remains unset.
+The latest independent review is **82/100 provisional**:45.5/50PS,18/25realism/AI,18.5/25engineering/demo. Exact18-point deductions and source inspection are in INDEPENDENT-REVIEW-20261012.md. The earlier81/100 snapshot remains historical; the final release audit score is unset.
 
-50 findings have scoped software PASS,42 remain PARTIAL, and optional VR is1 justified N/A under desktop OR VR. A scoped pass does not certify deployment, human learning, calibrated equipment or overall stable release.
+The reviewer independently executed72focused backend checks and6frontend checks, all PASS. Root separately executed453backend/132frontend/build PASS. Counts are not added across reruns. All93 finding rows remain51scopedPASS/41PARTIAL/1N/A; no finding is automatically promoted by this score.
 
-Remaining engineering evidence: native Windows/Linux launch and trust/ACL checks; current physical multi-device/HTTPS trust evidence; performance/concurrency/outage/clean-clone/mobile acceptance completion and exact source reconciliation. Native platform checks are pending by user instruction. Current software regression now418 backend/125 frontend and build PASS; those root receipts supplement the independent assessment.
+Mandatory software acceptance and unavailable external validation are distinguished in FINAL-RELEASE-GATES.json and AUDIT-CLOSURE-MATRIX.md. Root is finishing exact source/commit/assets/manifest/clean-clone reconciliation. Current native Windows/Linux and separate physical device/HTTPS/LAN/WAN validation are retained pending by direct user instruction. No architectural failure or new physical pass is inferred.
 
-Remaining AI/UI scope: full autonomous expert rollout; trained/calibrated Fusion and causal over-trust diagnostics; Elo/context-aware mastery; push transport and broader owner identity isolation; fuller dashboard caching, readability refactor and one-click per-row live proof. Sensor/response constants and probabilities remain uncalibrated. Director experiment did not establish an advantage. No100/100 or stable-release approval is claimed.
+Trained Fusion, fitted Elo/context skills, causal reliance/learning studies, push transport and broader planner/cache/refactor/live-proof work remain quality refinements. Stronger calibration/efficacy/identity claims would require evidence. Stable approval, final competition media, rehearsal and submission remain separate unfinished acceptance.

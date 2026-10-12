@@ -1,14 +1,212 @@
-import {useEffect,useState} from 'react';
-import {api} from './storage';
-import type {Action,Record as TrainingRecord,ScoreCard} from './types';
-type WhatIf={kind:'counterfactual';branch_id:string;original_score:ScoreCard;hypothetical_score:ScoreCard;delta:number;rejected_later_actions:unknown[];reference_policy:{action:string;confidence:string;cues:string[]};note:string};
-export default function AdvancedAAR({record}:{record:TrainingRecord}){
- const [track,setTrack]=useState(record.scorecard.rows[0]?.id??''),[index,setIndex]=useState(0),[alternative,setAlternative]=useState('hold'),[result,setResult]=useState<WhatIf|null>(null),[error,setError]=useState(''),[busy,setBusy]=useState(false);
- useEffect(()=>{setTrack(record.scorecard.rows[0]?.id??'');setIndex(0);setResult(null);setError('');},[record.id]);
- const row=record.scorecard.rows.find(r=>r.id===track);const reviews=(record.decision_reviews??[]).filter(r=>r.track_id===track);
- const decisions=record.events.map((a,index)=>({a,index})).filter(({a})=>a.k==='engage');const selected=decisions.find(d=>d.index===index)??decisions[0];
- async function run(){if(!selected)return;setBusy(true);setResult(null);setError('');try{const action:Action={...selected.a,effector:alternative as Action['effector']};setResult(await api<WhatIf>(`/sessions/${record.id}/what-if`,{decision_index:selected.index,action},30000));}catch(e){setError((e as Error).message);}finally{setBusy(false);}}
- return <section className="panel advanced-card"><h2>Decision path and What-if replay</h2><label>Reviewed contact<select value={track} onChange={e=>setTrack(e.target.value)}>{record.scorecard.rows.map(r=><option key={r.id}>{r.id}</option>)}</select></label>{row&&<><div className="metric-grid">{(['detect','classify','prioritise','engage'] as const).map((node,i)=><article className="metric" key={node}><span>{['Detect','Classify','Prioritize','Respond'][i]}</span><strong>{row[node]} / {[25,25,15,35][i]}</strong><small>{node==='detect'?row.detected===null?'No sensor detection recorded':`First detectable T+${(row.detected/30).toFixed(2)}s`:node==='classify'?`AAR truth: ${row.kind} / ${row.identity}`:node==='engage'?`Rubric reference: ${row.ideal}`:record.scorecard.prioritisation?'Co-observed ranking agreement':'Legacy timely-response node'}</small></article>)}</div>{reviews.map(r=><details key={r.decision_id}><summary>{r.decision_kind} · T+{(r.tick/30).toFixed(2)}s · {r.verdict}</summary><p>{r.explanation}</p><p>Observed evidence: radar {r.evidence.radar.detected?'return':'no return'}, visual {r.evidence.visual.silhouette??'unavailable'}, RF {r.evidence.rf.signal===null?'unavailable':r.evidence.rf.signal?'detected':'not detected'}, IFF {r.evidence.rf.iff}.</p><p>Recorded action: {r.trainee_action?JSON.stringify(r.trainee_action):'No action recorded'}</p><p>Reference path ({r.expected_action.basis}): {JSON.stringify(r.expected_action)}</p><p>{r.consequence.text}</p><p>Final node: {r.score_effect.points_awarded}/{r.score_effect.points_possible}; session penalty {r.score_effect.session_penalty} ({r.score_effect.penalty_basis}).</p></details>)}</>}
- <h3>Try a different response</h3><p>The server branches the frozen exercise at the recorded decision. The original score and training profile remain unchanged.</p>{!record.verified?<p>Server verification is required for What-if.</p>:!decisions.length?<p>No recorded engagement is available to replace.</p>:<><label>Recorded response<select value={selected?.index??0} onChange={e=>{setIndex(Number(e.target.value));setResult(null);}}>{decisions.map(d=><option key={d.index} value={d.index}>{d.a.track} · T+{(d.a.tick/30).toFixed(2)}s · {d.a.effector}</option>)}</select></label><label>Hypothetical response<select value={alternative} onChange={e=>setAlternative(e.target.value)}><option value="hold">Hold</option><option value="rf_jam">RF jammer</option><option value="kinetic">Kinetic</option></select></label><button className="button primary" disabled={busy} onClick={()=>void run()}>{busy?'Reconstructing…':'Run hypothetical branch'}</button></>}{error&&<p role="alert">{error}</p>}{result&&<div role="status"><h3>Hypothetical simulated result</h3><p>Original {result.original_score.score}/100 → branch {result.hypothetical_score.score}/100 · change {result.delta}</p><p>Asset impacts: {result.original_score.leakers} → {result.hypothetical_score.leakers}. Subsequent actions invalidated by this branch: {result.rejected_later_actions.length}.</p><p>Evidence-constrained training policy: {result.reference_policy.action} ({result.reference_policy.confidence}). {result.reference_policy.cues.join('; ')}.</p><p className="footnote">{result.note}</p></div>}
- </section>;
+import { useEffect, useState } from "react";
+import { RECONSTRUCTION_TIMEOUT_MS, api } from "./storage";
+import type { Action, Record as TrainingRecord, ScoreCard } from "./types";
+type WhatIf = {
+  kind: "counterfactual";
+  branch_id: string;
+  original_score: ScoreCard;
+  hypothetical_score: ScoreCard;
+  delta: number;
+  rejected_later_actions: unknown[];
+  reference_policy: { action: string; confidence: string; cues: string[] };
+  note: string;
+};
+export default function AdvancedAAR({ record }: { record: TrainingRecord }) {
+  const [track, setTrack] = useState(record.scorecard.rows[0]?.id ?? ""),
+    [index, setIndex] = useState(0),
+    [alternative, setAlternative] = useState("hold"),
+    [result, setResult] = useState<WhatIf | null>(null),
+    [error, setError] = useState(""),
+    [busy, setBusy] = useState(false);
+  useEffect(() => {
+    setTrack(record.scorecard.rows[0]?.id ?? "");
+    setIndex(0);
+    setResult(null);
+    setError("");
+  }, [record.id]);
+  const row = record.scorecard.rows.find((r) => r.id === track);
+  const reviews = (record.decision_reviews ?? []).filter(
+    (r) => r.track_id === track,
+  );
+  const decisions = record.events
+    .map((a, index) => ({ a, index }))
+    .filter(({ a }) => a.k === "engage");
+  const selected = decisions.find((d) => d.index === index) ?? decisions[0];
+  async function run() {
+    if (!selected) return;
+    setBusy(true);
+    setResult(null);
+    setError("");
+    try {
+      const action: Action = {
+        ...selected.a,
+        effector: alternative as Action["effector"],
+      };
+      setResult(
+        await api<WhatIf>(
+          `/sessions/${record.id}/what-if`,
+          { decision_index: selected.index, action },
+          RECONSTRUCTION_TIMEOUT_MS,
+        ),
+      );
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+  return (
+    <section className="panel advanced-card">
+      <h2>Decision path and What-if replay</h2>
+      <label>
+        Reviewed contact
+        <select value={track} onChange={(e) => setTrack(e.target.value)}>
+          {record.scorecard.rows.map((r) => (
+            <option key={r.id}>{r.id}</option>
+          ))}
+        </select>
+      </label>
+      {row && (
+        <>
+          <div className="metric-grid">
+            {(["detect", "classify", "prioritise", "engage"] as const).map(
+              (node, i) => (
+                <article className="metric" key={node}>
+                  <span>
+                    {["Detect", "Classify", "Prioritize", "Respond"][i]}
+                  </span>
+                  <strong>
+                    {row[node]} / {[25, 25, 15, 35][i]}
+                  </strong>
+                  <small>
+                    {node === "detect"
+                      ? row.detected === null
+                        ? "No sensor detection recorded"
+                        : `First detectable T+${(row.detected / 30).toFixed(2)}s`
+                      : node === "classify"
+                        ? `AAR truth: ${row.kind} / ${row.identity}`
+                        : node === "engage"
+                          ? `Rubric reference: ${row.ideal}`
+                          : record.scorecard.prioritisation
+                            ? "Co-observed ranking agreement"
+                            : "Legacy timely-response node"}
+                  </small>
+                </article>
+              ),
+            )}
+          </div>
+          {reviews.map((r) => (
+            <details key={r.decision_id}>
+              <summary>
+                {r.decision_kind} · T+{(r.tick / 30).toFixed(2)}s · {r.verdict}
+              </summary>
+              <p>{r.explanation}</p>
+              <p>
+                Observed evidence: radar{" "}
+                {r.evidence.radar.detected ? "return" : "no return"}, visual{" "}
+                {r.evidence.visual.silhouette ?? "unavailable"}, RF{" "}
+                {r.evidence.rf.signal === null
+                  ? "unavailable"
+                  : r.evidence.rf.signal
+                    ? "detected"
+                    : "not detected"}
+                , IFF {r.evidence.rf.iff}.
+              </p>
+              <p>
+                Recorded action:{" "}
+                {r.trainee_action
+                  ? JSON.stringify(r.trainee_action)
+                  : "No action recorded"}
+              </p>
+              <p>
+                Reference path ({r.expected_action.basis}):{" "}
+                {JSON.stringify(r.expected_action)}
+              </p>
+              <p>{r.consequence.text}</p>
+              <p>
+                Final node: {r.score_effect.points_awarded}/
+                {r.score_effect.points_possible}; session penalty{" "}
+                {r.score_effect.session_penalty} ({r.score_effect.penalty_basis}
+                ).
+              </p>
+            </details>
+          ))}
+        </>
+      )}
+      <h3>Try a different response</h3>
+      <p>
+        The server branches the frozen exercise at the recorded decision. The
+        original score and training profile remain unchanged.
+      </p>
+      {!record.verified ? (
+        <p>Server verification is required for What-if.</p>
+      ) : !decisions.length ? (
+        <p>No recorded engagement is available to replace.</p>
+      ) : (
+        <>
+          <label>
+            Recorded response
+            <select
+              disabled={busy}
+              value={selected?.index ?? 0}
+              onChange={(e) => {
+                setIndex(Number(e.target.value));
+                setResult(null);
+              }}
+            >
+              {decisions.map((d) => (
+                <option key={d.index} value={d.index}>
+                  {d.a.track} · T+{(d.a.tick / 30).toFixed(2)}s · {d.a.effector}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Hypothetical response
+            <select
+              disabled={busy}
+              value={alternative}
+              onChange={(e) => {
+                setAlternative(e.target.value);
+                setResult(null);
+              }}
+            >
+              <option value="hold">Hold</option>
+              <option value="rf_jam">RF jammer</option>
+              <option value="kinetic">Kinetic</option>
+            </select>
+          </label>
+          <button
+            className="button primary"
+            disabled={busy}
+            onClick={() => void run()}
+          >
+            {busy ? "Reconstructing…" : "Run hypothetical branch"}
+          </button>
+        </>
+      )}
+      {error && <p role="alert">{error}</p>}
+      {result && (
+        <div role="status">
+          <h3>Hypothetical simulated result</h3>
+          <p>
+            Original {result.original_score.score}/100 → branch{" "}
+            {result.hypothetical_score.score}/100 · change {result.delta}
+          </p>
+          <p>
+            Asset impacts: {result.original_score.leakers} →{" "}
+            {result.hypothetical_score.leakers}. Subsequent actions invalidated
+            by this branch: {result.rejected_later_actions.length}.
+          </p>
+          <p>
+            Evidence-constrained training policy:{" "}
+            {result.reference_policy.action} (
+            {result.reference_policy.confidence}).{" "}
+            {result.reference_policy.cues.join("; ")}.
+          </p>
+          <p className="footnote">{result.note}</p>
+        </div>
+      )}
+    </section>
+  );
 }

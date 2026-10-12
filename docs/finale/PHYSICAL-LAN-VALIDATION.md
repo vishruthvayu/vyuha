@@ -13,3 +13,5 @@ Separate earlier evidence: Mac officer/server plus Android/Chrome client on LAN,
 Fresh finale-build physical multi-device, browser/mobile and WAN-off checks are PENDING, not simulated passes. Historical evidence is retained; do not convert a team report into a machine-attested receipt or claim field/air-gap/military certification.
 
 Allowed historical wording: “Physical multi-device LAN operation was validated. The team also reported a successful WAN-disconnected local exercise on October 4; fresh finale-build physical validation remains pending.”
+
+On12October the user explicitly chose to keep new Finale physical validation pending. No new-device/LAN/WAN/HTTPS acceptance was performed or marked passed. Native Windows/Linux execution was also retained pending separately. Local macOS process/browser/performance receipts remain software evidence, not replacements for this scope.

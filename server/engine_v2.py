@@ -6,7 +6,7 @@ from .engine_v1_0_1 import HZ,js_round,detection_points,classification_points,id
 from .engine_v1_0_1 import Simulation as LegacySimulation
 from .prioritisation_v1_0_1 import evaluate
 from .raid_v2 import position_v2 as position
-from .sensors_v2 import observe_sensors,false_tracks,SPEC
+from .sensors_v2 import _observe_sensors,configuration,validate_environment,false_tracks,SPEC
 from .response_v2 import create_state,attempt_response,advance_response,report as response_report
 ENGINE_VERSION='vyuha-0.4.0'
 
@@ -36,6 +36,7 @@ class Simulation(LegacySimulation):
         self.radar_status=self.radar_override or ('failed' if s.get('radarFailureStart',end)<=self.tick<s.get('radarFailureEnd',end) else 'jammed' if s['jamStart']<=self.tick<s['jamEnd'] else 'normal')
         self.rf_available=self.rf_override if self.rf_override is not None else not(s.get('rfFailureStart',end)<=self.tick<s.get('rfFailureEnd',end))
         env=dict(night=self.night,fog=s['fog'],radar_status=self.radar_status,rf_available=self.rf_available,eo_status=self.eo_status,ir_status=self.ir_status,terrain=s.get('terrain_boxes',[]))
+        validate_environment(env);sensor_config=configuration(s.get('sensor_config'))
         if self.response_state is not None:
             # Logical due effects occur after current motion but before same-tick impact.
             for t in self.tracks:
@@ -51,7 +52,7 @@ class Simulation(LegacySimulation):
             t['active']=t['spawn']<=self.tick<t.get('expires_tick',end+1) and not t['resolved'] and not t['impact']
             if t['active'] or self.tick==0:t.update(position(t,self.tick))
             if t['active'] and t['identity']=='hostile' and distance(t)<=8:t['impact']=True;t['active']=False
-            sensed=observe_sensors(s['seed'],self.tick,i,t,env,self.sensor_memory.get(t['id']),s.get('sensor_config'))
+            sensed=_observe_sensors(s['seed'],self.tick,i,t,env,self.sensor_memory.get(t['id']),sensor_config)
             t['observation']=sensed['observation'];self.sensor_memory[t['id']]=sensed['memory'];o=t['observation']
             t['radar']=o['radar']['detected'];t['thermal']=o['ir']['level']!='none' or o['eo']['level']!='none'
             if t['detected'] is None and (t['radar'] or t['thermal']):t['detected']=self.tick

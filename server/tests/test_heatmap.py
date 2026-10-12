@@ -15,7 +15,7 @@ def join(client,name):return client.post('/api/v1/units/join',json={'callsign':n
 
 def test_empty_cells_are_not_prior_evidence(client):
  d=get(client);assert d['included_sessions']==0
- assert d['skills']==SKILLS and len(d['rows'])==7
+ assert d['skills']==SKILLS and len(d['rows'])==10
  assert all(c['observations']==0 and c['estimate'] is None for r in d['rows'] for c in r['cells'].values())
 
 def test_heatmap_exact_persisted_counts_trainee_isolation_and_unit_pool(client):
@@ -58,3 +58,16 @@ def test_cross_unit_filter_missing_unit_and_incomplete_sessions(client):
  assert client.get('/api/v1/units/local/skill-heatmap',params={'trainee':'missing'}).status_code==404
  s=client.post('/api/v1/scenarios/generate',json={}).json();client.post('/api/v1/sessions',json={'scenario_id':s['id'],'trainee':who})
  assert get(client,who)['included_sessions']==0 and get(client,unit='other')['included_sessions']==0
+
+
+def test_finale_additional_family_is_never_mislabelled_as_legacy(client):
+ who=join(client,'HM-SPLIT')
+ r=client.post('/api/v1/raids',json={'name':'Heatmap split-swarm QA','family':'SPLIT_SWARM','seed':7,'duration':60,'terrain':'rural'})
+ assert r.status_code==201,r.text
+ spec=r.json()
+ r=client.post('/api/v1/sessions',json={'scenario_id':spec['id'],'trainee':who});assert r.status_code==201
+ sid=r.json()['id']
+ r=client.post(f'/api/v1/sessions/{sid}/complete',json={'end_tick':1800,'execution_tick':0});assert r.status_code==200,r.text
+ data=get(client,who)
+ assert row(data,'SPLIT_SWARM')['sessions']==1 and row(data,'LEGACY')['sessions']==0
+ assert {'PROBE_AND_RETREAT','BLIND_SECTOR'}<=set(r['family'] for r in data['rows'])
