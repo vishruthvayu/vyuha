@@ -1,3 +1,5 @@
+> Current checkpoint3ec720d:453backend/133frontend/build, source-pinned fresh locked macOS clone and backup/restore PASS_SCOPED.82/100 remains provisional; fresh physical/native/stable/media acceptance pending. Older dated checkpoint descriptions below remain historical.
+
 # Independent provisional candidate audit — 12 October 2026
 
 **81/100 provisional: PS coverage45.5/50; realism and AI18/25; engineering and demo17.5/25.** This is a defensible engineering estimate on the current candidate, not an official SIH numeric scheme, final validated release score or winning prediction. Stable v1.0.1 remains unchanged; the Finale branch has not earned stable acceptance.

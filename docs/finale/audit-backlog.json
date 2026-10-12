@@ -245,7 +245,7 @@
       "tests": "Historical dispatch/golden checks, 544 checkpoints over32 full-engine scenarios, 30 finale transfer tests, broad415 backend checkpoint.",
       "user_visible_proof": "Open old and new reviews; engine/version visible; original cards unchanged",
       "status": "PASS",
-      "remaining_limitation": "Final source manifest and post-edit release regression remain separate gates.",
+      "remaining_limitation": "Final software source/manifest, regression and clean-clone are pinned in dedicated receipts; stable deployment acceptance remains separate.",
       "linked_items": [
         "CH02"
       ],
@@ -518,7 +518,7 @@
       "tests": "Independent reference9 backend/3 frontend; root-reported browser What-if0\u21925 score and original unchanged; counterfactual history isolation. Independent canonical 79 backend PASS (56.65 s) over expert rollout/API, integration, unit, analytics and heatmap suites; 2 ReferenceSummary frontend PASS. Root-reported original 0\u2192canonical reference 90/100 with 25 independently accepted decisions and own slider, frozen60-second projection vs original observed30.30seconds. Independent post-guard API/heatmap/integration rerun13 PASS (22.94 s); ReferenceSummary2 PASS. Request/session/mode binding source inspected before effects; full eight-family grouping tested.",
       "user_visible_proof": "Change one choice in Ghost and see hypothetical consequences next to original; inspect reference assumptions",
       "status": "PASS",
-      "remaining_limitation": "Autonomous inspectable hypothetical policy, not a certified human expert or an optimal result. Canonical mode consults reference truth after AAR; evidence-only has no independent hostile-intent cue and can leave contacts unresolved. Commands preserve tick/payload/sequence but use fresh autonomous ordering, not original trainee interleaving. Full projected scoring horizon may exceed original observation. Archived0.1 score contract rejects explicitly without relabelling. Physical/human efficacy and fresh performance remain unvalidated.",
+      "remaining_limitation": "Autonomous inspectable hypothetical policy, not a certified human expert or an optimal result. Canonical mode consults reference truth after AAR; evidence-only has no independent hostile-intent cue and can leave contacts unresolved. Commands preserve tick/payload/sequence but use fresh autonomous ordering, not original trainee interleaving. Full projected scoring horizon may exceed original observation. Archived0.1 score contract rejects explicitly without relabelling. Physical/human efficacy remain unvalidated; bounded M1 browser and reconstruction performance measurements are separately recorded, not calibration.",
       "linked_items": [
         "F04"
       ],
@@ -830,7 +830,7 @@
       "solution": "Formatter/linter, extract cohesive worker/sync/drill/AAR hooks/components; preserve behavior and update source manifest",
       "dependencies": "After behavioral interfaces stabilize; CH02; X10",
       "implementation": "Advanced concerns extracted to named modules; App, storage, Crew, references, analytics, evidence and benchmark formatted with pinned Prettier3.6.2.",
-      "tests": "Final132 frontend and production build PASS; App2538lines/max172characters; frozen legacy files untouched.",
+      "tests": "Final133 frontend and production build PASS; formatted App; final independent affected and broad suites; frozen legacy files untouched.",
       "user_visible_proof": "Codebase explanation can follow named modules/functions",
       "status": "PARTIAL",
       "remaining_limitation": "Further cohesive hook decomposition and linter enforcement remain; formatting is not proof of architectural simplicity.",
@@ -1161,7 +1161,7 @@
       "solution": "Formatter/linter, extract cohesive worker/sync/drill/AAR hooks/components; preserve behavior and update source manifest",
       "dependencies": "After behavioral interfaces stabilize; CH02; X10",
       "implementation": "Advanced concerns extracted to named modules; App, storage, Crew, references, analytics, evidence and benchmark formatted with pinned Prettier3.6.2.",
-      "tests": "Final132 frontend and production build PASS; App2538lines/max172characters; frozen legacy files untouched.",
+      "tests": "Final133 frontend and production build PASS; formatted App; final independent affected and broad suites; frozen legacy files untouched.",
       "user_visible_proof": "Codebase explanation can follow named modules/functions",
       "status": "PARTIAL",
       "remaining_limitation": "Further cohesive hook decomposition and linter enforcement remain; formatting is not proof of architectural simplicity.",
@@ -1487,7 +1487,7 @@
       "tests": "Credential/cert/private-file and transfer wrong-key/forgery checks.",
       "user_visible_proof": "Operator prepares local secret/cert privately; app prints paths/status only",
       "status": "PARTIAL",
-      "remaining_limitation": "Separate-device certificate trust and full final package secret scan/source manifest still pending. Generated CA is not production PKI.",
+      "remaining_limitation": "Separate-device certificate trust remains pending; local TLS service and deployment exclusions/scoped tracked secret scan are checked separately. Generated CA is not production PKI.",
       "linked_items": [],
       "acceptance_scope": "Implementation or validation gap remains",
       "remaining_category": "External deployment validation retained pending"
@@ -1560,7 +1560,7 @@
       "solution": "Repeat ordinary/high-contact/heavy-view/multiple-client/longer run memory/worker/UI/backend/action latency measurements",
       "dependencies": "Integrated built finale; CH13/CH16/F01/F06",
       "implementation": "Version-selectable benchmark now defaults to v0.4 synthetic stress fixture and records render/tick samples.",
-      "tests": "Independent source confirms v0.4 fixture8/25/50/100/200; measurement run not supplied. Later root receipts: actual fixed-Medium8/25/50/100/200 workload; six HTTP completions and200-contact AAR; actual process-outage3-event/3-Fusion resynchronization. See measured receipts. Actual180s/200contact workload and181 main-page heap samples; full453/132 regression; measured config validation optimization with exact review/card.",
+      "tests": "Independent source confirms v0.4 fixture8/25/50/100/200; measurement run not supplied. Later root receipts: actual fixed-Medium8/25/50/100/200 workload; six HTTP completions and200-contact AAR; actual process-outage3-event/3-Fusion resynchronization. See measured receipts. Actual180s/200contact workload and181 main-page heap samples; full453/133 regression; measured config validation optimization with exact review/card.",
       "user_visible_proof": "Benchmark receipt on specified hardware; graceful 2D fallback",
       "status": "PARTIAL",
       "remaining_limitation": "Scoped180s browser run and reconstruction/completion loads measured. Whole-process/Worker/GPU memory, wider Crew/interaction latency distributions and operational endurance are not certified.",
@@ -1883,7 +1883,7 @@
       "solution": "Persistmeasurementmetadata/raw samples/render FPS/worker steps/request latency/action ACK/apply time; performancebudget assertionswhereuseful",
       "dependencies": "CH13/CH16/F01/F06; X12",
       "implementation": "Benchmark distinguishes callback/render FPS from30 Hz logical tick cost, defaults to current synthetic stress with auto quality off.",
-      "tests": "Source inspection of sampling/config/median; frontend benchmark tests. Later root receipts: actual fixed-Medium8/25/50/100/200 workload; six HTTP completions and200-contact AAR; actual process-outage3-event/3-Fusion resynchronization. See measured receipts. Actual180s/200contact workload and181 main-page heap samples; full453/132 regression; measured config validation optimization with exact review/card.",
+      "tests": "Source inspection of sampling/config/median; frontend benchmark tests. Later root receipts: actual fixed-Medium8/25/50/100/200 workload; six HTTP completions and200-contact AAR; actual process-outage3-event/3-Fusion resynchronization. See measured receipts. Actual180s/200contact workload and181 main-page heap samples; full453/133 regression; measured config validation optimization with exact review/card.",
       "user_visible_proof": "Exportbenchmark clearlyidentifiesrender/tick/API/actionmetrics",
       "status": "PARTIAL",
       "remaining_limitation": "Scoped180s browser run and reconstruction/completion loads measured. Whole-process/Worker/GPU memory, wider Crew/interaction latency distributions and operational endurance are not certified.",
@@ -1902,7 +1902,7 @@
       "solution": "Boundedcache eviction/version reset; snapshot invalidation; stream cancellation/heartbeat; no expensiveperclientfull replay",
       "dependencies": "F01/CH10/CH16",
       "implementation": "Polling guards/cleanup, bounded White Cell128 TTLcache and Crew64 runtime cache; no unbounded global shared simulation reuse.",
-      "tests": "White Cell cache/invalidation/immutability and Crew rollback/restart regressions. Later root receipts: actual fixed-Medium8/25/50/100/200 workload; six HTTP completions and200-contact AAR; actual process-outage3-event/3-Fusion resynchronization. See measured receipts. Actual180s/200contact workload and181 main-page heap samples; full453/132 regression; measured config validation optimization with exact review/card.",
+      "tests": "White Cell cache/invalidation/immutability and Crew rollback/restart regressions. Later root receipts: actual fixed-Medium8/25/50/100/200 workload; six HTTP completions and200-contact AAR; actual process-outage3-event/3-Fusion resynchronization. See measured receipts. Actual180s/200contact workload and181 main-page heap samples; full453/133 regression; measured config validation optimization with exact review/card.",
       "user_visible_proof": "Officerboard remainsresponsive with measuredclients",
       "status": "PARTIAL",
       "remaining_limitation": "Scoped180s browser run and reconstruction/completion loads measured. Whole-process/Worker/GPU memory, wider Crew/interaction latency distributions and operational endurance are not certified.",
@@ -1921,10 +1921,10 @@
       "solution": "Documentfirst setupvsruntime clouddependency; locked dependencies/clean-clone/build checks; codebase overview of actual modules; Docker claimonlyifexecuted",
       "dependencies": "CH15/X10/X17/X20",
       "implementation": "Lock files/local production assets/launchers/strict archive schemas exist and historical source freezes preserved.",
-      "tests": "Mac/Node/disposable DB tests; historical clean clone assets validated; source current closure pending.",
+      "tests": "453backend/133frontend/build, all parity/history, fresh locked macOS clone/empty DB and exact backup/restore; final source pinned.",
       "user_visible_proof": "Judgecanfollowsetup instructionsandmodulemap",
       "status": "PARTIAL",
-      "remaining_limitation": "Final clean-clone/dependency/Windows/Linux/backuprestore/offline asset package checks must be rerun after final source stabilization.",
+      "remaining_limitation": "Native Windows/Linux install/start/backup/restore and broader team deployment remain pending; macOS final locked-dependency clone, local assets, source manifest and backup/restore passed.",
       "linked_items": [],
       "acceptance_scope": "Implementation or validation gap remains",
       "remaining_category": "Acceptance reconciliation or broader workflow validation"
@@ -1932,23 +1932,23 @@
   ],
   "candidate_checkpoints": {
     "recorded_date": "2026-10-12",
-    "provenance": "Root-reported completed432 backend/127 frontend earlier full checkpoint; independent79 backend rollout/cohort and post-guard13 checks plus2frontend summary checks. Final post-edit broad acceptance/source closure pending.",
+    "provenance": "Final full suites after software edits; historical focused checks below are retained, not additive.",
     "full_engine_parity": {
       "checkpoints_passed": 544,
       "scenarios": 32,
       "scope": "Python/TypeScript full-engine deterministic comparison"
     },
     "frontend": {
-      "passed": 132,
+      "passed": 133,
       "failed": 0,
       "provenance": "Root executed complete suite after all client edits",
-      "milliseconds": 91363.281208
+      "milliseconds": 74163.157125
     },
     "backend_broad": {
       "passed": 453,
       "failed": 0,
       "provenance": "Root executed latest complete backend suite; no subsequent backend source edits",
-      "seconds": 451.77
+      "seconds": 456.2
     },
     "completion_focused_after_fix": {
       "passed": 5,
@@ -1965,7 +1965,7 @@
       "failed": 0,
       "scope": "Static render and pure map regression"
     },
-    "acceptance": "NOT COMPLETE; no new stable tag/source manifest or complete deployment/media acceptance",
+    "acceptance": "Final software candidate PASS_SCOPED; retained native/physical deployment and stable/media acceptance pending",
     "reference_policy_backend": {
       "passed": 9,
       "failed": 0,
@@ -2057,10 +2057,18 @@
     "runtime_load": {
       "receipt": "RUNTIME-LOAD-RECEIPT.json",
       "scope": "six concurrent HTTP completions and 200-contact reconstruction; not endurance or physical clients"
+    },
+    "final_software_candidate": {
+      "commit": "3ec720d26ef8e556aa392d5adac2218ebde7353a",
+      "source_tree_sha256": "3bec6d5e328b412e59a2ba09a0bc90768abac0f25d41b944c9d8a67f4183a4d6",
+      "backend": 453,
+      "frontend": 133,
+      "build": "PASS",
+      "cache": "167d3e89736c",
+      "scope": "Final software candidate; physical/native/stable/media acceptance pending"
     }
   },
   "unresolved_release_requirements": [
-    "Exact code/source/assets/evidence pinning and final clean-clone deployment package",
     "Independent final audit/claim reconciliation and release decision; no provisional score is final",
     "Broader role longitudinal analytics/maintainability/live-proof refinements stay accurately scoped",
     "Native Windows/Linux pending by user request; fresh physical LAN/HTTPS/WAN validation where possible; historical WAN report separately retained",
@@ -2088,6 +2096,8 @@
     "passed_backend": 72,
     "passed_frontend": 6,
     "score": 82,
-    "final_score": null
+    "final_score": null,
+    "officer_review_receipt": "OFFICER-REVIEW-INDEPENDENT.md",
+    "additional_focused_frontend": 18
   }
 }

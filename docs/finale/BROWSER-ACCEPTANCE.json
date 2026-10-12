@@ -30,11 +30,16 @@
     "Evidence-only/What-if target session, scenario, accepted inputs, personal profiles/outcomes, Fusion/statistics exact before/after",
     "Keyboard End seeks own reference replay to1800ticks; changing hypothetical choice clears the former branch result",
     "Completed Crew reconnect shows3 attributed decisions, member stage counts and.27s/.27s handoffs; frozen-history note",
-    "Extended180s/200-contact thermal-overviewfixedMedium workload and actual main-page heap samples"
+    "Extended180s/200-contact thermal-overviewfixedMedium workload and actual main-page heap samples",
+    "Final officer Unit history button loads read-only server-verified AAR without enrollment; whole disposable DB/profile state unchanged",
+    "Final officer review canonical Unit navigation, signout unmount, normal trainee session route retains UnitGateway",
+    "Fresh locked Python/npm macOS clone and empty-DB real HTTP walkthrough, Director v2 metadata preservation, backup/restore exact",
+    "Final completed Crew officer link reaches sign-in then server-verified read-only AAR; no join prompt or Next drill"
   ],
   "pending": [
-    "Current separate physical devices/HTTPS trust; native Windows/Linux retained pending",
-    "Final source-pinned deployment/package and independent acceptance; wider accessibility/device and longitudinal refinements"
+    "Current separate physical devices/HTTPS trust/LAN/WAN; native Windows/Linux retained pending",
+    "Independent final stable acceptance and new media/rehearsal/submission",
+    "Wider accessibility/device and longitudinal research refinements"
   ],
   "limitations": [
     "Synthetic decisions exercise mechanics; no human training-efficacy result",
@@ -43,5 +48,6 @@
     "Mobile viewport checks use desktop Chromium, not a new physical Android test"
   ],
   "outage_session": "a4594d3c-4c4d-48aa-a87d-6982d73d5356",
-  "large_session": "a03f23e1-daf8-447f-a62a-8660edaf50b8"
+  "large_session": "a03f23e1-daf8-447f-a62a-8660edaf50b8",
+  "final_code_commit": "3ec720d26ef8e556aa392d5adac2218ebde7353a"
 }

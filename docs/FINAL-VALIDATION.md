@@ -1,3 +1,11 @@
+# Current Finale validation status — 12 October 2026
+
+The Stage7/v1.0.0 submission record below is historical. The active Finale candidate is source3ec720d on feature/vyuha-finale-edition:453backend/133frontend/build, full parity/history and a newly installed macOS clean clone PASS within their stated scope. Analytics authorization, officer AAR isolation, Crew isolation, Fusion durability and evidence-only reference immutability are verified. See [Finale release gates](finale/FINAL-RELEASE-GATES.json) and [current evidence](finale/evidence.json).
+
+Historical WAN-off operation was subsequently team-confirmed, with exact build and some procedure details unavailable. **Fresh Finale physical-device validation remains PENDING_BY_USER**, as does native Windows/Linux execution. These are known validation limitations, not failed architectural tests. No new stable release/tag or Finale submission media is approved. v1.0.1 remains the unchanged fallback. The earlier exception/limitations below describe the original pre-submission record and must not be presented as current Finale acceptance.
+
+---
+
 # VYUHA final submission validation
 
 Team WhiteList&0, registered Team ID 185350, PS SIH26247, Software. College/member names are omitted at the user's explicit request. Software and submission artifacts have passed their checks. The user confirmed that the final backup is saved on a separate Android device and plays from Downloads. Exact immutable tag, private remote and final archive checks are recorded in the delivered RELEASE-RECEIPT.json.

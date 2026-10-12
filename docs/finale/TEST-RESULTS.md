@@ -52,3 +52,15 @@ Profiling identified1,093,022 repeated sensor-configuration validations. Paramet
 Actual180-second200-contact thermal-overview/fixed-Medium browser run: median60FPS;5376logical ticks; tick median4.4ms/p9510.3ms;181 main-page heap samples. The run overlaps software checks and captures allocation/collection, not total process/Worker/GPU memory or a leak-free certification. Raw receipt retained.
 
 App and advanced modules are formatted for walkthrough; App is2538 lines with172-character maximum line. Further hook decomposition, linter and broader maintainability remain refinements. Source is still a candidate until exact source/deployment/independent acceptance reconciliation. Native Windows/Linux remains pending; no new physical test or final competition media is asserted.
+
+## Current software candidate — 3ec720d
+
+Final combined regression after the implementation edits: **453 backend PASS /0FAIL /456.20s;133 frontend PASS /0FAIL /74163.157ms;production build PASS /26local assets /cache167d3e89736c**. All original/versioned parity and historical fixtures passed. Actual18baseline/22current stored cards remain exact; the production database was unchanged. Previous counts above are dated checkpoints, not additional tests.
+
+Analytics and every28registered protected API path/method reject anonymous and forged credentials. Officer Unit/Crew links open an authenticated review-only workspace, avoiding enrollment/profile/draft/worker effects. The final macOS clean clone installed locked Python/npm dependencies, rebuilt matching production assets, passed a zero-session/zero-trainee HTTP walkthrough, preserved Director v2 metadata, and backed up/restored every database row exactly. Actual Unit-to-AAR browser access left the whole disposable DB unchanged; signout unmounted the review. See CLEAN-CLONE-RECEIPT.json and OFFICER-REVIEW-INDEPENDENT.md.
+
+All93 findings remain **51scopedPASS /41PARTIAL /1N/A /0BLOCKED finding rows**. Software gatesG01–G06 pass within their documented scope. Independent **82/100 remains provisional**, final score/approval unset. G08freshphysical and G09nativeWindows/Linux remain **PENDING_BY_USER**, not failures or waived gates. G07finalstableacceptance is PARTIAL; G10finalmedia/rehearsal/submission awaits a validated release. No new stable tag/PPT/video is made. Optional research/calibration/push/GIS/refactor findings are separate from mandatory deployment acceptance.
+
+Source SHA256: `3bec6d5e328b412e59a2ba09a0bc90768abac0f25d41b944c9d8a67f4183a4d6`. Stable branch/tagv1.0.1 still resolve to2ca96105044ad6a14952d74db619e20006c26eca.
+
+Final independent software acceptance is **PASS_SCOPED** at3ec720d; exact source/manifest/26cache paths and preserved stable references verified independently. See FINAL-SOFTWARE-ACCEPTANCE.md/json. The82/100score remains provisional, with no final stable acceptance or tag. Four post-metadata compliance checks passed in0.80s; this focused rerun is not added to453backend.

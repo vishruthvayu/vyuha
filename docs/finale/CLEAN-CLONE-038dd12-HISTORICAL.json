@@ -1,0 +1,54 @@
+{
+  "recorded_date": "2026-10-12",
+  "commit": "038dd12",
+  "scope": "Fresh local Git clone on macOS; production build copied from verified candidate; existing prepared Python environment linked. No network bootstrap or cross-platform claim.",
+  "native_entrypoint": "bash scripts/start-unit.sh",
+  "started": true,
+  "unit_join": true,
+  "director_v2": true,
+  "session_completed_server_verified": true,
+  "anonymous_raid_write_rejected": true,
+  "evidence_source_matches": true,
+  "api_latencies": [
+    {
+      "path": "/health",
+      "milliseconds": 96.89
+    },
+    {
+      "path": "/system/evidence",
+      "milliseconds": 153.67
+    },
+    {
+      "path": "/auth/login",
+      "milliseconds": 315.39
+    },
+    {
+      "path": "/units/join",
+      "milliseconds": 5.18
+    },
+    {
+      "path": "/director-v2/prepare",
+      "milliseconds": 30.03
+    },
+    {
+      "path": "/sessions",
+      "milliseconds": 3.05
+    },
+    {
+      "path": "/sessions/1dfa42f9-9a8a-4469-9812-29ffd56d5ac6/events",
+      "milliseconds": 2.52
+    },
+    {
+      "path": "/sessions/1dfa42f9-9a8a-4469-9812-29ffd56d5ac6/complete",
+      "milliseconds": 795.52
+    },
+    {
+      "path": "/sessions/1dfa42f9-9a8a-4469-9812-29ffd56d5ac6/aar",
+      "milliseconds": 779.85
+    }
+  ],
+  "limitations": [
+    "No actions intentionally recorded; validates launch/reconstruction pipeline, not trainee success",
+    "Native Windows/Linux and separate physical devices pending"
+  ]
+}

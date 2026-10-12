@@ -1,6 +1,6 @@
 {
   "recorded_date": "2026-10-12",
-  "source_tree_sha256": "03a67abdd9cb5cf3fed05ddd4b3511d7297acc4eac0c3573cfc5e86273188e48",
+  "source_tree_sha256": "3bec6d5e328b412e59a2ba09a0bc90768abac0f25d41b944c9d8a67f4183a4d6",
   "stable_approval": false,
   "final_audit_score": null,
   "independent_provisional_score": 82,
@@ -15,7 +15,7 @@
       "id": "G01",
       "requirement": "Final backend/frontend/production regression",
       "status": "PASS",
-      "evidence": "453/132/build; TEST-RESULTS.md"
+      "evidence": "453backend/133frontend/build;456.20s/74163.157ms;26assets/cache167d3e89736c;TEST-RESULTS.md"
     },
     {
       "id": "G02",
@@ -33,7 +33,7 @@
       "id": "G04",
       "requirement": "Real browser AAR/reference/Fusion/Crew/recovery workflows",
       "status": "PASS_SCOPED",
-      "evidence": "BROWSER-ACCEPTANCE.json and scoped actual receipts"
+      "evidence": "Actual browser AAR/reference/Fusion/Crew/outage plus final clean-clone Unit-to-officer-AAR without enrollment or DB mutation; BROWSER-ACCEPTANCE.json"
     },
     {
       "id": "G05",
@@ -44,14 +44,15 @@
     {
       "id": "G06",
       "requirement": "Exact source/commit/assets/manifest and final clean clone",
-      "status": "PARTIAL",
-      "evidence": "Source hash reconciled; commit and fresh dependency clone pending"
+      "status": "PASS_SCOPED",
+      "evidence": "Exact source commit/hash; fresh locked Python/npm clone, independently built matching cache, empty-DB HTTP walkthrough, Director v2, macOS backup/restore; CLEAN-CLONE-RECEIPT.json. Native platforms are G09; candidate archive seal is outside Git."
     },
     {
       "id": "G07",
       "requirement": "Independent final claim/acceptance decision",
       "status": "PARTIAL",
-      "evidence": "Critical review completed82provisional; no final stable approval"
+      "evidence": "FINAL-SOFTWARE-ACCEPTANCE.md/json: exact source/manifest/assets and claim review independently complete; no extra software correctness blocker. Stable decision remains pending G08/G09;82provisional is not a final rescore.",
+      "software_review_status": "PASS_SCOPED"
     },
     {
       "id": "G08",
@@ -110,5 +111,6 @@
     "X17",
     "X19"
   ],
-  "blocking_scope": "No new stable declaration while required acceptance remains pending; PENDING tests are not failed architectural tests or automatically waived requirements."
+  "blocking_scope": "No new stable declaration while required acceptance remains pending; PENDING tests are not failed architectural tests or automatically waived requirements.",
+  "candidate_code_commit": "3ec720d26ef8e556aa392d5adac2218ebde7353a"
 }
