@@ -8,6 +8,7 @@ import type { CrewState } from "./Crew";
 async function run(
   role: "spotter" | "responder",
   body: (document: Document, actions: () => number) => Promise<void>,
+  ready = true,
 ) {
   const dom = new JSDOM(
     '<html><head></head><body><div id="root"></div></body></html>',
@@ -53,8 +54,8 @@ async function run(
           rf: { detected: false },
           iff: { cue: "no_reply" },
         },
-        designated: role === "responder" ? 200 : null,
-        classification: null,
+        designated: role === "responder" && ready ? 200 : null,
+        classification: role === "responder" && ready ? "quad" : null,
         declared: null,
       },
     ],
@@ -190,3 +191,23 @@ test("Enabled responder and leave-role buttons have contrasting explicit native-
       assert.ok((Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05) >= 4.5, name);
     }
   }));
+
+test("Responder cannot submit classification or effects before the shared designation", async () =>
+  run(
+    "responder",
+    async (document, actions) => {
+      for (const name of [
+        "Confirm shared classification",
+        "hold",
+        "rf_jam",
+        "kinetic",
+      ]) {
+        const b = [...document.querySelectorAll("button")].find(
+          (b) => b.textContent === name,
+        )!;
+        assert.ok(b.disabled, name);
+      }
+      assert.equal(actions(), 0);
+    },
+    false,
+  ));

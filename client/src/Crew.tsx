@@ -560,7 +560,12 @@ export default function Crew() {
               </label>
               <button
                 className="button"
-                disabled={blocked}
+                disabled={blocked || selectedContact?.designated === null}
+                title={
+                  selectedContact?.designated === null
+                    ? "Wait for the spotter to designate this contact."
+                    : undefined
+                }
                 onClick={() => void act("classify")}
               >
                 Confirm shared classification
@@ -569,7 +574,16 @@ export default function Crew() {
                 <button
                   className="button"
                   key={e}
-                  disabled={blocked}
+                  disabled={
+                    blocked ||
+                    selectedContact?.designated === null ||
+                    !selectedContact?.classification
+                  }
+                  title={
+                    !selectedContact?.classification
+                      ? "Confirm shared classification before choosing a response."
+                      : undefined
+                  }
                   onClick={() => void act("engage", e)}
                 >
                   {e}
