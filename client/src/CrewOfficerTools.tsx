@@ -108,8 +108,8 @@ export function CrewHistoryResults({ data }: { data: CrewHistoryData }) {
           <h4>Accepted role-attributed decisions</h4>
           {session.timeline_truncated && (
             <p>
-              Showing the latest 100 of {session.timeline_total_actions} accepted
-              decisions. Open the AAR for the complete log.
+              Showing the latest 100 of {session.timeline_total_actions}{" "}
+              accepted decisions. Open the AAR for the complete log.
             </p>
           )}
           <div className="table-scroll">

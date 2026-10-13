@@ -7,8 +7,7 @@ export type ComplianceItem = {
   status: "PASS" | "PARTIAL" | "N/A";
   severity: string;
   source_kind:
-    | "official_clause_or_platform_choice"
-    | "audit_quality_expectation";
+    "official_clause_or_platform_choice" | "audit_quality_expectation";
   implementation: string;
   tests: string;
   remaining_limitation: string;

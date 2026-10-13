@@ -1,40 +1,596 @@
-import RaidStudio from './RaidStudio';
-import {useEffect,useRef,useState} from 'react';
-import {api} from './storage';
-import {newId} from './unit-state';
-import type {DoctrinePack,GhostSkill,Scenario,Tactic} from './types';
-import type {GroupResult,RosterMember} from './Unit';
-import {skillLabel} from './Ghost';
-const tactics:Tactic[]=['DIRECT','SATURATION','DECOY_THEN_STRIKE','STAGGERED_WAVES','LOW_APPROACH'];
-const mixLabels:Record<string,string>={bird:'Bird',friendly_uav:'Friendly UAV',hostile_quad:'RF hostile quad',no_rf_fpv:'No-RF FPV',fixed_wing:'Fixed wing'};
-type Author={schema_version:2;name:string;created_by:string;pack_id:string;seed:number;focus:GhostSkill;terrain:'urban'|'rural';fog?:number;night:boolean;tactic:Tactic;mix:string[];sensor_fault:string;restricted:boolean;duration:75;difficulty:string};
-const initial:Author={schema_version:2,name:'Night mixed incursion',created_by:'LOCAL-INSTRUCTOR',pack_id:'army-forward-post',seed:482913,focus:'effector_choice',terrain:'urban',night:true,tactic:'DECOY_THEN_STRIKE',mix:['bird','friendly_uav','hostile_quad','no_rf_fpv','hostile_quad'],sensor_fault:'radar_degraded',restricted:true,duration:75,difficulty:'standard'};
-export default function ExerciseStudio(){
- const [form,setForm]=useState<Author>(initial),[packs,setPacks]=useState<DoctrinePack[]>([]),[library,setLibrary]=useState<Scenario[]>([]),[preview,setPreview]=useState<Scenario|null>(null),[selected,setSelected]=useState(''),[roster,setRoster]=useState<RosterMember[]>([]),[trainees,setTrainees]=useState<string[]>([]),[message,setMessage]=useState(''),[error,setError]=useState(''),[busy,setBusy]=useState(false),[unit,setUnit]=useState('local'),[units,setUnits]=useState<{id:string;name:string}[]>([]),[group,setGroup]=useState<GroupResult|null>(null);
- const pending=useRef<{request_id:string;trainees:string[];scenario_id:string}|null>(null);
- const update=<K extends keyof Author>(k:K,v:Author[K])=>{setForm(f=>({...f,[k]:v}));setPreview(null);setError('');};
- async function refresh(){const data=await api<{scenarios:Scenario[]}>('/scenario-library');setLibrary(data.scenarios);}
- useEffect(()=>{void Promise.all([api<{packs:DoctrinePack[]}>('/doctrine-packs'),api<{units:{id:string;name:string}[]}>('/units'),refresh()]).then(([p,u])=>{setPacks(p.packs);setUnits(u.units);}).catch(e=>setError(e.message));},[]);
- useEffect(()=>{let stop=false;void api<DoctrinePack>(`/units/${unit}/doctrine`).then(p=>{if(!stop)update('pack_id',p.id);}).catch(e=>setError(e.message));const poll=()=>void api<{trainees:RosterMember[]}>(`/units/${unit}/trainees`).then(r=>{if(!stop)setRoster(r.trainees);}).catch(()=>{});poll();const timer=setInterval(poll,1500);return()=>{stop=true;clearInterval(timer);};},[unit]);
- async function choosePack(id:string){setBusy(true);try{const p=await api<DoctrinePack>(`/units/${unit}/doctrine`,{pack_id:id});setForm(f=>({...f,pack_id:id,mix:p.defaults.mix,night:p.defaults.night,tactic:'DIRECT'}));setPreview(null);setMessage(`${p.name}@${p.version} selected for this unit’s next adaptive drill.`);}catch(e){setError((e as Error).message);}finally{setBusy(false);}}
- async function validate(save=false){setBusy(true);setError('');try{const spec=await api<Scenario>(save?'/scenario-library':'/scenario-library/preview',form);setPreview(spec);if(save){await refresh();setSelected(spec.id);setMessage(`Saved immutable authoring version ${spec.authoring?.version} in the scenario library.`);}}catch(e){setError((e as Error).message);setPreview(null);}finally{setBusy(false);}}
- async function launch(){setBusy(true);setError('');try{pending.current??={request_id:newId(),trainees:[...trainees],scenario_id:selected};const result=await api<GroupResult>(`/units/${unit}/exercises`,pending.current);setGroup(result);pending.current=null;setTrainees([]);setMessage('Assigned. Each selected trainee can start its independent exercise.');}catch(e){setError(`${(e as Error).message} Retry retains the same assignment request.`);}finally{setBusy(false);}}
- const pack=packs.find(p=>p.id===form.pack_id),chosen=library.find(s=>s.id===selected);
- return <main className="instructor-page advanced-page"><header className="page-heading"><div><div className="eyebrow">INSTRUCTOR · EXERCISE SYSTEM</div><h1>Exercise studio</h1><p>Author, validate and assign exercises using the tactical simulation.</p></div><nav className="advanced-nav"><a href="/instructor">Instructor console</a><a href="/analytics">Training analytics</a><a href="/">Open trainee</a></nav></header><RaidStudio/>
- <p>Illustrative training configurations, not official doctrine. Local instructor labels are unverified. Legacy Authoring Lite uses visual scenery without occlusion. Finale Raid Composer uses frozen terrain boxes for sensor line of sight.</p>
- {error&&<p role="alert" className="recovery-banner">{error}</p>}{message&&<p role="status">{message}</p>}
- <section className="panel advanced-card"><h2>Doctrine pack</h2><div className="studio-fields"><label>Unit<select value={unit} disabled={busy||!!pending.current} title={busy?'A server request is in progress.':pending.current?'Resolve the pending assignment first.':undefined} onChange={e=>{setUnit(e.target.value);setTrainees([]);}}>{units.map(u=><option key={u.id} value={u.id}>{u.name}</option>)}</select></label><label>Pack · applies to next adaptive drill<select value={form.pack_id} disabled={busy} title={busy?'A server request is in progress.':undefined} onChange={e=>void choosePack(e.target.value)}>{packs.map(p=><option key={p.id} value={p.id}>{p.name}@{p.version}</option>)}</select></label></div>
- {pack&&<p>{pack.description} RF range {pack.rules.rf_range} m; kinetic range {pack.rules.kinetic_range} m. Restricted sector: x &lt; {pack.rules.restricted.x_lt} m and z &gt; {pack.rules.restricted.z_gt} m. Risk weights: {Object.entries(pack.rules.risk_weights).map(([k,v])=>`${k} ${v}`).join(' · ')}. Asset weight {pack.rules.asset_risk}. All values illustrative.</p>}</section>
- <section className="panel advanced-card"><h2>Scenario Authoring Lite</h2><div className="studio-fields">
- <label>Scenario name<input maxLength={70} value={form.name} onChange={e=>update('name',e.target.value)}/></label><label>Local instructor label<input maxLength={24} value={form.created_by} onChange={e=>update('created_by',e.target.value)}/></label>
- <label>Training focus<select value={form.focus} onChange={e=>update('focus',e.target.value as GhostSkill)}>{Object.entries(skillLabel).map(([k,l])=><option key={k} value={k}>{l}</option>)}</select></label><label>Threat pattern<select value={form.tactic} onChange={e=>update('tactic',e.target.value as Tactic)}>{tactics.map(t=><option key={t} value={t}>{t.replaceAll('_',' ')}</option>)}</select></label>
- <label>Time<select value={form.night?'night':'day'} onChange={e=>update('night',e.target.value==='night')}><option value="day">Day</option><option value="night">Night</option></select></label><label>Sensor fault<select value={form.sensor_fault} onChange={e=>update('sensor_fault',e.target.value)}><option value="none">None</option><option value="radar_degraded">Radar degradation window</option><option value="radar_failed">Radar failure window</option><option value="rf_failed">RF failure window</option></select></label>
- <p className="footnote">The legacy difficulty label records the author’s intent. Contact mix, conditions and tactics control this exercise. For procedural difficulty that changes roster, timing and geometry, use the Finale Raid Composer above.</p><label>Difficulty label<select value={form.difficulty} onChange={e=>update('difficulty',e.target.value)}>{['foundational','standard','challenging'].map(v=><option key={v}>{v}</option>)}</select></label><label>Seed<input type="number" min={0} max={4294967295} value={form.seed} onChange={e=>update('seed',Number(e.target.value))}/></label><label>Terrain<select value={form.terrain} onChange={e=>update('terrain',e.target.value as Author['terrain'])}><option value="urban">Urban Outpost</option><option value="rural">Rural Forward Base</option></select></label><label>Illustrative fog<select value={form.fog??'pack'} onChange={e=>update('fog',e.target.value==='pack'?undefined:Number(e.target.value))}><option value="pack">Pack default</option><option value="0">Clear · 0</option><option value="0.2">Light · 0.2</option><option value="0.6">Dense · 0.6</option></select></label><label>Duration<select disabled><option>75 seconds</option></select></label></div>
- <label className="roster-options"><input type="checkbox" checked={form.restricted} onChange={e=>update('restricted',e.target.checked)}/>Restricted kinetic sector enabled</label>
- <h3>Threat mix · maximum 18 contacts</h3><div className="studio-fields">{Object.entries(mixLabels).map(([id,label])=><label key={id}>{label}<input type="number" min={0} max={18} value={form.mix.filter(v=>v===id).length} onChange={e=>update('mix',[...form.mix.filter(v=>v!==id),...Array.from({length:Math.max(0,Math.min(18,Number(e.target.value)))},()=>id)])}/></label>)}</div>
- <div className="control-buttons"><button className="button subtle" disabled={busy} title={busy?'A server request is in progress.':undefined} onClick={()=>void validate()}>Validate and preview</button><button className="button primary" disabled={busy||!preview} title={busy?'A server request is in progress.':!preview?'Validate and preview this scenario first.':undefined} onClick={()=>void validate(true)}>Save scenario</button></div>
- {preview&&<div className="scenario-preview"><h3>Validated instructor preview</h3><p>{preview.title} · {preview.terrain_id}@{preview.terrain_version} · fog {preview.fog} · {preview.tracks.length} contacts · {preview.red_force?.tactic} · {preview.doctrine?.id}@{preview.doctrine?.version}</p><table><thead><tr><th>Phase time</th><th>Role</th><th>Contacts</th></tr></thead><tbody>{preview.red_force?.phases.map((p,i)=><tr key={i}><td>T+{p.tick/30}s</td><td>{p.role}</td><td>{p.contacts.join(', ')}</td></tr>)}</tbody></table><p>Sensor window: T+6–22s when selected. Pack rules and authored parameters are stored in this scenario.</p></div>}</section>
- <section className="panel advanced-card"><h2>Scenario library</h2><label>Saved exercise<select value={selected} disabled={!!pending.current} title={pending.current?'Resolve the pending assignment before changing scenario.':undefined} onChange={e=>setSelected(e.target.value)}><option value="">Select an exercise</option>{library.map(s=><option key={s.id} value={s.id}>{s.title} · {s.doctrine?.name} · {s.red_force?.tactic} · v{s.authoring?.version}</option>)}</select></label>
- {chosen&&<p>{chosen.title} · {chosen.focus} · {chosen.red_force?.tactic} · {(chosen as Scenario&{difficulty_label:string}).difficulty_label} · by {chosen.authoring?.created_by} (unverified label) · version {chosen.authoring?.version} · {chosen.doctrine?.id}@{chosen.doctrine?.version}</p>}
- <h3>Assign to connected, idle trainees</h3><div className="roster-options">{roster.filter(r=>r.connected).map(r=><label key={r.trainee_id}><input type="checkbox" disabled={r.busy||busy||!!pending.current} title={r.busy?'Trainee is already training.':busy?'A server request is in progress.':pending.current?'Resolve the pending assignment first.':undefined} checked={trainees.includes(r.trainee_id)} onChange={e=>setTrainees(ids=>e.target.checked?[...ids,r.trainee_id]:ids.filter(id=>id!==r.trainee_id))}/>{r.callsign} · {r.busy?'Training':'Ready'}</label>)}</div><button className="button primary" disabled={busy||(!pending.current&&(!selected||!trainees.length))} title={busy?'A server request is in progress.':!pending.current&&!selected?'Select a saved scenario.':!pending.current&&!trainees.length?'Select an idle connected trainee.':undefined} onClick={()=>void launch()}>{pending.current?'Retry same assignment':'Launch selected exercise'}</button>{group&&<p>{group.results.length} independent sessions assigned. <a href="/instructor">Monitor and control them</a>.</p>}</section></main>;
+import RaidStudio from "./RaidStudio";
+import { useEffect, useRef, useState } from "react";
+import { api } from "./storage";
+import { newId } from "./unit-state";
+import type { DoctrinePack, GhostSkill, Scenario, Tactic } from "./types";
+import type { GroupResult, RosterMember } from "./Unit";
+import { skillLabel } from "./Ghost";
+const tactics: Tactic[] = [
+  "DIRECT",
+  "SATURATION",
+  "DECOY_THEN_STRIKE",
+  "STAGGERED_WAVES",
+  "LOW_APPROACH",
+];
+const mixLabels: Record<string, string> = {
+  bird: "Bird",
+  friendly_uav: "Friendly UAV",
+  hostile_quad: "RF hostile quad",
+  no_rf_fpv: "No-RF FPV",
+  fixed_wing: "Fixed wing",
+};
+type Author = {
+  schema_version: 2;
+  name: string;
+  created_by: string;
+  pack_id: string;
+  seed: number;
+  focus: GhostSkill;
+  terrain: "urban" | "rural";
+  fog?: number;
+  night: boolean;
+  tactic: Tactic;
+  mix: string[];
+  sensor_fault: string;
+  restricted: boolean;
+  duration: 75;
+  difficulty: string;
+};
+const initial: Author = {
+  schema_version: 2,
+  name: "Night mixed incursion",
+  created_by: "LOCAL-INSTRUCTOR",
+  pack_id: "army-forward-post",
+  seed: 482913,
+  focus: "effector_choice",
+  terrain: "urban",
+  night: true,
+  tactic: "DECOY_THEN_STRIKE",
+  mix: ["bird", "friendly_uav", "hostile_quad", "no_rf_fpv", "hostile_quad"],
+  sensor_fault: "radar_degraded",
+  restricted: true,
+  duration: 75,
+  difficulty: "standard",
+};
+export default function ExerciseStudio() {
+  const [form, setForm] = useState<Author>(initial),
+    [packs, setPacks] = useState<DoctrinePack[]>([]),
+    [library, setLibrary] = useState<Scenario[]>([]),
+    [preview, setPreview] = useState<Scenario | null>(null),
+    [selected, setSelected] = useState(""),
+    [roster, setRoster] = useState<RosterMember[]>([]),
+    [trainees, setTrainees] = useState<string[]>([]),
+    [message, setMessage] = useState(""),
+    [error, setError] = useState(""),
+    [busy, setBusy] = useState(false),
+    [unit, setUnit] = useState("local"),
+    [units, setUnits] = useState<{ id: string; name: string }[]>([]),
+    [group, setGroup] = useState<GroupResult | null>(null);
+  const pending = useRef<{
+    request_id: string;
+    trainees: string[];
+    scenario_id: string;
+  } | null>(null);
+  const update = <K extends keyof Author>(k: K, v: Author[K]) => {
+    setForm((f) => ({ ...f, [k]: v }));
+    setPreview(null);
+    setError("");
+  };
+  async function refresh() {
+    const data = await api<{ scenarios: Scenario[] }>("/scenario-library");
+    setLibrary(data.scenarios);
+  }
+  useEffect(() => {
+    void Promise.all([
+      api<{ packs: DoctrinePack[] }>("/doctrine-packs"),
+      api<{ units: { id: string; name: string }[] }>("/units"),
+      refresh(),
+    ])
+      .then(([p, u]) => {
+        setPacks(p.packs);
+        setUnits(u.units);
+      })
+      .catch((e) => setError(e.message));
+  }, []);
+  useEffect(() => {
+    let stop = false;
+    void api<DoctrinePack>(`/units/${unit}/doctrine`)
+      .then((p) => {
+        if (!stop) update("pack_id", p.id);
+      })
+      .catch((e) => setError(e.message));
+    const poll = () =>
+      void api<{ trainees: RosterMember[] }>(`/units/${unit}/trainees`)
+        .then((r) => {
+          if (!stop) setRoster(r.trainees);
+        })
+        .catch(() => {});
+    poll();
+    const timer = setInterval(poll, 1500);
+    return () => {
+      stop = true;
+      clearInterval(timer);
+    };
+  }, [unit]);
+  async function choosePack(id: string) {
+    setBusy(true);
+    try {
+      const p = await api<DoctrinePack>(`/units/${unit}/doctrine`, {
+        pack_id: id,
+      });
+      setForm((f) => ({
+        ...f,
+        pack_id: id,
+        mix: p.defaults.mix,
+        night: p.defaults.night,
+        tactic: "DIRECT",
+      }));
+      setPreview(null);
+      setMessage(
+        `${p.name}@${p.version} selected for this unit’s next adaptive drill.`,
+      );
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+  async function validate(save = false) {
+    setBusy(true);
+    setError("");
+    try {
+      const spec = await api<Scenario>(
+        save ? "/scenario-library" : "/scenario-library/preview",
+        form,
+      );
+      setPreview(spec);
+      if (save) {
+        await refresh();
+        setSelected(spec.id);
+        setMessage(
+          `Saved immutable authoring version ${spec.authoring?.version} in the scenario library.`,
+        );
+      }
+    } catch (e) {
+      setError((e as Error).message);
+      setPreview(null);
+    } finally {
+      setBusy(false);
+    }
+  }
+  async function launch() {
+    setBusy(true);
+    setError("");
+    try {
+      pending.current ??= {
+        request_id: newId(),
+        trainees: [...trainees],
+        scenario_id: selected,
+      };
+      const result = await api<GroupResult>(
+        `/units/${unit}/exercises`,
+        pending.current,
+      );
+      setGroup(result);
+      pending.current = null;
+      setTrainees([]);
+      setMessage(
+        "Assigned. Each selected trainee can start its independent exercise.",
+      );
+    } catch (e) {
+      setError(
+        `${(e as Error).message} Retry retains the same assignment request.`,
+      );
+    } finally {
+      setBusy(false);
+    }
+  }
+  const pack = packs.find((p) => p.id === form.pack_id),
+    chosen = library.find((s) => s.id === selected);
+  return (
+    <main className="instructor-page advanced-page">
+      <header className="page-heading">
+        <div>
+          <div className="eyebrow">INSTRUCTOR · EXERCISE SYSTEM</div>
+          <h1>Exercise studio</h1>
+          <p>
+            Author, validate and assign exercises using the tactical simulation.
+          </p>
+        </div>
+        <nav className="advanced-nav">
+          <a href="/instructor">Instructor console</a>
+          <a href="/analytics">Training analytics</a>
+          <a href="/">Open trainee</a>
+        </nav>
+      </header>
+      <RaidStudio />
+      <p>
+        Illustrative training configurations, not official doctrine. Local
+        instructor labels are unverified. Legacy Authoring Lite uses visual
+        scenery without occlusion. Finale Raid Composer uses frozen terrain
+        boxes for sensor line of sight.
+      </p>
+      {error && (
+        <p role="alert" className="recovery-banner">
+          {error}
+        </p>
+      )}
+      {message && <p role="status">{message}</p>}
+      <section className="panel advanced-card">
+        <h2>Doctrine pack</h2>
+        <div className="studio-fields">
+          <label>
+            Unit
+            <select
+              value={unit}
+              disabled={busy || !!pending.current}
+              title={
+                busy
+                  ? "A server request is in progress."
+                  : pending.current
+                    ? "Resolve the pending assignment first."
+                    : undefined
+              }
+              onChange={(e) => {
+                setUnit(e.target.value);
+                setTrainees([]);
+              }}
+            >
+              {units.map((u) => (
+                <option key={u.id} value={u.id}>
+                  {u.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Pack · applies to next adaptive drill
+            <select
+              value={form.pack_id}
+              disabled={busy}
+              title={busy ? "A server request is in progress." : undefined}
+              onChange={(e) => void choosePack(e.target.value)}
+            >
+              {packs.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.name}@{p.version}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        {pack && (
+          <p>
+            {pack.description} RF range {pack.rules.rf_range} m; kinetic range{" "}
+            {pack.rules.kinetic_range} m. Restricted sector: x &lt;{" "}
+            {pack.rules.restricted.x_lt} m and z &gt;{" "}
+            {pack.rules.restricted.z_gt} m. Risk weights:{" "}
+            {Object.entries(pack.rules.risk_weights)
+              .map(([k, v]) => `${k} ${v}`)
+              .join(" · ")}
+            . Asset weight {pack.rules.asset_risk}. All values illustrative.
+          </p>
+        )}
+      </section>
+      <section className="panel advanced-card">
+        <h2>Scenario Authoring Lite</h2>
+        <div className="studio-fields">
+          <label>
+            Scenario name
+            <input
+              maxLength={70}
+              value={form.name}
+              onChange={(e) => update("name", e.target.value)}
+            />
+          </label>
+          <label>
+            Local instructor label
+            <input
+              maxLength={24}
+              value={form.created_by}
+              onChange={(e) => update("created_by", e.target.value)}
+            />
+          </label>
+          <label>
+            Training focus
+            <select
+              value={form.focus}
+              onChange={(e) => update("focus", e.target.value as GhostSkill)}
+            >
+              {Object.entries(skillLabel).map(([k, l]) => (
+                <option key={k} value={k}>
+                  {l}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Threat pattern
+            <select
+              value={form.tactic}
+              onChange={(e) => update("tactic", e.target.value as Tactic)}
+            >
+              {tactics.map((t) => (
+                <option key={t} value={t}>
+                  {t.replaceAll("_", " ")}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Time
+            <select
+              value={form.night ? "night" : "day"}
+              onChange={(e) => update("night", e.target.value === "night")}
+            >
+              <option value="day">Day</option>
+              <option value="night">Night</option>
+            </select>
+          </label>
+          <label>
+            Sensor fault
+            <select
+              value={form.sensor_fault}
+              onChange={(e) => update("sensor_fault", e.target.value)}
+            >
+              <option value="none">None</option>
+              <option value="radar_degraded">Radar degradation window</option>
+              <option value="radar_failed">Radar failure window</option>
+              <option value="rf_failed">RF failure window</option>
+            </select>
+          </label>
+          <p className="footnote">
+            The legacy difficulty label records the author’s intent. Contact
+            mix, conditions and tactics control this exercise. For procedural
+            difficulty that changes roster, timing and geometry, use the Finale
+            Raid Composer above.
+          </p>
+          <label>
+            Difficulty label
+            <select
+              value={form.difficulty}
+              onChange={(e) => update("difficulty", e.target.value)}
+            >
+              {["foundational", "standard", "challenging"].map((v) => (
+                <option key={v}>{v}</option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Seed
+            <input
+              type="number"
+              min={0}
+              max={4294967295}
+              value={form.seed}
+              onChange={(e) => update("seed", Number(e.target.value))}
+            />
+          </label>
+          <label>
+            Terrain
+            <select
+              value={form.terrain}
+              onChange={(e) =>
+                update("terrain", e.target.value as Author["terrain"])
+              }
+            >
+              <option value="urban">Urban Outpost</option>
+              <option value="rural">Rural Forward Base</option>
+            </select>
+          </label>
+          <label>
+            Illustrative fog
+            <select
+              value={form.fog ?? "pack"}
+              onChange={(e) =>
+                update(
+                  "fog",
+                  e.target.value === "pack"
+                    ? undefined
+                    : Number(e.target.value),
+                )
+              }
+            >
+              <option value="pack">Pack default</option>
+              <option value="0">Clear · 0</option>
+              <option value="0.2">Light · 0.2</option>
+              <option value="0.6">Dense · 0.6</option>
+            </select>
+          </label>
+          <label>
+            Duration
+            <select disabled>
+              <option>75 seconds</option>
+            </select>
+          </label>
+        </div>
+        <label className="roster-options">
+          <input
+            type="checkbox"
+            checked={form.restricted}
+            onChange={(e) => update("restricted", e.target.checked)}
+          />
+          Restricted kinetic sector enabled
+        </label>
+        <h3>Threat mix · maximum 18 contacts</h3>
+        <div className="studio-fields">
+          {Object.entries(mixLabels).map(([id, label]) => (
+            <label key={id}>
+              {label}
+              <input
+                type="number"
+                min={0}
+                max={18}
+                value={form.mix.filter((v) => v === id).length}
+                onChange={(e) =>
+                  update("mix", [
+                    ...form.mix.filter((v) => v !== id),
+                    ...Array.from(
+                      {
+                        length: Math.max(
+                          0,
+                          Math.min(18, Number(e.target.value)),
+                        ),
+                      },
+                      () => id,
+                    ),
+                  ])
+                }
+              />
+            </label>
+          ))}
+        </div>
+        <div className="control-buttons">
+          <button
+            className="button subtle"
+            disabled={busy}
+            title={busy ? "A server request is in progress." : undefined}
+            onClick={() => void validate()}
+          >
+            Validate and preview
+          </button>
+          <button
+            className="button primary"
+            disabled={busy || !preview}
+            title={
+              busy
+                ? "A server request is in progress."
+                : !preview
+                  ? "Validate and preview this scenario first."
+                  : undefined
+            }
+            onClick={() => void validate(true)}
+          >
+            Save scenario
+          </button>
+        </div>
+        {preview && (
+          <div className="scenario-preview">
+            <h3>Validated instructor preview</h3>
+            <p>
+              {preview.title} · {preview.terrain_id}@{preview.terrain_version} ·
+              fog {preview.fog} · {preview.tracks.length} contacts ·{" "}
+              {preview.red_force?.tactic} · {preview.doctrine?.id}@
+              {preview.doctrine?.version}
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Phase time</th>
+                  <th>Role</th>
+                  <th>Contacts</th>
+                </tr>
+              </thead>
+              <tbody>
+                {preview.red_force?.phases.map((p, i) => (
+                  <tr key={i}>
+                    <td>T+{p.tick / 30}s</td>
+                    <td>{p.role}</td>
+                    <td>{p.contacts.join(", ")}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p>
+              Sensor window: T+6–22s when selected. Pack rules and authored
+              parameters are stored in this scenario.
+            </p>
+          </div>
+        )}
+      </section>
+      <section className="panel advanced-card">
+        <h2>Scenario library</h2>
+        <label>
+          Saved exercise
+          <select
+            value={selected}
+            disabled={!!pending.current}
+            title={
+              pending.current
+                ? "Resolve the pending assignment before changing scenario."
+                : undefined
+            }
+            onChange={(e) => setSelected(e.target.value)}
+          >
+            <option value="">Select an exercise</option>
+            {library.map((s) => (
+              <option key={s.id} value={s.id}>
+                {s.title} · {s.doctrine?.name} · {s.red_force?.tactic} · v
+                {s.authoring?.version}
+              </option>
+            ))}
+          </select>
+        </label>
+        {chosen && (
+          <p>
+            {chosen.title} · {chosen.focus} · {chosen.red_force?.tactic} ·{" "}
+            {
+              (chosen as Scenario & { difficulty_label: string })
+                .difficulty_label
+            }{" "}
+            · by {chosen.authoring?.created_by} (unverified label) · version{" "}
+            {chosen.authoring?.version} · {chosen.doctrine?.id}@
+            {chosen.doctrine?.version}
+          </p>
+        )}
+        <h3>Assign to connected, idle trainees</h3>
+        <div className="roster-options">
+          {roster
+            .filter((r) => r.connected)
+            .map((r) => (
+              <label key={r.trainee_id}>
+                <input
+                  type="checkbox"
+                  disabled={r.busy || busy || !!pending.current}
+                  title={
+                    r.busy
+                      ? "Trainee is already training."
+                      : busy
+                        ? "A server request is in progress."
+                        : pending.current
+                          ? "Resolve the pending assignment first."
+                          : undefined
+                  }
+                  checked={trainees.includes(r.trainee_id)}
+                  onChange={(e) =>
+                    setTrainees((ids) =>
+                      e.target.checked
+                        ? [...ids, r.trainee_id]
+                        : ids.filter((id) => id !== r.trainee_id),
+                    )
+                  }
+                />
+                {r.callsign} · {r.busy ? "Training" : "Ready"}
+              </label>
+            ))}
+        </div>
+        <button
+          className="button primary"
+          disabled={
+            busy || (!pending.current && (!selected || !trainees.length))
+          }
+          title={
+            busy
+              ? "A server request is in progress."
+              : !pending.current && !selected
+                ? "Select a saved scenario."
+                : !pending.current && !trainees.length
+                  ? "Select an idle connected trainee."
+                  : undefined
+          }
+          onClick={() => void launch()}
+        >
+          {pending.current
+            ? "Retry same assignment"
+            : "Launch selected exercise"}
+        </button>
+        {group && (
+          <p>
+            {group.results.length} independent sessions assigned.{" "}
+            <a href="/instructor">Monitor and control them</a>.
+          </p>
+        )}
+      </section>
+    </main>
+  );
 }
