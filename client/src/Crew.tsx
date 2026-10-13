@@ -1,6 +1,6 @@
 import CrewOfficerTools from "./CrewOfficerTools";
 import { officerReviewHref } from "./routes";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import OfficerGate from "./OfficerGate";
 import { RECONSTRUCTION_TIMEOUT_MS, api } from "./storage";
 import { newId } from "./unit-state";
@@ -33,6 +33,7 @@ export type CrewState = {
   role: "spotter" | "responder";
   member_id: string;
   tick: number;
+  revision?: number;
   duration: number;
   paused: boolean;
   done: boolean;
@@ -215,12 +216,61 @@ export function CrewCoordination({
     </section>
   );
 }
+// Catalogue is mounted only after OfficerGate confirms the server session.
+function CrewCatalogue({
+  setLibrary,
+  setScenario,
+}: {
+  setLibrary: React.Dispatch<React.SetStateAction<Scenario[]>>;
+  setScenario: React.Dispatch<React.SetStateAction<string>>;
+}) {
+  useEffect(() => {
+    let stopped = false;
+    void api<{ scenarios: Scenario[] }>("/crews/catalogue")
+      .then((r) => {
+        if (stopped) return;
+        const eligible = r.scenarios.filter(
+          (s) => s.engine_version === "vyuha-0.4.0" && !s.director_decision,
+        );
+        setLibrary(eligible);
+        setScenario(eligible[0]?.id ?? "");
+      })
+      .catch(() => {});
+    return () => {
+      stopped = true;
+    };
+  }, [setLibrary, setScenario]);
+  return null;
+}
+/** A late polling response must not undo an accepted action or completed result. */
+export function latestCrewState(previous: CrewState | null, next: CrewState) {
+  if (
+    previous?.id === next.id &&
+    (previous.tick > next.tick ||
+      (previous.revision !== undefined &&
+        next.revision !== undefined &&
+        previous.revision > next.revision) ||
+      previous.attribution.length > next.attribution.length ||
+      (previous.status === "completed" && next.status !== "completed"))
+  )
+    return previous;
+  return next;
+}
+
 export default function Crew() {
+  const roleEpoch = useRef(0);
+  useEffect(
+    () => () => {
+      roleEpoch.current += 1;
+    },
+    [],
+  );
   const [id, setId] = useState(""),
     [code, setCode] = useState(""),
     [joined, setJoined] = useState(false),
     [state, setState] = useState<CrewState | null>(null),
     [error, setError] = useState(""),
+    [actionFeedback, setActionFeedback] = useState(""),
     [selected, setSelected] = useState(""),
     [kind, setKind] = useState<Kind>("quad"),
     [identity, setIdentity] = useState<Identity>("hostile"),
@@ -230,22 +280,6 @@ export default function Crew() {
     [scenario, setScenario] = useState(""),
     [issued, setIssued] = useState<Issued | null>(null),
     [name, setName] = useState("Shared crew drill");
-  useEffect(() => {
-    const load = () => {
-      api<{ scenarios: Scenario[] }>("/crews/catalogue")
-        .then((r) => {
-          const eligible = r.scenarios.filter(
-            (s) => s.engine_version === "vyuha-0.4.0" && !s.director_decision,
-          );
-          setLibrary(eligible);
-          setScenario(eligible[0]?.id ?? "");
-        })
-        .catch(() => {});
-    };
-    load();
-    window.addEventListener("vyuha-officer-session", load);
-    return () => window.removeEventListener("vyuha-officer-session", load);
-  }, []);
   useEffect(() => {
     if (!joined) return;
     let stopped = false,
@@ -257,14 +291,17 @@ export default function Crew() {
       try {
         const s = await requestCrew<CrewState>(id, code);
         if (!stopped) {
-          setState(s);
+          setState((previous) => latestCrewState(previous, s));
           completed = s.status === "completed";
           setError("");
         }
       } catch (e) {
         if (!stopped && e instanceof CrewHTTPError && e.status === 401) {
+          roleEpoch.current += 1;
           setJoined(false);
           setState(null);
+          setBusy(false);
+          setPending(null);
         }
         if (!stopped)
           setError(
@@ -282,18 +319,36 @@ export default function Crew() {
     };
   }, [joined, id, code]);
   async function submit(body: PendingAction) {
+    const epoch = roleEpoch.current;
+    const currentRole = () => roleEpoch.current === epoch;
     setBusy(true);
+    setActionFeedback("");
     setPending(body);
     try {
       await requestCrew(id, code, body);
+      if (!currentRole()) return;
       setPending(null);
-      setState(await requestCrew<CrewState>(id, code));
+      const fresh = await requestCrew<CrewState>(id, code);
+      if (!currentRole()) return;
+      setState((previous) => latestCrewState(previous, fresh));
       setError("");
     } catch (e) {
-      if (e instanceof CrewHTTPError && e.status < 500) setPending(null);
-      setError((e as Error).message);
+      if (!currentRole()) return;
+      if (e instanceof CrewHTTPError && e.status < 500) {
+        setPending(null);
+        // Rejection is definitive: don't replay it invisibly at a later tick.
+        setActionFeedback((e as Error).message);
+        try {
+          const fresh = await requestCrew<CrewState>(id, code);
+          if (!currentRole()) return;
+          setState((previous) => latestCrewState(previous, fresh));
+          setError("");
+        } catch (refreshError) {
+          if (currentRole()) setError((refreshError as Error).message);
+        }
+      } else setError((e as Error).message);
     } finally {
-      setBusy(false);
+      if (currentRole()) setBusy(false);
     }
   }
   async function act(
@@ -346,6 +401,7 @@ export default function Crew() {
       setBusy(false);
     }
   }
+  const selectedContact = state?.contacts.find((t) => t.id === selected);
   const blocked =
     busy ||
     !!pending ||
@@ -354,7 +410,7 @@ export default function Crew() {
     state.paused ||
     state.status !== "active" ||
     state.done ||
-    !selected;
+    !selectedContact;
   return (
     <main className="instructor-page">
       <h1>Shared Crew Mode</h1>
@@ -387,10 +443,14 @@ export default function Crew() {
           className="button"
           disabled={!id || !code}
           onClick={() => {
+            roleEpoch.current += 1;
+            setBusy(false);
             setJoined((j) => !j);
             setState(null);
             if (joined) setPending(null);
             setError("");
+            setActionFeedback("");
+            setSelected("");
           }}
         >
           {joined ? "Leave role" : "Connect role"}
@@ -403,6 +463,7 @@ export default function Crew() {
         </p>
       </section>
       {error && <p role="alert">{error}</p>}
+      {actionFeedback && <p role="alert">{actionFeedback}</p>}
       {pending && (
         <section className="panel">
           <h2>Unacknowledged crew decision</h2>
@@ -441,6 +502,11 @@ export default function Crew() {
               onChange={(e) => setSelected(e.target.value)}
             >
               <option value="">Select contact</option>
+              {selected && !selectedContact && (
+                <option value={selected} disabled>
+                  {selected} · No current observation — wait for reacquisition
+                </option>
+              )}
               {state.contacts.map((t) => (
                 <option key={t.id} value={t.id}>
                   {t.id} · {t.classification ?? "unknown"} ·{" "}
@@ -463,7 +529,7 @@ export default function Crew() {
           {state.role === "spotter" ? (
             <button
               className="button primary"
-              disabled={blocked}
+              disabled={blocked || selectedContact?.designated !== null}
               onClick={() => void act("designate")}
             >
               Designate shared contact
@@ -536,6 +602,7 @@ export default function Crew() {
       )}
       <OfficerGate>
         <>
+          <CrewCatalogue setLibrary={setLibrary} setScenario={setScenario} />
           <section className="panel">
             <h2>Officer crew setup</h2>
             <label>

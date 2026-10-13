@@ -60,7 +60,7 @@ export default function RaidStudio() {
         Compile seeded rosters, coordinated formations and motion into a frozen
         exercise. Values are illustrative training assumptions.
       </p>
-      <div className="setup-bar">
+      <div className="setup-bar raid-controls">
         <label>
           Name
           <input

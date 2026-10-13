@@ -165,3 +165,39 @@ def test_completed_crew_reconnection_is_read_only_and_reports_coordination_witho
         assert member['spotter']['designations']==1 and member['spotter']['accepted_actions']==1
         assert member['responder']['classifications']==member['responder']['responses']==1
     with storage.connect() as db:assert list(db.iterdump())==before
+
+
+def test_stale_designation_is_explicit_and_never_changes_accepted_history(shared,monkeypatch):
+    tid=visible(shared);cid=shared['cid'];key=(str(storage.DB_PATH.resolve()),cid)
+    rt=crew._CACHE[key];track=next(t for t in rt['sim'].tracks if t['id']==tid)
+    # Deterministic receipt race: a displayed contact loses every current position.
+    for channel in ['ir','eo','radar']:track['observation'][channel]['position']=None
+    with storage.connect() as db:
+        before={table:db.execute(f'SELECT COUNT(*) FROM {table}').fetchone()[0] for table in ['chunks','crew_attribution','crew_receipts','skill_outcomes']}
+    result=shared['act'](0,'stale-designation','designate',tid)
+    assert result.status_code==422 and 'No current sensor observation' in result.json()['detail']
+    assert 'no decision was recorded' in result.json()['detail']
+    with storage.connect() as db:
+        after={table:db.execute(f'SELECT COUNT(*) FROM {table}').fetchone()[0] for table in before}
+    assert after==before
+    # Reacquisition is required; a rejected nonce is not an accepted receipt.
+    shared['stamp'][0]+=.5
+    for _ in range(100):
+        if any(t['id']==tid for t in shared['state']()['contacts']):break
+        shared['stamp'][0]+=.1
+    accepted=shared['act'](0,'stale-designation','designate',tid)
+    assert accepted.status_code==200,accepted.text
+    assert shared['act'](0,'stale-designation','designate',tid).json()==accepted.json()
+    assert len(shared['state']()['attribution'])==1
+
+
+def test_equal_tick_control_snapshots_have_monotonic_revision(shared):
+    initial=shared['state']();shared['control']('resume');running=shared['state']()
+    shared['control']('pause');paused=shared['state']()
+    result=shared['client'].post(f"/api/v1/crews/{shared['cid']}/control",json={'command_id':'resume-revision-new','type':'resume','payload':{}})
+    assert result.status_code==200
+    resumed=shared['state']()
+    assert initial['tick']==running['tick']==paused['tick']==resumed['tick']==0
+    assert [s['revision'] for s in [initial,running,paused,resumed]]==[0,1,2,3]
+    assert paused['paused'] and not resumed['paused']
+    assert resumed['attribution']==[]

@@ -1,3 +1,4 @@
+import { useContactMemory } from "./useContactMemory";
 import { useCommandTransport } from "./useCommandTransport";
 import { reportedContacts, visualPosition } from "./observed-contacts";
 import OfficerGate from "./OfficerGate";
@@ -333,6 +334,13 @@ export default function App({
     },
   });
   const visible = reportedContacts(state);
+  const contactItems = useContactMemory(
+    state,
+    scenario.id + ":" + (sessionRef.current ?? "ready"),
+    selected,
+  );
+  const traineeLabel = (id: string) =>
+    unitIdentity?.trainee_id === id ? unitIdentity.callsign : id;
   const target = visible.find((t) => t.id === selected);
   const opticalPosition = visualPosition(target, vision);
   const running = phase === "running";
@@ -343,9 +351,17 @@ export default function App({
       ? saved.filter((r) => r.trainee === traineeRef.current)
       : saved;
     try {
-      const remote = await api<{ sessions: TrainingRecord[] }>(
-        `/trainees/${traineeRef.current}/sessions`,
-      );
+      // A fresh local callsign is not registered until its first exercise.
+      // The profile route safely reports zero sessions without a failing history GET.
+      const known =
+        unitIdentity ||
+        (await api<TrainingProfile>(`/trainees/${traineeRef.current}/profile`))
+          .sessions > 0;
+      const remote = known
+        ? await api<{ sessions: TrainingRecord[] }>(
+            `/trainees/${traineeRef.current}/sessions`,
+          )
+        : { sessions: [] };
       const m = new Map(local.map((r) => [r.id, r]));
       for (const r of remote.sessions)
         m.set(r.id, mergeServerRecord(m.get(r.id), r));
@@ -1706,7 +1722,10 @@ export default function App({
                   </button>
                 </div>
                 <div className="next-guidance" role="status">
-                  <b>NEXT</b> {nextStep(phase, target)}
+                  <b>NEXT</b>{" "}
+                  {phase === "running" && selected && !target
+                    ? `${selected}: no current sensor observation. Selection retained; wait for reacquisition.`
+                    : nextStep(phase, target)}
                 </div>
                 <div className="action-panel">
                   <div className="action-heading">
@@ -1866,14 +1885,20 @@ export default function App({
                       <Target size={16} />
                       <strong>Contact tracks</strong>
                     </div>
-                    <span className="count-badge">{visible.length}</span>
+                    <span className="count-badge">{contactItems.length}</span>
                   </div>
+                  <p className="footnote">
+                    Dashed rows retain a last report, not a current detection.
+                    Decisions require current evidence.
+                  </p>
                   <div className="contact-list">
-                    {visible.length ? (
-                      visible.map((t) => (
+                    {contactItems.length ? (
+                      contactItems.map(({ track: t, available, lastTick }) => (
                         <button
                           key={t.id}
-                          className={`contact-item ${selected === t.id ? "selected" : ""}`}
+                          className={`contact-item ${selected === t.id ? "selected" : ""} ${available ? "" : "stale"}`}
+                          aria-pressed={selected === t.id}
+                          onPointerDown={() => choose(t.id)}
                           onClick={() => choose(t.id)}
                         >
                           <span className={`track-symbol ${t.declared || ""}`}>
@@ -1889,10 +1914,13 @@ export default function App({
                               </span>
                             </strong>
                             <small>
+                              {available ? "" : "Last reported "}
                               {Math.round(Math.hypot(t.x, t.z))} m ·{" "}
-                              {t.designated === null
-                                ? "Not designated"
-                                : t.declared || "Awaiting ID"}
+                              {!available
+                                ? `No current observation · T+${(lastTick / 30).toFixed(1)}s`
+                                : t.designated === null
+                                  ? "Not designated"
+                                  : t.declared || "Awaiting ID"}
                             </small>
                           </div>
                           <ChevronRight size={15} />
@@ -2133,7 +2161,7 @@ export default function App({
                     {records.map((r) => (
                       <button key={r.id} onClick={() => openReview(r)}>
                         <span>
-                          {r.scenario.title} · {r.trainee}
+                          {r.scenario.title} · {traineeLabel(r.trainee)}
                           <small>
                             {new Date(r.created_at).toLocaleString()}
                           </small>
@@ -2175,8 +2203,8 @@ export default function App({
                     </span>
                     <h2>{current.scorecard.summary}</h2>
                     <p>
-                      {current.trainee} · {current.scenario.title} · Seed{" "}
-                      {current.scenario.seed}
+                      {traineeLabel(current.trainee)} · {current.scenario.title}{" "}
+                      · Seed {current.scenario.seed}
                     </p>
                     <span className="verification">
                       {current.verified ? (

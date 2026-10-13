@@ -16,7 +16,13 @@ if bool(cert)!=bool(key):fail('Set both VYUHA_SSL_CERTFILE and VYUHA_SSL_KEYFILE
 for label,value in [('certificate',cert),('private key',key)]:
  if value and (not Path(value).is_file() or not os.access(value,os.R_OK)):fail(f'The configured TLS {label} file is missing or unreadable.')
 try:
- with socket.socket() as s:s.bind(('0.0.0.0',a.port))
+ with socket.socket() as s:
+  # Match asyncio/Uvicorn on POSIX: closed browser connections in TIME_WAIT
+  # must not prevent a restart. Never use SO_REUSEPORT; a live listener must fail.
+  if os.name == 'posix':s.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
+  elif hasattr(socket,'SO_EXCLUSIVEADDRUSE'):s.setsockopt(socket.SOL_SOCKET,socket.SO_EXCLUSIVEADDRUSE,1)
+  s.bind(('0.0.0.0',a.port))
+  s.listen(1) # Binding alone can succeed beside a reusable listener on some OSes.
 except OSError as e:fail(f'Cannot open port {a.port}: {e}. Stop the existing server or set VYUHA_PORT to a free port.')
 db=Path(os.environ.get('VYUHA_DB',Path(__file__).resolve().parents[1]/'data/vyuha.db'))
 try:

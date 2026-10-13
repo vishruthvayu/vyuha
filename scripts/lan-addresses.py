@@ -1,22 +1,34 @@
-"""Print candidate local interface addresses without contacting the internet."""
-import ipaddress,re,socket,subprocess,sys
-found=set()
-for command in [['ifconfig'],['ip','-4','addr'],['hostname','-I']]:
+"""Print owned interface IPv4 addresses; never infer ownership from broadcasts/DNS."""
+import ipaddress,json,re,subprocess,sys
+
+
+def usable(value):
     try:
-        result=subprocess.run(command,capture_output=True,text=True,timeout=3)
-        if result.returncode==0:
-            for candidate in re.findall(r'\b(?:\d{1,3}\.){3}\d{1,3}\b',result.stdout):
-                try:
-                    addr=ipaddress.ip_address(candidate)
-                    if addr.is_private and not addr.is_loopback and not addr.is_link_local and candidate!='255.255.255.255' and not candidate.endswith('.0') and not candidate.endswith('.255'):found.add(candidate)
-                except ValueError:pass
-            if found:break
-    except (FileNotFoundError,subprocess.TimeoutExpired):pass
-if not found:
-    try:
-        for row in socket.getaddrinfo(socket.gethostname(),None,socket.AF_INET):
-            addr=ipaddress.ip_address(row[4][0])
-            if addr.is_private and not addr.is_loopback and not addr.is_link_local:found.add(str(addr))
-    except OSError:pass
-for address in sorted(found):print(address)
-if not found:print('No LAN address detected. Find this machine’s Wi-Fi/Ethernet IPv4 address in network settings.',file=sys.stderr)
+        address=ipaddress.IPv4Address(value)
+        return address.is_private and not (address.is_loopback or address.is_link_local or address.is_unspecified or address.is_multicast)
+    except ValueError:return False
+
+
+def parse_addresses(output,kind):
+    if kind=='ip-json':
+        rows=json.loads(output)
+        return {a['local'] for row in rows for a in row.get('addr_info',[]) if a.get('family')=='inet' and usable(a.get('local',''))}
+    if kind=='hostname':values=output.split()
+    else:values=re.findall(r'^\s*inet\s+(?:addr:)?([0-9.]+)(?:/\d+)?\b',output,re.M)
+    return {value for value in values if usable(value)}
+
+
+def addresses():
+    for command,kind in [(['ip','-j','-4','address','show','up'],'ip-json'),(['ifconfig'],'inet'),(['ip','-4','addr'],'inet'),(['hostname','-I'],'hostname')]:
+        try:
+            result=subprocess.run(command,capture_output=True,text=True,timeout=3)
+            found=parse_addresses(result.stdout,kind) if result.returncode==0 else set()
+            if found:return sorted(found)
+        except (FileNotFoundError,subprocess.TimeoutExpired,ValueError,TypeError,KeyError):pass
+    return []
+
+
+if __name__=='__main__':
+    found=addresses()
+    for address in found:print(address)
+    if not found:print('No owned LAN address detected. Find this machine’s Wi-Fi/Ethernet IPv4 address in network settings.',file=sys.stderr)

@@ -166,7 +166,7 @@ def picture(db,row,rt,actor):
         from .main import logged_events
         from .crew_metrics import coordination_summary
         metrics=coordination_summary(logged_events(db,row['session_id']),attribution,roster)
-    return dict(id=row['id'],name=row['name'],session_id=row['session_id'],role=actor['role'],member_id=actor['id'],tick=sim.tick,duration=sim.scenario['duration'],paused=sim.paused,done=sim.tick>=sim.scenario['duration']*HZ,status=row['status'],contacts=observed,roster=roster,attribution=attribution,scorecard=json.loads(card) if card else None,coordination_metrics=metrics,clock_note=rt['note'],note='Single server-owned simulation. Role codes are LAN capabilities; use trusted HTTPS. Shared score is not copied into individual skill profiles.')
+    return dict(id=row['id'],name=row['name'],session_id=row['session_id'],role=actor['role'],member_id=actor['id'],tick=sim.tick,revision=rt['order'],duration=sim.scenario['duration'],paused=sim.paused,done=sim.tick>=sim.scenario['duration']*HZ,status=row['status'],contacts=observed,roster=roster,attribution=attribution,scorecard=json.loads(card) if card else None,coordination_metrics=metrics,clock_note=rt['note'],note='Single server-owned simulation. Role codes are LAN capabilities; use trusted HTTPS. Shared score is not copied into individual skill profiles.')
 
 @router.post('',status_code=201)
 def create(req:CreateCrew):
@@ -263,8 +263,11 @@ def action(cid:str,req:CrewAction,request:Request):
         if (actor['role']=='spotter')!=(req.k=='designate'):raise HTTPException(403,'This decision belongs to the other crew role')
         rt=runtime(db,row);sim=rt['sim']
         if sim.paused:raise HTTPException(409,'Instructor must resume the crew exercise')
+        track=next((t for t in sim.tracks if t['id']==req.track),None)
+        if req.k=='designate' and track and track['active'] and observed_position(track) is None:
+            raise HTTPException(422,'No current sensor observation for this contact. Refresh the shared picture and wait for reacquisition before designating; no decision was recorded.')
         a=Action(**dict(tick=sim.tick,order=rt['order'],**req.model_dump(exclude={'request_id'},exclude_none=True))).model_dump(exclude_none=True)
-        if not sim.act(a):raise HTTPException(422,'Action is impossible in the current shared state')
+        if not sim.act(a):raise HTTPException(422,'Action is impossible in the current shared state. Refresh the picture and check designation/classification prerequisites; no decision was recorded.')
         seq=db.execute('SELECT COALESCE(MAX(seq),-1)+1 FROM chunks WHERE session_id=?',(row['session_id'],)).fetchone()[0]
         db.execute('INSERT INTO chunks VALUES (?,?,?)',(row['session_id'],seq,storage.dumps([a])))
         db.execute('INSERT INTO crew_attribution VALUES (?,?,?,?)',(row['session_id'],rt['order'],actor['id'],actor['role']))

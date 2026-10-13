@@ -1,6 +1,6 @@
 {
   "name": "vyuha-trainer",
-  "version": "1.1.0-rc.1",
+  "version": "1.1.0-rc.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,7 +9,7 @@
     "test": "tsx --test src/*.test.ts src/*.test.tsx",
     "lint": "eslint src vite.config.ts --max-warnings 0",
     "test:a11y": "tsx --test src/accessibility.test.tsx",
-    "format:check": "prettier --check \"src/*.tsx\" src/useModalFocus.ts src/useRenderingQuality.ts src/useOfflineStatus.ts src/useWorkspaceNavigation.ts src/useCommandTransport.ts"
+    "format:check": "prettier --check \"src/*.tsx\" src/useModalFocus.ts src/useRenderingQuality.ts src/useOfflineStatus.ts src/useWorkspaceNavigation.ts src/useCommandTransport.ts src/useContactMemory.ts"
   },
   "dependencies": {
     "@react-three/fiber": "^9.0.0",

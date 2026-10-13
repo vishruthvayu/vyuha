@@ -71,3 +71,21 @@
 .tour-card{max-height:calc(100dvh - 95px);overflow:auto}
 @media(max-width:600px){.replay-controls{gap:8px;flex-wrap:wrap}.replay-controls input[type=range]{min-width:150px}.modal-backdrop{padding:12px}.guide-modal{padding:28px 20px}.toast{left:50%;max-width:calc(100vw - 24px)}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+
+/* RC2 native-control baseline: no dependency on platform button/scrollbar colours. */
+:root{color-scheme:dark;scrollbar-color:#536563 #111a1b}
+.button{background:#182223;color:#d5dedd;border-color:#354446;white-space:normal}
+.button:not(:disabled):hover{background:#243031}
+.button.primary:not(:disabled):hover{background:#dffa91}
+.advanced-page input:not([type=checkbox]):not([type=range]),.advanced-page select,.advanced-page textarea,.instructor-page textarea{background:#172122;color:#d5dedd;border:1px solid #3c4b4c;border-radius:5px;padding:8px 10px;max-width:100%}
+.instructor-page textarea{min-height:80px;width:100%;font:inherit}
+.raid-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:14px;align-items:start}
+.raid-controls label{min-width:0;max-width:100%;white-space:normal}
+.raid-controls input:not([type=checkbox]),.raid-controls select{width:100%;max-width:100%}
+.raid-controls input[type=checkbox]{width:auto;align-self:flex-start}
+.fusion-panel{padding:16px;overflow-wrap:anywhere}
+.fusion-panel h3,.fusion-panel p,.fusion-panel ol,.fusion-panel details{margin:0 0 12px}
+.fusion-panel ol,.fusion-panel ul{padding-left:20px}
+.contact-item.stale{border-style:dashed;color:#b7c6c3}
+.instructor-page>.panel{padding:18px;margin-bottom:18px}
+.tour-launch{position:static;display:block;margin:12px 20px 12px auto;max-width:calc(100% - 40px)}
