@@ -1,3 +1,4 @@
+import { PageHeader } from "./UI";
 import { useEffect, useRef, useState } from "react";
 import { api, download } from "./storage";
 import { newId, type UnitIdentity } from "./unit-state";
@@ -48,10 +49,16 @@ export default function Evaluation({ identity }: { identity?: UnitIdentity }) {
   }
   return (
     <main className="instructor-page advanced-page">
-      <header className="page-heading">
-        <h1>Informal evaluation</h1>
-        <a href="/">Training home</a>
-      </header>
+      <PageHeader
+        eyebrow="CONSENT-BASED PILOT"
+        title="Informal evaluation"
+        description="Prepare a voluntary evaluation protocol; no study runs automatically."
+        actions={
+          <nav className="advanced-nav">
+            <a href="/">Training home</a>
+          </nav>
+        }
+      />
       <p>
         Support for a small voluntary pilot. No human study is conducted
         automatically. Use pseudonymous participant IDs and record only training

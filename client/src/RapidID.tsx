@@ -1,3 +1,4 @@
+import { PageHeader } from "./UI";
 import { useEffect, useRef, useState } from "react";
 import { api } from "./storage";
 import { newId, type UnitIdentity } from "./unit-state";
@@ -287,18 +288,18 @@ export default function RapidID({ identity }: { identity?: UnitIdentity }) {
     result = session?.result;
   return (
     <main className="instructor-page advanced-page">
-      <header className="page-heading">
-        <div>
-          <div className="eyebrow">CLASSIFICATION / IFF</div>
-          <h1>Rapid ID</h1>
-          <p>Short recognition practice · {identity?.callsign ?? trainee}</p>
-        </div>
-        <nav className="advanced-nav">
-          <a href="/">Tactical training</a>
-          <a href="/analytics">Training history</a>
-          <a href="/evaluation">Evaluation protocol</a>
-        </nav>
-      </header>
+      <PageHeader
+        eyebrow="CLASSIFICATION / IFF"
+        title="Rapid ID"
+        description={`Short recognition practice · ${identity?.callsign ?? trainee}`}
+        actions={
+          <nav className="advanced-nav">
+            <a href="/">Tactical training</a>
+            <a href="/analytics">Training history</a>
+            <a href="/evaluation">Evaluation protocol</a>
+          </nav>
+        }
+      />
       <p>
         Visuals represent the simulator’s observed silhouette. Quad and FPV
         share a multirotor silhouette; use RF evidence. Identity briefings are

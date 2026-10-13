@@ -177,9 +177,9 @@ test("Enabled responder and leave-role buttons have contrasting explicit native-
     for (const name of [
       "Leave role",
       "Confirm shared classification",
-      "hold",
-      "rf_jam",
-      "kinetic",
+      "Hold fire",
+      "RF jammer",
+      "Kinetic response",
     ]) {
       const button = [...document.querySelectorAll("button")].find(
         (b) => b.textContent === name,
@@ -198,9 +198,9 @@ test("Responder cannot submit classification or effects before the shared design
     async (document, actions) => {
       for (const name of [
         "Confirm shared classification",
-        "hold",
-        "rf_jam",
-        "kinetic",
+        "Hold fire",
+        "RF jammer",
+        "Kinetic response",
       ]) {
         const b = [...document.querySelectorAll("button")].find(
           (b) => b.textContent === name,

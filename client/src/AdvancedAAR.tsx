@@ -1,6 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { RECONSTRUCTION_TIMEOUT_MS, api } from "./storage";
-import type { Action, Record as TrainingRecord, ScoreCard } from "./types";
+import type {
+  Action,
+  DecisionReview,
+  Record as TrainingRecord,
+  ScoreCard,
+} from "./types";
+import DecisionPath from "./review-DecisionPath";
 type WhatIf = {
   kind: "counterfactual";
   branch_id: string;
@@ -11,29 +17,38 @@ type WhatIf = {
   reference_policy: { action: string; confidence: string; cues: string[] };
   note: string;
 };
-export default function AdvancedAAR({ record }: { record: TrainingRecord }) {
+export default function AdvancedAAR({
+  record,
+  onReview,
+}: {
+  record: TrainingRecord;
+  onReview?: (review: DecisionReview) => void;
+}) {
   const [track, setTrack] = useState(record.scorecard.rows[0]?.id ?? ""),
     [index, setIndex] = useState(0),
     [alternative, setAlternative] = useState("hold"),
     [result, setResult] = useState<WhatIf | null>(null),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false);
+  const generation = useRef(0);
   useEffect(() => {
+    generation.current++;
+    setBusy(false);
     setTrack(record.scorecard.rows[0]?.id ?? "");
     setIndex(0);
     setResult(null);
     setError("");
+    return () => {
+      generation.current++;
+    };
   }, [record.id]);
-  const row = record.scorecard.rows.find((r) => r.id === track);
-  const reviews = (record.decision_reviews ?? []).filter(
-    (r) => r.track_id === track,
-  );
   const decisions = record.events
     .map((a, index) => ({ a, index }))
-    .filter(({ a }) => a.k === "engage");
+    .filter(({ a }) => a.k === "engage" && a.track === track);
   const selected = decisions.find((d) => d.index === index) ?? decisions[0];
   async function run() {
-    if (!selected) return;
+    if (!selected || !record.verified) return;
+    const request = ++generation.current;
     setBusy(true);
     setResult(null);
     setError("");
@@ -42,17 +57,16 @@ export default function AdvancedAAR({ record }: { record: TrainingRecord }) {
         ...selected.a,
         effector: alternative as Action["effector"],
       };
-      setResult(
-        await api<WhatIf>(
-          `/sessions/${record.id}/what-if`,
-          { decision_index: selected.index, action },
-          RECONSTRUCTION_TIMEOUT_MS,
-        ),
+      const reply = await api<WhatIf>(
+        `/sessions/${encodeURIComponent(record.id)}/what-if`,
+        { decision_index: selected.index, action },
+        RECONSTRUCTION_TIMEOUT_MS,
       );
+      if (generation.current === request) setResult(reply);
     } catch (e) {
-      setError((e as Error).message);
+      if (generation.current === request) setError((e as Error).message);
     } finally {
-      setBusy(false);
+      if (generation.current === request) setBusy(false);
     }
   }
   return (
@@ -60,79 +74,21 @@ export default function AdvancedAAR({ record }: { record: TrainingRecord }) {
       <h2>Decision path and What-if replay</h2>
       <label>
         Reviewed contact
-        <select value={track} onChange={(e) => setTrack(e.target.value)}>
+        <select
+          disabled={busy}
+          value={track}
+          onChange={(e) => {
+            setTrack(e.target.value);
+            setResult(null);
+            setIndex(0);
+          }}
+        >
           {record.scorecard.rows.map((r) => (
             <option key={r.id}>{r.id}</option>
           ))}
         </select>
       </label>
-      {row && (
-        <>
-          <div className="metric-grid">
-            {(["detect", "classify", "prioritise", "engage"] as const).map(
-              (node, i) => (
-                <article className="metric" key={node}>
-                  <span>
-                    {["Detect", "Classify", "Prioritize", "Respond"][i]}
-                  </span>
-                  <strong>
-                    {row[node]} / {[25, 25, 15, 35][i]}
-                  </strong>
-                  <small>
-                    {node === "detect"
-                      ? row.detected === null
-                        ? "No sensor detection recorded"
-                        : `First detectable T+${(row.detected / 30).toFixed(2)}s`
-                      : node === "classify"
-                        ? `AAR truth: ${row.kind} / ${row.identity}`
-                        : node === "engage"
-                          ? `Rubric reference: ${row.ideal}`
-                          : record.scorecard.prioritisation
-                            ? "Co-observed ranking agreement"
-                            : "Legacy timely-response node"}
-                  </small>
-                </article>
-              ),
-            )}
-          </div>
-          {reviews.map((r) => (
-            <details key={r.decision_id}>
-              <summary>
-                {r.decision_kind} · T+{(r.tick / 30).toFixed(2)}s · {r.verdict}
-              </summary>
-              <p>{r.explanation}</p>
-              <p>
-                Observed evidence: radar{" "}
-                {r.evidence.radar.detected ? "return" : "no return"}, visual{" "}
-                {r.evidence.visual.silhouette ?? "unavailable"}, RF{" "}
-                {r.evidence.rf.signal === null
-                  ? "unavailable"
-                  : r.evidence.rf.signal
-                    ? "detected"
-                    : "not detected"}
-                , IFF {r.evidence.rf.iff}.
-              </p>
-              <p>
-                Recorded action:{" "}
-                {r.trainee_action
-                  ? JSON.stringify(r.trainee_action)
-                  : "No action recorded"}
-              </p>
-              <p>
-                Reference path ({r.expected_action.basis}):{" "}
-                {JSON.stringify(r.expected_action)}
-              </p>
-              <p>{r.consequence.text}</p>
-              <p>
-                Final node: {r.score_effect.points_awarded}/
-                {r.score_effect.points_possible}; session penalty{" "}
-                {r.score_effect.session_penalty} ({r.score_effect.penalty_basis}
-                ).
-              </p>
-            </details>
-          ))}
-        </>
-      )}
+      <DecisionPath record={record} track={track} onReview={onReview} />
       <h3>Try a different response</h3>
       <p>
         The server branches the frozen exercise at the recorded decision. The
@@ -141,7 +97,7 @@ export default function AdvancedAAR({ record }: { record: TrainingRecord }) {
       {!record.verified ? (
         <p>Server verification is required for What-if.</p>
       ) : !decisions.length ? (
-        <p>No recorded engagement is available to replace.</p>
+        <p>No recorded engagement is available to replace for this contact.</p>
       ) : (
         <>
           <label>
@@ -187,12 +143,24 @@ export default function AdvancedAAR({ record }: { record: TrainingRecord }) {
       )}
       {error && <p role="alert">{error}</p>}
       {result && (
-        <div role="status">
+        <div role="status" className="review-counterfactual-result">
+          <div className="eyebrow">COUNTERFACTUAL · ORIGINAL UNCHANGED</div>
           <h3>Hypothetical simulated result</h3>
-          <p>
-            Original {result.original_score.score}/100 → branch{" "}
-            {result.hypothetical_score.score}/100 · change {result.delta}
-          </p>
+          <div className="review-result-grid">
+            <article className="metric">
+              <span>Original verified outcome</span>
+              <strong>{result.original_score.score}/100</strong>
+              <small>Recorded history preserved</small>
+            </article>
+            <article className="metric">
+              <span>Hypothetical branch</span>
+              <strong>{result.hypothetical_score.score}/100</strong>
+              <small>
+                Simulated difference {result.delta > 0 ? "+" : ""}
+                {result.delta}
+              </small>
+            </article>
+          </div>
           <p>
             Asset impacts: {result.original_score.leakers} →{" "}
             {result.hypothetical_score.leakers}. Subsequent actions invalidated

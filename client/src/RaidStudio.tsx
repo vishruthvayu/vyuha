@@ -2,7 +2,9 @@ import { useState } from "react";
 import { api } from "./storage";
 import { defaultResponseConfig } from "./response-v2";
 import type { Scenario } from "./types";
-export default function RaidStudio() {
+export default function RaidStudio({
+  onSaved,
+}: { onSaved?: (scenario: Scenario) => void } = {}) {
   const [delayed, setDelayed] = useState(true);
   const [fusionMode, setFusionMode] = useState("off");
   const [seed, setSeed] = useState(482913),
@@ -16,7 +18,21 @@ export default function RaidStudio() {
     [scenario, setScenario] = useState<Scenario | null>(null),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false),
-    [saved, setSaved] = useState(false);
+    [saved, setSaved] = useState(false),
+    [compiledKey, setCompiledKey] = useState("");
+  const configurationKey = JSON.stringify({
+    delayed,
+    fusionMode,
+    seed,
+    duration,
+    difficulty,
+    family,
+    night,
+    fog,
+    terrain,
+    name,
+  });
+  const stale = !!scenario && compiledKey !== configurationKey;
   async function generate(save = false) {
     setBusy(true);
     setError("");
@@ -43,10 +59,15 @@ export default function RaidStudio() {
                 bias_seed: seed,
               },
       };
-      setScenario(
-        await api<Scenario>(save ? "/raids" : "/raids/preview", body, 30000),
+      const result = await api<Scenario>(
+        save ? "/raids" : "/raids/preview",
+        body,
+        30000,
       );
+      setScenario(result);
+      setCompiledKey(configurationKey);
       setSaved(save);
+      if (save) onSaved?.(result);
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -54,13 +75,17 @@ export default function RaidStudio() {
     }
   }
   return (
-    <section className="panel advanced-card" id="raid-composer">
+    <section
+      className="panel advanced-card composer-workbench"
+      id="raid-composer"
+    >
       <h2>Finale Raid Composer · engine 0.4</h2>
       <p>
         Compile seeded rosters, coordinated formations and motion into a frozen
         exercise. Values are illustrative training assumptions.
       </p>
-      <div className="setup-bar raid-controls">
+      <fieldset className="setup-bar raid-controls" disabled={busy}>
+        <legend>Raid configuration</legend>
         <label>
           Name
           <input
@@ -182,13 +207,13 @@ export default function RaidStudio() {
             }
           />
         </label>
-      </div>
+      </fieldset>
       <button
         className="button subtle"
         disabled={busy}
         onClick={() => void generate()}
       >
-        Preview raid
+        {busy ? "Compiling raid…" : "Preview raid"}
       </button>
       <button
         className="button primary"
@@ -198,12 +223,27 @@ export default function RaidStudio() {
         Compile and save frozen raid
       </button>
       {error && <p role="alert">{error}</p>}
+      {stale && (
+        <p className="composer-stale" role="status">
+          Configuration changed. The result below belongs to the previous
+          configuration; preview or compile again to apply your changes.
+        </p>
+      )}
       {scenario && (
-        <>
+        <section className="composer-preview" aria-label="Compiled raid result">
+          <h3>
+            {saved ? "Frozen raid saved" : "Raid preview"}
+            {stale ? " · previous configuration" : ""}
+          </h3>
           <p>
             {scenario.tracks.length} contacts · {scenario.duration}s ·{" "}
             {scenario.raid?.family} · {scenario.engine_version}
           </p>
+          {saved && (
+            <a className="button subtle" href="/">
+              Open training ground
+            </a>
+          )}
           <p>Fingerprint {scenario.raid?.fingerprint}</p>
           <p>
             {saved
@@ -214,7 +254,7 @@ export default function RaidStudio() {
             Geometric response windows validate declared ranges and workload
             bounds. They do not certify sensor reliability or human solvability.
           </p>
-        </>
+        </section>
       )}
     </section>
   );

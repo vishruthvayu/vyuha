@@ -64,7 +64,7 @@ export function HeatmapTable({ data }: { data: Heatmap }) {
                     >
                       <details>
                         <summary
-                          aria-label={`${row.family}, ${labels[k]}, ${c.observations} observations`}
+                          aria-label={`${row.family}, ${labels[k]}, ${c.estimate == null ? "no evidence" : `${(c.estimate * 100).toFixed(1)} percent estimate`}, ${c.observations} observations`}
                         >
                           {c.estimate == null
                             ? "—"
@@ -119,6 +119,7 @@ export default function SkillHeatmap({
     let stopped = false;
     setData(null);
     setError("");
+    if (scope === "trainee" && !trainee) return;
     void api<Heatmap>(
       `/units/${encodeURIComponent(unit)}/skill-heatmap${scope === "trainee" ? `?trainee=${encodeURIComponent(trainee)}` : ""}`,
     )
@@ -146,7 +147,9 @@ export default function SkillHeatmap({
           <option value="trainee">Selected trainee in this unit</option>
         </select>
       </label>
-      {error ? (
+      {scope === "trainee" && !trainee ? (
+        <p>Select a trainee to inspect their recorded observations.</p>
+      ) : error ? (
         <p role="alert">{error}</p>
       ) : data ? (
         <HeatmapTable data={data} />

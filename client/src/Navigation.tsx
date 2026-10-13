@@ -1,3 +1,4 @@
+import WorkspaceSearch from "./WorkspaceSearch";
 import {
   useCallback,
   useEffect,
@@ -220,6 +221,7 @@ export default function Navigation({
         >
           <X size={20} />
         </button>
+        <WorkspaceSearch onRequestOpen={() => setOpen(false)} />
         <NavigationLinks
           pathname={pathname}
           search={search}

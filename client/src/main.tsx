@@ -2,6 +2,8 @@ import React, { Suspense } from "react";
 import CapabilityTour from "./CapabilityTour";
 import { createRoot } from "react-dom/client";
 import "./style.css";
+import "./design-system.css";
+import { LoadingWorkspace } from "./UI";
 import { UnitGateway } from "./Unit";
 import Navigation from "./Navigation";
 import { pageComponents } from "./RoutePages";
@@ -59,8 +61,7 @@ createRoot(document.getElementById("root")!).render(
           <>
             <Navigation />
             <main id="workspace-content" tabIndex={-1}>
-              <h1>Loading VYUHA…</h1>
-              <p role="status">Loading bundled application assets.</p>
+              <LoadingWorkspace />
             </main>
           </>
         }
@@ -80,8 +81,7 @@ createRoot(document.getElementById("root")!).render(
           <Suspense
             fallback={
               <main>
-                <h1>Loading VYUHA…</h1>
-                <p role="status">Loading bundled application assets.</p>
+                <LoadingWorkspace />
               </main>
             }
           >

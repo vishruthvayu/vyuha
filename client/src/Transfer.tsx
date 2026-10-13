@@ -1,3 +1,4 @@
+import { PageHeader } from "./UI";
 import { useEffect, useRef, useState } from "react";
 import { api, apiRawJSON, download } from "./storage";
 import { validatedJSONText } from "./import-json";
@@ -63,10 +64,16 @@ export default function Transfer() {
   }
   return (
     <main className="instructor-page advanced-page">
-      <header className="page-heading">
-        <h1>Data transfer</h1>
-        <a href="/instructor">Instructor</a>
-      </header>
+      <PageHeader
+        eyebrow="LOCAL DATA OPERATIONS"
+        title="Data transfer"
+        description="Move verified training archives between prepared unit servers."
+        actions={
+          <nav className="advanced-nav">
+            <a href="/instructor">Instructor</a>
+          </nav>
+        }
+      />
       <p>
         Trusted LAN prototype. Authenticated officer transfer. Do not expose to
         public networks. HMAC-SHA256 checks bundle integrity with a local shared

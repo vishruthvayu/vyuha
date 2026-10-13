@@ -26,7 +26,7 @@ export default function OperatorGuide({ onClose }: { onClose: () => void }) {
           <X size={20} />
         </button>
         <div className="eyebrow">OPERATOR GUIDE</div>
-        <h2 id="guide-title">Your first 75-second drill</h2>
+        <h2 id="guide-title">Your first adaptive drill</h2>
         <button
           className="button subtle"
           onClick={() => {
@@ -37,8 +37,9 @@ export default function OperatorGuide({ onClose }: { onClose: () => void }) {
           Replay tour
         </button>
         <p id="guide-purpose">
-          Thermal palettes and night grain are illustrative rendering; they do
-          not improve sensor fidelity.
+          Prepare an adaptive raid, inspect its focus and conditions, then
+          start. Use Drill settings for saved exercises or the 75-second legacy
+          Night Watch.
         </p>
         <ol>
           <li>
@@ -54,9 +55,10 @@ export default function OperatorGuide({ onClose }: { onClose: () => void }) {
             IFF response to choose type and identity.
           </li>
           <li>
-            <strong>Respond.</strong> Hold on birds and friendlies. In this
-            example pack, RF-linked hostiles use the jammer; no-RF threats
-            require an allowed kinetic response.
+            <strong>Respond.</strong> Hold on birds and friendlies. Check the
+            available evidence, response range and restrictions. RF jamming does
+            not stop a no-RF FPV; accepted responses can still fail to resolve a
+            contact.
           </li>
           <li>
             <strong>Review.</strong> Read the debrief, replay a decision, and

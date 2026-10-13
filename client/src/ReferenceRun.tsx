@@ -31,10 +31,21 @@ export function ReferenceSummary({ result }: { result: ReferenceResult }) {
   return (
     <>
       <h3>{result.basis}</h3>
-      <p>
-        Original {result.original_score.score}/100 · hypothetical reference{" "}
-        {result.reference_score.score}/100 · change {result.delta}
-      </p>
+      <div className="review-result-grid">
+        <article className="metric">
+          <span>Recorded exercise</span>
+          <strong>{`Original ${result.original_score.score}/100`}</strong>
+          <small>Immutable training evidence</small>
+        </article>
+        <article className="metric">
+          <span>Separate simulation</span>
+          <strong>{`hypothetical reference ${result.reference_score.score}/100`}</strong>
+          <small>
+            Simulated difference {result.delta > 0 ? "+" : ""}
+            {result.delta}
+          </small>
+        </article>
+      </div>
       <p>
         {result.reference_actions.length} independently generated accepted
         decisions; {result.reference_commands.length} replayed instructor
@@ -114,9 +125,10 @@ export default function ReferenceRun({ record }: { record: TrainingRecord }) {
   }
   if (!record.verified) return null;
   return (
-    <section className="panel advanced-card">
+    <section className="panel advanced-card review-reference-run">
+      <div className="eyebrow">SEPARATE HYPOTHETICAL POLICY RUN</div>
       <h2>Autonomous reference replay</h2>
-      <p>
+      <p className="review-evidence-boundary">
         Generate a separate policy run on this frozen exercise. Canonical mode
         consults truth after the exercise; evidence-only mode may abstain when
         type or intent cannot be established.
@@ -167,7 +179,7 @@ export default function ReferenceRun({ record }: { record: TrainingRecord }) {
           {picture && (
             <Radar state={picture} selected={null} onSelect={() => {}} large />
           )}
-          <details>
+          <details className="review-decision">
             <summary>Reference decision timeline</summary>
             <p>
               Export the report for every accepted decision. These controls seek

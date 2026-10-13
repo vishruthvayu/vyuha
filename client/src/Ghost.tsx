@@ -155,14 +155,20 @@ export function GhostPanel({
   onChoose: (r: DecisionReview) => void;
 }) {
   const r = selectedReview(record, selectedId);
+  const reviewIndex =
+    record.decision_reviews?.findIndex(
+      (review) => review.decision_id === r?.decision_id,
+    ) ?? -1;
   return (
     <section className="panel ghost-panel ghost-v2">
       <div className="panel-header">
         <div>
           <Flag size={16} />
-          <strong>Ghost Expert</strong>
+          <h2 className="panel-title">Ghost Expert</h2>
         </div>
-        <span className="status">RULE-GROUNDED</span>
+        <span className="status">
+          {record.verified ? "RULE-GROUNDED" : "VERIFICATION PENDING"}
+        </span>
       </div>
       {!record.verified ? (
         <div className="ghost-content">
@@ -225,10 +231,35 @@ export function GhostPanel({
                 : r.verdict.toUpperCase()}
             </span>
           </div>
-          <button className="text-button" onClick={() => onChoose(r)}>
-            Jump to selected decision <ChevronRight size={13} />
-          </button>
-          <p className="footnote">
+          <div className="review-controls">
+            <button
+              className="button subtle"
+              disabled={reviewIndex <= 0}
+              onClick={() => {
+                const previous = record.decision_reviews?.[reviewIndex - 1];
+                if (previous) onChoose(previous);
+              }}
+            >
+              Previous decision
+            </button>
+            <button
+              className="button subtle"
+              disabled={
+                reviewIndex < 0 ||
+                reviewIndex >= (record.decision_reviews?.length ?? 0) - 1
+              }
+              onClick={() => {
+                const next = record.decision_reviews?.[reviewIndex + 1];
+                if (next) onChoose(next);
+              }}
+            >
+              Next decision
+            </button>
+            <button className="text-button" onClick={() => onChoose(r)}>
+              Jump to selected decision <ChevronRight size={13} />
+            </button>
+          </div>
+          <p className="review-evidence-boundary">
             Decision evidence stays pinned while you move the replay cursor.
           </p>
           <EvidenceView review={r} />
@@ -508,6 +539,9 @@ export function GhostTimeline({
             ? " Legacy finish time is unknown; the reviewed interval ends at its last recorded event."
             : ""}
         </p>
+        {!record.timeline.some(
+          (e) => category === "all" || e.category === category,
+        ) && <p role="status">No recorded events in this category.</p>}
         <div className="timeline-list">
           {record.timeline
             .filter((e) => category === "all" || e.category === category)

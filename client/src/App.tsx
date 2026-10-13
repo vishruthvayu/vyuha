@@ -33,7 +33,10 @@ import {
   X,
   Zap,
 } from "lucide-react";
-import { Scene, type Vision } from "./Scene";
+import { Scene } from "./LazyScene";
+import type { Vision } from "./visibility";
+import { initialTrainingMode, nextTrainingSeed } from "./training-setup";
+import { TrainingWelcome } from "./TrainingWelcome";
 import { Radar } from "./Radar";
 import { UnitDashboard, type Assignment } from "./Unit";
 import {
@@ -44,7 +47,8 @@ import {
   syncMessage,
   type UnitIdentity,
 } from "./unit-state";
-import { ProfilePanel, DirectorCard, launchPreparedScenario } from "./Director";
+import { launchPreparedScenario } from "./Director";
+import DrillSetup from "./DrillSetup";
 import type { TrainingProfile } from "./types";
 import { GhostPanel, GhostTimeline, timelineSeek, ReplayTracks } from "./Ghost";
 import { HZ, inCivilZone, replay, score, Simulation } from "./sim";
@@ -174,9 +178,7 @@ export default function App({
     unitIdentity?.trainee_id ?? "CADET-01",
   );
   const [mode, setMode] = useState<"scripted" | "adaptive" | "library">(
-    new URLSearchParams(window.location.search).get("mode") === "adaptive"
-      ? "adaptive"
-      : "scripted",
+    initialTrainingMode(window.location.search),
   );
   const [night, setNight] = useState(true);
   const [seed, setSeed] = useState(482913);
@@ -1103,13 +1105,13 @@ export default function App({
   }, [routeSearch]);
   const nextDrill = () => {
     if (current && !unitIdentity) setTrainee(current.trainee);
-    setSeed((s) => s + 1);
+    setSeed(nextTrainingSeed);
     setPrepared(null);
     setMode("adaptive");
     setPhase("ready");
     setCurrent(null);
     setSelected(null);
-    setState(new Simulation(makeScenario(seed + 1)).snapshot());
+    setState(new Simulation(makeScenario(nextTrainingSeed(seed))).snapshot());
     setView("drill");
     setNotice(
       "Prepare the next drill to review the server Director decision before starting.",
@@ -1143,7 +1145,9 @@ export default function App({
                 <small>
                   {scenario.doctrine
                     ? `${scenario.doctrine.id}@${scenario.doctrine.version}`
-                    : "Legacy example pack · v0.1"}
+                    : mode === "scripted"
+                      ? "Legacy example pack · v0.1"
+                      : "Finale · adaptive raid engine"}
                 </small>
               </div>
             </div>
@@ -1187,7 +1191,9 @@ export default function App({
           </div>
         </header>
         {view === "drill" ? (
-          <div className="page drill-page">
+          <div
+            className={`page drill-page ${phase === "ready" && mode === "adaptive" && !prepared ? "training-awaiting" : ""}`}
+          >
             <p className="sync-status" role="status">
               {syncMessage(
                 online,
@@ -1213,9 +1219,11 @@ export default function App({
                 <span className="mission-number">01</span>
                 <div>
                   <strong>
-                    {phase === "ready" && prepared
-                      ? prepared.title
-                      : scenario.title}
+                    {phase === "ready" && mode === "adaptive" && !prepared
+                      ? "Adaptive training"
+                      : phase === "ready" && prepared
+                        ? prepared.title
+                        : scenario.title}
                   </strong>
                   <span>
                     {scenario.terrain_id === "rural_forward_base"
@@ -1333,161 +1341,24 @@ export default function App({
               </div>
             )}
             {phase === "ready" && (
-              <div className="setup-bar">
-                <label>
-                  {unitIdentity ? "Callsign" : "Trainee ID"}
-                  <input
-                    aria-label={unitIdentity ? "Callsign" : "Trainee ID"}
-                    readOnly={!!unitIdentity}
-                    value={unitIdentity?.callsign ?? trainee}
-                    maxLength={24}
-                    onChange={(e) =>
-                      setTrainee(
-                        e.target.value.replace(/[^A-Za-z0-9_-]/g, "") ||
-                          "CADET-01",
-                      )
-                    }
-                  />
-                </label>
-                <label>
-                  Drill
-                  <select
-                    aria-label="Drill"
-                    value={mode}
-                    onChange={(e) => setMode(e.target.value as typeof mode)}
-                  >
-                    <option value="scripted">
-                      Original Night Watch · legacy
-                    </option>
-                    <option value="library">Scripted / Library</option>
-                    <option value="adaptive">Adaptive / Skill practice</option>
-                  </select>
-                </label>
-                {mode === "adaptive" && (
-                  <label>
-                    Director seed
-                    <input
-                      type="number"
-                      min={0}
-                      max={4294967295}
-                      value={seed}
-                      onChange={(e) =>
-                        setSeed(
-                          Math.max(
-                            0,
-                            Math.min(
-                              4294967295,
-                              Math.trunc(Number(e.target.value) || 0),
-                            ),
-                          ),
-                        )
-                      }
-                    />
-                  </label>
-                )}
-                <label>
-                  Conditions
-                  {mode === "adaptive" && <small> · Director selected</small>}
-                  <select
-                    aria-label="Conditions"
-                    disabled={mode !== "scripted"}
-                    title={
-                      mode === "adaptive"
-                        ? "Conditions are selected by the Director."
-                        : mode === "library"
-                          ? "Conditions are frozen in the saved scenario."
-                          : undefined
-                    }
-                    value={night ? "night" : "day"}
-                    onChange={(e) => setNight(e.target.value === "night")}
-                  >
-                    <option value="night">Night · light fog</option>
-                    <option value="day">Day · light fog</option>
-                  </select>
-                </label>
-                <button
-                  className="text-button"
-                  disabled={mode === "library"}
-                  title={
-                    mode === "library"
-                      ? "The library scenario has a frozen seed."
-                      : undefined
-                  }
-                  onClick={() => setSeed((s) => s + 1)}
-                >
-                  <RotateCcw size={14} /> New seed
-                </button>
-              </div>
-            )}
-            {phase === "ready" && (
-              <>
-                <div id="director-profile">
-                  <ProfilePanel profile={trainingProfile} />
-                </div>
-                {mode === "adaptive" && prepared?.director_decision && (
-                  <DirectorCard
-                    decision={prepared.director_decision}
-                    busy={busy}
-                    onStart={() => void start()}
-                  />
-                )}
-                {mode === "adaptive" && prepared?.director_v2 && (
-                  <section className="panel">
-                    <h3>Procedural Director v2</h3>
-                    <p>
-                      {prepared.director_v2.basis}. Family:{" "}
-                      {prepared.director_v2.family}.
-                    </p>
-                    <p>
-                      Baseline comparison:{" "}
-                      {prepared.director_v2.baseline_comparison.focus_skill} /{" "}
-                      {
-                        prepared.director_v2.baseline_comparison
-                          .difficulty_label
-                      }
-                      .
-                    </p>
-                    {Object.entries(prepared.director_v2.skill_evidence).map(
-                      ([skill, e]) => (
-                        <p key={skill}>
-                          {skill}: uncertainty{" "}
-                          {e.beta_standard_deviation.toFixed(3)}, recent
-                          progress {e.learning_progress.toFixed(3)}, retention
-                          gap {e.retention_gap.toFixed(2)}
-                        </p>
-                      ),
-                    )}
-                    <p className="footnote">
-                      {prepared.director_v2.limitations.join("; ")}.
-                    </p>
-                  </section>
-                )}
-              </>
-            )}
-            {phase === "ready" && mode === "library" && (
-              <section className="panel advanced-card">
-                <h2>Scripted exercise</h2>
-                <label>
-                  Scenario library
-                  <select
-                    aria-label="Scenario library"
-                    value={libraryId}
-                    onChange={(e) => setLibraryId(e.target.value)}
-                  >
-                    {library.map((s) => (
-                      <option key={s.id} value={s.id}>
-                        {s.title} · {s.doctrine?.name} · {s.red_force?.tactic}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                {!library.length && (
-                  <p>
-                    No saved exercises.{" "}
-                    <a href="/exercises">Open exercise studio</a>.
-                  </p>
-                )}
-              </section>
+              <DrillSetup
+                mode={mode}
+                onMode={setMode}
+                night={night}
+                onNight={setNight}
+                seed={seed}
+                onSeed={setSeed}
+                trainee={trainee}
+                onTrainee={setTrainee}
+                identity={unitIdentity}
+                profile={trainingProfile}
+                prepared={prepared}
+                onStart={() => void start()}
+                busy={busy}
+                library={library}
+                libraryId={libraryId}
+                onLibrary={setLibraryId}
+              />
             )}
             {scenario.red_force && (
               <p className="footnote">
@@ -1496,64 +1367,69 @@ export default function App({
                 Illustrative training configuration
               </p>
             )}
-            <div className="setup-bar">
-              <label>
-                Graphics quality
-                <select
-                  aria-label="Graphics quality"
-                  value={autoQuality ? "auto" : quality}
-                  onChange={(e) => {
-                    setAutoQuality(e.target.value === "auto");
-                    if (e.target.value === "auto") {
-                      setQuality("medium");
-                      setTactical(false);
-                    } else {
-                      setQuality(e.target.value as Quality);
-                      setTactical(e.target.value === "tactical");
-                    }
-                  }}
-                >
-                  <option value="auto">Auto · current {quality}</option>
-                  <option value="high">High</option>
-                  <option value="medium">Medium</option>
-                  <option value="low">Low</option>
-                  <option value="tactical">Tactical 2D</option>
-                </select>
-              </label>
-              <small>
-                Graphics settings change rendering only; simulation stays at 30
-                Hz.
-              </small>
-              <LocalAudio
-                state={state}
-                fog={scenario.fog}
-                active={phase === "running"}
-              />
-            </div>
-            <div className="setup-bar">
-              {vision === "thermal" && (
+            <details className="evidence-disclosure observation-preferences">
+              <summary>
+                Observation preferences · graphics, audio and thermal palette
+              </summary>
+              <div className="setup-bar">
                 <label>
-                  Illustrative thermal palette
+                  Graphics quality
                   <select
-                    aria-label="Thermal palette"
-                    value={palette}
-                    onChange={(e) =>
-                      setPalette(e.target.value as ThermalPalette)
-                    }
+                    aria-label="Graphics quality"
+                    value={autoQuality ? "auto" : quality}
+                    onChange={(e) => {
+                      setAutoQuality(e.target.value === "auto");
+                      if (e.target.value === "auto") {
+                        setQuality("medium");
+                        setTactical(false);
+                      } else {
+                        setQuality(e.target.value as Quality);
+                        setTactical(e.target.value === "tactical");
+                      }
+                    }}
                   >
-                    {Object.entries(palettes).map(([id, p]) => (
-                      <option key={id} value={id}>
-                        {p.label}
-                      </option>
-                    ))}
+                    <option value="auto">Auto · current {quality}</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                    <option value="tactical">Tactical 2D</option>
                   </select>
                 </label>
-              )}
-              <small>
-                Illustrative rendering only; sensor mechanics and scoring are
-                unchanged.
-              </small>
-            </div>
+                <small>
+                  Graphics settings change rendering only; simulation stays at
+                  30 Hz.
+                </small>
+                <LocalAudio
+                  state={state}
+                  fog={scenario.fog}
+                  active={phase === "running"}
+                />
+              </div>
+              <div className="setup-bar">
+                {vision === "thermal" && (
+                  <label>
+                    Illustrative thermal palette
+                    <select
+                      aria-label="Thermal palette"
+                      value={palette}
+                      onChange={(e) =>
+                        setPalette(e.target.value as ThermalPalette)
+                      }
+                    >
+                      {Object.entries(palettes).map(([id, p]) => (
+                        <option key={id} value={id}>
+                          {p.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                )}
+                <small>
+                  Illustrative rendering only; sensor mechanics and scoring are
+                  unchanged.
+                </small>
+              </div>
+            </details>
             <div className="training-grid">
               <section className="sensor-workspace">
                 <div className="panel-header">
@@ -1583,7 +1459,9 @@ export default function App({
                 <div
                   className={`scene-container ${vision} ${tactical ? "tactical-mode" : ""}`}
                 >
-                  {tactical ? (
+                  {phase === "ready" && mode === "adaptive" && !prepared ? (
+                    <TrainingWelcome />
+                  ) : tactical ? (
                     <Radar
                       state={state}
                       selected={selected}
@@ -1653,7 +1531,7 @@ export default function App({
                       </div>
                     </>
                   )}
-                  {phase === "ready" && (
+                  {phase === "ready" && !(mode === "adaptive" && !prepared) && (
                     <div className="ready-overlay">
                       <span className="ready-icon">
                         <Crosshair size={28} />
@@ -1967,7 +1845,7 @@ export default function App({
                                 setLogConfidence(e.target.checked)
                               }
                             />
-                            Log optional classification confidence
+                            Optional confidence · classification
                           </label>
                           {logConfidence && (
                             <label>
@@ -2407,7 +2285,18 @@ export default function App({
                     seek(point.tick, point.beforeOrder, e.track_id);
                   }}
                 />
-                <AdvancedAAR key={current.id} record={current} />
+                <AdvancedAAR
+                  key={current.id}
+                  record={current}
+                  onReview={(r) => {
+                    setReviewId(r.decision_id);
+                    seek(
+                      r.tick,
+                      r.trainee_action ? (r.order ?? undefined) : undefined,
+                      r.track_id,
+                    );
+                  }}
+                />
                 <ExpertComparison key={current.id} record={current} />
                 <ReferenceRun key={current.id} record={current} />
                 <FusionReview key={current.id} record={current} />

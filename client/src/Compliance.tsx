@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "./storage";
+import { PageHeader, StatusPill } from "./UI";
 
 export type ComplianceItem = {
   id: string;
@@ -68,35 +69,23 @@ export function ComplianceBoard({
     : sourceRows;
   return (
     <main className="instructor-page">
-      <header>
-        <p className="breadcrumb">SYSTEM / REQUIREMENTS AND EVIDENCE</p>
-        <h1>SIH26247 compliance board</h1>
-        <p>{manifest.release_status}</p>
-      </header>
-      <section className="panel">
-        <h2>Implementation and validation are separate</h2>
+      <PageHeader
+        eyebrow="SIH26247 · CAPABILITIES AND PROOF"
+        title="Requirements, demonstrated"
+        description="Explore each requirement, open its working feature and inspect the evidence behind it."
+        actions={
+          <a className="button subtle" href="/system/evidence">
+            System evidence
+          </a>
+        }
+      />
+      <div className="compliance-intro">
         <p>
-          Each finding keeps its own acceptance status. Candidate code and
-          scoped software tests do not certify the complete training product.
+          Observe → decide → verify → explain → adapt. These records connect the
+          problem statement to the implemented training loop.
         </p>
-        <p>
-          {manifest.items.length} traceable findings ·{" "}
-          {manifest.totals.PASS ?? 0} passed · {manifest.totals.PARTIAL ?? 0}{" "}
-          partial · {manifest.totals["N/A"] ?? 0} not applicable
-        </p>
-        <p>
-          {manifest.independent_score === null
-            ? "A final independent acceptance score has not been recorded."
-            : `Recorded final independent acceptance score: ${manifest.independent_score}/100.`}{" "}
-          {manifest.score_note}
-        </p>
-        <p>{manifest.source.description}</p>
-        <a href={manifest.source.url} target="_blank" rel="noreferrer">
-          Inspect archived official problem statement
-        </a>
-        {" · "}
-        <a href={manifest.source.fallback_url}>Read source provenance</a>
-      </section>
+        <StatusPill tone="warning">Physical acceptance pending</StatusPill>
+      </div>
       <section className="panel">
         <h2>Requirement traceability</h2>
         <div className="segmented">
@@ -107,7 +96,7 @@ export function ComplianceBoard({
               setFocused("");
             }}
           >
-            Official requirements and platform choice
+            SIH requirements
           </button>
           <button
             aria-pressed={scope === "all"}
@@ -116,7 +105,7 @@ export function ComplianceBoard({
               setFocused("");
             }}
           >
-            All 93 audit findings
+            Engineering · 93 audit findings
           </button>
         </div>
         <p>
@@ -140,83 +129,179 @@ export function ComplianceBoard({
             This finding is unavailable. Select another recorded finding.
           </p>
         )}
-        <div style={{ overflowX: "auto" }}>
-          <table>
-            <caption>
-              {scope === "official"
-                ? "Official requirements, including the desktop OR VR alternative"
-                : "Complete acceptance backlog"}
-            </caption>
-            <thead>
-              <tr>
-                <th>Finding</th>
-                <th>Acceptance status</th>
-                <th>Implementation / validation evidence</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row) => (
-                <tr key={row.id} id={`finding-${row.id}`}>
-                  <td>
-                    <strong>
-                      {row.id} · {row.audit_finding}
-                    </strong>
-                    <p>{row.problem_statement_relevance}</p>
-                    <small>
-                      {row.source_kind === "official_clause_or_platform_choice"
-                        ? "Archived official requirement / platform choice"
-                        : "Audit / training-quality objective"}
-                    </small>
-                  </td>
-                  <td>
-                    {row.status}
-                    <p>{row.severity}</p>
-                  </td>
-                  <td>
-                    <details>
-                      <summary>
-                        Implementation, tests and remaining limits
-                      </summary>
-                      <h3>Candidate implementation</h3>
-                      <p>{row.implementation}</p>
-                      <h3>Executed / required checks</h3>
-                      <p>{row.tests}</p>
-                      <h3>Remaining validation</h3>
-                      <p>{row.remaining_limitation}</p>
-                      <h3>Required user-visible proof</h3>
-                      <p>{row.user_visible_proof}</p>
-                      <a href={row.evidence_url}>
-                        Open this finding’s acceptance record
-                      </a>
-                      {row.finding_url && (
-                        <>
-                          {" "}
-                          · <a href={row.finding_url}>Link to this finding</a>
-                        </>
-                      )}
-                      {row.evidence_documents?.map((doc) => (
-                        <p key={doc.url}>
-                          <a href={doc.url}>{doc.title}</a>
-                        </p>
-                      ))}
-                      {row.live_workflow && (
-                        <>
-                          <h3>Relevant live workflow</h3>
-                          <a href={row.live_workflow.url}>
-                            Open workflow for {row.id}
+        {scope === "official" ? (
+          <div className="compliance-grid">
+            {rows.map((row) => (
+              <article
+                className="compliance-card"
+                key={row.id}
+                id={`finding-${row.id}`}
+              >
+                <span className="eyebrow">
+                  {row.id} ·{" "}
+                  {row.status === "N/A"
+                    ? "PLATFORM ALTERNATIVE"
+                    : "REQUIREMENT"}
+                </span>
+                <h2>{row.audit_finding}</h2>
+                <p>{row.user_visible_proof}</p>
+                <StatusPill
+                  tone={
+                    row.status === "PASS"
+                      ? "positive"
+                      : row.status === "PARTIAL"
+                        ? "warning"
+                        : "neutral"
+                  }
+                >
+                  {row.status === "PASS"
+                    ? "Implemented · scoped proof"
+                    : row.status === "PARTIAL"
+                      ? "Implemented · validation limits"
+                      : "Desktop satisfies the alternative"}
+                </StatusPill>
+                <footer>
+                  {row.live_workflow && (
+                    <a
+                      className="button primary"
+                      href={row.live_workflow.url}
+                      aria-label={`Open workflow for ${row.id}`}
+                    >
+                      Show me
+                    </a>
+                  )}
+                  <a href={row.evidence_url}>Inspect evidence</a>
+                </footer>
+                <details>
+                  <summary>Implementation, tests and remaining limits</summary>
+                  <h3>Candidate implementation</h3>
+                  <p>{row.implementation}</p>
+                  <h3>Executed / required checks</h3>
+                  <p>{row.tests}</p>
+                  <h3>Remaining validation</h3>
+                  <p>{row.remaining_limitation}</p>
+                  {row.evidence_documents?.map((doc) => (
+                    <p key={doc.url}>
+                      <a href={doc.url}>{doc.title}</a>
+                    </p>
+                  ))}
+                  {row.live_workflow && (
+                    <>
+                      <p>{row.live_workflow.required_context}</p>
+                      <p>{row.live_workflow.scope}</p>
+                    </>
+                  )}
+                </details>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <>
+            <div style={{ overflowX: "auto" }}>
+              <table>
+                <caption>Complete engineering acceptance backlog</caption>
+                <thead>
+                  <tr>
+                    <th>Finding</th>
+                    <th>Acceptance status</th>
+                    <th>Implementation / validation evidence</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((row) => (
+                    <tr key={row.id} id={`finding-${row.id}`}>
+                      <td>
+                        <strong>
+                          {row.id} · {row.audit_finding}
+                        </strong>
+                        <p>{row.problem_statement_relevance}</p>
+                        <small>
+                          {row.source_kind ===
+                          "official_clause_or_platform_choice"
+                            ? "Archived official requirement / platform choice"
+                            : "Audit / training-quality objective"}
+                        </small>
+                      </td>
+                      <td>
+                        {row.status}
+                        <p>{row.severity}</p>
+                      </td>
+                      <td>
+                        <details>
+                          <summary>
+                            Implementation, tests and remaining limits
+                          </summary>
+                          <h3>Candidate implementation</h3>
+                          <p>{row.implementation}</p>
+                          <h3>Executed / required checks</h3>
+                          <p>{row.tests}</p>
+                          <h3>Remaining validation</h3>
+                          <p>{row.remaining_limitation}</p>
+                          <h3>Required user-visible proof</h3>
+                          <p>{row.user_visible_proof}</p>
+                          <a href={row.evidence_url}>
+                            Open this finding’s acceptance record
                           </a>
-                          <p>{row.live_workflow.required_context}</p>
-                          <p>{row.live_workflow.scope}</p>
-                        </>
-                      )}
-                    </details>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                          {row.finding_url && (
+                            <>
+                              {" "}
+                              ·{" "}
+                              <a href={row.finding_url}>Link to this finding</a>
+                            </>
+                          )}
+                          {row.evidence_documents?.map((doc) => (
+                            <p key={doc.url}>
+                              <a href={doc.url}>{doc.title}</a>
+                            </p>
+                          ))}
+                          {row.live_workflow && (
+                            <>
+                              <h3>Relevant live workflow</h3>
+                              <a href={row.live_workflow.url}>
+                                Open workflow for {row.id}
+                              </a>
+                              <p>{row.live_workflow.required_context}</p>
+                              <p>{row.live_workflow.scope}</p>
+                            </>
+                          )}
+                        </details>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
       </section>
+      <details className="panel evidence-disclosure">
+        <summary>
+          Engineering acceptance · all audit findings and release status
+        </summary>
+        <h2>Implementation and validation are separate</h2>
+        <p>{manifest.release_status}</p>
+        <p>
+          Each finding keeps its own acceptance status. Candidate code and
+          scoped software tests do not certify the complete training product.
+        </p>
+        <p>
+          {manifest.items.length} traceable findings ·{" "}
+          {manifest.totals.PASS ?? 0} passed · {manifest.totals.PARTIAL ?? 0}{" "}
+          partial · {manifest.totals["N/A"] ?? 0} not applicable
+        </p>
+        <p>
+          {manifest.independent_score === null
+            ? "A final independent acceptance score has not been recorded."
+            : `Recorded final independent acceptance score: ${manifest.independent_score}/100.`}{" "}
+          {manifest.score_note}
+        </p>
+        <p>{manifest.source.description}</p>
+        <a href={manifest.source.url} target="_blank" rel="noreferrer">
+          Inspect archived official problem statement
+        </a>
+        {" · "}
+        <a href={manifest.source.fallback_url}>Read source provenance</a>
+      </details>
       <section className="panel">
         <h2>Scoped software checkpoints</h2>
         <p>{manifest.freshness_note}</p>

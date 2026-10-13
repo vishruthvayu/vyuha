@@ -6,6 +6,7 @@ import { RECONSTRUCTION_TIMEOUT_MS, api } from "./storage";
 import { newId } from "./unit-state";
 import type { Scenario, Kind, Identity, Effector, ScoreCard } from "./types";
 import type { SensorObservation } from "./sensors-v2";
+import { crewTask } from "./command-crew-context";
 // Role clients receive reported contacts only; they never instantiate a simulator.
 export type CoordinationMetrics = {
   accepted_actions: number;
@@ -112,12 +113,29 @@ async function requestCrew<T>(
   return json;
 }
 export function CrewPicture({ state }: { state: CrewState }) {
+  const member = state.roster?.find((entry) => entry.id === state.member_id);
   return (
     <>
-      <h2>
-        {state.name} · {state.role}
-      </h2>
-      <p>
+      <header className="crew-role-banner">
+        <div>
+          <div className="eyebrow">
+            SHARED EXERCISE · {state.role.toUpperCase()}
+          </div>
+          <h2>
+            {member?.callsign ?? "Assigned role"} · {state.name}
+          </h2>
+        </div>
+        <span className="status">
+          {state.status === "completed"
+            ? "Completed"
+            : state.done
+              ? "Awaiting scoring"
+              : state.paused
+                ? "Paused"
+                : "Running"}
+        </span>
+      </header>
+      <p className="command-lifecycle">
         T+{(state.tick / 30).toFixed(2)}s / {state.duration}s · {state.status} ·{" "}
         {state.status === "completed"
           ? "Completed"
@@ -127,11 +145,15 @@ export function CrewPicture({ state }: { state: CrewState }) {
               ? "Paused"
               : "Running"}
       </p>
-      <p>
-        {state.status === "completed" || state.paused
-          ? state.clock_note
-          : "Server advances logical time while connected clients poll; long stalls discard excess wall time."}
-      </p>
+      <details className="evidence-disclosure">
+        <summary>Shared clock and evidence scope</summary>
+        <p>
+          {state.status === "completed" || state.paused
+            ? state.clock_note
+            : "Server advances logical time while connected clients poll; long stalls discard excess wall time."}
+        </p>
+        <p>{state.note}</p>
+      </details>
       <svg
         viewBox="-3000 -3000 6000 6000"
         role="img"
@@ -158,7 +180,6 @@ export function CrewPicture({ state }: { state: CrewState }) {
           </g>
         ))}
       </svg>
-      <p>{state.note}</p>
     </>
   );
 }
@@ -412,55 +433,62 @@ export default function Crew() {
     state.done ||
     !selectedContact;
   return (
-    <main className="instructor-page">
+    <main className="instructor-page command-workspace">
       <h1>Shared Crew Mode</h1>
       <p>
         Spotter designates. Responder classifies and selects a simulated
         response. Both work in one authoritative server exercise; attribution
         and the shared result stay together.
       </p>
-      <section className="panel">
-        <h2>Join an assigned role</h2>
-        <label>
-          Crew ID
-          <input
-            value={id}
-            disabled={joined || !!pending}
-            onChange={(e) => setId(e.target.value)}
-          />
-        </label>
-        <label>
-          Role code
-          <input
-            type="password"
-            value={code}
-            disabled={joined}
-            onChange={(e) => setCode(e.target.value)}
-            autoComplete="off"
-          />
-        </label>
-        <button
-          className="button"
-          disabled={!id || !code}
-          onClick={() => {
-            roleEpoch.current += 1;
-            setBusy(false);
-            setJoined((j) => !j);
-            setState(null);
-            if (joined) setPending(null);
-            setError("");
-            setActionFeedback("");
-            setSelected("");
-          }}
-        >
-          {joined ? "Leave role" : "Connect role"}
-        </button>
-        <p>
-          Role codes are kept in this page’s memory. Re-enter the same code
-          after a reload to reconnect while it remains valid. If it expires or
-          is revoked, ask the officer to rotate your code; accepted decisions
-          remain recorded.
-        </p>
+      <section className="panel command-overview">
+        <details open={!joined} className="evidence-disclosure">
+          <summary>
+            {joined
+              ? "Role connection controls"
+              : "Connect to a shared exercise"}
+          </summary>
+          <h2>Join an assigned role</h2>
+          <label>
+            Crew ID
+            <input
+              value={id}
+              disabled={joined || !!pending}
+              onChange={(e) => setId(e.target.value)}
+            />
+          </label>
+          <label>
+            Role code
+            <input
+              type="password"
+              value={code}
+              disabled={joined}
+              onChange={(e) => setCode(e.target.value)}
+              autoComplete="off"
+            />
+          </label>
+          <button
+            className="button"
+            disabled={!id || !code}
+            onClick={() => {
+              roleEpoch.current += 1;
+              setBusy(false);
+              setJoined((j) => !j);
+              setState(null);
+              if (joined) setPending(null);
+              setError("");
+              setActionFeedback("");
+              setSelected("");
+            }}
+          >
+            {joined ? "Leave role" : "Connect role"}
+          </button>
+          <p>
+            Role codes are kept in this page’s memory. Re-enter the same code
+            after a reload to reconnect while it remains valid. If it expires or
+            is revoked, ask the officer to rotate your code; accepted decisions
+            remain recorded.
+          </p>
+        </details>
       </section>
       {error && <p role="alert">{error}</p>}
       {actionFeedback && <p role="alert">{actionFeedback}</p>}
@@ -493,8 +521,11 @@ export default function Crew() {
         </section>
       )}
       {state && (
-        <section className="panel">
+        <section className="panel command-detail">
           <CrewPicture state={state} />
+          <p className="crew-handoff" role="status">
+            {crewTask(state, selected)}
+          </p>
           <label>
             Observed contact
             <select
@@ -586,19 +617,36 @@ export default function Crew() {
                   }
                   onClick={() => void act("engage", e)}
                 >
-                  {e}
+                  {
+                    {
+                      hold: "Hold fire",
+                      rf_jam: "RF jammer",
+                      kinetic: "Kinetic response",
+                    }[e]
+                  }
                 </button>
               ))}
             </>
           )}
-          <h3>Recorded coordination</h3>
-          <ol>
-            {state.attribution.map((a) => (
-              <li key={a.timeline_order}>
-                Order {a.timeline_order} · {a.callsign} · {a.role}
-              </li>
-            ))}
-          </ol>
+          <details className="evidence-disclosure">
+            <summary>
+              Recorded coordination · {state.attribution.length} accepted
+              decisions
+            </summary>
+            {state.attribution.length === 0 && (
+              <p>
+                No accepted decisions yet. Submitted requests appear here only
+                after server acceptance.
+              </p>
+            )}
+            <ol>
+              {state.attribution.map((a) => (
+                <li key={a.timeline_order}>
+                  Order {a.timeline_order} · {a.callsign} · {a.role}
+                </li>
+              ))}
+            </ol>
+          </details>
           {state.coordination_metrics && (
             <CrewCoordination metrics={state.coordination_metrics} />
           )}{" "}
@@ -614,75 +662,80 @@ export default function Crew() {
           )}
         </section>
       )}
-      <OfficerGate>
-        <>
-          <CrewCatalogue setLibrary={setLibrary} setScenario={setScenario} />
-          <section className="panel">
-            <h2>Officer crew setup</h2>
-            <label>
-              Exercise name
-              <input value={name} onChange={(e) => setName(e.target.value)} />
-            </label>
-            <label>
-              Frozen shared raid
-              <select
-                value={scenario}
-                onChange={(e) => setScenario(e.target.value)}
+      <details className="evidence-disclosure" open={!joined}>
+        <summary>Officer setup, role access and shared history</summary>
+        <OfficerGate>
+          <>
+            <CrewCatalogue setLibrary={setLibrary} setScenario={setScenario} />
+            <section className="panel">
+              <h2>Officer crew setup</h2>
+              <label>
+                Exercise name
+                <input value={name} onChange={(e) => setName(e.target.value)} />
+              </label>
+              <label>
+                Frozen shared raid
+                <select
+                  value={scenario}
+                  onChange={(e) => setScenario(e.target.value)}
+                >
+                  {library.map((s) => (
+                    <option key={s.id} value={s.id}>
+                      {s.title}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <p>
+                Save a v0.4 raid in Exercise studio first. This setup assigns
+                WATCH / spotter and RESPONSE / responder.
+              </p>
+              <button
+                className="button primary"
+                disabled={!scenario || busy}
+                onClick={() => void create()}
               >
-                {library.map((s) => (
-                  <option key={s.id} value={s.id}>
-                    {s.title}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <p>
-              Save a v0.4 raid in Exercise studio first. This setup assigns
-              WATCH / spotter and RESPONSE / responder.
-            </p>
-            <button
-              className="button primary"
-              disabled={!scenario || busy}
-              onClick={() => void create()}
-            >
-              Create shared crew
-            </button>
-            {issued && (
-              <>
-                <p>Crew ID: {issued.id}</p>
-                {issued.members.map((m) => (
-                  <details key={m.callsign}>
-                    <summary>
-                      {m.callsign} · {m.role} · reveal assigned role code
-                    </summary>
-                    <p>Expires {new Date(m.expires_at * 1000).toISOString()}</p>
-                    <code style={{ overflowWrap: "anywhere" }}>{m.code}</code>
-                  </details>
-                ))}
-                {(["resume", "pause", "complete"] as const).map((v) => (
-                  <button
-                    className="button"
-                    key={v}
-                    disabled={busy}
-                    onClick={() => void command(v)}
-                  >
-                    {v === "complete"
-                      ? "End and score crew"
-                      : v === "resume"
-                        ? "Start / resume crew"
-                        : "Pause crew"}
-                  </button>
-                ))}
-                <p>
-                  Save each code before leaving. After server restart, use the
-                  instructor console to resume the same session.
-                </p>
-              </>
-            )}
-          </section>
-          <CrewOfficerTools createdId={issued?.id ?? ""} />
-        </>
-      </OfficerGate>
+                Create shared crew
+              </button>
+              {issued && (
+                <>
+                  <p>Crew ID: {issued.id}</p>
+                  {issued.members.map((m) => (
+                    <details key={m.callsign}>
+                      <summary>
+                        {m.callsign} · {m.role} · reveal assigned role code
+                      </summary>
+                      <p>
+                        Expires {new Date(m.expires_at * 1000).toISOString()}
+                      </p>
+                      <code style={{ overflowWrap: "anywhere" }}>{m.code}</code>
+                    </details>
+                  ))}
+                  {(["resume", "pause", "complete"] as const).map((v) => (
+                    <button
+                      className="button"
+                      key={v}
+                      disabled={busy}
+                      onClick={() => void command(v)}
+                    >
+                      {v === "complete"
+                        ? "End and score crew"
+                        : v === "resume"
+                          ? "Start / resume crew"
+                          : "Pause crew"}
+                    </button>
+                  ))}
+                  <p>
+                    Save each code before leaving. After server restart, use the
+                    instructor console to resume the same session.
+                  </p>
+                </>
+              )}
+            </section>
+            <CrewOfficerTools createdId={issued?.id ?? ""} />
+          </>
+        </OfficerGate>
+      </details>
     </main>
   );
 }

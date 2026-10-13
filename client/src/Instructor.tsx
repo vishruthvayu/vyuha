@@ -198,7 +198,7 @@ export default function Instructor() {
     </button>
   );
   return (
-    <main className="instructor-page">
+    <main className="instructor-page command-workspace">
       <header className="page-heading">
         <div>
           <div className="eyebrow">VYUHA · TRAINING CONTROLS</div>
@@ -244,67 +244,70 @@ export default function Instructor() {
         }}
       />
       <section className="panel group-assignment">
-        <div className="panel-header">
-          <strong>Connected trainees · Group assignment</strong>
-        </div>
-        <p>
-          Assign Night Watch to connected, idle trainees. Each browser polls
-          once per second and starts its own assigned session.
-        </p>
-        <div className="roster-options">
-          {roster
-            .filter((r) => r.connected)
-            .map((r) => (
-              <label key={r.trainee_id}>
-                <input
-                  type="checkbox"
-                  disabled={r.busy || launching || !!groupRequest}
-                  title={
-                    r.busy
-                      ? "Trainee is already training."
-                      : launching
-                        ? "Assignment is being sent."
-                        : groupRequest
-                          ? "Resolve the pending assignment first."
-                          : undefined
-                  }
-                  checked={checked.includes(r.trainee_id)}
-                  onChange={(e) =>
-                    setChecked((ids) =>
-                      e.target.checked
-                        ? [...ids, r.trainee_id]
-                        : ids.filter((id) => id !== r.trainee_id),
-                    )
-                  }
-                />
-                {r.callsign} · {r.busy ? "Training" : "Ready"}
-              </label>
-            ))}
-        </div>
-        <button
-          className="button primary"
-          disabled={launching || (!checked.length && !groupRequest)}
-          title={
-            launching
-              ? "Assignment is being sent."
-              : !checked.length && !groupRequest
-                ? "Select an idle connected trainee."
-                : undefined
-          }
-          onClick={() => void assign()}
-        >
-          {launching
-            ? "Assigning…"
-            : groupRequest
-              ? "Retry same assignment"
-              : "Assign Night Watch"}
-        </button>
-        {launchMessage && <p role="status">{launchMessage}</p>}
-        <p className="footnote">
-          Authenticated officer controls · Use trusted LAN HTTPS. Commands and
-          assignments require the server. Pending assignments retain their
-          original request ID on retry.
-        </p>
+        <details className="evidence-disclosure">
+          <summary>Assign an exercise to connected trainees</summary>
+          <div className="panel-header">
+            <strong>Connected trainees · Group assignment</strong>
+          </div>
+          <p>
+            Assign Night Watch to connected, idle trainees. Each browser polls
+            once per second and starts its own assigned session.
+          </p>
+          <div className="roster-options">
+            {roster
+              .filter((r) => r.connected)
+              .map((r) => (
+                <label key={r.trainee_id}>
+                  <input
+                    type="checkbox"
+                    disabled={r.busy || launching || !!groupRequest}
+                    title={
+                      r.busy
+                        ? "Trainee is already training."
+                        : launching
+                          ? "Assignment is being sent."
+                          : groupRequest
+                            ? "Resolve the pending assignment first."
+                            : undefined
+                    }
+                    checked={checked.includes(r.trainee_id)}
+                    onChange={(e) =>
+                      setChecked((ids) =>
+                        e.target.checked
+                          ? [...ids, r.trainee_id]
+                          : ids.filter((id) => id !== r.trainee_id),
+                      )
+                    }
+                  />
+                  {r.callsign} · {r.busy ? "Training" : "Ready"}
+                </label>
+              ))}
+          </div>
+          <button
+            className="button primary"
+            disabled={launching || (!checked.length && !groupRequest)}
+            title={
+              launching
+                ? "Assignment is being sent."
+                : !checked.length && !groupRequest
+                  ? "Select an idle connected trainee."
+                  : undefined
+            }
+            onClick={() => void assign()}
+          >
+            {launching
+              ? "Assigning…"
+              : groupRequest
+                ? "Retry same assignment"
+                : "Assign Night Watch"}
+          </button>
+          {launchMessage && <p role="status">{launchMessage}</p>}
+          <p className="footnote">
+            Authenticated officer controls · Use trusted LAN HTTPS. Commands and
+            assignments require the server. Pending assignments retain their
+            original request ID on retry.
+          </p>
+        </details>
       </section>
       {error && (
         <div className="recovery-banner" role="status">
@@ -326,7 +329,7 @@ export default function Instructor() {
         </div>
       )}
       <div className="instructor-grid">
-        <section className="panel">
+        <section className="panel command-overview">
           <div className="panel-header">
             <strong>Sessions</strong>
             <span>{sessions.length} saved</span>
@@ -337,6 +340,7 @@ export default function Instructor() {
                 <button
                   className={`instructor-session ${selected === s.id ? "selected" : ""}`}
                   key={s.id}
+                  aria-pressed={selected === s.id}
                   disabled={!!retry || !!teachingRequest}
                   title={
                     retry || teachingRequest
@@ -362,14 +366,21 @@ export default function Instructor() {
         <div>
           {session ? (
             <>
-              <section className="panel instructor-summary">
+              <section className="panel instructor-summary command-detail">
                 <div className="panel-header">
                   <strong>
                     {session.callsign ?? session.trainee} · {session.scenario}
                   </strong>
                   <span className="status">{session.status}</span>
                 </div>
-                <p className="mono">Session {session.id}</p>
+                <details className="evidence-disclosure">
+                  <summary>Session identity and telemetry source</summary>
+                  <p className="mono">Session {session.id}</p>
+                  <p>
+                    Telemetry is reported by the trainee; server-verified
+                    scoring runs at completion.
+                  </p>
+                </details>
                 {session.telemetry ? (
                   <div className="metric-grid">
                     <article className="metric">
@@ -412,8 +423,11 @@ export default function Instructor() {
                   at completion.
                 </p>
               </section>
-              <section className="panel instructor-controls">
-                <div className="command-receipt" role="status">
+              <section className="panel instructor-controls command-detail">
+                <div
+                  className="command-receipt command-lifecycle"
+                  role="status"
+                >
                   <strong>{lifecycle.state}</strong>{" "}
                   {latestCommand && commandLabel(latestCommand)}
                   <small>{lifecycle.detail}</small>
@@ -424,128 +438,140 @@ export default function Instructor() {
                   {button("Pause exercise", { type: "pause", payload: {} })}
                   {button("Resume exercise", { type: "resume", payload: {} })}
                 </div>
-                <h2>Teaching pause</h2>
-                <label>
-                  Explanation for after-action review
-                  <textarea
-                    aria-label="Teaching explanation"
-                    maxLength={1000}
-                    value={teaching}
-                    disabled={busy || !!teachingRequest}
-                    onChange={(e) => setTeaching(e.target.value)}
-                  />
-                </label>
-                <button
-                  className="button subtle"
-                  disabled={
-                    busy || (!teachingRequest && (!enabled || !teaching.trim()))
-                  }
-                  onClick={() => void teach()}
-                >
-                  {teachingRequest
-                    ? "Retry same teaching pause"
-                    : "Pause with teaching note"}
-                </button>
-                {teachingResult && <p role="status">{teachingResult}</p>}
-                <p className="footnote">
-                  Notes remain attached to this session and do not change its
-                  score. Review free text before sharing an archive.
-                </p>
-                <h2>Threat injection</h2>
-                <label>
-                  Injection bearing (degrees)
-                  <input
-                    aria-label="Injection bearing"
-                    type="number"
-                    min="0"
-                    max="359"
-                    value={bearing}
-                    onChange={(e) =>
-                      setBearing(
-                        Math.max(
-                          0,
-                          Math.min(359, Math.trunc(Number(e.target.value))),
-                        ),
-                      )
+                <details className="evidence-disclosure">
+                  <summary>Teaching pause and after-action note</summary>
+                  <h2>Teaching pause</h2>
+                  <label>
+                    Explanation for after-action review
+                    <textarea
+                      aria-label="Teaching explanation"
+                      maxLength={1000}
+                      value={teaching}
+                      disabled={busy || !!teachingRequest}
+                      onChange={(e) => setTeaching(e.target.value)}
+                    />
+                  </label>
+                  <button
+                    className="button subtle"
+                    disabled={
+                      busy ||
+                      (!teachingRequest && (!enabled || !teaching.trim()))
                     }
-                  />
-                </label>
-                <div className="control-buttons">
-                  {button("Inject hostile quad", {
-                    type: "inject_contact",
-                    payload: { kind: "quad", bearing },
-                  })}
-                  {button("Inject no-RF FPV", {
-                    type: "inject_contact",
-                    payload: { kind: "fiber_fpv", bearing },
-                  })}
-                  {button("Inject 6-drone swarm", {
-                    type: "inject_swarm",
-                    payload: { count: 6, bearing },
-                  })}
-                </div>
-                <h2>Sensors</h2>
-                <div className="control-buttons">
-                  {button("Jam radar", {
-                    type: "sensor_fault",
-                    payload: { sensor: "radar", mode: "jammed" },
-                  })}
-                  {button("Fail radar", {
-                    type: "sensor_fault",
-                    payload: { sensor: "radar", mode: "failed" },
-                  })}
-                  {button("Restore radar", {
-                    type: "sensor_restore",
-                    payload: { sensor: "radar" },
-                  })}
-                  {button("Fail RF", {
-                    type: "sensor_fault",
-                    payload: { sensor: "rf", mode: "failed" },
-                  })}
-                  {button("Restore RF", {
-                    type: "sensor_restore",
-                    payload: { sensor: "rf" },
-                  })}
-                </div>
-                <h2>Environment</h2>
-                <div className="control-buttons">
-                  {button("Set day", {
-                    type: "environment",
-                    payload: { night: false },
-                  })}
-                  {button("Set night", {
-                    type: "environment",
-                    payload: { night: true },
-                  })}
-                </div>
-                <p>
-                  Illustrative training models. Recoverable sessions are
-                  disconnected or have not sent an update for six seconds.
-                </p>
+                    onClick={() => void teach()}
+                  >
+                    {teachingRequest
+                      ? "Retry same teaching pause"
+                      : "Pause with teaching note"}
+                  </button>
+                  {teachingResult && <p role="status">{teachingResult}</p>}
+                  <p className="footnote">
+                    Notes remain attached to this session and do not change its
+                    score. Review free text before sharing an archive.
+                  </p>
+                </details>
+                <details className="evidence-disclosure">
+                  <summary>Inject threats and change sensor conditions</summary>
+                  <h2>Threat injection</h2>
+                  <label>
+                    Injection bearing (degrees)
+                    <input
+                      aria-label="Injection bearing"
+                      type="number"
+                      min="0"
+                      max="359"
+                      value={bearing}
+                      onChange={(e) =>
+                        setBearing(
+                          Math.max(
+                            0,
+                            Math.min(359, Math.trunc(Number(e.target.value))),
+                          ),
+                        )
+                      }
+                    />
+                  </label>
+                  <div className="control-buttons">
+                    {button("Inject hostile quad", {
+                      type: "inject_contact",
+                      payload: { kind: "quad", bearing },
+                    })}
+                    {button("Inject no-RF FPV", {
+                      type: "inject_contact",
+                      payload: { kind: "fiber_fpv", bearing },
+                    })}
+                    {button("Inject 6-drone swarm", {
+                      type: "inject_swarm",
+                      payload: { count: 6, bearing },
+                    })}
+                  </div>
+                  <h2>Sensors</h2>
+                  <div className="control-buttons">
+                    {button("Jam radar", {
+                      type: "sensor_fault",
+                      payload: { sensor: "radar", mode: "jammed" },
+                    })}
+                    {button("Fail radar", {
+                      type: "sensor_fault",
+                      payload: { sensor: "radar", mode: "failed" },
+                    })}
+                    {button("Restore radar", {
+                      type: "sensor_restore",
+                      payload: { sensor: "radar" },
+                    })}
+                    {button("Fail RF", {
+                      type: "sensor_fault",
+                      payload: { sensor: "rf", mode: "failed" },
+                    })}
+                    {button("Restore RF", {
+                      type: "sensor_restore",
+                      payload: { sensor: "rf" },
+                    })}
+                  </div>
+                  <h2>Environment</h2>
+                  <div className="control-buttons">
+                    {button("Set day", {
+                      type: "environment",
+                      payload: { night: false },
+                    })}
+                    {button("Set night", {
+                      type: "environment",
+                      payload: { night: true },
+                    })}
+                  </div>
+                  <p>
+                    Illustrative training models. Recoverable sessions are
+                    disconnected or have not sent an update for six seconds.
+                  </p>
+                </details>
               </section>
               <section className="panel command-audit">
-                <div className="panel-header">
-                  <strong>Command history</strong>
-                </div>
-                {session.commands.length ? (
-                  session.commands.map((c) => (
-                    <p key={c.seq}>
-                      <b>
-                        #{c.seq} · {commandLabel(c)}
-                      </b>{" "}
-                      · {session.callsign ?? session.trainee}
-                      <small>Session {session.id}</small>
-                      <br />
-                      <span className="dim">
-                        Issued {new Date(c.issued_at).toLocaleTimeString()} ·{" "}
-                        {commandState(c, session.status).state} ·{" "}
-                        {commandState(c, session.status).detail}
-                      </span>
-                    </p>
-                  ))
-                ) : (
-                  <p>No instructor commands.</p>
-                )}
+                <details className="evidence-disclosure">
+                  <summary>
+                    Command history · {session.commands.length} issued
+                  </summary>
+                  <div className="panel-header">
+                    <strong>Command history</strong>
+                  </div>
+                  {session.commands.length ? (
+                    session.commands.map((c) => (
+                      <p key={c.seq}>
+                        <b>
+                          #{c.seq} · {commandLabel(c)}
+                        </b>{" "}
+                        · {session.callsign ?? session.trainee}
+                        <small>Session {session.id}</small>
+                        <br />
+                        <span className="dim">
+                          Issued {new Date(c.issued_at).toLocaleTimeString()} ·{" "}
+                          {commandState(c, session.status).state} ·{" "}
+                          {commandState(c, session.status).detail}
+                        </span>
+                      </p>
+                    ))
+                  ) : (
+                    <p>No instructor commands.</p>
+                  )}
+                </details>
               </section>
             </>
           ) : (

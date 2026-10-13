@@ -1,3 +1,4 @@
+import { PageHeader } from "./UI";
 import { useEffect, useRef, useState } from "react";
 import { api, download } from "./storage";
 import { parseJSONImport } from "./import-json";
@@ -107,13 +108,16 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
   }
   return (
     <main className="instructor-page advanced-page">
-      <header className="page-heading">
-        <div>
-          <h1>Recorded practice</h1>
-          <p>Bounded observation playback and unscored response practice.</p>
-        </div>
-        <a href="/instructor">Instructor</a>
-      </header>
+      <PageHeader
+        eyebrow="OBSERVATION PRACTICE"
+        title="Recorded practice"
+        description="Replay recorded observations and practise responses without a tactical score."
+        actions={
+          <nav className="advanced-nav">
+            <a href="/instructor">Instructor</a>
+          </nav>
+        }
+      />
       <p>
         Recorded samples are held for at most one second, with no invented
         motion between samples. No tactical score, impact simulation or skill

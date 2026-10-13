@@ -1,3 +1,4 @@
+import { PageHeader } from "./UI";
 import FinaleEvidence, { type FinaleManifest } from "./FinaleEvidence";
 import { useEffect, useState } from "react";
 import { api } from "./storage";
@@ -78,24 +79,60 @@ export default function Evidence() {
   }, []);
   return (
     <main id="system-evidence" className="instructor-page advanced-page">
-      <header className="page-heading">
-        <h1>VYUHA system evidence</h1>
-        <nav className="advanced-nav">
-          <a href="/system/benchmark">Device benchmark</a>
-          <a href="/instructor">Instructor</a>
-        </nav>
-      </header>
+      <PageHeader
+        eyebrow="SOURCE, VALIDATION AND LIMITS"
+        title="VYUHA system evidence"
+        description="Navigate measured results, release provenance and outstanding validation."
+        actions={
+          <nav className="advanced-nav">
+            <a href="/system/benchmark">Device benchmark</a>
+            <a href="/instructor">Instructor</a>
+          </nav>
+        }
+      />
       <p>
         Measured facts from a versioned validation manifest. Local LAN training
         prototype. Officer controls require authenticated sessions; trusted
         HTTPS protects network credentials. Illustrative parameters and training
         mastery estimates do not establish operational readiness.
       </p>
+      <nav className="evidence-index" aria-label="Evidence categories">
+        <a href="/system/compliance">
+          <strong>Requirements & proof</strong>
+          <small>Feature-specific working routes and acceptance records</small>
+        </a>
+        <a href="#candidate-evidence">
+          <strong>Current candidate</strong>
+          <small>
+            Source freshness, regression and pending platform checks
+          </small>
+        </a>
+        <a href="#historical-evidence">
+          <strong>Historical measurements</strong>
+          <small>
+            Dated device, network and synthetic performance evidence
+          </small>
+        </a>
+        <a href="/system/benchmark">
+          <strong>Measure this device</strong>
+          <small>Run a local rendering benchmark and export its samples</small>
+        </a>
+      </nav>
       {error && <p role="alert">{error}</p>}
       {data && (
         <>
-          {data.finale && <FinaleEvidence manifest={data.finale} />}
-          <section className="panel advanced-card">
+          {data.finale && (
+            <div id="candidate-evidence">
+              <FinaleEvidence manifest={data.finale} />
+            </div>
+          )}
+          <details
+            className="panel advanced-card evidence-disclosure"
+            id="historical-evidence"
+          >
+            <summary>
+              Historical release validation and dated measurements
+            </summary>
             <h2>
               {data.finale
                 ? "Historical release validation"
@@ -156,7 +193,7 @@ export default function Evidence() {
                 </tr>
               </tbody>
             </table>
-          </section>
+          </details>
           <section className="panel advanced-card">
             <h2>Measured performance</h2>
             <p>

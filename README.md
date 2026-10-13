@@ -1,90 +1,58 @@
-# VYUHA
+# VYUHA · Counter-drone decision training
 
-## Current Finale software release candidate
+**WhiteList&0 · Team185350 · SIH26247 · Software**
 
-Version `1.1.0-rc.2` on `feature/vyuha-finale-edition`:617 backend/172 frontend PASS, all versioned parity,18/22historical cards,27byte-identical clone assets. Linux RC1 defects remediated; RC2 native Linux retest and Windows/phone acceptance remain pending. Historical RC1 audit84/100provisional; no new weighted RC2 score. See [engineering acceptance](docs/finale/FINAL-SOFTWARE-ACCEPTANCE.md), [Linux findings](docs/finale/rc2/LINUX-FINDINGS.md), [retesting](docs/finale/rc2/RETEST.md) and [all93finding matrix](docs/finale/AUDIT-CLOSURE-MATRIX.md). RC1 and original stable fallback are unchanged.
+VYUHA is a local-first 3D decision-training prototype. Trainees observe mixed aerial contacts through simulated sensors, classify them, choose a response and review a server-verified reconstruction. Adaptive Director v2 selects reproducible raids using recorded skill evidence; Ghost explains decisions, while Time Machine, What-if and reference runs keep original training evidence separate.
 
-The sections below retain originalstable/earliercandidate provenance; they do not describe Finale additions or currenttestcounts.
+## Current development and protected releases
 
-# VYUHA — counter-drone training
+`feature/vyuha-ultimate-experience` develops the Precision Command experience. It is **not yet a validated replacement** for immutable `v1.1.0-rc.2` at `bfe221fb5ad3ac2519277e342761bd770b3e80d8`. RC2 passed617backend/172frontend tests, full parity,18baseline/22stored compatibility and production build. The original `v1.0.1` fallback andRC1 remain unchanged. Final stable approval is withheld pending physical acceptance for the actual final candidate.
 
-**WhiteList&0 · Team ID 185350 · SIH26247 · Software · target: 4 October 2026.**
+[Engineering evidence index](docs/finale/README.md) · [Release gates](docs/finale/FINAL-RELEASE-GATES.json) · [Physical acceptance](docs/finale/PHYSICAL-TEST-RESULTS.md)
 
-VYUHA is a local-first training prototype for recognising mixed aerial contacts, choosing responses and reviewing decisions. A 30 Hz browser worker models illustrative radar, EO/IR, RF and IFF observations. The local server reconstructs the issued scenario, actions and instructor interventions before verifying scores.
+## Prepare and run locally
 
-## Run on one laptop
+Requirements: Python3.11+, Node/npm and internet for the first locked dependency installation. Create the virtual environment locally; do not copy it between operating systems.
 
 ```sh
-bash scripts/start-local.sh
+bash scripts/start-local.sh --port 8000
 ```
 
-Open http://127.0.0.1:8000. First setup installs locked dependencies and needs Internet. Built runtime assets and services are hosted locally. Development: `bash scripts/dev.sh`. Stop an existing server before reusing port 8000.
+The setup installs locked dependencies, builds locally hosted assets and prompts for an officer password if needed. For prepared LAN training:
 
-## Run on a trusted unit LAN
+```sh
+bash scripts/start-unit.sh --port 8000
+```
 
-After setup/build, run `bash scripts/start-unit.sh`. Open the printed reachable LAN URL on trainee browsers and `/instructor` on the officer laptop. Use a callsign; each browser retains its server-assigned trainee identity. See [Unit Mode](docs/UNIT-MODE.md), [hardening/deployment](docs/STAGE-6-HARDENING.md) and [backup/restore](scripts/backup-data.py). This prototype has no production authentication; use a trusted network.
+Choose the actual Wi-Fi/Ethernet URL printed by the server. Training services/assets run locally; there is no required cloud service during a drill. Officer routes require authentication. Use an isolated trusted LAN and browser-trusted HTTPS for credential confidentiality; do not expose the prototype publicly.
 
-Physical multi-device LAN training was validated. Runtime assets and services are hosted locally; dedicated WAN-disconnected physical validation remains pending.
+On native Windows use `scripts/start-local.ps1` and `scripts/start-unit.ps1`; Git Bash uses the Windows-created `.venv/Scripts/python.exe`. See [deployment guide](docs/finale/DEPLOYMENT-GUIDE.md) for certificate, backup and restore instructions. Restore into a new database file, never over a live database.
 
-Dedicated physical WAN-off/LAN-on validation: **NOT PERFORMED BEFORE SUBMISSION**. Reason: **Required physical/network setup unavailable during final validation window.** This is a disclosed validation limitation, not a failed architectural test, and does not alone block release. No other acceptance requirement is waived.
+## Training and instructor workflows
 
-## Training loop
+- Training ground: adaptive raid preparation, observed contact selection, designation, classification and simulated Hold/RF jammer/Kinetic responses. Legacy Night Watch remains explicitly selectable.
+- Shared Crew: assigned spotter/responder capabilities, attributed decisions, reconnection and shared coordination history. Shared results do not credit individual learning profiles.
+- Instructor / White Cell: protected multi-session monitoring, observed/reference pictures, faults, injections and command acknowledgment/application evidence.
+- Exercise Studio: seeded Raid Composer, versioned frozen scenarios, authored library and group assignments.
+- AAR / Analytics: original verified scores, evidence-based decision paths, replay, hypothetical comparisons and persisted skill trends.
+- Rapid ID / Recorded practice: recognition and bounded unscored observation practice.
+- Transfer / Evidence / Compliance: integrity-checked archives, transparent release receipts and directly linked requirement proof.
 
-1. Join a unit and inspect four persistent Beta training estimates.
-2. Prepare an adaptive drill. The seeded Thompson-sampling Director selects a focus, difficulty and scenario; its roughly 70% success target is heuristic and uncalibrated.
-3. Observe, designate and classify type/identity; hold, jam an RF-linked threat or choose an appropriate modeled kinetic response. Instructor commands can change sensors or inject contacts.
-4. Complete the drill and wait for **Server verified**. Ghost Expert explains reconstructed facts; Time Machine revisits the actual decision timeline.
-5. Inspect updated profile, next Director recommendation and persisted trainee/unit trends. These are training estimates, not operational readiness or causal efficacy measurements.
+## Validation boundaries
 
-## Capabilities and evidence
+Native Arch Linux RC1 passed with genuine defects; RC2 remediated those findings. Native RC2 Linux retest, Windows and fresh separatephone/LAN/WAN/HTTPS trust remain pending. Earlier Mac+Android LAN validation and a team-reported historical WAN-off exercise are dated evidence, not proof of the current candidate.
 
-The canonical [feature manifest](docs/feature-manifest.json) uses IMPLEMENTED, VALIDATED, EXPERIMENTAL and DEFERRED with explicit evidence scopes. Supported capabilities include urban/rural terrain and fog, five Red Force patterns, three illustrative Doctrine Packs, immutable Scenario Studio exercises, auditable hostile-order scoring, 10–20-round Rapid ID, individual/unit analytics, graphics fallback and recovery.
+Sensor signatures, ranges, effects and adaptive estimates are illustrative training models. No empirical sensor calibration, operational qualification or demonstrated human learning gain is claimed. Officer authentication does not turn independent callsigns into secure-exam learner identity. HMAC establishes shared-key bundle integrity, not donor identity or non-repudiation.
 
-Ghost is rule-grounded, with no LLM. Recorded JSON observation practice is experimental and does not invent tactical scores, impacts or missing ground truth. Consent-gated evaluation tooling has no completed human study. Portable HMAC bundles verify shared-secret integrity, not donor identity or non-repudiation. Local audio is a non-scoring illustrative cue. Crew roles, live sensor feeds, VR, rain, validated military models and production identity remain deferred.
-
-The [final validation record](docs/FINAL-VALIDATION.md), [release evidence](docs/release-evidence.json) and `/system/evidence` distinguish architecture, software checks, physical LAN evidence, simulated load and missing physical WAN validation. The UI warns when source differs from its validation manifest. `/system/benchmark` measures device rendering and worker cost without reducing simulation fidelity.
-
-Measured scope: 18 historical completions retained; six simulated concurrent clients completed 18 sessions; M1 MacBook Air/8 GB fixed Medium and Android/Chrome/6 GiB Auto measured median 60 FPS at 8–200 contacts in 20-second runs. These are bounded measurements, not sustained-load or device certification. The simulated-learner comparison is abstract and uncalibrated, not human efficacy evidence.
-
-## Demonstrate and verify
-
-Release branch: `release/v1.0.0`; immutable tag: `v1.0.0`. Official [six-slide PDF](docs/submission/VYUHA-SIH26247-Team185350.pdf), [primary video](docs/submission/VYUHA-primary-demo-final.mp4) and [backup video](docs/submission/VYUHA-backup-demo-final.mp4) are included. Primary170s uses local synthetic narration; backup120s uses chronological actual browser captures with held frames. Separate Android saved-file playback was confirmed by the user. Exact release/remote/source archive receipt accompanies the submission package.
-
-Use the fixed [Night Decoy Strike preset](examples/demo-night-decoy-strike.json), [demo runbook](docs/DEMO-RUNBOOK.md), [judge Q&A](docs/JUDGE-QA.md) and [claim audit](docs/CLAIM-AUDIT.md). An authored scenario is distinct from a Director-generated drill; both use the ordinary scoring pipeline. Early ending visibly preserves the 75-second scoring projection.
+## Development checks
 
 ```sh
 .venv/bin/python -m pytest server/tests -q
 cd client
 npm test
+npm run lint
+npm run format:check
 npm run build
 ```
 
-Tests use disposable databases. Tactical parity covers 312 checkpoints. Release branch/tag status and final counts are recorded in FINAL-VALIDATION.md. The source archive excludes databases, keys, installed dependencies, private history and obsolete presentation files. Docker configuration exists; its image build has not been validated on this laptop.
-
-## Limitations
-
-Dedicated physical WAN-off/LAN-on validation was not completed before submission. Multi-device LAN operation, local asset serving, process-outage recovery and queued-event resynchronization were validated separately.
-
-Sensor/threat/effector laws and Doctrine Packs are illustrative. Consistent replay does not attest truthful human inputs; fabricated plausible action logs remain possible. Plain LAN HTTP can constrain cached cold reload when the local origin is absent; active queued actions and subsequent resynchronization were validated separately. Formal human efficacy, field evaluation and operational certification remain future work.
-
-## Competitive polish candidate
-
-`feature/competitive-polish-v1` adds operator guidance and real command lifecycle display, an optional six-stop capability tour, external replay camera presets, a persisted scenario × four-skill heatmap, and illustrative thermal/night presentation. Authoritative simulation/scoring/Director/Ghost and quality contracts are unchanged.
-
-Candidate checks: 139 backend tests, 53 frontend tests, all 312 parity checkpoints, build and 18 historical sessions. Medium live-view medians remain 60 FPS at 8/50/100/200 contacts; 200-contact Follow replay stress measured 58 FPS. See [candidate validation](docs/qa-competitive-polish/FINAL-VALIDATION.md) and [claim audit](docs/qa-competitive-polish/CLAIM-AUDIT.md). `/system/evidence` serves the candidate manifest when present and verifies its source hash.
-
-The sealed v1.0.0 tag, branch and historical submission artifacts remain unchanged. The candidate is eligible for v1.0.1; no optional release/tag or final video/PDF is created automatically. Physical WAN-off/LAN-on validation remains **NOT PERFORMED BEFORE SUBMISSION** for the recorded setup limitation.
-
-## Navigation and operator access
-
-The shared menu is available on every page. Use **Data / operations → Data transfer** for portable bundles and **Exercises → Recorded practice** for recorded observations; manual URLs are unnecessary. **Rapid ID → Evaluation protocol** opens the optional, agreement-gated pilot tool. **System evidence → Device benchmark** opens engineering measurements. The **Operator guide** remains a separate menu button. On a narrow screen, use **Toggle navigation**; the labelled drawer scrolls to its lower entries.
-
-**After-action review** opens the history chooser; session/group history rows open refreshable reviews. **Unit training overview** retains the embedded workspace when selected inside training, preserving its worker; other pages use the canonical unit overview. **Adaptive Director** opens the existing adaptive mode within Training ground. All pages work with local and Unit servers; trainee pages retain the existing Unit Mode identity requirement.
-
-Navigation audit: [route matrix](docs/qa-navigation/ROUTE-MATRIX.md) and [audit/results](docs/qa-navigation/NAVIGATION-AUDIT.md). Current navigation checks are 139 backend / 64 frontend / 312 parity with a successful build; historical candidate/release measurements remain dated and are not replaced by these counts.
-
-## Final software source: v1.0.1
-
-Final software release branch: `release/v1.0.1`; immutable tag: `v1.0.1`. This includes competitive polish plus the navigation/discoverability fix. [Final software validation](docs/release-v1.0.1/FINAL-VALIDATION.md) records the fresh 139 backend /64 frontend /312 parity checks, production build, 18/18 baseline and21/21 current history compatibility, and final UI navigation. The served evidence manifest is refreshed; earlier performance/physical/media measurements retain explicit historical provenance.
-
-The exact tagged commit and verified remote refs are in the external `outputs/release-v1.0.1` seal receipt. Use [the final recording-source instructions](docs/DEMO-RUNBOOK.md) for the planned 7–8 minute video. Existing PDF/PPT/video/submission archives remain historical and were not regenerated. Freeze features after the verified tag; any critical blocker needs separate validation and an explicit patch-release decision.
+All assets are bundled locally. New UI work preserves deterministic simulation, observed-contact boundaries, existing scoring and historical archives. Source-specific evidence must be refreshed before a new immutable candidate is sealed.

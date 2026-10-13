@@ -54,20 +54,22 @@ function CameraRig({
   const frames = useRef(0);
   const then = useRef(0);
   const aim = useRef(new THREE.Vector3(40, 18, 150));
+  const desiredPosition = useMemo(() => new THREE.Vector3(), []);
+  const desiredAim = useMemo(() => new THREE.Vector3(), []);
   useFrame(({ clock }, dt) => {
     if (preset) {
       const pose = cameraPose(preset, tracks, selected);
       camera.position.lerp(
-        new THREE.Vector3(...pose.position),
+        desiredPosition.set(...pose.position),
         1 - Math.exp(-dt * 5),
       );
-      aim.current.lerp(new THREE.Vector3(...pose.aim), 1 - Math.exp(-dt * 5));
+      aim.current.lerp(desiredAim.set(...pose.aim), 1 - Math.exp(-dt * 5));
     } else {
       const next =
         target && target.active
-          ? new THREE.Vector3(target.x, target.altitude, target.z)
-          : new THREE.Vector3(finale ? 0 : 40, 18, finale ? 1500 : 150);
-      aim.current.lerp(next, 0.12);
+          ? desiredAim.set(target.x, target.altitude, target.z)
+          : desiredAim.set(finale ? 0 : 40, 18, finale ? 1500 : 150);
+      aim.current.lerp(next, 1 - Math.exp(-dt * 7.67));
       camera.position.set(
         sensorOrigin?.x ?? 0,
         sensorOrigin?.altitude ?? (finale ? 2 : 14),
@@ -99,10 +101,10 @@ function Aircraft({
   const group = useRef<THREE.Group>(null);
   const target = useMemo(() => new THREE.Vector3(), []);
   const shape = opticalRenderShape(track);
-  useFrame(({ clock }) => {
+  useFrame(({ clock }, dt) => {
     if (!group.current) return;
     target.set(track.x, track.altitude, track.z);
-    group.current.position.lerp(target, 0.3);
+    group.current.position.lerp(target, 1 - Math.exp(-dt * 21.4));
     group.current.rotation.y = (-track.bearing * Math.PI) / 180;
     if (shape === "bird")
       group.current.rotation.z = Math.sin(clock.elapsedTime * 9) * 0.13;
@@ -111,7 +113,7 @@ function Aircraft({
   const color = hot
     ? palettes[palette].hot
     : selected
-      ? "#cdf46d"
+      ? "#8ed6ff"
       : vision === "night"
         ? "#b9ff9b"
         : "#bbc6ce";
@@ -182,7 +184,7 @@ function Aircraft({
         <mesh>
           <sphereGeometry args={[4, 12, 8]} />
           <meshBasicMaterial
-            color="#cdf46d"
+            color="#8ed6ff"
             wireframe
             transparent
             depthTest={false}

@@ -49,7 +49,7 @@ export default function OfficerGate({ children }: { children: ReactNode }) {
   if (authenticated)
     return (
       <>
-        <div className="setup-bar">
+        <div className="setup-bar officer-session-bar">
           <span>
             Officer session · expires after eight hours or server restart
           </span>
@@ -69,7 +69,7 @@ export default function OfficerGate({ children }: { children: ReactNode }) {
       </>
     );
   return (
-    <main className="instructor-page">
+    <main className="instructor-page officer-login">
       <section className="panel">
         <h1>Officer sign-in</h1>
         <p>

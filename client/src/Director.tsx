@@ -88,9 +88,15 @@ export function DirectorCard({
           <strong>{decision.difficulty_label}</strong>
         </div>
         <div>
-          <span>Target</span>
-          <strong>≈70% success</strong>
-          <small>Heuristic difficulty target · not calibrated</small>
+          <span>Selection basis</span>
+          <strong>Training challenge</strong>
+          <details className="director-basis">
+            <summary>Difficulty model</summary>
+            <small>
+              ≈70% success is a heuristic difficulty target, not a calibrated
+              prediction of your next result.
+            </small>
+          </details>
         </div>
       </div>
       <h3>Why this focus?</h3>

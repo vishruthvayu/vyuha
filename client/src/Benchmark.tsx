@@ -1,6 +1,8 @@
+import { PageHeader } from "./UI";
 import { useEffect, useRef, useState } from "react";
 import { makeScenario } from "./scenario";
-import { Scene, type Vision } from "./Scene";
+import { Scene } from "./LazyScene";
+import type { Vision } from "./visibility";
 import {
   palettes,
   type ThermalPalette,
@@ -231,10 +233,16 @@ export default function Benchmark() {
   };
   return (
     <main className="instructor-page advanced-page">
-      <header className="page-heading">
-        <h1>Device performance check</h1>
-        <a href="/system/evidence">System evidence</a>
-      </header>
+      <PageHeader
+        eyebrow="LOCAL DEVICE MEASUREMENT"
+        title="Device performance check"
+        description="Measure synthetic rendering and worker workloads, then export the actual samples."
+        actions={
+          <nav className="advanced-nav">
+            <a href="/system/evidence">System evidence</a>
+          </nav>
+        }
+      />
       <p>
         Bounded rendering and worker test. Choose 20, 60 or 180 seconds; a
         180-second Finale fixture remains logically active throughout the

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import SkillHeatmap from "./SkillHeatmap";
+import ReviewTrendChart from "./review-TrendChart";
 import { api } from "./storage";
 import type { UnitIdentity } from "./unit-state";
 import type { GhostSkill } from "./types";
@@ -43,45 +44,49 @@ export function Trend({
 }) {
   return (
     <>
-      <p>{history.note}</p>
-      <div className="table-scroll">
-        <table>
-          <thead>
-            <tr>
-              <th>Sequence</th>
-              <th>Session / processed</th>
-              {Object.values(skillLabel).map((label) => (
-                <th key={label}>{label}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Prior</td>
-              <td>Beta(1,1), before observations</td>
-              {Object.keys(skillLabel).map((s) => (
-                <td key={s}>50.00%</td>
-              ))}
-            </tr>
-            {history.points.map((p) => (
-              <tr key={p.session_id}>
-                <td>
-                  {p.sequence} · {p.kind}
-                </td>
-                <td title={p.session_id}>
-                  {p.session_id.slice(0, 10)}
-                  <small>{new Date(p.processed_at).toLocaleString()}</small>
-                </td>
-                {Object.keys(skillLabel).map((s) => (
-                  <td key={s}>
-                    {(100 * p.means[s as GhostSkill]).toFixed(2)}%
-                  </td>
+      <ReviewTrendChart points={history.points} />
+      <p className="review-evidence-boundary">{history.note}</p>
+      <details className="analytics-detail">
+        <summary>Exact historical estimates and baseline prior</summary>
+        <div className="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Sequence</th>
+                <th>Session / processed</th>
+                {Object.values(skillLabel).map((label) => (
+                  <th key={label}>{label}</th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Prior</td>
+                <td>Beta(1,1), before observations</td>
+                {Object.keys(skillLabel).map((s) => (
+                  <td key={s}>50.00%</td>
+                ))}
+              </tr>
+              {history.points.map((p) => (
+                <tr key={p.session_id}>
+                  <td>
+                    {p.sequence} · {p.kind}
+                  </td>
+                  <td title={p.session_id}>
+                    {p.session_id.slice(0, 10)}
+                    <small>{new Date(p.processed_at).toLocaleString()}</small>
+                  </td>
+                  {Object.keys(skillLabel).map((s) => (
+                    <td key={s}>
+                      {(100 * p.means[s as GhostSkill]).toFixed(2)}%
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </details>
       {!history.points.length && (
         <p>
           No completed training observations yet. Only baseline priors are
@@ -93,7 +98,7 @@ export function Trend({
 }
 export default function Analytics({ identity }: { identity?: UnitIdentity }) {
   const [trainees, setTrainees] = useState<UnitIdentity[]>([]),
-    [tid, setTid] = useState(identity?.trainee_id ?? "CADET-01"),
+    [tid, setTid] = useState(identity?.trainee_id ?? ""),
     [unit, setUnit] = useState(identity?.unit_id ?? "local"),
     [units, setUnits] = useState<{ id: string; name: string }[]>([]),
     [history, setHistory] = useState<History | null>(null),
@@ -103,14 +108,28 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
     } | null>(null),
     [a, setA] = useState(""),
     [b, setB] = useState(""),
-    [error, setError] = useState("");
+    [error, setError] = useState(""),
+    [view, setView] = useState<
+      "overview" | "scenario" | "comparison" | "director" | "unit"
+    >("overview");
   useEffect(() => {
+    let stopped = false;
     void api<{ units: { id: string; name: string }[] }>("/units")
-      .then((r) => setUnits(r.units))
-      .catch((e) => setError(e.message));
+      .then((r) => {
+        if (!stopped) setUnits(r.units);
+      })
+      .catch((e) => {
+        if (!stopped) setError(e.message);
+      });
+    return () => {
+      stopped = true;
+    };
   }, []);
   useEffect(() => {
     let stopped = false;
+    setUnitHistory(null);
+    setTrainees([]);
+    setError("");
     void Promise.all([
       api<{ trainees: UnitIdentity[] }>(`/units/${unit}/trainees`),
       api<{ points: Point[]; note: string }>(`/units/${unit}/analytics`),
@@ -126,7 +145,9 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
           setUnitHistory(u);
         }
       })
-      .catch((e) => setError(e.message));
+      .catch((e) => {
+        if (!stopped) setError(e.message);
+      });
     return () => {
       stopped = true;
     };
@@ -146,11 +167,13 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
         setA(h.sessions.at(-2)?.id ?? h.sessions[0]?.id ?? "");
         setB(h.sessions.at(-1)?.id ?? "");
       })
-      .catch((e) => setError(e.message));
+      .catch((e) => {
+        if (!stopped) setError(e.message);
+      });
     return () => {
       stopped = true;
     };
-  }, [tid]);
+  }, [tid, unit]);
   const left = history?.sessions.find((s) => s.id === a),
     right = history?.sessions.find((s) => s.id === b);
   const metrics: [string, (s: Session) => number][] = [
@@ -186,7 +209,16 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
       <div className="studio-fields">
         <label>
           Unit
-          <select value={unit} onChange={(e) => setUnit(e.target.value)}>
+          <select
+            value={unit}
+            onChange={(e) => {
+              setTid("");
+              setHistory(null);
+              setA("");
+              setB("");
+              setUnit(e.target.value);
+            }}
+          >
             {units.map((u) => (
               <option key={u.id} value={u.id}>
                 {u.name}
@@ -211,118 +243,218 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
           </select>
         </label>
       </div>
-      <SkillHeatmap unit={unit} trainee={tid} />
+      <nav className="analytics-tabs" aria-label="Analytics views">
+        {(
+          [
+            ["overview", "Overview"],
+            ["scenario", "Scenario × skill"],
+            ["comparison", "Session comparison"],
+            ["director", "Director history"],
+            ["unit", "Unit trend"],
+          ] as const
+        ).map(([key, label]) => (
+          <button
+            key={key}
+            className="button subtle"
+            aria-pressed={view === key}
+            onClick={() => setView(key)}
+          >
+            {label}
+          </button>
+        ))}
+      </nav>
+      {view === "overview" && (
+        <section className="panel advanced-card analytics-overview">
+          <div className="eyebrow">SELECTED TRAINEE · PERSISTED EVIDENCE</div>
+          <h2>Evidence at a glance</h2>
+          <div className="review-result-grid">
+            <article className="metric">
+              <span>Completed tactical sessions</span>
+              <strong>{history ? history.sessions.length : "—"}</strong>
+              <small>Selected trainee only</small>
+            </article>
+            <article className="metric">
+              <span>Processed learning-ledger entries</span>
+              <strong>{history ? history.points.length : "—"}</strong>
+              <small>Ledger entries; not people or actions</small>
+            </article>
+            <article className="metric">
+              <span>Latest recorded score</span>
+              <strong>
+                {history?.sessions.at(-1)
+                  ? `${history.sessions.at(-1)!.score}/100`
+                  : "—"}
+              </strong>
+              <small>
+                {history?.sessions.at(-1)?.title ??
+                  "No completed tactical session"}
+              </small>
+            </article>
+          </div>
+          <p className="review-evidence-boundary">
+            Scores are simulated exercise outcomes. Skill means are historical
+            Bayesian estimates; shared Crew sessions do not contribute to
+            individual learning profiles. Observed differences do not establish
+            learning efficacy.
+          </p>
+          <button className="text-button" onClick={() => setView("comparison")}>
+            Inspect two recorded sessions
+          </button>
+        </section>
+      )}
+      {view === "scenario" && <SkillHeatmap unit={unit} trainee={tid} />}
       {history && (
         <>
-          <section className="panel advanced-card">
-            <h2>Trainee skill trend</h2>
-            <Trend history={history} />
-          </section>
-          <section className="panel advanced-card">
-            <h2>Session A vs Session B</h2>
-            <div className="studio-fields">
-              {[
-                ["A", a, setA],
-                ["B", b, setB],
-              ].map(([label, id, set]) => (
-                <label key={label as string}>
-                  Session {label as string}
-                  <select
-                    value={id as string}
-                    onChange={(e) =>
-                      (set as (id: string) => void)(e.target.value)
-                    }
-                  >
-                    <option value="">Select session</option>
-                    {history.sessions.map((s) => (
-                      <option key={s.id} value={s.id}>
-                        {s.title} · {s.id.slice(0, 8)} · {s.score}/100
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              ))}
-            </div>
-            {left && right ? (
-              <>
-                <p>
-                  A: {left.pack}, seed {left.seed}, observed T+
-                  {left.observed_tick === null
-                    ? "unknown"
-                    : (left.observed_tick / 30).toFixed(2)}
-                  s. B: {right.pack}, seed {right.seed}, observed T+
-                  {right.observed_tick === null
-                    ? "unknown"
-                    : (right.observed_tick / 30).toFixed(2)}
-                  s.
-                </p>
+          {view === "overview" && (
+            <section className="panel advanced-card analytics-detail">
+              <h2>Trainee skill trend</h2>
+              <Trend history={history} />
+            </section>
+          )}
+          {view === "comparison" && (
+            <section className="panel advanced-card analytics-detail">
+              <div className="eyebrow">
+                DESCRIPTIVE COMPARISON · ORIGINALS UNCHANGED
+              </div>
+              <h2>Session A vs Session B</h2>
+              <div className="studio-fields">
+                {[
+                  ["A", a, setA],
+                  ["B", b, setB],
+                ].map(([label, id, set]) => (
+                  <label key={label as string}>
+                    Session {label as string}
+                    <select
+                      value={id as string}
+                      onChange={(e) =>
+                        (set as (id: string) => void)(e.target.value)
+                      }
+                    >
+                      <option value="">Select session</option>
+                      {history.sessions.map((s) => (
+                        <option key={s.id} value={s.id}>
+                          {s.title} · {s.id.slice(0, 8)} · {s.score}/100
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                ))}
+              </div>
+              {left && right ? (
+                <>
+                  <p>
+                    A: {left.pack}, seed {left.seed}, observed T+
+                    {left.observed_tick === null
+                      ? "unknown"
+                      : (left.observed_tick / 30).toFixed(2)}
+                    s. B: {right.pack}, seed {right.seed}, observed T+
+                    {right.observed_tick === null
+                      ? "unknown"
+                      : (right.observed_tick / 30).toFixed(2)}
+                    s.
+                  </p>
+                  <div className="table-scroll">
+                    <table>
+                      <caption>
+                        Persisted hostile-node averages and distinct failure
+                        counts
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th>Metric</th>
+                          <th>A</th>
+                          <th>B</th>
+                          <th>Observed difference B − A</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {metrics.map(([label, value]) => (
+                          <tr key={label}>
+                            <td>{label}</td>
+                            <td>{value(left)}</td>
+                            <td>{value(right)}</td>
+                            <td>{(value(right) - value(left)).toFixed(2)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>
+                    Node scores average hostile contacts before penalties;
+                    failure counts use distinct contact/reason pairs.
+                    Differences do not establish that training caused
+                    improvement.
+                  </p>
+                </>
+              ) : (
+                <p>Complete two tactical sessions for a comparison.</p>
+              )}
+            </section>
+          )}
+          {view === "director" && (
+            <section className="panel advanced-card analytics-detail">
+              <h2>Director focus history</h2>
+              <div className="table-scroll">
                 <table>
+                  <caption>
+                    Persisted adaptive selections and model estimates
+                  </caption>
                   <thead>
                     <tr>
-                      <th>Metric</th>
-                      <th>A</th>
-                      <th>B</th>
-                      <th>Observed difference B − A</th>
+                      <th>Session</th>
+                      <th>Selected focus</th>
+                      <th>Estimate before</th>
+                      <th>Estimate after completion</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {metrics.map(([label, value]) => (
-                      <tr key={label}>
-                        <td>{label}</td>
-                        <td>{value(left)}</td>
-                        <td>{value(right)}</td>
-                        <td>{(value(right) - value(left)).toFixed(2)}</td>
-                      </tr>
-                    ))}
+                    {history.points
+                      .filter((p) => p.director_focus)
+                      .map((p) => (
+                        <tr key={p.session_id}>
+                          <td>
+                            {p.sequence} · {p.session_id.slice(0, 8)}
+                          </td>
+                          <td>{skillLabel[p.director_focus!]}</td>
+                          <td>
+                            {((p.director_mastery_before ?? 0.5) * 100).toFixed(
+                              2,
+                            )}
+                            %
+                          </td>
+                          <td>
+                            {(p.means[p.director_focus!] * 100).toFixed(2)}%
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
+              </div>
+              {!history.points.some((p) => p.director_focus) && (
                 <p>
-                  Node scores average hostile contacts before penalties; failure
-                  counts use distinct contact/reason pairs. Differences do not
-                  establish that training caused improvement.
+                  No adaptive focus has been recorded in this trainee's
+                  processed history.
                 </p>
-              </>
-            ) : (
-              <p>Complete two tactical sessions for a comparison.</p>
-            )}
-          </section>
-          <section className="panel advanced-card">
-            <h2>Director focus history</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Session</th>
-                  <th>Selected focus</th>
-                  <th>Estimate before</th>
-                  <th>Estimate after completion</th>
-                </tr>
-              </thead>
-              <tbody>
-                {history.points
-                  .filter((p) => p.director_focus)
-                  .map((p) => (
-                    <tr key={p.session_id}>
-                      <td>
-                        {p.sequence} · {p.session_id.slice(0, 8)}
-                      </td>
-                      <td>{skillLabel[p.director_focus!]}</td>
-                      <td>
-                        {((p.director_mastery_before ?? 0.5) * 100).toFixed(2)}%
-                      </td>
-                      <td>{(p.means[p.director_focus!] * 100).toFixed(2)}%</td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-            <p>
-              Selection and outcome history make adaptation visible; these are
-              Bayesian estimates, not calibrated readiness or efficacy
-              measurements.
-            </p>
-          </section>
+              )}
+              <p>
+                Selection and outcome history make adaptation visible; these are
+                Bayesian estimates, not calibrated readiness or efficacy
+                measurements.
+              </p>
+            </section>
+          )}
         </>
       )}
-      {unitHistory && (
+      {!history && tid && view !== "unit" && view !== "scenario" && !error && (
+        <p role="status">Loading selected trainee's persisted evidence…</p>
+      )}
+      {!tid && view !== "unit" && view !== "scenario" && (
+        <p>
+          No trainee selected. Choose a unit and trainee to inspect individual
+          evidence.
+        </p>
+      )}
+      {unitHistory && view === "unit" && (
         <section className="panel advanced-card">
           <h2>Unit skill trend</h2>
           <Trend history={unitHistory} />

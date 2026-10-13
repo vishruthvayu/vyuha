@@ -98,7 +98,7 @@ type PictureEntry = WhiteCellPicture | FailedPicture;
 export type WhiteCellMode = "observed" | "reference";
 const grid: CSSProperties = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit,minmax(230px,1fr))",
+  gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,230px),1fr))",
   gap: 16,
 };
 function valid(picture: PictureEntry): picture is WhiteCellPicture {
@@ -204,7 +204,7 @@ export function WhiteCellDetails({
 }) {
   const tracks = situationPoints(picture, mode);
   return (
-    <div>
+    <div className="command-detail">
       <h3>
         {picture.callsign} · {picture.scenario.title}
       </h3>
@@ -289,18 +289,21 @@ export function WhiteCellDetails({
         </table>
       </div>
       {!tracks.length && <p>No contacts available in this picture.</p>}
-      <h4>Instructor reference alerts</h4>
-      {picture.alerts.length ? (
-        <ul>
-          {picture.alerts.map((alert, index) => (
-            <li key={`${alert.track_id}-${alert.code}-${index}`}>
-              {alert.track_id}: {alert.message}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No current reference alerts.</p>
-      )}
+      <details className="evidence-disclosure" open={mode === "reference"}>
+        <summary>Instructor reference alerts · {picture.alerts.length}</summary>
+        <h4>Instructor reference alerts</h4>
+        {picture.alerts.length ? (
+          <ul>
+            {picture.alerts.map((alert, index) => (
+              <li key={`${alert.track_id}-${alert.code}-${index}`}>
+                {alert.track_id}: {alert.message}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No current reference alerts.</p>
+        )}
+      </details>
       <p className="footnote">
         {picture.reconstruction.assurance}. Horizon is{" "}
         {picture.reconstruction.horizon_source.replaceAll("_", " ")}; this is
@@ -375,7 +378,11 @@ export function WhiteCell({
       clearInterval(timer);
     };
   }, [refresh]);
-  const entry = entries.find((p) => p.session_id === selected) ?? entries[0];
+  // A controlled selection is the command target. Never substitute another
+  // trainee's picture when that target is absent from the active feed.
+  const entry =
+    entries.find((p) => p.session_id === selected) ??
+    (selectedSessionId === undefined ? entries[0] : undefined);
   function select(id: string) {
     setLocalId(id);
     onSelectSession?.(id);
@@ -383,7 +390,7 @@ export function WhiteCell({
   return (
     <section
       id="white-cell"
-      className="panel"
+      className="panel command-workspace"
       aria-label="White Cell live exercise picture"
     >
       <div className="panel-header">
@@ -424,7 +431,14 @@ export function WhiteCell({
           after-action review.
         </p>
       )}
-      <div style={grid}>
+      {loaded && !!selectedSessionId && !entry && (
+        <p role="status">
+          No current picture for the selected session. Select another active
+          session or open its recorded review; instructor commands keep their
+          selected target.
+        </p>
+      )}
+      <div style={grid} className="command-overview">
         {entries.map((picture) => (
           <button
             className="button subtle"
@@ -438,11 +452,13 @@ export function WhiteCell({
                 <strong>
                   {picture.callsign} · {picture.status}
                 </strong>
-                <SituationMap picture={picture} mode={mode} />
                 <span>
-                  {picture.progress.designated} designated /{" "}
-                  {picture.progress.spawned} spawned · {picture.alerts.length}{" "}
-                  reference alerts
+                  {picture.scenario.title} ·{" "}
+                  {mode === "observed"
+                    ? picture.observed.tracks.length
+                    : picture.reference.tracks.filter((track) => track.active)
+                        .length}{" "}
+                  contacts in this picture
                 </span>
               </>
             ) : (

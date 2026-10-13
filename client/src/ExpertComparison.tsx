@@ -63,9 +63,10 @@ export function EvidenceResponseComparison({
   report: ReferenceReport;
 }) {
   return (
-    <section className="panel advanced-card">
+    <section className="panel advanced-card review-policy-comparison">
+      <div className="eyebrow">RECORDED BOUNDARIES · EVIDENCE-CONSTRAINED</div>
       <h2>Evidence-constrained response comparison</h2>
-      <p>
+      <p className="review-evidence-boundary">
         Each recorded response is compared at its original tick using the
         evidence then available. This reference is an inspectable training
         policy, not a certified military expert.
@@ -74,17 +75,33 @@ export function EvidenceResponseComparison({
         {report.summary.agreements} / {report.summary.recorded_responses}{" "}
         recorded responses match the policy. {report.summary.interpretation}
       </p>
-      <p>
-        {report.summary.supported} supported · {report.summary.conditional}{" "}
-        conditional · {report.summary.uncertain} uncertain reference choices
-      </p>
+      <div className="review-result-grid">
+        <article className="metric">
+          <span>Supported reference choices</span>
+          <strong>{report.summary.supported}</strong>
+          <small>Policy evidence label</small>
+        </article>
+        <article className="metric">
+          <span>Conditional choices</span>
+          <strong>{report.summary.conditional}</strong>
+          <small>Further evidence required</small>
+        </article>
+        <article className="metric">
+          <span>Uncertain choices</span>
+          <strong>{report.summary.uncertain}</strong>
+          <small>Uncertainty retained</small>
+        </article>
+      </div>
       {!report.entries.length && (
         <p>
           No engagement was recorded; no policy agreement fraction is assigned.
         </p>
       )}
       {report.entries.map((entry) => (
-        <details key={`${entry.decision_index}-${entry.order}`}>
+        <details
+          className="review-decision"
+          key={`${entry.decision_index}-${entry.order}`}
+        >
           <summary>
             {entry.track_id} · T+{(entry.tick / report.hz).toFixed(2)}s ·
             recorded {label(entry.recorded_effector)} ·{" "}
@@ -139,7 +156,8 @@ export default function ExpertComparison({
   record: TrainingRecord;
 }) {
   const [report, setReport] = useState<ReferenceReport | null>(null),
-    [error, setError] = useState("");
+    [error, setError] = useState(""),
+    [attempt, setAttempt] = useState(0);
   useEffect(() => {
     let stopped = false;
     setReport(null);
@@ -151,7 +169,13 @@ export default function ExpertComparison({
       RECONSTRUCTION_TIMEOUT_MS,
     )
       .then((result) => {
-        if (!stopped) setReport(result);
+        if (!stopped) {
+          if (result.session_id !== record.id) {
+            setError("Reference comparison does not belong to this session.");
+            return;
+          }
+          setReport(result);
+        }
       })
       .catch((reason) => {
         if (!stopped)
@@ -164,7 +188,7 @@ export default function ExpertComparison({
     return () => {
       stopped = true;
     };
-  }, [record.id, record.verified]);
+  }, [record.id, record.verified, attempt]);
   if (!record.verified)
     return (
       <section className="panel">
@@ -178,7 +202,15 @@ export default function ExpertComparison({
     <section className="panel">
       <h2>Evidence-constrained response comparison</h2>
       {error ? (
-        <p role="alert">{error} The original result remains unchanged.</p>
+        <>
+          <p role="alert">{error} The original result remains unchanged.</p>
+          <button
+            className="button subtle"
+            onClick={() => setAttempt((value) => value + 1)}
+          >
+            Retry comparison
+          </button>
+        </>
       ) : (
         <p role="status">Reconstructing recorded response boundaries…</p>
       )}

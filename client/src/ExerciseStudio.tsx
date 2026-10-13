@@ -188,7 +188,7 @@ export default function ExerciseStudio() {
   const pack = packs.find((p) => p.id === form.pack_id),
     chosen = library.find((s) => s.id === selected);
   return (
-    <main className="instructor-page advanced-page">
+    <main className="instructor-page advanced-page command-workspace">
       <header className="page-heading">
         <div>
           <div className="eyebrow">INSTRUCTOR · EXERCISE SYSTEM</div>
@@ -203,302 +203,333 @@ export default function ExerciseStudio() {
           <a href="/">Open trainee</a>
         </nav>
       </header>
-      <RaidStudio />
-      <p>
-        Illustrative training configurations, not official doctrine. Local
-        instructor labels are unverified. Legacy Authoring Lite uses visual
-        scenery without occlusion. Finale Raid Composer uses frozen terrain
-        boxes for sensor line of sight.
-      </p>
+      <RaidStudio
+        onSaved={(saved) => {
+          setLibrary((items) => [
+            saved,
+            ...items.filter((item) => item.id !== saved.id),
+          ]);
+          if (!pending.current) setSelected(saved.id);
+          setMessage(
+            pending.current
+              ? "Frozen raid saved to the library. Resolve the retained assignment before choosing another exercise."
+              : "Frozen raid saved and selected in the assignment library below.",
+          );
+        }}
+      />
+      <details className="evidence-disclosure">
+        <summary>Exercise model and authoring scope</summary>
+        <p>
+          Illustrative training configurations, not official doctrine. Local
+          instructor labels are unverified. Legacy Authoring Lite uses visual
+          scenery without occlusion. Finale Raid Composer uses frozen terrain
+          boxes for sensor line of sight.
+        </p>
+      </details>
       {error && (
         <p role="alert" className="recovery-banner">
           {error}
         </p>
       )}
       {message && <p role="status">{message}</p>}
-      <section className="panel advanced-card">
-        <h2>Doctrine pack</h2>
-        <div className="studio-fields">
-          <label>
-            Unit
-            <select
-              value={unit}
-              disabled={busy || !!pending.current}
-              title={
-                busy
-                  ? "A server request is in progress."
-                  : pending.current
-                    ? "Resolve the pending assignment first."
-                    : undefined
-              }
-              onChange={(e) => {
-                setUnit(e.target.value);
-                setTrainees([]);
-              }}
-            >
-              {units.map((u) => (
-                <option key={u.id} value={u.id}>
-                  {u.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            Pack · applies to next adaptive drill
-            <select
-              value={form.pack_id}
-              disabled={busy}
-              title={busy ? "A server request is in progress." : undefined}
-              onChange={(e) => void choosePack(e.target.value)}
-            >
-              {packs.map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.name}@{p.version}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
-        {pack && (
-          <p>
-            {pack.description} RF range {pack.rules.rf_range} m; kinetic range{" "}
-            {pack.rules.kinetic_range} m. Restricted sector: x &lt;{" "}
-            {pack.rules.restricted.x_lt} m and z &gt;{" "}
-            {pack.rules.restricted.z_gt} m. Risk weights:{" "}
-            {Object.entries(pack.rules.risk_weights)
-              .map(([k, v]) => `${k} ${v}`)
-              .join(" · ")}
-            . Asset weight {pack.rules.asset_risk}. All values illustrative.
-          </p>
-        )}
-      </section>
-      <section className="panel advanced-card">
-        <h2>Scenario Authoring Lite</h2>
-        <div className="studio-fields">
-          <label>
-            Scenario name
-            <input
-              maxLength={70}
-              value={form.name}
-              onChange={(e) => update("name", e.target.value)}
-            />
-          </label>
-          <label>
-            Local instructor label
-            <input
-              maxLength={24}
-              value={form.created_by}
-              onChange={(e) => update("created_by", e.target.value)}
-            />
-          </label>
-          <label>
-            Training focus
-            <select
-              value={form.focus}
-              onChange={(e) => update("focus", e.target.value as GhostSkill)}
-            >
-              {Object.entries(skillLabel).map(([k, l]) => (
-                <option key={k} value={k}>
-                  {l}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            Threat pattern
-            <select
-              value={form.tactic}
-              onChange={(e) => update("tactic", e.target.value as Tactic)}
-            >
-              {tactics.map((t) => (
-                <option key={t} value={t}>
-                  {t.replaceAll("_", " ")}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            Time
-            <select
-              value={form.night ? "night" : "day"}
-              onChange={(e) => update("night", e.target.value === "night")}
-            >
-              <option value="day">Day</option>
-              <option value="night">Night</option>
-            </select>
-          </label>
-          <label>
-            Sensor fault
-            <select
-              value={form.sensor_fault}
-              onChange={(e) => update("sensor_fault", e.target.value)}
-            >
-              <option value="none">None</option>
-              <option value="radar_degraded">Radar degradation window</option>
-              <option value="radar_failed">Radar failure window</option>
-              <option value="rf_failed">RF failure window</option>
-            </select>
-          </label>
-          <p className="footnote">
-            The legacy difficulty label records the author’s intent. Contact
-            mix, conditions and tactics control this exercise. For procedural
-            difficulty that changes roster, timing and geometry, use the Finale
-            Raid Composer above.
-          </p>
-          <label>
-            Difficulty label
-            <select
-              value={form.difficulty}
-              onChange={(e) => update("difficulty", e.target.value)}
-            >
-              {["foundational", "standard", "challenging"].map((v) => (
-                <option key={v}>{v}</option>
-              ))}
-            </select>
-          </label>
-          <label>
-            Seed
-            <input
-              type="number"
-              min={0}
-              max={4294967295}
-              value={form.seed}
-              onChange={(e) => update("seed", Number(e.target.value))}
-            />
-          </label>
-          <label>
-            Terrain
-            <select
-              value={form.terrain}
-              onChange={(e) =>
-                update("terrain", e.target.value as Author["terrain"])
-              }
-            >
-              <option value="urban">Urban Outpost</option>
-              <option value="rural">Rural Forward Base</option>
-            </select>
-          </label>
-          <label>
-            Illustrative fog
-            <select
-              value={form.fog ?? "pack"}
-              onChange={(e) =>
-                update(
-                  "fog",
-                  e.target.value === "pack"
-                    ? undefined
-                    : Number(e.target.value),
-                )
-              }
-            >
-              <option value="pack">Pack default</option>
-              <option value="0">Clear · 0</option>
-              <option value="0.2">Light · 0.2</option>
-              <option value="0.6">Dense · 0.6</option>
-            </select>
-          </label>
-          <label>
-            Duration
-            <select disabled>
-              <option>75 seconds</option>
-            </select>
-          </label>
-        </div>
-        <label className="roster-options">
-          <input
-            type="checkbox"
-            checked={form.restricted}
-            onChange={(e) => update("restricted", e.target.checked)}
-          />
-          Restricted kinetic sector enabled
-        </label>
-        <h3>Threat mix · maximum 18 contacts</h3>
-        <div className="studio-fields">
-          {Object.entries(mixLabels).map(([id, label]) => (
-            <label key={id}>
-              {label}
-              <input
-                type="number"
-                min={0}
-                max={18}
-                value={form.mix.filter((v) => v === id).length}
-                onChange={(e) =>
-                  update("mix", [
-                    ...form.mix.filter((v) => v !== id),
-                    ...Array.from(
-                      {
-                        length: Math.max(
-                          0,
-                          Math.min(18, Number(e.target.value)),
-                        ),
-                      },
-                      () => id,
-                    ),
-                  ])
+      <details className="evidence-disclosure">
+        <summary>Doctrine packs and legacy scenario authoring</summary>
+        <section className="panel advanced-card">
+          <h2>Doctrine pack</h2>
+          <div className="studio-fields">
+            <label>
+              Unit
+              <select
+                value={unit}
+                disabled={busy || !!pending.current}
+                title={
+                  busy
+                    ? "A server request is in progress."
+                    : pending.current
+                      ? "Resolve the pending assignment first."
+                      : undefined
                 }
-              />
-            </label>
-          ))}
-        </div>
-        <div className="control-buttons">
-          <button
-            className="button subtle"
-            disabled={busy}
-            title={busy ? "A server request is in progress." : undefined}
-            onClick={() => void validate()}
-          >
-            Validate and preview
-          </button>
-          <button
-            className="button primary"
-            disabled={busy || !preview}
-            title={
-              busy
-                ? "A server request is in progress."
-                : !preview
-                  ? "Validate and preview this scenario first."
-                  : undefined
-            }
-            onClick={() => void validate(true)}
-          >
-            Save scenario
-          </button>
-        </div>
-        {preview && (
-          <div className="scenario-preview">
-            <h3>Validated instructor preview</h3>
-            <p>
-              {preview.title} · {preview.terrain_id}@{preview.terrain_version} ·
-              fog {preview.fog} · {preview.tracks.length} contacts ·{" "}
-              {preview.red_force?.tactic} · {preview.doctrine?.id}@
-              {preview.doctrine?.version}
-            </p>
-            <table>
-              <thead>
-                <tr>
-                  <th>Phase time</th>
-                  <th>Role</th>
-                  <th>Contacts</th>
-                </tr>
-              </thead>
-              <tbody>
-                {preview.red_force?.phases.map((p, i) => (
-                  <tr key={i}>
-                    <td>T+{p.tick / 30}s</td>
-                    <td>{p.role}</td>
-                    <td>{p.contacts.join(", ")}</td>
-                  </tr>
+                onChange={(e) => {
+                  setUnit(e.target.value);
+                  setTrainees([]);
+                }}
+              >
+                {units.map((u) => (
+                  <option key={u.id} value={u.id}>
+                    {u.name}
+                  </option>
                 ))}
-              </tbody>
-            </table>
-            <p>
-              Sensor window: T+6–22s when selected. Pack rules and authored
-              parameters are stored in this scenario.
-            </p>
+              </select>
+            </label>
+            <label>
+              Pack · applies to next adaptive drill
+              <select
+                value={form.pack_id}
+                disabled={busy}
+                title={busy ? "A server request is in progress." : undefined}
+                onChange={(e) => void choosePack(e.target.value)}
+              >
+                {packs.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name}@{p.version}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
-        )}
-      </section>
-      <section className="panel advanced-card">
+          {pack && (
+            <p>
+              {pack.description} RF range {pack.rules.rf_range} m; kinetic range{" "}
+              {pack.rules.kinetic_range} m. Restricted sector: x &lt;{" "}
+              {pack.rules.restricted.x_lt} m and z &gt;{" "}
+              {pack.rules.restricted.z_gt} m. Risk weights:{" "}
+              {Object.entries(pack.rules.risk_weights)
+                .map(([k, v]) => `${k} ${v}`)
+                .join(" · ")}
+              . Asset weight {pack.rules.asset_risk}. All values illustrative.
+            </p>
+          )}
+        </section>
+        <section className="panel advanced-card">
+          <h2>Scenario Authoring Lite</h2>
+          <fieldset disabled={busy} className="composer-workbench">
+            <legend>Legacy scenario configuration</legend>
+            <div className="studio-fields">
+              <label>
+                Scenario name
+                <input
+                  maxLength={70}
+                  value={form.name}
+                  onChange={(e) => update("name", e.target.value)}
+                />
+              </label>
+              <label>
+                Local instructor label
+                <input
+                  maxLength={24}
+                  value={form.created_by}
+                  onChange={(e) => update("created_by", e.target.value)}
+                />
+              </label>
+              <label>
+                Training focus
+                <select
+                  value={form.focus}
+                  onChange={(e) =>
+                    update("focus", e.target.value as GhostSkill)
+                  }
+                >
+                  {Object.entries(skillLabel).map(([k, l]) => (
+                    <option key={k} value={k}>
+                      {l}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                Threat pattern
+                <select
+                  value={form.tactic}
+                  onChange={(e) => update("tactic", e.target.value as Tactic)}
+                >
+                  {tactics.map((t) => (
+                    <option key={t} value={t}>
+                      {t.replaceAll("_", " ")}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                Time
+                <select
+                  value={form.night ? "night" : "day"}
+                  onChange={(e) => update("night", e.target.value === "night")}
+                >
+                  <option value="day">Day</option>
+                  <option value="night">Night</option>
+                </select>
+              </label>
+              <label>
+                Sensor fault
+                <select
+                  value={form.sensor_fault}
+                  onChange={(e) => update("sensor_fault", e.target.value)}
+                >
+                  <option value="none">None</option>
+                  <option value="radar_degraded">
+                    Radar degradation window
+                  </option>
+                  <option value="radar_failed">Radar failure window</option>
+                  <option value="rf_failed">RF failure window</option>
+                </select>
+              </label>
+              <p className="footnote">
+                The legacy difficulty label records the author’s intent. Contact
+                mix, conditions and tactics control this exercise. For
+                procedural difficulty that changes roster, timing and geometry,
+                use the Finale Raid Composer above.
+              </p>
+              <label>
+                Difficulty label
+                <select
+                  value={form.difficulty}
+                  onChange={(e) => update("difficulty", e.target.value)}
+                >
+                  {["foundational", "standard", "challenging"].map((v) => (
+                    <option key={v}>{v}</option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                Seed
+                <input
+                  type="number"
+                  min={0}
+                  max={4294967295}
+                  value={form.seed}
+                  onChange={(e) => update("seed", Number(e.target.value))}
+                />
+              </label>
+              <label>
+                Terrain
+                <select
+                  value={form.terrain}
+                  onChange={(e) =>
+                    update("terrain", e.target.value as Author["terrain"])
+                  }
+                >
+                  <option value="urban">Urban Outpost</option>
+                  <option value="rural">Rural Forward Base</option>
+                </select>
+              </label>
+              <label>
+                Illustrative fog
+                <select
+                  value={form.fog ?? "pack"}
+                  onChange={(e) =>
+                    update(
+                      "fog",
+                      e.target.value === "pack"
+                        ? undefined
+                        : Number(e.target.value),
+                    )
+                  }
+                >
+                  <option value="pack">Pack default</option>
+                  <option value="0">Clear · 0</option>
+                  <option value="0.2">Light · 0.2</option>
+                  <option value="0.6">Dense · 0.6</option>
+                </select>
+              </label>
+              <label>
+                Duration
+                <select disabled>
+                  <option>75 seconds</option>
+                </select>
+              </label>
+            </div>
+            <label className="roster-options">
+              <input
+                type="checkbox"
+                checked={form.restricted}
+                onChange={(e) => update("restricted", e.target.checked)}
+              />
+              Restricted kinetic sector enabled
+            </label>
+            <h3>Threat mix · maximum 18 contacts</h3>
+            <div className="studio-fields">
+              {Object.entries(mixLabels).map(([id, label]) => (
+                <label key={id}>
+                  {label}
+                  <input
+                    type="number"
+                    min={0}
+                    max={18}
+                    value={form.mix.filter((v) => v === id).length}
+                    onChange={(e) =>
+                      update("mix", [
+                        ...form.mix.filter((v) => v !== id),
+                        ...Array.from(
+                          {
+                            length: Math.max(
+                              0,
+                              Math.min(18, Number(e.target.value)),
+                            ),
+                          },
+                          () => id,
+                        ),
+                      ])
+                    }
+                  />
+                </label>
+              ))}
+            </div>
+            <div className="control-buttons">
+              <button
+                className="button subtle"
+                disabled={busy}
+                title={busy ? "A server request is in progress." : undefined}
+                onClick={() => void validate()}
+              >
+                Validate and preview
+              </button>
+              <button
+                className="button primary"
+                disabled={busy || !preview}
+                title={
+                  busy
+                    ? "A server request is in progress."
+                    : !preview
+                      ? "Validate and preview this scenario first."
+                      : undefined
+                }
+                onClick={() => void validate(true)}
+              >
+                Save scenario
+              </button>
+            </div>
+          </fieldset>
+          {preview && (
+            <div className="scenario-preview">
+              <h3>Validated instructor preview</h3>
+              <p>
+                {preview.title} · {preview.terrain_id}@{preview.terrain_version}{" "}
+                · fog {preview.fog} · {preview.tracks.length} contacts ·{" "}
+                {preview.red_force?.tactic} · {preview.doctrine?.id}@
+                {preview.doctrine?.version}
+              </p>
+              <div className="table-scroll">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Phase time</th>
+                      <th>Role</th>
+                      <th>Contacts</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {preview.red_force?.phases.map((p, i) => (
+                      <tr key={i}>
+                        <td>T+{p.tick / 30}s</td>
+                        <td>{p.role}</td>
+                        <td>{p.contacts.join(", ")}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p>
+                Sensor window: T+6–22s when selected. Pack rules and authored
+                parameters are stored in this scenario.
+              </p>
+            </div>
+          )}
+        </section>
+      </details>
+      <section
+        className="panel advanced-card command-detail"
+        id="scenario-library"
+      >
         <h2>Scenario library</h2>
         <label>
           Saved exercise
@@ -515,22 +546,25 @@ export default function ExerciseStudio() {
             <option value="">Select an exercise</option>
             {library.map((s) => (
               <option key={s.id} value={s.id}>
-                {s.title} · {s.doctrine?.name} · {s.red_force?.tactic} · v
-                {s.authoring?.version}
+                {s.title} ·{" "}
+                {s.raid?.family ?? s.red_force?.tactic ?? "Scripted"} ·{" "}
+                {s.engine_version}
               </option>
             ))}
           </select>
         </label>
         {chosen && (
           <p>
-            {chosen.title} · {chosen.focus} · {chosen.red_force?.tactic} ·{" "}
-            {
-              (chosen as Scenario & { difficulty_label: string })
-                .difficulty_label
-            }{" "}
-            · by {chosen.authoring?.created_by} (unverified label) · version{" "}
-            {chosen.authoring?.version} · {chosen.doctrine?.id}@
-            {chosen.doctrine?.version}
+            {chosen.title} · {chosen.tracks.length} contacts · {chosen.duration}
+            s · {chosen.engine_version}
+            {chosen.raid && <> · frozen {chosen.raid.fingerprint}</>}
+            {chosen.authoring && (
+              <>
+                {" "}
+                · author {chosen.authoring.created_by} (unverified label) ·
+                version {chosen.authoring.version}
+              </>
+            )}
           </p>
         )}
         <h3>Assign to connected, idle trainees</h3>

@@ -1,3 +1,4 @@
+import { PageHeader } from "./UI";
 import { officerReviewHref } from "./routes";
 import { useEffect, useState, type ReactNode } from "react";
 import { api } from "./storage";
@@ -582,19 +583,21 @@ export function UnitDashboard({
 export default function UnitPage() {
   return (
     <main className="instructor-page">
-      <header className="page-heading">
-        <div>
-          <div className="eyebrow">VYUHA · UNIT ANALYSIS</div>
-          <h1>Unit training overview</h1>
-          <p>Persisted training evidence from this server.</p>
-        </div>
-        <a className="button subtle" href="/instructor">
-          Instructor console
-        </a>
-        <a className="button subtle" href="/?view=unit">
-          Trainee workspace overview
-        </a>
-      </header>
+      <PageHeader
+        eyebrow="PERSISTED UNIT EVIDENCE"
+        title="Unit training overview"
+        description="Review the unit’s recorded sessions, skill estimates and training focus."
+        actions={
+          <nav className="advanced-nav">
+            <a className="button subtle" href="/instructor">
+              Instructor console
+            </a>
+            <a className="button subtle" href="/?view=unit">
+              Trainee workspace overview
+            </a>
+          </nav>
+        }
+      />
       <UnitDashboard
         onOpen={(r) => {
           window.location.href = officerReviewHref(r.id);

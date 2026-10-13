@@ -66,8 +66,17 @@ export function CrewHistoryResults({ data }: { data: CrewHistoryData }) {
   return (
     <>
       <p>{data.included_sessions} completed shared exercises.</p>
-      <p>{data.scope}</p>
-      <p className="footnote">{data.interpretation}</p>
+      <details className="evidence-disclosure">
+        <summary>Shared history scope and interpretation</summary>
+        <p>{data.scope}</p>
+        <p className="footnote">{data.interpretation}</p>
+      </details>
+      {data.included_sessions === 0 && (
+        <p>
+          No completed shared exercises yet. End and score a crew exercise to
+          create a recorded coordination review.
+        </p>
+      )}
       <h3>Declared roster history</h3>
       {data.groups.map((group) => (
         <div key={group.group_id} className="panel">
@@ -94,7 +103,7 @@ export function CrewHistoryResults({ data }: { data: CrewHistoryData }) {
       ))}
       <h3>Completed session timeline</h3>
       {data.sessions.map((session) => (
-        <details key={session.session_id}>
+        <details className="evidence-disclosure" key={session.session_id}>
           <summary>
             {session.name} · {session.completed_at ?? session.created_at} ·
             shared {session.scorecard.score}/100
@@ -214,7 +223,7 @@ export default function CrewOfficerTools({ createdId }: { createdId: string }) {
   }
   return (
     <>
-      <section className="panel">
+      <section className="panel command-detail">
         <h2>Officer role-code management</h2>
         <p>
           Codes expire after a bounded assignment window. Rotation invalidates
@@ -298,7 +307,7 @@ export default function CrewOfficerTools({ createdId }: { createdId: string }) {
           </>
         )}
       </section>
-      <section className="panel" id="crew-history">
+      <section className="panel command-detail" id="crew-history">
         <h2>Completed crew coordination history</h2>
         <button
           className="button subtle"
