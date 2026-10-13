@@ -1,21 +1,22 @@
-# Final source regression — 13 October2026
+# RC2 final source regression —13 October 2026
 
-Current implementation `e07a3845cc465f430b572ece7fbded687c1e3729`; source SHA256 `02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a`. Final validation: **609 backend PASS / 160 frontend PASS / zero failures**, production build: 27 local assets / cache `d4234414a93b`, lint and all mutable TSX/hook formatting PASS. Source is frozen; subsequent receipt commits only change documentation. Protected fallback `release/v1.0.1` and peeled tag `v1.0.1` remain `2ca96105044ad6a14952d74db619e20006c26eca`.
+Current RC2 tested implementation `0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1`; source SHA256 `5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0`. **617 backend / 172 frontend PASS, zero failures**; production **27 assets / cache `b2b7e099df64`**; lint/format PASS. RC1 `v1.1.0-rc.1` remains `a2183e1a5746c8a04fa25ff81af952faa76b27aa` and fallback `release/v1.0.1`/`v1.0.1` remains `2ca96105044ad6a14952d74db619e20006c26eca`. No stable release is authorized.
 
-Independent provisional **84.0/100** = 46/50 PS + 18/25 realism/AI + 20/25 engineering/demo. This is engineering judgement under the original rubric, not official SIH marks or winning probability. Current **62 PASS / 30 PARTIAL / 1 N/A / 0 BLOCKED** =67.3913% closure excluding N/A. X10 final pin reconciliation passed independent verification; software RC may be sealed. No new source behavior defect was reproduced.
+Historical RC1 provisional audit: **84/100**. RC2 has a scoped independent remediation review, **no fresh weighted score**. All93 original audit dispositions retained: **62 PASS / 30 PARTIAL / 1 N/A / 0 BLOCKED**. Arch Linux RC1 passed with defects; RC2 Linux re-test, native Windows and fresh separate-device phone/LAN/WAN/HTTPS trust remain pending. See [Linux resolutions](rc2/LINUX-FINDINGS.md) and [minimal retesting](rc2/RETEST.md).
 
-| Check | Result | Scope |
+| Check | Final result | Receipt |
 |---|---|---|
-| Full backend |609 PASS,0FAIL,413.34s,1existing Starlette/httpx warning |All current server tests, no timeout/assertion weakening|
-| Full frontend |160 PASS,0FAIL,37504.43675ms,0skipped |All current Node/TS tests, including mounted UI/transport and emitted worker|
-| Lint / format / production |PASS / PASS / PASS,6.58s |27 files; largeThree.jschunk warning retained|
-| Clean GitHub clone |PASS, npmci348packages33s, build38.41s |Python3.13.2, all 27dist bytes and3 locks equal|
-| Stored history |18baseline/22current unchanged |Fresh read-only backup receipt; no user scorecards modified|
-| Officer HTTP auth |35 route/method pairs |Anonymous/forged/logged-out401; expired/cookie/dynamiccapabilities in fulltests|
-| Independent focused |22backend/8frontend PASS |Separate executions, not added to609/160|
+| Full backend |617 PASS /0FAIL /1087.53s,1existing Starlette/httpx warning |rc2/final-backend-617.log.txt|
+| Full frontend |172 PASS /0FAIL /0skipped /137555.552417ms |rc2/final-frontend-172.log.txt|
+| Production /lint /format |PASS;27assets/cacheb2b7e099df64,29.20s |rc2/final-build-172.log.txt; final-lint.log.txt; final-format.log.txt|
+| Clean clone |Locked npmci/build, all27bytes and3manifests equal |rc2/DEPLOYMENT.json|
+| Historical cards |18baseline/22stored exact, production DB unchanged |rc2/HISTORY.json|
+| Protected HTTP routes |35 method/path pairs401 anonymous/forged/logout |rc2/AUTHORIZATION.json|
+| Final targeted |16backend PASS18.06s /12frontend PASS6446.47425ms |rc2/target-backend-16.log.txt; ui-target-12.log.txt|
+| Independent late-role regression |4PASS4207.092709ms after guard |rc2/independent-crew-lifetime-after-fix.log.txt|
 
-Parity inside the current suites: original312checkpoints;12historical Director templates; immediate544across32scenarios; delayed288across18scenarios; sensors1920; motion7452; Fusion64. Components supplement full engine comparison, not substitute for it.
+Full Python/TypeScript parity within the final suites: original312; immediate544checkpoints/32scenarios; delayed288/18; sensors1920; motion7452; Fusion64;12Director templates. Frozen engines/scoring unchanged. Targeted/independent counts are subsets, not additive. No test assertions, timeouts or historical scorecards were weakened.
 
-Raw final logs are in `workstreams/rc-20261013/`. Earlier failed608/one startup-timeout run remains a historical checkpoint: unchanged10-second fixture passed isolated18tests and subsequentfull609. Current609run had no competing installs. No skipped tests, suppressed failures or altered historical scorecards.
+Actual browser scope is macOS Chrome on loopback, separate role tabs: Composer/Crew390/768/1440/1920, pointer/Tab reachability, enabled action contrast, current sensor list selection, callsign AAR/history, fresh local pages, authoritative Crew decisions/history/restart. Current TLS/backup/new-file restore evidence is process-scoped, not cross-platform browser trust. Original Linux spotter traces lack422response bodies; current natural observation race reproduced without engine patching.
 
-Browser receipt `BROWSER-ACCEPTANCE.json` distinguishes actual UI from supporting API checks. Runtime TLS verifies the explicit testCA and hostname/IP; no truststore changes or certificate bypass. Native Windows/Linux, fresh physical mobile/LAN/WAN/trust remain pending. Synthetic metrics demonstrate software contracts; no empirical calibration or human learning benefit.
+RC1 logs and claims are archived under rc2/historical-rc1 or retained in explicitly dated workstreams; they are not relabelled as current runs. Full logs and hashes are in rc2/REGRESSION.json.

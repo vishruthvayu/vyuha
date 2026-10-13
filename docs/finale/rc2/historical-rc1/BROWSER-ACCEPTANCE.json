@@ -1,0 +1,164 @@
+{
+  "recorded_date": "2026-10-13",
+  "code_commit": "e07a3845cc465f430b572ece7fbded687c1e3729",
+  "scope": "Actual IAB/Chrome on oneMac, disposableloopback databases and production assets. Browseractions distinct from supporting HTTP/SQLite checks; controlledCSSwidths not physicalphone certification.",
+  "transfer": "workstreams/GUI-CLEAN-RECEIVER-RECEIPT.json",
+  "responsive": [
+    {
+      "page": "Ghost/Fusion AAR",
+      "name": "phone",
+      "client": 390,
+      "heading": "After-action review",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "page": "Ghost/Fusion AAR",
+      "name": "tablet",
+      "client": 768,
+      "heading": "After-action review",
+      "scroll": 768,
+      "width": 768
+    },
+    {
+      "page": "Ghost/Fusion AAR",
+      "name": "desktop",
+      "client": 1280,
+      "heading": "After-action review",
+      "scroll": 1280,
+      "width": 1280
+    },
+    {
+      "page": "Analytics",
+      "name": "phone",
+      "client": 390,
+      "heading": "Training analytics",
+      "scroll": 390,
+      "unintendedClippedControls": [],
+      "width": 390
+    },
+    {
+      "page": "Analytics",
+      "name": "tablet",
+      "client": 768,
+      "heading": "Training analytics",
+      "scroll": 768,
+      "unintendedClippedControls": [],
+      "width": 768
+    },
+    {
+      "page": "Analytics",
+      "name": "desktop",
+      "client": 1280,
+      "heading": "Training analytics",
+      "scroll": 1280,
+      "unintendedClippedControls": [],
+      "width": 1280
+    },
+    {
+      "page": "Crew management/history",
+      "name": "phone",
+      "client": 390,
+      "heading": "Shared Crew Mode",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "page": "Crew management/history",
+      "name": "tablet",
+      "client": 768,
+      "heading": "Shared Crew Mode",
+      "scroll": 768,
+      "width": 768
+    },
+    {
+      "page": "Crew management/history",
+      "name": "desktop",
+      "client": 1280,
+      "heading": "Shared Crew Mode",
+      "scroll": 1280,
+      "width": 1280
+    },
+    {
+      "page": "White Cell live picture",
+      "name": "phone",
+      "client": 390,
+      "controls": [],
+      "observed": true,
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "page": "White Cell live picture",
+      "name": "tablet",
+      "client": 768,
+      "controls": [],
+      "observed": true,
+      "scroll": 768,
+      "width": 768
+    },
+    {
+      "page": "White Cell live picture",
+      "name": "desktop",
+      "client": 1280,
+      "controls": [],
+      "observed": true,
+      "scroll": 1280,
+      "width": 1280
+    }
+  ],
+  "verified": [
+    "Teachingpause note persisted atappliedlogicaltick/order andshown inGhost/timeline",
+    "WhiteCell observed/reference toggles withsimultaneouspausedtrainee",
+    "IndependentquietSSE telemetryheartbeat and ACK/application",
+    "Crewthree roleattributeddecisions/history/completion/reloadreconnect; imported sourcecohort/timeline/read-onlyAAR",
+    "What-if andevidence-only reference leavealltrainingtables byte-equivalent; connected_clientsvolatileheartbeat excluded",
+    "Actualserverprocess stopped, threeofflineactions/Fusion, cachedreload saveddrillrestore, automatic3/3resync/serververifiedAAR",
+    "Current onlineentry upgraded to index-D3uiTWW3.js; emittedworker online/offlinebehavior inthreeblackbox tests",
+    "Operatorguide Tabtrap/Escape/restore, backgroundinert; mobilnavkeyboardopen/close; Ghostjumpcursor andinstructor timelinefilter"
+  ],
+  "earlier_functional_UI_receipt": "workstreams/historical-20261012/BROWSER-ACCEPTANCE.json",
+  "earlier_scope": [
+    "RapidID andsyntheticRecordedpractice actualfunctionalUI onOctober12; sourcehandlers unchanged except formatting.",
+    "Existing200contactAAR andcanonical0\u219290/reference separate result preserved."
+  ],
+  "screenshot_private_project_path": "Project work/finale/rc-20261013; rolecodes/rawexport/privateDB not packaged.",
+  "limits": [
+    "Fresh physical Finale multi-device LAN/WAN/HTTPS trust/cold reload and native Windows/Linux execution remain PENDING_BY_USER; these are unperformed acceptance, not failed architecture.",
+    "No real sensor measurements or human study supplied; evaluation interfaces, synthetic plots and statistical contracts are implemented preparation, not empirical efficacy.",
+    "Trusted-LAN independent callsign/UUID is not authenticated secure-exam learner identity.",
+    "Whole Worker/GPU/process memory and operational endurance breadth are not certified.",
+    "Original media rubric rows retained as audit provenance; no media/submission work is assigned or a software-only gate."
+  ],
+  "final_current_session": {
+    "id": "76324b3f-09c1-4525-87d3-ba0189e1f0f6",
+    "GUI_prepared_started_paused": true,
+    "White_Cell_7_observed_contacts": true,
+    "quiet_stream_telemetry_fresh": true,
+    "teaching_note": "Responsive acceptance: inspect available RF and IFF evidence before classifying.",
+    "command_lifecycle": [
+      "ACKNOWLEDGED",
+      "APPLIED"
+    ],
+    "tick": 485,
+    "order": 0,
+    "GUI_end_server_verified": true,
+    "Ghost_note_visible": true,
+    "scope": "No trainee actions in this UI layout fixture; zero tactical score is expected, not successful human performance."
+  },
+  "responsive_scope": "Measured actual CSS innerWidth/clientWidth/document scrollWidth; sameMac browser zoom/viewport control, hidden offcanvas sidebar excluded from clipping checks; no physical device inference.",
+  "current_manifest_GUI": {
+    "source_matches": true,
+    "backend": 609,
+    "frontend": 160,
+    "assets": 27,
+    "cache": "d4234414a93b",
+    "audit_provisional": 84,
+    "compliance_totals": {
+      "PASS": 62,
+      "PARTIAL": 30,
+      "N/A": 1
+    },
+    "screenshot": "RC-COMPLIANCE-20261013.png"
+  }
+}

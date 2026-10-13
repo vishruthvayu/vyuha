@@ -1,3 +1,11 @@
+# Current platform acceptance —13 October2026
+
+Native Arch Linux RC1 at `a2183e1a5746c8a04fa25ff81af952faa76b27aa` has **PASS_WITH_DEFECTS** evidence:609backend/160frontend/build27assets, local/Unit startup, backup/restore, process-verifiedTLS and localhost no-network namespace. One machine with scripted/headless Chrome151; no human/windowed, separatephone, Windows, multi-deviceWAN or browserCAtrust acceptance. Supplied archiveSHA256 `d7edd4e8c30097fc1ce714114c50e4a6b128cc945b75b4576024a4b4f0c728ba`. Raw evidence preserved privately, not in release archives.
+
+**RC2 current native Linux re-test: PENDING. Native Windows: PENDING. Fresh physical phone/LAN/WAN/HTTPS trust: PENDING_BY_USER.** Exact current code/hash/build in evidence.json. Minimal tester instructions: [rc2/RETEST.md](rc2/RETEST.md). The original prepared tables below are historical; their Linux PENDING row is superseded only for the executed RC1 scope.
+
+## Historical prepared table —12/13 October
+
 > Current software RC —13October2026: candidatev1.1.0-rc.1, implementation`e07a3845cc465f430b572ece7fbded687c1e3729`, source`02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a`. NativeWindows/Linux andfreshFinale physicalLAN/WAN/phone/HTTPStrust remainPENDING_BY_USER. Historicalentries below aredated andnot currentacceptance. Use exactRCsource plus matchingdatabasebackup. Currentsoftware gates inFINAL-RELEASE-GATES.json.
 
 # Finale physical and native test results

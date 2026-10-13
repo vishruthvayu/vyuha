@@ -1,12 +1,12 @@
 # Software release-candidate acceptance —13 October 2026
 
-Current implementation `e07a3845cc465f430b572ece7fbded687c1e3729`; source SHA256 `02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a`. Final validation: **609 backend PASS / 160 frontend PASS / zero failures**, production build: 27 local assets / cache `d4234414a93b`, lint and all mutable TSX/hook formatting PASS. Source is frozen; subsequent receipt commits only change documentation. Protected fallback `release/v1.0.1` and peeled tag `v1.0.1` remain `2ca96105044ad6a14952d74db619e20006c26eca`.
+Current RC2 tested implementation `0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1`; source SHA256 `5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0`. **617 backend / 172 frontend PASS, zero failures**; production **27 assets / cache `b2b7e099df64`**; lint/format PASS. RC1 `v1.1.0-rc.1` remains `a2183e1a5746c8a04fa25ff81af952faa76b27aa` and fallback `release/v1.0.1`/`v1.0.1` remains `2ca96105044ad6a14952d74db619e20006c26eca`. No stable release is authorized.
 
-Independent provisional **84.0/100** = 46/50 PS + 18/25 realism/AI + 20/25 engineering/demo. This is engineering judgement under the original rubric, not official SIH marks or winning probability. Current **62 PASS / 30 PARTIAL / 1 N/A / 0 BLOCKED** =67.3913% closure excluding N/A. X10 final pin reconciliation passed independent verification; software RC may be sealed. No new source behavior defect was reproduced.
+Historical RC1 provisional audit: **84/100**. RC2 has a scoped independent remediation review, **no fresh weighted score**. All93 original audit dispositions retained: **62 PASS / 30 PARTIAL / 1 N/A / 0 BLOCKED**. Arch Linux RC1 passed with defects; RC2 Linux re-test, native Windows and fresh separate-device phone/LAN/WAN/HTTPS trust remain pending. See [Linux resolutions](rc2/LINUX-FINDINGS.md) and [minimal retesting](rc2/RETEST.md).
 
-Runnable software gates G01–G07 pass scoped; The independent X10 manifest check passed before the freeze. G08/G09 remain PENDING_BY_USER and block stable approval. See FINAL-RELEASE-GATES.json and the all 93-row matrix.
+Software gates G01–G07 pass scoped. Fresh independent RC2 source/manifest review passed;12focused checks passed independently, without assigning a new weighted score. [Final independent receipt](rc2/INDEPENDENT-FINAL.json). Historical RC1 X10 is not reused as a fresh RC2 approval. G08 remains PENDING_BY_USER; G09 has historical Arch Linux RC1 PASS_WITH_DEFECTS, RC2 Linux and native Windows pending and block stable approval. See FINAL-RELEASE-GATES.json and the all 93-row matrix.
 
-- Fresh physical Finale multi-device LAN/WAN/HTTPS trust/cold reload and native Windows/Linux execution remain PENDING_BY_USER; these are unperformed acceptance, not failed architecture.
+- Fresh physical Finale multi-device LAN/WAN/HTTPS trust/cold reload and native Windows execution remain pending. Arch Linux RC1 native operation passed with defects; RC2 Linux retest remains pending.
 - No real sensor measurements or human study supplied; evaluation interfaces, synthetic plots and statistical contracts are implemented preparation, not empirical efficacy.
 - Trusted-LAN independent callsign/UUID is not authenticated secure-exam learner identity.
 - Whole Worker/GPU/process memory and operational endurance breadth are not certified.

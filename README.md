@@ -2,7 +2,7 @@
 
 ## Current Finale software release candidate
 
-Version`1.1.0-rc.1` on`feature/vyuha-finale-edition`:609backend/160frontend, allversionedparity,18/22historicalcards,27byte-identicalcloneassets. Independent84/100**provisional**; stableapproval withheld forfreshphysical/nativeacceptance. See[engineering acceptance](docs/finale/FINAL-SOFTWARE-ACCEPTANCE.md) and[all93finding matrix](docs/finale/AUDIT-CLOSURE-MATRIX.md). Originalstablefallback`release/v1.0.1`/`v1.0.1` isunchanged.
+Version `1.1.0-rc.2` on `feature/vyuha-finale-edition`:617 backend/172 frontend PASS, all versioned parity,18/22historical cards,27byte-identical clone assets. Linux RC1 defects remediated; RC2 native Linux retest and Windows/phone acceptance remain pending. Historical RC1 audit84/100provisional; no new weighted RC2 score. See [engineering acceptance](docs/finale/FINAL-SOFTWARE-ACCEPTANCE.md), [Linux findings](docs/finale/rc2/LINUX-FINDINGS.md), [retesting](docs/finale/rc2/RETEST.md) and [all93finding matrix](docs/finale/AUDIT-CLOSURE-MATRIX.md). RC1 and original stable fallback are unchanged.
 
 The sections below retain originalstable/earliercandidate provenance; they do not describe Finale additions or currenttestcounts.
 

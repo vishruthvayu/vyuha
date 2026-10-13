@@ -1,0 +1,119 @@
+{
+  "Composer": [
+    {
+      "page": "Raid Composer",
+      "CSSwidth": 390,
+      "fields": 10,
+      "mouseReachable": [
+        "Terrain",
+        "Conditions",
+        "Fog"
+      ],
+      "keyboardTerrainToConditions": true,
+      "client": 390,
+      "scroll": 390
+    },
+    {
+      "page": "Raid Composer",
+      "CSSwidth": 768,
+      "fields": 10,
+      "mouseReachable": [
+        "Terrain",
+        "Conditions",
+        "Fog"
+      ],
+      "keyboardTerrainToConditions": true,
+      "client": 768,
+      "scroll": 768
+    },
+    {
+      "page": "Raid Composer",
+      "CSSwidth": 1440,
+      "fields": 10,
+      "mouseReachable": [
+        "Terrain",
+        "Conditions",
+        "Fog"
+      ],
+      "keyboardTerrainToConditions": true,
+      "client": 1440,
+      "scroll": 1440
+    },
+    {
+      "page": "Raid Composer",
+      "CSSwidth": 1920,
+      "fields": 10,
+      "mouseReachable": [
+        "Terrain",
+        "Conditions",
+        "Fog"
+      ],
+      "keyboardTerrainToConditions": true,
+      "client": 1920,
+      "scroll": 1920
+    }
+  ],
+  "Crew": [
+    {
+      "clipped": [],
+      "colorScheme": "dark",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "clipped": [],
+      "colorScheme": "dark",
+      "scroll": 768,
+      "width": 768
+    },
+    {
+      "clipped": [],
+      "colorScheme": "dark",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "clipped": [],
+      "colorScheme": "dark",
+      "scroll": 1920,
+      "width": 1920
+    }
+  ],
+  "enabledButtonContrast": [
+    {
+      "background": "rgb(24, 34, 35)",
+      "color": "rgb(213, 222, 221)",
+      "enabled": true,
+      "name": "Leave role",
+      "ratio": 11.859745558034806
+    },
+    {
+      "background": "rgb(36, 48, 49)",
+      "color": "rgb(213, 222, 221)",
+      "enabled": true,
+      "name": "Confirm shared classification",
+      "ratio": 9.935402429129436
+    },
+    {
+      "background": "rgb(24, 34, 35)",
+      "color": "rgb(213, 222, 221)",
+      "enabled": true,
+      "name": "hold",
+      "ratio": 11.859745558034806
+    },
+    {
+      "background": "rgb(24, 34, 35)",
+      "color": "rgb(213, 222, 221)",
+      "enabled": true,
+      "name": "rf_jam",
+      "ratio": 11.859745558034806
+    },
+    {
+      "background": "rgb(24, 34, 35)",
+      "color": "rgb(213, 222, 221)",
+      "enabled": true,
+      "name": "kinetic",
+      "ratio": 11.859745558034806
+    }
+  ]
+}

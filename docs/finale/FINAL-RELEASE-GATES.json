@@ -1,7 +1,7 @@
 {
   "recorded_date": "2026-10-13",
-  "source_tree_sha256": "02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a",
-  "candidate_code_commit": "e07a3845cc465f430b572ece7fbded687c1e3729",
+  "source_tree_sha256": "5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0",
+  "candidate_code_commit": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
   "stable_approval": false,
   "software_RC_gate_status": "PASS_SCOPED",
   "final_audit_score": null,
@@ -17,55 +17,55 @@
       "id": "G01",
       "requirement": "Full final backend/frontend/lint/format/production build",
       "status": "PASS",
-      "evidence": "609/160zero failures,27assets/cache d4234414a93b; source e07"
+      "evidence": "617 backend /172 frontend zero failures; lint/format/build27 cacheb2b7e099df64; exact current0c6 source"
     },
     {
       "id": "G02",
       "requirement": "Versioned parity and exact historical compatibility",
       "status": "PASS",
-      "evidence": "Original312; immediate544/32; delayed288/18; sensors1920; motion7452; Fusion64;12Director templates;18/22cards unchanged"
+      "evidence": "All original/new parity unchanged;18baseline/22stored scorecards exact; current read-only receipt rc2/HISTORY.json"
     },
     {
       "id": "G03",
       "requirement": "Officer authorization, Crew isolation, transfer",
       "status": "PASS_SCOPED",
-      "evidence": "35actualHTTPnegative route pairs401; fullsecurity suite; GUI24insert/24skip/tamperreject; exact forwarding, no Crew individual ledger"
+      "evidence": "35 actual protected route/method pairs401; complete Crew lifecycle/transfer suites; natural422 atomic reject; three completed shared QA sessions have0individual skill_outcomes"
     },
     {
       "id": "G04",
       "requirement": "Actual browser advanced/recovery/responsive workflows",
       "status": "PASS_SCOPED",
-      "evidence": "Teachingnotes/SSE/ACK/quietheartbeat/Crewtimeline/AAR/What-if/referenceimmutable/outage3actions3Fusion;12measuredpage-width combinations"
+      "evidence": "Actual Chrome Composer/Crew four widths; five enabledbutton contrasts9.94\u201311.86; three attributed Crew actions/completion/history; two actual Unit restarts with active role clients; stale row/reacquisition, callsign and fresh-page workflows; prior advanced AAR receipts remain dated supporting evidence"
     },
     {
       "id": "G05",
       "requirement": "Bounded performance and concurrency",
       "status": "PASS_SCOPED",
-      "evidence": "Exact dashboard repeated-read .560ms;20syntheticHTTP/SSEclients, interleaved reads, barrier timing scope; dated fixedMedium/180s/reconstruction"
+      "evidence": "Earlier bounded performance/concurrency measurements retain explicit date/scope; engine/reconstruction code unchanged from RC1; no new endurance or Linux performance certification"
     },
     {
       "id": "G06",
       "requirement": "Source/build/locks/manifest/macOS clone/HTTPS/backup",
       "status": "PASS_SCOPED",
-      "evidence": "Current source equalclone; all27files and3locks equal; Python3.13backuprestore;4privateCAverifiedHTTPSrequests"
+      "evidence": "Current cleanclone0c6 lockednpmci,27byte-equal assets/3locks; current onlinebackup/newfile restore exact all tables; four privateCA/hostnameverified actualmacOS HTTPS requests; defaultCAreject; no trust-store change"
     },
     {
       "id": "G07",
       "requirement": "Independent software claim/audit review",
       "status": "PASS_SCOPED",
-      "evidence": "Independent84provisional,22backend/8frontend focused; final stable approval withheld"
+      "evidence": "Independent current0c6source/manifest/pin review PASS_SCOPED;12focusedchecksPASS; all93counts/27assets/3locks/5frozenhashes/protectedrefs/final617172logs/sourcefreshness independently verified. No weightedRC2score; stablefalse. See rc2/INDEPENDENT-FINAL.json"
     },
     {
       "id": "G08",
       "requirement": "Fresh separate-device Finale LAN/WAN/HTTPS trust/cold reload",
       "status": "PENDING_BY_USER",
-      "evidence": "No newphysicalPASS inferred from loopback/cache/processchecks"
+      "evidence": "Fresh separate physical Finale LAN/WAN/HTTPS trust/coldreload PENDING_BY_USER; not satisfied by responsive widths or loopback"
     },
     {
       "id": "G09",
       "requirement": "Native Windows/Linux install/start/backup/restore",
-      "status": "PENDING_BY_USER",
-      "evidence": "Mac Bash and supported-path fixtures pass; actualnativeexecution deferred"
+      "status": "PARTIAL_NATIVE_RC1; RC2_RETEST_PENDING",
+      "evidence": "Native ArchLinuxRC1 PASS_WITH_DEFECTS supplied; RC2Linux re-test PENDING; Windows native PENDING. No inferred current native/phone pass"
     }
   ],
   "external_validation_finding_ids": [
@@ -128,5 +128,8 @@
     "X31"
   ],
   "blocking_scope": "G08/G09block final stable approval, not the software-only RC freeze. Missing empirical calibration and human efficacy remain claim limitations. Media is outside current mission, not G10.",
-  "open_runnable_software_acceptance_items": []
+  "open_runnable_software_acceptance_items": [],
+  "release_candidate": "v1.1.0-rc.2",
+  "weighted_rc2_audit_score": null,
+  "independent_score_scope": "Historical RC1 only; fresh RC2 scoped remediation review has no weighted score"
 }

@@ -1,3 +1,5 @@
+> Historical RC1 independent audit below;84/100isnot a fresh RC2 weighted score. Current RC2 remediation/source/manifest review: rc2/INDEPENDENT-INITIAL.json and rc2/INDEPENDENT-FINAL.json;617backend/172frontend/fullparity/history/build passed. NativeLinuxRC2/Windows/freshphoneacceptance pending; no stable tag.
+
 # Fresh independent software audit — 13 October 2026
 
 Reviewed code: `e07a3845cc465f430b572ece7fbded687c1e3729`.

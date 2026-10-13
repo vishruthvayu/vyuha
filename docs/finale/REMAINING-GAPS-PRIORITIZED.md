@@ -1,8 +1,8 @@
 # Current remaining findings —13 October 2026
 
-Current implementation `e07a3845cc465f430b572ece7fbded687c1e3729`; source SHA256 `02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a`. Final validation: **609 backend PASS / 160 frontend PASS / zero failures**, production build: 27 local assets / cache `d4234414a93b`, lint and all mutable TSX/hook formatting PASS. Source is frozen; subsequent receipt commits only change documentation. Protected fallback `release/v1.0.1` and peeled tag `v1.0.1` remain `2ca96105044ad6a14952d74db619e20006c26eca`.
+Current RC2 tested implementation `0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1`; source SHA256 `5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0`. **617 backend / 172 frontend PASS, zero failures**; production **27 assets / cache `b2b7e099df64`**; lint/format PASS. RC1 `v1.1.0-rc.1` remains `a2183e1a5746c8a04fa25ff81af952faa76b27aa` and fallback `release/v1.0.1`/`v1.0.1` remains `2ca96105044ad6a14952d74db619e20006c26eca`. No stable release is authorized.
 
-Independent provisional **84.0/100** = 46/50 PS + 18/25 realism/AI + 20/25 engineering/demo. This is engineering judgement under the original rubric, not official SIH marks or winning probability. Current **62 PASS / 30 PARTIAL / 1 N/A / 0 BLOCKED** =67.3913% closure excluding N/A. X10 final pin reconciliation passed independent verification; software RC may be sealed. No new source behavior defect was reproduced.
+Historical RC1 provisional audit: **84/100**. RC2 has a scoped independent remediation review, **no fresh weighted score**. All93 original audit dispositions retained: **62 PASS / 30 PARTIAL / 1 N/A / 0 BLOCKED**. Arch Linux RC1 passed with defects; RC2 Linux re-test, native Windows and fresh separate-device phone/LAN/WAN/HTTPS trust remain pending. See [Linux resolutions](rc2/LINUX-FINDINGS.md) and [minimal retesting](rc2/RETEST.md).
 
 Current PARTIAL IDs: SC14, SC16, SC17, SC19, SC22, SC23, P1-03, P2-01, P2-03, CH08, CH12, CH15, F05, F07, X02, X07, X08, X09, X11, X12, X13, X17, X19, X20, X24, X26, X27, X29, X30, X31.
 

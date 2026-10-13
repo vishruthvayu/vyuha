@@ -1,0 +1,44 @@
+
+> vyuha-trainer@1.1.0-rc.2 build
+> tsc -b && vite build && node scripts/offline.mjs
+
+vite v6.4.3 building for production...
+transforming...
+✓ 1660 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                           0.66 kB │ gzip:   0.40 kB
+dist/assets/sim.worker-DVjxYNQs.js       30.14 kB
+dist/assets/index-CkKdnHg3.css           39.14 kB │ gzip:   9.44 kB
+dist/assets/import-json-DEPqWbQE.js       0.40 kB │ gzip:   0.27 kB
+dist/assets/live-stream-DD8ASLd3.js       1.78 kB │ gzip:   1.00 kB
+dist/assets/observations-xCvc0hza.js      2.27 kB │ gzip:   0.90 kB
+dist/assets/presentation-DEBuChuu.js      3.39 kB │ gzip:   1.60 kB
+dist/assets/Transfer-DAzYpatJ.js          3.46 kB │ gzip:   1.69 kB
+dist/assets/Evaluation-DOqJ0Y3O.js        3.78 kB │ gzip:   1.52 kB
+dist/assets/Radar-KdWxA1aX.js             4.02 kB │ gzip:   1.66 kB
+dist/assets/Recorded-CJntjCfw.js          5.32 kB │ gzip:   1.99 kB
+dist/assets/Compliance-DyGo90TU.js        6.43 kB │ gzip:   2.33 kB
+dist/assets/Evidence-iB0bN0RG.js          7.99 kB │ gzip:   2.42 kB
+dist/assets/Benchmark-IlndNg91.js         8.85 kB │ gzip:   3.61 kB
+dist/assets/Analytics-CRdZm9qX.js         8.92 kB │ gzip:   3.00 kB
+dist/assets/RapidID-CfiJrsp5.js           9.19 kB │ gzip:   3.46 kB
+dist/assets/response-v2-BXqvvt7X.js      13.18 kB │ gzip:   4.89 kB
+dist/assets/ExerciseStudio-D_OGX--v.js   15.34 kB │ gzip:   4.85 kB
+dist/assets/Crew-BSWkScgw.js             16.14 kB │ gzip:   5.41 kB
+dist/assets/Instructor-BPKm1fnU.js       18.62 kB │ gzip:   6.28 kB
+dist/assets/App-BeP9lfyZ.js              73.04 kB │ gzip:  22.95 kB
+dist/assets/index-BeZPEheG.js           285.41 kB │ gzip:  88.54 kB
+dist/assets/scenario-CsdQCPq9.js        913.09 kB │ gzip: 246.74 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 29.20s
+Offline cache: 27 local assets (b2b7e099df64)
+npm notice
+npm notice New minor version of npm available! 11.6.2 -> 11.21.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.0
+npm notice To update run: npm install -g npm@11.21.0
+npm notice

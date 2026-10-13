@@ -1,0 +1,175 @@
+{
+  "date": "2026-10-13",
+  "scope": "Independent read-only Linux RC1 defect remediation review of uncommitted RC2 candidate; no source/doc edits",
+  "baseline_commit": "a2183e1a5746c8a04fa25ff81af952faa76b27aa",
+  "current_source_hash": "e5d363652aee4a30dd484a97a848d9fd9a4b5c9598fe3fbd47c74375fe834c80",
+  "decision": "REMEDIATION_SOURCE_PASS_SCOPED; FINAL_CURRENT_SUITE_BUILD_BROWSER_PINS_PENDING",
+  "weighted_RC2_score": null,
+  "score_reason": "Narrow remediation review does not constitute a fresh full weighted93finding audit;84.0 remains historical RC1 provisional, not automatically reused",
+  "reproduced_defect": {
+    "file": "client/src/Crew.tsx",
+    "severity": "P2",
+    "before": "Late accepted action POST and subsequent GET re-populated role pane after Leave role; mounted assertion failed",
+    "initial_reproduction": "late-role-reproduction.tsx",
+    "initial_failure_log": "late-role-reproduction.log",
+    "fix": "roleEpoch invalidated on leave/reconnect/unmount/401; all asynchronous submit/refresh/error/finally paths check generation",
+    "after_checks": {
+      "cases": 4,
+      "passed": 4,
+      "failed": 0,
+      "milliseconds": 4207.092709,
+      "scope": "Late success or422 rejection after leave alone and after second-role reconnect in same Crew",
+      "log": "crew-lifetime-after-fix.log"
+    },
+    "portable_regression": "crew-lifetime-regression.tsx"
+  },
+  "reviewed_remediation": [
+    {
+      "finding": 1,
+      "scope": "Preflight restart false EADDRINUSE",
+      "assessment": "POSIX SO_REUSEADDR matches Uvicorn restart semantics; listen() detects true live listener even where reusable bind succeeds. Windows SO_EXCLUSIVEADDRUSE conditional does not invent native Windows validation."
+    },
+    {
+      "finding": 2,
+      "scope": "Raid Composer clipped controls",
+      "assessment": "Scoped adaptive grid replaces non-wrapping setup flex; labels/controls min-width and max-width bounded. Actual browser layout evidence still belongs to root acceptance."
+    },
+    {
+      "finding": 3,
+      "scope": "Crew native button contrast",
+      "assessment": "Explicit dark normal button background/text plus existing specific primary/subtle overrides; mounted contrast and real browser computed style needed for final receipt."
+    },
+    {
+      "finding": 4,
+      "scope": "Legacy list flicker",
+      "assessment": "List-only memory uses reportedContacts, retains last-reported position for2seconds or selected ID, resets on new exercise/rewind. Current target/optical/Fusion/radar/decisions remain reported-current; no hidden coordinate fallback or score/engine modifications."
+    },
+    {
+      "finding": 5,
+      "scope": "Broadcast candidate LAN URL",
+      "assessment": "ip JSON local fields or anchored inet/hostname-I address lists; no broad IPv4 regex matching netmask/broadcast/peer and no DNS ownership guess. Owned virtual addresses remain candidates with launcher warning."
+    },
+    {
+      "finding": 6,
+      "scope": "Fresh local history404",
+      "assessment": "Zero-session profile route guards unregistered default trainee history request; existing local draft merge preserved. Profile endpoint already used in App and does not introduce new outcome credit."
+    },
+    {
+      "finding": 7,
+      "scope": "Crew participant catalogue401",
+      "assessment": "Catalogue fetch moved into OfficerGate child with cleanup; participant role picture remains separate capability route."
+    },
+    {
+      "finding": 8,
+      "scope": "Crew contact-observation race422",
+      "assessment": "Server never converts rejected action into accepted evidence; explicit422message, definitive client no-retry feedback, fresh picture/reacquisition gating and stable nonce for only ambiguous transport outcomes."
+    },
+    {
+      "finding": 9,
+      "scope": "Dark native controls and tour overlap",
+      "assessment": "Dark color-scheme/control/scrollbar styling, padded Fusion and normal-flow tour launcher; no new sensory evidence or score changes."
+    },
+    {
+      "finding": 10,
+      "scope": "Internal trainee IDs in own Unit AAR/history",
+      "assessment": "Current unitIdentity callsign maps displayed own trainee ID; underlying session owner IDs untouched."
+    },
+    {
+      "finding": 11,
+      "scope": "Linux toolchain notes",
+      "assessment": "Keep exact platform/toolchain/deprecation/package-count provenance; no evidence of source/runtime bug from those warnings."
+    }
+  ],
+  "independent_startup_attempt": {
+    "passed": 3,
+    "environmentally_blocked_socket_cases": 3,
+    "seconds": 0.41,
+    "cause": "Sandbox EPERM on bind before implementation test; not a reproduced source defect",
+    "log": "startup-focused.log",
+    "no_permission_or_native_PASS_inferred": true
+  },
+  "private_linux_report_review": {
+    "report_read": true,
+    "reported_source": "a2183e1a5746c8a04fa25ff81af952faa76b27aa / v1.1.0-rc.1",
+    "Linux": "Arch rolling, Python3.14.8/Node26.11.1/Chrome151 scripted headless withhardwareWebGL",
+    "scope": "One native Linux machine, two browser profiles, scripted policies; no physical seconddevice/human efficacy/Windows/currentRC2pass",
+    "private_evidence_checked": "Startup TIME_WAIT/restart/address transcript and buttoncontrast/testsummary files inspected for relevant indicators; private role codes/passwords not exposed"
+  },
+  "protected_releases": "RC1/stable references must remain unchanged; no approval to overwrite/create stable tag",
+  "final_acceptance_conditions": [
+    "Final frontend full suite after roleEpoch and integrated4case regression",
+    "Final backend/parity/historical suite from current unchanged backend",
+    "Productionbuild/lint/format with final source pins",
+    "Actual current browser Composer widths/buttoncontrast/tour/list stale gating/Crew422/callsign/history/catalogue proof",
+    "Exactsource/clone/assets/evidence/receipt reconciliation and coherent tested commit/push"
+  ],
+  "external_remaining": [
+    "RC2 native Linux re-test of immediate restart/GUI fixes",
+    "Native Windows acceptance",
+    "Separate physical phone/LAN/WAN/HTTPS browsertrust"
+  ],
+  "stable_approval": false,
+  "raw_log_sha256": {
+    "startup-focused.log": "e6efafde1b24c9fd2c51f865d8117410e3ef7b28833c2edbddcf99f5fad72ae5",
+    "crew-lifetime-after-fix.log": "78fd0b23b71192fd6835b6642416dfa267e59f1a0398a00a438c3da48bbfccc2",
+    "crew-lifetime-before.log": "78fd0b23b71192fd6835b6642416dfa267e59f1a0398a00a438c3da48bbfccc2",
+    "late-role-reproduction.log": "0e5cde544ad8aa7e85a13d507a9a20dc09e6dc77f101a0d2de75c2fa4aeffd12"
+  },
+  "final_source_review": {
+    "code_commit": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
+    "source_sha256": "5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0",
+    "decision": "SOURCE_REGRESSION_DEPLOYMENT_PASS_SCOPED; FINAL_MANIFEST_RECONCILIATION_PENDING",
+    "independent_focused_frontend": {
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0,
+      "milliseconds": 2938.395542,
+      "log": "final-focused-0c6.log",
+      "suites": [
+        "crew-lifetime.test.tsx",
+        "contact-memory.test.ts",
+        "crew-recovery.test.tsx"
+      ]
+    },
+    "root_current_full_raw_logs_read": {
+      "backend": {
+        "passed": 617,
+        "failed": 0,
+        "seconds": 1087.53,
+        "log": "/tmp/vyuha-rc2-final-backend-617.log"
+      },
+      "frontend": {
+        "passed": 172,
+        "failed": 0,
+        "milliseconds": 137555.552417,
+        "log": "/tmp/vyuha-rc2-final-frontend-172.log"
+      },
+      "build": {
+        "assets": 27,
+        "cache": "b2b7e099df64",
+        "seconds": 29.2,
+        "log": "/tmp/vyuha-rc2-final-build-172.log"
+      }
+    },
+    "clone_and_assets_independent": {
+      "clone_HEAD_matches": true,
+      "all27_dist_files_byte_equal": true,
+      "all3_dependency_manifests_equal": true,
+      "all5_frozen_legacy_hashes_equal": true
+    },
+    "new_since_first_review": "Reviewed responder designation/classification gates and equal-tick monotonic global rt order revision, with independent latest12checks passing. No new engine/scoring source diff versus RC1.",
+    "actual_browser_receipts_inspected": "Current Mac Chrome source commit/39076814401920Composer/Crew/measuredbuttoncontrast9.94-11.86/restartclock67.83+3attributed/sharedcompletion/callsign/list memory; integrationownerGUI not independently fabricated ownGUI",
+    "natural_422_receipt": "Actual server ordinaryclock contacts offeredtick131/lost138/422/noacceptedaction; HTTP supporting proof distinct from GUIfeedback tests",
+    "current35_route_auth_receipt": "35unique officer path/method rows all401anonymous/forged/loggedout",
+    "history": "18baseline/22current exact, sourceDBunchanged",
+    "weighted_RC2_score": null,
+    "historical_RC1_score": 84,
+    "stable_approval": false,
+    "external_gates": "NativeRC2Linux, nativeWindows, separatephysicalphone/LAN/WAN/browserCAtrust pending",
+    "raw_log_sha256": {
+      "/tmp/vyuha-rc2-final-backend-617.log": "d7c7f66c677c9414987562ffb8f5f789fc6af3bd1e5098ff3017eeb6dbd7b3e4",
+      "/tmp/vyuha-rc2-final-frontend-172.log": "09c68f921133d844f8092a541615257d479be4df0ba2e91aae5837a97cc1c314",
+      "/tmp/vyuha-rc2-final-build-172.log": "3f6032d5dc684f34cf698b8b440d49482481313d3e2a606264453715b46c0a1a"
+    }
+  }
+}

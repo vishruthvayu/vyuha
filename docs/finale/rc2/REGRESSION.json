@@ -1,0 +1,78 @@
+{
+  "code_commit": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
+  "source_tree_sha256": "5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0",
+  "tests": {
+    "backend": {
+      "passed": 617,
+      "failed": 0,
+      "seconds": 1087.53,
+      "warnings": 1
+    },
+    "frontend": {
+      "passed": 172,
+      "failed": 0,
+      "milliseconds": 137555.552417,
+      "skipped": 0
+    },
+    "production_build": "PASS",
+    "offline_assets": 27,
+    "offline_cache": "b2b7e099df64",
+    "historical_baseline": 18,
+    "historical_current": 22,
+    "unchanged_legacy_hashes": true,
+    "lint": "PASS",
+    "format_all_mutable_TSX_and_hooks": "PASS"
+  },
+  "parity": {
+    "original": 312,
+    "finale_immediate": {
+      "scenarios": 32,
+      "checkpoints": 544
+    },
+    "finale_delayed": {
+      "scenarios": 18,
+      "checkpoints": 288
+    },
+    "sensor_component": 1920,
+    "motion_component": 7452,
+    "fusion_advice": 64
+  },
+  "raw_log_sha256": {
+    "final-backend-617.log.txt": "d7c7f66c677c9414987562ffb8f5f789fc6af3bd1e5098ff3017eeb6dbd7b3e4",
+    "final-frontend-172.log.txt": "09c68f921133d844f8092a541615257d479be4df0ba2e91aae5837a97cc1c314",
+    "final-build-172.log.txt": "3f6032d5dc684f34cf698b8b440d49482481313d3e2a606264453715b46c0a1a",
+    "final-lint.log.txt": "8b6f8a25b3c67e6bdbbc62893a70da3c6de1d23e48068d4651bf9c87c0b2e64c",
+    "final-format.log.txt": "41a0012ddee5afd162c532de34ee53d00086df0f3e0e81882f14a109ec33c2d6",
+    "target-backend-16.log.txt": "c33c2524c86f5c7bfe6ef1bf65a504b51a3c5efbc752ed0b41950b0ab4a9b913",
+    "ui-target-12.log.txt": "db442a1c2fa9200032dcba906f916748d5e2cfd979b8d8ef51a92748c312c18e",
+    "history.log.txt": "609deffb097f27e6dc630b7655d4dc5edf6391d7b6c5c98e848e1e44237f6cc9",
+    "natural-422.log.txt": "07678a3aa8f46f4cc8a27aff278126c39da33838e96daf1025ee7fdd51972a26",
+    "clone-npm-ci.log.txt": "267ec8bf8d7311d41dd602ee02b21e53e22f0f9b59ac38ce7b3a1b575ced7aee",
+    "clone-build.log.txt": "98e5bbd5d54df7c45d7940eeda02c8f249b538aaa28d2f44be7d92525c8f270f",
+    "deployment.log.txt": "160e6e795ec91d3a9b4e329ad12bd27abe376d3bddde8d2912503b1ebf22e35e"
+  },
+  "commands": [
+    ".venv/bin/python -m pytest server/tests -q",
+    "npm test",
+    "npm run lint",
+    "npm run format:check",
+    "npm run build"
+  ],
+  "scope": "All suites after final source edits; no new source edits after these runs. Existing Starlette/httpx and large-chunk warnings retained. Targeted and independent cases are subsets, not added to full totals.",
+  "documentation_followup": {
+    "backend_compliance": {
+      "passed": 6,
+      "failed": 0,
+      "seconds": 1.59
+    },
+    "scope": "Documentation-only reconciliation; subset not added to full617/172 totals",
+    "log": "compliance-docs.log.txt"
+  },
+  "independent_followup": {
+    "passed": 12,
+    "failed": 0,
+    "milliseconds": 2938.395542,
+    "scope": "Read-only independent focused lifetime/contact-memory/recovery rerun; subset not added to full172 total",
+    "log": "final-focused-0c6.log.txt"
+  }
+}

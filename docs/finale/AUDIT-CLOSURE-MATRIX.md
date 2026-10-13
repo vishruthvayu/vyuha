@@ -1,8 +1,8 @@
 # Finale all 93audit matrix —13 October 2026
 
-Current implementation `e07a3845cc465f430b572ece7fbded687c1e3729`; source SHA256 `02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a`. Final validation: **609 backend PASS / 160 frontend PASS / zero failures**, production build: 27 local assets / cache `d4234414a93b`, lint and all mutable TSX/hook formatting PASS. Source is frozen; subsequent receipt commits only change documentation. Protected fallback `release/v1.0.1` and peeled tag `v1.0.1` remain `2ca96105044ad6a14952d74db619e20006c26eca`.
+Current RC2 tested implementation `0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1`; source SHA256 `5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0`. **617 backend / 172 frontend PASS, zero failures**; production **27 assets / cache `b2b7e099df64`**; lint/format PASS. RC1 `v1.1.0-rc.1` remains `a2183e1a5746c8a04fa25ff81af952faa76b27aa` and fallback `release/v1.0.1`/`v1.0.1` remains `2ca96105044ad6a14952d74db619e20006c26eca`. No stable release is authorized.
 
-Independent provisional **84.0/100** = 46/50 PS + 18/25 realism/AI + 20/25 engineering/demo. This is engineering judgement under the original rubric, not official SIH marks or winning probability. Current **62 PASS / 30 PARTIAL / 1 N/A / 0 BLOCKED** =67.3913% closure excluding N/A. X10 final pin reconciliation passed independent verification; software RC may be sealed. No new source behavior defect was reproduced.
+Historical RC1 provisional audit: **84/100**. RC2 has a scoped independent remediation review, **no fresh weighted score**. All93 original audit dispositions retained: **62 PASS / 30 PARTIAL / 1 N/A / 0 BLOCKED**. Arch Linux RC1 passed with defects; RC2 Linux re-test, native Windows and fresh separate-device phone/LAN/WAN/HTTPS trust remain pending. See [Linux resolutions](rc2/LINUX-FINDINGS.md) and [minimal retesting](rc2/RETEST.md).
 
 Every originalrow retained. ScopedPASS closes namedsoftware contract, notscientific/native/physical/productcertification. Detailedoriginal39execution and FINAL-AUDIT-REASSESSMENT.json preserve independent decisions.
 
@@ -45,7 +45,7 @@ Every originalrow retained. ScopedPASS closes namedsoftware contract, notscienti
 | P2-01 | PARTIAL | Stop over-hedging | Original competition-media/claim provenance retained asPARTIAL underoriginalrubric; outside current software-only mission and not a software acceptance gate. |
 | P2-02 | PASS | Make the code readable for a walk-through | Further App decomposition is optional maintainability; no architectural simplicity or full assistive-technology certification claimed. |
 | P2-03 | PARTIAL | Support Windows | Retained by user; no fabricated PASS, architectural-failure inference or software-only mission blocker demanding inaccessible hardware. |
-| P2-04 | PASS | Lift the75-second cap | Legacy75-second scenario semantics preserved; final 609/160 regression passed. |
+| P2-04 | PASS | Lift the75-second cap | Legacy75-second scenario semantics preserved; final 617/172 regression passed. |
 | P2-05 | PASS | Steady the sim clock | Logical time can lag wall time after stalls; no uninterrupted background real-time or fresh endurance proof. |
 | CH01 | PASS | Close the 3D leak | GUI evidence boundary only: individual browser simulation receives the frozen scenario, so devtools are not an adversarial truth boundary. |
 | CH02 | PASS | Engine versioning | Final source manifest and post-edit release regression remain separate gates. |
@@ -72,7 +72,7 @@ Every originalrow retained. ScopedPASS closes namedsoftware contract, notscienti
 | F07 | PARTIAL | Director v2: learning progress, calibrated difficulty, retention and context skills | External data/equipment/research evidence; stronger claims prohibited. Not an invented prerequisite to the correctly labelled software prototype. |
 | X01 | PASS | Physical WAN-off evidence and updated documentation | This PASS is historical reported exercise/documentation scope only. No new finale WAN/officer-command/Ghost workflow inferred. |
 | X02 | PARTIAL | Stop over-hedging without erasing limitations | Original competition-media/claim provenance retained asPARTIAL underoriginalrubric; outside current software-only mission and not a software acceptance gate. |
-| X03 | PASS | Lift75-second cap / variable duration | Legacy75-second scenario semantics preserved; final 609/160 regression passed. |
+| X03 | PASS | Lift75-second cap / variable duration | Legacy75-second scenario semantics preserved; final 617/172 regression passed. |
 | X04 | PASS | Transfer export→untouched import HTTP422 observed in prior demo | Previously rewritten invalid legacy signatures still cannot be bypassed; original file or authenticated re-export needed. |
 | X05 | PASS | Simulation truth exposed through stale live lists/range/target tracking | GUI secrecy only; ordinary local client still owns frozen truth for simulation. Do not claim adversarial anti-cheat or hidden-scenario confidentiality. |
 | X06 | PASS | Historical engine marker misidentification in audit proposal | Version labels are provenance, not proof of equipment/operational validation. |

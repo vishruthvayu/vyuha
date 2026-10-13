@@ -1,0 +1,99 @@
+{
+  "date": "2026-10-13",
+  "release_candidate": "v1.1.0-rc.2",
+  "decision": "PASS_SCOPED_SOFTWARE_REMEDIATION_AND_FINAL_PIN_REVIEW",
+  "review_kind": "Independent read-only source/focused-test/receipt/manifest consistency review; no canonical source/docs edits",
+  "code_validation_commit": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
+  "source_tree_sha256": "5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0",
+  "receipt_commit_scope": "Final source tested at0c6; later docs-only receipt commit/prerelease ref may pin this decision if implementation/source hash and allproduction bytes remain unchanged. This is not stable approval.",
+  "independent_checks": {
+    "source_sha256": "5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0",
+    "code_commit": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
+    "all19_receipt_paths_exist": true,
+    "all93_counts_and_matrix_statuses": {
+      "PASS": 62,
+      "N/A": 1,
+      "PARTIAL": 30
+    },
+    "all27_canonical_clone_assets_match": true,
+    "cache": "b2b7e099df64",
+    "all3locks_match": true,
+    "all5_frozen_hashes_match": true,
+    "protected_refs_match": {
+      "release/v1.0.1": "2ca96105044ad6a14952d74db619e20006c26eca",
+      "v1.0.1^{}": "2ca96105044ad6a14952d74db619e20006c26eca",
+      "release/v1.1.0-rc.1": "a2183e1a5746c8a04fa25ff81af952faa76b27aa",
+      "v1.1.0-rc.1^{}": "a2183e1a5746c8a04fa25ff81af952faa76b27aa"
+    },
+    "all12_raw_log_hashes_match": true,
+    "delivered_final_logs_exact_and_Git_deliverable": true,
+    "candidate_evidence_endpoint_source_matches": true,
+    "fresh_RC2_score_null_stable_false_external_pending": true,
+    "limited_secret_scan": "592files,no reportedfindings,scope explicitly limited",
+    "git_diff_check": "PASS",
+    "all_modified_and_RC2_markdown_relative_links_exist": true,
+    "pending_G07_markdown_JSON_aligned_before_decision": true
+  },
+  "independent_current_focused_frontend": {
+    "passed": 12,
+    "failed": 0,
+    "skipped": 0,
+    "milliseconds": 2938.395542,
+    "source_commit": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
+    "log": "final-focused-0c6.log",
+    "log_sha256": "7b45ba5788b89724d654d884e73790dc6f5c74f3573d0c6c685a9141374f2077"
+  },
+  "root_final_full_results_independently_read_raw_logs": {
+    "backend": {
+      "passed": 617,
+      "failed": 0,
+      "seconds": 1087.53,
+      "warning": "Existing Starlette/httpx deprecation"
+    },
+    "frontend": {
+      "passed": 172,
+      "failed": 0,
+      "skipped": 0,
+      "milliseconds": 137555.552417
+    },
+    "production": {
+      "local_files": 27,
+      "cache": "b2b7e099df64",
+      "seconds": 29.2,
+      "large_chunk_warning_retained": true
+    },
+    "lint": "PASS",
+    "format": "PASS"
+  },
+  "scoped_defects_resolved": "Linux report findings1-10 remedied or clarified in currentsource; toolchain11 documented. Additional independently reproduced late-role resurrection fixed/tested, equal-tickrevision and responseprerequisites reviewed. No reproducible current softwarecorrectness defect remains identified in thisreview.",
+  "browser_provenance": "Current macOS Chrome workflows performed by integrationowner; independent source/receipt validation here, not newly claimed ownphysical/GUI execution. Actual current naturalHTTP422 is supporting server evidence distinct from mountedfeedback tests.",
+  "historical_platform_scope": "Supplied one-machine ArchLinuxRC1native/headless/scripted/no-network namespace evidence preserved; it does not passRC2Linuxretest or Windows/phone/physicalmultidevice/browsertrust/humanstudy.",
+  "finding_counts": {
+    "PASS": 62,
+    "PARTIAL": 30,
+    "NA": 1,
+    "BLOCKED": 0
+  },
+  "closure_percentage_excluding_NA": 67.3913043478261,
+  "weighted_RC2_score": null,
+  "historical_RC1_provisional_score": 84,
+  "score_policy": "No automatic carry-over/re-score or per-fix point award; narrow remediation review has no new weighted score.",
+  "stable_approval": false,
+  "external_remaining": [
+    "G08freshseparatephysicalclientLAN/WAN/HTTPStrust/coldreload PENDING_BY_USER",
+    "G09RC2nativeLinuxretestPENDING/nativeWindowsexecutionPENDING"
+  ],
+  "research_limits": "No real sensor/human data newly supplied; calibration/causal learning/total-memory/operational endurance remain unsupported claims.",
+  "documentation_corrections_during_review": [
+    "Fixed two sibling links formerly resolving rc2/rc2/*",
+    "Aligned pre-decision G07pending and current versushistoricalX10 wordinginsoftwareacceptance"
+  ],
+  "root_final_operations": [
+    "Copyaddendum and recordG07/currentsoftwareacceptancePASS_SCOPED",
+    "Commit/pushfinaldocumentationmilestone and verifyremoteHEAD",
+    "Create onlynew immutable prereleaseRC2 ifauthorized; preservedRC1andstable refs mustremainunchanged",
+    "Sealarchives/exclusions and recheck exactsource/build/receipt pins afterdocscommit"
+  ],
+  "source_mutations_by_reviewer": false,
+  "canonical_doc_mutations_by_reviewer": false
+}

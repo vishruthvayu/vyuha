@@ -1,0 +1,251 @@
+{
+  "scope": "Actual35 registered officer-protected path/method pairs, disposable loopback uvicorn; negative states anonymous/forged/logged-out. Expired and ambient-cookie cases covered in independent-registry ASGI test, not an8-hour physical test.",
+  "registered_pairs": 35,
+  "rows": [
+    {
+      "method": "GET",
+      "path": "/api/v1/units/{unit_id}/dashboard",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/instructor/sessions",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/instructor/sessions/{session_id}",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/instructor/sessions/{session_id}/commands",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/units/{uid}/trainees",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/units/{uid}/exercises",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/units/{uid}/exercises",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/units/{uid}/exercises/{gid}",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/units/{uid}/doctrine",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/scenario-library/preview",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/scenario-library",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/trainees/{tid}/analytics",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/units/{uid}/analytics",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/units/{uid}/skill-heatmap",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/units/{uid}/bundle/export",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/bundle/import",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/recordings",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/evaluations",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/evaluations/{eid}",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/evaluations/{eid}/post",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/raids/preview",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/raids",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/white-cell",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/white-cell/{session_id}",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/crews",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/crews/history",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/crews/{cid}/members",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/crews/{cid}/members/{mid}/rotate",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/crews/{cid}/members/{mid}/revoke",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/crews/catalogue",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/crews/{cid}/control",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/crews/{cid}/complete",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/instructor/sessions/{sid}/teaching-notes",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/instructor/sessions/{sid}/teaching-pauses",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/instructor/stream",
+      "anonymous": 401,
+      "forged": 401,
+      "logged_out": 401
+    }
+  ]
+}

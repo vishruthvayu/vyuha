@@ -1,3 +1,5 @@
+> Current RC2 remediation: tested code0c6aed1/source5720d526,617backend/172frontend/build27/cacheb2b7e099df64. NativeLinuxRC1 PASS_WITH_DEFECTS received; RC2Linux retest, nativeWindows andfreshseparate-phone acceptance pending. Historical sections below retain dated provenance. Current rules/commands: [rc2/RETEST.md](rc2/RETEST.md), [rc2/LINUX-FINDINGS.md](rc2/LINUX-FINDINGS.md), [evidence.json](evidence.json). No stable tag.
+
 # Implementation log — 2026-10-11
 
 Verified canonical repository, baseline tag/commit and clean initial working tree; fetched origin and created feature/vyuha-finale-edition from immutable v1.0.1.

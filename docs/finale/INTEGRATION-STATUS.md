@@ -1,3 +1,5 @@
+> Current RC2 remediation: tested code0c6aed1/source5720d526,617backend/172frontend/build27/cacheb2b7e099df64. NativeLinuxRC1 PASS_WITH_DEFECTS received; RC2Linux retest, nativeWindows andfreshseparate-phone acceptance pending. Historical sections below retain dated provenance. Current rules/commands: [rc2/RETEST.md](rc2/RETEST.md), [rc2/LINUX-FINDINGS.md](rc2/LINUX-FINDINGS.md), [evidence.json](evidence.json). No stable tag.
+
 # Finale integration status —13 October 2026
 
 Current implementation `e07a3845cc465f430b572ece7fbded687c1e3729`; source SHA256 `02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a`. Final validation: **609 backend PASS / 160 frontend PASS / zero failures**, production build: 27 local assets / cache `d4234414a93b`, lint and all mutable TSX/hook formatting PASS. Source is frozen; subsequent receipt commits only change documentation. Protected fallback `release/v1.0.1` and peeled tag `v1.0.1` remain `2ca96105044ad6a14952d74db619e20006c26eca`.

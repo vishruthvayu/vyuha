@@ -1,0 +1,20 @@
+✔ list memory prevents flicker without exposing never-observed contacts or moving stale positions (8.131875ms)
+✔ unselected last reports expire after2seconds; selected report remains labelled unavailable (1.29225ms)
+✔ new exercise and rewind clear contact memory; reacquisition retains stable row order (2.350334ms)
+✔ late shared polling cannot undo action attribution or a completed result (0.327125ms)
+✔ equal-tick Crew controls cannot regress to an older pause snapshot (0.661ms)
+✔ Late success after leaving cannot restore prior role data (386.4865ms)
+✔ Late success after leaving and reconnecting another role cannot restore prior role data (55.333833ms)
+✔ Late rejection after leaving cannot restore prior role data (46.944ms)
+✔ Late rejection after leaving and reconnecting another role cannot restore prior role data (41.670709ms)
+✔ Crew rejection refreshes picture, disables unavailable action and retains feedback across polling (934.33575ms)
+✔ Enabled responder and leave-role buttons have contrasting explicit native-independent colours (64.317916ms)
+✔ Responder cannot submit classification or effects before the shared designation (21.644833ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2938.395542

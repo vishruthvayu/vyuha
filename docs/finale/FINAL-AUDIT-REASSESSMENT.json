@@ -409,5 +409,9 @@
     "PARTIAL": 30
   },
   "current_closure_percent_excluding_NA": 67.3913043478261,
-  "current_software_decision": "PASS_SCOPED"
+  "current_software_decision": "PASS_SCOPED",
+  "historical_release": "v1.1.0-rc.1",
+  "historical_only": true,
+  "current_RC2_weighted_score": null,
+  "current_RC2_review": "rc2/INDEPENDENT-FINAL.json"
 }
