@@ -1,37 +1,47 @@
 {
   "schema_version": 1,
-  "recorded_at": "2026-10-12",
-  "acceptance": "CANDIDATE \u2014 CYCLE2 SOFTWARE REGRESSION PASSED; FINAL RELEASE ACCEPTANCE PENDING",
+  "recorded_at": "2026-10-13",
+  "acceptance": "SOFTWARE-FROZEN RELEASE CANDIDATE; FINAL STABLE PHYSICAL/NATIVE ACCEPTANCE PENDING",
   "branch": "feature/vyuha-finale-edition",
+  "release_candidate": "v1.1.0-rc.1",
   "baseline_commit": "2ca96105044ad6a14952d74db619e20006c26eca",
-  "source_tree_sha256": "94d311b647337ea9e1db5cac8cd75fc86b70f46717b5c1e8ad18fffbeb05595e",
+  "candidate_commit": "e07a3845cc465f430b572ece7fbded687c1e3729",
+  "code_validation_commit": "e07a3845cc465f430b572ece7fbded687c1e3729",
+  "commit_scope": "Exact implementation tested at e07. Final RC reference includes later documentation-only receipts; source hash and build bytes must remain equal.",
+  "source_tree_sha256": "02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a",
+  "source_hash_scope": "server,client/src,client/public,client/scripts,scripts,examples and3dependency manifests; supplementary Git commit pins tooling configs/docs not included by source_hash.",
   "historical_wan": {
     "status": "PASSED \u2014 TEAM CONFIRMED (historical, 2026-10-04)",
     "reported_scope": "Windows officer laptop + phone browser + common local router. Internet unavailable on both; phone joined/completed a drill; consistent score and officer-visible result. Exact build not supplied; new finale build remains unvalidated physically."
   },
   "remaining": [
-    "Fresh physical Finale LAN/WAN/HTTPS trust and cold reload, and native Windows/Linux execution remain pending by user instruction.",
-    "Final stable acceptance and tag after mandatory gates pass.",
-    "Validated-release deck, video, rehearsal and submission.",
-    "Research calibration, human studies and the 39 remaining partial findings are distinguished in the prioritized matrix."
+    "Fresh physical Finale multi-device LAN/WAN/HTTPS trust/cold reload and native Windows/Linux execution remain PENDING_BY_USER; these are unperformed acceptance, not failed architecture.",
+    "No real sensor measurements or human study supplied; evaluation interfaces, synthetic plots and statistical contracts are implemented preparation, not empirical efficacy.",
+    "Trusted-LAN independent callsign/UUID is not authenticated secure-exam learner identity.",
+    "Whole Worker/GPU/process memory and operational endurance breadth are not certified.",
+    "Original media rubric rows retained as audit provenance; no media/submission work is assigned or a software-only gate."
   ],
   "tests": {
     "backend": {
-      "passed": 482,
+      "passed": 609,
       "failed": 0,
-      "seconds": 275.39
+      "seconds": 413.34,
+      "warnings": 1
     },
     "frontend": {
-      "passed": 137,
+      "passed": 160,
       "failed": 0,
-      "milliseconds": 43841.548125
+      "milliseconds": 37504.43675,
+      "skipped": 0
     },
     "production_build": "PASS",
-    "offline_assets": 26,
-    "offline_cache": "72094449dd1b",
+    "offline_assets": 27,
+    "offline_cache": "d4234414a93b",
     "historical_baseline": 18,
     "historical_current": 22,
-    "unchanged_legacy_hashes": true
+    "unchanged_legacy_hashes": true,
+    "lint": "PASS",
+    "format_all_mutable_TSX_and_hooks": "PASS"
   },
   "parity": {
     "original": 312,
@@ -49,67 +59,106 @@
   },
   "independent_audit": {
     "status": "PROVISIONAL; NO STABLE APPROVAL",
-    "score": 83.5,
+    "score": 84,
     "final_score": null,
-    "scoped_pass": 53,
-    "partial": 39,
+    "allocation": {
+      "PS": 46,
+      "realism_AI": 18,
+      "engineering_demo": 20
+    },
+    "scoped_pass": 62,
+    "partial": 30,
     "not_applicable": 1,
-    "prior_provisional_score": 82,
-    "software_acceptance": "PASS_SCOPED; final stable release decision withheld"
+    "blocked": 0,
+    "closure_percent_excluding_NA": 67.3913043478261,
+    "report": "FINAL-AUDIT-REASSESSMENT.json",
+    "prior_provisional_score": 83.5,
+    "final_consistency_addendum": "workstreams/X10-FINAL-CONSISTENCY.json"
   },
   "native_platform_validation": {
-    "status": "PENDING",
-    "reason": "User requested native Windows/Linux validation remain pending on2026-10-12"
+    "status": "PENDING_BY_USER",
+    "reason": "User deferred actual Windows/Linux execution."
+  },
+  "new_physical_validation": {
+    "status": "PENDING_BY_USER",
+    "reason": "User deferred fresh Finale separate-device LAN/WAN/HTTPS trust/cold reload."
   },
   "receipts": [
     "TEST-RESULTS.md",
     "BROWSER-ACCEPTANCE.json",
-    "TLS-SERVICE-RECEIPT.json",
-    "CREW-TRANSFER-RECEIPT.json",
-    "TRANSFER-FINALE-RECEIPT.json",
-    "INDEPENDENT-CANDIDATE-RECEIPT.json",
-    "BENCHMARK-20261012.json",
-    "CLEAN-CLONE-RECEIPT.json",
-    "MOBILE-AAR-20261012.png",
-    "EXPERT-RUN-VALIDATION.md",
-    "RUNTIME-LOAD-RECEIPT.json",
-    "PROCESS-OUTAGE-RECEIPT.json",
-    "LARGE-AAR-20261012.png",
-    "OUTAGE-DEVICE-AAR-20261012.png",
-    "OUTAGE-VERIFIED-AAR-20261012.png",
     "AUTHORIZATION-ROUTE-RECEIPT.json",
-    "RECONSTRUCTION-PROFILE-RECEIPT.json",
-    "ENDURANCE-BROWSER-20261012.json",
-    "HISTORY-RECEIPT.json",
-    "REFERENCE-IMMUTABILITY-RECEIPT.json",
-    "INDEPENDENT-REVIEW-20261012.md",
-    "INDEPENDENT-REVIEW-20261012.json",
-    "FINAL-RELEASE-GATES.json",
-    "CLEAN-CLONE-038dd12-HISTORICAL.json",
-    "OFFICER-REVIEW-INDEPENDENT.md",
-    "OFFICER-AAR-CLEAN-CLONE-20261012.png",
-    "CREW-COORDINATION-20261012.png",
-    "SCOPED-SECRET-SCAN.json",
-    "EVIDENCE-FRESHNESS-RECEIPT.json",
-    "FINAL-SOFTWARE-ACCEPTANCE.md",
+    "TRANSFER-FINALE-RECEIPT.json",
+    "TLS-SERVICE-RECEIPT.json",
+    "HISTORY-MISSION-RECEIPT.json",
     "FINAL-SOFTWARE-ACCEPTANCE.json",
-    "EVIDENCE-CURRENT-20261012.png",
-    "CLEAN-CLONE-CYCLE2-RECEIPT.json",
-    "AUTHORIZATION-CYCLE2-RECEIPT.json",
-    "RAID-VARIATION-CYCLE2.json",
-    "RECONSTRUCTION-CYCLE2-RECEIPT.json",
-    "CREW-HISTORY-CYCLE2.png",
-    "PARTIAL-FINDING-CLASSIFICATION-20261012.json",
+    "FINAL-SOFTWARE-ACCEPTANCE.md",
+    "FINAL-RELEASE-GATES.json",
+    "FINAL-AUDIT-REASSESSMENT.json",
+    "FINAL-AUDIT-REASSESSMENT.md",
+    "AUDIT-CLOSURE-MATRIX.md",
+    "REMAINING-39-AUDIT-EXECUTION.md",
     "WINDOWS-PHONE-ACCEPTANCE-RUNBOOK.md",
     "PHYSICAL-TEST-RESULTS.md",
-    "CYCLE2-BROWSER-ACCEPTANCE.json",
-    "SIH-PRESENTATION-SOURCE-HANDOFF.md",
-    "FINAL-AUDIT-REASSESSMENT.md",
-    "FINAL-AUDIT-REASSESSMENT.json",
-    "EVIDENCE-CYCLE2.png",
-    "COMPLIANCE-CYCLE2.png"
+    "SCOPED-SECRET-SCAN.json",
+    "workstreams/RC-DEPLOYMENT-RECEIPT.json",
+    "workstreams/GUI-CLEAN-RECEIVER-RECEIPT.json",
+    "workstreams/RESPONSIVE-CHROME-RECEIPT.json",
+    "workstreams/AUTHORIZATION-35-ROUTES.json",
+    "workstreams/BROWSER-REPLAY-IMMUTABILITY.json",
+    "workstreams/CURRENT-PROCESS-OUTAGE-RECEIPT.json",
+    "workstreams/LIVE-20-CLIENT-RECEIPT.json",
+    "workstreams/unit-query-cache-receipt.json",
+    "real-world-validation/INTERFACE-EVALUATION-RECEIPT.json",
+    "workstreams/X10-FINAL-CONSISTENCY.json",
+    "workstreams/X10-FINAL-CONSISTENCY.md",
+    "RC-FREEZE.md"
   ],
-  "candidate_commit": "4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903",
+  "final_software_acceptance": "PASS_SCOPED; stable approval false",
+  "stable_approval": false,
+  "production_assets": {
+    "all_files_byte_equal": true,
+    "file_count": 27,
+    "cache_version": "d4234414a93b",
+    "asset_sha256": {
+      "assets/Analytics-Bz-3Nf6X.js": "fc9675a61e615eee4d4f6d1f702a6ab80be16ee7127026a507ea5380b178fb58",
+      "assets/App-BnBb0HG5.js": "f1e59c02992467dd61a05c64658fa2b9c459ede53ba6be006aa76fae34a4e061",
+      "assets/Benchmark-CnOpbM5f.js": "d8f6f864e61269b4f9d62b97a706b99a2dfb64bb477a1ef2b624fbc349f51062",
+      "assets/Compliance-BATV5smA.js": "63e497f3d9290c416759b48c4e35a80cfb028c57807b3fd4896b995a83268455",
+      "assets/Crew-Ncw1eoof.js": "ae292b18dfac180af5611f48962fda95ad632781e5ec62726b1138b3b6da8896",
+      "assets/Evaluation-DRyhPwWe.js": "00f0ab0d4c005b07ff5692c53793464dfe3f02675459cd612dbf20e9d99ba77a",
+      "assets/Evidence-D51YXBmq.js": "511b046dee6ad601d75d6cc6bfe2a9620632c796d196525b81d61eed71186be3",
+      "assets/ExerciseStudio-CU2RqvSn.js": "1cae0a4c2aa7c1e875b6c9925f0bb7b96b21c1bcd4f24ff9585c63efd599c5c7",
+      "assets/Instructor-DzPSX5jE.js": "947807bedd2d48f0927d7ea15987cc1f3dea3553946a14b2870bbedcc981aae9",
+      "assets/Radar-D9goOnhu.js": "0fa6d0cb6f6f07568c178e6a41ecd49295540447d5f7903c0ab62cecc7c49a0e",
+      "assets/RapidID-C_RiWFv6.js": "7281031c5905a4ec57c93b4272c085a2677984f6dc9406df0f4026c57ed46b26",
+      "assets/Recorded-B96MxY7r.js": "00e1bcd367ea104a86e04a2e4ab812ab5f0bc6736b410d88a1691eee6e593e65",
+      "assets/Transfer-B_FoZlHt.js": "2adf011344f15575718c7b53b6ccc6705c0a5dcbc5c63a04fb04fbb637626818",
+      "assets/import-json-DEPqWbQE.js": "0ed610860015c0f9673df34d95efab8c7ed42d4f5928566480caa77ec126380c",
+      "assets/index-Bj8qK4Pj.css": "ffa9a7a1250f421d82d97658398e5fc38733388b07e3112cae8482834d756f80",
+      "assets/index-D3uiTWW3.js": "2458a9285c27e51043d67844a9b5dcb6ba3d2cc5d82682c80a4a97f9563e9541",
+      "assets/live-stream-aAoLRzx7.js": "552cad37e4c1f80328528bb5d5821e148662077164c85f948e8c36247b4aaf1f",
+      "assets/observations-InpqRgc-.js": "73a0d4e09a9d45fabd6793f73e9869e62e8e5a3edc40bdbaccbe4c635def4969",
+      "assets/presentation-DEBuChuu.js": "2c2eed4e6e53d81827407fbde5bd42df2b042f38f5e07866efb6a8e0ce657c2e",
+      "assets/response-v2-BXqvvt7X.js": "5bc128615f0d647f593f7fcfdfaa37d4a38cc7c75703e4f9f2898dd836d67ac7",
+      "assets/scenario-CmbldnyF.js": "454407624f916ae900fed71a6acbe9da92f2867086d5321936287684e3c23582",
+      "assets/sim.worker-DVjxYNQs.js": "9fe03570123e1186206e263e91dbee2b4ae582f1a703aca241474eab4a2c7c6c",
+      "examples/recorded-exercise.json": "9e80153eadf52a637130eb9495a77a038f97fa583095e0f628b8f46ff2c7343d",
+      "favicon.svg": "ad80061f8ab202c70b75b8cea093537e31373642c45d9f26c0a84300f6868acf",
+      "index.html": "d4234414a93b81c5ec0dadf0366e72686f259a3c9a5cb042fda2894a8d784843",
+      "manifest.webmanifest": "3c9a9d404d20793b0dfb430286f94ae5ecd1c559ccc7f21e340206d3fa1d745a",
+      "sw.js": "96890b7dc4d5ce3e5ee98324389427eb16bcc1cb0ee22c66741db8590f0ac0de"
+    },
+    "build_seconds": 38.41,
+    "large_chunk_warning_retained": true
+  },
+  "clean_clone": {
+    "code_commit": "e07a3845cc465f430b572ece7fbded687c1e3729",
+    "source_sha256": "02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a",
+    "Python": "3.13.2",
+    "locked_npm_ci": "PASS",
+    "all27dist_files_byte_equal": true,
+    "backup_restore": "PASS"
+  },
   "performance": {
     "hardware": "MacBook Air / Apple M1 /8GB",
     "graphics": "fixed Medium, auto OFF",
@@ -129,12 +178,6 @@
     ],
     "scope": "Five20s synthetic Sensor Truth stress fixtures in actual desktop Chromium; not physical Android or endurance/concurrency acceptance"
   },
-  "reconstruction": {
-    "contacts": 200,
-    "direct_unprofiled_median_seconds": 11.025263,
-    "whole_review_card_equal_before_after": true,
-    "scope": "Three direct full-review samples; earlier27.381s was one HTTP completion, not a paired HTTP benchmark"
-  },
   "longer_browser_run": {
     "seconds": 180,
     "contacts": 200,
@@ -144,11 +187,6 @@
     "p95_tick_ms": 10.3,
     "heap_scope": "Main-page JS heap samples only; not Worker/GPU/total-process memory or certification"
   },
-  "new_physical_validation": {
-    "status": "PENDING_BY_USER",
-    "reason": "User retained fresh Finale physical validation pending on2026-10-12; no new pass or architectural failure inferred"
-  },
-  "final_software_acceptance": "PASS_SCOPED: full regression, history, real browser, clean locked-dependency macOS clone and backup/restore; not a stable release approval",
   "reconstruction_cycle2": {
     "before_direct_200_median": 9.670718125009444,
     "after_direct_200_median": 7.141738959006034,
@@ -156,5 +194,8 @@
     "after_http_200_median": 7.3824508329853415,
     "repeats": 3,
     "full_review_and_card_equal_all5sizes": true
-  }
+  },
+  "measurement_provenance": "Performance/reconstruction values copied from explicitly dated October12 receipts; no new repetition or larger certification inferred. October13load/cache/GUI receipts separate.",
+  "software_RC_gate_status": "PASS_SCOPED",
+  "open_reproducible_software_defects": []
 }

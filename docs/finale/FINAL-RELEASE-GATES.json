@@ -1,115 +1,132 @@
 {
-  "recorded_date": "2026-10-12",
-  "source_tree_sha256": "94d311b647337ea9e1db5cac8cd75fc86b70f46717b5c1e8ad18fffbeb05595e",
+  "recorded_date": "2026-10-13",
+  "source_tree_sha256": "02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a",
+  "candidate_code_commit": "e07a3845cc465f430b572ece7fbded687c1e3729",
   "stable_approval": false,
+  "software_RC_gate_status": "PASS_SCOPED",
   "final_audit_score": null,
-  "independent_provisional_score": 83.5,
+  "independent_provisional_score": 84,
   "finding_counts": {
-    "PASS": 53,
+    "PASS": 62,
     "N/A": 1,
-    "PARTIAL": 39
+    "PARTIAL": 30
   },
   "finding_blocked_ids": [],
   "gates": [
     {
       "id": "G01",
-      "requirement": "Final backend/frontend/production regression",
+      "requirement": "Full final backend/frontend/lint/format/production build",
       "status": "PASS",
-      "evidence": "482 backend /137 frontend /zero failures;275.39s/43841.548125ms;production build26 assets/cache72094449dd1b"
+      "evidence": "609/160zero failures,27assets/cache d4234414a93b; source e07"
     },
     {
       "id": "G02",
-      "requirement": "Full versioned parity and exact historical compatibility",
+      "requirement": "Versioned parity and exact historical compatibility",
       "status": "PASS",
-      "evidence": "Original312, immediate544/32, delayed288/18;18baseline/22current exact;HISTORY-RECEIPT.json"
+      "evidence": "Original312; immediate544/32; delayed288/18; sensors1920; motion7452; Fusion64;12Director templates;18/22cards unchanged"
     },
     {
       "id": "G03",
-      "requirement": "Officer authorization, Crew isolation and transfer integrity",
+      "requirement": "Officer authorization, Crew isolation, transfer",
       "status": "PASS_SCOPED",
-      "evidence": "32 actual current HTTP protected pairs reject anonymous/forged/logged-out with401; expired and ambient-cookie cases in registry ASGI tests; Crew lifecycle/isolation/transfer regression passed."
+      "evidence": "35actualHTTPnegative route pairs401; fullsecurity suite; GUI24insert/24skip/tamperreject; exact forwarding, no Crew individual ledger"
     },
     {
       "id": "G04",
-      "requirement": "Real browser AAR/reference/Fusion/Crew/recovery workflows",
+      "requirement": "Actual browser advanced/recovery/responsive workflows",
       "status": "PASS_SCOPED",
-      "evidence": "Actual browser Crew revoke/rotate/reconnect/history/AAR/What-if/evidence-only plus prior Fusion/outage checks; whole database unchanged. CYCLE2-BROWSER-ACCEPTANCE.json and dated BROWSER-ACCEPTANCE.json."
+      "evidence": "Teachingnotes/SSE/ACK/quietheartbeat/Crewtimeline/AAR/What-if/referenceimmutable/outage3actions3Fusion;12measuredpage-width combinations"
     },
     {
       "id": "G05",
-      "requirement": "Bounded performance/longer runtime measurements",
+      "requirement": "Bounded performance and concurrency",
       "status": "PASS_SCOPED",
-      "evidence": "Fixed8/25/50/100/200 runs,180sworker/render/heap,6HTTP completion clients, exact-output reconstruction profile; not total-memory certification"
+      "evidence": "Exact dashboard repeated-read .560ms;20syntheticHTTP/SSEclients, interleaved reads, barrier timing scope; dated fixedMedium/180s/reconstruction"
     },
     {
       "id": "G06",
-      "requirement": "Exact source/commit/assets/manifest and final clean clone",
+      "requirement": "Source/build/locks/manifest/macOS clone/HTTPS/backup",
       "status": "PASS_SCOPED",
-      "evidence": "Current source/hash/assets; fresh locked-dependency macOS clone, final delta npm ci/rebuild/native Bash CLI port, another empty-DB walkthrough and exact whole-DB backup/restore. CLEAN-CLONE-CYCLE2-RECEIPT.json."
+      "evidence": "Current source equalclone; all27files and3locks equal; Python3.13backuprestore;4privateCAverifiedHTTPSrequests"
     },
     {
       "id": "G07",
-      "requirement": "Independent final claim/acceptance decision",
-      "status": "PARTIAL",
-      "evidence": "Independent final source/receipt review PASS_SCOPED;83.5 provisional with exact deductions. Final stable acceptance remains pending G08/G09. FINAL-AUDIT-REASSESSMENT.md/json.",
-      "software_review_status": "PASS_SCOPED"
+      "requirement": "Independent software claim/audit review",
+      "status": "PASS_SCOPED",
+      "evidence": "Independent84provisional,22backend/8frontend focused; final stable approval withheld"
     },
     {
       "id": "G08",
-      "requirement": "New separate physical device LAN/WAN/HTTPS trust/cold reload",
+      "requirement": "Fresh separate-device Finale LAN/WAN/HTTPS trust/cold reload",
       "status": "PENDING_BY_USER",
-      "evidence": "User explicitly retained new physical validation pending; no test claimed passed; historical WAN report remains separate"
+      "evidence": "No newphysicalPASS inferred from loopback/cache/processchecks"
     },
     {
       "id": "G09",
-      "requirement": "Current native Windows/Linux startup/install/backup/restore",
+      "requirement": "Native Windows/Linux install/start/backup/restore",
       "status": "PENDING_BY_USER",
-      "evidence": "User retained native validation pending; macOS tested; no native pass invented"
-    },
-    {
-      "id": "G10",
-      "requirement": "Validated-release competition media/rehearsal/submission",
-      "status": "NOT_STARTED_REQUIRES_VALIDATED_RELEASE",
-      "evidence": "User forbids final PPT/video from unvalidated candidate"
+      "evidence": "Mac Bash and supported-path fixtures pass; actualnativeexecution deferred"
     }
   ],
-  "optional_future_refinements": [
-    "CH08",
-    "CH10",
-    "CH14",
-    "CH16",
-    "F05",
-    "F07",
-    "P2-01",
-    "P2-02",
+  "external_validation_finding_ids": [
+    "SC14",
+    "SC19",
+    "SC23",
+    "P1-03",
+    "P2-03",
+    "CH12",
+    "CH15",
+    "X08",
+    "X13"
+  ],
+  "scientific_finding_ids": [
     "SC16",
     "SC17",
+    "CH08",
+    "F05",
+    "F07",
+    "X24",
+    "X26"
+  ],
+  "outside_software_mission_provenance_ids": [
+    "SC22",
+    "P2-01",
+    "X02",
+    "X17",
+    "X19"
+  ],
+  "remaining_partial_ids": [
+    "SC14",
+    "SC16",
+    "SC17",
+    "SC19",
+    "SC22",
+    "SC23",
+    "P1-03",
+    "P2-01",
+    "P2-03",
+    "CH08",
+    "CH12",
+    "CH15",
+    "F05",
+    "F07",
     "X02",
     "X07",
-    "X15",
-    "X21",
+    "X08",
+    "X09",
+    "X11",
+    "X12",
+    "X13",
+    "X17",
+    "X19",
+    "X20",
     "X24",
     "X26",
     "X27",
     "X29",
-    "X30"
+    "X30",
+    "X31"
   ],
-  "external_validation_finding_ids": [
-    "CH12",
-    "CH15",
-    "P1-03",
-    "P2-03",
-    "SC14",
-    "SC19",
-    "SC23",
-    "X08",
-    "X13"
-  ],
-  "submission_finding_ids": [
-    "SC22",
-    "X17",
-    "X19"
-  ],
-  "blocking_scope": "No new stable declaration while required acceptance remains pending; PENDING tests are not failed architectural tests or automatically waived requirements.",
-  "candidate_code_commit": "4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903"
+  "blocking_scope": "G08/G09block final stable approval, not the software-only RC freeze. Missing empirical calibration and human efficacy remain claim limitations. Media is outside current mission, not G10.",
+  "open_runnable_software_acceptance_items": []
 }

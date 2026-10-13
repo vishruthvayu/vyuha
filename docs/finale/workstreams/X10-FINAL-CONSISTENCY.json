@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-13",
+  "finding": "X10",
+  "decision": "PASS_SCOPED",
+  "code_validation_commit": "e07a3845cc465f430b572ece7fbded687c1e3729",
+  "documentation_scope": "Current uncommitted documentation receipts independently inspected; later docs-only commit/tag may pin this acceptance only if runtime source/assets remain unchanged. No stable approval.",
+  "source_sha256": "02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a",
+  "checks": {
+    "current_source_hash": "02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a",
+    "all_manifest_receipts_exist": true,
+    "receipt_count": 25,
+    "all93_counts": {
+      "PASS": 61,
+      "N/A": 1,
+      "PARTIAL": 31
+    },
+    "nine_gate_ids": [
+      "G01",
+      "G02",
+      "G03",
+      "G04",
+      "G05",
+      "G06",
+      "G07",
+      "G08",
+      "G09"
+    ],
+    "assets": 27,
+    "html_sha": "d4234414a93b81c5ec0dadf0366e72686f259a3c9a5cb042fda2894a8d784843",
+    "locks": {
+      "client/package.json": "a240eb99aeae5f490a0dd32afb718acc2f0df75a20086040913e351c7ec24f1e",
+      "client/package-lock.json": "4f92329597fbdf8748310751fea3cfab05571cafa652f710d020f56ed8a69bf1",
+      "server/requirements.lock.txt": "6e7ed6e13780351b512afcc88fa0ca6fa6644f6e99655af4b8953369ea8c5ee1"
+    },
+    "canonical_code_HEAD": "e07a3845cc465f430b572ece7fbded687c1e3729",
+    "clone_code_HEAD": "e07a3845cc465f430b572ece7fbded687c1e3729",
+    "finale_endpoint_source_matches": true,
+    "old_endpoint_historical_source_matches": false,
+    "frozen_legacy_files": 5,
+    "protected_stable_refs": [
+      "2ca96105044ad6a14952d74db619e20006c26eca",
+      "2ca96105044ad6a14952d74db619e20006c26eca"
+    ],
+    "all93_matrix_statuses_match_backlog": true,
+    "current_table_stale_statements_corrected": true,
+    "current_609_160_raw_logs_byte_equal": true,
+    "git_deliverable_log_txt_copies": 16,
+    "current_scoped_secret_scan": "2026-10-13,522files,nofindings,limited signature/pathscope",
+    "git_diff_check": "PASS",
+    "source_unchanged_after_documentation_reconciliation": true,
+    "GUI_claim_attribution": "Integration owner performed current Chrome GUI; independent reviewer inspected source/receipts, no fabricated ownGUIpass",
+    "external_and_media_scope": "G08/G09PENDING_BY_USER; stablefalse; G10/media removed from software gates"
+  },
+  "corrected_review_findings": [
+    "Current39row table had stale final-suite pending/ec4/cache wording; corrected",
+    "Declared rawlogdirectory initially only had ignored .log files;16byte-identical .log.txt copies now Git-deliverable",
+    "Current522file scopedsecret scan replaced dated scan"
+  ],
+  "closure_effect": {
+    "before": {
+      "PASS": 61,
+      "PARTIAL": 31,
+      "NA": 1,
+      "BLOCKED": 0
+    },
+    "after_applying_X10_scoped_closure": {
+      "PASS": 62,
+      "PARTIAL": 30,
+      "NA": 1,
+      "BLOCKED": 0
+    },
+    "closure_percentage_excluding_NA": 67.3913043478261
+  },
+  "provisional_score": 84,
+  "score_change_from_X10_closure": 0,
+  "stable_approval": false,
+  "remaining_actual_software_correctness_defects_reproduced": [],
+  "remaining_external_gates": [
+    "G08 fresh separate physical deviceLAN/WAN/HTTPStrust/coldreload",
+    "G09 native Windows/Linuxexecution"
+  ],
+  "root_remaining_operations": [
+    "Apply X10/counts coherently in allcurrent audit/evidence documents",
+    "Commit/push final docs milestone and verify remote HEAD",
+    "Optional explicitly prerelease RC reference/archive seal with no runtime changes; do not create stabletag"
+  ]
+}

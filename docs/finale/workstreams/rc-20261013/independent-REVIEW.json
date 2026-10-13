@@ -1,0 +1,407 @@
+{
+  "date": "2026-10-13",
+  "reviewed_code_commit": "e07a3845cc465f430b572ece7fbded687c1e3729",
+  "mission": "Fresh independent software-only source/evidence review; no source or root-document edits",
+  "decision": "PASS_SCOPED_ENGINEERING_SUBJECT_TO_FINAL_MANIFEST_RECONCILIATION",
+  "stable_approval": false,
+  "score": 84.0,
+  "score_kind": "Independent provisional engineering judgement under original50/25/25rubric; not official SIH marks or winning probability",
+  "allocation": {
+    "PS": 46,
+    "realism_AI": 18,
+    "engineering_demo": 20
+  },
+  "deductions": {
+    "PS": [
+      {
+        "points": 0.5,
+        "reason": "Fresh physical/mobile scope forsingle-contact workflow"
+      },
+      {
+        "points": 1,
+        "reason": "Operational swarm/area-response and human-load evidence"
+      },
+      {
+        "points": 0.5,
+        "reason": "New degraded-sensor physical/UI deployment breadth"
+      },
+      {
+        "points": 0.5,
+        "reason": "Simplified terrain/effector/collateral depth"
+      },
+      {
+        "points": 0.5,
+        "reason": "Human anti-rote/procedural benefit unmeasured"
+      },
+      {
+        "points": 0.5,
+        "reason": "Decision-tree comprehension/graphical breadth"
+      },
+      {
+        "points": 0.5,
+        "reason": "Fresh physical unit deployment"
+      }
+    ],
+    "realism_AI": [
+      {
+        "points": 2,
+        "reason": "No empirical equipment/likelihood/posterior calibration"
+      },
+      {
+        "points": 1,
+        "reason": "Bounded closed-form swarm behavior/area doctrine"
+      },
+      {
+        "points": 1,
+        "reason": "Three illustrative effectors/resource parameters"
+      },
+      {
+        "points": 3,
+        "reason": "No fitted Elo/context posterior or measured human advantage"
+      }
+    ],
+    "engineering_demo": [
+      {
+        "points": 1,
+        "reason": "Trusted independent-learner identity and pendingphysicalTLS trust"
+      },
+      {
+        "points": 0.5,
+        "reason": "Whole Worker/GPU/processmemory and long operational endurance unmeasured"
+      },
+      {
+        "points": 1.5,
+        "reason": "Current native Windows/Linux execution pending"
+      },
+      {
+        "points": 2,
+        "reason": "Original stable/media acceptance is incomplete; media remains outside current software-only mission"
+      }
+    ]
+  },
+  "score_change_from_prior83_5": "+0.5 finally coherent sequential broadregression/current source; no automatic per-row point increments",
+  "original93row_reconciliation": {
+    "baseline": {
+      "PASS": 53,
+      "PARTIAL": 39,
+      "NA": 1
+    },
+    "independently_justified_scoped_closures": [
+      "SC18",
+      "F01",
+      "P2-02",
+      "CH14",
+      "CH10",
+      "CH16",
+      "X15",
+      "X21"
+    ],
+    "recommended_counts_now": {
+      "PASS": 61,
+      "PARTIAL": 31,
+      "NA": 1,
+      "BLOCKED": 0
+    },
+    "closed_percentage_excluding_NA": 66.30434782608695,
+    "conditional_X10_counts_after_fresh_manifest_verified": {
+      "PASS": 62,
+      "PARTIAL": 30,
+      "NA": 1,
+      "BLOCKED": 0
+    }
+  },
+  "independent_executed": {
+    "backend_cache_stream_plots": {
+      "passed": 19,
+      "failed": 0,
+      "seconds": 10.12,
+      "log": "backend.log"
+    },
+    "backend_cohort_readonly_conflict_legacy": {
+      "passed": 3,
+      "failed": 0,
+      "deselected": 21,
+      "seconds": 46.52,
+      "log": "cohort.log"
+    },
+    "frontend_transport_worker_crew": {
+      "passed": 8,
+      "failed": 0,
+      "milliseconds": 7798.702417,
+      "log": "frontend.log"
+    },
+    "git_diff_check": "PASS",
+    "protected_stable_refs": "Both branch and peeled tag remain2ca96105044ad6a14952d74db619e20006c26eca",
+    "local_tracking_HEAD": "e07a384 matches origin/feature/vyuha-finale-edition; no network refetch performed bythisreviewer",
+    "live20_receipt_validation": "All sample counts/medians/max and harnessSHA recomputed exact; stages interleaved, no physical/browser/endurance inference",
+    "cache_receipt_validation": "Before/after fulloutput hashes identical, repeatedmedian16.632to0.5596ms; cold17.121to17.354ms; quiescent20memberfixtureonly",
+    "current_source_hash": "02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a",
+    "frozen_legacy_file_hashes_verified": 5
+  },
+  "root_full_regression_independently_read_raw_logs": {
+    "backend": 609,
+    "backend_failed": 0,
+    "seconds": 413.34,
+    "frontend": 160,
+    "frontend_failed": 0,
+    "milliseconds": 37504.43675,
+    "warnings": "Retained Starlette/httpx deprecation; no skips or weakened timeout inferred"
+  },
+  "root_browser_receipts_inspected_not_claimed_reexecuted_by_reviewer": [
+    "CURRENT-PROCESS-OUTAGE-RECEIPT.json",
+    "BROWSER-REPLAY-IMMUTABILITY.json",
+    "CLEAN-RECEIVER-TRANSFER-RECEIPT.json",
+    "CLEAN-CLONE-BACKUP-RECEIPT.json",
+    "LIVE-20-CLIENT-RECEIPT.json"
+  ],
+  "39_dispositions": [
+    {
+      "id": "P2-02",
+      "recommendation": "PASS_SCOPED",
+      "evidence_or_reason": "Extracted named rendering/offline/navigation/modal/transport hooks; pinned lint/formatter; mounted focus/navigation regressions pass.",
+      "remaining_scope": "Further App decomposition is optional maintainability; no architectural simplicity or full assistive-technology certification claimed."
+    },
+    {
+      "id": "CH14",
+      "recommendation": "PASS_SCOPED",
+      "evidence_or_reason": "Extracted named rendering/offline/navigation/modal/transport hooks; pinned lint/formatter; mounted focus/navigation regressions pass.",
+      "remaining_scope": "Further App decomposition is optional maintainability; no architectural simplicity or full assistive-technology certification claimed."
+    },
+    {
+      "id": "CH10",
+      "recommendation": "PASS_SCOPED",
+      "evidence_or_reason": "Actual authenticated bounded SSE plus polling fallback, cursor/prefix handling, revocation checks and independent telemetry; reviewed same-phase switch repair.",
+      "remaining_scope": "Server still samples SQLite250ms; not a claim of no polling, all-page push, latency superiority or operational capacity."
+    },
+    {
+      "id": "CH16",
+      "recommendation": "PASS_SCOPED",
+      "evidence_or_reason": "SQLite retained-observer data_version cache:64entries/8DBs/0.5sTTL; detached output, commits/DB identity/expiry/errors tested; matched20member quiescent benchmark exact output.",
+      "remaining_scope": "Cold median17.121\u219217.354ms; repeated16.632\u21920.560ms. No busy/live20client or memory/endurance inference."
+    },
+    {
+      "id": "X15",
+      "recommendation": "PASS_SCOPED",
+      "evidence_or_reason": "Signed installation/unit/exact-roster cohorts preserve imported multi-exercise groups/member counts; strict atomic conflicts/legacy separation/exact forwarding/no Beta credit independently tested.",
+      "remaining_scope": "Descriptive member counts/handoffs are not authenticated people, calibrated individual competence or causal learning; those limits remain explicit."
+    },
+    {
+      "id": "X21",
+      "recommendation": "PASS_SCOPED",
+      "evidence_or_reason": "Legacy authored difficulty is explicitly labelled author intent; structural difficulty directed to Raid Composer. This satisfies the accepted label-or-behavior remedy without mutating legacy exercises.",
+      "remaining_scope": "Calibrated difficulty and fitted learner-success targets remain scientific work underSC17/F07."
+    },
+    {
+      "id": "SC14",
+      "recommendation": "RETAIN_PARTIAL_EXTERNAL_PENDING",
+      "evidence_or_reason": "Prepared software/historical evidence does not replace current physical device/certificate trust/native platform execution.",
+      "remaining_scope": "Retained by user; no fabricated PASS, architectural-failure inference or software-only mission blocker demanding inaccessible hardware."
+    },
+    {
+      "id": "SC19",
+      "recommendation": "RETAIN_PARTIAL_EXTERNAL_PENDING",
+      "evidence_or_reason": "Prepared software/historical evidence does not replace current physical device/certificate trust/native platform execution.",
+      "remaining_scope": "Retained by user; no fabricated PASS, architectural-failure inference or software-only mission blocker demanding inaccessible hardware."
+    },
+    {
+      "id": "SC23",
+      "recommendation": "RETAIN_PARTIAL_EXTERNAL_PENDING",
+      "evidence_or_reason": "Prepared software/historical evidence does not replace current physical device/certificate trust/native platform execution.",
+      "remaining_scope": "Retained by user; no fabricated PASS, architectural-failure inference or software-only mission blocker demanding inaccessible hardware."
+    },
+    {
+      "id": "P1-03",
+      "recommendation": "RETAIN_PARTIAL_EXTERNAL_PENDING",
+      "evidence_or_reason": "Prepared software/historical evidence does not replace current physical device/certificate trust/native platform execution.",
+      "remaining_scope": "Retained by user; no fabricated PASS, architectural-failure inference or software-only mission blocker demanding inaccessible hardware."
+    },
+    {
+      "id": "P2-03",
+      "recommendation": "RETAIN_PARTIAL_EXTERNAL_PENDING",
+      "evidence_or_reason": "Prepared software/historical evidence does not replace current physical device/certificate trust/native platform execution.",
+      "remaining_scope": "Retained by user; no fabricated PASS, architectural-failure inference or software-only mission blocker demanding inaccessible hardware."
+    },
+    {
+      "id": "CH12",
+      "recommendation": "RETAIN_PARTIAL_EXTERNAL_PENDING",
+      "evidence_or_reason": "Prepared software/historical evidence does not replace current physical device/certificate trust/native platform execution.",
+      "remaining_scope": "Retained by user; no fabricated PASS, architectural-failure inference or software-only mission blocker demanding inaccessible hardware."
+    },
+    {
+      "id": "CH15",
+      "recommendation": "RETAIN_PARTIAL_EXTERNAL_PENDING",
+      "evidence_or_reason": "Prepared software/historical evidence does not replace current physical device/certificate trust/native platform execution.",
+      "remaining_scope": "Retained by user; no fabricated PASS, architectural-failure inference or software-only mission blocker demanding inaccessible hardware."
+    },
+    {
+      "id": "X08",
+      "recommendation": "RETAIN_PARTIAL_EXTERNAL_PENDING",
+      "evidence_or_reason": "Prepared software/historical evidence does not replace current physical device/certificate trust/native platform execution.",
+      "remaining_scope": "Retained by user; no fabricated PASS, architectural-failure inference or software-only mission blocker demanding inaccessible hardware."
+    },
+    {
+      "id": "X13",
+      "recommendation": "RETAIN_PARTIAL_EXTERNAL_PENDING",
+      "evidence_or_reason": "Prepared software/historical evidence does not replace current physical device/certificate trust/native platform execution.",
+      "remaining_scope": "Retained by user; no fabricated PASS, architectural-failure inference or software-only mission blocker demanding inaccessible hardware."
+    },
+    {
+      "id": "SC16",
+      "recommendation": "RETAIN_PARTIAL_SCIENTIFIC_HUMAN",
+      "evidence_or_reason": "New intake/study/plot utilities prepare strict hashed evaluation and separate synthetic evidence; they do not supply real calibration/learner/reliance results or a new validated rubric.",
+      "remaining_scope": "External data/equipment/research evidence; stronger claims prohibited. Not an invented prerequisite to the correctly labelled software prototype."
+    },
+    {
+      "id": "SC17",
+      "recommendation": "RETAIN_PARTIAL_SCIENTIFIC_HUMAN",
+      "evidence_or_reason": "New intake/study/plot utilities prepare strict hashed evaluation and separate synthetic evidence; they do not supply real calibration/learner/reliance results or a new validated rubric.",
+      "remaining_scope": "External data/equipment/research evidence; stronger claims prohibited. Not an invented prerequisite to the correctly labelled software prototype."
+    },
+    {
+      "id": "CH08",
+      "recommendation": "RETAIN_PARTIAL_SCIENTIFIC_HUMAN",
+      "evidence_or_reason": "New intake/study/plot utilities prepare strict hashed evaluation and separate synthetic evidence; they do not supply real calibration/learner/reliance results or a new validated rubric.",
+      "remaining_scope": "External data/equipment/research evidence; stronger claims prohibited. Not an invented prerequisite to the correctly labelled software prototype."
+    },
+    {
+      "id": "F05",
+      "recommendation": "RETAIN_PARTIAL_SCIENTIFIC_HUMAN",
+      "evidence_or_reason": "New intake/study/plot utilities prepare strict hashed evaluation and separate synthetic evidence; they do not supply real calibration/learner/reliance results or a new validated rubric.",
+      "remaining_scope": "External data/equipment/research evidence; stronger claims prohibited. Not an invented prerequisite to the correctly labelled software prototype."
+    },
+    {
+      "id": "F07",
+      "recommendation": "RETAIN_PARTIAL_SCIENTIFIC_HUMAN",
+      "evidence_or_reason": "New intake/study/plot utilities prepare strict hashed evaluation and separate synthetic evidence; they do not supply real calibration/learner/reliance results or a new validated rubric.",
+      "remaining_scope": "External data/equipment/research evidence; stronger claims prohibited. Not an invented prerequisite to the correctly labelled software prototype."
+    },
+    {
+      "id": "X24",
+      "recommendation": "RETAIN_PARTIAL_SCIENTIFIC_HUMAN",
+      "evidence_or_reason": "New intake/study/plot utilities prepare strict hashed evaluation and separate synthetic evidence; they do not supply real calibration/learner/reliance results or a new validated rubric.",
+      "remaining_scope": "External data/equipment/research evidence; stronger claims prohibited. Not an invented prerequisite to the correctly labelled software prototype."
+    },
+    {
+      "id": "X26",
+      "recommendation": "RETAIN_PARTIAL_SCIENTIFIC_HUMAN",
+      "evidence_or_reason": "New intake/study/plot utilities prepare strict hashed evaluation and separate synthetic evidence; they do not supply real calibration/learner/reliance results or a new validated rubric.",
+      "remaining_scope": "External data/equipment/research evidence; stronger claims prohibited. Not an invented prerequisite to the correctly labelled software prototype."
+    },
+    {
+      "id": "SC18",
+      "recommendation": "PASS_SCOPED",
+      "evidence_or_reason": "Exact applied teaching-note command/tick/browser evidence plus clean dedicated20-session loopback receipt:20SSEreaders simultaneously held by barrier,20isolated pauses,20concurrent persisted ACKs,20serial verified completion/AAR; harness hash and counts/medians independently checked.",
+      "remaining_scope": "One Mac/software HTTP/SSE clients, synthetic tick60/no trainee decisions; board reads and telemetry batches interleaved, not simultaneous.5board samples are bounded observations.241msSSE includes issuance/release barrier, not intrinsic delivery. No20physical/rendering browsers, operational endurance or human efficacy claim."
+    },
+    {
+      "id": "F01",
+      "recommendation": "PASS_SCOPED",
+      "evidence_or_reason": "Exact applied teaching-note command/tick/browser evidence plus clean dedicated20-session loopback receipt:20SSEreaders simultaneously held by barrier,20isolated pauses,20concurrent persisted ACKs,20serial verified completion/AAR; harness hash and counts/medians independently checked.",
+      "remaining_scope": "One Mac/software HTTP/SSE clients, synthetic tick60/no trainee decisions; board reads and telemetry batches interleaved, not simultaneous.5board samples are bounded observations.241msSSE includes issuance/release barrier, not intrinsic delivery. No20physical/rendering browsers, operational endurance or human efficacy claim."
+    },
+    {
+      "id": "X11",
+      "recommendation": "RETAIN_PARTIAL_PHYSICAL_AND_ASSISTIVE_TECH_SCOPE",
+      "evidence_or_reason": "Mutable UI lint/DOM axe and mounted keyboard tests; root executed actual Chrome390/768/1280layouts, Crew/Ghost/Fusion/Analytics flows and guide/navigation/TimeMachine keyboard walkthrough.",
+      "remaining_scope": "Actual emulated browser widths are not physical Android/tablet/cross-browser/screen-reader certification. No uncorrected overflow or keyboard software defect identified in supplied evidence."
+    },
+    {
+      "id": "X12",
+      "recommendation": "RETAIN_PARTIAL_MEASUREMENT_BREADTH",
+      "evidence_or_reason": "Bounded180srender/main-pageheap, completion/reconstruction and exact-output cache measurements; stream/cache limits and cancellation tested.",
+      "remaining_scope": "Whole Worker/GPU/process memory, broader concurrent action/ACK/latency and long operational endurance are not certified. Root live20software-client measurement can supplement, not silently certify these."
+    },
+    {
+      "id": "X29",
+      "recommendation": "RETAIN_PARTIAL_MEASUREMENT_BREADTH",
+      "evidence_or_reason": "Bounded180srender/main-pageheap, completion/reconstruction and exact-output cache measurements; stream/cache limits and cancellation tested.",
+      "remaining_scope": "Whole Worker/GPU/process memory, broader concurrent action/ACK/latency and long operational endurance are not certified. Root live20software-client measurement can supplement, not silently certify these."
+    },
+    {
+      "id": "X30",
+      "recommendation": "RETAIN_PARTIAL_MEASUREMENT_BREADTH",
+      "evidence_or_reason": "Bounded180srender/main-pageheap, completion/reconstruction and exact-output cache measurements; stream/cache limits and cancellation tested.",
+      "remaining_scope": "Whole Worker/GPU/process memory, broader concurrent action/ACK/latency and long operational endurance are not certified. Root live20software-client measurement can supplement, not silently certify these."
+    },
+    {
+      "id": "X07",
+      "recommendation": "RETAIN_PARTIAL_DECLARED_IDENTITY_SCOPE",
+      "evidence_or_reason": "35officer protected HTTPpairs401anonymous/forged/logout; role capability lifecycle, archived boundaries and stream rechecks exist.",
+      "remaining_scope": "Independent learner callsign/UUID remains trusted LAN; per-account adversarial examination identity absent. This disclosed boundary does not demand unsolicited production identity work."
+    },
+    {
+      "id": "X09",
+      "recommendation": "RETAIN_PARTIAL_NATIVE_SCOPE",
+      "evidence_or_reason": "Current final-source fresh locked clone exact full-database backup/restore receipt and strict teaching/cohort transfer plus original history equality inspected.",
+      "remaining_scope": "Current native Windows/Linux backup/restore remains deferred; no macOS-software backup defect identified."
+    },
+    {
+      "id": "X31",
+      "recommendation": "RETAIN_PARTIAL_NATIVE_SCOPE",
+      "evidence_or_reason": "Current final-source locked clone,27byte-identical assets, Mac Bash port handling/empty-DB walkthrough and backup/restore; fresh suites609/160 afterversion/format changes.",
+      "remaining_scope": "Native Windows/Linux execution remains deferred. ESLint9.39.5 dev tool deprecation and Three.js large-chunk build warning are disclosed maintenance limits, not newly reproduced runtime defects."
+    },
+    {
+      "id": "X10",
+      "recommendation": "OPEN_FINAL_MANIFEST_RECONCILIATION",
+      "evidence_or_reason": "e07 current suites609/160 pass, clone matching27production assets and fresh receiver/backup proven. Existing checked manifest still pins prior source/checkpoints during review.",
+      "remaining_scope": "Root must finalize current source/build/clone/manifest consistency. Promote to PASS_SCOPED only after actual checks, then62PASS/30PARTIAL/1N/A; this is distinct from stable tag/media."
+    },
+    {
+      "id": "X20",
+      "recommendation": "RETAIN_PARTIAL_FINAL_STABLE_ACCEPTANCE",
+      "evidence_or_reason": "Fresh independent critical audit and regression supplied; original row also covers final stable/native/physical acceptance.",
+      "remaining_scope": "Software review can pass scoped; stable/native/physical not yet approved. No automatic100."
+    },
+    {
+      "id": "X27",
+      "recommendation": "RETAIN_PARTIAL_OPTIONAL_EXTENSION",
+      "evidence_or_reason": "Seeded red-force family/instructor intervention exists; operator piloting and sensor-placement planner explicitly absent.",
+      "remaining_scope": "Optional extension; not an invented official PS or software-only release prerequisite."
+    },
+    {
+      "id": "SC22",
+      "recommendation": "OUTSIDE_REVISED_MISSION_RETAIN_PROVENANCE",
+      "evidence_or_reason": "Original demo/media/submission/deck/claims provenance retained; current source claim boundaries still need honest final docs.",
+      "remaining_scope": "No newPPT/video/submission or rehearsal task assigned here. Do not turn omitted media into a software-only gate; preserve original rubric deductions for comparison."
+    },
+    {
+      "id": "P2-01",
+      "recommendation": "OUTSIDE_REVISED_MISSION_RETAIN_PROVENANCE",
+      "evidence_or_reason": "Original demo/media/submission/deck/claims provenance retained; current source claim boundaries still need honest final docs.",
+      "remaining_scope": "No newPPT/video/submission or rehearsal task assigned here. Do not turn omitted media into a software-only gate; preserve original rubric deductions for comparison."
+    },
+    {
+      "id": "X02",
+      "recommendation": "OUTSIDE_REVISED_MISSION_RETAIN_PROVENANCE",
+      "evidence_or_reason": "Original demo/media/submission/deck/claims provenance retained; current source claim boundaries still need honest final docs.",
+      "remaining_scope": "No newPPT/video/submission or rehearsal task assigned here. Do not turn omitted media into a software-only gate; preserve original rubric deductions for comparison."
+    },
+    {
+      "id": "X17",
+      "recommendation": "OUTSIDE_REVISED_MISSION_RETAIN_PROVENANCE",
+      "evidence_or_reason": "Original demo/media/submission/deck/claims provenance retained; current source claim boundaries still need honest final docs.",
+      "remaining_scope": "No newPPT/video/submission or rehearsal task assigned here. Do not turn omitted media into a software-only gate; preserve original rubric deductions for comparison."
+    },
+    {
+      "id": "X19",
+      "recommendation": "OUTSIDE_REVISED_MISSION_RETAIN_PROVENANCE",
+      "evidence_or_reason": "Original demo/media/submission/deck/claims provenance retained; current source claim boundaries still need honest final docs.",
+      "remaining_scope": "No newPPT/video/submission or rehearsal task assigned here. Do not turn omitted media into a software-only gate; preserve original rubric deductions for comparison."
+    }
+  ],
+  "actual_open_software_acceptance": [
+    "X10 finalcurrent manifest/assets/clone/commit receipt reconciliation; no sourcebehavior defect reproduced inthisreview"
+  ],
+  "limits": [
+    "No fresh physical/native device execution",
+    "No real sensor dataset/human study received",
+    "Synthetic evaluation and load measurements are software infrastructure evidence, not equipment/learning efficacy",
+    "Original provisional rubric retains external/out-of-mission deductions; software scopedacceptance and stable approval remain separate"
+  ],
+  "raw_log_sha256": {
+    "backend.log": "2a169fec443e05948b6c6a3307ba7f4182b04889d81ca765279efbbd4a57164a",
+    "cohort.log": "c86be290a225e7ea4df182a549730f5ef71784efd5ddaf3dae15e0efb51fa2b6",
+    "frontend.log": "1171a5cbf0573161ff4a8651eeda1661518c6a3f2490c2b2a50a474cabfe526e"
+  }
+}

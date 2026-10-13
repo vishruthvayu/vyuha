@@ -1,0 +1,53 @@
+{
+  "recorded_date": "2026-10-12",
+  "scope": "Real Codex in-app browser UI and production assets on macOS, disposable SQLite DB, localhost; not physical LAN/WAN or platform certification",
+  "database": "disposable",
+  "individual_session": "6197565f-63d3-43e8-a7e5-f67f2ef24b04",
+  "crew_session": "004d97ec-c471-4162-9973-a8c1a80d6667",
+  "verified": [
+    "Officer sign-in and protected authoring",
+    "Compile/save frozen60s engine0.4 raid with Fusion and delayed responses",
+    "Select observed contact, designate, classify, attempt RF response",
+    "Pause with logical pending response, reload, matching callsign draft recovery",
+    "Server score and Ghost preserve observed/scoring horizon distinction",
+    "Fusion3 exposure receipts and1 optional confidence diagnostic after draft recovery",
+    "What-if kinetic branch0\u21925; original0 unchanged",
+    "Evidence-constrained comparison and Time Machine seek/follow",
+    "Two role clients with shared action attribution",
+    "Instructor pause/radar degradation/injected no-RF contact applied at T+29.53s, ordered5/6",
+    "White Cell observed/reference maps and updated9-contact/radar-jammed reconstruction",
+    "Mobile-sized390x844 AAR viewport: server-verified result and no horizontal document overflow",
+    "Fixed-Medium20s Sensor Truth workload at8/25/50/100/200 contacts; actual samples recorded",
+    "Genuine browser-downloaded signed bundle imported unchanged:0 inserted/3 identical skipped",
+    "Synthetic recorded practice imported and saved3 decisions; tactical_score null/profile_updated false",
+    "Completed-session autonomous canonical reference: original0/reference90,25 own accepted actions and independent replay controls",
+    "Officer bearer revoked by actual server restart; reauthentication required",
+    "Evidence-only autonomous reference: original0/reference0,12 own accepted actions; original score retained",
+    "Completed shared result reconnected through responder capability: server-verified0/100,3 attributed orders, controls disabled",
+    "Actual process shutdown: browser queued3 actions; device AAR saved then automatically became Server verified after restart,3 server Fusion receipts",
+    "Large200-contact completed session: server-verified AAR loaded,200 selectable contacts and score rows",
+    "Officer sign-in gate on Analytics; roster excludes Crew aggregates; selected recovered trainee trend readable",
+    "Evidence-only/What-if target session, scenario, accepted inputs, personal profiles/outcomes, Fusion/statistics exact before/after",
+    "Keyboard End seeks own reference replay to1800ticks; changing hypothetical choice clears the former branch result",
+    "Completed Crew reconnect shows3 attributed decisions, member stage counts and.27s/.27s handoffs; frozen-history note",
+    "Extended180s/200-contact thermal-overviewfixedMedium workload and actual main-page heap samples",
+    "Final officer Unit history button loads read-only server-verified AAR without enrollment; whole disposable DB/profile state unchanged",
+    "Final officer review canonical Unit navigation, signout unmount, normal trainee session route retains UnitGateway",
+    "Fresh locked Python/npm macOS clone and empty-DB real HTTP walkthrough, Director v2 metadata preservation, backup/restore exact",
+    "Final completed Crew officer link reaches sign-in then server-verified read-only AAR; no join prompt or Next drill"
+  ],
+  "pending": [
+    "Current separate physical devices/HTTPS trust/LAN/WAN; native Windows/Linux retained pending",
+    "Independent final stable acceptance and new media/rehearsal/submission",
+    "Wider accessibility/device and longitudinal research refinements"
+  ],
+  "limitations": [
+    "Synthetic decisions exercise mechanics; no human training-efficacy result",
+    "First crew rehearsal expired before decisions; second crew run performed attributed actions",
+    "Browser clients share one laptop; no second physical device inferred",
+    "Mobile viewport checks use desktop Chromium, not a new physical Android test"
+  ],
+  "outage_session": "a4594d3c-4c4d-48aa-a87d-6982d73d5356",
+  "large_session": "a03f23e1-daf8-447f-a62a-8660edaf50b8",
+  "final_code_commit": "3ec720d26ef8e556aa392d5adac2218ebde7353a"
+}

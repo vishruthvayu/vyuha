@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-13",
+  "scope": "Actual Chrome/Mac on disposable loopback8034; real serverprocess stopped, local three decisions/Fusion retained, service-worker cached reload, saved drill restored, server restart and verified completion. No physical WAN-off or separate device pass.",
+  "session": "acd15277-e3d9-4ce6-a352-c8af0c377d4a",
+  "server_process_exit_observed": true,
+  "before_outage_server_action_chunks": 0,
+  "before_outage_Fusion_rows": 0,
+  "after_accepted_actions": 3,
+  "after_Fusion_receipts": 3,
+  "cached_reload_and_saved_drill_UI": true,
+  "paused_restore_resumed_then_user_paused": true,
+  "score": 0,
+  "verified": true,
+  "execution_tick": 2212,
+  "applied_commands": [
+    [
+      1,
+      279,
+      0
+    ],
+    [
+      2,
+      279,
+      1
+    ],
+    [
+      3,
+      279,
+      2
+    ],
+    [
+      4,
+      279,
+      3
+    ]
+  ],
+  "teaching_note_visible_in_Ghost": true,
+  "score_and_profiles_only_updated_by_ordinary_completion": true
+}

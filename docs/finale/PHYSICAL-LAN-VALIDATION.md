@@ -1,3 +1,5 @@
+> Current software RC —13October2026: candidatev1.1.0-rc.1, implementation`e07a3845cc465f430b572ece7fbded687c1e3729`, source`02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a`. NativeWindows/Linux andfreshFinale physicalLAN/WAN/phone/HTTPStrust remainPENDING_BY_USER. Historicalentries below aredated andnot currentacceptance. Use exactRCsource plus matchingdatabasebackup. Currentsoftware gates inFINAL-RELEASE-GATES.json.
+
 # Physical validation provenance
 
 ## Historical team-confirmed WAN-off result

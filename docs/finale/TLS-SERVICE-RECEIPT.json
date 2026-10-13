@@ -1,39 +1,41 @@
 {
-  "recorded_date": "2026-10-12",
-  "checks": [
+  "recorded_date": "2026-10-13",
+  "code_commit": "e07a3845cc465f430b572ece7fbded687c1e3729",
+  "trusted_private_ca_requests": [
     {
-      "host": "localhost",
-      "path": "/api/v1/health",
-      "status": 200
+      "url": "https://localhost:8040/api/v1/health",
+      "status": 200,
+      "bytes": 103,
+      "body_sha256": "1d162b2a63a4677db72d780ba850ddc0a68b0ae5d644d1a51acc0b7615cb65d6",
+      "certificate_and_hostname_verified": true
     },
     {
-      "host": "localhost",
-      "path": "/",
-      "status": 200
+      "url": "https://localhost:8040/",
+      "status": 200,
+      "bytes": 659,
+      "body_sha256": "d4234414a93b81c5ec0dadf0366e72686f259a3c9a5cb042fda2894a8d784843",
+      "certificate_and_hostname_verified": true
     },
     {
-      "host": "localhost",
-      "path": "/instructor",
-      "status": 200
+      "url": "https://127.0.0.1:8040/api/v1/health",
+      "status": 200,
+      "bytes": 103,
+      "body_sha256": "1d162b2a63a4677db72d780ba850ddc0a68b0ae5d644d1a51acc0b7615cb65d6",
+      "certificate_and_hostname_verified": true
     },
     {
-      "host": "127.0.0.1",
-      "path": "/api/v1/health",
-      "status": 200
-    },
-    {
-      "host": "127.0.0.1",
-      "path": "/",
-      "status": 200
-    },
-    {
-      "host": "127.0.0.1",
-      "path": "/instructor",
-      "status": 200
+      "url": "https://127.0.0.1:8040/",
+      "status": 200,
+      "bytes": 659,
+      "body_sha256": "d4234414a93b81c5ec0dadf0366e72686f259a3c9a5cb042fda2894a8d784843",
+      "certificate_and_hostname_verified": true
     }
   ],
-  "untrusted_ca_rejected": true,
-  "tls_verification_disabled": false,
-  "system_trust_modified": false,
-  "scope": "Actual uvicorn HTTPS on macOS with dedicated test CA and explicit verified SAN; no browser or physical device trust installed"
+  "default_untrusted_ca": {
+    "rejected": true,
+    "reason": "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)"
+  },
+  "verification_disabled": false,
+  "system_trust_store_modified": false,
+  "scope": "Actual local HTTPS health and HTML serving on macOS; generated private CA explicitly trusted by this test process. No browser/mobile CA-install or cross-platform trust proof."
 }

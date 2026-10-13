@@ -1,3 +1,11 @@
+# VYUHA
+
+## Current Finale software release candidate
+
+Version`1.1.0-rc.1` on`feature/vyuha-finale-edition`:609backend/160frontend, allversionedparity,18/22historicalcards,27byte-identicalcloneassets. Independent84/100**provisional**; stableapproval withheld forfreshphysical/nativeacceptance. See[engineering acceptance](docs/finale/FINAL-SOFTWARE-ACCEPTANCE.md) and[all93finding matrix](docs/finale/AUDIT-CLOSURE-MATRIX.md). Originalstablefallback`release/v1.0.1`/`v1.0.1` isunchanged.
+
+The sections below retain originalstable/earliercandidate provenance; they do not describe Finale additions or currenttestcounts.
+
 # VYUHA — counter-drone training
 
 **WhiteList&0 · Team ID 185350 · SIH26247 · Software · target: 4 October 2026.**

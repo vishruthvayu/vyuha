@@ -1,3 +1,5 @@
+> Current software RC —13October2026: candidatev1.1.0-rc.1, implementation`e07a3845cc465f430b572ece7fbded687c1e3729`, source`02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a`. NativeWindows/Linux andfreshFinale physicalLAN/WAN/phone/HTTPStrust remainPENDING_BY_USER. Historicalentries below aredated andnot currentacceptance. Use exactRCsource plus matchingdatabasebackup. Currentsoftware gates inFINAL-RELEASE-GATES.json.
+
 # Finale physical and native test results
 
 Prepared 12 October 2026. Validated application source is `4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903`; executable source-and-evidence checkpoint is `b2180f503e4099bf6c7bc4fb2eb6d617ef32efc8` (same application hash). This document records no newly executed physical or native tests. The user retained fresh physical and native validation pending. Update full source/build pins after candidate changes and before execution.

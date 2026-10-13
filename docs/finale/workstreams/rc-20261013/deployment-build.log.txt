@@ -1,0 +1,39 @@
+
+> vyuha-trainer@1.1.0-rc.1 build
+> tsc -b && vite build && node scripts/offline.mjs
+
+vite v6.4.3 building for production...
+transforming...
+✓ 1659 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                           0.66 kB │ gzip:   0.40 kB
+dist/assets/sim.worker-DVjxYNQs.js       30.14 kB
+dist/assets/index-Bj8qK4Pj.css           37.85 kB │ gzip:   9.14 kB
+dist/assets/import-json-DEPqWbQE.js       0.40 kB │ gzip:   0.27 kB
+dist/assets/live-stream-aAoLRzx7.js       1.78 kB │ gzip:   1.00 kB
+dist/assets/observations-InpqRgc-.js      2.27 kB │ gzip:   0.89 kB
+dist/assets/presentation-DEBuChuu.js      3.39 kB │ gzip:   1.60 kB
+dist/assets/Transfer-B_FoZlHt.js          3.46 kB │ gzip:   1.69 kB
+dist/assets/Evaluation-DRyhPwWe.js        3.78 kB │ gzip:   1.52 kB
+dist/assets/Radar-D9goOnhu.js             4.02 kB │ gzip:   1.66 kB
+dist/assets/Recorded-B96MxY7r.js          5.32 kB │ gzip:   1.99 kB
+dist/assets/Compliance-BATV5smA.js        6.43 kB │ gzip:   2.33 kB
+dist/assets/Evidence-D51YXBmq.js          7.99 kB │ gzip:   2.42 kB
+dist/assets/Benchmark-CnOpbM5f.js         8.85 kB │ gzip:   3.61 kB
+dist/assets/Analytics-Bz-3Nf6X.js         8.92 kB │ gzip:   3.00 kB
+dist/assets/RapidID-C_RiWFv6.js           9.19 kB │ gzip:   3.46 kB
+dist/assets/response-v2-BXqvvt7X.js      13.18 kB │ gzip:   4.89 kB
+dist/assets/Crew-Ncw1eoof.js             14.97 kB │ gzip:   5.02 kB
+dist/assets/ExerciseStudio-CU2RqvSn.js   15.33 kB │ gzip:   4.85 kB
+dist/assets/Instructor-DzPSX5jE.js       18.62 kB │ gzip:   6.28 kB
+dist/assets/App-BnBb0HG5.js              71.91 kB │ gzip:  22.51 kB
+dist/assets/index-D3uiTWW3.js           285.41 kB │ gzip:  88.54 kB
+dist/assets/scenario-CmbldnyF.js        913.09 kB │ gzip: 246.74 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 38.41s
+Offline cache: 27 local assets (d4234414a93b)

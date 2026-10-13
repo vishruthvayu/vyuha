@@ -1,0 +1,98 @@
+{
+  "validated_at": "2026-10-13T05:32:26.715982+00:00",
+  "canonical_commit": "e07a3845cc465f430b572ece7fbded687c1e3729",
+  "clone_commit": "e07a3845cc465f430b572ece7fbded687c1e3729",
+  "canonical_source_sha256": "02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a",
+  "clone_source_sha256": "02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a",
+  "scope": "macOS local software acceptance only; no native Windows/Linux, phone, physical LAN/WAN or browser trust-store certification.",
+  "clone_python": "Python 3.13.2",
+  "backup_restore": {
+    "rows": [
+      {
+        "label": "receiver",
+        "integrity": "ok",
+        "logical_sqlite_sha256": "7e1efec614702fa93f887ffa303bed5ef8ff23194eee5f66f7804fd56ccb025c",
+        "counts": {
+          "sessions": 24,
+          "trainees": 22,
+          "instructor_notes": 1
+        }
+      },
+      {
+        "label": "backup",
+        "integrity": "ok",
+        "logical_sqlite_sha256": "7e1efec614702fa93f887ffa303bed5ef8ff23194eee5f66f7804fd56ccb025c",
+        "counts": {
+          "sessions": 24,
+          "trainees": 22,
+          "instructor_notes": 1
+        }
+      },
+      {
+        "label": "restored",
+        "integrity": "ok",
+        "logical_sqlite_sha256": "7e1efec614702fa93f887ffa303bed5ef8ff23194eee5f66f7804fd56ccb025c",
+        "counts": {
+          "sessions": 24,
+          "trainees": 22,
+          "instructor_notes": 1
+        }
+      }
+    ],
+    "logical_equal": true,
+    "implementation": "Clone Python3.13 scripts/backup-data.py; restore to a new file; read-only source comparison. Raw private databases retained only in temporary QA storage, excluded from Git/packages."
+  },
+  "tls": {
+    "trusted_private_ca_requests": [
+      {
+        "url": "https://localhost:8040/api/v1/health",
+        "status": 200,
+        "bytes": 103,
+        "body_sha256": "1d162b2a63a4677db72d780ba850ddc0a68b0ae5d644d1a51acc0b7615cb65d6",
+        "certificate_and_hostname_verified": true
+      },
+      {
+        "url": "https://localhost:8040/",
+        "status": 200,
+        "bytes": 659,
+        "body_sha256": "d4234414a93b81c5ec0dadf0366e72686f259a3c9a5cb042fda2894a8d784843",
+        "certificate_and_hostname_verified": true
+      },
+      {
+        "url": "https://127.0.0.1:8040/api/v1/health",
+        "status": 200,
+        "bytes": 103,
+        "body_sha256": "1d162b2a63a4677db72d780ba850ddc0a68b0ae5d644d1a51acc0b7615cb65d6",
+        "certificate_and_hostname_verified": true
+      },
+      {
+        "url": "https://127.0.0.1:8040/",
+        "status": 200,
+        "bytes": 659,
+        "body_sha256": "d4234414a93b81c5ec0dadf0366e72686f259a3c9a5cb042fda2894a8d784843",
+        "certificate_and_hostname_verified": true
+      }
+    ],
+    "default_untrusted_ca": {
+      "rejected": true,
+      "reason": "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)"
+    },
+    "verification_disabled": false,
+    "system_trust_store_modified": false,
+    "scope": "Actual local HTTPS health and HTML serving on macOS; generated private CA explicitly trusted by this test process. No browser/mobile CA-install or cross-platform trust proof."
+  },
+  "locks": {
+    "client/package.json": {
+      "canonical_sha256": "a240eb99aeae5f490a0dd32afb718acc2f0df75a20086040913e351c7ec24f1e",
+      "clone_sha256": "a240eb99aeae5f490a0dd32afb718acc2f0df75a20086040913e351c7ec24f1e"
+    },
+    "client/package-lock.json": {
+      "canonical_sha256": "4f92329597fbdf8748310751fea3cfab05571cafa652f710d020f56ed8a69bf1",
+      "clone_sha256": "4f92329597fbdf8748310751fea3cfab05571cafa652f710d020f56ed8a69bf1"
+    },
+    "server/requirements.lock.txt": {
+      "canonical_sha256": "6e7ed6e13780351b512afcc88fa0ca6fa6644f6e99655af4b8953369ea8c5ee1",
+      "clone_sha256": "6e7ed6e13780351b512afcc88fa0ca6fa6644f6e99655af4b8953369ea8c5ee1"
+    }
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "date": "2026-10-12",
+  "scope": "Actual local disposable uvicorn service on macOS; every registered officer-protected route denied anonymous and forged bearer requests; public trusted-LAN trainee routes are separate",
+  "protected_route_method_count": 28,
+  "negative": [
+    {
+      "method": "GET",
+      "route": "/api/v1/units/{unit_id}/dashboard",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "GET",
+      "route": "/api/v1/instructor/sessions",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "GET",
+      "route": "/api/v1/instructor/sessions/{session_id}",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "POST",
+      "route": "/api/v1/instructor/sessions/{session_id}/commands",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "GET",
+      "route": "/api/v1/units/{uid}/trainees",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "GET",
+      "route": "/api/v1/units/{uid}/exercises",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "POST",
+      "route": "/api/v1/units/{uid}/exercises",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "GET",
+      "route": "/api/v1/units/{uid}/exercises/{gid}",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "POST",
+      "route": "/api/v1/units/{uid}/doctrine",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "POST",
+      "route": "/api/v1/scenario-library/preview",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "POST",
+      "route": "/api/v1/scenario-library",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "GET",
+      "route": "/api/v1/trainees/{tid}/analytics",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "GET",
+      "route": "/api/v1/units/{uid}/analytics",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "GET",
+      "route": "/api/v1/units/{uid}/skill-heatmap",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "POST",
+      "route": "/api/v1/units/{uid}/bundle/export",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "POST",
+      "route": "/api/v1/bundle/import",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "POST",
+      "route": "/api/v1/recordings",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "POST",
+      "route": "/api/v1/evaluations",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "GET",
+      "route": "/api/v1/evaluations/{eid}",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "POST",
+      "route": "/api/v1/evaluations/{eid}/post",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "POST",
+      "route": "/api/v1/raids/preview",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "POST",
+      "route": "/api/v1/raids",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "GET",
+      "route": "/api/v1/white-cell",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "GET",
+      "route": "/api/v1/white-cell/{session_id}",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "POST",
+      "route": "/api/v1/crews",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "GET",
+      "route": "/api/v1/crews/catalogue",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "POST",
+      "route": "/api/v1/crews/{cid}/control",
+      "anonymous": 401,
+      "forged": 401
+    },
+    {
+      "method": "POST",
+      "route": "/api/v1/crews/{cid}/complete",
+      "anonymous": 401,
+      "forged": 401
+    }
+  ],
+  "positive": [
+    {
+      "path": "/api/v1/units/local/trainees",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/units/local/dashboard",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/units/local/analytics",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/units/local/skill-heatmap",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/trainees/BROWSER-OUTAGE-FINALE/analytics",
+      "status": 200
+    }
+  ],
+  "limits": [
+    "Not a penetration test or external identity assurance",
+    "Ordinary trainee sessions/callsigns remain trusted-LAN identities",
+    "Crew runtime routes use additional scoped role capabilities; covered separately"
+  ],
+  "inventory_source": "Flattened registered OpenAPI path/method operations (FastAPI included routers are lazy)"
+}

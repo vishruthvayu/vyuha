@@ -1,46 +1,43 @@
 {
-  "date": "2026-10-12",
-  "code_commit": "3ec720d26ef8e556aa392d5adac2218ebde7353a",
-  "source_sha256": "3bec6d5e328b412e59a2ba09a0bc90768abac0f25d41b944c9d8a67f4183a4d6",
+  "date": "2026-10-13",
+  "code_commit": "e07a3845cc465f430b572ece7fbded687c1e3729",
+  "source_sha256": "02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a",
   "software_acceptance": "PASS_SCOPED",
   "stable_approval": false,
-  "score": 82,
-  "score_status": "EXISTING PROVISIONAL; NO FINAL RESCORE",
-  "independent_final_inspection": {
-    "manifest_source_matches": true,
-    "evidence_endpoint_source_matches": true,
-    "all_receipt_paths_exist": true,
-    "all_offline_asset_paths_exist": true,
-    "offline_assets": 26,
-    "offline_cache": "167d3e89736c",
-    "git_diff_check": "PASS",
-    "stable_branch_and_peeled_tag": "2ca96105044ad6a14952d74db619e20006c26eca"
+  "score": 84,
+  "score_status": "INDEPENDENT PROVISIONAL",
+  "finding_counts": {
+    "PASS": 62,
+    "N/A": 1,
+    "PARTIAL": 30
   },
-  "independent_prior_checks": {
+  "tests": {
     "backend": {
-      "passed": 72,
+      "passed": 609,
       "failed": 0,
-      "seconds": 31.76
+      "seconds": 413.34,
+      "warnings": 1
     },
-    "affected_frontend": {
-      "passed": 18,
+    "frontend": {
+      "passed": 160,
       "failed": 0,
-      "milliseconds": 2798.67325
-    }
+      "milliseconds": 37504.43675,
+      "skipped": 0
+    },
+    "production_build": "PASS",
+    "offline_assets": 27,
+    "offline_cache": "d4234414a93b",
+    "historical_baseline": 18,
+    "historical_current": 22,
+    "unchanged_legacy_hashes": true,
+    "lint": "PASS",
+    "format_all_mutable_TSX_and_hooks": "PASS"
   },
-  "root_final_suite": {
-    "backend_passed": 453,
-    "backend_seconds": 456.2,
-    "frontend_passed": 133,
-    "frontend_milliseconds": 74163.157125,
-    "build": "PASS"
-  },
-  "pending": [
-    "Final archive exclusion/seal/evidence commit by root",
-    "Fresh physical device acceptance PENDING_BY_USER",
-    "Native Windows/Linux PENDING_BY_USER",
-    "Stable release decision/tag after required gates",
-    "Validated-release competition media/rehearsal/submission"
+  "external_pending": [
+    "G08",
+    "G09"
   ],
-  "report": "FINAL-SOFTWARE-ACCEPTANCE.md"
+  "independent_final_pin_check": "PASS_SCOPED_X10",
+  "receipt": "evidence.json",
+  "software_frozen_RC": "v1.1.0-rc.1"
 }

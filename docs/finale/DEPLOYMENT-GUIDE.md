@@ -1,3 +1,5 @@
+> Current software RC —13October2026: candidatev1.1.0-rc.1, implementation`e07a3845cc465f430b572ece7fbded687c1e3729`, source`02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a`. NativeWindows/Linux andfreshFinale physicalLAN/WAN/phone/HTTPStrust remainPENDING_BY_USER. Historicalentries below aredated andnot currentacceptance. Use exactRCsource plus matchingdatabasebackup. Currentsoftware gates inFINAL-RELEASE-GATES.json.
+
 # Finale candidate local deployment
 
 This adds native PowerShell entry points and configurable Python parity-test execution. Initial officer setup needs internet to obtain dependencies. Unit runtime serves the application, production assets, API and SQLite history locally and does not install or download packages. An isolated trusted LAN remains required; instructor authentication does not make this a production accredited service.

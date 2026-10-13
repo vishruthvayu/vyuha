@@ -1,0 +1,14 @@
+{
+  "original_score": 0,
+  "what_if_score": 0,
+  "evidence_only_score": 0,
+  "accepted_autonomous_decisions": 13,
+  "replayed_instructor_commands": 4,
+  "all_training_tables_unchanged": true,
+  "volatile_presence_updated": true,
+  "excluded_table": "connected_clients",
+  "training_tables_before_after_sha256": "ec10ac9e76960af7f22bbaf77e5618956bef7c08e37c17f96336ca02faba8507",
+  "original_training_session": "22c61e53-14c2-4192-9527-c5c75740062c",
+  "scope": "Disposable Mac browser/server; presence heartbeat continues; no physical LAN or efficacy claim",
+  "measurement_preceded_later_load_and_transfer": true
+}

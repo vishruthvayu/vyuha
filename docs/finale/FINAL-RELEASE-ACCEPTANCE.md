@@ -1,11 +1,15 @@
-# Finale release acceptance — stable approval withheld
+# Software RC complete; stable approval withheld
 
-The candidate has scoped software validation. The current code commit, source hash, exact regression results, locally rebuilt assets and independent provisional score are recorded in evidence.json and FINAL-RELEASE-GATES.json. A provisional engineering score is not a final SIH score or stable-release approval.
+Current implementation `e07a3845cc465f430b572ece7fbded687c1e3729`; source SHA256 `02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a`. Final validation: **609 backend PASS / 160 frontend PASS / zero failures**, production build: 27 local assets / cache `d4234414a93b`, lint and all mutable TSX/hook formatting PASS. Source is frozen; subsequent receipt commits only change documentation. Protected fallback `release/v1.0.1` and peeled tag `v1.0.1` remain `2ca96105044ad6a14952d74db619e20006c26eca`.
 
-Implemented improvements include bounded Crew capability expiry, officer revocation/rotation, persisted role-attributed coordination history, direct requirement evidence and portable Windows/Git Bash interpreter detection. Further work includes Sensor Truth reconstruction optimization, 32-route authorization checks, scenario variation measurements, real-data handoff contracts, actual browser AAR immutability and improved Crew control contrast.
+Independent provisional **84.0/100** = 46/50 PS + 18/25 realism/AI + 20/25 engineering/demo. This is engineering judgement under the original rubric, not official SIH marks or winning probability. Current **62 PASS / 30 PARTIAL / 1 N/A / 0 BLOCKED** =67.3913% closure excluding N/A. X10 final pin reconciliation passed independent verification; software RC may be sealed. No new source behavior defect was reproduced.
 
-F06 and X18 are scoped PASS. All 93 rows remain accounted for: 53 PASS, 39 PARTIAL and one N/A. Remaining partial findings are listed individually in AUDIT-CLOSURE-MATRIX.md and classified in REMAINING-GAPS-PRIORITIZED.md. Imported Crew sessions retain their individual evidence but do not recreate local roster trends; calibration and human efficacy are unproved.
+G01–G07software gates pass with disclosed scopes. Final manifest reconciliation passed before RC sealing. G08fresh physical Finale andG09native Windows/Linux are mandatory stable gates and remain PENDING_BY_USER. No automatic waiver or architecturefailure is inferred. No media/submission gate is assigned in this software-only mission.
 
-Mandatory outstanding acceptance is G08 (fresh separate-device Finale LAN/WAN/HTTPS trust/cold reload) and G09 (native Windows/Linux execution). Both remain PENDING_BY_USER, not failed architectural tests and not waived. G07 retains final stable acceptance as PARTIAL. G10 final PPT/PDF/video, rehearsal and submission await a validated release. Prepared nonfinal presentation source is in SIH-PRESENTATION-SOURCE-HANDOFF.md.
+- Fresh physical Finale multi-device LAN/WAN/HTTPS trust/cold reload and native Windows/Linux execution remain PENDING_BY_USER; these are unperformed acceptance, not failed architecture.
+- No real sensor measurements or human study supplied; evaluation interfaces, synthetic plots and statistical contracts are implemented preparation, not empirical efficacy.
+- Trusted-LAN independent callsign/UUID is not authenticated secure-exam learner identity.
+- Whole Worker/GPU/process memory and operational endurance breadth are not certified.
+- Original media rubric rows retained as audit provenance; no media/submission work is assigned or a software-only gate.
 
-Run WINDOWS-PHONE-ACCEPTANCE-RUNBOOK.md and record genuine results in PHYSICAL-TEST-RESULTS.md. If source changes, rerun the relevant combined checks and reconcile receipts before an independent final release decision. Do not create a new stable tag from this candidate while mandatory gates remain pending. release/v1.0.1 and tag v1.0.1 remain the unchanged fallback at 2ca96105044ad6a14952d74db619e20006c26eca.
+Follow WINDOWS-PHONE-ACCEPTANCE-RUNBOOK.md against the RC source; record genuine evidence in PHYSICAL-TEST-RESULTS.md. Do not downgrade currentdata into the oldfallback: restore the matching old-version database snapshot with v1.0.1.
