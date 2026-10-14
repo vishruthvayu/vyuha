@@ -13,7 +13,7 @@ import {
 import { SensorBadges } from "./SensorBadges";
 import Navigation from "./Navigation";
 import { workspaceViewFromSearch } from "./routes";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Activity,
   ArrowDownToLine,
@@ -49,6 +49,7 @@ import {
 } from "./unit-state";
 import { launchPreparedScenario } from "./Director";
 import DrillSetup from "./DrillSetup";
+import { DecisionWorkspace } from "./DecisionWorkspace";
 import type { TrainingProfile } from "./types";
 import { GhostPanel, GhostTimeline, timelineSeek, ReplayTracks } from "./Ghost";
 import { HZ, inCivilZone, replay, score, Simulation } from "./sim";
@@ -111,8 +112,25 @@ const controlPayload = (
   night: s.night,
   applied: cs.map(({ seq, tick, order }) => ({ seq, tick, order })),
 });
+/** Retrieve annotations and replay evidence without trusting a different session/scenario. */
+async function completeReview(record: TrainingRecord): Promise<TrainingRecord> {
+  const remote = await api<TrainingRecord>(
+    `/sessions/${encodeURIComponent(record.id)}/aar`,
+    undefined,
+    RECONSTRUCTION_TIMEOUT_MS,
+  );
+  if (
+    remote.id !== record.id ||
+    remote.scenario.id !== record.scenario.id ||
+    !remote.verified
+  )
+    throw new Error(
+      "Detailed review does not belong to this verified exercise.",
+    );
+  return mergeServerRecord(record, remote);
+}
 type View = "drill" | "aar" | "unit";
-type Phase = "ready" | "running" | "paused" | "complete";
+type Phase = "ready" | "restoring" | "running" | "paused" | "complete";
 export default function App({
   identity: unitIdentity,
   reviewOnly = false,
@@ -121,6 +139,7 @@ export default function App({
   reviewOnly?: boolean;
 }) {
   const replayHeading = useRef<HTMLHeadingElement>(null);
+  const decisionDock = useRef<HTMLElement>(null);
   const [view, setView] = useState<View>(() =>
     workspaceViewFromSearch(window.location.search),
   );
@@ -240,6 +259,7 @@ export default function App({
     }
   }, [phase, mode, libraryId, library]);
   const prepare = async () => {
+    setClockNote("");
     setPhase("ready");
     setBusy(true);
     setPrepared(null);
@@ -268,6 +288,9 @@ export default function App({
   const livePaused = useRef(true);
   const controlQueue = useRef(Promise.resolve());
   const worker = useRef<Worker | null>(null);
+  const workerScope = useRef("");
+  const workerInitialized = useRef(false);
+  const restorationPending = useRef(false);
   const scenarioRef = useRef(scenario);
   const traineeRef = useRef(trainee);
   const sessionRef = useRef("");
@@ -323,12 +346,24 @@ export default function App({
       id: sessionRef.current,
       after: commands.current.at(-1)?.seq ?? 0,
       active:
-        serverSessionRef.current && !!sessionRef.current && !finishLock.current,
+        serverSessionRef.current &&
+        !!sessionRef.current &&
+        !finishLock.current &&
+        workerInitialized.current,
     }),
     accept: (received, id) => {
-      if (finishLock.current || sessionRef.current !== id) return;
+      if (
+        finishLock.current ||
+        sessionRef.current !== id ||
+        !workerInitialized.current
+      )
+        return;
       for (const command of received)
-        worker.current?.postMessage({ type: "control", command });
+        worker.current?.postMessage({
+          type: "control",
+          command,
+          scope: workerScope.current,
+        });
     },
     heartbeat: flushControls,
     unavailable: () => {
@@ -336,14 +371,37 @@ export default function App({
       setSync("queued");
     },
   });
-  const visible = reportedContacts(state);
+  const visible = phase === "restoring" ? [] : reportedContacts(state);
   const contactItems = useContactMemory(
     state,
     scenario.id + ":" + (sessionRef.current ?? "ready"),
     selected,
   );
+  const [reviewCallsigns, setReviewCallsigns] = useState<
+    Record<string, string>
+  >({});
+  useEffect(() => {
+    if (!reviewOnly || !current?.unit_id) return;
+    let stopped = false;
+    setReviewCallsigns({});
+    void api<{ trainees: UnitIdentity[] }>(
+      `/units/${encodeURIComponent(current.unit_id)}/trainees`,
+    )
+      .then(({ trainees }) => {
+        if (!stopped)
+          setReviewCallsigns(
+            Object.fromEntries(trainees.map((t) => [t.trainee_id, t.callsign])),
+          );
+      })
+      .catch(() => {});
+    return () => {
+      stopped = true;
+    };
+  }, [reviewOnly, current?.unit_id]);
   const traineeLabel = (id: string) =>
-    unitIdentity?.trainee_id === id ? unitIdentity.callsign : id;
+    unitIdentity?.trainee_id === id
+      ? unitIdentity.callsign
+      : (reviewCallsigns[id] ?? id);
   const target = visible.find((t) => t.id === selected);
   const opticalPosition = visualPosition(target, vision);
   const running = phase === "running";
@@ -487,7 +545,8 @@ export default function App({
         fusionExposures: [...fusionRecords.current],
       };
       let stored = false,
-        fusionPending = false;
+        fusionPending = false,
+        reviewPending = false;
       setState(sim.snapshot());
       setCurrent(record);
       setReplayTick(0);
@@ -519,16 +578,32 @@ export default function App({
               fusionPending = true;
             }
           }
+          try {
+            record = await completeReview(record);
+          } catch {
+            // The verified card remains valid even if detailed annotations need a later read.
+            reviewPending = true;
+          }
           await saveRecord(record);
           setOnline(true);
           setSync("synced");
         }
-        setCurrent(record);
+        setCurrent((selected) =>
+          selected?.id === record.id ? record : selected,
+        );
         setNotice(
           record.verified
-            ? fusionPending
-              ? "Score verified. Fusion receipt synchronization is pending; retained on this device."
-              : "Session saved and independently scored by the local server."
+            ? [
+                "Session saved and independently scored by the local server.",
+                fusionPending
+                  ? "Fusion receipt synchronization is pending; retained on this device."
+                  : "",
+                reviewPending
+                  ? "Detailed review and instructor notes await a server refresh; the score remains verified."
+                  : "",
+              ]
+                .filter(Boolean)
+                .join(" ")
             : "Session saved on this device. Server verification is pending.",
         );
       } catch (error) {
@@ -562,6 +637,9 @@ export default function App({
     w.onmessage = (
       e: MessageEvent<{
         type: string;
+        scope?: string;
+        scenario_id?: string;
+        initialized?: boolean;
         state?: Snapshot;
         action?: Action;
         events?: Action[];
@@ -572,6 +650,17 @@ export default function App({
       }>,
     ) => {
       const m = e.data;
+      if (
+        !workerScope.current ||
+        m.scope !== workerScope.current ||
+        m.scenario_id !== scenarioRef.current.id
+      )
+        return;
+      if (
+        !workerInitialized.current &&
+        !(m.type === "snapshot" && m.initialized && m.state)
+      )
+        return;
       if (m.type === "clock-status")
         setClockNote(
           m.status === "visible"
@@ -579,7 +668,19 @@ export default function App({
             : (m.note ?? "Exercise timer status changed."),
         );
       if (m.type === "snapshot" && m.state) {
-        if (liveState.current && liveState.current.night !== m.state.night)
+        if (m.initialized) {
+          workerInitialized.current = true;
+          if (restorationPending.current) {
+            restorationPending.current = false;
+            setNotice(
+              `Saved exercise restored at ${time(m.state.tick)}. Decisions use the reconstructed evidence.`,
+            );
+          }
+        }
+        if (
+          m.initialized ||
+          (liveState.current && liveState.current.night !== m.state.night)
+        )
           setVision(m.state.night ? "thermal" : "day");
         setState(m.state);
         liveState.current = m.state;
@@ -745,6 +846,10 @@ export default function App({
       stopped = true;
     };
   }, [current?.id, current?.verified, reviewReload]);
+  const focusReplay = () => {
+    replayHeading.current?.focus({ preventScroll: true });
+    replayHeading.current?.scrollIntoView({ behavior: "auto", block: "start" });
+  };
   const seek = (
     tick: number,
     beforeOrder: number | undefined,
@@ -812,6 +917,9 @@ export default function App({
     scenarioRef.current = spec;
     traineeRef.current = trainee;
     sessionRef.current = id;
+    workerScope.current = newId();
+    workerInitialized.current = false;
+    restorationPending.current = false;
     events.current = [];
     commands.current = [];
     liveState.current = null;
@@ -823,8 +931,12 @@ export default function App({
     setPhase("running");
     setView("drill");
     setVision(spec.night ? "thermal" : "day");
-    worker.current?.postMessage({ type: "init", scenario: spec });
-    worker.current?.postMessage({ type: "play" });
+    worker.current?.postMessage({
+      type: "init",
+      scenario: spec,
+      scope: workerScope.current,
+    });
+    worker.current?.postMessage({ type: "play", scope: workerScope.current });
     setBusy(false);
   };
   const startAssigned = async () => {
@@ -855,13 +967,15 @@ export default function App({
     }
   };
   const act = (data: Omit<Action, "tick">) => {
-    if (!running) return;
+    if (!running || !workerInitialized.current) return;
     worker.current?.postMessage({
       type: "action",
+      scope: workerScope.current,
       action: { ...data, tick: state.tick },
     });
   };
   const togglePause = () => {
+    if (!workerInitialized.current) return;
     if (state.paused && serverSessionRef.current) {
       void api(`/instructor/sessions/${sessionRef.current}/commands`, {
         command_id: newId(),
@@ -874,8 +988,15 @@ export default function App({
       );
       return;
     }
-    worker.current?.postMessage({ type: running ? "pause" : "play" });
+    worker.current?.postMessage({
+      type: running ? "pause" : "play",
+      scope: workerScope.current,
+    });
     setPhase(running ? "paused" : "running");
+  };
+  const focusDecision = () => {
+    decisionDock.current?.focus({ preventScroll: true });
+    decisionDock.current?.scrollIntoView({ behavior: "auto", block: "start" });
   };
   const choose = (id: string) => {
     setSelected(id);
@@ -891,6 +1012,11 @@ export default function App({
     scenarioRef.current = d.scenario;
     traineeRef.current = d.trainee;
     sessionRef.current = d.id;
+    workerScope.current = newId();
+    workerInitialized.current = false;
+    restorationPending.current = true;
+    liveState.current = null;
+    livePaused.current = true;
     serverSessionRef.current = d.server;
     events.current = [...d.events];
     commands.current = d.commands ?? [];
@@ -898,22 +1024,31 @@ export default function App({
     latestAdvice.current = null;
     finishLock.current = false;
     setScenario(d.scenario);
+    // Only replayed evidence may become actionable. A safe empty initial
+    // snapshot clears prior contacts while the worker reconstructs this draft.
+    setState(new Simulation(d.scenario).snapshot());
+    setVision(d.scenario.night ? "thermal" : "day");
+    setClockNote("");
     setTrainee(d.trainee);
     setNight(d.scenario.night);
     setSeed(d.scenario.seed);
     setSelected(null);
-    setPhase("running");
+    setCurrent(null);
+    setPhase("restoring");
     setView("drill");
     setRecovery(null);
     worker.current?.postMessage({
       type: "init",
+      scope: workerScope.current,
       scenario: d.scenario,
       events: d.events,
       commands: d.commands ?? [],
       tick: d.tick,
     });
-    worker.current?.postMessage({ type: "play" });
-    setNotice("Unfinished exercise restored from this device.");
+    worker.current?.postMessage({ type: "play", scope: workerScope.current });
+    setNotice(
+      `Restoring saved exercise at ${time(d.tick)}. Controls unlock after reconstruction.`,
+    );
   };
   const retry = async (record: TrainingRecord) => {
     setBusy(true);
@@ -955,7 +1090,9 @@ export default function App({
           }
           const retained = mergeServerRecord(record, existing);
           await saveRecord(retained);
-          setCurrent(retained);
+          setCurrent((selected) =>
+            selected?.id === record.id ? retained : selected,
+          );
           setNotice(
             fusionPending
               ? "Score already verified. Fusion receipt synchronization is pending; retained on this device."
@@ -1033,19 +1170,31 @@ export default function App({
           /* Score remains verified; retained Fusion requests can retry separately. */
         }
       }
-      const verified = {
+      let verified: TrainingRecord = {
         ...record,
         id,
         scenario: spec,
         verified: true,
         scorecard: card,
       };
+      let reviewPending = false;
+      try {
+        verified = await completeReview(verified);
+      } catch {
+        reviewPending = true;
+      }
       await saveRecord(verified);
       if (id !== record.id) await removeLocal("records", record.id);
-      setCurrent(verified);
+      setCurrent((selected) =>
+        selected?.id === record.id ? verified : selected,
+      );
       setSync("synced");
       setOnline(true);
-      setNotice("Server verification complete.");
+      setNotice(
+        reviewPending
+          ? "Server verification complete. Detailed review and instructor notes await a server refresh; the score remains verified."
+          : "Server verification complete.",
+      );
       await refresh();
     } catch (error) {
       setNotice(
@@ -1105,6 +1254,12 @@ export default function App({
     };
   }, [routeSearch]);
   const nextDrill = () => {
+    worker.current?.postMessage({ type: "pause", scope: workerScope.current });
+    workerScope.current = "";
+    workerInitialized.current = false;
+    restorationPending.current = false;
+    liveState.current = null;
+    setClockNote("");
     if (current && !unitIdentity) setTrainee(current.trainee);
     setSeed(nextTrainingSeed);
     setPrepared(null);
@@ -1122,15 +1277,21 @@ export default function App({
     [cameraPreset, setCameraPreset] = useState<CameraPreset>("overview"),
     [replayTactical, setReplayTactical] = useState(false),
     [replayFps, setReplayFps] = useState(0);
-  const replayState = current
-    ? replay(
-        current.scenario,
-        current.events,
-        replayTick,
-        current.commands ?? [],
-        replayOrder,
-      ).snapshot()
-    : state;
+  // Reconstruction depends on immutable evidence and seek position, not camera/FPS/notice updates.
+  const replayState =
+    useMemo(
+      () =>
+        current
+          ? replay(
+              current.scenario,
+              current.events,
+              replayTick,
+              current.commands ?? [],
+              replayOrder,
+            ).snapshot()
+          : null,
+      [current, replayTick, replayOrder],
+    ) ?? state;
   return (
     <div className="app-shell">
       <Navigation
@@ -1211,9 +1372,14 @@ export default function App({
                   Read the sensors. Identify the contact. Choose your response.
                 </p>
               </div>
-              <span className="pill">
-                <Shield size={14} /> EXERCISE / {phase.toUpperCase()}
-              </span>
+              <div className="mission-context">
+                <span className="mission-owner">
+                  Callsign {unitIdentity?.callsign ?? trainee}
+                </span>
+                <span className="pill">
+                  <Shield size={14} /> EXERCISE / {phase.toUpperCase()}
+                </span>
+              </div>
             </div>
             <div className="mission-bar">
               <div className="mission-name">
@@ -1252,7 +1418,8 @@ export default function App({
                 <span>
                   <small>EXERCISE TIME</small>
                   <b>
-                    {time(state.tick)} <i>/ {time(scenario.duration * HZ)}</i>
+                    {phase === "restoring" ? "Restoring…" : time(state.tick)}{" "}
+                    <i>/ {time(scenario.duration * HZ)}</i>
                   </b>
                 </span>
                 <span>
@@ -1260,7 +1427,12 @@ export default function App({
                   {tactical ? "2D tactical" : fps ? `${fps} fps` : "3D ready"}
                 </span>
               </div>
-              {phase === "running" || phase === "paused" ? (
+              {phase === "restoring" ? (
+                <p role="status">
+                  Restoring saved exercise… Controls are unavailable until the
+                  saved evidence is ready.
+                </p>
+              ) : phase === "running" || phase === "paused" ? (
                 <div className="mission-actions">
                   <button className="button subtle" onClick={togglePause}>
                     {running ? <Pause size={15} /> : <Play size={15} />}{" "}
@@ -1276,7 +1448,10 @@ export default function App({
                     }
                     onClick={() => {
                       setBusy(true);
-                      worker.current?.postMessage({ type: "finish" });
+                      worker.current?.postMessage({
+                        type: "finish",
+                        scope: workerScope.current,
+                      });
                     }}
                   >
                     End exercise
@@ -1333,7 +1508,7 @@ export default function App({
             {phase === "ready" && recovery && (
               <div className="recovery-banner">
                 <span>
-                  Unfinished exercise · {recovery.trainee} ·{" "}
+                  Unfinished exercise · {traineeLabel(recovery.trainee)} ·{" "}
                   {time(recovery.tick)}
                 </span>
                 <button className="button subtle" onClick={resumeDraft}>
@@ -1461,8 +1636,15 @@ export default function App({
                 <div
                   className={`scene-container ${vision} ${tactical ? "tactical-mode" : ""}`}
                 >
-                  {phase === "ready" && mode === "adaptive" && !prepared ? (
-                    <TrainingWelcome />
+                  {phase === "restoring" ? (
+                    <div className="render-fallback" role="status">
+                      <p>Reconstructing the saved sensor evidence…</p>
+                    </div>
+                  ) : phase === "ready" && mode === "adaptive" && !prepared ? (
+                    <TrainingWelcome
+                      onPrepare={() => void start()}
+                      busy={busy}
+                    />
                   ) : tactical ? (
                     <Radar
                       state={state}
@@ -1496,7 +1678,7 @@ export default function App({
                       }
                     />
                   )}
-                  {!tactical && (
+                  {!tactical && phase !== "restoring" && (
                     <>
                       <div className="view-annotation top-left">
                         {vision === "thermal"
@@ -1583,7 +1765,7 @@ export default function App({
                   )}
                 </div>
                 <div className="scene-toolbar">
-                  <SensorBadges state={state} />
+                  {phase !== "restoring" && <SensorBadges state={state} />}
                   <div>
                     {scenario.fog === 0
                       ? "Clear"
@@ -1601,146 +1783,6 @@ export default function App({
                     {tactical ? "Use 3D view" : "2D fallback"}
                   </button>
                 </div>
-                <div className="next-guidance" role="status">
-                  <b>NEXT</b>{" "}
-                  {phase === "running" && selected && !target
-                    ? `${selected}: no current sensor observation. Selection retained; wait for reacquisition.`
-                    : nextStep(phase, target)}
-                </div>
-                <div className="action-panel">
-                  <div className="action-heading">
-                    <span className="step-number">
-                      {target?.designated === null || !target
-                        ? "1"
-                        : !target?.classification
-                          ? "2"
-                          : "3"}
-                    </span>
-                    <div>
-                      <strong>
-                        {!target
-                          ? "Select a contact"
-                          : target.designated === null
-                            ? "Designate contact"
-                            : !target.classification
-                              ? "Classify the contact"
-                              : "Choose a response"}
-                      </strong>
-                      <small>
-                        {!target
-                          ? "Select a radar marker or contact in the list."
-                          : `${target.id} · ${Math.round(Math.hypot(target.x, target.z))} m illustrative range`}
-                      </small>
-                    </div>
-                    {target && (
-                      <span className="pill muted">
-                        {target.declared || "UNCLASSIFIED"}
-                      </span>
-                    )}
-                  </div>
-                  <div className="action-controls">
-                    <button
-                      className="button designate"
-                      disabled={!!controlReason("designate", phase, target)}
-                      title={controlReason("designate", phase, target)}
-                      onClick={() =>
-                        target && act({ k: "designate", track: target.id })
-                      }
-                    >
-                      <Crosshair size={16} />
-                      {target?.designated !== null && target
-                        ? "Designated"
-                        : "Designate"}
-                    </button>
-                    <label className="sr-only" htmlFor="kind">
-                      Contact type
-                    </label>
-                    <select
-                      id="kind"
-                      disabled={!!controlReason("classify", phase, target)}
-                      title={controlReason("classify", phase, target)}
-                      value={kind}
-                      onChange={(e) => setKind(e.target.value as Kind)}
-                    >
-                      {Object.entries(KIND_LABEL).map(([k, v]) => (
-                        <option key={k} value={k}>
-                          {v}
-                        </option>
-                      ))}
-                    </select>
-                    <label className="sr-only" htmlFor="identity">
-                      Contact identity
-                    </label>
-                    <select
-                      id="identity"
-                      disabled={!!controlReason("classify", phase, target)}
-                      title={controlReason("classify", phase, target)}
-                      value={identity}
-                      onChange={(e) => setIdentity(e.target.value as Identity)}
-                    >
-                      <option value="hostile">Hostile</option>
-                      <option value="friendly">Friendly</option>
-                      <option value="neutral">Neutral</option>
-                    </select>
-                    <button
-                      className="button subtle"
-                      disabled={!!controlReason("classify", phase, target)}
-                      title={controlReason("classify", phase, target)}
-                      onClick={() =>
-                        target &&
-                        act({ k: "classify", track: target.id, kind, identity })
-                      }
-                    >
-                      <Check size={16} /> Confirm ID
-                    </button>
-                  </div>
-                  <div className="effector-row">
-                    {(
-                      [
-                        { id: "hold", label: "Hold fire", Icon: Shield },
-                        { id: "rf_jam", label: "RF jammer", Icon: Radio },
-                        { id: "kinetic", label: "Kinetic", Icon: Target },
-                      ] as const
-                    ).map(({ id, label, Icon }) => (
-                      <button
-                        key={id}
-                        className={`effector ${id}`}
-                        disabled={
-                          !!controlReason(
-                            "respond",
-                            phase,
-                            target,
-                            !scenario.doctrine ||
-                              scenario.doctrine.rules.effectors.includes(id),
-                          )
-                        }
-                        title={controlReason(
-                          "respond",
-                          phase,
-                          target,
-                          !scenario.doctrine ||
-                            scenario.doctrine.rules.effectors.includes(id),
-                        )}
-                        onClick={() =>
-                          target &&
-                          act({ k: "engage", track: target.id, effector: id })
-                        }
-                      >
-                        <Icon size={18} />
-                        <div>
-                          <strong>{label}</strong>
-                          <small>
-                            {id === "hold"
-                              ? "Monitor contact"
-                              : id === "rf_jam"
-                                ? "RF-link threats only"
-                                : "Check range and ROE"}
-                          </small>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
               </section>
               <aside className="right-panels">
                 <section className="panel radar-panel">
@@ -1750,14 +1792,26 @@ export default function App({
                       <strong>Radar picture</strong>
                     </div>
                     <span className={state.jammed ? "status amber" : "status"}>
-                      {state.radarStatus === "failed"
-                        ? "OFFLINE"
-                        : state.jammed
-                          ? "DEGRADED"
-                          : "NORMAL"}
+                      {phase === "restoring"
+                        ? "RESTORING"
+                        : state.radarStatus === "failed"
+                          ? "OFFLINE"
+                          : state.jammed
+                            ? "DEGRADED"
+                            : "NORMAL"}
                     </span>
                   </div>
-                  <Radar state={state} selected={selected} onSelect={choose} />
+                  {phase === "restoring" ? (
+                    <p role="status">
+                      Radar reports will appear after reconstruction.
+                    </p>
+                  ) : (
+                    <Radar
+                      state={state}
+                      selected={selected}
+                      onSelect={choose}
+                    />
+                  )}
                 </section>
                 <section className="panel contacts-panel">
                   <div className="panel-header">
@@ -1765,21 +1819,39 @@ export default function App({
                       <Target size={16} />
                       <strong>Contact tracks</strong>
                     </div>
-                    <span className="count-badge">{contactItems.length}</span>
+                    <span className="count-badge">
+                      {phase === "restoring" ? 0 : contactItems.length}
+                    </span>
                   </div>
+                  {selected && (
+                    <button
+                      className="button subtle decision-jump"
+                      onClick={focusDecision}
+                    >
+                      {selected} · Evidence and decisions{" "}
+                      <ChevronRight size={14} />
+                    </button>
+                  )}
                   <p className="footnote">
                     Dashed rows retain a last report, not a current detection.
                     Decisions require current evidence.
                   </p>
                   <div className="contact-list">
-                    {contactItems.length ? (
+                    {phase !== "restoring" && contactItems.length ? (
                       contactItems.map(({ track: t, available, lastTick }) => (
                         <button
                           key={t.id}
                           className={`contact-item ${selected === t.id ? "selected" : ""} ${available ? "" : "stale"}`}
                           aria-pressed={selected === t.id}
                           onPointerDown={() => choose(t.id)}
-                          onClick={() => choose(t.id)}
+                          onClick={() => {
+                            choose(t.id);
+                            if (
+                              window.matchMedia("(max-width: 800px)").matches
+                            ) {
+                              focusDecision();
+                            }
+                          }}
                         >
                           <span className={`track-symbol ${t.declared || ""}`}>
                             <Crosshair size={16} />
@@ -1815,153 +1887,329 @@ export default function App({
                     )}
                   </div>
                 </section>
-                {(phase === "running" || phase === "paused") &&
-                  scenario.fusion && (
+              </aside>
+              {phase !== "restoring" && (
+                <DecisionWorkspace
+                  ref={decisionDock}
+                  evidence={
                     <>
-                      <FusionPanel
-                        observation={target?.observation}
-                        prior={{
-                          kind: target?.classification,
-                          identity: target?.declared,
-                        }}
-                        config={scenario.fusion}
-                        context={{
-                          session_id: sessionRef.current || "local",
-                          scenario_id: scenario.id,
-                          before_order:
-                            Math.max(
-                              -1,
-                              ...events.current.map((a) => a.order ?? -1),
-                              ...commands.current.map((c) => c.order),
-                            ) + 1,
-                        }}
-                        onExposure={fusionExposure}
-                      />
-                      {scenario.fusion.mode === "training" && (
-                        <section className="panel">
-                          <label>
-                            <input
-                              type="checkbox"
-                              checked={logConfidence}
-                              onChange={(e) =>
-                                setLogConfidence(e.target.checked)
+                      {" "}
+                      <section className="panel rf-panel">
+                        <div className="panel-header">
+                          <div>
+                            <Zap size={16} />
+                            <strong>RF / IFF evidence</strong>
+                          </div>
+                        </div>
+                        <div className="evidence-grid">
+                          <span>
+                            CONTROL LINK
+                            <strong
+                              className={rfObservation?.rf_signal ? "lime" : ""}
+                            >
+                              {!state.rfAvailable
+                                ? "OFFLINE"
+                                : target
+                                  ? rfObservation?.rf_signal
+                                    ? "Detected"
+                                    : "Not detected"
+                                  : "—"}
+                            </strong>
+                          </span>
+                          <span>
+                            IFF RESPONSE
+                            <strong
+                              className={
+                                rfObservation?.iff === "friendly_reply"
+                                  ? "blue"
+                                  : ""
                               }
+                            >
+                              {!state.rfAvailable
+                                ? "OFFLINE"
+                                : target
+                                  ? rfObservation?.iff === "friendly_reply"
+                                    ? "Friendly reply"
+                                    : rfObservation?.iff === "registered_civil"
+                                      ? "Registered civil"
+                                      : "No reply"
+                                  : "—"}
+                            </strong>
+                          </span>
+                        </div>
+                        <p>
+                          {!selected
+                            ? "Select a contact to inspect its current RF and IFF evidence."
+                            : !target
+                              ? "No current observation. Selection is retained; wait for reacquisition."
+                              : target && inCivilZone(target)
+                                ? "Restricted zone: kinetic engagement is blocked here."
+                                : !state.rfAvailable
+                                  ? "RF sensor unavailable. Use EO/IR cues; link and IFF evidence are unavailable."
+                                  : target && rfObservation?.rf_signal === false
+                                    ? "No detected RF link. Review the contact before selecting an effector."
+                                    : "Sensor cues support classification; they do not replace your decision."}
+                        </p>
+                      </section>
+                      {(phase === "running" || phase === "paused") &&
+                        scenario.fusion && (
+                          <>
+                            <FusionPanel
+                              observation={target?.observation}
+                              prior={{
+                                kind: target?.classification,
+                                identity: target?.declared,
+                              }}
+                              config={scenario.fusion}
+                              context={{
+                                session_id: sessionRef.current || "local",
+                                scenario_id: scenario.id,
+                                before_order:
+                                  Math.max(
+                                    -1,
+                                    ...events.current.map((a) => a.order ?? -1),
+                                    ...commands.current.map((c) => c.order),
+                                  ) + 1,
+                              }}
+                              onExposure={fusionExposure}
                             />
-                            Optional confidence · classification
-                          </label>
-                          {logConfidence && (
-                            <label>
-                              Confidence in selected type (%)
-                              <input
-                                type="number"
-                                min={0}
-                                max={100}
-                                value={confidence}
-                                onChange={(e) =>
-                                  setConfidence(
-                                    Math.max(
-                                      0,
-                                      Math.min(
-                                        100,
-                                        Number(e.target.value) || 0,
-                                      ),
-                                    ),
-                                  )
-                                }
-                              />
-                            </label>
-                          )}
-                          <p className="footnote">
-                            Your selected type receives this probability; the
-                            remainder is divided equally among the other three
-                            types. A post-exercise Brier diagnostic does not
-                            change the score or mastery profile.
+                            {scenario.fusion.mode === "training" && (
+                              <details className="panel evidence-disclosure confidence-options">
+                                <summary>
+                                  Optional classification confidence
+                                </summary>
+                                <label>
+                                  <input
+                                    type="checkbox"
+                                    checked={logConfidence}
+                                    onChange={(e) =>
+                                      setLogConfidence(e.target.checked)
+                                    }
+                                  />
+                                  Optional confidence · classification
+                                </label>
+                                {logConfidence && (
+                                  <label>
+                                    Confidence in selected type (%)
+                                    <input
+                                      type="number"
+                                      min={0}
+                                      max={100}
+                                      value={confidence}
+                                      onChange={(e) =>
+                                        setConfidence(
+                                          Math.max(
+                                            0,
+                                            Math.min(
+                                              100,
+                                              Number(e.target.value) || 0,
+                                            ),
+                                          ),
+                                        )
+                                      }
+                                    />
+                                  </label>
+                                )}
+                                <p className="footnote">
+                                  Your selected type receives this probability;
+                                  the remainder is divided equally among the
+                                  other three types. A post-exercise Brier
+                                  diagnostic does not change the score or
+                                  mastery profile.
+                                </p>
+                              </details>
+                            )}
+                          </>
+                        )}
+                      {state.response && (
+                        <details className="panel evidence-disclosure response-resources">
+                          <summary>
+                            Response resources ·{" "}
+                            {state.response.kinetic_ammo_remaining} rounds ·{" "}
+                            {state.response.jammer_channels_in_use}/
+                            {scenario.response_model?.jammer_channels} jammer
+                            channels
+                          </summary>
+                          <p>
+                            Kinetic: {state.response.kinetic_ammo_remaining}{" "}
+                            rounds · ready{" "}
+                            {state.tick >= state.response.kinetic_ready_tick
+                              ? "now"
+                              : `at ${time(state.response.kinetic_ready_tick)}`}
                           </p>
-                        </section>
+                          <p>
+                            Jammer channels:{" "}
+                            {state.response.jammer_channels_in_use}/
+                            {scenario.response_model?.jammer_channels} in use
+                          </p>
+                          {state.response.attempts.slice(-3).map((a) => (
+                            <p key={a.id}>
+                              {a.track} · {a.effector} ·{" "}
+                              {a.status.replaceAll("_", " ")}
+                              {a.status === "pending" && a.due_tick !== null
+                                ? ` · due ${time(a.due_tick)}`
+                                : ""}
+                            </p>
+                          ))}
+                          <p className="footnote">
+                            Illustrative resources and seeded effects. A
+                            response can be accepted but fail to resolve a
+                            contact.
+                          </p>
+                        </details>
                       )}
                     </>
-                  )}
-                {state.response && (
-                  <section className="panel">
-                    <h3>Response resources</h3>
-                    <p>
-                      Kinetic: {state.response.kinetic_ammo_remaining} rounds ·
-                      ready{" "}
-                      {state.tick >= state.response.kinetic_ready_tick
-                        ? "now"
-                        : `at ${time(state.response.kinetic_ready_tick)}`}
-                    </p>
-                    <p>
-                      Jammer channels: {state.response.jammer_channels_in_use}/
-                      {scenario.response_model?.jammer_channels} in use
-                    </p>
-                    {state.response.attempts.slice(-3).map((a) => (
-                      <p key={a.id}>
-                        {a.track} · {a.effector} ·{" "}
-                        {a.status.replaceAll("_", " ")}
-                        {a.status === "pending" && a.due_tick !== null
-                          ? ` · due ${time(a.due_tick)}`
-                          : ""}
-                      </p>
-                    ))}
-                    <p className="footnote">
-                      Illustrative resources and seeded effects. A response can
-                      be accepted but fail to resolve a contact.
-                    </p>
-                  </section>
-                )}
-                <section className="panel rf-panel">
-                  <div className="panel-header">
-                    <div>
-                      <Zap size={16} />
-                      <strong>RF / IFF evidence</strong>
-                    </div>
+                  }
+                >
+                  <div className="next-guidance" role="status">
+                    <b>NEXT</b>{" "}
+                    {phase === "running" && selected && !target
+                      ? `${selected}: no current sensor observation. Selection retained; wait for reacquisition.`
+                      : nextStep(phase, target)}
                   </div>
-                  <div className="evidence-grid">
-                    <span>
-                      CONTROL LINK
-                      <strong
-                        className={rfObservation?.rf_signal ? "lime" : ""}
-                      >
-                        {!state.rfAvailable
-                          ? "OFFLINE"
-                          : target
-                            ? rfObservation?.rf_signal
-                              ? "Detected"
-                              : "Not detected"
-                            : "—"}
-                      </strong>
-                    </span>
-                    <span>
-                      IFF RESPONSE
-                      <strong
-                        className={
-                          rfObservation?.iff === "friendly_reply" ? "blue" : ""
+                  <div className="action-panel">
+                    <div className="action-heading">
+                      <span className="step-number">
+                        {target?.designated === null || !target
+                          ? "1"
+                          : !target?.classification
+                            ? "2"
+                            : "3"}
+                      </span>
+                      <div>
+                        <strong>
+                          {!target
+                            ? "Select a contact"
+                            : target.designated === null
+                              ? "Designate contact"
+                              : !target.classification
+                                ? "Classify the contact"
+                                : "Choose a response"}
+                        </strong>
+                        <small>
+                          {!target
+                            ? "Select a radar marker or contact in the list."
+                            : `${target.id} · ${Math.round(Math.hypot(target.x, target.z))} m illustrative range`}
+                        </small>
+                      </div>
+                      {target && (
+                        <span className="pill muted">
+                          {target.declared || "UNCLASSIFIED"}
+                        </span>
+                      )}
+                    </div>
+                    <div className="action-controls">
+                      <button
+                        className="button designate"
+                        disabled={!!controlReason("designate", phase, target)}
+                        title={controlReason("designate", phase, target)}
+                        onClick={() =>
+                          target && act({ k: "designate", track: target.id })
                         }
                       >
-                        {!state.rfAvailable
-                          ? "OFFLINE"
-                          : target
-                            ? rfObservation?.iff === "friendly_reply"
-                              ? "Friendly reply"
-                              : rfObservation?.iff === "registered_civil"
-                                ? "Registered civil"
-                                : "No reply"
-                            : "—"}
-                      </strong>
-                    </span>
+                        <Crosshair size={16} />
+                        {target?.designated !== null && target
+                          ? "Designated"
+                          : "Designate"}
+                      </button>
+                      <label className="sr-only" htmlFor="kind">
+                        Contact type
+                      </label>
+                      <select
+                        id="kind"
+                        disabled={!!controlReason("classify", phase, target)}
+                        title={controlReason("classify", phase, target)}
+                        value={kind}
+                        onChange={(e) => setKind(e.target.value as Kind)}
+                      >
+                        {Object.entries(KIND_LABEL).map(([k, v]) => (
+                          <option key={k} value={k}>
+                            {v}
+                          </option>
+                        ))}
+                      </select>
+                      <label className="sr-only" htmlFor="identity">
+                        Contact identity
+                      </label>
+                      <select
+                        id="identity"
+                        disabled={!!controlReason("classify", phase, target)}
+                        title={controlReason("classify", phase, target)}
+                        value={identity}
+                        onChange={(e) =>
+                          setIdentity(e.target.value as Identity)
+                        }
+                      >
+                        <option value="hostile">Hostile</option>
+                        <option value="friendly">Friendly</option>
+                        <option value="neutral">Neutral</option>
+                      </select>
+                      <button
+                        className="button subtle"
+                        disabled={!!controlReason("classify", phase, target)}
+                        title={controlReason("classify", phase, target)}
+                        onClick={() =>
+                          target &&
+                          act({
+                            k: "classify",
+                            track: target.id,
+                            kind,
+                            identity,
+                          })
+                        }
+                      >
+                        <Check size={16} /> Confirm ID
+                      </button>
+                    </div>
+                    <div className="effector-row">
+                      {(
+                        [
+                          { id: "hold", label: "Hold fire", Icon: Shield },
+                          { id: "rf_jam", label: "RF jammer", Icon: Radio },
+                          { id: "kinetic", label: "Kinetic", Icon: Target },
+                        ] as const
+                      ).map(({ id, label, Icon }) => (
+                        <button
+                          key={id}
+                          className={`effector ${id}`}
+                          disabled={
+                            !!controlReason(
+                              "respond",
+                              phase,
+                              target,
+                              !scenario.doctrine ||
+                                scenario.doctrine.rules.effectors.includes(id),
+                            )
+                          }
+                          title={controlReason(
+                            "respond",
+                            phase,
+                            target,
+                            !scenario.doctrine ||
+                              scenario.doctrine.rules.effectors.includes(id),
+                          )}
+                          onClick={() =>
+                            target &&
+                            act({ k: "engage", track: target.id, effector: id })
+                          }
+                        >
+                          <Icon size={18} />
+                          <div>
+                            <strong>{label}</strong>
+                            <small>
+                              {id === "hold"
+                                ? "Monitor contact"
+                                : id === "rf_jam"
+                                  ? "RF-link threats only"
+                                  : "Check range and ROE"}
+                            </small>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                  <p>
-                    {target && inCivilZone(target)
-                      ? "Restricted zone: kinetic engagement is blocked here."
-                      : !state.rfAvailable
-                        ? "RF sensor unavailable. Use EO/IR cues; link and IFF evidence are unavailable."
-                        : target && rfObservation?.rf_signal === false
-                          ? "No detected RF link. Review the contact before selecting an effector."
-                          : "Sensor cues support classification; they do not replace your decision."}
-                  </p>
-                </section>
-              </aside>
+                </DecisionWorkspace>
+              )}
             </div>
             {clockNote && (
               <p className="recovery-banner" role="status">
@@ -2273,6 +2521,7 @@ export default function App({
                   </section>
                   <GhostPanel
                     record={current}
+                    onJump={focusReplay}
                     onReload={() => setReviewReload((n) => n + 1)}
                     selectedId={reviewId}
                     onChoose={(r) => {
@@ -2291,10 +2540,11 @@ export default function App({
                     if (e.decision_id) setReviewId(e.decision_id);
                     const point = timelineSeek(e);
                     seek(point.tick, point.beforeOrder, e.track_id);
+                    focusReplay();
                   }}
                 />
                 <AdvancedAAR
-                  key={current.id}
+                  key={`advanced:${current.id}`}
                   record={current}
                   onReview={(r) => {
                     setReviewId(r.decision_id);
@@ -2303,16 +2553,18 @@ export default function App({
                       r.trainee_action ? (r.order ?? undefined) : undefined,
                       r.track_id,
                     );
-                    replayHeading.current?.focus({ preventScroll: true });
-                    replayHeading.current?.scrollIntoView({
-                      behavior: "auto",
-                      block: "start",
-                    });
+                    focusReplay();
                   }}
                 />
-                <ExpertComparison key={current.id} record={current} />
-                <ReferenceRun key={current.id} record={current} />
-                <FusionReview key={current.id} record={current} />
+                <ExpertComparison
+                  key={`expert:${current.id}`}
+                  record={current}
+                />
+                <ReferenceRun
+                  key={`reference:${current.id}`}
+                  record={current}
+                />
+                <FusionReview key={`fusion:${current.id}`} record={current} />
                 <section className="panel score-table">
                   <div className="panel-header">
                     <div>

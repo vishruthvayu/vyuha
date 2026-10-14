@@ -3,7 +3,7 @@ import { isAvailable } from "./useModalFocus";
 export const tourStops = [
   {
     title: "Adaptive Director",
-    text: "Four training skills feed the next drill from persistent verified outcomes. Open Training Ground and select Adaptive / Skill practice to see profile, focus and conditions.",
+    text: "Four training skills feed the next drill from persistent verified outcomes. Adaptive is the default. Prepare a drill to inspect its focus and frozen conditions; expand Skill evidence & history for your profile.",
     href: "/?mode=adaptive",
     target: "#director-profile",
   },
@@ -33,7 +33,7 @@ export const tourStops = [
   },
   {
     title: "System Evidence",
-    text: "Measured validation results and limitations are visible. Dedicated physical WAN-disconnected validation was not performed before submission.",
+    text: "Measured validation results and limitations are visible. Physical device and network acceptance is release-specific; current pending checks remain documented separately.",
     href: "/system/evidence",
     target: "#system-evidence",
   },
@@ -98,7 +98,12 @@ export default function CapabilityTour() {
         isAvailable(previous)
       )
         previous.focus();
-      else launch.current?.focus();
+      else if (launch.current && isAvailable(launch.current))
+        launch.current.focus();
+      else
+        document
+          .querySelector<HTMLButtonElement>(".mission-catalog-toggle")
+          ?.focus();
     };
   }, [open]);
   useEffect(() => {

@@ -71,3 +71,36 @@ test('legacy sampler stream stays bit-identical while v0.4 channel draws remain 
   assert.equal(sensorSample(1, 0, 0, 0), 0.9100430286489427);
   assert.notEqual(sensorSample(1, 0, 0, 32), sensorSample(1, 0, 0, 33));
 });
+
+
+test('all public sensor entry points retain validation even on unavailable channels', () => {
+  const disabled = { ...env, night: true, radar_status: 'failed' as const, eo_status: 'failed' as const, ir_status: 'failed' as const };
+  const entryPoints = [
+    (environment: SensorEnvironment, config?: Partial<SensorConfig>) => radarProbability(17, 0, track, environment, config),
+    (environment: SensorEnvironment, config?: Partial<SensorConfig>) => opticalObservation(17, 0, 0, track, environment, 'eo', config),
+    (environment: SensorEnvironment, config?: Partial<SensorConfig>) => opticalObservation(17, 0, 0, track, environment, 'ir', config),
+    (environment: SensorEnvironment, config?: Partial<SensorConfig>) => observeSensors(17, 0, 0, track, environment, null, config),
+  ];
+  for (const entry of entryPoints) {
+    assert.throws(() => entry({ ...disabled, fog: NaN }), /Fog/);
+    assert.throws(() => entry({ ...disabled, fog: 2 }), /Fog/);
+    assert.throws(() => entry(disabled, { radar_pfa: 0 }), /outside bounds/);
+    assert.throws(() => entry(disabled, { radar_confirm_hits: 6, radar_window_sweeps: 5 }), /Inconsistent/);
+  }
+});
+
+test("combined sensor calls preserve caller values and use each call's current settings", () => {
+  const subject = { ...track, z: 1500 };
+  const environment = { ...env, terrain: [{ x_min: -20, x_max: 20, z_min: 40, z_max: 60, height: 5 }] };
+  const config = { optical_reliability: 0.95, eo_max_range_m: 2000, ir_max_range_m: 2000 };
+  const before = JSON.stringify({ subject, environment, config });
+  const first = observeSensors(17, 0, 0, subject, environment, null, config);
+  assert.deepEqual(first.observation.eo, opticalObservation(17, 0, 0, subject, environment, 'eo', config));
+  assert.deepEqual(first.observation.ir, opticalObservation(17, 0, 0, subject, environment, 'ir', config));
+  const memory = JSON.stringify(first.memory);
+  const limited = observeSensors(17, 1, 0, subject, environment, first.memory, { ...config, eo_max_range_m: 50, ir_max_range_m: 50 });
+  assert.equal(limited.observation.eo.level, 'none');
+  assert.equal(limited.observation.ir.level, 'none');
+  assert.equal(JSON.stringify(first.memory), memory);
+  assert.equal(JSON.stringify({ subject, environment, config }), before);
+});

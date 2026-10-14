@@ -237,6 +237,11 @@ export default function Instructor() {
       <p role="status">
         Live session transport: {transport}.{feedError && ` ${feedError}`}
       </p>
+      {session && (
+        <a className="button subtle" href="#instructor-controls">
+          Jump to selected trainee controls
+        </a>
+      )}
       <WhiteCell
         selectedSessionId={selected}
         onSelectSession={(id) => {
@@ -433,7 +438,9 @@ export default function Instructor() {
                   <small>{lifecycle.detail}</small>
                 </div>
                 {reason && <p className="control-reason">{reason}</p>}
-                <h2>Exercise</h2>
+                <h2 id="instructor-controls" tabIndex={-1}>
+                  Exercise
+                </h2>
                 <div className="control-buttons">
                   {button("Pause exercise", { type: "pause", payload: {} })}
                   {button("Resume exercise", { type: "resume", payload: {} })}

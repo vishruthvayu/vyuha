@@ -96,6 +96,22 @@ export function Trend({
     </>
   );
 }
+type AnalyticsView =
+  "overview" | "scenario" | "comparison" | "director" | "unit";
+const viewHashes: Record<AnalyticsView, string> = {
+  overview: "",
+  scenario: "#scenario-skill",
+  comparison: "#session-comparison",
+  director: "#director-history",
+  unit: "#unit-trend",
+};
+function viewFromHash(hash: string): AnalyticsView {
+  return (
+    (Object.keys(viewHashes) as AnalyticsView[]).find(
+      (view) => viewHashes[view] === hash,
+    ) ?? "overview"
+  );
+}
 export default function Analytics({ identity }: { identity?: UnitIdentity }) {
   const [trainees, setTrainees] = useState<UnitIdentity[]>([]),
     [tid, setTid] = useState(identity?.trainee_id ?? ""),
@@ -109,9 +125,31 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
     [a, setA] = useState(""),
     [b, setB] = useState(""),
     [error, setError] = useState(""),
-    [view, setView] = useState<
-      "overview" | "scenario" | "comparison" | "director" | "unit"
-    >("overview");
+    [view, setView] = useState<AnalyticsView>(() =>
+      viewFromHash(window.location.hash),
+    );
+  useEffect(() => {
+    const update = () => setView(viewFromHash(window.location.hash));
+    window.addEventListener("hashchange", update);
+    window.addEventListener("popstate", update);
+    return () => {
+      window.removeEventListener("hashchange", update);
+      window.removeEventListener("popstate", update);
+    };
+  }, []);
+  function navigateView(next: AnalyticsView) {
+    const hash = viewHashes[next];
+    if (window.location.hash !== hash) {
+      const url = new URL(window.location.href);
+      url.hash = hash;
+      window.history.pushState(
+        window.history.state,
+        "",
+        `${url.pathname}${url.search}${url.hash}`,
+      );
+    }
+    setView(next);
+  }
   useEffect(() => {
     let stopped = false;
     void api<{ units: { id: string; name: string }[] }>("/units")
@@ -257,7 +295,7 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
             key={key}
             className="button subtle"
             aria-pressed={view === key}
-            onClick={() => setView(key)}
+            onClick={() => navigateView(key)}
           >
             {label}
           </button>
@@ -297,7 +335,10 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
             individual learning profiles. Observed differences do not establish
             learning efficacy.
           </p>
-          <button className="text-button" onClick={() => setView("comparison")}>
+          <button
+            className="text-button"
+            onClick={() => navigateView("comparison")}
+          >
             Inspect two recorded sessions
           </button>
         </section>
@@ -312,7 +353,10 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
             </section>
           )}
           {view === "comparison" && (
-            <section className="panel advanced-card analytics-detail">
+            <section
+              className="panel advanced-card analytics-detail"
+              id="session-comparison"
+            >
               <div className="eyebrow">
                 DESCRIPTIVE COMPARISON · ORIGINALS UNCHANGED
               </div>
@@ -397,7 +441,10 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
             </section>
           )}
           {view === "director" && (
-            <section className="panel advanced-card analytics-detail">
+            <section
+              className="panel advanced-card analytics-detail"
+              id="director-history"
+            >
               <h2>Director focus history</h2>
               <div className="table-scroll">
                 <table>
@@ -460,7 +507,7 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
         </p>
       )}
       {unitHistory && view === "unit" && (
-        <section className="panel advanced-card">
+        <section className="panel advanced-card" id="unit-trend">
           <h2>Unit skill trend</h2>
           <Trend history={unitHistory} />
         </section>

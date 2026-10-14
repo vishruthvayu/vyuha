@@ -3,6 +3,8 @@ import CapabilityTour from "./CapabilityTour";
 import { createRoot } from "react-dom/client";
 import "./style.css";
 import "./design-system.css";
+import "./mission-navigation.css";
+import "./spatial-training.css";
 import { LoadingWorkspace } from "./UI";
 import { UnitGateway } from "./Unit";
 import Navigation from "./Navigation";
@@ -48,7 +50,11 @@ const content =
       "evaluation",
       "analytics",
     ].includes(route.id)) ? (
-    <OfficerGate>{rendered}</OfficerGate>
+    <OfficerGate
+      fallbackNavigation={officerReview ? <Navigation /> : undefined}
+    >
+      {rendered}
+    </OfficerGate>
   ) : (
     rendered
   );
@@ -66,7 +72,11 @@ createRoot(document.getElementById("root")!).render(
           </>
         }
       >
-        {content}
+        {officerReview ? (
+          <div className="officer-review-shell">{content}</div>
+        ) : (
+          content
+        )}
       </Suspense>
     ) : (
       <div className="app-shell route-shell">

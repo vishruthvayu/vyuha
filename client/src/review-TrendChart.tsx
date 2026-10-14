@@ -116,11 +116,7 @@ export default function ReviewTrendChart({
                       fill={colors[index]}
                     >
                       <title>
-                        {skillLabel[skill]} ·{" "}
-                        {window.includesPrior && i === 0
-                          ? "Prior"
-                          : `Sequence ${window.visible[i - (window.includesPrior ? 1 : 0)].sequence}`}{" "}
-                        · {point.value.toFixed(2)}%
+                        {`${skillLabel[skill]} · ${window.includesPrior && i === 0 ? "Prior" : `Sequence ${window.visible[i - (window.includesPrior ? 1 : 0)].sequence}`} · ${point.value.toFixed(2)}%`}
                       </title>
                     </circle>
                   ))}

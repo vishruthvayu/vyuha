@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
+import { testPython } from "./test-python";
 import { renderToStaticMarkup } from "react-dom/server";
 import {
   fusionAdvice,
@@ -248,7 +249,7 @@ test("independent Python/TS Fusion results and receipt IDs match for64 cases", (
   const script =
     "import json,sys\nfrom server.fusion import advice\nprint(json.dumps([advice(**x) for x in json.load(sys.stdin)]))";
   const python = JSON.parse(
-    execFileSync(".venv/bin/python", ["-c", script], {
+    execFileSync(testPython(), ["-c", script], {
       cwd: process.cwd() + "/..",
       input: JSON.stringify(inputs),
       encoding: "utf8",

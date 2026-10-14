@@ -309,13 +309,13 @@ class CrewSessionBoundary:
                     found=db.execute('SELECT id FROM crews WHERE session_id=?',(match[1],)).fetchone()
                     archived=db.execute('SELECT 1 FROM crew_archive WHERE session_id=?',(match[1],)).fetchone()
                     if archived:
-                        headers={k.decode().lower():v.decode() for k,v in scope.get('headers',[])}
+                        headers={k.decode('latin-1').lower():v.decode('latin-1') for k,v in scope.get('headers',[])}
                         if not auth.valid(auth.bearer(headers)):
                             return await JSONResponse({'detail':'Officer sign-in required for archived shared result'},status_code=401)(scope,receive,send)
                         if match[2] in ['events','complete','control-state']:
                             return await JSONResponse({'detail':'Archived shared results have no runtime input permissions'},status_code=403)(scope,receive,send)
                     if found:
-                        headers={k.decode().lower():v.decode() for k,v in scope.get('headers',[])}
+                        headers={k.decode('latin-1').lower():v.decode('latin-1') for k,v in scope.get('headers',[])}
                         if match[2] in ['events','complete','control-state']:
                             return await JSONResponse({'detail':'Crew inputs must use the server-owned role endpoints'},status_code=403)(scope,receive,send)
                         if not auth.valid(auth.bearer(headers)):

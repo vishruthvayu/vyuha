@@ -222,5 +222,12 @@ test("officer AAR routing requires explicit complete-review intent and preserves
   const main = readFileSync(new URL("./main.tsx", import.meta.url), "utf8");
   assert.match(main, /officerReview[\s\S]*?<Page reviewOnly/);
   assert.match(main, /officerReview \|\|/);
-  assert.match(main, /<OfficerGate>\{rendered\}<\/OfficerGate>/);
+  assert.match(
+    main,
+    /<OfficerGate(?:\s+fallbackNavigation=\{officerReview \? <Navigation \/> : undefined\})?\s*>\s*\{rendered\}\s*<\/OfficerGate>/,
+  );
+  assert.match(
+    main,
+    /fallbackNavigation=\{officerReview \? <Navigation \/> : undefined\}/,
+  );
 });

@@ -147,12 +147,14 @@ export function GhostPanel({
   record,
   selectedId,
   onChoose,
+  onJump,
   onReload,
 }: {
   record: TrainingRecord;
   onReload?: () => void;
   selectedId: string | null;
   onChoose: (r: DecisionReview) => void;
+  onJump?: () => void;
 }) {
   const r = selectedReview(record, selectedId);
   const reviewIndex =
@@ -255,7 +257,13 @@ export function GhostPanel({
             >
               Next decision
             </button>
-            <button className="text-button" onClick={() => onChoose(r)}>
+            <button
+              className="text-button"
+              onClick={() => {
+                onChoose(r);
+                onJump?.();
+              }}
+            >
               Jump to selected decision <ChevronRight size={13} />
             </button>
           </div>

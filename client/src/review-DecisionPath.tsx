@@ -47,7 +47,7 @@ export default function DecisionPath({
             >
               <span className="eyebrow">
                 STEP {index + 1} · {node.label}
-              </span>
+              </span>{" "}
               <strong>
                 {node.points} / {node.possible}
               </strong>

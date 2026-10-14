@@ -1,4 +1,7 @@
-import WorkspaceSearch from "./WorkspaceSearch";
+import WorkspaceSearch, {
+  WORKSPACE_SEARCH_OPEN_EVENT,
+} from "./WorkspaceSearch";
+import { createPortal, flushSync } from "react-dom";
 import {
   useCallback,
   useEffect,
@@ -17,12 +20,14 @@ import {
   Layers,
   Menu,
   Shield,
+  Search,
   Target,
   Users,
   X,
   type LucideIcon,
 } from "lucide-react";
 import OperatorGuide from "./OperatorGuide";
+import { startTour } from "./CapabilityTour";
 import { useModalFocus } from "./useModalFocus";
 import {
   activeNavigation,
@@ -105,6 +110,72 @@ export function NavigationLinks({
   );
 }
 
+const primaryIds: NavigationId[] = [
+  "training",
+  "review",
+  "crew",
+  "instructor",
+  "analytics",
+];
+const primaryLabels: Partial<Record<NavigationId, string>> = {
+  training: "Training",
+  review: "Review",
+  crew: "Crew",
+  instructor: "Instructor",
+  analytics: "Analytics",
+};
+export function PrimaryNavigationLinks({
+  pathname,
+  search = "",
+  view,
+  onNavigate,
+  reviewCount = 0,
+}: {
+  pathname: string;
+  search?: string;
+  view?: WorkspaceView;
+  onNavigate?: (
+    event: MouseEvent<HTMLAnchorElement>,
+    item: NavigationItem,
+  ) => void;
+  reviewCount?: number;
+}) {
+  const active = activeNavigation(pathname, search, view);
+  return (
+    <nav className="mission-primary-navigation" aria-label="Primary workspaces">
+      {primaryIds.map((id) => {
+        const item = navigationItems.find((candidate) => candidate.id === id)!;
+        const href =
+          view && item.workspaceHref ? item.workspaceHref : item.href;
+        const nestedTraining = id === "training" && active === "director";
+        const selected = active === id || nestedTraining;
+        return (
+          <a
+            key={id}
+            href={href}
+            aria-label={item.label}
+            aria-current={
+              selected
+                ? nestedTraining ||
+                  resolveRoute(pathname)?.policy === "SECONDARY_REACHABLE"
+                  ? "location"
+                  : "page"
+                : undefined
+            }
+            className={`mission-primary-link ${selected ? "active" : ""}`}
+            onClick={(event) => onNavigate?.(event, { ...item, href })}
+          >
+            {primaryLabels[id]}
+            {id === "review" && reviewCount > 0 && (
+              <span className="nav-count">{reviewCount}</span>
+            )}
+          </a>
+        );
+      })}
+    </nav>
+  );
+}
+
 export default function Navigation({
   view,
   onWorkspaceNavigate,
@@ -120,8 +191,23 @@ export default function Navigation({
     [help, setHelp] = useState(false),
     [search, setSearch] = useState(() => window.location.search);
   const toggle = useRef<HTMLButtonElement>(null),
-    sidebar = useRef<HTMLElement>(null);
+    catalogue = useRef<HTMLElement>(null);
   const closeGuide = useCallback(() => setHelp(false), []);
+  const closeNavigation = useCallback(() => setOpen(false), []);
+  useModalFocus(catalogue, open, closeNavigation);
+  useEffect(() => {
+    if (!open) return;
+    // The catalogue is portalled, so the focus hook isolates the root branch.
+    // Mark nested workspace landmarks explicitly too, preserving any inert
+    // value owned by another component or already set by the modal hook.
+    const workspaces = [...document.querySelectorAll("main")].filter(
+      (element) =>
+        !element.hasAttribute("inert") && !catalogue.current?.contains(element),
+    );
+    workspaces.forEach((element) => element.setAttribute("inert", ""));
+    return () =>
+      workspaces.forEach((element) => element.removeAttribute("inert"));
+  }, [open]);
   useEffect(() => {
     const update = () => {
       setSearch(window.location.search);
@@ -134,20 +220,14 @@ export default function Navigation({
       window.removeEventListener("vyuha-workspace-navigation", update);
     };
   }, []);
-  const closeNavigation = useCallback(() => setOpen(false), []);
-  useModalFocus(sidebar, open, closeNavigation);
-  const pathname = window.location.pathname,
-    active = activeNavigation(pathname, search, view);
-  const label =
-    resolveRoute(pathname)?.policy === "SECONDARY_REACHABLE"
-      ? resolveRoute(pathname)!.title
-      : (navigationItems.find((n) => n.id === active)?.label ?? "Navigation");
+  const pathname = window.location.pathname;
   function navigate(
     event: MouseEvent<HTMLAnchorElement>,
     item: NavigationItem,
   ) {
     setOpen(false);
-    // Plain anchors retain open-in-new-tab and full-page navigation everywhere else.
+    // Keep native modifier/new-tab semantics. Embedded navigation preserves the
+    // running simulator and its queued local evidence.
     if (
       onWorkspaceNavigate &&
       (item.id === "training" || item.workspace) &&
@@ -162,6 +242,23 @@ export default function Navigation({
       if (open) toggle.current?.focus();
     }
   }
+  function openGuide() {
+    const modal = document.querySelector('[aria-modal="true"]');
+    if (modal && !modal.classList.contains("workspace-navigation")) return;
+    if (open) flushSync(closeNavigation);
+    setHelp(true);
+  }
+  function toggleCatalogue() {
+    const modal = document.querySelector('[aria-modal="true"]');
+    if (modal && !modal.classList.contains("workspace-navigation")) return;
+    setOpen((value) => !value);
+  }
+  function startWalkthrough() {
+    const modal = document.querySelector('[aria-modal="true"]');
+    if (modal && !modal.classList.contains("workspace-navigation")) return;
+    if (open) flushSync(closeNavigation);
+    startTour();
+  }
   return (
     <>
       <a
@@ -174,74 +271,139 @@ export default function Navigation({
       >
         Skip to workspace
       </a>
-      <button
-        ref={toggle}
-        className="navigation-toggle"
-        aria-label="Toggle navigation"
-        aria-expanded={open}
-        aria-controls="workspace-navigation"
-        onClick={() => setOpen((value) => !value)}
-      >
-        <Menu size={19} />
-        <span>{label}</span>
-      </button>
-      {open && (
-        <button
-          className="navigation-backdrop"
-          tabIndex={-1}
-          aria-label="Close navigation"
-          onClick={() => {
-            setOpen(false);
-            toggle.current?.focus();
-          }}
-        />
-      )}
-      <aside
-        ref={sidebar}
-        id="workspace-navigation"
-        className={`sidebar workspace-navigation ${open ? "navigation-open" : ""}`}
-        aria-label="Workspace sidebar"
-        role={open ? "dialog" : undefined}
-        aria-modal={open ? true : undefined}
-        tabIndex={-1}
-      >
-        <a className="brand" href="/" aria-label="VYUHA home">
-          <span className="brand-mark">V</span>
-          <span>
-            VYUHA<small>TRAINING SYSTEM</small>
-          </span>
-        </a>
-        <button
-          className="navigation-close"
-          aria-label="Close navigation"
-          onClick={() => {
-            setOpen(false);
-            toggle.current?.focus();
-          }}
+      <header className="mission-navigation">
+        <a
+          className="mission-navigation-brand"
+          href="/"
+          aria-label="VYUHA home"
+          onClick={(event) =>
+            navigate(
+              event,
+              navigationItems.find((item) => item.id === "training")!,
+            )
+          }
         >
-          <X size={20} />
-        </button>
-        <WorkspaceSearch onRequestOpen={() => setOpen(false)} />
-        <NavigationLinks
+          <svg viewBox="0 0 32 32" width="29" height="29" aria-hidden="true">
+            <path d="M3 5h6l7 18 7-18h6L18 30h-4Z" fill="currentColor" />
+            <path d="M11 3h10l-5 12Z" fill="currentColor" opacity=".4" />
+          </svg>
+          <strong>VYUHA</strong>
+        </a>
+        <PrimaryNavigationLinks
           pathname={pathname}
           search={search}
           view={view}
           onNavigate={navigate}
           reviewCount={reviewCount}
         />
-        <div className="sidebar-bottom">
+        <div className="mission-navigation-tools">
+          <WorkspaceSearch
+            onRequestOpen={closeNavigation}
+            onNavigate={navigate}
+            view={view}
+          />
           <button
-            className="guide-button"
-            onClick={() => {
-              setOpen(false);
-              setHelp(true);
+            className="mission-guide-button"
+            aria-label="Operator guide"
+            title="Operator guide"
+            onClick={openGuide}
+          >
+            <BookOpen size={18} aria-hidden="true" />
+            <span>
+              <span className="mission-guide-prefix">Operator </span>guide
+            </span>
+          </button>
+          <button
+            ref={toggle}
+            className="navigation-toggle mission-catalog-toggle"
+            aria-label="Toggle navigation"
+            aria-expanded={open}
+            aria-controls="workspace-navigation"
+            onClick={toggleCatalogue}
+          >
+            <Menu size={19} aria-hidden="true" />
+            <span>Workspaces</span>
+          </button>
+        </div>
+      </header>
+      {open &&
+        createPortal(
+          <div
+            className="mission-catalog-backdrop"
+            onClick={(event) => {
+              if (event.target === event.currentTarget) closeNavigation();
             }}
           >
-            <BookOpen size={16} aria-hidden="true" /> Operator guide
-          </button>
-          {footer}
-        </div>
-      </aside>
+            <section
+              ref={catalogue}
+              id="workspace-navigation"
+              className="workspace-navigation navigation-open mission-catalog"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="workspace-catalog-title"
+              tabIndex={-1}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <header className="mission-catalog-heading">
+                <div>
+                  <h2 id="workspace-catalog-title">Workspaces</h2>
+                  <p>Choose your next training, command or review task.</p>
+                </div>
+                <button
+                  className="navigation-close"
+                  aria-label="Close navigation"
+                  onClick={closeNavigation}
+                >
+                  <X size={20} aria-hidden="true" />
+                </button>
+              </header>
+              <div className="mission-catalog-actions">
+                <button
+                  className="catalogue-search-trigger"
+                  onClick={() =>
+                    window.dispatchEvent(
+                      new window.Event(WORKSPACE_SEARCH_OPEN_EVENT),
+                    )
+                  }
+                >
+                  <Search size={18} aria-hidden="true" />
+                  Find workspace<kbd>⌘ / Ctrl K</kbd>
+                </button>
+                <button className="mission-guide-button" onClick={openGuide}>
+                  <BookOpen size={18} aria-hidden="true" />
+                  Operator guide
+                </button>
+                <button
+                  className="mission-walkthrough-button"
+                  onClick={startWalkthrough}
+                >
+                  <Target size={18} aria-hidden="true" />
+                  Guided walkthrough
+                </button>
+              </div>
+              <NavigationLinks
+                pathname={pathname}
+                search={search}
+                view={view}
+                onNavigate={navigate}
+                reviewCount={reviewCount}
+              />
+              {footer && (
+                <div
+                  className="mission-catalog-context"
+                  aria-label="Current training context"
+                >
+                  {footer}
+                </div>
+              )}
+              <p className="mission-catalog-hint">
+                Escape returns to the invoking control. Officer workspaces
+                retain their sign-in requirements.
+              </p>
+            </section>
+          </div>,
+          document.body,
+        )}
       {help && <OperatorGuide onClose={closeGuide} />}
     </>
   );

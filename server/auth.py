@@ -76,7 +76,7 @@ class OfficerAuthorization:
     def __init__(self,app):self.app=app
     async def __call__(self,scope,receive,send):
         if scope['type']=='http' and protected(scope['method'],scope['path']):
-            headers={k.decode().lower():v.decode() for k,v in scope.get('headers',[])}
+            headers={k.decode('latin-1').lower():v.decode('latin-1') for k,v in scope.get('headers',[])}
             if not valid(bearer(headers)):
                 return await JSONResponse({'detail':'Officer sign-in required'},status_code=401,headers={'WWW-Authenticate':'Bearer'})(scope,receive,send)
         return await self.app(scope,receive,send)

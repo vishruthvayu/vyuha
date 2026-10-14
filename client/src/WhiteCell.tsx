@@ -451,7 +451,7 @@ export function WhiteCell({
               <>
                 <strong>
                   {picture.callsign} · {picture.status}
-                </strong>
+                </strong>{" "}
                 <span>
                   {picture.scenario.title} ·{" "}
                   {mode === "observed"

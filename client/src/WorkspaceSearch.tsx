@@ -1,38 +1,32 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal, flushSync } from "react-dom";
 import { Search, X } from "lucide-react";
-import { navigationItems } from "./routes";
+import {
+  navigationItems,
+  type NavigationItem,
+  type WorkspaceView,
+} from "./routes";
+import type { MouseEvent } from "react";
 import { useModalFocus } from "./useModalFocus";
+export const WORKSPACE_SEARCH_OPEN_EVENT = "vyuha-open-workspace-search";
 export default function WorkspaceSearch({
   onRequestOpen,
+  onNavigate,
+  view,
 }: {
   onRequestOpen?: () => void;
+  onNavigate?: (
+    event: MouseEvent<HTMLAnchorElement>,
+    item: NavigationItem,
+  ) => void;
+  view?: WorkspaceView;
 }) {
   const [open, setOpen] = useState(false),
     [query, setQuery] = useState("");
   const dialog = useRef<HTMLDivElement>(null),
     input = useRef<HTMLInputElement>(null);
   const close = useCallback(() => setOpen(false), []);
-  useModalFocus(dialog, open, close);
-  useEffect(() => {
-    if (open) input.current?.focus();
-  }, [open]);
-  useEffect(() => {
-    const key = (event: KeyboardEvent) => {
-      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
-        if (document.querySelector('[aria-modal="true"]') && !open) return;
-        event.preventDefault();
-        setOpen((v) => !v);
-        setQuery("");
-      }
-    };
-    window.addEventListener("keydown", key);
-    return () => window.removeEventListener("keydown", key);
-  }, [open]);
-  const items = navigationItems.filter((i) =>
-    (i.label + " " + i.section).toLowerCase().includes(query.toLowerCase()),
-  );
-  function show() {
+  const show = useCallback(() => {
     const modal = document.querySelector('[aria-modal="true"]');
     if (modal && !modal.classList.contains("workspace-navigation")) return;
     if (modal) {
@@ -41,10 +35,40 @@ export default function WorkspaceSearch({
     } else onRequestOpen?.();
     setOpen(true);
     setQuery("");
-  }
+  }, [onRequestOpen]);
+  useModalFocus(dialog, open, close);
+  useEffect(() => {
+    if (open) input.current?.focus();
+  }, [open]);
+  useEffect(() => {
+    const key = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+        const modal = document.querySelector('[aria-modal="true"]');
+        if (modal && !modal.classList.contains("workspace-navigation") && !open)
+          return;
+        event.preventDefault();
+        if (open) close();
+        else show();
+      }
+    };
+    window.addEventListener("keydown", key);
+    window.addEventListener(WORKSPACE_SEARCH_OPEN_EVENT, show);
+    return () => {
+      window.removeEventListener("keydown", key);
+      window.removeEventListener(WORKSPACE_SEARCH_OPEN_EVENT, show);
+    };
+  }, [open, close, show]);
+  const items = navigationItems.filter((i) =>
+    (i.label + " " + i.section).toLowerCase().includes(query.toLowerCase()),
+  );
   return (
     <>
-      <button className="workspace-search-button" onClick={show}>
+      <button
+        className="workspace-search-button"
+        aria-label="Find workspace"
+        title="Find workspace (Control or Command K)"
+        onClick={show}
+      >
         <Search size={16} aria-hidden="true" />
         <span>Find workspace</span>
         <kbd>⌘ / Ctrl K</kbd>
@@ -81,12 +105,25 @@ export default function WorkspaceSearch({
                 />
               </label>
               <nav aria-label="Workspace search results">
-                {items.map((i) => (
-                  <a key={i.id} href={i.href} onClick={close}>
-                    <strong>{i.label}</strong>
-                    <small>{i.section}</small>
-                  </a>
-                ))}
+                {items.map((i) => {
+                  const item = {
+                    ...i,
+                    href: view && i.workspaceHref ? i.workspaceHref : i.href,
+                  };
+                  return (
+                    <a
+                      key={i.id}
+                      href={item.href}
+                      onClick={(event) => {
+                        close();
+                        onNavigate?.(event, item);
+                      }}
+                    >
+                      <strong>{i.label}</strong>
+                      <small>{i.section}</small>
+                    </a>
+                  );
+                })}
               </nav>
               {!items.length && (
                 <p role="status">

@@ -85,6 +85,11 @@ export function lineOfSight(t: SensorTrack, e: SensorEnvironment) {
 export function radarProbability(seed: number, index: number, t: SensorTrack, e: SensorEnvironment, config?: Partial<SensorConfig>) {
   validateEnvironment(e);
   const c = sensorConfiguration(config);
+  return configuredRadarProbability(seed, index, t, e, c);
+}
+// Private callers have already validated the environment and normalized settings.
+// Reuse that value without a cache or any change to the frozen arithmetic.
+function configuredRadarProbability(seed: number, index: number, t: SensorTrack, e: SensorEnvironment, c: SensorConfig) {
   if (e.radar_status === 'failed') return 0;
   const distance = Math.max(1, sensorRange(t, e));
   if (distance > c.radar_max_range_m) return 0;
@@ -104,6 +109,9 @@ export function opticalProbability(linePairs: number, threshold: number) {
 export function opticalObservation(seed: number, tick: number, index: number, t: SensorTrack, e: SensorEnvironment, channel: 'eo' | 'ir', config?: Partial<SensorConfig>): OpticalObservation {
   validateEnvironment(e);
   const c = sensorConfiguration(config);
+  return configuredOpticalObservation(seed, tick, index, t, e, channel, c);
+}
+function configuredOpticalObservation(seed: number, tick: number, index: number, t: SensorTrack, e: SensorEnvironment, channel: 'eo' | 'ir', c: SensorConfig): OpticalObservation {
   const status = e[channel === 'eo' ? 'eo_status' : 'ir_status'] ?? 'normal';
   const available = status !== 'failed' && (channel !== 'eo' || !e.night);
   const result: OpticalObservation = { available, level: 'none', position: null, silhouette: null, sample_tick: null };
@@ -145,7 +153,7 @@ export function observeSensors(seed: number, tick: number, index: number, t: Sen
     if (memory.sweep !== sweep) {
       if (memory.sweep !== null && sweep - memory.sweep > 1) Object.assign(memory, { paints: [], misses: 0, confirmed: false, position: null, sample_tick: null });
       const sweepTick = sweep * c.radar_sweep_ticks;
-      const hit = sensorSample(seed, sweepTick, index, 31) < radarProbability(seed, index, t, e, c);
+      const hit = sensorSample(seed, sweepTick, index, 31) < configuredRadarProbability(seed, index, t, e, c);
       memory.paints = [...memory.paints, hit].slice(-c.radar_window_sweeps);
       memory.misses = hit ? 0 : memory.misses + 1;
       if (hit) { memory.position = position(t); memory.sample_tick = tick; }
@@ -157,7 +165,7 @@ export function observeSensors(seed: number, tick: number, index: number, t: Sen
     Object.assign(radar, { state: memory.last_state ?? 'none', detected: memory.confirmed, fresh: memory.sample_tick === tick, position: memory.confirmed || memory.last_state === 'tentative' ? memory.position && { ...memory.position } : null, sample_tick: memory.sample_tick });
   }
   memory.radar_status = radarStatus;
-  const eo = opticalObservation(seed, tick, index, t, e, 'eo', c), ir = opticalObservation(seed, tick, index, t, e, 'ir', c);
+  const eo = configuredOpticalObservation(seed, tick, index, t, e, 'eo', c), ir = configuredOpticalObservation(seed, tick, index, t, e, 'ir', c);
   const distance = sensorRange(t, e), rfAvailable = e.rf_available ?? true;
   const rf: SensorObservation['rf'] = { available: rfAvailable, detected: false, band_ghz: null, bearing_deg: null };
   const sampleTick = sweep * c.radar_sweep_ticks;

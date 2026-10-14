@@ -1,7 +1,13 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { api, setOfficerToken } from "./storage";
 
-export default function OfficerGate({ children }: { children: ReactNode }) {
+export default function OfficerGate({
+  children,
+  fallbackNavigation,
+}: {
+  children: ReactNode;
+  fallbackNavigation?: ReactNode;
+}) {
   const [authenticated, setAuthenticated] = useState(false),
     [checking, setChecking] = useState(true),
     [password, setPassword] = useState(""),
@@ -45,7 +51,13 @@ export default function OfficerGate({ children }: { children: ReactNode }) {
       setBusy(false);
     }
   }
-  if (checking) return <p role="status">Checking officer session…</p>;
+  if (checking)
+    return (
+      <>
+        {fallbackNavigation}
+        <p role="status">Checking officer session…</p>
+      </>
+    );
   if (authenticated)
     return (
       <>
@@ -69,49 +81,52 @@ export default function OfficerGate({ children }: { children: ReactNode }) {
       </>
     );
   return (
-    <main className="instructor-page officer-login">
-      <section className="panel">
-        <h1>Officer sign-in</h1>
-        <p>
-          Instructor controls and data transfer require an authenticated officer
-          session.
-        </p>
-        {!configured && (
-          <p role="status">
-            Officer setup is missing. On the server, run{" "}
-            <code>python scripts/setup-auth.py</code> using the project virtual
-            environment.
+    <>
+      {fallbackNavigation}
+      <main className="instructor-page officer-login">
+        <section className="panel">
+          <h1>Officer sign-in</h1>
+          <p>
+            Instructor controls and data transfer require an authenticated
+            officer session.
           </p>
-        )}
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            void login();
-          }}
-        >
-          <label>
-            Officer password
-            <input
-              type="password"
-              autoComplete="current-password"
-              value={password}
-              maxLength={256}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
-          <button
-            className="button primary"
-            disabled={busy || !password || !configured}
+          {!configured && (
+            <p role="status">
+              Officer setup is missing. On the server, run{" "}
+              <code>python scripts/setup-auth.py</code> using the project
+              virtual environment.
+            </p>
+          )}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              void login();
+            }}
           >
-            {busy ? "Signing in…" : "Sign in"}
-          </button>
-        </form>
-        {error && <p role="alert">{error}</p>}
-        <p className="footnote">
-          Use browser-trusted HTTPS on the unit LAN to protect credentials in
-          transit.
-        </p>
-      </section>
-    </main>
+            <label>
+              Officer password
+              <input
+                type="password"
+                autoComplete="current-password"
+                value={password}
+                maxLength={256}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
+            <button
+              className="button primary"
+              disabled={busy || !password || !configured}
+            >
+              {busy ? "Signing in…" : "Sign in"}
+            </button>
+          </form>
+          {error && <p role="alert">{error}</p>}
+          <p className="footnote">
+            Use browser-trusted HTTPS on the unit LAN to protect credentials in
+            transit.
+          </p>
+        </section>
+      </main>
+    </>
   );
 }

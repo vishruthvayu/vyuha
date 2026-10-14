@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useRef, useState } from "react";
 import { api } from "./storage";
 import { defaultResponseConfig } from "./response-v2";
 import type { Scenario } from "./types";
@@ -8,7 +8,7 @@ export default function RaidStudio({
   const [delayed, setDelayed] = useState(true);
   const [fusionMode, setFusionMode] = useState("off");
   const [seed, setSeed] = useState(482913),
-    [duration, setDuration] = useState(90),
+    [durationDraft, setDurationDraft] = useState("90"),
     [difficulty, setDifficulty] = useState("standard"),
     [family, setFamily] = useState(""),
     [night, setNight] = useState(false),
@@ -20,6 +20,17 @@ export default function RaidStudio({
     [busy, setBusy] = useState(false),
     [saved, setSaved] = useState(false),
     [compiledKey, setCompiledKey] = useState("");
+  const [durationError, setDurationError] = useState("");
+  const durationInput = useRef<HTMLInputElement>(null);
+  const durationErrorId = `${useId()}-duration-error`;
+  const duration = Number(durationDraft);
+  const validDuration =
+    durationDraft.trim() !== "" &&
+    Number.isInteger(duration) &&
+    duration >= 60 &&
+    duration <= 180;
+  const durationMessage =
+    "Enter a whole-number duration from 60 to 180 seconds.";
   const configurationKey = JSON.stringify({
     delayed,
     fusionMode,
@@ -34,9 +45,13 @@ export default function RaidStudio({
   });
   const stale = !!scenario && compiledKey !== configurationKey;
   async function generate(save = false) {
+    if (!validDuration) {
+      setDurationError(durationMessage);
+      durationInput.current?.focus();
+      return;
+    }
     setBusy(true);
     setError("");
-    setSaved(false);
     try {
       const body = {
         response_model: delayed ? defaultResponseConfig : null,
@@ -114,17 +129,21 @@ export default function RaidStudio({
         <label>
           Duration (seconds)
           <input
+            ref={durationInput}
             type="number"
             min={60}
             max={180}
-            value={duration}
-            onChange={(e) =>
-              setDuration(
-                Math.max(
-                  60,
-                  Math.min(180, Math.trunc(Number(e.target.value) || 60)),
-                ),
-              )
+            step={1}
+            required
+            value={durationDraft}
+            aria-invalid={durationError ? true : undefined}
+            aria-describedby={durationError ? durationErrorId : undefined}
+            onChange={(e) => {
+              setDurationDraft(e.target.value);
+              setDurationError("");
+            }}
+            onBlur={() =>
+              setDurationError(validDuration ? "" : durationMessage)
             }
           />
         </label>
@@ -208,6 +227,11 @@ export default function RaidStudio({
           />
         </label>
       </fieldset>
+      {durationError && (
+        <p id={durationErrorId} role="alert">
+          {durationError}
+        </p>
+      )}
       <button
         className="button subtle"
         disabled={busy}

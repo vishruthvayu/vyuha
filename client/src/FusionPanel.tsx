@@ -83,7 +83,7 @@ export function FusionPanel({
           </li>
         ))}
       </ol>
-      <details open>
+      <details>
         <summary>Why this suggestion?</summary>
         <ul>
           {result.contributions.map((c) => (

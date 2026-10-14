@@ -1,16 +1,37 @@
 import { Crosshair, ScanEye, ShieldCheck, Waypoints } from "lucide-react";
-export function TrainingWelcome() {
+import { PreparationTerrain } from "./PreparationTerrain";
+export function TrainingWelcome({
+  onPrepare,
+  busy = false,
+}: { onPrepare?: () => void; busy?: boolean } = {}) {
   return (
     <div className="training-welcome">
-      <div className="training-welcome-symbol" aria-hidden="true">
-        <Crosshair size={44} />
+      <PreparationTerrain />
+      <div className="preparation-story">
+        <p className="eyebrow">Adaptive decision training</p>
+        <h2>
+          Read the picture.
+          <br />
+          Own the decision.
+        </h2>
+        <p>
+          Prepare an adaptive raid built around your recorded skill evidence.
+          Your sensor picture determines what you can act on.
+        </p>
+        {onPrepare && (
+          <button
+            className="button primary"
+            disabled={busy}
+            onClick={onPrepare}
+          >
+            {busy ? "Preparing your exercise…" : "Prepare adaptive drill"}
+          </button>
+        )}
+        <p className="preparation-context">
+          Illustrated setting · no sensor contacts. Your frozen exercise loads
+          after preparation.
+        </p>
       </div>
-      <p className="eyebrow">YOUR NEXT DECISION</p>
-      <h2>Observe. Decide. Learn.</h2>
-      <p>
-        Prepare an adaptive raid built around your recorded skill evidence. Your
-        sensor picture determines what you can act on.
-      </p>
       <ol className="training-loop">
         <li>
           <ScanEye aria-hidden="true" />

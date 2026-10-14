@@ -1,10 +1,9 @@
-import { Component, useMemo, useRef, type ReactNode } from "react";
+import { Component, useEffect, useMemo, useRef, type ReactNode } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import type { Snapshot, Track } from "./types";
 import { pixelRatio, type Quality } from "./quality";
 import {
-  cameraPose,
   palettes,
   type CameraPreset,
   type ThermalPalette,
@@ -20,6 +19,17 @@ import {
   type TerrainBox,
   type SensorPosition,
 } from "./sensors-v2";
+import {
+  terrainPresentationBounds,
+  terrainMaterialState,
+  buildingSurfaceColors,
+  buildingVertexColors,
+  roadPaint,
+  sceneCameraPose,
+  sceneGroundColor,
+  sceneReviewEnvelope,
+  type TerrainPresentationBox,
+} from "./scene-presentation";
 export type { Vision } from "./visibility";
 class Boundary extends Component<
   { children: ReactNode; fallback: ReactNode },
@@ -41,6 +51,7 @@ function CameraRig({
   selected,
   finale = false,
   sensorOrigin,
+  referenceTruth = false,
 }: {
   target: Track | undefined;
   onFps: (n: number) => void;
@@ -49,16 +60,29 @@ function CameraRig({
   selected: string | null;
   finale?: boolean;
   sensorOrigin?: SensorPosition;
+  referenceTruth?: boolean;
 }) {
-  const { camera } = useThree();
+  const { camera, size } = useThree();
   const frames = useRef(0);
   const then = useRef(0);
   const aim = useRef(new THREE.Vector3(40, 18, 150));
   const desiredPosition = useMemo(() => new THREE.Vector3(), []);
   const desiredAim = useMemo(() => new THREE.Vector3(), []);
+  const pose = useMemo(
+    () =>
+      preset
+        ? sceneCameraPose(
+            preset,
+            tracks,
+            selected,
+            referenceTruth,
+            size.width / Math.max(1, size.height),
+          )
+        : null,
+    [preset, tracks, selected, referenceTruth, size.width, size.height],
+  );
   useFrame(({ clock }, dt) => {
-    if (preset) {
-      const pose = cameraPose(preset, tracks, selected);
+    if (preset && pose) {
       camera.position.lerp(
         desiredPosition.set(...pose.position),
         1 - Math.exp(-dt * 5),
@@ -195,6 +219,43 @@ function Aircraft({
     </group>
   );
 }
+function TerrainStructure({
+  box,
+  index,
+  vision,
+  rural,
+  palette,
+  material,
+}: {
+  box: TerrainPresentationBox;
+  index: number;
+  vision: Vision;
+  rural: boolean;
+  palette: ThermalPalette;
+  material: ReturnType<typeof terrainMaterialState>;
+}) {
+  const colors = useMemo(
+    () =>
+      buildingVertexColors(
+        buildingSurfaceColors(index, vision, rural, palette),
+      ),
+    [index, vision, rural, palette],
+  );
+  return (
+    <mesh position={[box.x, box.h / 2, box.z]}>
+      <boxGeometry args={[box.w, box.h, box.d]}>
+        <bufferAttribute attach="attributes-color" args={[colors, 3]} />
+      </boxGeometry>
+      <meshStandardMaterial
+        color="#ffffff"
+        vertexColors
+        roughness={0.95}
+        metalness={0}
+        {...material}
+      />
+    </mesh>
+  );
+}
 function World({
   state,
   vision,
@@ -208,6 +269,7 @@ function World({
   finale = false,
   terrainBoxes,
   sensorOrigin,
+  referenceTruth = false,
 }: {
   state: Snapshot;
   vision: Vision;
@@ -221,7 +283,30 @@ function World({
   finale?: boolean;
   terrainBoxes?: TerrainBox[];
   sensorOrigin?: SensorPosition;
+  referenceTruth?: boolean;
 }) {
+  const { camera, size } = useThree();
+  const envelope = sceneReviewEnvelope(
+    state.tracks,
+    selected,
+    referenceTruth,
+    cameraPreset,
+    size.width / Math.max(1, size.height),
+    {
+      far: finale ? 20000 : cameraPreset ? 1200 : 800,
+      fogNear: finale ? 8000 : cameraPreset ? 650 : 160 - fog * 100,
+      fogFar: finale ? 18000 : cameraPreset ? 1200 : 550 - fog * 300,
+    },
+  );
+  useEffect(() => {
+    if (
+      camera instanceof THREE.PerspectiveCamera &&
+      camera.far !== envelope.far
+    ) {
+      camera.far = envelope.far;
+      camera.updateProjectionMatrix();
+    }
+  }, [camera, envelope.far]);
   const hot = vision === "thermal";
   const night = vision !== "day";
   const bg = hot ? palettes[palette].background : night ? "#07191d" : "#91b2c2";
@@ -230,13 +315,7 @@ function World({
   const buildings = useMemo(
     () =>
       finale
-        ? (terrainBoxes ?? []).map((b) => ({
-            x: (b.x_min + b.x_max) / 2,
-            z: (b.z_min + b.z_max) / 2,
-            w: b.x_max - b.x_min,
-            h: b.height,
-            d: b.z_max - b.z_min,
-          }))
+        ? terrainPresentationBounds(terrainBoxes ?? [])
         : Array.from(
             { length: rural ? Math.max(2, Math.floor(detail / 5)) : detail },
             (_, i) => {
@@ -252,21 +331,27 @@ function World({
           ),
     [rural, detail, finale, terrainBoxes],
   );
+  const paint = useMemo(() => roadPaint(finale, quality), [finale, quality]);
+  const material = useMemo(
+    () => terrainMaterialState(referenceTruth, cameraPreset),
+    [referenceTruth, cameraPreset],
+  );
   return (
     <>
       <color attach="background" args={[bg]} />
-      <fog
-        attach="fog"
+      <fog attach="fog" args={[bg, envelope.fogNear, envelope.fogFar]} />
+      <ambientLight intensity={hot ? 1.4 : night ? 0.55 : 1.2} />
+      <hemisphereLight
         args={[
-          bg,
-          finale ? 8000 : cameraPreset ? 650 : 160 - fog * 100,
-          finale ? 18000 : cameraPreset ? 1200 : 550 - fog * 300,
+          night ? "#31535a" : "#d4e2e4",
+          "#293627",
+          hot ? 0 : night ? 0.15 : 0.5,
         ]}
       />
-      <ambientLight intensity={hot ? 1.4 : night ? 0.55 : 1.8} />
       <directionalLight
         position={[40, 100, -40]}
-        intensity={hot ? 0.2 : night ? 0.6 : 2}
+        intensity={hot ? 0.2 : night ? 0.6 : 1.8}
+        color={hot ? "#ffffff" : night ? "#c1dadb" : "#fff4db"}
       />
       <CameraRig
         target={state.tracks.find((t) => t.id === selected)}
@@ -276,19 +361,14 @@ function World({
         selected={selected}
         finale={finale}
         sensorOrigin={sensorOrigin}
+        referenceTruth={referenceTruth}
       />
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.1, 150]}>
         <planeGeometry args={finale ? [12000, 12000] : [700, 700]} />
         <meshStandardMaterial
-          color={
-            hot
-              ? palettes[palette].ground
-              : night
-                ? "#142b2b"
-                : rural
-                  ? "#586b3c"
-                  : "#626d5b"
-          }
+          color={sceneGroundColor(vision, rural, palette)}
+          roughness={1}
+          metalness={0}
         />
       </mesh>
       <gridHelper
@@ -299,11 +379,35 @@ function World({
           hot ? "#303a35" : "#23312c",
         ]}
         position={[0, 0, 160]}
+        onUpdate={(grid) => {
+          const materials = Array.isArray(grid.material)
+            ? grid.material
+            : [grid.material];
+          materials.forEach((value) => {
+            value.transparent = true;
+            value.opacity = 0.12;
+            value.depthWrite = false;
+          });
+        }}
       />
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.05, 155]}>
         <planeGeometry args={[18, finale ? 8000 : 400]} />
         <meshStandardMaterial color={hot ? "#262e2c" : "#343b3c"} />
       </mesh>
+      {!hot &&
+        paint.map((mark, index) => (
+          <mesh
+            key={`road-paint-${index}`}
+            rotation={[-Math.PI / 2, 0, 0]}
+            position={mark.position}
+          >
+            <planeGeometry args={mark.size} />
+            <meshStandardMaterial
+              color={night ? "#526b67" : "#c6c8b2"}
+              roughness={1}
+            />
+          </mesh>
+        ))}
       {rural &&
         !finale &&
         Array.from({ length: Math.floor(detail / 2) }, (_, i) => (
@@ -325,37 +429,16 @@ function World({
             </mesh>
           </group>
         ))}
-      {buildings.map((b, i) => (
-        <group key={i}>
-          <mesh position={[b.x, b.h / 2, b.z]}>
-            <boxGeometry args={[b.w, b.h, b.d]} />
-            <meshStandardMaterial
-              color={
-                hot
-                  ? i % 3 === 0
-                    ? "#738079"
-                    : "#3b4944"
-                  : night
-                    ? "#26393a"
-                    : i % 3 === 0
-                      ? "#9ca299"
-                      : "#707e7b"
-              }
-              transparent={!!cameraPreset}
-              opacity={cameraPreset ? 0.35 : 1}
-              depthWrite={!cameraPreset}
-            />
-          </mesh>
-          <mesh position={[b.x, b.h + 0.3, b.z]}>
-            <boxGeometry args={[b.w + 0.5, 0.6, b.d + 0.5]} />
-            <meshStandardMaterial
-              color={hot ? "#727c75" : "#56635c"}
-              transparent={!!cameraPreset}
-              opacity={cameraPreset ? 0.35 : 1}
-              depthWrite={!cameraPreset}
-            />
-          </mesh>
-        </group>
+      {buildings.map((box, index) => (
+        <TerrainStructure
+          key={index}
+          box={box}
+          index={index}
+          vision={vision}
+          rural={rural}
+          palette={palette}
+          material={material}
+        />
       ))}
       <mesh position={[0, 2, -4]}>
         <boxGeometry args={[10, 4, 6]} />
@@ -430,6 +513,7 @@ export function Scene(props: {
           state={observedState}
           selected={selected}
           finale={finale}
+          referenceTruth={props.groundTruth === true}
         />
       </Canvas>
       {props.groundTruth === true && (

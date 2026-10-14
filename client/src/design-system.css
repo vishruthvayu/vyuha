@@ -1,18 +1,20 @@
-/* Precision Command: centralized foundations, legacy aliases and route components. */
+/* VYUHA mission workstation: single semantic token source, legacy aliases and shared components. */
 :root {
-  --bg: #0a1018;
-  --surface: #111c29;
-  --surface-raised: #192838;
-  --surface-strong: #203247;
-  --text: #e7f0f7;
-  --muted: #aabbca;
-  --subtle: #8399ad;
-  --accent: #8ed6ff;
-  --accent-ink: #071624;
-  --positive: #8adcc1;
+  --scrim: #030b14cf;
+  --shadow-panel: 0 6px 22px #050b1026;
+  --bg: #111820;
+  --surface: #19242f;
+  --surface-raised: #22313c;
+  --surface-strong: #2c3d49;
+  --text: #f2f3ef;
+  --muted: #b5c1c6;
+  --subtle: #99acb5;
+  --accent: #e7c68b;
+  --accent-ink: #17222b;
+  --positive: #a4d9c4;
   --warning: #efc28a;
   --danger: #f4a6a0;
-  --line: #30465a;
+  --line: #40525c;
   --border: var(--line);
   --lime: var(--accent);
   --space-1: 4px;

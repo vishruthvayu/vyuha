@@ -433,7 +433,7 @@ export default function Crew() {
     state.done ||
     !selectedContact;
   return (
-    <main className="instructor-page command-workspace">
+    <main className="instructor-page command-workspace crew-workspace">
       <h1>Shared Crew Mode</h1>
       <p>
         Spotter designates. Responder classifies and selects a simulated
