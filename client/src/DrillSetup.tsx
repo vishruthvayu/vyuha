@@ -43,9 +43,7 @@ export default function DrillSetup({
       {" "}
       {
         <details className="evidence-disclosure drill-settings">
-          <summary>
-            Drill settings · choose adaptive, saved or legacy training
-          </summary>
+          <summary>Drill settings</summary>
           <div className="setup-bar">
             <label>
               {identity ? "Callsign" : "Trainee ID"}
@@ -133,19 +131,25 @@ export default function DrillSetup({
       {
         <>
           <details className="evidence-disclosure" id="director-profile">
-            <summary>Your skill evidence and training history</summary>
+            <summary>Skill evidence & history</summary>
             <ProfilePanel profile={profile} />
           </details>
           {mode === "adaptive" && prepared?.director_decision && (
-            <DirectorCard
-              decision={prepared.director_decision}
-              busy={busy}
-              onStart={onStart}
-            />
+            <details className="evidence-disclosure director-selection">
+              <summary>
+                Training focus ·{" "}
+                {prepared.director_decision.focus_skill.replaceAll("_", " ")}
+              </summary>
+              <DirectorCard
+                decision={prepared.director_decision}
+                busy={busy}
+                onStart={onStart}
+              />
+            </details>
           )}
           {mode === "adaptive" && prepared?.director_v2 && (
             <details className="panel evidence-disclosure">
-              <summary>How the Director selected this raid</summary>
+              <summary>Director selection evidence</summary>
               <h3>Procedural Director v2</h3>
               <p>
                 {prepared.director_v2.basis}. Family:{" "}

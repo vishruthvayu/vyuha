@@ -210,6 +210,22 @@ test("Analytics starts with persisted overview and opens comparison/family detai
         /Observed difference B − A/,
       );
       assert.match(
+        document.querySelector("table")!.textContent!,
+        /Priority \/ timely resolution \/ 15/,
+      );
+      assert.match(
+        document.querySelector(".analytics-detail")!.textContent!,
+        /Inspect each saved AAR/,
+      );
+      const timingRow = [...document.querySelectorAll("tbody tr")].find((row) =>
+        row.textContent!.startsWith("Priority / timely resolution / 15"),
+      )!;
+      assert.deepEqual(
+        [...timingRow.querySelectorAll("td")].map((cell) => cell.textContent),
+        ["Priority / timely resolution / 15", "5", "10", "5.00"],
+        "Historical node values and descriptive difference remain exact",
+      );
+      assert.match(
         document.querySelector(".analytics-detail")!.textContent!,
         /do not establish that training caused improvement/,
       );

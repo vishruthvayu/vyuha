@@ -120,6 +120,7 @@ export default function App({
   identity?: UnitIdentity;
   reviewOnly?: boolean;
 }) {
+  const replayHeading = useRef<HTMLHeadingElement>(null);
   const [view, setView] = useState<View>(() =>
     workspaceViewFromSearch(window.location.search),
   );
@@ -1340,96 +1341,97 @@ export default function App({
                 </button>
               </div>
             )}
-            {phase === "ready" && (
-              <DrillSetup
-                mode={mode}
-                onMode={setMode}
-                night={night}
-                onNight={setNight}
-                seed={seed}
-                onSeed={setSeed}
-                trainee={trainee}
-                onTrainee={setTrainee}
-                identity={unitIdentity}
-                profile={trainingProfile}
-                prepared={prepared}
-                onStart={() => void start()}
-                busy={busy}
-                library={library}
-                libraryId={libraryId}
-                onLibrary={setLibraryId}
-              />
-            )}
-            {scenario.red_force && (
-              <p className="footnote">
-                Threat pattern: {scenario.red_force.tactic.replaceAll("_", " ")}{" "}
-                · {scenario.doctrine?.name}@{scenario.doctrine?.version} ·
-                Illustrative training configuration
-              </p>
-            )}
-            <details className="evidence-disclosure observation-preferences">
-              <summary>
-                Observation preferences · graphics, audio and thermal palette
-              </summary>
-              <div className="setup-bar">
-                <label>
-                  Graphics quality
-                  <select
-                    aria-label="Graphics quality"
-                    value={autoQuality ? "auto" : quality}
-                    onChange={(e) => {
-                      setAutoQuality(e.target.value === "auto");
-                      if (e.target.value === "auto") {
-                        setQuality("medium");
-                        setTactical(false);
-                      } else {
-                        setQuality(e.target.value as Quality);
-                        setTactical(e.target.value === "tactical");
-                      }
-                    }}
-                  >
-                    <option value="auto">Auto · current {quality}</option>
-                    <option value="high">High</option>
-                    <option value="medium">Medium</option>
-                    <option value="low">Low</option>
-                    <option value="tactical">Tactical 2D</option>
-                  </select>
-                </label>
-                <small>
-                  Graphics settings change rendering only; simulation stays at
-                  30 Hz.
-                </small>
-                <LocalAudio
-                  state={state}
-                  fog={scenario.fog}
-                  active={phase === "running"}
+            <div className="training-config">
+              {phase === "ready" && (
+                <DrillSetup
+                  mode={mode}
+                  onMode={setMode}
+                  night={night}
+                  onNight={setNight}
+                  seed={seed}
+                  onSeed={setSeed}
+                  trainee={trainee}
+                  onTrainee={setTrainee}
+                  identity={unitIdentity}
+                  profile={trainingProfile}
+                  prepared={prepared}
+                  onStart={() => void start()}
+                  busy={busy}
+                  library={library}
+                  libraryId={libraryId}
+                  onLibrary={setLibraryId}
                 />
-              </div>
-              <div className="setup-bar">
-                {vision === "thermal" && (
+              )}
+              {scenario.red_force && (
+                <p className="footnote">
+                  Threat pattern:{" "}
+                  {scenario.red_force.tactic.replaceAll("_", " ")} ·{" "}
+                  {scenario.doctrine?.name}@{scenario.doctrine?.version} ·
+                  Illustrative training configuration
+                </p>
+              )}
+              <details className="evidence-disclosure observation-preferences">
+                <summary>Observation preferences</summary>
+                <div className="setup-bar">
                   <label>
-                    Illustrative thermal palette
+                    Graphics quality
                     <select
-                      aria-label="Thermal palette"
-                      value={palette}
-                      onChange={(e) =>
-                        setPalette(e.target.value as ThermalPalette)
-                      }
+                      aria-label="Graphics quality"
+                      value={autoQuality ? "auto" : quality}
+                      onChange={(e) => {
+                        setAutoQuality(e.target.value === "auto");
+                        if (e.target.value === "auto") {
+                          setQuality("medium");
+                          setTactical(false);
+                        } else {
+                          setQuality(e.target.value as Quality);
+                          setTactical(e.target.value === "tactical");
+                        }
+                      }}
                     >
-                      {Object.entries(palettes).map(([id, p]) => (
-                        <option key={id} value={id}>
-                          {p.label}
-                        </option>
-                      ))}
+                      <option value="auto">Auto · current {quality}</option>
+                      <option value="high">High</option>
+                      <option value="medium">Medium</option>
+                      <option value="low">Low</option>
+                      <option value="tactical">Tactical 2D</option>
                     </select>
                   </label>
-                )}
-                <small>
-                  Illustrative rendering only; sensor mechanics and scoring are
-                  unchanged.
-                </small>
-              </div>
-            </details>
+                  <small>
+                    Graphics settings change rendering only; simulation stays at
+                    30 Hz.
+                  </small>
+                  <LocalAudio
+                    state={state}
+                    fog={scenario.fog}
+                    active={phase === "running"}
+                  />
+                </div>
+                <div className="setup-bar">
+                  {vision === "thermal" && (
+                    <label>
+                      Illustrative thermal palette
+                      <select
+                        aria-label="Thermal palette"
+                        value={palette}
+                        onChange={(e) =>
+                          setPalette(e.target.value as ThermalPalette)
+                        }
+                      >
+                        {Object.entries(palettes).map(([id, p]) => (
+                          <option key={id} value={id}>
+                            {p.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  )}
+                  <small>
+                    Illustrative rendering only; sensor mechanics and scoring
+                    are unchanged.
+                  </small>
+                </div>
+              </details>
+            </div>
             <div className="training-grid">
               <section className="sensor-workspace">
                 <div className="panel-header">
@@ -2153,7 +2155,13 @@ export default function App({
                     <div className="panel-header">
                       <div>
                         <RotateCcw size={16} />
-                        <strong>Time-machine replay</strong>
+                        <h2
+                          ref={replayHeading}
+                          tabIndex={-1}
+                          className="replay-heading"
+                        >
+                          Time-machine replay
+                        </h2>
                       </div>
                       <span className="mono">
                         T+{(replayTick / HZ).toFixed(2)}s
@@ -2295,6 +2303,11 @@ export default function App({
                       r.trainee_action ? (r.order ?? undefined) : undefined,
                       r.track_id,
                     );
+                    replayHeading.current?.focus({ preventScroll: true });
+                    replayHeading.current?.scrollIntoView({
+                      behavior: "auto",
+                      block: "start",
+                    });
                   }}
                 />
                 <ExpertComparison key={current.id} record={current} />

@@ -352,9 +352,12 @@ pre {
   flex-wrap: wrap;
 }
 .tour-launch {
-  position: relative;
-  float: right;
-  min-height: 36px;
+  position: fixed;
+  float: none;
+  top: var(--space-2);
+  right: var(--space-4);
+  bottom: auto;
+  min-height: 44px;
   margin: 12px 20px 12px auto;
   background: var(--surface);
   color: var(--muted);
@@ -1558,4 +1561,136 @@ td small {
   height: 450px;
 }
 
-.workspace-search-button{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:var(--radius-sm);padding:10px;color:var(--muted);background:var(--surface);min-height:44px;width:100%;font-size:12px;margin-bottom:14px}.workspace-search-button kbd{font:inherit;margin-left:auto;font-size:10px;color:var(--subtle)}.workspace-search-dialog{width:min(620px,100%);max-height:85dvh;overflow:auto;padding:24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-dialog)}.workspace-search-dialog header{display:flex;align-items:center;justify-content:space-between;gap:16px}.workspace-search-dialog label{display:grid;gap:8px}.workspace-search-dialog nav{display:grid;gap:6px;margin-top:20px}.workspace-search-dialog a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;color:var(--text);background:var(--surface-raised);border:1px solid var(--line);border-radius:var(--radius-sm);text-decoration:none}.workspace-search-dialog a:hover{border-color:var(--accent)}.workspace-search-dialog small{color:var(--muted)}.director-basis{font-size:12px}.director-basis summary{cursor:pointer;color:var(--accent)}
+.workspace-search-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  color: var(--muted);
+  background: var(--surface);
+  min-height: 44px;
+  width: 100%;
+  font-size: 12px;
+  margin-bottom: 14px;
+}
+.workspace-search-button kbd {
+  font: inherit;
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--subtle);
+}
+.workspace-search-dialog {
+  width: min(620px, 100%);
+  max-height: 85dvh;
+  overflow: auto;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-dialog);
+}
+.workspace-search-dialog header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.workspace-search-dialog label {
+  display: grid;
+  gap: 8px;
+}
+.workspace-search-dialog nav {
+  display: grid;
+  gap: 6px;
+  margin-top: 20px;
+}
+.workspace-search-dialog a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  color: var(--text);
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+}
+.workspace-search-dialog a:hover {
+  border-color: var(--accent);
+}
+.workspace-search-dialog small {
+  color: var(--muted);
+}
+.director-basis {
+  font-size: 12px;
+}
+.director-basis summary {
+  cursor: pointer;
+  color: var(--accent);
+}
+
+/* First rendered refinement: prioritize the observation workspace. */
+.training-config {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  align-items: flex-start;
+}
+.training-config > .evidence-disclosure {
+  flex: 1 1 220px;
+  margin: 0;
+  min-width: 0;
+}
+.training-config > .evidence-disclosure[open] {
+  flex-basis: 100%;
+}
+.training-config > .evidence-disclosure > summary {
+  font-size: var(--font-xs);
+  padding: var(--space-3) var(--space-4);
+}
+.training-config > .footnote {
+  flex: 1 0 100%;
+  margin: 0;
+  order: 1;
+}
+.director-selection .director-card {
+  margin: var(--space-3) 0 0;
+}
+.training-config > .advanced-card {
+  flex-basis: 100%;
+}
+.mission-bar > .button:last-child {
+  margin-left: auto;
+}
+@media (max-width: 600px) {
+  .training-config {
+    gap: var(--space-2);
+  }
+  .training-config > .evidence-disclosure {
+    flex-basis: 100%;
+  }
+  .mission-bar > .button:last-child {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+/* Second rendered refinement: onboarding must not narrow the mobile flex workspace. */
+@media (max-width: 600px) {
+  .tour-launch {
+    display: none;
+  }
+}
+.review-trend-chart svg {
+  min-width: 560px;
+}
+
+.replay-heading {
+  font-size: var(--font-sm);
+  margin: 0;
+  scroll-margin-top: 80px;
+}

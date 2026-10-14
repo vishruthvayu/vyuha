@@ -179,7 +179,7 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
   const metrics: [string, (s: Session) => number][] = [
     ["Detection / 25", (s) => s.nodes.detect],
     ["Classification / 25", (s) => s.nodes.classify],
-    ["Prioritisation / 15", (s) => s.nodes.prioritise],
+    ["Priority / timely resolution / 15", (s) => s.nodes.prioritise],
     ["Engagement / 35", (s) => s.nodes.engage],
     ["Late detections", (s) => s.failures.DETECTION_LATE ?? 0],
     [
@@ -384,6 +384,11 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
                     failure counts use distinct contact/reason pairs.
                     Differences do not establish that training caused
                     improvement.
+                  </p>
+                  <p className="footnote">
+                    The 15-point node may represent priority ranking or legacy
+                    timely resolution. Inspect each saved AAR for its frozen
+                    rubric before comparing exercise versions.
                   </p>
                 </>
               ) : (
