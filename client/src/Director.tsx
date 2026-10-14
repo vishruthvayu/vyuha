@@ -60,7 +60,7 @@ export function DirectorCard({
   busy,
 }: {
   decision: DirectorDecision;
-  onStart: () => void;
+  onStart?: () => void;
   busy: boolean;
 }) {
   return (
@@ -114,14 +114,16 @@ export function DirectorCard({
           ? " All candidates were recent; the least-recent suitable template was used."
           : ""}
       </p>
-      <button
-        className="button primary"
-        onClick={onStart}
-        disabled={busy}
-        title={busy ? "A server request is in progress." : undefined}
-      >
-        Start adaptive drill
-      </button>
+      {onStart && (
+        <button
+          className="button primary"
+          onClick={onStart}
+          disabled={busy}
+          title={busy ? "A server request is in progress." : undefined}
+        >
+          Start adaptive drill
+        </button>
+      )}
     </section>
   );
 }

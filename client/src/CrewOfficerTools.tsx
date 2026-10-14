@@ -65,7 +65,9 @@ const seconds = (value: number | null) =>
 export function CrewHistoryResults({ data }: { data: CrewHistoryData }) {
   return (
     <>
-      <p>{data.included_sessions} completed shared exercises.</p>
+      <p className="crew-history-count">
+        {data.included_sessions} completed shared exercises.
+      </p>
       <details className="evidence-disclosure">
         <summary>Shared history scope and interpretation</summary>
         <p>{data.scope}</p>
@@ -79,7 +81,7 @@ export function CrewHistoryResults({ data }: { data: CrewHistoryData }) {
       )}
       <h3>Declared roster history</h3>
       {data.groups.map((group) => (
-        <div key={group.group_id} className="panel">
+        <div key={group.group_id} className="crew-roster-summary">
           <h4>
             {group.name} · {group.session_count} sessions
           </h4>
@@ -121,7 +123,12 @@ export function CrewHistoryResults({ data }: { data: CrewHistoryData }) {
               accepted decisions. Open the AAR for the complete log.
             </p>
           )}
-          <div className="table-scroll">
+          <div
+            className="table-scroll"
+            tabIndex={0}
+            role="region"
+            aria-label="Accepted role-attributed decisions"
+          >
             <table>
               <thead>
                 <tr>
@@ -223,7 +230,7 @@ export default function CrewOfficerTools({ createdId }: { createdId: string }) {
   }
   return (
     <>
-      <section className="panel command-detail">
+      <section className="crew-officer-section command-detail">
         <h2>Officer role-code management</h2>
         <p>
           Codes expire after a bounded assignment window. Rotation invalidates
@@ -270,7 +277,7 @@ export default function CrewOfficerTools({ createdId }: { createdId: string }) {
               {roster.name} · {roster.status}
             </h3>
             {roster.members.map((member) => (
-              <div key={member.member_id}>
+              <div key={member.member_id} className="crew-role-access">
                 <p>
                   {member.callsign} · {member.role} ·{" "}
                   {member.status.replaceAll("_", " ")} · expires{" "}
@@ -307,7 +314,10 @@ export default function CrewOfficerTools({ createdId }: { createdId: string }) {
           </>
         )}
       </section>
-      <section className="panel command-detail" id="crew-history">
+      <section
+        className="crew-officer-section command-detail"
+        id="crew-history"
+      >
         <h2>Completed crew coordination history</h2>
         <button
           className="button subtle"

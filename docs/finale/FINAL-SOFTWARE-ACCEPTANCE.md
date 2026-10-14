@@ -1,3 +1,5 @@
+> Historical release evidence. This document describes the source/date recorded below; it is not acceptance of the current Ultimate working tree. Current reconciliation: [IMPLEMENTATION-RECONCILIATION.md](IMPLEMENTATION-RECONCILIATION.md).
+
 # Software release-candidate acceptance —13 October 2026
 
 Current RC2 tested implementation `0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1`; source SHA256 `5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0`. **617 backend / 172 frontend PASS, zero failures**; production **27 assets / cache `b2b7e099df64`**; lint/format PASS. RC1 `v1.1.0-rc.1` remains `a2183e1a5746c8a04fa25ff81af952faa76b27aa` and fallback `release/v1.0.1`/`v1.0.1` remains `2ca96105044ad6a14952d74db619e20006c26eca`. No stable release is authorized.

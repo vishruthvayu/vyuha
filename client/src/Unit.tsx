@@ -301,7 +301,12 @@ export function UnitAnalytics({
         <div className="panel-header">
           <strong>Trainee profiles</strong>
         </div>
-        <div className="table-scroll">
+        <div
+          className="table-scroll"
+          tabIndex={0}
+          role="region"
+          aria-label="Trainee skill profiles"
+        >
           <table>
             <thead>
               <tr>
@@ -415,7 +420,12 @@ export function GroupResults({ groups }: { groups: GroupResult[] }) {
             <p className="mono">
               {g.exercise_group_id} · {g.scenario_id}
             </p>
-            <div className="table-scroll">
+            <div
+              className="table-scroll"
+              tabIndex={0}
+              role="region"
+              aria-label="Group exercise results"
+            >
               <table>
                 <thead>
                   <tr>

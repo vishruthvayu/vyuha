@@ -755,3 +755,67 @@
 .review-decision > summary .status {
   margin-left: 6px;
 }
+
+.table-scroll:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Compact theatre entry: one primary preparation/start action and a readable loop. */
+.training-awaiting .scene-container { height: auto; min-height: 0; }
+.training-welcome { height: auto; min-height: 0; }
+.preparation-story { width: min(650px, 72%); padding: 30px 36px 18px; }
+.preparation-story h2 { font-size: clamp(32px, 3.2vw, 46px); margin: 10px 0 16px; line-height: 1.08; }
+.preparation-story p { font-size: 15px; line-height: 1.55; }
+.preparation-context { margin: 8px 0 0; font-size: 12px !important; }
+.training-welcome .training-loop { position: static; margin: 0 36px 26px; padding-top: 16px; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; }
+.training-welcome .training-loop strong { font-size: 14px; }
+.training-welcome .training-loop span { font-size: 12px; line-height: 1.5; }
+.mission-ready-hint { color: var(--muted); font-size: 13px; max-width: 24ch; }
+.review-history { margin-bottom: 18px; }
+.aar-history-list { padding: 0; text-align: left; }
+.aar-history-list button { padding: 18px; border: 1px solid var(--line); border-left: 3px solid transparent; margin-bottom: 8px; border-radius: 6px; background: var(--surface); }
+.aar-history-list button.selected { border-left-color: var(--accent); background: var(--surface-raised); }
+.aar-history-list button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.history-exercise > strong { font-family: inherit; color: var(--text); font-size: 15px; line-height: 1.4; }
+.history-exercise > span { display: block; margin-top: 7px; font-size: 13px; color: var(--muted); }
+.history-exercise > .history-verification { display: flex; align-items: center; gap: 6px; color: var(--text); }
+.history-verification.pending { color: var(--amber); }
+.aar-history-list .history-score { flex: 0 0 auto; }
+.history-score strong { font-size: 23px; }
+.history-score small { font-size: 12px; display: inline; }
+[data-workflow="analysis"] .ui-page-header, [data-workflow="analysis"] .page-heading { border-bottom: 1px solid var(--line); padding-bottom: 20px; }
+[data-workflow="analysis"] .metric { border-radius: 0; border-top: 2px solid var(--accent); }
+[data-workflow="evidence"] .ui-page-header, [data-workflow="evidence"] .page-heading { border-left: 3px solid var(--accent); padding-left: 18px; }
+.guide-progress { display:flex; gap:6px; margin:22px 0; }
+.guide-progress button { min-width:44px; min-height:44px; background:var(--surface-raised); border:1px solid var(--line); border-radius:6px; color:var(--text); }
+.guide-progress button[aria-pressed="true"] { border-color:var(--accent); color:var(--accent); }
+.guide-step { min-height: 140px; }
+.guide-step h3 { font-size:22px; margin:0 0 12px; }
+.guide-modal .guide-step p { font-size:15px; line-height:1.65; color:var(--text); }
+.guide-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+.guide-modal .guide-caution { font-size:12px; color:var(--muted); }
+@media(max-width:800px) {
+  .preparation-story { width:100%; padding:26px 28px 18px; }
+  .training-welcome .training-loop { margin:0 28px 24px; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+}
+@media(max-width:600px) {
+  .preparation-story { padding:24px 22px 16px; }
+  .preparation-story h2 { font-size:34px; max-width:none; }
+  .training-welcome .training-loop { margin:0 22px 24px; }
+  .aar-history-list button { gap:10px; padding:14px; }
+  .history-score strong { font-size:19px; }
+  .history-exercise > span { font-size:12px; }
+}
+.training-awaiting .page-heading { margin-bottom: 16px; }
+.training-awaiting .training-config { margin: 6px 0 12px; }
+.training-awaiting .preparation-story { padding-top: 24px; padding-bottom: 12px; }
+.training-awaiting .preparation-story h2 { font-size: clamp(32px, 3vw, 40px); margin-bottom: 12px; }
+.training-awaiting .preparation-story .button { margin: 8px 0; }
+.training-welcome .training-loop svg { width: 20px; height: 20px; }
+@media (max-width:600px) { .training-awaiting .preparation-story h2 { font-size: 32px; } }
+.instructor-grid { align-items: start; }
+.instructor-related { min-width: 0; max-width: 600px; }
+.instructor-related nav { display:flex; flex-wrap:wrap; gap:8px; padding:12px; }
+.instructor-related > summary { padding:12px; min-height:44px; }
+.command-workspace > .white-cell { margin-top:24px; }

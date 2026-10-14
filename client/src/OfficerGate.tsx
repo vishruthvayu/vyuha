@@ -4,9 +4,11 @@ import { api, setOfficerToken } from "./storage";
 export default function OfficerGate({
   children,
   fallbackNavigation,
+  embedded = false,
 }: {
   children: ReactNode;
   fallbackNavigation?: ReactNode;
+  embedded?: boolean;
 }) {
   const [authenticated, setAuthenticated] = useState(false),
     [checking, setChecking] = useState(true),
@@ -51,6 +53,7 @@ export default function OfficerGate({
       setBusy(false);
     }
   }
+  const LoginContainer = embedded ? "div" : "main";
   if (checking)
     return (
       <>
@@ -83,12 +86,18 @@ export default function OfficerGate({
   return (
     <>
       {fallbackNavigation}
-      <main className="instructor-page officer-login">
-        <section className="panel">
-          <h1>Officer sign-in</h1>
+      <LoginContainer
+        className={`officer-login officer-access${embedded ? " officer-access-embedded" : " instructor-page"}`}
+      >
+        <section
+          className="officer-access-card"
+          aria-labelledby="officer-sign-in-title"
+        >
+          <div className="eyebrow">OFFICER WORKSPACE · RESTRICTED ACCESS</div>
+          <h1 id="officer-sign-in-title">Officer sign-in</h1>
           <p>
-            Instructor controls and data transfer require an authenticated
-            officer session.
+            Sign in to direct exercises, review unit evidence and manage
+            transfer.
           </p>
           {!configured && (
             <p role="status">
@@ -98,6 +107,8 @@ export default function OfficerGate({
             </p>
           )}
           <form
+            aria-label="Officer sign-in"
+            aria-busy={busy}
             onSubmit={(e) => {
               e.preventDefault();
               void login();
@@ -107,6 +118,10 @@ export default function OfficerGate({
               Officer password
               <input
                 type="password"
+                required
+                disabled={busy || !configured}
+                aria-invalid={error ? true : undefined}
+                aria-describedby={error ? "officer-login-error" : undefined}
                 autoComplete="current-password"
                 value={password}
                 maxLength={256}
@@ -120,13 +135,17 @@ export default function OfficerGate({
               {busy ? "Signing in…" : "Sign in"}
             </button>
           </form>
-          {error && <p role="alert">{error}</p>}
+          {error && (
+            <p id="officer-login-error" role="alert">
+              {error}
+            </p>
+          )}
           <p className="footnote">
             Use browser-trusted HTTPS on the unit LAN to protect credentials in
             transit.
           </p>
         </section>
-      </main>
+      </LoginContainer>
     </>
   );
 }

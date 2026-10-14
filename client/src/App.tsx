@@ -37,6 +37,7 @@ import { Scene } from "./LazyScene";
 import type { Vision } from "./visibility";
 import { initialTrainingMode, nextTrainingSeed } from "./training-setup";
 import { TrainingWelcome } from "./TrainingWelcome";
+import AARHistory from "./AARHistory";
 import { Radar } from "./Radar";
 import { UnitDashboard, type Assignment } from "./Unit";
 import {
@@ -1457,7 +1458,7 @@ export default function App({
                     End exercise
                   </button>
                 </div>
-              ) : (
+              ) : phase === "complete" ? (
                 <button
                   className="button primary"
                   disabled={busy}
@@ -1479,6 +1480,10 @@ export default function App({
                         ? "Repeat exercise"
                         : "Begin exercise"}
                 </button>
+              ) : (
+                <span className="mission-ready-hint">
+                  Prepare and start in the exercise preview below
+                </span>
               )}
             </div>
             {phase === "ready" &&
@@ -1758,9 +1763,7 @@ export default function App({
                     <div className="pause-overlay">
                       <Pause size={24} />
                       <h2>Exercise paused</h2>
-                      <button className="button primary" onClick={togglePause}>
-                        Resume
-                      </button>
+                      <p>Use Resume in the exercise controls above.</p>
                     </div>
                   )}
                 </div>
@@ -2285,20 +2288,11 @@ export default function App({
                     : "Complete a drill to review detection timing, classification, and responses."}
                 </p>
                 {records.length ? (
-                  <div className="record-list">
-                    {records.map((r) => (
-                      <button key={r.id} onClick={() => openReview(r)}>
-                        <span>
-                          {r.scenario.title} · {traineeLabel(r.trainee)}
-                          <small>
-                            {new Date(r.created_at).toLocaleString()}
-                          </small>
-                        </span>
-                        <strong>{r.scorecard.score}/100</strong>
-                        <ChevronRight size={17} />
-                      </button>
-                    ))}
-                  </div>
+                  <AARHistory
+                    records={records}
+                    traineeLabel={traineeLabel}
+                    onOpen={openReview}
+                  />
                 ) : reviewOnly ? (
                   <a className="button primary" href="/unit">
                     Return to unit overview
@@ -2314,6 +2308,20 @@ export default function App({
               </div>
             ) : (
               <>
+                {!reviewOnly && records.length > 0 && (
+                  <details className="evidence-disclosure review-history">
+                    <summary>
+                      Exercise history · {records.length} saved{" "}
+                      {records.length === 1 ? "exercise" : "exercises"}
+                    </summary>
+                    <AARHistory
+                      records={records}
+                      selectedId={current.id}
+                      traineeLabel={traineeLabel}
+                      onOpen={openReview}
+                    />
+                  </details>
+                )}
                 <div className="aar-summary">
                   <div
                     className={`score-circle ${current.scorecard.passed ? "passed" : ""}`}
@@ -2572,7 +2580,12 @@ export default function App({
                       <strong>Decision-tree score breakdown</strong>
                     </div>
                   </div>
-                  <div className="table-scroll">
+                  <div
+                    className="table-scroll"
+                    tabIndex={0}
+                    role="region"
+                    aria-label="Original decision-tree score breakdown"
+                  >
                     <table>
                       <thead>
                         <tr>

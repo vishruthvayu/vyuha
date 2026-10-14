@@ -1,3 +1,5 @@
+> Current continuation — 15 October 2026: HEAD `a2040fb91fd6954573f638180a54951ecf915ea3` plus preserved and newly tested integration edits. The authoritative all-input reconciliation is [IMPLEMENTATION-RECONCILIATION.md](IMPLEMENTATION-RECONCILIATION.md). The older milestone details below are historical, not the final acceptance of this working tree. UI acceptance, full regression, exact manifests and release sealing remain open until recorded against the final source.
+
 # VYUHA Ultimate — master issue closure and acceptance record
 
 Updated 14 October 2026. Canonical development branch: `feature/vyuha-ultimate-experience`; preserved refinement checkpoint: **eda79053c5e1ee64a491751ac042bcc9e612ddde**, based on **b7d0aed510b11c2729484ae8a7fd70ad84bec587**. This is a living development record, not a frozen candidate or stable release approval.

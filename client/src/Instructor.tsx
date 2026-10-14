@@ -207,32 +207,37 @@ export default function Instructor() {
             Controls act on the selected trainee's independent server session.
           </p>
         </div>
-        <a className="button subtle" href="/recorded">
-          Recorded exercise
-        </a>
-        <a className="button subtle" href="/transfer">
-          Portable transfer
-        </a>
-        <a className="button subtle" href="/system/evidence">
-          System evidence
-        </a>
-        <a className="button subtle" href="/exercises">
-          Exercise studio
-        </a>
-        <a className="button subtle" href="/analytics">
-          Training analytics
-        </a>
-        <a className="button subtle" href="/unit">
-          Unit overview
-        </a>
-        <a
-          className="button subtle"
-          href="/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Open trainee
-        </a>
+        <details className="instructor-related evidence-disclosure">
+          <summary>Related workspaces</summary>
+          <nav aria-label="Related officer workspaces">
+            <a className="button subtle" href="/recorded">
+              Recorded exercise
+            </a>
+            <a className="button subtle" href="/transfer">
+              Portable transfer
+            </a>
+            <a className="button subtle" href="/system/evidence">
+              System evidence
+            </a>
+            <a className="button subtle" href="/exercises">
+              Exercise studio
+            </a>
+            <a className="button subtle" href="/analytics">
+              Training analytics
+            </a>
+            <a className="button subtle" href="/unit">
+              Unit overview
+            </a>
+            <a
+              className="button subtle"
+              href="/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open trainee
+            </a>
+          </nav>
+        </details>
       </header>
       <p role="status">
         Live session transport: {transport}.{feedError && ` ${feedError}`}
@@ -242,12 +247,6 @@ export default function Instructor() {
           Jump to selected trainee controls
         </a>
       )}
-      <WhiteCell
-        selectedSessionId={selected}
-        onSelectSession={(id) => {
-          if (!retry && !teachingRequest) setSelected(id);
-        }}
-      />
       <section className="panel group-assignment">
         <details className="evidence-disclosure">
           <summary>Assign an exercise to connected trainees</summary>
@@ -591,6 +590,12 @@ export default function Instructor() {
           )}
         </div>
       </div>
+      <WhiteCell
+        selectedSessionId={selected}
+        onSelectSession={(id) => {
+          if (!retry && !teachingRequest) setSelected(id);
+        }}
+      />
       <GroupResults groups={groups} />
     </main>
   );

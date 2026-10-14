@@ -33,7 +33,12 @@ export function HeatmapTable({ data }: { data: Heatmap }) {
   return (
     <>
       <p>{data.note}</p>
-      <div className="table-scroll">
+      <div
+        className="table-scroll"
+        tabIndex={0}
+        role="region"
+        aria-label="Scenario by skill evidence matrix"
+      >
         <table className="skill-heatmap">
           <thead>
             <tr>

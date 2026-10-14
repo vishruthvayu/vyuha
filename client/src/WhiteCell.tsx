@@ -256,7 +256,12 @@ export function WhiteCellDetails({
           </p>
         </div>
       </div>
-      <div className="table-scroll">
+      <div
+        className="table-scroll"
+        tabIndex={0}
+        role="region"
+        aria-label="White Cell contact evidence"
+      >
         <table>
           <caption>
             {mode === "reference"

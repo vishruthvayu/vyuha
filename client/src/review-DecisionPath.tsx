@@ -95,7 +95,7 @@ export default function DecisionPath({
                 {tickLabel(review.tick)} ·{" "}
                 {review.decision_kind.replaceAll("_", " ")}
               </span>
-              <strong>{actionLabel(review.trainee_action)}</strong>
+              <strong>{actionLabel(review.trainee_action)}</strong>{" "}
               <span className={`status verdict-${review.verdict}`}>
                 {review.verdict === "unassessable"
                   ? "INSUFFICIENT EVIDENCE"

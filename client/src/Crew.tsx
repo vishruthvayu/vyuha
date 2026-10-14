@@ -197,7 +197,12 @@ export function CrewCoordination({
         {metrics.contacts_with_actions} contacts. Unattributed:{" "}
         {metrics.unattributed_actions}.
       </p>
-      <div className="table-scroll">
+      <div
+        className="table-scroll"
+        tabIndex={0}
+        role="region"
+        aria-label="Shared coordination by member and role"
+      >
         <table>
           <thead>
             <tr>
@@ -440,18 +445,39 @@ export default function Crew() {
         response. Both work in one authoritative server exercise; attribution
         and the shared result stay together.
       </p>
-      <section className="panel command-overview">
-        <details open={!joined} className="evidence-disclosure">
-          <summary>
-            {joined
-              ? "Role connection controls"
-              : "Connect to a shared exercise"}
-          </summary>
-          <h2>Join an assigned role</h2>
+      <section className="crew-join" aria-labelledby="crew-join-title">
+        <div className="crew-section-heading">
+          <div>
+            <div className="eyebrow">TRAINEE ACCESS</div>
+            <h2 id="crew-join-title">
+              {joined ? "Connected role" : "Join an assigned role"}
+            </h2>
+          </div>
+          <span className="footnote">
+            One shared exercise · two distinct responsibilities
+          </span>
+        </div>
+        <form
+          className="crew-join-fields"
+          aria-label="Connect assigned crew role"
+          onSubmit={(event) => {
+            event.preventDefault();
+            if (!id || !code) return;
+            roleEpoch.current += 1;
+            setBusy(false);
+            setJoined((j) => !j);
+            setState(null);
+            if (joined) setPending(null);
+            setError("");
+            setActionFeedback("");
+            setSelected("");
+          }}
+        >
           <label>
             Crew ID
             <input
               value={id}
+              required
               disabled={joined || !!pending}
               onChange={(e) => setId(e.target.value)}
             />
@@ -461,32 +487,25 @@ export default function Crew() {
             <input
               type="password"
               value={code}
+              required
               disabled={joined}
               onChange={(e) => setCode(e.target.value)}
               autoComplete="off"
             />
           </label>
           <button
-            className="button"
+            className={`button ${joined ? "subtle" : "primary"}`}
             disabled={!id || !code}
-            onClick={() => {
-              roleEpoch.current += 1;
-              setBusy(false);
-              setJoined((j) => !j);
-              setState(null);
-              if (joined) setPending(null);
-              setError("");
-              setActionFeedback("");
-              setSelected("");
-            }}
           >
             {joined ? "Leave role" : "Connect role"}
           </button>
+        </form>
+        <details className="crew-reconnection-help">
+          <summary>Reconnecting or replacing a role code</summary>
           <p>
-            Role codes are kept in this page’s memory. Re-enter the same code
-            after a reload to reconnect while it remains valid. If it expires or
-            is revoked, ask the officer to rotate your code; accepted decisions
-            remain recorded.
+            Codes stay in this page’s memory. After reload, re-enter your code
+            while it remains valid. If expired or revoked, ask the officer to
+            rotate it. Accepted decisions remain recorded.
           </p>
         </details>
       </section>
@@ -662,30 +681,41 @@ export default function Crew() {
           )}
         </section>
       )}
-      <details className="evidence-disclosure" open={!joined}>
-        <summary>Officer setup, role access and shared history</summary>
-        <OfficerGate>
+      <details className="crew-officer-workspace">
+        <summary>
+          Officer workspace · setup, role access and shared history
+        </summary>
+        <OfficerGate embedded>
           <>
             <CrewCatalogue setLibrary={setLibrary} setScenario={setScenario} />
-            <section className="panel">
-              <h2>Officer crew setup</h2>
-              <label>
-                Exercise name
-                <input value={name} onChange={(e) => setName(e.target.value)} />
-              </label>
-              <label>
-                Frozen shared raid
-                <select
-                  value={scenario}
-                  onChange={(e) => setScenario(e.target.value)}
-                >
-                  {library.map((s) => (
-                    <option key={s.id} value={s.id}>
-                      {s.title}
-                    </option>
-                  ))}
-                </select>
-              </label>
+            <section
+              className="crew-officer-setup"
+              aria-labelledby="crew-setup-title"
+            >
+              <div className="eyebrow">NEW SHARED EXERCISE</div>
+              <h2 id="crew-setup-title">Officer crew setup</h2>
+              <div className="crew-setup-fields">
+                <label>
+                  Exercise name
+                  <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </label>
+                <label>
+                  Frozen shared raid
+                  <select
+                    value={scenario}
+                    onChange={(e) => setScenario(e.target.value)}
+                  >
+                    {library.map((s) => (
+                      <option key={s.id} value={s.id}>
+                        {s.title}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
               <p>
                 Save a v0.4 raid in Exercise studio first. This setup assigns
                 WATCH / spotter and RESPONSE / responder.

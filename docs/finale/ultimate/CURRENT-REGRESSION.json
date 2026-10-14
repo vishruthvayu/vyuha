@@ -1,0 +1,48 @@
+{
+  "recorded_date": "2026-10-15",
+  "status": "TESTED_IMPLEMENTATION; FINAL_ACCEPTANCE_OPEN",
+  "base_commit": "a2040fb91fd6954573f638180a54951ecf915ea3",
+  "source_tree_sha256": "016a3d90ce085ae51b0d700fd736f57dc9d04ee9090d8f68b4e59f8d00327a59",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "backend": {
+    "passed": 685,
+    "failed": 0,
+    "seconds": 558.83,
+    "warnings": [
+      "Known Starlette TestClient/httpx deprecation"
+    ]
+  },
+  "frontend": {
+    "passed": 240,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "milliseconds": 103051.315417
+  },
+  "lint": "PASS",
+  "format": "PASS",
+  "build": "PASS; 28 locally bundled assets; see exact final asset manifest before candidate seal",
+  "history": {
+    "baseline_18": "EXACT_DIGEST_UNCHANGED",
+    "original_stored_22": "EXACT_DIGEST_UNCHANGED",
+    "current_training_readable": 24,
+    "rapid_id_heatmap_credit": 1,
+    "crew_individual_credit": 0
+  },
+  "browser_scoped": [
+    "Actual3attributedCrewdecisions/sharedcompletion",
+    "KeyboardArrowRight40pxandTabescapeat390CSSwidth100%",
+    "Realprocessoutage3decisions3Fusionresynchronized",
+    "APPLIEDradarrestoreandteachingpause;noteimmediate",
+    "WhatIfandevidence-onlyreference;12originalevidencetablesunchanged"
+  ],
+  "software_gates_still_open": [
+    "All-route final rendered review and browser acceptance breadth",
+    "Matching clean clone",
+    "Final exact manifest/evidence pin and candidate seal"
+  ],
+  "physical_exact_candidate": "PENDING",
+  "stable_approval": false,
+  "audit_score": null,
+  "durable_raw_evidence": "Project work/finale/ultimate-experience/integration-20261015; sanitized release copies are sealed only after final acceptance."
+}

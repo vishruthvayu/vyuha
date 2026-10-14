@@ -1,18 +1,18 @@
 # VYUHA · Counter-drone decision training
 
-**WhiteList&0 · Team185350 · SIH26247 · Software**
+**WhiteList&0 · Team 185350 · SIH26247 · Software**
 
 VYUHA is a local-first 3D decision-training prototype. Trainees observe mixed aerial contacts through simulated sensors, classify them, choose a response and review a server-verified reconstruction. Adaptive Director v2 selects reproducible raids using recorded skill evidence; Ghost explains decisions, while Time Machine, What-if and reference runs keep original training evidence separate.
 
 ## Current development and protected releases
 
-`feature/vyuha-ultimate-experience` develops the Precision Command experience. It is **not yet a validated replacement** for immutable `v1.1.0-rc.2` at `bfe221fb5ad3ac2519277e342761bd770b3e80d8`. RC2 passed617backend/172frontend tests, full parity,18baseline/22stored compatibility and production build. The original `v1.0.1` fallback andRC1 remain unchanged. Final stable approval is withheld pending physical acceptance for the actual final candidate.
+`feature/vyuha-ultimate-experience` develops the Precision Command experience. It is **not yet a validated replacement** for immutable `v1.1.0-rc.2` at `bfe221fb5ad3ac2519277e342761bd770b3e80d8`. RC2 passed 617 backend / 172 frontend tests, full parity,18 baseline / 22 stored compatibility and production build. The original `v1.0.1` fallback and RC1 remain unchanged. Final stable approval is withheld pending physical acceptance for the actual final candidate.
 
 [Engineering evidence index](docs/finale/README.md) · [Release gates](docs/finale/FINAL-RELEASE-GATES.json) · [Physical acceptance](docs/finale/PHYSICAL-TEST-RESULTS.md)
 
 ## Prepare and run locally
 
-Requirements: Python3.11+, Node/npm and internet for the first locked dependency installation. Create the virtual environment locally; do not copy it between operating systems.
+Requirements: Python 3.11+, Node/npm and internet for the first locked dependency installation. Create the virtual environment locally; do not copy it between operating systems.
 
 ```sh
 bash scripts/start-local.sh --port 8000
@@ -40,7 +40,7 @@ On native Windows use `scripts/start-local.ps1` and `scripts/start-unit.ps1`; Gi
 
 ## Validation boundaries
 
-Native Arch Linux RC1 passed with genuine defects; RC2 remediated those findings. Native RC2 Linux retest, Windows and fresh separatephone/LAN/WAN/HTTPS trust remain pending. Earlier Mac+Android LAN validation and a team-reported historical WAN-off exercise are dated evidence, not proof of the current candidate.
+Native Arch Linux RC1 passed with genuine defects; RC2 remediated those findings. Native RC2 Linux retest, Windows and fresh separate phone/LAN/WAN/HTTPS trust remain pending. Earlier Mac+Android LAN validation and a team-reported historical WAN-off exercise are dated evidence, not proof of the current candidate.
 
 Sensor signatures, ranges, effects and adaptive estimates are illustrative training models. No empirical sensor calibration, operational qualification or demonstrated human learning gain is claimed. Officer authentication does not turn independent callsigns into secure-exam learner identity. HMAC establishes shared-key bundle integrity, not donor identity or non-repudiation.
 

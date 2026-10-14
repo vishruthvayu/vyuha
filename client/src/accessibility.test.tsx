@@ -12,11 +12,12 @@ import axe from "axe-core";
 import { act, useCallback, useRef, useState, type ReactNode } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { renderToStaticMarkup } from "react-dom/server";
-import OperatorGuide from "./OperatorGuide";
+import OperatorGuide, { guideSteps } from "./OperatorGuide";
+import AARHistory from "./AARHistory";
 import Navigation, { NavigationLinks } from "./Navigation";
 import CapabilityTour from "./CapabilityTour";
 import { Radar } from "./Radar";
-import { Simulation } from "./sim";
+import { Simulation, score } from "./sim";
 import { makeScenario } from "./scenario";
 import { useModalFocus } from "./useModalFocus";
 import { useRenderingQuality } from "./useRenderingQuality";
@@ -490,4 +491,121 @@ print(json.dumps(dict(id='a11y-verified',trainee='A11Y',scenario=spec,events=log
     document.getElementById("mount")!.textContent ?? "",
     /not calibrated probabilities/,
   );
+});
+
+test("interactive guide advances without operating training and keeps previous step available", async () => {
+  await mount(<OperatorGuide onClose={() => {}} />);
+  for (let index = 0; index < guideSteps.length; index++) {
+    assert.equal(
+      document.querySelector(".guide-step h3")?.textContent,
+      guideSteps[index].title,
+    );
+    assert.equal(
+      document.querySelectorAll('.guide-progress [aria-pressed="true"]').length,
+      1,
+    );
+    if (index < guideSteps.length - 1)
+      await click(
+        [...document.querySelectorAll("button")].find(
+          (button) => button.textContent === "Next step",
+        )!,
+      );
+  }
+  await click(
+    [...document.querySelectorAll("button")].find(
+      (button) => button.textContent === "Previous step",
+    )!,
+  );
+  assert.equal(
+    document.querySelector(".guide-step h3")?.textContent,
+    guideSteps[3].title,
+  );
+});
+
+test("exercise history distinguishes pending evidence, selection and exact recorded metadata", async () => {
+  const scenario = makeScenario(482913),
+    state = new Simulation(scenario);
+  const scorecard = score(state);
+  const verified: TrainingRecord = {
+    id: "verified-review",
+    trainee: "opaque",
+    scenario,
+    events: [],
+    endTick: 90,
+    scorecard,
+    created_at: "2026-10-15T00:00:00Z",
+    verified: true,
+  };
+  const pending: TrainingRecord = {
+    ...verified,
+    id: "pending-review",
+    verified: false,
+  };
+  let chosen: TrainingRecord | undefined;
+  await mount(
+    <AARHistory
+      records={[verified, pending]}
+      selectedId={verified.id}
+      traineeLabel={() => "WATCH"}
+      onOpen={(record) => (chosen = record)}
+    />,
+  );
+  const buttons = [
+    ...document.querySelectorAll<HTMLButtonElement>(".aar-history-list button"),
+  ];
+  assert.equal(buttons[0].getAttribute("aria-pressed"), "true");
+  assert.match(buttons[0].textContent!, /Server verified.*Reviewing/);
+  assert.match(buttons[1].textContent!, /Device score · verification pending/);
+  assert.match(
+    buttons[0].textContent!,
+    /Seed 482913.*3s recorded.*0 decisions/,
+  );
+  await click(buttons[1]);
+  assert.equal(chosen, pending);
+  assert.equal(pending.verified, false);
+});
+
+test("Crew coordination scroll region participates in ordinary tab order without cancelling navigation keys", async () => {
+  await mount(
+    <>
+      <CrewCoordination
+        metrics={{
+          accepted_actions: 1,
+          attributed_actions: 1,
+          unattributed_actions: 0,
+          contacts_with_actions: 1,
+          members: [
+            {
+              member_id: "a",
+              callsign: "WATCH",
+              role: "spotter",
+              accepted_actions: 1,
+              designations: 1,
+              classifications: 0,
+              responses: 0,
+            },
+          ],
+          median_designation_to_classification_s: null,
+          median_classification_to_response_s: null,
+          timing_basis: "Logical ticks",
+          interpretation: "Coordination only",
+        }}
+      />
+      <button>Continue after timeline</button>
+    </>,
+  );
+  const region = document.querySelector<HTMLElement>(
+    '.table-scroll[role="region"]',
+  )!;
+  assert.equal(region.tabIndex, 0);
+  assert.equal(
+    region.getAttribute("aria-label"),
+    "Shared coordination by member and role",
+  );
+  region.focus();
+  assert.equal(document.activeElement, region);
+  assert.equal((await key(region, "ArrowRight")).defaultPrevented, false);
+  assert.equal((await key(region, "Tab")).defaultPrevented, false);
+  document.querySelector<HTMLButtonElement>("#mount > button")!.focus();
+  assert.equal(document.activeElement?.textContent, "Continue after timeline");
 });

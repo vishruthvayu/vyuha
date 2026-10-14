@@ -1,3 +1,5 @@
+> Historical release evidence. This document describes the source/date recorded below; it is not acceptance of the current Ultimate working tree. Current reconciliation: [IMPLEMENTATION-RECONCILIATION.md](IMPLEMENTATION-RECONCILIATION.md).
+
 # Historical compatibility
 
 Actual baseline engine score identifiers: vyuha-0.2.0 for original drills and vyuha-0.3.0 for prioritisation exercises. Schema 1 without engine_version remains supported through frozen released modules. Schema 2 with vyuha-0.4.0 dispatches to the new observation/motion engine. Unknown versions reject; no automatic reinterpretation or marker rewrite.

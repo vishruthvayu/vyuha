@@ -15,7 +15,6 @@ export default function DrillSetup({
   identity,
   profile,
   prepared,
-  onStart,
   busy,
   library,
   libraryId,
@@ -143,11 +142,7 @@ export default function DrillSetup({
                 Training focus ·{" "}
                 {prepared.director_decision.focus_skill.replaceAll("_", " ")}
               </summary>
-              <DirectorCard
-                decision={prepared.director_decision}
-                busy={busy}
-                onStart={onStart}
-              />
+              <DirectorCard decision={prepared.director_decision} busy={busy} />
             </details>
           )}
           {mode === "adaptive" && prepared?.director_v2 && (

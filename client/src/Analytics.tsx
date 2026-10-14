@@ -48,7 +48,12 @@ export function Trend({
       <p className="review-evidence-boundary">{history.note}</p>
       <details className="analytics-detail">
         <summary>Exact historical estimates and baseline prior</summary>
-        <div className="table-scroll">
+        <div
+          className="table-scroll"
+          tabIndex={0}
+          role="region"
+          aria-label="Exact historical skill estimates"
+        >
           <table>
             <thead>
               <tr>
@@ -397,7 +402,12 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
                       : (right.observed_tick / 30).toFixed(2)}
                     s.
                   </p>
-                  <div className="table-scroll">
+                  <div
+                    className="table-scroll"
+                    tabIndex={0}
+                    role="region"
+                    aria-label="Persisted session comparison"
+                  >
                     <table>
                       <caption>
                         Persisted hostile-node averages and distinct failure
@@ -446,7 +456,12 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
               id="director-history"
             >
               <h2>Director focus history</h2>
-              <div className="table-scroll">
+              <div
+                className="table-scroll"
+                tabIndex={0}
+                role="region"
+                aria-label="Frozen Director selection history"
+              >
                 <table>
                   <caption>
                     Persisted adaptive selections and model estimates

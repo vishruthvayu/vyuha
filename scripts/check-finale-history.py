@@ -64,7 +64,16 @@ def validate(source, baseline):
                 with storage.connect() as db:
                     units = [r['id'] for r in db.execute('SELECT id FROM units')]
                 maps = [client.get(f'/api/v1/units/{uid}/skill-heatmap').json() for uid in units]
-                assert sum(m['included_sessions'] for m in maps) == len(original)
+                with storage.connect() as db:
+                    from server.crew import is_shared_owner
+                    eligible={r['id'] for r in db.execute('SELECT id FROM trainees') if not is_shared_owner(db,r['id'])}
+                    expected_training=sum(row[1] in eligible for row in original)
+                    expected_rapid=sum(r['trainee'] in eligible for r in db.execute("SELECT r.trainee FROM rapid_sessions r JOIN skill_outcomes o ON o.session_id=r.id WHERE r.result IS NOT NULL AND o.version='rapid-id-v1'"))
+                heatmap_training=sum(r['sessions'] for m in maps for r in m['rows'] if r['family']!='RAPID_ID')
+                heatmap_rapid=sum(r['sessions'] for m in maps for r in m['rows'] if r['family']=='RAPID_ID')
+                assert heatmap_training == expected_training, 'Historical training heatmap count changed'
+                assert heatmap_rapid == expected_rapid, 'Rapid ID heatmap count changed'
+                assert sum(m['included_sessions'] for m in maps) == expected_training+expected_rapid, 'Heatmap aggregate disagrees with disaggregated training and Rapid ID evidence'
             assert rows(target) == original, 'Backup immutable fields changed'
     finally:
         storage.DB_PATH = previous_db
@@ -73,7 +82,10 @@ def validate(source, baseline):
     return dict(historical_completed=len(prior), additional_current_completed=len(original)-len(prior),
                 all_current_completed_readable=len(original), stored_engine_versions=versions,
                 exact_stored_cards_preserved=True, all_verified_aar_ghost_timelines_readable=True,
-                all_four_skill_profiles_readable=True, heatmap_included_current_sessions=len(original),
+                all_four_skill_profiles_readable=True, heatmap_included_current_sessions=heatmap_training,
+                heatmap_included_rapid_sessions=heatmap_rapid,
+                heatmap_included_total_sessions=heatmap_training+heatmap_rapid,
+                shared_completed_sessions_excluded_from_individual_heatmap=len(original)-expected_training,
                 historical_immutable_fields_sha256=digest(prior), current_immutable_fields_sha256=digest(original),
                 production_database_unchanged=True,
                 scope='Aggregate only; private records stay in a temporary backup outside Git. Protected analytics use an ephemeral officer credential.')

@@ -5,6 +5,7 @@ import "./style.css";
 import "./design-system.css";
 import "./mission-navigation.css";
 import "./spatial-training.css";
+import "./crew-officer-polish.css";
 import { LoadingWorkspace } from "./UI";
 import { UnitGateway } from "./Unit";
 import Navigation from "./Navigation";
@@ -79,7 +80,16 @@ createRoot(document.getElementById("root")!).render(
         )}
       </Suspense>
     ) : (
-      <div className="app-shell route-shell">
+      <div
+        className="app-shell route-shell"
+        data-workflow={
+          route?.section === "System / evidence" || route?.id === "transfer"
+            ? "evidence"
+            : route?.id === "analytics" || route?.id === "unit"
+              ? "analysis"
+              : "operations"
+        }
+      >
         <Navigation />
         <div className="route-content" id="workspace-content" tabIndex={-1}>
           <header className="topbar">

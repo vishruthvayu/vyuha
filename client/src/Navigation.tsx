@@ -347,7 +347,10 @@ export default function Navigation({
               <header className="mission-catalog-heading">
                 <div>
                   <h2 id="workspace-catalog-title">Workspaces</h2>
-                  <p>Choose your next training, command or review task.</p>
+                  <p>
+                    Train in the live workspace, command an exercise, or inspect
+                    its evidence. Officer workspaces require sign-in.
+                  </p>
                 </div>
                 <button
                   className="navigation-close"

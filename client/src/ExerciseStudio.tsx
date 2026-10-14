@@ -498,7 +498,12 @@ export default function ExerciseStudio() {
                 {preview.red_force?.tactic} · {preview.doctrine?.id}@
                 {preview.doctrine?.version}
               </p>
-              <div className="table-scroll">
+              <div
+                className="table-scroll"
+                tabIndex={0}
+                role="region"
+                aria-label="Validated raid phase roster"
+              >
                 <table>
                   <thead>
                     <tr>
