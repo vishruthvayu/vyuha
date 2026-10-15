@@ -197,3 +197,11 @@ test(
     await act(async () => root.unmount());
   }),
 );
+
+test("instructor roster puts live sessions first and keeps history last", async () => {
+  const { statusRank } = await import("./Instructor");
+  const order = ["completed", "recoverable", "ACTIVE", "paused"].sort(
+    (a, b) => statusRank(a) - statusRank(b),
+  );
+  assert.deepEqual(order, ["ACTIVE", "paused", "recoverable", "completed"]);
+});

@@ -10,8 +10,8 @@ Branch `feature/vyuha-premium-ui` from shared baseline `7e3184b15ba38e8242efc6f8
 | 2 | Training ground: spatial workstation — one screen at laptop sizes: mission strip, view with radar inset, decision dock under the view, contacts + evidence rail; contact symbology by shape; tablet/phone stacked order view → contacts → dock → evidence | done | 254/254 frontend tests (5 new), lint, format, build |
 | 3 | Preparation: full-width stage (real 3D environment, or an original illustration before an adaptive drill is prepared) with an editorial headline and one primary action; drill settings open and skill evidence as cards below; quiet saved-exercise banner; tour launcher as a corner pill hidden during exercises; legacy `spatial-training.css` retired (review rules ported to `premium/review.css`) | done | 257/257 frontend tests (3 new), lint, format, build |
 | 4 | After-action review as an investigation workspace: verdict band (score ring, serif verdict, verification seal, metrics), sticky section navigator with scroll-spy, sticky replay beside the Ghost decision review, restyled timeline / decision path / comparisons / score table, editorial empty state and history list; legacy light-theme selects neutralized | done | 259/259 frontend tests (2 new), lint, format, build |
-| 5 | Instructor console and White Cell | next | |
-| 6 | Shared Crew | planned | |
+| 5 | Instructor console and White Cell as a command workstation: slim officer session strip, compact header with transport chip and related-workspaces menu, sticky scrollable roster ordered live-first with status chips, telemetry band, command groups open and side by side, White Cell chooser text wraps (was overlapping) | done | 260/260 frontend tests (1 new), lint, format, build |
+| 6 | Shared Crew | next | |
 | 7 | Analytics, Adaptive Director, Exercise studio / Raid Composer | planned | |
 | 8 | Rapid ID, Recorded practice, Unit, Data transfer, System evidence, PS compliance, guide, sign-in | planned | |
 | 9 | Responsive and accessibility passes at 360–1920, two refinement passes, final report | planned | |

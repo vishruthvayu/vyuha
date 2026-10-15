@@ -8,6 +8,18 @@ import { api } from "./storage";
 import { useInstructorFeed } from "./useInstructorFeed";
 import type { InstructorIntent } from "./types";
 
+/** Roster order for the console: live work first, history last. */
+export function statusRank(status: string) {
+  const s = String(status).toLowerCase();
+  return s === "active" || s === "running"
+    ? 0
+    : s === "paused"
+      ? 1
+      : s === "recoverable"
+        ? 2
+        : 3;
+}
+
 export default function Instructor() {
   const { sessions, transport, error: feedError } = useInstructorFeed();
   const [selected, setSelected] = useState("");
@@ -340,28 +352,37 @@ export default function Instructor() {
           </div>
           <div className="instructor-sessions">
             {sessions.length ? (
-              sessions.map((s) => (
-                <button
-                  className={`instructor-session ${selected === s.id ? "selected" : ""}`}
-                  key={s.id}
-                  aria-pressed={selected === s.id}
-                  disabled={!!retry || !!teachingRequest}
-                  title={
-                    retry || teachingRequest
-                      ? "Resolve the pending command before selecting another session."
-                      : undefined
-                  }
-                  onClick={() => {
-                    if (!retry && !teachingRequest) setSelected(s.id);
-                  }}
-                >
-                  <strong>
-                    {s.callsign ?? s.trainee} · {s.scenario}
-                  </strong>
-                  <small>{s.id}</small>
-                  <span className="status">{s.status}</span>
-                </button>
-              ))
+              // Active sessions first; original server order is kept within each group.
+              [...sessions]
+                .map((s, i) => ({ s, i }))
+                .sort(
+                  (a, b) =>
+                    statusRank(a.s.status) - statusRank(b.s.status) ||
+                    a.i - b.i,
+                )
+                .map(({ s }) => (
+                  <button
+                    className={`instructor-session ${selected === s.id ? "selected" : ""}`}
+                    data-status={String(s.status).toLowerCase()}
+                    key={s.id}
+                    aria-pressed={selected === s.id}
+                    disabled={!!retry || !!teachingRequest}
+                    title={
+                      retry || teachingRequest
+                        ? "Resolve the pending command before selecting another session."
+                        : undefined
+                    }
+                    onClick={() => {
+                      if (!retry && !teachingRequest) setSelected(s.id);
+                    }}
+                  >
+                    <strong>
+                      {s.callsign ?? s.trainee} · {s.scenario}
+                    </strong>
+                    <small>{s.id}</small>
+                    <span className="status">{s.status}</span>
+                  </button>
+                ))
             ) : (
               <p>No sessions available. Start a trainee drill.</p>
             )}
@@ -444,7 +465,7 @@ export default function Instructor() {
                   {button("Pause exercise", { type: "pause", payload: {} })}
                   {button("Resume exercise", { type: "resume", payload: {} })}
                 </div>
-                <details className="evidence-disclosure">
+                <details className="evidence-disclosure command-group" open>
                   <summary>Teaching pause and after-action note</summary>
                   <h2>Teaching pause</h2>
                   <label>
@@ -475,7 +496,7 @@ export default function Instructor() {
                     score. Review free text before sharing an archive.
                   </p>
                 </details>
-                <details className="evidence-disclosure">
+                <details className="evidence-disclosure command-group" open>
                   <summary>Inject threats and change sensor conditions</summary>
                   <h2>Threat injection</h2>
                   <label>
