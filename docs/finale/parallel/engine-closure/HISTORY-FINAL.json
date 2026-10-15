@@ -1,0 +1,46 @@
+{
+  "code_commit": "6a0100c954fdd68ddba06ee119f12a5dc94b44f9",
+  "source_tree_sha256": "7eb3dad32c506c58470b11bd72c4f95539359946b24e586fc154659b485695f5",
+  "original18": {
+    "historical_completed": 18,
+    "additional_current_completed": 7,
+    "all_current_completed_readable": 25,
+    "stored_engine_versions": {
+      "vyuha-0.2.0": 19,
+      "vyuha-0.4.0": 2,
+      "vyuha-0.1.0": 4
+    },
+    "exact_stored_cards_preserved": true,
+    "all_verified_aar_ghost_timelines_readable": true,
+    "all_four_skill_profiles_readable": true,
+    "heatmap_included_current_sessions": 25,
+    "heatmap_included_rapid_sessions": 1,
+    "heatmap_included_total_sessions": 26,
+    "shared_completed_sessions_excluded_from_individual_heatmap": 0,
+    "historical_immutable_fields_sha256": "cce52299fb319073feb81fc0d3f2420a867ff7393421ca9f69940e9aef051b45",
+    "current_immutable_fields_sha256": "fec9cce75ffe64332740c60fa3793e4a4997ea16ea0d489354ab17f1d4449f3e",
+    "production_database_unchanged": true,
+    "scope": "Aggregate only; private records stay in a temporary backup outside Git. Protected analytics use an ephemeral officer credential."
+  },
+  "stored22": {
+    "historical_completed": 22,
+    "additional_current_completed": 3,
+    "all_current_completed_readable": 25,
+    "stored_engine_versions": {
+      "vyuha-0.2.0": 19,
+      "vyuha-0.4.0": 2,
+      "vyuha-0.1.0": 4
+    },
+    "exact_stored_cards_preserved": true,
+    "all_verified_aar_ghost_timelines_readable": true,
+    "all_four_skill_profiles_readable": true,
+    "heatmap_included_current_sessions": 25,
+    "heatmap_included_rapid_sessions": 1,
+    "heatmap_included_total_sessions": 26,
+    "shared_completed_sessions_excluded_from_individual_heatmap": 0,
+    "historical_immutable_fields_sha256": "f9dc8cd8d96e059d03f8759eb9fb80a440d94241f0e6aea302fbc0bee718ea44",
+    "current_immutable_fields_sha256": "fec9cce75ffe64332740c60fa3793e4a4997ea16ea0d489354ab17f1d4449f3e",
+    "production_database_unchanged": true,
+    "scope": "Aggregate only; private records stay in a temporary backup outside Git. Protected analytics use an ephemeral officer credential."
+  }
+}

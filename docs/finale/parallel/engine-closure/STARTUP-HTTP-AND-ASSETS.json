@@ -1,0 +1,231 @@
+{
+  "code_commit": "6a0100c954fdd68ddba06ee119f12a5dc94b44f9",
+  "source_tree_sha256": "7eb3dad32c506c58470b11bd72c4f95539359946b24e586fc154659b485695f5",
+  "status": "PASS_SCOPED_HTTP_AND_ASSET_BYTES",
+  "fresh_process_health_ready_ms": 1026.5913750045002,
+  "first_html": {
+    "path": "/",
+    "status": 200,
+    "milliseconds": 45.045749997370876,
+    "bytes": 659,
+    "sha256": "d5bc5707875085aff68dcc8d75af8ac4522fee98f2cd39e08dbbf19687542e10"
+  },
+  "entry_graph": {
+    "declared_static_entry_closure": [
+      "/assets/index-Fzx2fsh3.js",
+      "/assets/index-xK-8SptQ.css"
+    ],
+    "scope": "Declared static ES imports plus HTML assets; not browser FCP, CSS/font execution or service-worker background precache."
+  },
+  "entry_transfer_runs": [
+    {
+      "repeat": 1,
+      "wall_milliseconds": 7.751999997708481,
+      "responses": [
+        {
+          "path": "/assets/index-Fzx2fsh3.js",
+          "status": 200,
+          "milliseconds": 6.0751670025638305,
+          "bytes": 294745,
+          "sha256": "38a8532581f81d6713d05566da12393bc4c67a332346a886da3608fdb4a217ee"
+        },
+        {
+          "path": "/assets/index-xK-8SptQ.css",
+          "status": 200,
+          "milliseconds": 5.279750002955552,
+          "bytes": 89707,
+          "sha256": "01eca8b7c5ab39e5f0d82773f99dc16f81ff6ecddc67d7b82c8d87f2c0e3d8b6"
+        }
+      ]
+    },
+    {
+      "repeat": 2,
+      "wall_milliseconds": 7.792457996401936,
+      "responses": [
+        {
+          "path": "/assets/index-Fzx2fsh3.js",
+          "status": 200,
+          "milliseconds": 6.503874996269587,
+          "bytes": 294745,
+          "sha256": "38a8532581f81d6713d05566da12393bc4c67a332346a886da3608fdb4a217ee"
+        },
+        {
+          "path": "/assets/index-xK-8SptQ.css",
+          "status": 200,
+          "milliseconds": 5.422708003607113,
+          "bytes": 89707,
+          "sha256": "01eca8b7c5ab39e5f0d82773f99dc16f81ff6ecddc67d7b82c8d87f2c0e3d8b6"
+        }
+      ]
+    },
+    {
+      "repeat": 3,
+      "wall_milliseconds": 5.973999999696389,
+      "responses": [
+        {
+          "path": "/assets/index-Fzx2fsh3.js",
+          "status": 200,
+          "milliseconds": 4.783374999533407,
+          "bytes": 294745,
+          "sha256": "38a8532581f81d6713d05566da12393bc4c67a332346a886da3608fdb4a217ee"
+        },
+        {
+          "path": "/assets/index-xK-8SptQ.css",
+          "status": 200,
+          "milliseconds": 3.594165995309595,
+          "bytes": 89707,
+          "sha256": "01eca8b7c5ab39e5f0d82773f99dc16f81ff6ecddc67d7b82c8d87f2c0e3d8b6"
+        }
+      ]
+    }
+  ],
+  "built_files": [
+    {
+      "path": "index.html",
+      "bytes": 659,
+      "sha256": "d5bc5707875085aff68dcc8d75af8ac4522fee98f2cd39e08dbbf19687542e10"
+    },
+    {
+      "path": "manifest.webmanifest",
+      "bytes": 222,
+      "sha256": "3c9a9d404d20793b0dfb430286f94ae5ecd1c559ccc7f21e340206d3fa1d745a"
+    },
+    {
+      "path": "favicon.svg",
+      "bytes": 212,
+      "sha256": "ad80061f8ab202c70b75b8cea093537e31373642c45d9f26c0a84300f6868acf"
+    },
+    {
+      "path": "sw.js",
+      "bytes": 1864,
+      "sha256": "7ce197a5a732ecc914660b1d4f38e42b03eba7dc9fca361316ab379455954d75"
+    },
+    {
+      "path": "examples/recorded-exercise.json",
+      "bytes": 2777,
+      "sha256": "9e80153eadf52a637130eb9495a77a038f97fa583095e0f628b8f46ff2c7343d"
+    },
+    {
+      "path": "assets/Crew-Sh8pGMKo.js",
+      "bytes": 19590,
+      "sha256": "e0b998558d9b9ed0cafdf2e73262a8367347798d86b9644e77bb4bd4650a3503"
+    },
+    {
+      "path": "assets/presentation-DEBuChuu.js",
+      "bytes": 3386,
+      "sha256": "2c2eed4e6e53d81827407fbde5bd42df2b042f38f5e07866efb6a8e0ce657c2e"
+    },
+    {
+      "path": "assets/observations-BnLGOxA3.js",
+      "bytes": 2683,
+      "sha256": "bd6f4f4a041dfe78d7cbda832a0d0ccccd3bac47ad450302a2b98eac2f092440"
+    },
+    {
+      "path": "assets/sim.worker-CuQPYTBL.js",
+      "bytes": 30258,
+      "sha256": "c4e19a5df60bd199d823fbd14ef660241e2fce3176f3cf0b91616d6d3de29e09"
+    },
+    {
+      "path": "assets/index-xK-8SptQ.css",
+      "bytes": 89707,
+      "sha256": "01eca8b7c5ab39e5f0d82773f99dc16f81ff6ecddc67d7b82c8d87f2c0e3d8b6"
+    },
+    {
+      "path": "assets/Transfer-LG7VxUGB.js",
+      "bytes": 3568,
+      "sha256": "df039f7e5f6ef9a6b8c4839380c7f6677426f47371eb7106521d15169047c24a"
+    },
+    {
+      "path": "assets/response-v2-BSJ-8O2H.js",
+      "bytes": 13145,
+      "sha256": "e0a9c70eb590bfffdb8245ef07940ee54c314477cc2ea15cfb535e4c48236560"
+    },
+    {
+      "path": "assets/Evaluation-z4Lc0yiS.js",
+      "bytes": 3898,
+      "sha256": "59f11a5823104f35d77fc45ebe32079cea642c2d0fbf1c77b9f8decf25566850"
+    },
+    {
+      "path": "assets/Recorded-DR6WBaHq.js",
+      "bytes": 6235,
+      "sha256": "79dda7c4aa2ea48844b947535aea3aafaf865a709e19ec69f2868e850690e4e0"
+    },
+    {
+      "path": "assets/Analytics-BFL7Dq-1.js",
+      "bytes": 16089,
+      "sha256": "47406435fcdda57abc4dc182e062c8d88732d2d7048b48a1f3c534cdf77c0938"
+    },
+    {
+      "path": "assets/import-json-DEPqWbQE.js",
+      "bytes": 402,
+      "sha256": "0ed610860015c0f9673df34d95efab8c7ed42d4f5928566480caa77ec126380c"
+    },
+    {
+      "path": "assets/ExerciseStudio-D9hIaEv4.js",
+      "bytes": 17215,
+      "sha256": "47d97ad3c62c04c527330191d2b31aab27592250ecac9ead8f3613ac304357a0"
+    },
+    {
+      "path": "assets/quality-CfeMzpvv.js",
+      "bytes": 24258,
+      "sha256": "3c6c99cc67ebfce8249c73362a69e7ec3238358acc31f23efc6f8366665a8b5c"
+    },
+    {
+      "path": "assets/Instructor-DTwKHj5b.js",
+      "bytes": 20403,
+      "sha256": "fd72600d0e2e5bf79e9b3f4b58a4d68dec638737c6bb69404881c7cac310e677"
+    },
+    {
+      "path": "assets/Scene-Bb3N_uRC.js",
+      "bytes": 904373,
+      "sha256": "3601f609fbc942c32e743378db826ce70ea93d90be8eb9f24aa6acff3782bb6c"
+    },
+    {
+      "path": "assets/index-Fzx2fsh3.js",
+      "bytes": 294745,
+      "sha256": "38a8532581f81d6713d05566da12393bc4c67a332346a886da3608fdb4a217ee"
+    },
+    {
+      "path": "assets/RapidID-DsauC710.js",
+      "bytes": 9071,
+      "sha256": "0d4c94df29a8faeb4e5ec3e04b1722f4c1dd5d67609ea7cb14375b754d366404"
+    },
+    {
+      "path": "assets/Benchmark-DaK3QoBu.js",
+      "bytes": 8980,
+      "sha256": "b296b98700cd28a06b94cdbb364b8a256faae1bc56e084e4b5da9eafa08f7943"
+    },
+    {
+      "path": "assets/Evidence-qO6xSi_K.js",
+      "bytes": 9082,
+      "sha256": "65b00c9a1fa93bb1aac89f0ca64b3001177130bb02bd7817149ad256f25530b9"
+    },
+    {
+      "path": "assets/App-DCwbjdDI.js",
+      "bytes": 92423,
+      "sha256": "2d245f4dc3fb072de32980635469191da4c67b98489f866ea05df6804ad45a19"
+    },
+    {
+      "path": "assets/Radar-DxGa_abZ.js",
+      "bytes": 5075,
+      "sha256": "c61e4a6ccad59341bb149c79194b8435d0746378eb9b14cd3cac44e1996942e2"
+    },
+    {
+      "path": "assets/live-stream-DJZUo2J_.js",
+      "bytes": 1777,
+      "sha256": "3df78f71277e3b57eaaec3294440f446be8cf938beeb70c9431528ac31493c2d"
+    },
+    {
+      "path": "assets/Compliance-BtIE4pwc.js",
+      "bytes": 8677,
+      "sha256": "ca0777422fc75b476f91610179f2304b26e5b67f7aa2bd49429f87a5123e1a83"
+    }
+  ],
+  "total_built_bytes": 1590774,
+  "limitations": [
+    "Loopback HTTP requests and server process startup only, not browser first paint/JavaScript execution/GPU presentation.",
+    "First entry transfer follows health readiness; OS filesystem cache is not cleared. Later transfers are explicitly repeats.",
+    "Static ES import closure excludes dynamic imports and does not claim browser request ordering. Service worker may background-precache all28 assets.",
+    "Codex browser diagnostics did not expose performance.getEntriesByType; browser first-paint timing remains unmeasured. The long automation navigation delay is not counted as app latency."
+  ]
+}

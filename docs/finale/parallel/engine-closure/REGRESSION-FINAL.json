@@ -1,0 +1,91 @@
+{
+  "status": "PASS_ENGINE_BRANCH_SCOPED; FRONTEND_INTEGRATION_PENDING",
+  "validated_at_utc": "2026-10-15T18:25:05.663102+00:00",
+  "code_commit": "6a0100c954fdd68ddba06ee119f12a5dc94b44f9",
+  "branch": "feature/vyuha-engine-closure",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "7eb3dad32c506c58470b11bd72c4f95539359946b24e586fc154659b485695f5",
+  "source_inputs": 298,
+  "backend": {
+    "passed": 697,
+    "failed": 0,
+    "seconds": 443.57
+  },
+  "frontend": {
+    "passed": 268,
+    "failed": 0,
+    "milliseconds": 48315.981125
+  },
+  "parity": "All frontend parity groups, including Finale544, sensor1920, response288, motion/Director/original/historical groups passed; counts overlap test totals.",
+  "lint": "PASS",
+  "format": "PASS",
+  "production_build": {
+    "status": "PASS",
+    "assets": 28,
+    "cache": "d5bc57078750"
+  },
+  "history18": {
+    "historical_completed": 18,
+    "additional_current_completed": 7,
+    "all_current_completed_readable": 25,
+    "stored_engine_versions": {
+      "vyuha-0.2.0": 19,
+      "vyuha-0.4.0": 2,
+      "vyuha-0.1.0": 4
+    },
+    "exact_stored_cards_preserved": true,
+    "all_verified_aar_ghost_timelines_readable": true,
+    "all_four_skill_profiles_readable": true,
+    "heatmap_included_current_sessions": 25,
+    "heatmap_included_rapid_sessions": 1,
+    "heatmap_included_total_sessions": 26,
+    "shared_completed_sessions_excluded_from_individual_heatmap": 0,
+    "historical_immutable_fields_sha256": "cce52299fb319073feb81fc0d3f2420a867ff7393421ca9f69940e9aef051b45",
+    "current_immutable_fields_sha256": "fec9cce75ffe64332740c60fa3793e4a4997ea16ea0d489354ab17f1d4449f3e",
+    "production_database_unchanged": true,
+    "scope": "Aggregate only; private records stay in a temporary backup outside Git. Protected analytics use an ephemeral officer credential."
+  },
+  "history22": {
+    "historical_completed": 22,
+    "additional_current_completed": 3,
+    "all_current_completed_readable": 25,
+    "stored_engine_versions": {
+      "vyuha-0.2.0": 19,
+      "vyuha-0.4.0": 2,
+      "vyuha-0.1.0": 4
+    },
+    "exact_stored_cards_preserved": true,
+    "all_verified_aar_ghost_timelines_readable": true,
+    "all_four_skill_profiles_readable": true,
+    "heatmap_included_current_sessions": 25,
+    "heatmap_included_rapid_sessions": 1,
+    "heatmap_included_total_sessions": 26,
+    "shared_completed_sessions_excluded_from_individual_heatmap": 0,
+    "historical_immutable_fields_sha256": "f9dc8cd8d96e059d03f8759eb9fb80a440d94241f0e6aea302fbc0bee718ea44",
+    "current_immutable_fields_sha256": "fec9cce75ffe64332740c60fa3793e4a4997ea16ea0d489354ab17f1d4449f3e",
+    "production_database_unchanged": true,
+    "scope": "Aggregate only; private records stay in a temporary backup outside Git. Protected analytics use an ephemeral officer credential."
+  },
+  "live_acceptance": "LIVE-ACCEPTANCE-FINAL.json",
+  "renderer_long_run": {
+    "contacts": 200,
+    "seconds": 180,
+    "graphics": "medium",
+    "auto_quality": false,
+    "median_render_fps": 60,
+    "median_sim_tick_ms": 0.5,
+    "p95_sim_tick_ms": 1
+  },
+  "raw_log_sha256": {
+    "backend.log": "dd26190a61ffa9375b1aee261fd0f77ae9d16a14141a86536da3220a765012e8",
+    "frontend.log": "3d90cbcd3676e7a5ee4a9008148d417d4cbb3df75705a8d30dd5603b4d8d35f8",
+    "lint.log": "3d184e062e21a463c8c5792bc31ae1a5f7ec671a8e0384ba70a5333f526fe1fd",
+    "format.log": "f74e8531c0a81a8a2e1f68f998d36056af29e757632c068e77a1937d8c83fb6c",
+    "build.log": "cf0feac9a6d15076b8443285d9c1bbee60c933475815db8712bef5b03ab3e995"
+  },
+  "software_RC_gate": "OPEN: friend UI still in progress; no reviewed integration commit",
+  "stable_approval": false,
+  "new_RC_created": false,
+  "physical_exact_candidate": "PENDING",
+  "new_weighted_score": null
+}

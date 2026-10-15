@@ -1,0 +1,44 @@
+{
+  "status": "PASS_SCOPED_LONG_RENDER",
+  "code_commit": "6a0100c954fdd68ddba06ee119f12a5dc94b44f9",
+  "source_tree_sha256": "7eb3dad32c506c58470b11bd72c4f95539359946b24e586fc154659b485695f5",
+  "engine_version": "vyuha-0.4.0",
+  "seconds": 180,
+  "contacts": 200,
+  "graphics": "medium",
+  "auto_quality": false,
+  "vision": "thermal",
+  "palette": "white",
+  "camera": "trainee",
+  "observed_viewport": {
+    "width": 1440,
+    "height": 1000,
+    "devicePixelRatio": 2,
+    "visualViewportScale": 1
+  },
+  "median_fps": 60,
+  "fps_sample_count": 178,
+  "min_fps_sample": 44,
+  "max_fps_sample": 61,
+  "simulation_tick": 5397,
+  "simulation_tick_samples": 5370,
+  "median_sim_tick_ms": 0.5,
+  "p95_sim_tick_ms": 1,
+  "main_page_heap_bytes": {
+    "first": 15569240,
+    "last": 32693402,
+    "minimum": 14228629,
+    "maximum": 54700360
+  },
+  "console_errors_or_warnings": [],
+  "raw_json": "renderer-post/200-180.json",
+  "screenshot": "renderer-post/200-180.jpg",
+  "limitations": [
+    "Synthetic simultaneous-contact stress fixture, not a solvable exercise or physical device certification.",
+    "Heap is browser main-page JavaScript only; excludes Worker, GPU and process memory. A sawtooth heap is not universal leak certification.",
+    "This long run used observed DPR2; earlier20s runs recorded DPR1. Do not present them as pixel-identical matched workloads.",
+    "Disposable local server expired after page assets loaded; local Worker and renderer continued. No physical WAN/LAN test is claimed.",
+    "Model/RAM label is team-reported, not independently hardware certified."
+  ],
+  "durable_evidence_root": "/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/engine-closure-20261015"
+}

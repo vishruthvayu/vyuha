@@ -3,7 +3,7 @@
   "base_commit": "0c40bc0176a42640723b67e8c41a4b1d81bb5706",
   "source_files_sha256": {
     "scripts/benchmark-unit.py": "694e7fbd9ee28ea939bf965cc68f00b101d4c6ae5ac5776ad724b92c38234504",
-    "scripts/benchmark-advanced.py": "0d30d406e0288030023cfdf23d01a7c27b7b9f2a5ccae2f8a3f25460f22a9d17"
+    "scripts/benchmark-advanced.py": "b6d21d861d9072afbc0ec1b84e008080563f1f560ef2941e1adc22fa535c44bf"
   },
   "result": "PASS_SCOPED_NO_REPRODUCED_BLOCKER",
   "findings": [],
@@ -27,14 +27,29 @@
     "iterations": 600000,
     "generated_password_length": 43
   },
-  "actual_load_workload": "Parent-owned; not independently rerun by reviewer",
+  "actual_load_workload": "Parent reports successful legacy1client/3sessions and6clients/18sessions, advanced6clients/18sessions with actual unmarked legacy metadata; reviewer did not rerun heavy workload.",
   "limitations": [
     "Existing subprocess termination timeout behavior is unchanged.",
-    "Optional external token validation occurs after local microbenchmarks/load; earlier validation would only improve fail-fast behavior.",
     "Synthetic workload intentionally uses one officer session for privileged measurements; it is not trainee authorization or role-isolation evidence.",
     "Final regression, source hash, commit and benchmark results must be sealed by parent."
   ],
   "numeric_product_score": null,
   "source_edits": false,
-  "browser_operations": false
+  "browser_operations": false,
+  "reviewed_source_tree_sha256": "7eb3dad32c506c58470b11bd72c4f95539359946b24e586fc154659b485695f5",
+  "source_inputs": 298,
+  "source_hash_independently_recomputed": true,
+  "fail_fast_followup": {
+    "source_tree_sha256": "7eb3dad32c506c58470b11bd72c4f95539359946b24e586fc154659b485695f5",
+    "source_inputs": 298,
+    "expected_source_matches": true,
+    "missing_token_rejected": true,
+    "http_client_constructions": 0,
+    "probe_seconds": 0.4825,
+    "source_files_sha256": {
+      "scripts/benchmark-unit.py": "694e7fbd9ee28ea939bf965cc68f00b101d4c6ae5ac5776ad724b92c38234504",
+      "scripts/benchmark-advanced.py": "b6d21d861d9072afbc0ec1b84e008080563f1f560ef2941e1adc22fa535c44bf"
+    }
+  },
+  "metadata_review": "Engine version labels are collected from actual returned scenarios under the existing shared lock and sorted for deterministic output; --advanced is not falsely labelled Finale0.4."
 }

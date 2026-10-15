@@ -6,7 +6,9 @@ VYUHA is a local-first 3D decision-training prototype. Trainees observe mixed ae
 
 ## Current development and protected releases
 
-`feature/vyuha-ultimate-experience` develops the Precision Command experience. It is **not yet a validated replacement** for immutable `v1.1.0-rc.2` at `bfe221fb5ad3ac2519277e342761bd770b3e80d8`. RC2 passed 617 backend / 172 frontend tests, full parity,18 baseline / 22 stored compatibility and production build. The original `v1.0.1` fallback and RC1 remain unchanged. Final stable approval is withheld pending physical acceptance for the actual final candidate.
+Parallel development starts from shared baseline `7e3184b15ba38e8242efc6f80c446c9d861b032e`. Engine, sensor presentation and release engineering live on `feature/vyuha-engine-closure`; the separate frontend developer owns `feature/vyuha-premium-ui`. The UI branch is still in progress. [The handoff and renderer contract](docs/finale/parallel/ENGINE-HANDOFF.md) define ownership and tested checkpoints.
+
+This development is **not yet a validated replacement** for immutable `v1.1.0-rc.2` at `bfe221fb5ad3ac2519277e342761bd770b3e80d8`. Historical RC2 passed 617 backend /172 frontend tests and its stated compatibility gates. `release/v1.0.1`, tag `v1.0.1`, RC1 and RC2 remain unchanged. A new candidate requires reviewed frontend integration and complete merged-source acceptance; stable approval additionally requires physical testing of that actual candidate.
 
 [Engineering evidence index](docs/finale/README.md) · [Release gates](docs/finale/FINAL-RELEASE-GATES.json) · [Physical acceptance](docs/finale/PHYSICAL-TEST-RESULTS.md)
 
