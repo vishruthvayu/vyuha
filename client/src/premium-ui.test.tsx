@@ -160,3 +160,40 @@ test("drill settings are open by default so scenario choice is discoverable", as
     /<details class="evidence-disclosure drill-settings" open="">/,
   );
 });
+
+test("review section navigator: plain anchors, one current location, no observer required", async () => {
+  const { renderToStaticMarkup } = await import("react-dom/server");
+  const { ReviewSections } = await import("./ReviewSections");
+  const html = renderToStaticMarkup(
+    <ReviewSections
+      sections={[
+        { id: "review-verdict", label: "Verdict" },
+        { id: "review-replay", label: "Replay & decisions" },
+      ]}
+    />,
+  );
+  assert.match(
+    html,
+    /<nav class="review-sections" aria-label="Review sections">/,
+  );
+  assert.match(html, /href="#review-verdict"/);
+  assert.match(html, /href="#review-replay"/);
+  assert.equal((html.match(/aria-current="location"/g) ?? []).length, 1);
+});
+
+test(
+  "review section navigator mounts where IntersectionObserver is unavailable",
+  withDom(async (document) => {
+    const { ReviewSections } = await import("./ReviewSections");
+    const root = createRoot(document.getElementById("root")!);
+    await act(async () =>
+      root.render(
+        <ReviewSections
+          sections={[{ id: "review-verdict", label: "Verdict" }]}
+        />,
+      ),
+    );
+    assert.ok(document.querySelector('a[href="#review-verdict"]'));
+    await act(async () => root.unmount());
+  }),
+);

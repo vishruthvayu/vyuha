@@ -431,3 +431,58 @@ p[role="alert"] {
     transform: none;
   }
 }
+
+/* ---------- Legacy light-theme neutralizer ----------
+   style.css still carries light-theme rules for advanced pages
+   (white selects, pale borders, olive links). Map them onto the tokens. */
+.advanced-card input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+.advanced-card select,
+.advanced-card textarea,
+.studio-fields select,
+.studio-fields input {
+  min-height: var(--control-h);
+  background-color: var(--n-150);
+  color: var(--n-1000);
+  border: 1px solid var(--n-500);
+  border-radius: var(--r-sm);
+  padding: 0 var(--s-3);
+}
+.advanced-card select,
+.studio-fields select {
+  padding-right: 34px;
+}
+.advanced-card textarea {
+  padding: var(--s-2) var(--s-3);
+}
+.advanced-card label,
+.studio-fields label {
+  color: var(--n-900);
+  font-size: var(--t-13);
+}
+.advanced-page th,
+.advanced-page td,
+.advanced-card table th,
+.advanced-card table td {
+  border-bottom-color: var(--ink-hairline);
+}
+.advanced-page td small {
+  color: var(--n-800);
+}
+.advanced-page details {
+  border-bottom-color: var(--ink-hairline);
+}
+.advanced-nav a {
+  color: var(--n-900);
+}
+.advanced-nav a:hover {
+  color: var(--n-1000);
+}
+.scenario-preview {
+  background: var(--n-100);
+  border: 1px solid var(--ink-hairline);
+}
+.advanced-card {
+  background: var(--n-150);
+  border: 1px solid var(--ink-hairline);
+  border-radius: var(--r-lg);
+}

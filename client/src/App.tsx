@@ -51,6 +51,7 @@ import {
 import { launchPreparedScenario } from "./Director";
 import DrillSetup from "./DrillSetup";
 import { DecisionWorkspace } from "./DecisionWorkspace";
+import { ReviewSections } from "./ReviewSections";
 import type { TrainingProfile } from "./types";
 import { GhostPanel, GhostTimeline, timelineSeek, ReplayTracks } from "./Ghost";
 import { HZ, inCivilZone, replay, score, Simulation } from "./sim";
@@ -2355,9 +2356,14 @@ export default function App({
                     />
                   </details>
                 )}
-                <div className="aar-summary">
+                <div className="aar-summary" id="review-verdict">
                   <div
                     className={`score-circle ${current.scorecard.passed ? "passed" : ""}`}
+                    style={
+                      {
+                        "--score": current.scorecard.score,
+                      } as React.CSSProperties
+                    }
                   >
                     <strong>{current.scorecard.score}</strong>
                     <span>/ 100</span>
@@ -2439,7 +2445,17 @@ export default function App({
                     }
                   />
                 </div>
-                <div className="aar-grid">
+                <ReviewSections
+                  sections={[
+                    { id: "review-verdict", label: "Verdict" },
+                    { id: "review-replay", label: "Replay & decisions" },
+                    { id: "review-timeline", label: "Timeline" },
+                    { id: "review-path", label: "Decision path" },
+                    { id: "review-comparison", label: "Comparison" },
+                    { id: "review-score", label: "Score breakdown" },
+                  ]}
+                />
+                <div className="aar-grid" id="review-replay">
                   <section className="panel replay-panel">
                     <div className="panel-header">
                       <div>
@@ -2575,38 +2591,44 @@ export default function App({
                     }}
                   />
                 </div>
-                <GhostTimeline
-                  record={current}
-                  onJump={(e) => {
-                    if (e.decision_id) setReviewId(e.decision_id);
-                    const point = timelineSeek(e);
-                    seek(point.tick, point.beforeOrder, e.track_id);
-                    focusReplay();
-                  }}
-                />
-                <AdvancedAAR
-                  key={`advanced:${current.id}`}
-                  record={current}
-                  onReview={(r) => {
-                    setReviewId(r.decision_id);
-                    seek(
-                      r.tick,
-                      r.trainee_action ? (r.order ?? undefined) : undefined,
-                      r.track_id,
-                    );
-                    focusReplay();
-                  }}
-                />
-                <ExpertComparison
-                  key={`expert:${current.id}`}
-                  record={current}
-                />
-                <ReferenceRun
-                  key={`reference:${current.id}`}
-                  record={current}
-                />
-                <FusionReview key={`fusion:${current.id}`} record={current} />
-                <section className="panel score-table">
+                <div id="review-timeline" className="review-anchor">
+                  <GhostTimeline
+                    record={current}
+                    onJump={(e) => {
+                      if (e.decision_id) setReviewId(e.decision_id);
+                      const point = timelineSeek(e);
+                      seek(point.tick, point.beforeOrder, e.track_id);
+                      focusReplay();
+                    }}
+                  />
+                </div>
+                <div id="review-path" className="review-anchor">
+                  <AdvancedAAR
+                    key={`advanced:${current.id}`}
+                    record={current}
+                    onReview={(r) => {
+                      setReviewId(r.decision_id);
+                      seek(
+                        r.tick,
+                        r.trainee_action ? (r.order ?? undefined) : undefined,
+                        r.track_id,
+                      );
+                      focusReplay();
+                    }}
+                  />
+                </div>
+                <div id="review-comparison" className="review-anchor">
+                  <ExpertComparison
+                    key={`expert:${current.id}`}
+                    record={current}
+                  />
+                  <ReferenceRun
+                    key={`reference:${current.id}`}
+                    record={current}
+                  />
+                  <FusionReview key={`fusion:${current.id}`} record={current} />
+                </div>
+                <section className="panel score-table" id="review-score">
                   <div className="panel-header">
                     <div>
                       <Activity size={16} />
