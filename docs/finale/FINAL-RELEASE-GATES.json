@@ -185,8 +185,9 @@
   "engine_code_commit": "6a0100c954fdd68ddba06ee119f12a5dc94b44f9",
   "frontend_readiness": {
     "branch": "feature/vyuha-premium-ui",
-    "observed_pushed_commit": "5189335264e61ee3f9f69cfbe61225ae93562243",
+    "observed_pushed_commit": "8aff5410bb070af7ff74c441c7524d54ede749d0",
     "owner_report": "STILL IN PROGRESS",
-    "merged": false
+    "merged": false,
+    "readiness_note": "User reported still in progress at previous5189335; latest remote tip advanced without ready/tested authorization. No merge."
   }
 }
