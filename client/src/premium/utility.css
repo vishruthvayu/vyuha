@@ -288,3 +288,11 @@ input[type="file"]:disabled {
     transition: none;
   }
 }
+
+/* WCAG 2.2 target size: links that stand alone in list items get a
+   24 px minimum hit area (inline links inside sentences are exempt). */
+.instructor-page li > a:only-child:not(.button) {
+  display: inline-block;
+  min-block-size: 24px;
+  padding-block: 3px;
+}

@@ -79,7 +79,7 @@ test("Command navigation exposes primary tasks without a permanent sidebar and p
     );
     assert.equal(document.querySelector(".workspace-navigation"), null);
     const toggle = document.querySelector<HTMLButtonElement>(
-      '[aria-label="Toggle navigation"]',
+      '[aria-label="Workspaces"]',
     )!;
     toggle.focus();
     await click(toggle);
@@ -118,7 +118,7 @@ test("Catalogue search and Control K transfer a single modal owner and restore t
       "Only one search component owns global listeners",
     );
     const toggle = document.querySelector<HTMLButtonElement>(
-      '[aria-label="Toggle navigation"]',
+      '[aria-label="Workspaces"]',
     )!;
     toggle.focus();
     await click(toggle);
@@ -143,7 +143,7 @@ test("Guide replaces catalogue ownership and blocks search shortcuts until close
   mounted(async (document, render) => {
     await render(<Navigation />);
     const toggle = document.querySelector<HTMLButtonElement>(
-      '[aria-label="Toggle navigation"]',
+      '[aria-label="Workspaces"]',
     )!;
     toggle.focus();
     await click(toggle);
@@ -233,7 +233,7 @@ test("Guided walkthrough releases catalogue focus isolation before its explicit 
     document.defaultView!.addEventListener("vyuha-start-tour", capture);
     await render(<Navigation />);
     const toggle = document.querySelector<HTMLButtonElement>(
-      '[aria-label="Toggle navigation"]',
+      '[aria-label="Workspaces"]',
     )!;
     toggle.focus();
     await click(toggle);

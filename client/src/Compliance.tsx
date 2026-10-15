@@ -165,7 +165,7 @@ export function ComplianceBoard({
                     <a
                       className="button primary"
                       href={row.live_workflow.url}
-                      aria-label={`Open workflow for ${row.id}`}
+                      aria-label={`Show me — Open workflow for ${row.id}`}
                     >
                       Show me
                     </a>

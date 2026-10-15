@@ -117,9 +117,7 @@ test("mobile drawer search closes the drawer before transferring modal ownership
   run(async (d, render) => {
     await render(<Navigation />);
     await act(async () =>
-      d
-        .querySelector<HTMLButtonElement>('[aria-label="Toggle navigation"]')!
-        .click(),
+      d.querySelector<HTMLButtonElement>('[aria-label="Workspaces"]')!.click(),
     );
     assert.equal(d.querySelectorAll("[aria-modal=true]").length, 1);
     await act(async () =>
