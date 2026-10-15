@@ -1,0 +1,17 @@
+{
+  "status": "PASS_INVENTORY_AND_EXACT_CODE_REFS",
+  "code_commit": "6a0100c954fdd68ddba06ee119f12a5dc94b44f9",
+  "source_tree_sha256": "7eb3dad32c506c58470b11bd72c4f95539359946b24e586fc154659b485695f5",
+  "rows": 211,
+  "all_preceding209_ids_preserved": true,
+  "all_original207_and93_ids_preserved": true,
+  "counts": {
+    "VERIFIED COMPLETE": 93,
+    "NOT APPLICABLE": 1,
+    "EXTERNALLY BLOCKED": 17,
+    "PARTIAL": 71,
+    "DEFERRED": 29
+  },
+  "new_numeric_grade": null,
+  "friend_integration": "PENDING"
+}
