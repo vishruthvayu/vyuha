@@ -7,8 +7,8 @@ Branch `feature/vyuha-premium-ui` from shared baseline `7e3184b15ba38e8242efc6f8
 | # | Milestone | Status | Checks |
 |---|---|---|---|
 | 1 | Research, three rendered directions, "Quiet Instrument" foundation: self-hosted fonts, tokens, base, components, app bar, cross-document page transition | done | 249/249 frontend tests, lint, format, build (32 local assets) |
-| 2 | Training ground: spatial workstation (viewport dominant, inspector rail, decision dock) | next | |
-| 3 | Preparation / home | planned | |
+| 2 | Training ground: spatial workstation — one screen at laptop sizes: mission strip, view with radar inset, decision dock under the view, contacts + evidence rail; contact symbology by shape; tablet/phone stacked order view → contacts → dock → evidence | done | 254/254 frontend tests (5 new), lint, format, build |
+| 3 | Preparation / home | next | |
 | 4 | After-action review | planned | |
 | 5 | Instructor console and White Cell | planned | |
 | 6 | Shared Crew | planned | |

@@ -1356,6 +1356,8 @@ export default function App({
         {view === "drill" ? (
           <div
             className={`page drill-page ${phase === "ready" && mode === "adaptive" && !prepared ? "training-awaiting" : ""}`}
+            data-phase={phase}
+            data-tactical={tactical ? "true" : undefined}
           >
             <p className="sync-status" role="status">
               {syncMessage(
@@ -1383,6 +1385,18 @@ export default function App({
               </div>
             </div>
             <div className="mission-bar">
+              <span className="mission-phase" data-phase={phase}>
+                <span aria-hidden="true" className="mission-phase-dot" />
+                {phase === "running"
+                  ? "Live"
+                  : phase === "paused"
+                    ? "Paused"
+                    : phase === "restoring"
+                      ? "Restoring"
+                      : phase === "complete"
+                        ? "Complete"
+                        : "Ready"}
+              </span>
               <div className="mission-name">
                 <span className="mission-number">01</span>
                 <div>
@@ -1550,67 +1564,6 @@ export default function App({
                   Illustrative training configuration
                 </p>
               )}
-              <details className="evidence-disclosure observation-preferences">
-                <summary>Observation preferences</summary>
-                <div className="setup-bar">
-                  <label>
-                    Graphics quality
-                    <select
-                      aria-label="Graphics quality"
-                      value={autoQuality ? "auto" : quality}
-                      onChange={(e) => {
-                        setAutoQuality(e.target.value === "auto");
-                        if (e.target.value === "auto") {
-                          setQuality("medium");
-                          setTactical(false);
-                        } else {
-                          setQuality(e.target.value as Quality);
-                          setTactical(e.target.value === "tactical");
-                        }
-                      }}
-                    >
-                      <option value="auto">Auto · current {quality}</option>
-                      <option value="high">High</option>
-                      <option value="medium">Medium</option>
-                      <option value="low">Low</option>
-                      <option value="tactical">Tactical 2D</option>
-                    </select>
-                  </label>
-                  <small>
-                    Graphics settings change rendering only; simulation stays at
-                    30 Hz.
-                  </small>
-                  <LocalAudio
-                    state={state}
-                    fog={scenario.fog}
-                    active={phase === "running"}
-                  />
-                </div>
-                <div className="setup-bar">
-                  {vision === "thermal" && (
-                    <label>
-                      Illustrative thermal palette
-                      <select
-                        aria-label="Thermal palette"
-                        value={palette}
-                        onChange={(e) =>
-                          setPalette(e.target.value as ThermalPalette)
-                        }
-                      >
-                        {Object.entries(palettes).map(([id, p]) => (
-                          <option key={id} value={id}>
-                            {p.label}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                  )}
-                  <small>
-                    Illustrative rendering only; sensor mechanics and scoring
-                    are unchanged.
-                  </small>
-                </div>
-              </details>
             </div>
             <div className="training-grid">
               <section className="sensor-workspace">
@@ -1619,6 +1572,71 @@ export default function App({
                     <Monitor size={16} />
                     <strong>EO / IR observation</strong>
                   </div>
+                  <details className="evidence-disclosure observation-preferences">
+                    <summary>Observation preferences</summary>
+                    <div className="observation-popover">
+                      <div className="setup-bar">
+                        <label>
+                          Graphics quality
+                          <select
+                            aria-label="Graphics quality"
+                            value={autoQuality ? "auto" : quality}
+                            onChange={(e) => {
+                              setAutoQuality(e.target.value === "auto");
+                              if (e.target.value === "auto") {
+                                setQuality("medium");
+                                setTactical(false);
+                              } else {
+                                setQuality(e.target.value as Quality);
+                                setTactical(e.target.value === "tactical");
+                              }
+                            }}
+                          >
+                            <option value="auto">
+                              Auto · current {quality}
+                            </option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                            <option value="tactical">Tactical 2D</option>
+                          </select>
+                        </label>
+                        <small>
+                          Graphics settings change rendering only; simulation
+                          stays at 30 Hz.
+                        </small>
+                        <LocalAudio
+                          state={state}
+                          fog={scenario.fog}
+                          active={phase === "running"}
+                        />
+                      </div>
+                      <div className="setup-bar">
+                        {vision === "thermal" && (
+                          <label>
+                            Illustrative thermal palette
+                            <select
+                              aria-label="Thermal palette"
+                              value={palette}
+                              onChange={(e) =>
+                                setPalette(e.target.value as ThermalPalette)
+                              }
+                            >
+                              {Object.entries(palettes).map(([id, p]) => (
+                                <option key={id} value={id}>
+                                  {p.label}
+                                </option>
+                              ))}
+                            </select>
+                          </label>
+                        )}
+                        <small>
+                          Illustrative rendering only; sensor mechanics and
+                          scoring are unchanged.
+                        </small>
+                      </div>
+                    </div>
+                  </details>
                   <div className="segmented">
                     {(["thermal", "day", "night"] as const).map((v) => (
                       <button
@@ -1767,27 +1785,6 @@ export default function App({
                     </div>
                   )}
                 </div>
-                <div className="scene-toolbar">
-                  {phase !== "restoring" && <SensorBadges state={state} />}
-                  <div>
-                    {scenario.fog === 0
-                      ? "Clear"
-                      : scenario.fog >= 0.5
-                        ? "Dense fog"
-                        : "Light fog"}{" "}
-                    · {scenario.fog}
-                  </div>
-                  <button
-                    className="text-button"
-                    aria-pressed={tactical}
-                    onClick={() => setTactical(!tactical)}
-                  >
-                    <Layers size={14} />
-                    {tactical ? "Use 3D view" : "2D fallback"}
-                  </button>
-                </div>
-              </section>
-              <aside className="right-panels">
                 <section className="panel radar-panel">
                   <div className="panel-header">
                     <div>
@@ -1816,6 +1813,27 @@ export default function App({
                     />
                   )}
                 </section>
+                <div className="scene-toolbar">
+                  {phase !== "restoring" && <SensorBadges state={state} />}
+                  <div>
+                    {scenario.fog === 0
+                      ? "Clear"
+                      : scenario.fog >= 0.5
+                        ? "Dense fog"
+                        : "Light fog"}{" "}
+                    · {scenario.fog}
+                  </div>
+                  <button
+                    className="text-button"
+                    aria-pressed={tactical}
+                    onClick={() => setTactical(!tactical)}
+                  >
+                    <Layers size={14} />
+                    {tactical ? "Use 3D view" : "2D fallback"}
+                  </button>
+                </div>
+              </section>
+              <aside className="right-panels">
                 <section className="panel contacts-panel">
                   <div className="panel-header">
                     <div>
@@ -2070,7 +2088,18 @@ export default function App({
                       ? `${selected}: no current sensor observation. Selection retained; wait for reacquisition.`
                       : nextStep(phase, target)}
                   </div>
-                  <div className="action-panel">
+                  <div
+                    className="action-panel"
+                    data-step={
+                      !target
+                        ? 0
+                        : target.designated === null
+                          ? 1
+                          : !target.classification
+                            ? 2
+                            : 3
+                    }
+                  >
                     <div className="action-heading">
                       <span className="step-number">
                         {target?.designated === null || !target
