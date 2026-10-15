@@ -9,19 +9,21 @@ def probe(port,tmp_path):
  return subprocess.run([sys.executable,str(ROOT/'scripts/preflight.py'),'--port',str(port)],env=env,text=True,capture_output=True,timeout=10)
 
 @pytest.mark.parametrize('reuse',[False,True])
-def test_preflight_never_masks_an_actual_listener(tmp_path,reuse):
+@pytest.mark.parametrize('host',['0.0.0.0','127.0.0.1'])
+def test_preflight_never_masks_an_actual_listener(tmp_path,reuse,host):
  with socket.socket() as listener:
   if reuse:listener.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
-  listener.bind(('0.0.0.0',0));listener.listen(1)
+  listener.bind((host,0));listener.listen(1)
   result=probe(listener.getsockname()[1],tmp_path)
   assert result.returncode==1 and 'Cannot open port' in result.stderr
 
 @pytest.mark.skipif(os.name!='posix',reason='POSIX asyncio/Uvicorn reuse contract; nativeWindows remains separate')
-def test_repeated_immediate_restart_after_active_http_connections(tmp_path):
+@pytest.mark.parametrize('host',['0.0.0.0','127.0.0.1'])
+def test_repeated_immediate_restart_after_active_http_connections(tmp_path,host):
  port=0
  for _ in range(5):
   with socket.socket() as listener:
-   listener.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1);listener.bind(('0.0.0.0',port));port=listener.getsockname()[1];listener.listen(1)
+   listener.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1);listener.bind((host,port));port=listener.getsockname()[1];listener.listen(1)
    client=socket.create_connection(('127.0.0.1',port),timeout=2)
    connection,_=listener.accept()
    client.sendall(b'GET / HTTP/1.0\r\n\r\n');assert connection.recv(4096)

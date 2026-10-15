@@ -1,0 +1,71 @@
+{
+  "engine_commit": "be77b5bb2b3e661602fb12e47c7ca5955ec6d563",
+  "source_tree_sha256": "1f476588e75f051357c0b04e3fe95e390e64026fbdfb069f79ce631f5b675fa4",
+  "scope": "Actual Codex in-app browser production benchmark, fixed Medium, auto quality off, Finale0.4 thermal white-hot trainee camera,20seconds each,1440x1000CSS DPR1 scale1. Heavy regression/fixture WebGL closed before post-measurement.",
+  "hardware": "macOS workstation; M1 Air8GiB team-reported; model/RAM not independently certified",
+  "before": [
+    {
+      "contacts": 8,
+      "median_render_fps": 60
+    },
+    {
+      "contacts": 25,
+      "median_render_fps": 60
+    },
+    {
+      "contacts": 50,
+      "median_render_fps": 60
+    },
+    {
+      "contacts": 100,
+      "median_render_fps": 59.5
+    },
+    {
+      "contacts": 200,
+      "median_render_fps": 60
+    }
+  ],
+  "after": [
+    {
+      "contacts": 8,
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0.10000000149011612,
+      "p95_sim_tick_ms": 0.29999999701976776,
+      "raw_sha256": "8d36311169c91d822c95b0c23ce586f8a5a04fff639d8853e7b76c82b8e3bede"
+    },
+    {
+      "contacts": 25,
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0.10000000149011612,
+      "p95_sim_tick_ms": 0.30000000447034836,
+      "raw_sha256": "ab8a69c25b87be9bc84d4bac5579bccbd4c85cb0b293d808dd1ec03dc33e2305"
+    },
+    {
+      "contacts": 50,
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0.20000000298023224,
+      "p95_sim_tick_ms": 0.6000000014901161,
+      "raw_sha256": "5aa3958ec5af8b00a3c51726a87b6ca231339998244c1771e8cef54348f10667"
+    },
+    {
+      "contacts": 100,
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0.3999999985098839,
+      "p95_sim_tick_ms": 0.6000000014901161,
+      "raw_sha256": "b3cca1459cec6c756f573446937c4b5d6b3c95736eea4593fc60c2ac033c0371"
+    },
+    {
+      "contacts": 200,
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0.7000000029802322,
+      "p95_sim_tick_ms": 1.5,
+      "raw_sha256": "4c2a3fe6fb77b91bd67dec44b53f8c860ea9141e71688a1b6effd118dae728a7"
+    }
+  ],
+  "limitations": [
+    "Different points in workstation time and uncontrolled OS/background load; not a laboratory matched hardware certification.",
+    "8/25/50/100 completed before interaction interruption; pending200 was not preserved and was rerun later with same settings.",
+    "Trainee sensor benchmark does not force all200 detailed models visible; explicit-reference200 drawcalls measured separately.",
+    "Browser heap excludes worker/GPU/process memory. Callback FPS is not GPU execution duration."
+  ]
+}
