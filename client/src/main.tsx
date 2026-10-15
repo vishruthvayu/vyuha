@@ -6,6 +6,7 @@ import "./design-system.css";
 import "./mission-navigation.css";
 import "./spatial-training.css";
 import "./crew-officer-polish.css";
+import "./premium/premium.css";
 import { LoadingWorkspace } from "./UI";
 import { UnitGateway } from "./Unit";
 import Navigation from "./Navigation";

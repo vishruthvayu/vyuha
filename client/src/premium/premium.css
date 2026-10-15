@@ -1,0 +1,7 @@
+/* VYUHA "Quiet Instrument" layer. Imported after the legacy stylesheets so it
+   is the single source of visual truth; route files refine their own pages. */
+@import "./fonts.css";
+@import "./tokens.css";
+@import "./base.css";
+@import "./components.css";
+@import "./shell.css";

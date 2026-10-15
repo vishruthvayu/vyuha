@@ -1,0 +1,267 @@
+/* Quiet Instrument — application shell: app bar, workspace catalogue, page frame. */
+:root {
+  --mission-navigation-height: var(--appbar-h);
+}
+
+/* ---------- App bar ---------- */
+.mission-navigation {
+  height: var(--appbar-h);
+  min-height: var(--appbar-h);
+  gap: var(--s-6);
+  padding: 0 var(--s-5) 0 var(--s-6);
+  background: rgb(11 13 14 / 0.86);
+  backdrop-filter: saturate(140%) blur(14px);
+  border-bottom: 1px solid var(--ink-hairline);
+}
+.mission-navigation-brand {
+  gap: 11px;
+  min-height: 40px;
+  border-radius: var(--r-sm);
+}
+.mission-navigation-brand svg {
+  color: var(--gold-500);
+  width: 22px;
+  height: 22px;
+}
+.mission-navigation-brand strong {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  margin-right: -0.34em;
+}
+.mission-primary-navigation {
+  gap: 2px;
+  align-self: center;
+  align-items: center;
+}
+.mission-primary-link {
+  position: relative;
+  min-height: 34px;
+  padding: 0 var(--s-3);
+  border: 0;
+  border-radius: var(--r-sm);
+  color: var(--n-900);
+  font-size: var(--t-13);
+  font-weight: 520;
+  letter-spacing: -0.005em;
+  transition:
+    color var(--d-fast) var(--ease-productive),
+    background-color var(--d-fast) var(--ease-productive);
+}
+.mission-primary-link::after {
+  content: "";
+  position: absolute;
+  left: var(--s-3);
+  right: var(--s-3);
+  bottom: -11px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--gold-500);
+  transform: scaleX(0);
+  transition: transform var(--d-slow) var(--ease-expressive);
+}
+.mission-primary-link:hover {
+  color: var(--n-1000);
+  background: var(--n-250);
+}
+.mission-primary-link.active {
+  color: var(--n-1000);
+  background: transparent;
+  border: 0;
+}
+.mission-primary-link.active::after {
+  transform: scaleX(1);
+}
+.mission-primary-link .nav-count {
+  background: var(--n-400);
+  color: var(--n-1000);
+  border-radius: var(--r-pill);
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  font-size: 10px;
+}
+.mission-navigation-tools {
+  gap: var(--s-1);
+}
+.mission-navigation button {
+  min-height: 34px;
+  padding: 0 var(--s-3);
+  border-radius: var(--r-sm);
+  color: var(--n-900);
+  font-size: var(--t-13);
+  font-weight: 500;
+  border-color: transparent;
+}
+.mission-navigation button:hover {
+  background: var(--n-250);
+  border-color: transparent;
+  color: var(--n-1000);
+}
+.mission-navigation .workspace-search-button {
+  border: 1px solid var(--n-400);
+  background: var(--n-150);
+  min-width: 200px;
+  justify-content: flex-start;
+  color: var(--n-800);
+}
+.mission-navigation .workspace-search-button:hover {
+  border-color: var(--n-600);
+  background: var(--n-200);
+}
+.mission-navigation .workspace-search-button kbd {
+  display: inline-grid;
+  margin-left: auto;
+}
+.mission-navigation .mission-catalog-toggle {
+  border: 1px solid var(--n-500);
+  color: var(--n-1000);
+}
+.mission-navigation .mission-catalog-toggle[aria-expanded="true"] {
+  background: var(--n-400);
+}
+
+/* ---------- Workspace catalogue (dialog) ---------- */
+.mission-catalog-backdrop {
+  padding: calc(var(--appbar-h) + 24px) 24px 32px;
+}
+.mission-catalog.workspace-navigation {
+  background: var(--n-150);
+  border: 1px solid var(--n-500);
+  border-radius: var(--r-xl);
+  box-shadow: var(--e-3);
+  padding: var(--s-8);
+  animation: vy-rise-in var(--d-slow) var(--ease-expressive-enter) both;
+}
+.mission-catalog-heading h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--t-40);
+  letter-spacing: var(--track-display);
+  line-height: 1;
+}
+.mission-catalog-heading p {
+  color: var(--n-900);
+}
+.mission-catalog .navigation-close {
+  background: var(--n-250);
+  border-color: var(--n-500);
+  border-radius: var(--r-sm);
+}
+.mission-catalog-actions button {
+  background: var(--n-200);
+  border-color: var(--n-500);
+  border-radius: var(--r-sm);
+  font-size: var(--t-13);
+}
+.mission-catalog-actions button:hover {
+  border-color: var(--n-600);
+  background: var(--n-300);
+}
+.mission-catalog .nav-label {
+  font-family: var(--font-mono);
+  font-size: var(--t-11);
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--n-800);
+}
+.mission-catalog .nav-item {
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  min-height: 42px;
+  padding: 8px 10px;
+  font-size: var(--t-14);
+  transition:
+    background-color var(--d-fast) var(--ease-productive),
+    border-color var(--d-fast) var(--ease-productive);
+}
+.mission-catalog .nav-item > svg {
+  color: var(--n-800);
+}
+.mission-catalog .nav-item:hover {
+  background: var(--n-250);
+}
+.mission-catalog .nav-item.active {
+  background: var(--gold-wash);
+  border-color: rgb(216 191 141 / 0.35);
+  color: var(--n-1000);
+}
+.mission-catalog .nav-item.active > svg {
+  color: var(--gold-500);
+}
+.mission-catalog-context {
+  border-top-color: var(--ink-hairline);
+}
+.mission-catalog-context .exercise-pack,
+.mission-catalog-context .user {
+  background: var(--n-200);
+  border: 1px solid var(--ink-hairline);
+}
+.avatar {
+  background: var(--n-400);
+  color: var(--n-1000);
+  font-family: var(--font-mono);
+}
+
+/* ---------- Skip link ---------- */
+.skip-link {
+  background: var(--gold-500);
+  color: var(--gold-ink);
+  border-radius: var(--r-sm);
+  font-weight: 600;
+}
+
+/* ---------- Page frame for non-training routes ---------- */
+.instructor-page,
+.route-content .instructor-page {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+.topbar {
+  border-bottom-color: var(--ink-hairline);
+}
+.breadcrumb {
+  font-family: var(--font-mono);
+  font-size: var(--t-11);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--n-800);
+}
+.breadcrumb span {
+  color: var(--n-900);
+}
+.connection {
+  font-size: var(--t-12);
+  color: var(--n-900);
+}
+.connection.online {
+  color: var(--sage-500);
+}
+
+@media (max-width: 1100px) {
+  .mission-navigation .workspace-search-button {
+    min-width: 0;
+  }
+  .mission-navigation .workspace-search-button kbd {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .mission-navigation {
+    padding: 0 var(--s-3);
+    gap: var(--s-3);
+  }
+  .mission-primary-link::after {
+    bottom: -6px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mission-primary-link::after,
+  .mission-catalog.workspace-navigation {
+    transition: none;
+    animation: none;
+  }
+}

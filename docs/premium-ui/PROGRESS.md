@@ -1,0 +1,23 @@
+# Premium UI — progress notes
+
+Branch `feature/vyuha-premium-ui` from shared baseline `7e3184b15ba38e8242efc6f80c446c9d861b032e`. Frontend-owned files only (contract: `docs/finale/parallel/FRONTEND-ENGINE-CONTRACT.md`). Each milestone is tested, committed and pushed before the next begins.
+
+## Milestones
+
+| # | Milestone | Status | Checks |
+|---|---|---|---|
+| 1 | Research, three rendered directions, "Quiet Instrument" foundation: self-hosted fonts, tokens, base, components, app bar, cross-document page transition | done | 249/249 frontend tests, lint, format, build (32 local assets) |
+| 2 | Training ground: spatial workstation (viewport dominant, inspector rail, decision dock) | next | |
+| 3 | Preparation / home | planned | |
+| 4 | After-action review | planned | |
+| 5 | Instructor console and White Cell | planned | |
+| 6 | Shared Crew | planned | |
+| 7 | Analytics, Adaptive Director, Exercise studio / Raid Composer | planned | |
+| 8 | Rapid ID, Recorded practice, Unit, Data transfer, System evidence, PS compliance, guide, sign-in | planned | |
+| 9 | Responsive and accessibility passes at 360–1920, two refinement passes, final report | planned | |
+
+## Working notes
+
+- Visual layer lives in `client/src/premium/`, imported after the legacy stylesheets in `main.tsx`. Legacy CSS is retired route by route as each page is rebuilt.
+- No `package.json` / lockfile change so far (fonts are vendored), to avoid lockfile conflicts with the engine branch.
+- Not touched: `Scene.tsx`, `scene-presentation.ts`, `visibility.ts`, `presentation.ts`, `quality.ts`, `Radar.tsx`, `observed-contacts.ts`, `types.ts`, workers, simulation, `server/`, `scripts/`.

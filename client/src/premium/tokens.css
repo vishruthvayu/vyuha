@@ -1,0 +1,156 @@
+/*
+ * Quiet Instrument — VYUHA design tokens.
+ * Neutral steps follow fixed roles (after Vercel Geist): 100–300 backgrounds
+ * (default/hover/active), 400–600 borders (default/hover/strong), 700–800
+ * muted fills and tertiary text, 900 secondary text, 1000 primary text.
+ * Motion durations and curves follow IBM Carbon's productive/expressive split.
+ * Legacy token names used by existing CSS are mapped at the end.
+ */
+:root {
+  /* Warm graphite neutrals */
+  --n-50: #070809;
+  --n-100: #0b0d0e;
+  --n-150: #0f1213;
+  --n-200: #131718;
+  --n-250: #171c1d;
+  --n-300: #1c2223;
+  --n-400: #242b2c;
+  --n-500: #2e3637;
+  --n-600: #3c4546;
+  --n-700: #5c6664;
+  --n-800: #7f8a85;
+  --n-900: #a9b0a8;
+  --n-1000: #ece7dc;
+  --ink-hairline: rgb(236 231 220 / 0.07);
+  --ink-hairline-strong: rgb(236 231 220 / 0.12);
+
+  /* Accent and semantic hues */
+  --gold-300: #9c855a;
+  --gold-500: #d8bf8d;
+  --gold-600: #e7d4ad;
+  --gold-ink: #17130c;
+  --gold-wash: rgb(216 191 141 / 0.1);
+  --cyan-500: #8ccbd6;
+  --cyan-600: #b2dfe6;
+  --cyan-wash: rgb(140 203 214 / 0.1);
+  --sage-500: #9cc0a4;
+  --sage-wash: rgb(156 192 164 / 0.1);
+  --amber-500: #e6b25e;
+  --amber-wash: rgb(230 178 94 / 0.12);
+  --coral-500: #ee8e76;
+  --coral-600: #f4ad9a;
+  --coral-wash: rgb(238 142 118 / 0.12);
+
+  /* Contact identity (always paired with a shape or a word) */
+  --id-hostile: var(--coral-500);
+  --id-friendly: var(--cyan-500);
+  --id-neutral: #c7c1b3;
+  --id-unknown: var(--n-900);
+
+  /* Typography */
+  --font-sans:
+    "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:
+    "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --t-11: 0.6875rem;
+  --t-12: 0.75rem;
+  --t-13: 0.8125rem;
+  --t-14: 0.875rem;
+  --t-15: 0.9375rem;
+  --t-16: 1rem;
+  --t-18: 1.125rem;
+  --t-20: 1.25rem;
+  --t-24: 1.5rem;
+  --t-30: 1.875rem;
+  --t-40: 2.5rem;
+  --t-56: 3.5rem;
+  --t-72: 4.5rem;
+  --track-label: 0.08em;
+  --track-display: -0.015em;
+  --track-tight: -0.02em;
+
+  /* Space, size, shape */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  --s-16: 64px;
+  --s-20: 80px;
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+  --r-pill: 999px;
+  --control-h: 40px;
+  --control-h-sm: 32px;
+  --appbar-h: 56px;
+  --page-max: 1360px;
+  --page-gutter: clamp(16px, 3.2vw, 48px);
+  --measure: 68ch;
+
+  /* Elevation: a surface step plus a soft drop, never a glow */
+  --e-1: 0 1px 0 rgb(255 255 255 / 0.03) inset, 0 1px 2px rgb(0 0 0 / 0.35);
+  --e-2: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 8px 24px rgb(0 0 0 / 0.38);
+  --e-3: 0 1px 0 rgb(255 255 255 / 0.05) inset, 0 24px 64px rgb(0 0 0 / 0.55);
+  --focus-ring: 0 0 0 2px var(--n-100), 0 0 0 4px var(--cyan-500);
+
+  /* Motion (Carbon ladder) */
+  --d-instant: 70ms;
+  --d-fast: 110ms;
+  --d-base: 160ms;
+  --d-slow: 240ms;
+  --d-expressive: 420ms;
+  --ease-productive: cubic-bezier(0.2, 0, 0.38, 0.9);
+  --ease-enter: cubic-bezier(0, 0, 0.38, 0.9);
+  --ease-exit: cubic-bezier(0.2, 0, 1, 0.9);
+  --ease-expressive: cubic-bezier(0.4, 0.14, 0.3, 1);
+  --ease-expressive-enter: cubic-bezier(0, 0, 0.3, 1);
+
+  /* Legacy names used across the existing stylesheets */
+  --scrim: rgb(5 6 7 / 0.72);
+  --shadow-panel: var(--e-1);
+  --shadow-dialog: var(--e-3);
+  --bg: var(--n-100);
+  --surface: var(--n-200);
+  --surface-raised: var(--n-300);
+  --surface-strong: var(--n-400);
+  --text: var(--n-1000);
+  --muted: var(--n-900);
+  --subtle: var(--n-800);
+  --accent: var(--gold-500);
+  --accent-ink: var(--gold-ink);
+  --positive: var(--sage-500);
+  --warning: var(--amber-500);
+  --danger: var(--coral-500);
+  --line: var(--n-500);
+  --border: var(--n-500);
+  --lime: var(--gold-500);
+  --space-1: var(--s-1);
+  --space-2: var(--s-2);
+  --space-3: var(--s-3);
+  --space-4: var(--s-4);
+  --space-5: var(--s-6);
+  --space-6: var(--s-8);
+  --space-7: var(--s-12);
+  --radius-sm: var(--r-sm);
+  --radius-md: var(--r-md);
+  --radius-lg: var(--r-lg);
+  --motion-fast: var(--d-fast);
+  --motion-normal: var(--d-base);
+  --ease-out: var(--ease-productive);
+  --font-xs: var(--t-12);
+  --font-sm: var(--t-14);
+  --font-base: var(--t-16);
+  --font-lg: var(--t-20);
+  --font-xl: var(--t-30);
+  color-scheme: dark;
+  scrollbar-color: var(--n-600) transparent;
+  accent-color: var(--gold-500);
+}
