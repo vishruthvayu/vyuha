@@ -103,7 +103,15 @@ td {
   box-shadow: var(--focus-ring);
   border-radius: var(--r-sm);
 }
-:where(a, button, [role="button"], summary, select, input, textarea):focus-visible {
+:where(
+  a,
+  button,
+  [role="button"],
+  summary,
+  select,
+  input,
+  textarea
+):focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
 }

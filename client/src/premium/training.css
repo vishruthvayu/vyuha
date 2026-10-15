@@ -1071,11 +1071,11 @@ p.recovery-banner::before {
    ====================================================================== */
 @media (min-width: 1024px) and (min-height: 660px) {
   .drill-page:is(
-      [data-phase="running"],
-      [data-phase="paused"],
-      [data-phase="restoring"],
-      [data-phase="complete"]
-    ) {
+    [data-phase="running"],
+    [data-phase="paused"],
+    [data-phase="restoring"],
+    [data-phase="complete"]
+  ) {
     height: calc(100dvh - var(--appbar-h));
     display: flex;
     flex-direction: column;

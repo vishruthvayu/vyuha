@@ -86,7 +86,11 @@
   border: 1px solid var(--ink-hairline);
   border-radius: var(--r-xl);
   background:
-    radial-gradient(80% 60% at 50% 0%, rgb(216 191 141 / 0.06), transparent 70%),
+    radial-gradient(
+      80% 60% at 50% 0%,
+      rgb(216 191 141 / 0.06),
+      transparent 70%
+    ),
     var(--n-150);
   text-align: center;
   color: var(--n-900);
@@ -125,7 +129,11 @@
   padding: var(--s-8);
   margin-bottom: 0;
   background:
-    radial-gradient(70% 120% at 0% 0%, rgb(216 191 141 / 0.07), transparent 60%),
+    radial-gradient(
+      70% 120% at 0% 0%,
+      rgb(216 191 141 / 0.07),
+      transparent 60%
+    ),
     var(--n-150);
   border: 1px solid var(--ink-hairline);
   border-radius: var(--r-xl) var(--r-xl) 0 0;

@@ -435,7 +435,8 @@ p[role="alert"] {
 /* ---------- Legacy light-theme neutralizer ----------
    style.css still carries light-theme rules for advanced pages
    (white selects, pale borders, olive links). Map them onto the tokens. */
-.advanced-card input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+.advanced-card
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
 .advanced-card select,
 .advanced-card textarea,
 .studio-fields select,

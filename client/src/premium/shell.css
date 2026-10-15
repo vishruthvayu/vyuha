@@ -303,7 +303,8 @@
   border-color: var(--n-600);
 }
 /* Only offered on the preparation stage; the Workspaces catalogue also starts it. */
-body:not(:has(.drill-page[data-phase="ready"])) .tour-launch:not([aria-expanded="true"]) {
+body:not(:has(.drill-page[data-phase="ready"]))
+  .tour-launch:not([aria-expanded="true"]) {
   display: none;
 }
 @media (max-width: 600px) {
