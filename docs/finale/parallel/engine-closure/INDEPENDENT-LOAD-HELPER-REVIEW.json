@@ -1,0 +1,40 @@
+{
+  "scope": "Read-only review of two uncommitted benchmark helper corrections; not application acceptance or full load results",
+  "base_commit": "0c40bc0176a42640723b67e8c41a4b1d81bb5706",
+  "source_files_sha256": {
+    "scripts/benchmark-unit.py": "694e7fbd9ee28ea939bf965cc68f00b101d4c6ae5ac5776ad724b92c38234504",
+    "scripts/benchmark-advanced.py": "0d30d406e0288030023cfdf23d01a7c27b7b9f2a5ccae2f8a3f25460f22a9d17"
+  },
+  "result": "PASS_SCOPED_NO_REPRODUCED_BLOCKER",
+  "findings": [],
+  "credential_isolation": {
+    "explicit_temporary_path": true,
+    "password_source": "secrets.token_urlsafe(32), 32 random input bytes",
+    "only_child_env_overridden": true,
+    "production_auth_not_modified_by_new_code": true,
+    "stored_hash_file_mode": "0600 on this macOS probe",
+    "plaintext_or_token_in_aggregate_output": false,
+    "auth_middleware_or_protected_routes_modified": false,
+    "external_analytics_requires_explicit_env_token": true,
+    "external_target_executed": false
+  },
+  "independent_probe": {
+    "explicit_temp_path_used": true,
+    "ambient_credential_untouched": true,
+    "mode_0600": true,
+    "plaintext_absent": true,
+    "pbkdf2_hash_matches": true,
+    "iterations": 600000,
+    "generated_password_length": 43
+  },
+  "actual_load_workload": "Parent-owned; not independently rerun by reviewer",
+  "limitations": [
+    "Existing subprocess termination timeout behavior is unchanged.",
+    "Optional external token validation occurs after local microbenchmarks/load; earlier validation would only improve fail-fast behavior.",
+    "Synthetic workload intentionally uses one officer session for privileged measurements; it is not trainee authorization or role-isolation evidence.",
+    "Final regression, source hash, commit and benchmark results must be sealed by parent."
+  ],
+  "numeric_product_score": null,
+  "source_edits": false,
+  "browser_operations": false
+}

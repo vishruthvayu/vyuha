@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Reproducible Stage 5 timings; synthetic API load, no efficacy experiment."""
-import json,sys,time,statistics,runpy
+import json,os,sys,time,statistics,runpy
 from pathlib import Path
 import httpx
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
@@ -16,6 +16,8 @@ def measure(fn,n=50):
  return dict(n=n,median_ms=round(statistics.median(values),4),max_ms=round(max(values),4))
 
 if __name__=='__main__':
+ token=os.environ.get('VYUHA_BENCHMARK_OFFICER_TOKEN','')
+ if len(sys.argv)>1 and not token:raise SystemExit('For an external analytics target, set VYUHA_BENCHMARK_OFFICER_TOKEN to an authorized officer token. It is never printed.')
  scenario=compile_authored(AuthorScenario(name='Benchmark',tactic='SATURATION',mix=['hostile_quad']*6))
  sim=Simulation(scenario)
  while sim.tick<150:sim.step()
@@ -28,7 +30,7 @@ if __name__=='__main__':
  'authored_validation_and_compilation':measure(lambda:compile_authored(AuthorScenario.model_validate(dict(name='Benchmark',tactic='DECOY_THEN_STRIKE',mix=['friendly_uav','hostile_quad','no_rf_fpv'])))),
  'prioritisation_calculation_six_choices':measure(lambda:evaluate(sim))},legacy_six_client=workload(6),advanced_six_client=workload(6,advanced=True))
  if len(sys.argv)>1:
-  with httpx.Client(base_url=sys.argv[1],timeout=60) as client:
+  with httpx.Client(base_url=sys.argv[1],timeout=60,headers={'Authorization':'Bearer '+token}) as client:
    def endpoint():client.get('/api/v1/units/local/analytics').raise_for_status()
    results['unit_analytics_http']=measure(endpoint,30)
  print(json.dumps(results,indent=2))

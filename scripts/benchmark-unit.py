@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Measured localhost HTTP concurrency; disposable database, not a learner study."""
-import argparse,json, math, os, socket, statistics, subprocess, sys, tempfile, time
+import argparse,json, math, os, secrets, socket, statistics, subprocess, sys, tempfile, time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from threading import Barrier, Lock
@@ -9,15 +9,18 @@ import httpx
 from server.tests.test_director import expert
 from server.engine import score
 from server.director import session_outcomes
+from server.auth import provision
 ROOT=Path(__file__).resolve().parents[1]
 
 
 def benchmark(count, advanced=False):
  with tempfile.TemporaryDirectory(prefix='vyuha-unit-load-') as directory:
   with socket.socket() as sock:sock.bind(('127.0.0.1',0));port=sock.getsockname()[1]
-  env={**os.environ,'VYUHA_DB':str(Path(directory)/'load.db'),'VYUHA_UNIT_MODE':'1'}
+  password=secrets.token_urlsafe(32);authfile=Path(directory)/'officer-auth.json'
+  provision(password,authfile)
+  env={**os.environ,'VYUHA_DB':str(Path(directory)/'load.db'),'VYUHA_AUTH_FILE':str(authfile),'VYUHA_UNIT_MODE':'1'}
   process=subprocess.Popen([sys.executable,'-m','uvicorn','server.main:app','--host','127.0.0.1','--port',str(port),'--no-access-log'],cwd=ROOT,env=env,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
-  base=f'http://127.0.0.1:{port}/api/v1';samples={};payload_sizes=[];lock=Lock();barrier=Barrier(count)
+  base=f'http://127.0.0.1:{port}/api/v1';samples={};payload_sizes=[];versions=set();lock=Lock();barrier=Barrier(count)
   try:
    with httpx.Client(base_url=base,timeout=60) as c:
     for attempt in range(100):
@@ -26,9 +29,11 @@ def benchmark(count, advanced=False):
      except httpx.TransportError:pass
      time.sleep(.1)
     else:raise RuntimeError('Benchmark server failed to start')
+    login=c.post('/auth/login',json={'password':password});login.raise_for_status()
+    officer_headers={'Authorization':'Bearer '+login.json()['token']}
    initial_bytes=sum(p.stat().st_size for p in Path(directory).glob('load.db*'))
    def run(index):
-    with httpx.Client(base_url=base,timeout=60) as c:
+    with httpx.Client(base_url=base,timeout=60,headers=officer_headers) as c:
      def req(method,path,body=None,label=None):
       started=time.perf_counter();r=c.request(method,path,json=body);elapsed=(time.perf_counter()-started)*1000
       r.raise_for_status()
@@ -38,6 +43,7 @@ def benchmark(count, advanced=False):
      who=req('POST','/units/join',{'callsign':f'LOAD-{index}'})['trainee_id']
      for round_index in range(3):
       spec=req('POST','/scenarios/generate',{'seed':900+index+round_index*20,'mode':'adaptive','trainee':who,'advanced':advanced},'scenario_generation')
+      with lock:versions.add(spec.get('engine_version','unmarked legacy'))
       sid=req('POST','/sessions',{'scenario_id':spec['id'],'trainee':who})['id'];sim=expert(spec)
       barrier.wait(timeout=60)
       for seq,offset in enumerate(range(0,len(sim.events),3)):
@@ -65,7 +71,7 @@ def benchmark(count, advanced=False):
    with httpx.Client(base_url=base,timeout=60) as c:assert c.get('/units/local/status').json()['database']=='ok'
    try:rss=round(int(subprocess.check_output(['ps','-o','rss=','-p',str(process.pid)],text=True).strip())/1024,2)
    except (OSError,subprocess.SubprocessError):rss=None
-   return {'database_growth_bytes':sum(p.stat().st_size for p in Path(directory).glob('load.db*'))-initial_bytes,'replay_payload_bytes':{'median':statistics.median(payload_sizes),'max':max(payload_sizes)},'concurrent_clients':count,'completed_sessions':count*3,'server_rss_mib_after_workload':rss,'http_ms':{k:{'n':len(v),'median':round(statistics.median(v),2),'p95':round(sorted(v)[math.ceil(.95*len(v))-1],2),'max':round(max(v),2)} for k,v in samples.items()}}
+   return {'database_growth_bytes':sum(p.stat().st_size for p in Path(directory).glob('load.db*'))-initial_bytes,'replay_payload_bytes':{'median':statistics.median(payload_sizes),'max':max(payload_sizes)},'concurrent_clients':count,'completed_sessions':count*3,'engine_versions':sorted(versions),'server_rss_mib_after_workload':rss,'http_ms':{k:{'n':len(v),'median':round(statistics.median(v),2),'p95':round(sorted(v)[math.ceil(.95*len(v))-1],2),'max':round(max(v),2)} for k,v in samples.items()}}
   finally:
    process.terminate();process.wait(timeout=10)
 
