@@ -10,6 +10,9 @@ ROOT = Path(__file__).resolve().parents[1]
 router = APIRouter(prefix='/api/v1/system/compliance', tags=['Compliance'])
 OFFICIAL_ROWS = {'SC01', 'SC02', 'SC03', 'SC04', 'SC05', 'SC06', 'SC07', 'SC08', 'SC09', 'SC10', 'SC11', 'SC14'}
 DOCUMENTS = {
+    'current-reconciliation': ('IMPLEMENTATION-RECONCILIATION.md', 'Current Ultimate implementation reconciliation'),
+    'current-reconciliation-data': ('IMPLEMENTATION-RECONCILIATION.json', 'Current implementation status and exact source references'),
+    'current-regression': ('ultimate/CURRENT-REGRESSION.json', 'Current source-specific regression receipt'),
     'audit-matrix': ('AUDIT-CLOSURE-MATRIX.md', 'Complete 93-row acceptance matrix'),
     'audit-data': ('audit-backlog.json', 'Traceable audit data and checkpoints'),
     'research': ('RESEARCH-NOTES.md', 'Requirement provenance and primary research'),
@@ -26,6 +29,7 @@ DOCUMENTS = {
     'authorization': ('AUTHORIZATION-ROUTE-RECEIPT.json','Registered protected route checks'),
     'transfer': ('TRANSFER-FINALE-RECEIPT.json','Signed transfer integrity checks'),
     'raid-validation': ('RAID-V2-RECEIPT.json','Procedural raid validation'),
+    'terrain-proof': ('TERRAIN-VALIDATION.md','Urban/rural terrain source, tests and reproduction'),
     'reconstruction': ('RECONSTRUCTION-PROFILE-RECEIPT.json','Measured reconstruction profile'),
     'physical-runbook': ('WINDOWS-PHONE-ACCEPTANCE-RUNBOOK.md','Windows/Android physical execution runbook'),
     'physical-results': ('PHYSICAL-TEST-RESULTS.md','Genuine physical/native result ledger'),
@@ -78,6 +82,7 @@ def official_source():
 # Fixed route/document catalogue: public traceability never enumerates private
 # saved-session identifiers or grants officer/trainee capabilities.
 WORKFLOW_GROUPS = [
+    (['SC07'], '/exercises#raid-composer', 'Officer sign-in; choose urban or rural Terrain, compile a frozen raid and inspect its terrain and line-of-sight conditions.'),
     (['SC01','SC03','SC05','SC06','SC15','P0-01','P0-02','P0-03','P1-04','CH01','CH03','CH04','CH06','F03','X05','X16','X25','X28'], '/', 'Join a trainee identity, choose conditions and record an observed-contact decision.'),
     (['SC04','SC08','SC09','SC12','SC13','P0-04','P0-05','CH05','F02','X21','X03','P2-04'], '/exercises#raid-composer', 'Officer sign-in; compile a frozen raid, then run it from the training library.'),
     (['SC10','SC21','P1-06','CH08','CH09','F04','X14','X22','X23'], '/?view=aar', 'Choose your completed session; inspect Ghost, decision paths and separate hypothetical/reference runs.'),
@@ -92,6 +97,7 @@ WORKFLOW_GROUPS = [
     (['P2-05','CH13','X12','X29'], '/system/benchmark', 'Run the fixed-tier measurement on the actual target device; renderer, logical ticks and server latency are separate.'),
 ]
 EVIDENCE_GROUPS = [
+    (['SC07'], ['terrain-proof','raid-validation']),
     (['SC18','P1-05','F01','SC03','SC10','SC11','F04','F06','X15','X11','X24'], ['browser-acceptance','tests']),
     (['SC20','P1-02','CH11','X07','X08'], ['security','authorization']),
     (['X04'], ['transfer','tests']),

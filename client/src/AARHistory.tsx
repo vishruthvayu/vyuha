@@ -33,8 +33,13 @@ export default function AARHistory({
             </span>
             <small>
               Seed {record.scenario.seed} · {record.scenario.tracks.length}{" "}
-              contacts · {Math.round(record.endTick / HZ)}s recorded ·{" "}
-              {record.events.length} decisions
+              contacts ·{" "}
+              {(
+                (record.replay_metadata?.observed_end_tick ??
+                  record.executionTick ??
+                  record.endTick) / HZ
+              ).toFixed(1)}
+              s observed · {record.events.length} decisions
             </small>
             <span
               className={`history-verification ${record.verified ? "verified" : "pending"}`}

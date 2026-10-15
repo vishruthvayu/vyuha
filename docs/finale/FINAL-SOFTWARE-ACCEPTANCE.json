@@ -1,44 +1,160 @@
 {
-  "date": "2026-10-13",
-  "code_commit": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
-  "source_sha256": "5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0",
-  "software_acceptance": "PASS_SCOPED",
+  "schema_version": 2,
+  "date": "2026-10-15",
+  "scope": "ULTIMATE_CURRENT_DEVELOPMENT",
+  "inspected_head": "b1c84db083ce730b3b6190ae4b6aecfd3eff1013",
+  "software_acceptance": "OPEN",
   "stable_approval": false,
-  "score": null,
-  "score_status": "RC2 weighted score not assigned; historical RC1 provisional84 retained separately",
-  "finding_counts": {
-    "PASS": 62,
-    "N/A": 1,
-    "PARTIAL": 30
-  },
-  "tests": {
+  "exact_final_source_results": {
+    "recorded_date": "2026-10-15",
+    "status": "EXACT_RUNTIME_REGRESSION_PASS; FINAL_SOFTWARE_ACCEPTANCE_OPEN",
+    "base_commit": "b1c84db083ce730b3b6190ae4b6aecfd3eff1013",
+    "source_tree_sha256": "931ab608c99bb95b011635136709a1d585251a67e2ddc025d57b77cec4bf23c9",
+    "source_hash_policy": "vyuha-source-inputs-v2",
     "backend": {
-      "passed": 617,
+      "passed": 690,
       "failed": 0,
-      "seconds": 1087.53,
-      "warnings": 1
+      "seconds": 425.12,
+      "warnings": [
+        "Known Starlette TestClient/httpx deprecation"
+      ]
     },
     "frontend": {
-      "passed": 172,
+      "passed": 249,
       "failed": 0,
-      "milliseconds": 137555.552417,
-      "skipped": 0
+      "skipped": 0,
+      "cancelled": 0,
+      "milliseconds": 59520.156916
     },
-    "production_build": "PASS",
-    "offline_assets": 27,
-    "offline_cache": "b2b7e099df64",
-    "historical_baseline": 18,
-    "historical_current": 22,
-    "unchanged_legacy_hashes": true,
     "lint": "PASS",
-    "format_all_mutable_TSX_and_hooks": "PASS"
+    "format": "PASS",
+    "build": {
+      "status": "PASS",
+      "locally_bundled_assets": 28,
+      "offline_cache": "46d9d7ac0ec7",
+      "vite_seconds": 5.62
+    },
+    "history": {
+      "historical_completed": 18,
+      "additional_current_completed": 7,
+      "all_current_completed_readable": 25,
+      "stored_engine_versions": {
+        "vyuha-0.2.0": 19,
+        "vyuha-0.4.0": 2,
+        "vyuha-0.1.0": 4
+      },
+      "exact_stored_cards_preserved": true,
+      "all_verified_aar_ghost_timelines_readable": true,
+      "all_four_skill_profiles_readable": true,
+      "heatmap_included_current_sessions": 25,
+      "heatmap_included_rapid_sessions": 1,
+      "heatmap_included_total_sessions": 26,
+      "shared_completed_sessions_excluded_from_individual_heatmap": 0,
+      "historical_immutable_fields_sha256": "cce52299fb319073feb81fc0d3f2420a867ff7393421ca9f69940e9aef051b45",
+      "current_immutable_fields_sha256": "fec9cce75ffe64332740c60fa3793e4a4997ea16ea0d489354ab17f1d4449f3e",
+      "production_database_unchanged": true,
+      "scope": "Aggregate only; private records stay in a temporary backup outside Git. Protected analytics use an ephemeral officer credential."
+    },
+    "live_acceptance": "docs/finale/ultimate/LIVE-ACCEPTANCE.json",
+    "software_gates_still_open": [
+      "Final actual browser/responsive meaningful-state acceptance and independent rendered review",
+      "Current bounded performance/lifecycle measurements",
+      "Matching clean-clone reproduction",
+      "Exact source/evidence/remote sealing and new immutable candidate"
+    ],
+    "physical_exact_candidate": "PENDING",
+    "stable_approval": false,
+    "audit_score": null,
+    "durable_raw_evidence": "/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/final-acceptance-20261015",
+    "runtime_inputs_match_completed_regression": true,
+    "not_final_whole_mission_acceptance": true
   },
+  "latest_checkpoint": {
+    "recorded_date": "2026-10-15",
+    "status": "EXACT_RUNTIME_REGRESSION_PASS; FINAL_SOFTWARE_ACCEPTANCE_OPEN",
+    "base_commit": "b1c84db083ce730b3b6190ae4b6aecfd3eff1013",
+    "source_tree_sha256": "931ab608c99bb95b011635136709a1d585251a67e2ddc025d57b77cec4bf23c9",
+    "source_hash_policy": "vyuha-source-inputs-v2",
+    "backend": {
+      "passed": 690,
+      "failed": 0,
+      "seconds": 425.12,
+      "warnings": [
+        "Known Starlette TestClient/httpx deprecation"
+      ]
+    },
+    "frontend": {
+      "passed": 249,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "milliseconds": 59520.156916
+    },
+    "lint": "PASS",
+    "format": "PASS",
+    "build": {
+      "status": "PASS",
+      "locally_bundled_assets": 28,
+      "offline_cache": "46d9d7ac0ec7",
+      "vite_seconds": 5.62
+    },
+    "history": {
+      "historical_completed": 18,
+      "additional_current_completed": 7,
+      "all_current_completed_readable": 25,
+      "stored_engine_versions": {
+        "vyuha-0.2.0": 19,
+        "vyuha-0.4.0": 2,
+        "vyuha-0.1.0": 4
+      },
+      "exact_stored_cards_preserved": true,
+      "all_verified_aar_ghost_timelines_readable": true,
+      "all_four_skill_profiles_readable": true,
+      "heatmap_included_current_sessions": 25,
+      "heatmap_included_rapid_sessions": 1,
+      "heatmap_included_total_sessions": 26,
+      "shared_completed_sessions_excluded_from_individual_heatmap": 0,
+      "historical_immutable_fields_sha256": "cce52299fb319073feb81fc0d3f2420a867ff7393421ca9f69940e9aef051b45",
+      "current_immutable_fields_sha256": "fec9cce75ffe64332740c60fa3793e4a4997ea16ea0d489354ab17f1d4449f3e",
+      "production_database_unchanged": true,
+      "scope": "Aggregate only; private records stay in a temporary backup outside Git. Protected analytics use an ephemeral officer credential."
+    },
+    "live_acceptance": "docs/finale/ultimate/LIVE-ACCEPTANCE.json",
+    "software_gates_still_open": [
+      "Final actual browser/responsive meaningful-state acceptance and independent rendered review",
+      "Current bounded performance/lifecycle measurements",
+      "Matching clean-clone reproduction",
+      "Exact source/evidence/remote sealing and new immutable candidate"
+    ],
+    "physical_exact_candidate": "PENDING",
+    "stable_approval": false,
+    "audit_score": null,
+    "durable_raw_evidence": "/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/final-acceptance-20261015",
+    "runtime_inputs_match_completed_regression": true,
+    "not_final_whole_mission_acceptance": true
+  },
+  "checkpoint_not_final_source_validation": false,
+  "current_release_candidate": null,
+  "proposed_next_candidate": "v1.1.0-rc.3",
+  "final_weighted_score": null,
+  "historical_external_rc2_score": 89,
+  "open_software_gates": [
+    "G04",
+    "G05",
+    "G06",
+    "G07"
+  ],
   "external_pending": [
     "G08",
     "G09"
   ],
-  "independent_final_pin_check": "PASS_SCOPED_RC2",
-  "receipt": "evidence.json",
-  "software_frozen_RC": "v1.1.0-rc.2",
-  "historical_rc1_provisional_score": 84
+  "authoritative_reconciliation": "IMPLEMENTATION-RECONCILIATION.json",
+  "gates": "FINAL-RELEASE-GATES.json",
+  "previous_acceptance_archive": "rc2/pre-ultimate-acceptance/FINAL-SOFTWARE-ACCEPTANCE.json",
+  "tested_source_sha256": "931ab608c99bb95b011635136709a1d585251a67e2ddc025d57b77cec4bf23c9",
+  "scoped_software_gates_passed": [
+    "G01",
+    "G02",
+    "G03"
+  ]
 }

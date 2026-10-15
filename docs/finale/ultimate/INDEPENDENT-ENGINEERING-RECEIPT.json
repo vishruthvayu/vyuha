@@ -1,0 +1,148 @@
+{
+  "code_commit": "b1c84db083ce730b3b6190ae4b6aecfd3eff1013",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "931ab608c99bb95b011635136709a1d585251a67e2ddc025d57b77cec4bf23c9",
+  "scope": "Independent inspection plus scoped tests; source continuing under root ownership. Not final full regression.",
+  "source_files": {
+    "server/main.py": "fb9772c5b2e4a3f68b00fa3b2679c0e4bd3a3dca66bcea7481dce3567463064e",
+    "server/auth.py": "7192d6f3798d630209cc0ac338052074836b2754d325208a348c2a1801e79fc0",
+    "server/crew.py": "ca9284d20e960bb0e8f70b742391b1028d3bcab89d284a6ab9795ca3f3bb8d8a",
+    "server/evidence.py": "a00d3bbdfc338d7fc1f05c144734d521803750d9c7af0c919925aa039e7bf99e",
+    "server/portable.py": "69a7b8c82af65473bf2274b1ae4ffdc7fa4a35b54f8f94e561b9abf47bdeebfc",
+    "server/expert_run_api.py": "204a921891992e37371dc451ca637f91147f6ee2686b43445a1baa87aad7a5fe",
+    "server/reference_policy.py": "3927bee7e68cfad3ec5aba2feb304350c5a2313db534fcbb89a763d39bbd4484",
+    "client/src/AARHistory.tsx": "3555ac1631a04aa38b29e73ddabcfa28f048abd8276713e2dd7c2497f6c3dcfb",
+    "client/src/Recorded.tsx": "26af102a3bcdfc791fe70216b8d0086360c6b9ccf1539255daea45658bd1bc95",
+    "client/src/storage.ts": "4f7214e6a408054838a4fef20e23dfe7f55e6a6faeabf68942622b3b9b96c56f",
+    "server/tests/test_aar_history_duration.py": "44fd6ce85f1a50fe20c7597cac77bded60e0b977e8571021e3f83f983ae9d94e"
+  },
+  "targeted_tests": {
+    "passed": 114,
+    "failed": 0,
+    "seconds": 98.66,
+    "log": "targeted-tests.log"
+  },
+  "history_tests_after_integration": {
+    "passed": 4,
+    "failed": 0,
+    "seconds": 2.92,
+    "log": "integrated-history-tests.log"
+  },
+  "reproduced_issues": [
+    "HISTORY-OBSERVED-01",
+    "RECORDED-LIFETIME-01"
+  ],
+  "assigned_numeric_score": null,
+  "stable_release_approved": false,
+  "registered_sensitive_route_pairs": 35,
+  "reviewed_source_tree_sha256": "931ab608c99bb95b011635136709a1d585251a67e2ddc025d57b77cec4bf23c9",
+  "reviewed_git_status": [
+    " M client/src/AARHistory.tsx",
+    " M client/src/Compliance.tsx",
+    " M client/src/Recorded.tsx",
+    " M client/src/WhiteCell.tsx",
+    " M client/src/accessibility.test.tsx",
+    " M server/compliance.py",
+    " M server/main.py",
+    " M server/tests/test_compliance.py",
+    "?? client/src/recorded-lifetime.test.tsx",
+    "?? docs/finale/TERRAIN-VALIDATION.md",
+    "?? server/tests/test_aar_history_duration.py"
+  ],
+  "recorded_integrated_tests": {
+    "canonical_tests": 9,
+    "original_independent_reproducer": 1,
+    "passed": 10,
+    "failed": 0,
+    "duration_ms": 8805.450792,
+    "log": "integrated-recorded-tests.log"
+  },
+  "recorded_strict_mode_independent_test": {
+    "passed": 1,
+    "failed": 0,
+    "duration_ms": 3296.405125,
+    "log": "recorded-strict.log"
+  },
+  "finding_dispositions": {
+    "HISTORY-OBSERVED-01": "IMPLEMENTED_AND_TARGETED_TEST_PASS; full regression/source seal pending",
+    "RECORDED-LIFETIME-01": "IMPLEMENTED_AND_TARGETED_TEST_PASS; actual final browser/source seal pending"
+  },
+  "live_https_transfer_restore": {
+    "status": "PASS_SCOPED",
+    "receipt": "docs/finale/ultimate/LIVE-ACCEPTANCE.json",
+    "receipt_sha256": "963683e0015c56e909caaaf45244520b75f71fc8247d4cdc93ea43b85c1f281a",
+    "authorization_negative_requests": 140,
+    "sessions": 3,
+    "fusion_receipts": 6,
+    "teaching_notes": 1,
+    "shared_archives": 1,
+    "receiver_restore_logical_sha256": "e569f3ac1696d8ec69f84530d0bb6c3e92ea577e215f30895ca2264a868d53e3"
+  },
+  "final_combined_reviewed": {
+    "source_tree_sha256": "931ab608c99bb95b011635136709a1d585251a67e2ddc025d57b77cec4bf23c9",
+    "input_hashes_checked": 291,
+    "input_mismatches": 0,
+    "backend_passed": 690,
+    "backend_failed": 0,
+    "backend_seconds": 425.12,
+    "frontend_passed": 249,
+    "frontend_failed": 0,
+    "frontend_duration_ms": 59520.156916,
+    "lint": "PASS",
+    "format": "PASS",
+    "build": "PASS",
+    "cached_local_urls": 28,
+    "cache_index_sha256_prefix": "46d9d7ac0ec7",
+    "logs": {
+      "backend.log": "c2a23714fa52e325d21612c09da36600b7ce1d20c2c5e300ff0047febfcab112",
+      "frontend.log": "b5d176f36312638174a1eee1492bf0c7199ce10e73c2d2ade28c5834f0709f04",
+      "lint.log": "3d184e062e21a463c8c5792bc31ae1a5f7ec671a8e0384ba70a5333f526fe1fd",
+      "format.log": "f74e8531c0a81a8a2e1f68f998d36056af29e757632c068e77a1937d8c83fb6c",
+      "build.log": "4179c1ec93832c1761569a61507c45c15640e06ce68d63ba23443f93b2e68afc",
+      "history.json": "c2c8240a7d6325e40f9515a1125bfef4e79292b06eec2c64e896870fc8242367",
+      "source-under-test.json": "e420800dd63fe54c0739d6e53ca603bf7030f00dbee450f2a1115f027c1d5dea",
+      "live-acceptance.log": "d81f6c36f7364929c4096fb582f0f5c9f6aa8e0620251475982adef50b6524cf"
+    }
+  },
+  "gate_verdict": "PASS_SCOPED_ENGINEERING; BROWSER_PERFORMANCE_CLONE_MANIFEST_REMOTE_SEAL_OPEN",
+  "final_original22_verification": {
+    "historical_completed": 22,
+    "additional_current_completed": 3,
+    "all_current_completed_readable": 25,
+    "stored_engine_versions": {
+      "vyuha-0.2.0": 19,
+      "vyuha-0.4.0": 2,
+      "vyuha-0.1.0": 4
+    },
+    "exact_stored_cards_preserved": true,
+    "all_verified_aar_ghost_timelines_readable": true,
+    "all_four_skill_profiles_readable": true,
+    "heatmap_included_current_sessions": 25,
+    "heatmap_included_rapid_sessions": 1,
+    "heatmap_included_total_sessions": 26,
+    "shared_completed_sessions_excluded_from_individual_heatmap": 0,
+    "historical_immutable_fields_sha256": "f9dc8cd8d96e059d03f8759eb9fb80a440d94241f0e6aea302fbc0bee718ea44",
+    "current_immutable_fields_sha256": "fec9cce75ffe64332740c60fa3793e4a4997ea16ea0d489354ab17f1d4449f3e",
+    "production_database_unchanged": true,
+    "scope": "Aggregate only; private records stay in a temporary backup outside Git. Protected analytics use an ephemeral officer credential.",
+    "source_tree_sha256": "931ab608c99bb95b011635136709a1d585251a67e2ddc025d57b77cec4bf23c9",
+    "source_hash_policy": "vyuha-source-inputs-v2",
+    "original22_recovery": {
+      "method": "Unique original18 plus four later immutable rows matching pre-existing original22 aggregate digest; no card rewritten.",
+      "combinations_evaluated": 35,
+      "unique_matches": 1,
+      "baseline18_exact": true,
+      "original22_exact": true,
+      "baseline18_sha256": "cce52299fb319073feb81fc0d3f2420a867ff7393421ca9f69940e9aef051b45",
+      "original22_sha256": "f9dc8cd8d96e059d03f8759eb9fb80a440d94241f0e6aea302fbc0bee718ea44"
+    }
+  },
+  "final_original22_receipt_sha256": "9401a7bc4b3596275936066165859345e79090a0d84940f0b580d8337f7b2458",
+  "live_private_artifacts_independently_checked": {
+    "receiver_restored_all_tables_equal": true,
+    "logical_hash": "e569f3ac1696d8ec69f84530d0bb6c3e92ea577e215f30895ca2264a868d53e3",
+    "donor_logged_negative_401s": 140,
+    "receiver_logged_import_posts": 3,
+    "receiver_logged_422": 1
+  }
+}

@@ -108,3 +108,18 @@ def test_live_finding_proof_does_not_promote_status_or_serve_unlisted_files(comp
     assert any(d['url'].endswith('/browser-acceptance') for d in result['evidence_documents'])
     assert client.get('/api/v1/system/compliance/documents/credentials.json').status_code == 404
     assert {p.name:p.read_bytes() for p in docs.iterdir()} == before
+
+
+def test_every_required_desktop_clause_has_a_workflow_and_terrain_has_direct_proof(compliance_client):
+    client, docs = compliance_client
+    (docs/'TERRAIN-VALIDATION.md').write_text('SC07 scoped terrain source/tests and reproducible procedure')
+    items={r['id']:r for r in client.get('/api/v1/system/compliance').json()['items']}
+    for key in compliance.OFFICIAL_ROWS - {'SC02'}:
+        assert items[key]['live_workflow'] is not None, key
+    row=items['SC07']
+    assert row['live_workflow']['url']=='/exercises#raid-composer'
+    assert 'urban or rural' in row['live_workflow']['required_context']
+    links={r['url'] for r in row['evidence_documents']}
+    assert '/api/v1/system/compliance/documents/terrain-proof' in links
+    assert client.get('/api/v1/system/compliance/documents/terrain-proof').text.startswith('SC07')
+    assert row['status']=='PASS' and row['implemented_is_not_validated']

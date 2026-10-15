@@ -1,0 +1,144 @@
+{
+  "review_date": "2026-10-15",
+  "source_commit": "b1c84db083ce730b3b6190ae4b6aecfd3eff1013",
+  "worktree_at_review": " M client/src/AARHistory.tsx\n M client/src/accessibility.test.tsx\n",
+  "review_method": "Independent source and actual screenshot review; no CUA. Root exclusively performs browser workflows. No numeric score or full product acceptance. Reviewer subsequently authored the scoped Recorded fix at root request; a different engineering reviewer must assess that change.",
+  "scope_limit": "100% in filenames denotes prior root capture provenance, not independent browser zoom measurement. Older unlabelled training/officer/guide captures not used for exact100% width acceptance.",
+  "findings": [
+    {
+      "id": "UX-REC-01",
+      "severity": "P1",
+      "status": "FIX_INTEGRATED_INDEPENDENTLY_TESTED_BROWSER_PENDING",
+      "source": "client/src/Recorded.tsx:44-62, practice save handler",
+      "issue": "Recording load and practice-save responses are not scoped to the active recording/request. Delayed A response can overwrite B, and blank selection leaves A loaded.",
+      "reproduction": "Delay GET A; select B, resolve B then A. Inspect title/current rid and save path. Start practice-save A, select B, resolve A. Select blank after loaded A.",
+      "required_verification": "Generation/request guard; clear state immediately on selection including blank; reject late save/load results; interleaved promises regression and real import/play/save browser workflow.",
+      "test_evidence": {
+        "mounted_lifetime": 9,
+        "pass": 9,
+        "fail": 0,
+        "duration_ms": 1267.216167,
+        "baseline_before_initial_fix": "6 failed / 0 passed against b1c84db Recorded source",
+        "scope": "Import/load/save generations; blank reset; single pending submit; freeze controls; retry stable request id; one-second observation expiry feedback"
+      },
+      "integrated_source_sha256": "26af102a3bcdfc791fe70216b8d0086360c6b9ccf1539255daea45658bd1bc95",
+      "independent_engineering_evidence": "ENGINEERING.md: 9 canonical lifetime + original reproducer10/10; original deferred A/B separately PASS in StrictMode."
+    },
+    {
+      "id": "UX-NAV-01",
+      "severity": "P3",
+      "status": "FIX_INTEGRATED_SOURCE_VERIFIED",
+      "source": "client/src/WhiteCell.tsx:412",
+      "issue": "White Cell tells the officer to use instructor controls below; current layout puts command controls above White Cell.",
+      "evidence": "instructor-controls-first-100-desktop.jpg and Instructor.tsx ordering",
+      "required_verification": "Position-independent wording or correct above wording; no behavior change.",
+      "fix": "Position-independent wording: use that session\u2019s instructor controls."
+    },
+    {
+      "id": "UX-FORM-01",
+      "severity": "P3",
+      "status": "REFINEMENT",
+      "source": "client/src/CrewOfficerTools.tsx:242-272",
+      "issue": "Role management input, load button and validity select have mismatched alignment in the 100% desktop screenshot.",
+      "evidence": "crew-officer-setup-100-desktop.jpg",
+      "required_verification": "Optional horizontal form grouping with aligned labels/buttons; preserve mobile stacking and explicit labels."
+    },
+    {
+      "id": "UX-AAR-01",
+      "severity": "P2",
+      "status": "FIX_INTEGRATED_FOCUSED_TESTED_BROWSER_PENDING",
+      "source": "client/src/AARHistory.tsx",
+      "issue": "Old captured history says 90s recorded for early-ended exercise. Current worktree now prefers observed_end_tick, executionTick, endTick and says observed.",
+      "required_verification": "Focused early-end tests plus actual new postbuild screenshot; scoring horizon remains unchanged.",
+      "additional_evidence": "Independent engineer reproduced missing lightweight observed metadata; canonical server fix4/4 tests2.92s; full/lightweight/trainee/dashboard alignment."
+    },
+    {
+      "id": "UX-REC-02",
+      "severity": "P2",
+      "status": "FIX_INTEGRATED_INDEPENDENTLY_TESTED_BROWSER_PENDING",
+      "source": "client/src/Recorded.tsx selected observation/actions",
+      "issue": "Expired selected recording observation leaves action buttons enabled, but decide silently ignores clicks.",
+      "fix": "Current observed track gate disables designate/classify/response and shows explicit missing observation status. No invented samples or truth exposure.",
+      "test": "Mounted playback advances31ticks, verifies absent observation and all3actions disabled; prior2decisions preserved.",
+      "integrated_source_sha256": "26af102a3bcdfc791fe70216b8d0086360c6b9ccf1539255daea45658bd1bc95",
+      "independent_engineering_evidence": "ENGINEERING.md: 9 canonical lifetime + original reproducer10/10; original deferred A/B separately PASS in StrictMode."
+    },
+    {
+      "id": "UX-DENSITY-01",
+      "severity": "P3",
+      "status": "OPTIONAL_REFINEMENT",
+      "source": "App.tsx training header and scene layout",
+      "issue": "Active scene document top516desktop/717mobile requires vertical navigation if reset to document top.",
+      "justification": "Start lives inside scene preview, so user already reaches observation area before starting. Rendered active mobile/desktop controls are legible and scene/radar accessible. No clipping, action loss or blocked operation reproduced.",
+      "future_option": "Compact active header or orient saved-draft resume to observation workspace; do not churn frozen source solely to fit all mobile controls on one screen."
+    }
+  ],
+  "coverage": {
+    "actual_screenshots_reviewed": [
+      "preparation-after-100-mobile.jpg",
+      "crew-after-100-desktop.jpg",
+      "instructor-controls-first-100-desktop.jpg",
+      "aar-history-100-mobile.jpg",
+      "analytics-authenticated-100-desktop.jpg",
+      "analytics-director-history-100-desktop.jpg",
+      "crew-keyboard-scroll-100-mobile.jpg",
+      "crew-officer-setup-100-desktop.jpg",
+      "training-active-desktop.jpg",
+      "training-selected-decision-after.jpg",
+      "officer-after-desktop.jpg",
+      "interactive-guide-after.jpg"
+    ],
+    "pending": [
+      "Fresh final active desktop/tablet/mobile at measured100%",
+      "Final early-end history screenshot",
+      "Recorded import/play/practice save",
+      "Active Crew role state, not only completed table",
+      "Eight-width100% responsive and keyboard escape/scroll proof",
+      "Final Operator guide/search/catalogue interaction evidence"
+    ]
+  },
+  "recorded_overlay_focused_validation": {
+    "total": 19,
+    "passed": 19,
+    "failed": 0,
+    "duration_ms": 2111.4785,
+    "new_mounted": 9,
+    "existing_hardening": 10,
+    "existing_contracts": "54 rural parity checkpoints and recorded adapters",
+    "eslint": "PASS",
+    "typescript_build": "PASS",
+    "note": "Overlay only; canonical integration/final suite and independent engineering review still required."
+  },
+  "final_source_pin": {
+    "head": "b1c84db083ce730b3b6190ae4b6aecfd3eff1013",
+    "source_tree_sha256": "931ab608c99bb95b011635136709a1d585251a67e2ddc025d57b77cec4bf23c9",
+    "policy": "vyuha-source-inputs-v2",
+    "scope": "Frozen source receipt supplied by root; final commit not yet assigned."
+  },
+  "fresh_visual_review": {
+    "folder": "/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/final-acceptance-20261015/screens",
+    "inspected": [
+      "preparation-desktop.jpg",
+      "preparation-mobile.jpg",
+      "training-active-desktop.jpg",
+      "training-active-mobile.jpg",
+      "recorded-import-save-desktop.jpg",
+      "recorded-invalid-json-desktop.jpg",
+      "aar-history-390.jpg",
+      "aar-history-768.jpg",
+      "aar-history-1440.jpg",
+      "aar-complete-desktop.jpg"
+    ],
+    "layout_receipts": {
+      "training-layouts.json": "8 widths360/390/428/768/1024/1280/1440/1920; all actual CSS width==documentWidth; dpr1/scale1; radarVisible true.",
+      "aar-history-layouts.json": "Same8 widths; all actual CSS width==documentWidth; dpr1/scale1."
+    },
+    "conclusion": "No new reproduced release-blocking visual/layout defect in reviewed actual states. Normal mobile vertical stacking is acceptable; Start is inside preview so document sceneTop does not show offscreen start.",
+    "evidence_corrections_required": [
+      "preparation-desktop.jpg depicts AAR, not preparation. Recapture correct state.",
+      "aar-history-390.jpg actual JPEG360x900; do not equate filename with390-CSS screenshot. DOM layout receipt independently covers390.",
+      "aar-complete-desktop.jpg has Ghost unavailable/retry while cold full review loads; recapture hydrated completed review for successful-AAR claim."
+    ],
+    "capture_artifact_note": "Recorded full-page composite positions fixed navigation at current scroll offset; do not infer middle-of-document runtime navigation from composite alone."
+  }
+}

@@ -409,7 +409,7 @@ export function WhiteCell({
       </div>
       <p>
         Server reconstruction of accepted trainee actions and applied instructor
-        commands. Choose a trainee; use the instructor controls below for
+        commands. Choose a trainee; use that session’s instructor controls for
         interventions.
       </p>
       <div className="segmented" aria-label="White Cell evidence mode">

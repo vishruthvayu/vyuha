@@ -281,6 +281,23 @@ export function ComplianceBoard({
         <h2>Implementation and validation are separate</h2>
         <p>{manifest.release_status}</p>
         <p>
+          These are the original 93 audit identities and their preserved
+          statuses.
+        </p>
+        {manifest.documents.find(
+          (doc) => doc.id === "current-reconciliation",
+        ) && (
+          <a
+            href={
+              manifest.documents.find(
+                (doc) => doc.id === "current-reconciliation",
+              )!.url
+            }
+          >
+            Read the current complete implementation reconciliation
+          </a>
+        )}
+        <p>
           Each finding keeps its own acceptance status. Candidate code and
           scoped software tests do not certify the complete training product.
         </p>

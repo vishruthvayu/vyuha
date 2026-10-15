@@ -1,48 +1,64 @@
 {
   "recorded_date": "2026-10-15",
-  "status": "TESTED_IMPLEMENTATION; FINAL_ACCEPTANCE_OPEN",
-  "base_commit": "a2040fb91fd6954573f638180a54951ecf915ea3",
-  "source_tree_sha256": "016a3d90ce085ae51b0d700fd736f57dc9d04ee9090d8f68b4e59f8d00327a59",
+  "status": "EXACT_RUNTIME_REGRESSION_PASS; FINAL_SOFTWARE_ACCEPTANCE_OPEN",
+  "base_commit": "b1c84db083ce730b3b6190ae4b6aecfd3eff1013",
+  "source_tree_sha256": "931ab608c99bb95b011635136709a1d585251a67e2ddc025d57b77cec4bf23c9",
   "source_hash_policy": "vyuha-source-inputs-v2",
   "backend": {
-    "passed": 685,
+    "passed": 690,
     "failed": 0,
-    "seconds": 558.83,
+    "seconds": 425.12,
     "warnings": [
       "Known Starlette TestClient/httpx deprecation"
     ]
   },
   "frontend": {
-    "passed": 240,
+    "passed": 249,
     "failed": 0,
     "skipped": 0,
     "cancelled": 0,
-    "milliseconds": 103051.315417
+    "milliseconds": 59520.156916
   },
   "lint": "PASS",
   "format": "PASS",
-  "build": "PASS; 28 locally bundled assets; see exact final asset manifest before candidate seal",
-  "history": {
-    "baseline_18": "EXACT_DIGEST_UNCHANGED",
-    "original_stored_22": "EXACT_DIGEST_UNCHANGED",
-    "current_training_readable": 24,
-    "rapid_id_heatmap_credit": 1,
-    "crew_individual_credit": 0
+  "build": {
+    "status": "PASS",
+    "locally_bundled_assets": 28,
+    "offline_cache": "46d9d7ac0ec7",
+    "vite_seconds": 5.62
   },
-  "browser_scoped": [
-    "Actual3attributedCrewdecisions/sharedcompletion",
-    "KeyboardArrowRight40pxandTabescapeat390CSSwidth100%",
-    "Realprocessoutage3decisions3Fusionresynchronized",
-    "APPLIEDradarrestoreandteachingpause;noteimmediate",
-    "WhatIfandevidence-onlyreference;12originalevidencetablesunchanged"
-  ],
+  "history": {
+    "historical_completed": 18,
+    "additional_current_completed": 7,
+    "all_current_completed_readable": 25,
+    "stored_engine_versions": {
+      "vyuha-0.2.0": 19,
+      "vyuha-0.4.0": 2,
+      "vyuha-0.1.0": 4
+    },
+    "exact_stored_cards_preserved": true,
+    "all_verified_aar_ghost_timelines_readable": true,
+    "all_four_skill_profiles_readable": true,
+    "heatmap_included_current_sessions": 25,
+    "heatmap_included_rapid_sessions": 1,
+    "heatmap_included_total_sessions": 26,
+    "shared_completed_sessions_excluded_from_individual_heatmap": 0,
+    "historical_immutable_fields_sha256": "cce52299fb319073feb81fc0d3f2420a867ff7393421ca9f69940e9aef051b45",
+    "current_immutable_fields_sha256": "fec9cce75ffe64332740c60fa3793e4a4997ea16ea0d489354ab17f1d4449f3e",
+    "production_database_unchanged": true,
+    "scope": "Aggregate only; private records stay in a temporary backup outside Git. Protected analytics use an ephemeral officer credential."
+  },
+  "live_acceptance": "docs/finale/ultimate/LIVE-ACCEPTANCE.json",
   "software_gates_still_open": [
-    "All-route final rendered review and browser acceptance breadth",
-    "Matching clean clone",
-    "Final exact manifest/evidence pin and candidate seal"
+    "Final actual browser/responsive meaningful-state acceptance and independent rendered review",
+    "Current bounded performance/lifecycle measurements",
+    "Matching clean-clone reproduction",
+    "Exact source/evidence/remote sealing and new immutable candidate"
   ],
   "physical_exact_candidate": "PENDING",
   "stable_approval": false,
   "audit_score": null,
-  "durable_raw_evidence": "Project work/finale/ultimate-experience/integration-20261015; sanitized release copies are sealed only after final acceptance."
+  "durable_raw_evidence": "/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/final-acceptance-20261015",
+  "runtime_inputs_match_completed_regression": true,
+  "not_final_whole_mission_acceptance": true
 }

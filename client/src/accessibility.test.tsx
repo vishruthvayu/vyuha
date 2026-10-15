@@ -539,6 +539,8 @@ test("exercise history distinguishes pending evidence, selection and exact recor
   const pending: TrainingRecord = {
     ...verified,
     id: "pending-review",
+    endTick: 2700,
+    executionTick: 30,
     verified: false,
   };
   let chosen: TrainingRecord | undefined;
@@ -558,8 +560,10 @@ test("exercise history distinguishes pending evidence, selection and exact recor
   assert.match(buttons[1].textContent!, /Device score · verification pending/);
   assert.match(
     buttons[0].textContent!,
-    /Seed 482913.*3s recorded.*0 decisions/,
+    /Seed 482913.*3.0s observed.*0 decisions/,
   );
+  assert.match(buttons[1].textContent!, /1.0s observed/);
+  assert.doesNotMatch(buttons[1].textContent!, /90.*observed/);
   await click(buttons[1]);
   assert.equal(chosen, pending);
   assert.equal(pending.verified, false);

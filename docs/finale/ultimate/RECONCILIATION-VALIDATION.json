@@ -1,0 +1,22 @@
+{
+  "status": "PASS_DOCUMENT_INTEGRITY_AND_RECEIPT_CONSISTENCY_ONLY",
+  "source_checkpoint": "b1c84db083ce730b3b6190ae4b6aecfd3eff1013",
+  "runtime_source_sha256": "931ab608c99bb95b011635136709a1d585251a67e2ddc025d57b77cec4bf23c9",
+  "rows": 209,
+  "original207_retained": true,
+  "all93_original_ids_retained": true,
+  "unique_ids": true,
+  "status_counts": {
+    "VERIFIED COMPLETE": 91,
+    "NOT APPLICABLE": 1,
+    "EXTERNALLY BLOCKED": 17,
+    "PARTIAL": 71,
+    "DEFERRED": 29
+  },
+  "missing_source_test_anchors": [],
+  "archived_rc2_originals_preserved": true,
+  "final_backend_passed": 690,
+  "final_frontend_passed": 249,
+  "unearned_whole_mission_or_physical_pass": false,
+  "new_application_tests_run_by_this_document_workstream": 0
+}

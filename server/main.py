@@ -213,15 +213,15 @@ def aar(session_id: str, include_review: bool = True):
         if row["status"] != "completed":
             raise HTTPException(409, "Session not completed")
         log=logged_events(db,session_id);commands=applied_commands(db,session_id)
-        if not include_review:
-            return dict(id=row["id"],trainee=row["trainee"],unit_id=row["unit_id"],exercise_group_id=row["exercise_group_id"],scenario=json.loads(row["spec"]),events=log,commands=commands,
-                        endTick=row["end_tick"],scorecard=json.loads(row["scorecard"]),created_at=row["created_at"],verified=True)
         if row["execution_tick"] is not None:
             observed=row["execution_tick"];source="completion"
         elif row["control_state"]:
             observed=json.loads(row["control_state"])["tick"];source="telemetry"
         else:
             observed=max([e["tick"] for e in log+commands],default=0);source="last_recorded_event"
+        if not include_review:
+            return dict(id=row["id"],trainee=row["trainee"],unit_id=row["unit_id"],exercise_group_id=row["exercise_group_id"],scenario=json.loads(row["spec"]),events=log,commands=commands,
+                        executionTick=observed,endTick=row["end_tick"],scorecard=json.loads(row["scorecard"]),created_at=row["created_at"],verified=True)
         try:
             review,reconstructed_card=build_review(json.loads(row["spec"]),log,commands,session_id,observed,source,row["end_tick"])
         except (ValueError,KeyError,TypeError) as error:

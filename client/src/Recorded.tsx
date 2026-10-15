@@ -26,32 +26,61 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
     [effector, setEffector] = useState<Effector>("hold"),
     [actions, setActions] = useState<Action[]>([]),
     [error, setError] = useState(""),
-    [result, setResult] = useState<unknown>(null);
+    [result, setResult] = useState<unknown>(null),
+    [saving, setSaving] = useState(false);
   const upload = useRef<HTMLInputElement>(null),
-    request = useRef(newId());
-  async function refresh() {
+    request = useRef(newId()),
+    context = useRef(0),
+    importRequest = useRef(0),
+    pendingSave = useRef(false);
+  async function refresh(scope = context.current) {
     const r = await api<{ recordings: { id: string; title: string }[] }>(
       "/recordings",
     );
-    setList(r.recordings);
+    if (context.current === scope) setList(r.recordings);
   }
   useEffect(() => {
-    void refresh().catch((e) => setError(e.message));
+    const scope = context.current;
+    void refresh(scope).catch((e) => {
+      if (context.current === scope) setError(e.message);
+    });
   }, []);
-  useEffect(() => {
-    if (!rid) return;
+  function selectRecording(id: string) {
+    if (id === rid) return;
+    context.current++;
+    setRid(id);
     setPlaying(false);
+    pendingSave.current = false;
+    setSaving(false);
     setRecord(null);
-    void api<typeof record>(`/recordings/${rid}`)
-      .then((r) => {
-        setRecord(r);
-        setTick(0);
-        setActions([]);
-        setResult(null);
-        request.current = newId();
-      })
-      .catch((e) => setError(e.message));
+    setTick(0);
+    setTrack("");
+    setActions([]);
+    setResult(null);
+    setError("");
+    request.current = newId();
+  }
+  useEffect(() => {
+    const scope = context.current;
+    let stopped = false;
+    if (rid)
+      void api<typeof record>(`/recordings/${rid}`)
+        .then((r) => {
+          if (!stopped && context.current === scope) setRecord(r);
+        })
+        .catch((e) => {
+          if (!stopped && context.current === scope) setError(e.message);
+        });
+    return () => {
+      stopped = true;
+    };
   }, [rid]);
+  useEffect(
+    () => () => {
+      context.current++;
+    },
+    [],
+  );
   useEffect(() => {
     if (!playing || !record) return;
     const timer = setInterval(
@@ -70,17 +99,24 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
   async function importFile() {
     const f = upload.current?.files?.[0];
     if (!f) return;
+    const scope = context.current,
+      importId = ++importRequest.current;
     try {
       if (f.size > 7 * 1024 * 1024) throw new Error("Import exceeds 7 MiB");
       const r = await api<{ id: string }>(
         "/recordings",
         parseJSONImport(await f.text(), 7 * 1024 * 1024),
       );
-      await refresh();
-      setRid(r.id);
+      if (context.current !== scope || importRequest.current !== importId)
+        return;
+      await refresh(scope);
+      if (context.current !== scope || importRequest.current !== importId)
+        return;
+      selectRecording(r.id);
       setError("");
     } catch (e) {
-      setError((e as Error).message);
+      if (context.current === scope && importRequest.current === importId)
+        setError((e as Error).message);
     }
   }
   const state = record ? recordedState(record.recording, tick) : null,
@@ -89,8 +125,9 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
           (o) => o.track_id === track,
         )
       : [];
+  const currentTrack = !!state?.tracks.some((t) => t.id === track);
   function decide(k: Action["k"]) {
-    if (result !== null || !state?.tracks.find((t) => t.id === track)) return;
+    if (pendingSave.current || result !== null || !currentTrack) return;
     setActions((a) => [
       ...a,
       {
@@ -135,7 +172,7 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
         </button>
         <label>
           Recorded exercise
-          <select value={rid} onChange={(e) => setRid(e.target.value)}>
+          <select value={rid} onChange={(e) => selectRecording(e.target.value)}>
             <option value="">Select recording</option>
             {list.map((r) => (
               <option key={r.id} value={r.id}>
@@ -156,6 +193,7 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
           </p>
           <button
             className="button primary"
+            disabled={saving}
             onClick={() => setPlaying((p) => !p)}
           >
             {playing ? "Pause playback" : "Play recording"}
@@ -167,7 +205,11 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
           <Radar state={state} selected={track} onSelect={setTrack} large />
           <label>
             Observed track
-            <select value={track} onChange={(e) => setTrack(e.target.value)}>
+            <select
+              disabled={saving}
+              value={track}
+              onChange={(e) => setTrack(e.target.value)}
+            >
               <option value="">Select track</option>
               {state.tracks.map((t) => (
                 <option key={t.id}>{t.id}</option>
@@ -182,9 +224,15 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
               )
               .join(" · ")}
           </p>
+          {track && !currentTrack && (
+            <p role="status">
+              No current recorded observation for {track}. Wait for a new sample
+              or choose an observed track.
+            </p>
+          )}
           <button
             className="button subtle"
-            disabled={result !== null || !track}
+            disabled={saving || result !== null || !currentTrack}
             onClick={() => decide("designate")}
           >
             Designate
@@ -192,6 +240,7 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
           <label>
             Type
             <select
+              disabled={saving}
               value={kind}
               onChange={(e) => setKind(e.target.value as Kind)}
             >
@@ -203,6 +252,7 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
           <label>
             Identity
             <select
+              disabled={saving}
               value={category}
               onChange={(e) => setCategory(e.target.value as Identity)}
             >
@@ -214,6 +264,8 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
           <button
             className="button subtle"
             disabled={
+              saving ||
+              !currentTrack ||
               result !== null ||
               !actions.some((a) => a.track === track && a.k === "designate")
             }
@@ -224,6 +276,7 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
           <label>
             Response
             <select
+              disabled={saving}
               value={effector}
               onChange={(e) => setEffector(e.target.value as Effector)}
             >
@@ -235,6 +288,8 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
           <button
             className="button subtle"
             disabled={
+              saving ||
+              !currentTrack ||
               result !== null ||
               !actions.some((a) => a.track === track && a.k === "classify")
             }
@@ -248,19 +303,34 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
           </p>
           <button
             className="button primary"
-            disabled={result !== null}
+            disabled={saving || result !== null}
             onClick={() => {
+              if (pendingSave.current) return;
+              pendingSave.current = true;
+              setSaving(true);
+              setError("");
               setPlaying(false);
+              const scope = context.current;
               void api(`/recordings/${rid}/practice`, {
                 request_id: request.current,
                 trainee_id: identity?.trainee_id ?? "CADET-01",
                 actions,
               })
-                .then(setResult)
-                .catch((e) => setError(e.message));
+                .then((review) => {
+                  if (context.current === scope) setResult(review);
+                })
+                .catch((e) => {
+                  if (context.current === scope) setError(e.message);
+                })
+                .finally(() => {
+                  if (context.current === scope) {
+                    pendingSave.current = false;
+                    setSaving(false);
+                  }
+                });
             }}
           >
-            Save practice review
+            {saving ? "Saving practice review…" : "Save practice review"}
           </button>
         </section>
       )}
@@ -270,6 +340,7 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
           <button
             className="button subtle"
             onClick={() => {
+              context.current++;
               setPlaying(false);
               setTick(0);
               setTrack("");

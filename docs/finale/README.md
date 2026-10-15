@@ -1,16 +1,19 @@
 # VYUHA engineering evidence index
 
-Start with the product requirements at `/system/compliance`; use its feature-specific "Show me" actions and evidence links. Current source/release status lives in [evidence.json](evidence.json), [FINAL-RELEASE-GATES.json](FINAL-RELEASE-GATES.json) and [AUDIT-CLOSURE-MATRIX.md](AUDIT-CLOSURE-MATRIX.md).
+Current Ultimate implementation and all remaining work are reconciled in the [209-row implementation-status table](IMPLEMENTATION-RECONCILIATION.md), preserving the original207 entries and adding two reproduced final-continuation defects. The current software acceptance state is **OPEN**, and stable approval is **false**. Start at `/system/compliance` for feature-specific requirements and proof; actual officer workflows still require sign-in and appropriate session context.
 
-| Question | Read |
+| Question | Evidence and scope |
 |---|---|
-| What was proved for immutable RC2? | [rc2/REGRESSION.json](rc2/REGRESSION.json), [rc2/INDEPENDENT-FINAL.json](rc2/INDEPENDENT-FINAL.json) |
-| Which Linux defects were fixed? | [rc2/LINUX-FINDINGS.md](rc2/LINUX-FINDINGS.md) |
-| What must physical testers do? | [rc2/RETEST.md](rc2/RETEST.md), [PHYSICAL-TEST-RESULTS.md](PHYSICAL-TEST-RESULTS.md) |
-| Which scores remain unchanged? | [rc2/HISTORY.json](rc2/HISTORY.json) |
-| How are auth/backup/TLS scoped? | [rc2/AUTHORIZATION.json](rc2/AUTHORIZATION.json), [rc2/DEPLOYMENT.json](rc2/DEPLOYMENT.json) |
-| Why this redesign? | [design/REFERENCE-RESEARCH.md](design/REFERENCE-RESEARCH.md), [design/DESIGN-SYSTEM.md](design/DESIGN-SYSTEM.md) |
-| Which additions were selected or deferred? | [FEATURE-SELECTION-DECISIONS.md](FEATURE-SELECTION-DECISIONS.md) |
-| What new engineering problems were found? | [design/ENGINEERING-CLOSURE.md](design/ENGINEERING-CLOSURE.md), [design/COMMAND-WORKFLOWS.md](design/COMMAND-WORKFLOWS.md), [design/REVIEW-WORKFLOWS.md](design/REVIEW-WORKFLOWS.md) |
+| What is implemented, partial, deferred, external or not applicable? | [IMPLEMENTATION-RECONCILIATION.md](IMPLEMENTATION-RECONCILIATION.md), [machine-readable rows/source hashes](IMPLEMENTATION-RECONCILIATION.json) — original93 identities preserved; proposed features are not counted as implemented |
+| What has the latest combined checkpoint actually passed? | [ultimate/CURRENT-REGRESSION.json](ultimate/CURRENT-REGRESSION.json) — 690 backend /249 frontend, zero failures, at931ab608…23c9 after the AAR/Recorded corrections; whole-mission browser/performance/clone/evidence acceptance remains open |
+| Which gates remain before a new candidate? | [FINAL-RELEASE-GATES.json](FINAL-RELEASE-GATES.json), [current acceptance](FINAL-SOFTWARE-ACCEPTANCE.md), [candidate closure procedure](FINAL-RELEASE-ACCEPTANCE.md) — current Ultimate OPEN, not inherited RC2 approval |
+| What did independent reviewers inspect? | [ultimate/INDEPENDENT-INTEGRATION-REVIEW.md](ultimate/INDEPENDENT-INTEGRATION-REVIEW.md), [reconciliation review](ultimate/INDEPENDENT-RECONCILIATION-REVIEW.md) — scoped source/test reviews; final rendered review and exact-source acceptance remain separate |
+| What proves urban/rural terrain behavior? | [TERRAIN-VALIDATION.md](TERRAIN-VALIDATION.md) — exact authoring route, source and deterministic reproduction commands; not GIS/field calibration |
+| Why this UI architecture and which additions were deferred? | [design/REFERENCE-RESEARCH.md](design/REFERENCE-RESEARCH.md), [DESIGN-TOOLS-AND-DEPENDENCIES.md](DESIGN-TOOLS-AND-DEPENDENCIES.md), [FEATURE-SELECTION-DECISIONS.md](FEATURE-SELECTION-DECISIONS.md) — retained prototype selection, dependency authenticity and explicit model decisions |
+| Which original scorecards must remain unchanged? | [HISTORICAL-COMPATIBILITY.md](HISTORICAL-COMPATIBILITY.md), [rc2/HISTORY.json](rc2/HISTORY.json) — original18/stored22 baseline; current additions never replace that baseline |
+| What was proven for immutable RC2? | [rc2/REGRESSION.json](rc2/REGRESSION.json), [rc2/INDEPENDENT-FINAL.json](rc2/INDEPENDENT-FINAL.json), [preserved pre-Ultimate receipts](rc2/pre-ultimate-acceptance/) — historical617/172, scoped acceptance and source pin; not current Ultimate results |
+| What Linux defects were previously fixed? | [rc2/LINUX-FINDINGS.md](rc2/LINUX-FINDINGS.md), [rc2/RETEST.md](rc2/RETEST.md) — native RC1 defects/remediation and minimum retest scope |
+| What must physical testers still perform? | [WINDOWS-PHONE-ACCEPTANCE-RUNBOOK.md](WINDOWS-PHONE-ACCEPTANCE-RUNBOOK.md), [PHYSICAL-TEST-RESULTS.md](PHYSICAL-TEST-RESULTS.md) — exact-candidate Linux, Windows, Android, trusted LAN HTTPS, separate devices, WAN-off and restore remain genuine physical gates |
+| What is the source/evidence freshness boundary? | [evidence.json](evidence.json), `server/evidence.py` — the manifest is currently historical RC2; policy-v2 detects changed runtime/build/deployment inputs. A fresh exact-source manifest is sealed only after final acceptance |
 
-The Ultimate branch is active development, not a validated replacement until final software gates pass. RC2 remains immutable while teammates test it. The external 89/100 audit is a supplied assessment of RC2; it is not a fresh Ultimate rescore. Older receipts remain dated provenance. Native Windows, fresh RC2 Linux and separate phone/LAN/WAN/trusted HTTPS checks remain pending unless actual results are supplied. No real sensor calibration or human efficacy study is established.
+The external89/100 describes supplied RC2, not this Ultimate source. Native RC1 Arch Linux and older Mac/Android LAN evidence retain their original date/version; emulated widths, loopback TLS and scripts do not pass actual final-device trust or physical WAN-off. No measured sensor calibration or human learning efficacy study is established. Optional models, media exclusions and trusted-LAN learner identity remain explicit limits.

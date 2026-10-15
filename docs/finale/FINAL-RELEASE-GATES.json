@@ -1,135 +1,155 @@
 {
-  "recorded_date": "2026-10-13",
-  "source_tree_sha256": "5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0",
-  "candidate_code_commit": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
+  "schema_version": 2,
+  "recorded_date": "2026-10-15",
+  "scope": "ULTIMATE_CURRENT_DEVELOPMENT; FINAL_SOFTWARE_ACCEPTANCE_OPEN",
+  "inspected_head": "b1c84db083ce730b3b6190ae4b6aecfd3eff1013",
+  "branch": "feature/vyuha-ultimate-experience",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "931ab608c99bb95b011635136709a1d585251a67e2ddc025d57b77cec4bf23c9",
+  "source_hash_note": "Final source manifest must be generated after the last source edit. Do not reuse the RC2 or checkpoint source hash.",
+  "candidate_code_commit": null,
+  "proposed_release_candidate": "v1.1.0-rc.3",
+  "release_candidate_created": false,
   "stable_approval": false,
-  "software_RC_gate_status": "PASS_SCOPED",
+  "software_RC_gate_status": "OPEN",
   "final_audit_score": null,
-  "independent_provisional_score": 84,
-  "finding_counts": {
-    "PASS": 62,
-    "N/A": 1,
-    "PARTIAL": 30
+  "historical_external_rc2_score": 89,
+  "historical_internal_rc1_provisional_score": 84,
+  "latest_combined_checkpoint": {
+    "recorded_date": "2026-10-15",
+    "status": "EXACT_RUNTIME_REGRESSION_PASS; FINAL_SOFTWARE_ACCEPTANCE_OPEN",
+    "base_commit": "b1c84db083ce730b3b6190ae4b6aecfd3eff1013",
+    "source_tree_sha256": "931ab608c99bb95b011635136709a1d585251a67e2ddc025d57b77cec4bf23c9",
+    "source_hash_policy": "vyuha-source-inputs-v2",
+    "backend": {
+      "passed": 690,
+      "failed": 0,
+      "seconds": 425.12,
+      "warnings": [
+        "Known Starlette TestClient/httpx deprecation"
+      ]
+    },
+    "frontend": {
+      "passed": 249,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "milliseconds": 59520.156916
+    },
+    "lint": "PASS",
+    "format": "PASS",
+    "build": {
+      "status": "PASS",
+      "locally_bundled_assets": 28,
+      "offline_cache": "46d9d7ac0ec7",
+      "vite_seconds": 5.62
+    },
+    "history": {
+      "historical_completed": 18,
+      "additional_current_completed": 7,
+      "all_current_completed_readable": 25,
+      "stored_engine_versions": {
+        "vyuha-0.2.0": 19,
+        "vyuha-0.4.0": 2,
+        "vyuha-0.1.0": 4
+      },
+      "exact_stored_cards_preserved": true,
+      "all_verified_aar_ghost_timelines_readable": true,
+      "all_four_skill_profiles_readable": true,
+      "heatmap_included_current_sessions": 25,
+      "heatmap_included_rapid_sessions": 1,
+      "heatmap_included_total_sessions": 26,
+      "shared_completed_sessions_excluded_from_individual_heatmap": 0,
+      "historical_immutable_fields_sha256": "cce52299fb319073feb81fc0d3f2420a867ff7393421ca9f69940e9aef051b45",
+      "current_immutable_fields_sha256": "fec9cce75ffe64332740c60fa3793e4a4997ea16ea0d489354ab17f1d4449f3e",
+      "production_database_unchanged": true,
+      "scope": "Aggregate only; private records stay in a temporary backup outside Git. Protected analytics use an ephemeral officer credential."
+    },
+    "live_acceptance": "docs/finale/ultimate/LIVE-ACCEPTANCE.json",
+    "software_gates_still_open": [
+      "Final actual browser/responsive meaningful-state acceptance and independent rendered review",
+      "Current bounded performance/lifecycle measurements",
+      "Matching clean-clone reproduction",
+      "Exact source/evidence/remote sealing and new immutable candidate"
+    ],
+    "physical_exact_candidate": "PENDING",
+    "stable_approval": false,
+    "audit_score": null,
+    "durable_raw_evidence": "/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/final-acceptance-20261015",
+    "runtime_inputs_match_completed_regression": true,
+    "not_final_whole_mission_acceptance": true
   },
-  "finding_blocked_ids": [],
+  "checkpoint_not_final_source_validation": false,
   "gates": [
     {
       "id": "G01",
-      "requirement": "Full final backend/frontend/lint/format/production build",
+      "requirement": "Complete backend/frontend, lint/format and production build after final source edits",
       "status": "PASS",
-      "evidence": "617 backend /172 frontend zero failures; lint/format/build27 cacheb2b7e099df64; exact current0c6 source"
+      "evidence": "Exact runtime931ab608\u202623c9:690 backend425.12s/249 frontend59520.156916ms,zero failures;lint/format/build28 cache46d9d7ac0ec7. Actual raw final-acceptance-20261015 logs; any later runtime edit invalidates this."
     },
     {
       "id": "G02",
-      "requirement": "Versioned parity and exact historical compatibility",
-      "status": "PASS",
-      "evidence": "All original/new parity unchanged;18baseline/22stored scorecards exact; current read-only receipt rc2/HISTORY.json"
+      "requirement": "All Python/TypeScript parity, original18/stored22 historical scorecards and profile isolation",
+      "status": "PASS_SCOPED",
+      "evidence": "Full final parity groups pass in249 frontend. Original18 digest remains exact;all25 current ordinary AAR/cards remain readable,with25training+1RapidID heatmap. Original stored22 baseline remains separately preserved;new25 does not replace22."
     },
     {
       "id": "G03",
-      "requirement": "Officer authorization, Crew isolation, transfer",
+      "requirement": "Authorization/security, Crew lifecycle/history, immutable replay, populated Transfer/restore",
       "status": "PASS_SCOPED",
-      "evidence": "35 actual protected route/method pairs401; complete Crew lifecycle/transfer suites; natural422 atomic reject; three completed shared QA sessions have0individual skill_outcomes"
+      "evidence": "Final690 backend includes auth/role/security/replay/Transfer contracts. Actual same-source LIVE-ACCEPTANCE:35registered pairs\u00d74credential states=140HTTP401 negatives;private-CA HTTPS4positive/defaultreject;populated sixFusion/oneNote archive transfer/dedup/tamper/forwarding/restore exact,zero liveCrew capability import. Not physical trust or adversarial security certification."
     },
     {
       "id": "G04",
-      "requirement": "Actual browser advanced/recovery/responsive workflows",
-      "status": "PASS_SCOPED",
-      "evidence": "Actual Chrome Composer/Crew four widths; five enabledbutton contrasts9.94\u201311.86; three attributed Crew actions/completion/history; two actual Unit restarts with active role clients; stale row/reacquisition, callsign and fresh-page workflows; prior advanced AAR receipts remain dated supporting evidence"
+      "requirement": "Actual browser meaningful-state workflows and responsive/accessibility acceptance",
+      "status": "OPEN",
+      "evidence": "Complete Recorded Practice safe upload, Crew keyboard at100%, active training, authenticated Instructor, White Cell, completed AAR, Director/Analytics and remaining routes. Retain exact widths, independent critique and screenshots."
     },
     {
       "id": "G05",
-      "requirement": "Bounded performance and concurrency",
-      "status": "PASS_SCOPED",
-      "evidence": "Earlier bounded performance/concurrency measurements retain explicit date/scope; engine/reconstruction code unchanged from RC1; no new endurance or Linux performance certification"
+      "requirement": "Bounded current performance/reconstruction/lifecycle/recovery evidence",
+      "status": "OPEN",
+      "evidence": "Current Node/Python receipts are separate workloads. Final fixed-tier FPS, restart/outage ordering/Fusion recovery, bounded multi-client/cleanup and load measurements need exact final-source scope."
     },
     {
       "id": "G06",
-      "requirement": "Source/build/locks/manifest/macOS clone/HTTPS/backup",
-      "status": "PASS_SCOPED",
-      "evidence": "Current cleanclone0c6 lockednpmci,27byte-equal assets/3locks; current onlinebackup/newfile restore exact all tables; four privateCA/hostnameverified actualmacOS HTTPS requests; defaultCAreject; no trust-store change"
+      "requirement": "Matching clean clone, local assets, locks, source policy-v2 manifest and exact remote pin",
+      "status": "OPEN",
+      "evidence": "Final code must build from a clean clone with disclosed dependencies and byte-equal assets/locks. Current legacy evidence.json remains dated RC2 until a new final manifest is sealed."
     },
     {
       "id": "G07",
-      "requirement": "Independent software claim/audit review",
-      "status": "PASS_SCOPED",
-      "evidence": "Independent current0c6source/manifest/pin review PASS_SCOPED;12focusedchecksPASS; all93counts/27assets/3locks/5frozenhashes/protectedrefs/final617172logs/sourcefreshness independently verified. No weightedRC2score; stablefalse. See rc2/INDEPENDENT-FINAL.json"
+      "requirement": "Independent integrated engineering and actual rendered UI review;209-row closure",
+      "status": "OPEN",
+      "evidence": "Historical external89/100 is RC2. Resolve reproduced blockers and publish current evidence; no automatic weighted score or perfect-grade claim."
     },
     {
       "id": "G08",
-      "requirement": "Fresh separate-device Finale LAN/WAN/HTTPS trust/cold reload",
-      "status": "PENDING_BY_USER",
-      "evidence": "Fresh separate physical Finale LAN/WAN/HTTPS trust/coldreload PENDING_BY_USER; not satisfied by responsive widths or loopback"
+      "requirement": "Exact-candidate physical Android, separate-device LAN, trusted HTTPS/cached reload, WAN-off",
+      "status": "PENDING_PHYSICAL",
+      "evidence": "Viewport/loopback/private-CA requests do not pass device trust or physical WAN-off. Historical v1.0.1 LAN/reportedWAN and RC1 Linux evidence retain their original scope."
     },
     {
       "id": "G09",
-      "requirement": "Native Windows/Linux install/start/backup/restore",
-      "status": "PARTIAL_NATIVE_RC1; RC2_RETEST_PENDING",
-      "evidence": "Native ArchLinuxRC1 PASS_WITH_DEFECTS supplied; RC2Linux re-test PENDING; Windows native PENDING. No inferred current native/phone pass"
+      "requirement": "Exact-candidate native Linux/Windows install/start/restart/backup/restore",
+      "status": "PENDING_PHYSICAL",
+      "evidence": "Native RC1 ArchLinux passed with defects. Latest-candidate Linux retest and native Windows execution remain pending; no stable approval."
     }
   ],
-  "external_validation_finding_ids": [
-    "SC14",
-    "SC19",
-    "SC23",
-    "P1-03",
-    "P2-03",
-    "CH12",
-    "CH15",
-    "X08",
-    "X13"
+  "blocking_scope": "G01\u2013G07 must pass appropriate scoped software acceptance before a new immutable candidate. G08/G09 remain mandatory final stable gates. Explicit optional model deferrals and missing empirical data are disclosed limits, not invented software failures.",
+  "open_runnable_software_acceptance_items": [
+    "G04",
+    "G05",
+    "G06",
+    "G07"
   ],
-  "scientific_finding_ids": [
-    "SC16",
-    "SC17",
-    "CH08",
-    "F05",
-    "F07",
-    "X24",
-    "X26"
+  "historical_receipts": "rc2/pre-ultimate-acceptance/",
+  "protected_refs": [
+    "release/v1.0.1",
+    "v1.0.1",
+    "v1.1.0-rc.1",
+    "v1.1.0-rc.2"
   ],
-  "outside_software_mission_provenance_ids": [
-    "SC22",
-    "P2-01",
-    "X02",
-    "X17",
-    "X19"
-  ],
-  "remaining_partial_ids": [
-    "SC14",
-    "SC16",
-    "SC17",
-    "SC19",
-    "SC22",
-    "SC23",
-    "P1-03",
-    "P2-01",
-    "P2-03",
-    "CH08",
-    "CH12",
-    "CH15",
-    "F05",
-    "F07",
-    "X02",
-    "X07",
-    "X08",
-    "X09",
-    "X11",
-    "X12",
-    "X13",
-    "X17",
-    "X19",
-    "X20",
-    "X24",
-    "X26",
-    "X27",
-    "X29",
-    "X30",
-    "X31"
-  ],
-  "blocking_scope": "G08/G09block final stable approval, not the software-only RC freeze. Missing empirical calibration and human efficacy remain claim limitations. Media is outside current mission, not G10.",
-  "open_runnable_software_acceptance_items": [],
-  "release_candidate": "v1.1.0-rc.2",
-  "weighted_rc2_audit_score": null,
-  "independent_score_scope": "Historical RC1 only; fresh RC2 scoped remediation review has no weighted score"
+  "candidate_code_commit_note": "Tested runtime hash is frozen; exact code commit will be recorded after the integration owner commits and verifies the remote.",
+  "software_acceptance_still_open": true
 }
