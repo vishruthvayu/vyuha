@@ -289,3 +289,20 @@ test("scenario × skill shading is a CSS variable, and empty cells are marked ra
   assert.match(html, /<td data-empty="true">/);
   assert.doesNotMatch(html, /rgba\(/);
 });
+
+test("opening landscape ships locally with its provenance, and the art stays decorative", async () => {
+  const media = new URL("./premium/media/", import.meta.url);
+  const files = readdirSync(media);
+  assert.ok(files.includes("blue-hour-1600.webp"));
+  assert.ok(files.includes("blue-hour-960.webp"));
+  assert.match(
+    readFileSync(new URL("PROVENANCE.md", media), "utf8"),
+    /illustrative artwork, not photographs/,
+  );
+  const { renderToStaticMarkup } = await import("react-dom/server");
+  const { TrainingWelcome } = await import("./TrainingWelcome");
+  assert.match(
+    renderToStaticMarkup(<TrainingWelcome />),
+    /Illustrative landscape · not a sensor view/,
+  );
+});

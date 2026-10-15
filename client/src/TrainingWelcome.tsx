@@ -28,7 +28,7 @@ export function TrainingWelcome({
           </button>
         )}
         <p className="preparation-context">
-          Illustrated setting · no sensor contacts. Your frozen exercise loads
+          Illustrative landscape · not a sensor view. Your frozen exercise loads
           after preparation.
         </p>
       </div>

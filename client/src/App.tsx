@@ -48,6 +48,7 @@ import {
   syncMessage,
   type UnitIdentity,
 } from "./unit-state";
+import { PreparationTerrain } from "./PreparationTerrain";
 import { launchPreparedScenario } from "./Director";
 import DrillSetup from "./DrillSetup";
 import { DecisionWorkspace } from "./DecisionWorkspace";
@@ -1745,6 +1746,7 @@ export default function App({
                   )}
                   {phase === "ready" && !(mode === "adaptive" && !prepared) && (
                     <div className="ready-overlay">
+                      <PreparationTerrain />
                       <span className="ready-icon">
                         <Crosshair size={28} />
                       </span>
@@ -1779,7 +1781,10 @@ export default function App({
                               : "Prepare adaptive drill"
                             : "Begin exercise"}
                       </button>
-                      <small>Example sensor and effector values</small>
+                      <small>
+                        Illustrative landscape · example sensor and effector
+                        values
+                      </small>
                     </div>
                   )}
                   {phase === "paused" && (

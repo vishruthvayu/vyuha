@@ -104,6 +104,29 @@
   );
   animation: vy-fade-in var(--d-expressive) var(--ease-expressive-enter) both;
 }
+/* The same landscape sits behind the ready panel; the live sensor view
+   appears when the exercise begins. */
+.scene-container .ready-overlay:has(> .preparation-terrain) {
+  isolation: isolate;
+  background: none;
+}
+.scene-container .ready-overlay > .preparation-terrain {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.scene-container .ready-overlay:has(> .preparation-terrain)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    rgb(8 12 22 / 0.8) 0%,
+    rgb(8 12 22 / 0.42) 40%,
+    transparent 66%
+  );
+}
 .scene-container .ready-overlay .ready-icon {
   display: none;
 }
@@ -150,17 +173,62 @@
   width: 100%;
   height: 100%;
 }
+/* Opening landscape: the team's illustrative blue-hour concept (provenance in
+   premium/media/PROVENANCE.md). Cover + centre matches the SVG's slice. */
+.preparation-terrain {
+  background: #0b1a33 url("./media/blue-hour-1600.webp") center / cover
+    no-repeat;
+}
+.preparation-terrain > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.preparation-reticle path {
+  fill: none;
+  stroke: rgb(178 223 230 / 0.9);
+  stroke-width: 1.6;
+  stroke-linecap: square;
+}
+.preparation-reticle-pulse {
+  fill: none;
+  stroke: rgb(178 223 230 / 0.45);
+  stroke-width: 1.2;
+  transform-origin: 0 0;
+  animation: vy-reticle 3.2s var(--ease-productive) infinite;
+}
+@keyframes vy-reticle {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+@media (max-width: 760px) {
+  .preparation-terrain {
+    background-image: url("./media/blue-hour-960.webp");
+  }
+}
 .training-welcome::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(
-    90deg,
-    rgb(11 13 14 / 0.92) 0%,
-    rgb(11 13 14 / 0.62) 38%,
-    transparent 70%
-  );
+  background:
+    linear-gradient(
+      90deg,
+      rgb(8 12 22 / 0.72) 0%,
+      rgb(8 12 22 / 0.34) 40%,
+      transparent 64%
+    ),
+    linear-gradient(0deg, rgb(11 13 14 / 0.88) 0%, transparent 34%);
   pointer-events: none;
 }
 .preparation-story {
@@ -202,7 +270,7 @@
   padding: 0 var(--s-6);
   font-size: var(--t-15);
 }
-.preparation-story .preparation-context {
+.preparation-story > p.preparation-context {
   font-family: var(--font-mono);
   font-size: var(--t-11);
   letter-spacing: 0.03em;
@@ -407,12 +475,13 @@
       transparent 90%
     );
   }
-  .training-welcome::before {
+  .training-welcome::before,
+  .scene-container .ready-overlay:has(> .preparation-terrain)::before {
     background: linear-gradient(
       0deg,
-      rgb(11 13 14 / 0.96) 0%,
-      rgb(11 13 14 / 0.75) 60%,
-      rgb(11 13 14 / 0.2) 100%
+      rgb(11 13 14 / 0.94) 0%,
+      rgb(11 13 14 / 0.6) 55%,
+      rgb(8 12 22 / 0.1) 100%
     );
   }
   .preparation-story {
@@ -430,6 +499,10 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .preparation-reticle-pulse {
+    animation: none;
+    opacity: 0;
+  }
   .scene-container .ready-overlay,
   .preparation-story {
     animation: none;
