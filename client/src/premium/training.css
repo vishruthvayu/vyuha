@@ -1238,13 +1238,45 @@ p.recovery-banner::before {
   .sensor-workspace > .panel-header > div:first-child {
     display: none;
   }
+  /* One header row on phones: view tabs, then a compact preferences button.
+     The summary keeps its text for assistive technology; only the drawn
+     label is replaced by an original sliders glyph. */
   .sensor-workspace > .panel-header .observation-preferences {
     order: 2;
-    flex: 1 0 100%;
+    flex: none;
   }
   .sensor-workspace > .panel-header .observation-preferences > summary {
-    padding-left: var(--s-1);
-    min-height: 28px;
+    position: relative;
+    inline-size: 40px;
+    min-height: 36px;
+    padding: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-indent: 200%;
+    border: 1px solid var(--n-500);
+    border-radius: var(--r-sm);
+  }
+  .sensor-workspace > .panel-header .observation-preferences > summary::before {
+    position: absolute;
+    inset: 0;
+    inline-size: 18px;
+    block-size: 18px;
+    margin: auto;
+    border: 0;
+    transform: none;
+    background: var(--n-900);
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'><path d='M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12'/><circle cx='16' cy='6' r='2'/><circle cx='10' cy='12' r='2'/><circle cx='18' cy='18' r='2'/></svg>")
+      center / contain no-repeat;
+  }
+  .sensor-workspace > .panel-header .observation-preferences[open] > summary {
+    border-color: var(--cyan-500);
+  }
+  .sensor-workspace
+    > .panel-header
+    .observation-preferences[open]
+    > summary::before {
+    background: var(--cyan-500);
+    transform: none;
   }
   .sensor-workspace > .panel-header .segmented {
     order: 1;

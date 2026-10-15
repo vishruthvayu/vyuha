@@ -30,6 +30,7 @@
 /* Underline tabs: the selected view reads as a place, not a pressed button. */
 .advanced-page > .analytics-tabs {
   display: flex;
+  flex-wrap: nowrap;
   gap: var(--s-1);
   inline-size: 100%;
   margin: 0 0 var(--s-6);
