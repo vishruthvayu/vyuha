@@ -114,3 +114,49 @@ test("premium layer is imported after the legacy stylesheets", () => {
   );
   assert.equal(order.at(-1), "premium/premium.css");
 });
+
+test("preparation stage: illustration is decorative and carries no contacts or readings", async () => {
+  const { renderToStaticMarkup } = await import("react-dom/server");
+  const { PreparationTerrain } = await import("./PreparationTerrain");
+  const svg = renderToStaticMarkup(<PreparationTerrain />);
+  assert.match(svg, /aria-hidden="true"/);
+  assert.doesNotMatch(svg, /<text\b/, "no labels, ranges or contact IDs");
+});
+
+test("preparation stage: one primary action and an editorial headline", async () => {
+  const { renderToStaticMarkup } = await import("react-dom/server");
+  const { TrainingWelcome } = await import("./TrainingWelcome");
+  const html = renderToStaticMarkup(<TrainingWelcome onPrepare={() => {}} />);
+  assert.equal((html.match(/class="button primary"/g) ?? []).length, 1);
+  assert.match(html, /<h2 class="display">/);
+  assert.match(html, /<em>Own the decision\.<\/em>/);
+});
+
+test("drill settings are open by default so scenario choice is discoverable", async () => {
+  const { renderToStaticMarkup } = await import("react-dom/server");
+  const { default: DrillSetup } = await import("./DrillSetup");
+  const noop = () => {};
+  const html = renderToStaticMarkup(
+    <DrillSetup
+      mode="adaptive"
+      onMode={noop}
+      night={true}
+      onNight={noop}
+      seed={1}
+      onSeed={noop}
+      trainee="CHECK"
+      onTrainee={noop}
+      profile={null}
+      prepared={null}
+      onStart={noop}
+      busy={false}
+      library={[]}
+      libraryId=""
+      onLibrary={noop}
+    />,
+  );
+  assert.match(
+    html,
+    /<details class="evidence-disclosure drill-settings" open="">/,
+  );
+});

@@ -1,56 +1,85 @@
 /** Illustrated context only: no contacts, sensor reports, scored geometry or
- * calibration. The actual frozen environment appears after preparation. */
+ * calibration. The actual frozen environment appears after preparation.
+ * Original artwork: layered ridgelines at dusk, a schematic outpost and
+ * topographic contours, drawn in the VYUHA palette. */
 export function PreparationTerrain() {
+  const contours = Array.from({ length: 9 }, (_, i) => i);
   return (
     <svg
       className="preparation-terrain"
-      viewBox="0 0 1200 650"
+      viewBox="0 0 1600 900"
       preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"
     >
       <defs>
-        <linearGradient id="preparation-sky" x2="0" y2="1">
-          <stop stopColor="#415965" />
-          <stop offset="1" stopColor="#25383b" />
+        <linearGradient id="prep-sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#0d1214" />
+          <stop offset="0.55" stopColor="#1a2224" />
+          <stop offset="0.78" stopColor="#3a3328" />
+          <stop offset="1" stopColor="#1a1d1c" />
         </linearGradient>
-        <linearGradient id="preparation-ground" x2="0" y2="1">
-          <stop stopColor="#45574d" />
-          <stop offset="1" stopColor="#1b292c" />
+        <radialGradient id="prep-glow" cx="0.72" cy="0.62" r="0.45">
+          <stop offset="0" stopColor="#d8bf8d" stopOpacity="0.32" />
+          <stop offset="1" stopColor="#d8bf8d" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id="prep-ground" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#151a1b" />
+          <stop offset="1" stopColor="#0a0c0d" />
         </linearGradient>
+        <clipPath id="prep-ground-clip">
+          <path d="M0 640 C 300 610 520 600 800 612 S 1320 630 1600 606 V900 H0Z" />
+        </clipPath>
       </defs>
-      <path fill="url(#preparation-sky)" d="M0 0h1200v650H0z" />
+      <rect width="1600" height="900" fill="url(#prep-sky)" />
+      <rect width="1600" height="900" fill="url(#prep-glow)" />
       <path
-        fill="#334748"
-        d="M0 340 210 150 430 350 650 120 850 330 1040 160 1200 340V650H0z"
+        fill="#222a2b"
+        opacity="0.9"
+        d="M0 560 L120 520 260 548 380 500 520 532 640 470 780 520 900 488 1040 530 1180 478 1320 520 1460 490 1600 524 V900 H0Z"
       />
       <path
-        fill="url(#preparation-ground)"
-        d="m0 430 360-95 190 80 400-80 250 90v225H0z"
+        fill="#1a2021"
+        d="M0 600 L160 560 300 590 470 548 620 584 760 552 920 590 1080 556 1240 594 1400 560 1600 590 V900 H0Z"
       />
-      <path fill="#2b393e" d="m0 590 760-180 170 14L0 650z" />
-      <g fill="#465a5a" stroke="#70817b" strokeWidth="1">
-        <path d="m610 400 100-35 100 45-100 38z" />
-        <path fill="#293a3e" d="m610 400 100 48v95l-100-49z" />
-        <path fill="#344a4c" d="m710 448 100-38v84l-100 49z" />
-        <path d="m870 363 60-22 80 37-60 26z" />
-        <path fill="#283b3e" d="m870 363 80 41v75l-80-39z" />
-        <path fill="#3d5354" d="m950 404 60-26v65l-60 36z" />
+      <path
+        fill="url(#prep-ground)"
+        d="M0 640 C 300 610 520 600 800 612 S 1320 630 1600 606 V900 H0Z"
+      />
+      <g
+        clipPath="url(#prep-ground-clip)"
+        fill="none"
+        stroke="#d8bf8d"
+        strokeOpacity="0.07"
+        strokeWidth="1"
+      >
+        {contours.map((i) => (
+          <ellipse
+            key={i}
+            cx="1060"
+            cy="760"
+            rx={120 + i * 90}
+            ry={26 + i * 20}
+          />
+        ))}
       </g>
-      <g stroke="#9aab9d" fill="none" strokeWidth="2">
-        <path d="m868 411 18-106 16 99m-34-14h33m-29-24h25" />
-        <ellipse
-          cx="888"
-          cy="295"
-          rx="26"
-          ry="9"
-          transform="rotate(-15 888 295)"
-        />
+      <g fill="#0f1314" stroke="#5c6664" strokeOpacity="0.55" strokeWidth="1">
+        <path d="M980 628 h120 v-34 h-120Z" />
+        <path d="M1110 628 h70 v-52 h-70Z" />
+        <path d="M940 628 h36 v-22 h-36Z" />
+        <path d="M1190 628 h54 v-28 h-54Z" />
       </g>
-      <g fill="#223734">
-        <path d="m1075 310-25 88h50z" />
-        <path d="m1020 440-32 100h64z" />
-        <path d="m580 310-22 74h44z" />
+      <g stroke="#a9b0a8" strokeOpacity="0.55" strokeWidth="1.4" fill="none">
+        <path d="M1146 576 V520" />
+        <path d="M1132 534 h28" />
+        <circle cx="1146" cy="514" r="7" />
       </g>
+      <circle cx="1146" cy="514" r="2" fill="#d8bf8d" />
+      <path
+        d="M0 640 C 300 610 520 600 800 612 S 1320 630 1600 606"
+        fill="none"
+        stroke="#d8bf8d"
+        strokeOpacity="0.18"
+      />
     </svg>
   );
 }

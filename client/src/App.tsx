@@ -1420,6 +1420,10 @@ export default function App({
                 </div>
               </div>
               <div className="mission-facts">
+                <span className="mission-callsign">
+                  <small>CALLSIGN</small>
+                  {unitIdentity?.callsign ?? trainee}
+                </span>
                 <span>
                   <small>
                     {phase === "ready" && mode === "adaptive"

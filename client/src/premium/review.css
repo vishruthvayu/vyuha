@@ -1,0 +1,58 @@
+/* After-action review and analytics — interim rules carried over from the
+   retired spatial-training.css until the review workspace is rebuilt. */
+.aar-summary {
+  border: 0;
+  border-left: 3px solid var(--gold-500);
+  background: var(--n-150);
+  border-radius: 0 var(--r-lg) var(--r-lg) 0;
+  padding: var(--s-6);
+}
+.aar-summary h2 {
+  font-size: var(--t-24);
+  line-height: 1.25;
+}
+.score-circle {
+  border-width: 2px;
+}
+.aar-grid {
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  gap: var(--s-6);
+}
+.replay-panel {
+  position: sticky;
+  top: calc(var(--appbar-h) + 16px);
+  align-self: start;
+}
+.review-path {
+  gap: 14px;
+}
+.review-node-control {
+  border-radius: var(--r-sm);
+  border-top: 3px solid var(--gold-500);
+}
+.analytics-overview {
+  border-top: 1px solid var(--ink-hairline);
+}
+@media (max-width: 1100px) {
+  .aar-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .replay-panel {
+    position: static;
+  }
+}
+@media (max-width: 640px) {
+  .aar-summary {
+    padding: var(--s-5);
+  }
+  .aar-summary h2 {
+    font-size: var(--t-20);
+  }
+  .score-circle {
+    width: 90px;
+    height: 90px;
+  }
+  .review-path {
+    gap: 10px;
+  }
+}

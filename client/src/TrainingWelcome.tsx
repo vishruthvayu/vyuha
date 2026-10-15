@@ -9,10 +9,10 @@ export function TrainingWelcome({
       <PreparationTerrain />
       <div className="preparation-story">
         <p className="eyebrow">Adaptive decision training</p>
-        <h2>
+        <h2 className="display">
           Read the picture.
           <br />
-          Own the decision.
+          <em>Own the decision.</em>
         </h2>
         <p>
           Prepare an adaptive raid built around your recorded skill evidence.

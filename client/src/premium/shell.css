@@ -221,7 +221,11 @@
   padding-inline: var(--page-gutter);
 }
 .topbar {
-  border-bottom-color: var(--ink-hairline);
+  height: 44px;
+  padding: 0 var(--s-4);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--ink-hairline);
 }
 .breadcrumb {
   font-family: var(--font-mono);
@@ -264,4 +268,69 @@
     transition: none;
     animation: none;
   }
+}
+
+/* Capability tour: a quiet pill in the lower-right corner, out of the way of
+   the live workstation (hidden while an exercise is running). */
+.tour-launch {
+  position: fixed;
+  top: auto;
+  left: auto;
+  right: var(--s-5);
+  bottom: var(--s-5);
+  width: auto;
+  height: auto;
+  z-index: 35;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin: 0;
+  min-height: 36px;
+  padding: 0 var(--s-4);
+  border: 1px solid var(--n-500);
+  border-radius: var(--r-pill);
+  background: rgb(19 23 24 / 0.92);
+  color: var(--n-1000);
+  font-size: var(--t-13);
+  font-weight: 500;
+  box-shadow: var(--e-2);
+  transition:
+    background-color var(--d-fast) var(--ease-productive),
+    border-color var(--d-fast) var(--ease-productive);
+}
+.tour-launch:hover {
+  background: var(--n-300);
+  border-color: var(--n-600);
+}
+body:has(
+    .drill-page:is(
+        [data-phase="running"],
+        [data-phase="paused"],
+        [data-phase="restoring"]
+      )
+  )
+  .tour-launch {
+  display: none;
+}
+@media (max-width: 600px) {
+  .tour-launch {
+    display: none;
+  }
+}
+.tour-card {
+  right: var(--s-5);
+  bottom: calc(var(--s-5) + 48px);
+  padding: var(--s-5);
+}
+.tour-card button {
+  background: var(--n-250);
+  color: var(--n-1000);
+  border: 1px solid var(--n-500);
+  border-radius: var(--r-sm);
+  min-height: 34px;
+  padding: 0 var(--s-3);
+}
+.tour-highlight {
+  outline: 2px solid var(--cyan-500);
+  outline-offset: 4px;
 }

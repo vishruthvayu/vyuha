@@ -1021,9 +1021,29 @@
 }
 .recovery-banner,
 .assignment-banner {
-  border: 1px solid rgb(230 178 94 / 0.35);
-  background: var(--amber-wash);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-2) var(--s-2) var(--s-2) var(--s-4);
+  background: var(--n-150);
+  border: 1px solid var(--ink-hairline);
+  border-left: 2px solid var(--amber-500);
   border-radius: var(--r-md);
+  color: var(--n-1000);
+  font-size: var(--t-13);
+}
+.recovery-banner > span::before {
+  content: "Saved";
+  margin-right: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--t-11);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--amber-500);
+}
+p.recovery-banner::before {
+  content: none;
 }
 
 /* During an exercise the strip carries the title; the page heading stays for
@@ -1253,8 +1273,14 @@
   }
   .sensor-workspace > .panel-header {
     height: auto;
+    flex-direction: row;
     flex-wrap: wrap;
-    padding: var(--s-2) var(--s-3);
+    align-items: center;
+    gap: var(--s-1) var(--s-2);
+    padding: var(--s-2) var(--s-2);
+  }
+  .sensor-workspace > .panel-header .segmented {
+    width: auto;
   }
   .event-strip {
     flex-wrap: wrap;
@@ -1270,4 +1296,12 @@
   .decision-workspace .action-panel::before {
     transition: none;
   }
+}
+
+/* Training view: the mission strip and sync line replace the breadcrumb bar */
+.mission-number {
+  display: none;
+}
+main:has(> .drill-page) > .topbar {
+  display: none;
 }

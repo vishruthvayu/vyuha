@@ -1,0 +1,381 @@
+/*
+ * Preparation — the ready state of the Training ground.
+ * A full-width stage (the real 3D environment, or before an adaptive drill is
+ * prepared an original illustration) carries an editorial headline and one
+ * primary action. Drill settings and skill evidence sit as cards below.
+ * Contacts, evidence and the decision dock stay hidden until the exercise starts.
+ */
+.drill-page[data-phase="ready"] {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--s-8);
+}
+.drill-page[data-phase="ready"] > .page-heading {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.drill-page[data-phase="ready"] > .sync-status {
+  order: 0;
+}
+.drill-page[data-phase="ready"] > .mission-bar {
+  order: 1;
+}
+.drill-page[data-phase="ready"] > .assignment-banner,
+.drill-page[data-phase="ready"] > .recovery-banner {
+  order: 2;
+  margin-bottom: var(--s-3);
+}
+.drill-page[data-phase="ready"] > .training-grid {
+  order: 3;
+}
+.drill-page[data-phase="ready"] > .training-config {
+  order: 4;
+}
+.drill-page[data-phase="ready"] > .event-strip {
+  display: none;
+}
+.drill-page[data-phase="ready"] > p.footnote {
+  order: 6;
+}
+
+/* Strip: the callsign leads the facts */
+.mission-callsign {
+  color: var(--n-1000);
+}
+
+/* ---------- Stage ---------- */
+.drill-page[data-phase="ready"] .training-grid {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas: "view";
+}
+.drill-page[data-phase="ready"] .right-panels,
+.drill-page[data-phase="ready"] .decision-workspace,
+.drill-page[data-phase="ready"] .decision-evidence {
+  display: none;
+}
+.drill-page[data-phase="ready"] .sensor-workspace {
+  border-radius: var(--r-xl);
+}
+.drill-page[data-phase="ready"] .scene-container {
+  height: clamp(440px, calc(100dvh - 330px), 700px);
+}
+/* Unprepared adaptive entry: no view controls, the illustration is the stage */
+.drill-page.training-awaiting .sensor-workspace > .panel-header,
+.drill-page.training-awaiting .sensor-workspace > .scene-toolbar {
+  display: none;
+}
+.drill-page.training-awaiting .scene-container {
+  height: clamp(480px, calc(100dvh - 250px), 720px);
+}
+
+.drill-page.training-awaiting .scene-container > .crosshair,
+.drill-page.training-awaiting .scene-container > .camera-corners,
+.drill-page.training-awaiting .scene-container > .view-annotation,
+.drill-page[data-phase="ready"] .scene-container > .crosshair {
+  display: none;
+}
+
+/* Editorial panel over the stage (both welcome and ready overlay) */
+.scene-container .ready-overlay {
+  backdrop-filter: none;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--s-3);
+  padding: var(--s-10) clamp(24px, 5vw, 72px);
+  text-align: left;
+  background: linear-gradient(
+    90deg,
+    rgb(11 13 14 / 0.94) 0%,
+    rgb(11 13 14 / 0.78) 34%,
+    rgb(11 13 14 / 0.2) 64%,
+    transparent 80%
+  );
+  animation: vy-fade-in var(--d-expressive) var(--ease-expressive-enter) both;
+}
+.scene-container .ready-overlay .ready-icon {
+  display: none;
+}
+.scene-container .ready-overlay h2 {
+  margin: 0;
+  max-width: 11ch;
+  font-size: clamp(2.75rem, 3.6vw + 1rem, 4.75rem);
+  line-height: 0.95;
+}
+.scene-container .ready-overlay p {
+  margin: 0;
+  max-width: 38ch;
+  font-size: var(--t-16);
+  line-height: 1.55;
+}
+.scene-container .ready-overlay .button {
+  margin-top: var(--s-3);
+  min-height: 48px;
+  padding: 0 var(--s-6);
+  font-size: var(--t-15);
+}
+.scene-container .ready-overlay small {
+  font-family: var(--font-mono);
+  font-size: var(--t-11);
+  letter-spacing: 0.04em;
+  color: var(--n-800);
+}
+
+/* ---------- Adaptive welcome (illustration) ---------- */
+.training-welcome {
+  position: relative;
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-content: stretch;
+  align-items: stretch;
+  grid-template-rows: 1fr auto auto;
+  overflow: hidden;
+  background: var(--n-100);
+}
+.training-welcome .preparation-terrain {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.training-welcome::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgb(11 13 14 / 0.92) 0%,
+    rgb(11 13 14 / 0.62) 38%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+.preparation-story {
+  width: auto;
+  margin: 0;
+  justify-self: start;
+  text-align: left;
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-4);
+  max-width: 560px;
+  padding: var(--s-10) clamp(24px, 5vw, 72px) var(--s-4);
+  background: none;
+  border: 0;
+  animation: vy-rise-in var(--d-expressive) var(--ease-expressive-enter) both;
+}
+.preparation-story .eyebrow {
+  color: var(--gold-500);
+}
+.preparation-story h2 {
+  margin: 0;
+  font-size: clamp(3rem, 4vw + 1rem, 5.25rem);
+  line-height: 0.94;
+  color: var(--n-1000);
+}
+.preparation-story > p:not(.eyebrow) {
+  margin: 0;
+  max-width: 40ch;
+  font-size: var(--t-16);
+  color: var(--n-900);
+}
+.preparation-story .button {
+  margin-top: var(--s-2);
+  min-height: 48px;
+  padding: 0 var(--s-6);
+  font-size: var(--t-15);
+}
+.preparation-story .preparation-context {
+  font-family: var(--font-mono);
+  font-size: var(--t-11);
+  letter-spacing: 0.03em;
+  color: var(--n-800);
+  max-width: 46ch;
+}
+/* the loop, along the foot of the stage */
+.training-welcome .training-loop {
+  max-width: none;
+  width: auto;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin: 0 clamp(24px, 5vw, 72px);
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--ink-hairline-strong);
+  counter-reset: loop;
+}
+.training-welcome .training-loop li {
+  text-align: left;
+  align-items: start;
+  justify-items: start;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: var(--s-3);
+  padding: var(--s-4) var(--s-4) var(--s-4) 0;
+  background: none;
+  border: 0;
+  counter-increment: loop;
+}
+.training-welcome .training-loop li::before {
+  content: "0" counter(loop);
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 28px;
+  border-top: 1px solid var(--gold-500);
+  padding-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--gold-500);
+  opacity: 0;
+}
+.training-welcome .training-loop svg {
+  grid-row: 1 / span 2;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  color: var(--gold-500);
+}
+.training-welcome .training-loop strong {
+  font-size: var(--t-14);
+  font-weight: 560;
+  color: var(--n-1000);
+}
+.training-welcome .training-loop span {
+  font-size: var(--t-12);
+  color: var(--n-900);
+}
+.training-welcome > .footnote {
+  position: relative;
+  z-index: 2;
+  margin: 0 clamp(24px, 5vw, 72px) var(--s-4);
+  font-size: 11px;
+  color: var(--n-800);
+}
+
+/* ---------- Setup cards under the stage ---------- */
+.drill-page[data-phase="ready"] > .training-config {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--s-3);
+  margin: var(--s-4) 0 0;
+}
+.drill-page[data-phase="ready"] > .training-config > * {
+  margin: 0;
+}
+.drill-page[data-phase="ready"]
+  > .training-config
+  > :is(.footnote, .advanced-card, .director-selection) {
+  grid-column: 1 / -1;
+}
+.training-config > .evidence-disclosure {
+  background: var(--n-150);
+  border: 1px solid var(--ink-hairline);
+  border-radius: var(--r-lg);
+}
+.training-config > .evidence-disclosure > summary {
+  min-height: 48px;
+  padding: 0 var(--s-4);
+  font-size: var(--t-13);
+}
+.training-config > .evidence-disclosure[open] {
+  padding: 0 0 var(--s-4);
+}
+.training-config > .evidence-disclosure[open] > :not(summary) {
+  margin: 0 var(--s-4);
+}
+.drill-settings .setup-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--s-3) var(--s-4);
+  padding: 0;
+  background: none;
+  border: 0;
+}
+.drill-settings .setup-bar label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 150px;
+  font-size: var(--t-12);
+}
+.drill-settings .setup-bar small {
+  color: var(--n-800);
+}
+
+@media (max-width: 900px) {
+  .drill-page[data-phase="ready"] > .training-config {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .training-welcome .training-loop {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .drill-page[data-phase="ready"] .scene-container,
+  .drill-page.training-awaiting .scene-container {
+    height: auto;
+    min-height: 560px;
+  }
+  .scene-container .ready-overlay {
+    justify-content: flex-end;
+    padding: var(--s-6) var(--s-4);
+    background: linear-gradient(
+      0deg,
+      rgb(11 13 14 / 0.96) 0%,
+      rgb(11 13 14 / 0.8) 55%,
+      transparent 90%
+    );
+  }
+  .training-welcome::before {
+    background: linear-gradient(
+      0deg,
+      rgb(11 13 14 / 0.96) 0%,
+      rgb(11 13 14 / 0.75) 60%,
+      rgb(11 13 14 / 0.2) 100%
+    );
+  }
+  .preparation-story {
+    align-self: end;
+    padding: var(--s-8) var(--s-4) var(--s-2);
+  }
+  .training-welcome .training-loop {
+    margin: 0 var(--s-4);
+  }
+  .training-welcome .training-loop li {
+    padding: var(--s-3) var(--s-2) var(--s-3) 0;
+  }
+  .training-welcome > .footnote {
+    margin: 0 var(--s-4) var(--s-4);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scene-container .ready-overlay,
+  .preparation-story {
+    animation: none;
+  }
+}
