@@ -48,7 +48,7 @@ export default function Evaluation({ identity }: { identity?: UnitIdentity }) {
     }
   }
   return (
-    <main className="instructor-page advanced-page">
+    <main className="instructor-page advanced-page utility-page">
       <PageHeader
         eyebrow="CONSENT-BASED PILOT"
         title="Informal evaluation"

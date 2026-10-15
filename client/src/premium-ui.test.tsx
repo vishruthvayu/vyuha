@@ -258,3 +258,34 @@ test("crew scope scales to the farthest reported contact and marks shared stages
   // Elapsed share of the shared clock, capped at the exercise duration.
   assert.match(html, /inline-size:50(?:\.0)?%/);
 });
+
+test("scenario × skill shading is a CSS variable, and empty cells are marked rather than coloured", async () => {
+  const { renderToStaticMarkup } = await import("react-dom/server");
+  const { HeatmapTable } = await import("./SkillHeatmap");
+  type Data = Parameters<typeof HeatmapTable>[0]["data"];
+  const cell = (estimate: number | null, observations: number) => ({
+    successes: 0,
+    failures: 0,
+    observations,
+    estimate,
+    sessions: observations ? 1 : 0,
+  });
+  const data = {
+    note: "Persisted outcomes",
+    skills: ["detection", "classification_iff"],
+    rows: [
+      {
+        family: "DIRECT",
+        sessions: 1,
+        cells: {
+          detection: cell(0.625, 14),
+          classification_iff: cell(null, 0),
+        },
+      },
+    ],
+  } as unknown as Data;
+  const html = renderToStaticMarkup(<HeatmapTable data={data} />);
+  assert.match(html, /style="--estimate:0\.625"/);
+  assert.match(html, /<td data-empty="true">/);
+  assert.doesNotMatch(html, /rgba\(/);
+});
