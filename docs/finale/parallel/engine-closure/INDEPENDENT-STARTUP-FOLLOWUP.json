@@ -1,0 +1,77 @@
+{
+  "scope": "current uncommitted startup source, macOS socket-only",
+  "base_commit": "ad04797deee0ea74270c5cdc220d42957ac5e16c",
+  "source_files_sha256": {
+    "scripts/preflight.py": "72e5d487f3846e9efe825b31534d2ae0e1c837d82a619b30153d6eb77ac894c2",
+    "scripts/lan-addresses.py": "293c0325a22022515a50425a7d242fcad5c111403aa6a71864d15e0eb2f0646d",
+    "server/tests/test_rc2_startup.py": "e54491028ecfc532409f421416ef667049c5ff0de7b7b8c4cbf3cc21ba4b9616"
+  },
+  "listener_cases": [
+    {
+      "host_scope": "127.0.0.1",
+      "listener_reuse": false,
+      "preflight_exit": 1,
+      "detected": true
+    },
+    {
+      "host_scope": "127.0.0.1",
+      "listener_reuse": true,
+      "preflight_exit": 1,
+      "detected": true
+    },
+    {
+      "host_scope": "0.0.0.0",
+      "listener_reuse": false,
+      "preflight_exit": 1,
+      "detected": true
+    },
+    {
+      "host_scope": "0.0.0.0",
+      "listener_reuse": true,
+      "preflight_exit": 1,
+      "detected": true
+    },
+    {
+      "host_scope": "owned LAN IPv4",
+      "listener_reuse": false,
+      "preflight_exit": 1,
+      "detected": true
+    },
+    {
+      "host_scope": "owned LAN IPv4",
+      "listener_reuse": true,
+      "preflight_exit": 1,
+      "detected": true
+    }
+  ],
+  "coexistence_case": {
+    "specific_listener_present": true,
+    "preflight_exit": 1,
+    "preflight_detected": true,
+    "both_listening_if_manually_bypassing_preflight": true,
+    "LAN_connection_selected": "pre-existing specific listener"
+  },
+  "finding": "STARTUP-LAN-02",
+  "finding_status": "FIXED_IN_REVIEWED_WIP",
+  "independent_targeted_tests": {
+    "passed": 10,
+    "failed": 0,
+    "deselected": 3,
+    "seconds": 1.68,
+    "scope": "six occupied host/reuse cases, three sets of five active-HTTP immediate restart cycles, parser default/expanded address selection"
+  },
+  "source_review": {
+    "posix_reuse_preserved": true,
+    "SO_REUSEPORT_not_introduced": true,
+    "Windows_exclusive_option_preserved": true,
+    "default_LAN_URL_output_unchanged": true,
+    "UI_boundary_preserved": true,
+    "native_windows_linux_or_phone_tested": false,
+    "remaining_reproduced_blockers_in_scope": []
+  },
+  "limitations": [
+    "Read-only WIP review against file hashes, not committed full-source acceptance.",
+    "Owned-address enumeration is best effort; interface mutation and preflight-to-server bind races remain possible.",
+    "No native Windows/Linux/phone or production Uvicorn browser workflow was run by this reviewer."
+  ]
+}

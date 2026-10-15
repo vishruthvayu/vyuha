@@ -17,9 +17,15 @@ for label,value in [('certificate',cert),('private key',key)]:
  if value and (not Path(value).is_file() or not os.access(value,os.R_OK)):fail(f'The configured TLS {label} file is missing or unreadable.')
 try:
  # BSD/macOS can allow wildcard and specific-address listeners to coexist.
- # Probe localhost explicitly too, so localhost cannot reach another service
- # after Unit Mode reports a successful wildcard startup.
- for host in ('127.0.0.1','0.0.0.0'):
+ # Include owned addresses so localhost/LAN cannot reach another service after
+ # Unit Mode reports success. Enumeration reads local interfaces, never DNS.
+ hosts=['127.0.0.1']
+ if os.name=='posix':
+  import runpy
+  owned=runpy.run_path(str(Path(__file__).with_name('lan-addresses.py')))['addresses']
+  hosts.extend(owned(include_nonprivate=True))
+ hosts.append('0.0.0.0')
+ for host in dict.fromkeys(hosts):
   with socket.socket() as s:
    # Match asyncio/Uvicorn on POSIX: closed browser connections in TIME_WAIT
    # must not prevent a restart. Never use SO_REUSEPORT.
