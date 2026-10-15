@@ -205,3 +205,56 @@ test("instructor roster puts live sessions first and keeps history last", async 
   );
   assert.deepEqual(order, ["ACTIVE", "paused", "recoverable", "completed"]);
 });
+
+test("crew scope scales to the farthest reported contact and marks shared stages", async () => {
+  const { renderToStaticMarkup } = await import("react-dom/server");
+  const { CrewPicture } = await import("./Crew");
+  type State = Parameters<typeof CrewPicture>[0]["state"];
+  const contact = (
+    id: string,
+    x: number,
+    z: number,
+    designated: number | null,
+    classification: string | null,
+  ) => ({
+    id,
+    position: { x, z, altitude: 40 },
+    designated,
+    classification,
+    declared: null,
+  });
+  const state = {
+    id: "crew",
+    name: "Scope check",
+    role: "responder",
+    member_id: "m2",
+    roster: [{ id: "m2", callsign: "RESPONSE", role: "responder" }],
+    tick: 900,
+    duration: 60,
+    paused: false,
+    done: false,
+    status: "active",
+    contacts: [
+      contact("T1", 2600, 0, null, null),
+      contact("T2", 100, 200, 12, null),
+      contact("T3", -300, 50, 20, "quad"),
+    ],
+    attribution: [],
+    clock_note: "",
+    note: "",
+  } as unknown as State;
+  const html = renderToStaticMarkup(
+    <CrewPicture state={state} selected="T2" />,
+  );
+  // 2600 m × 1.15 needs the 3000 m scope; geometry stays in reported metres.
+  assert.match(html, /viewBox="-3000 -3000 6000 6000"/);
+  assert.match(html, /cx="2600"/);
+  assert.match(html, /data-stage="observed"[^>]*>(?:(?!data-stage).)*T1/);
+  assert.match(html, /data-stage="designated" data-selected="true"/);
+  assert.match(html, /data-stage="classified"/);
+  assert.match(html, /class="crew-role-banner" data-role="responder"/);
+  assert.match(html, /data-phase="running"/);
+  assert.match(html, /T\+30\.00s \/ 60s/);
+  // Elapsed share of the shared clock, capped at the exercise duration.
+  assert.match(html, /inline-size:50(?:\.0)?%/);
+});
