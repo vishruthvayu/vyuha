@@ -5,7 +5,7 @@
 | Branch | `feature/vyuha-premium-ui` |
 | Baseline | `7e3184b15ba38e8242efc6f80c446c9d861b032e` (shared baseline) |
 | Commits | 13 on top of the baseline (milestones 1–8, an accessibility pass and refinement passes), each tested, pushed and verified on the remote |
-| Scope | Frontend-owned files only. No change to `Scene.tsx`, rendering, `Radar.tsx` internals, `types.ts`, workers, simulation, scoring, `server/`, `scripts/`, `package.json` or the lockfile (`git diff 7e3184b HEAD` on those paths is empty) |
+| Scope | Frontend-owned files, plus one owner-approved `Dockerfile` line that fixes the CI Docker build (see INTEGRATION.md). No change to `Scene.tsx`, rendering, `Radar.tsx` internals, `types.ts`, workers, simulation, scoring, `server/`, `scripts/`, `package.json` or the lockfile (`git diff 7e3184b HEAD` on those paths is empty) |
 | Checks | 262/262 frontend tests, ESLint (0 warnings), Prettier, production build (32 local offline assets) |
 
 Companion documents: [DESIGN-DIRECTION.md](DESIGN-DIRECTION.md) (research, three rendered directions, selection), [PROGRESS.md](PROGRESS.md) (milestone log), [INTEGRATION.md](INTEGRATION.md) (engine interface, contract amendments, merge steps).
@@ -15,6 +15,8 @@ Companion documents: [DESIGN-DIRECTION.md](DESIGN-DIRECTION.md) (research, three
 Sources read directly: Vercel Geist (colour-step semantics, two-family type), Linear's redesign write-up (palette from base/accent/contrast, elevation over outlines), IBM Carbon motion (duration ladder and easing curves), Motion's accessibility guidance, Radix (behaviour checklist), Raycast (keyboard-first presentation), NASA Open MCT README (mission-operations framing). motion-primitives and dockview were evaluated and rejected. Apple HIG motion and kepler.gl were not readable as text, and galleries such as Awwwards or Mobbin were not studied, so nothing is claimed from them. Details and the A/B/C study renders are in DESIGN-DIRECTION.md.
 
 Selected direction: **Quiet Instrument**. B's instrument structure for every working screen, C's editorial serif for preparation, review and narrative pages, A's full-bleed framing for the 3D view without glass panels over it. The reference images were used as a bar to clear, not copied.
+
+**Update (15 Oct, after the first report).** The preparation stage and the training ready screen now open on a full-bleed blue-hour landscape: the team's own illustrative concept, with its mock-up text removed, labelled "Illustrative landscape", provenance in `client/src/premium/media/PROVENANCE.md`. A thin reticle marks the single drone in the sky.
 
 ## 2. Design system
 

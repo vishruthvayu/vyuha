@@ -9,10 +9,12 @@ Verified with `git diff 7e3184b HEAD --` on each path (no output):
 - `client/src/Scene.tsx`, `scene-presentation.ts`, `visibility.ts`, `presentation.ts`, `quality.ts`, `rendering/`
 - `client/src/Radar.tsx`, `observed-contacts.ts` (internals)
 - `client/src/types.ts`, simulation workers, sensors / motion / response / scoring / replay
-- `server/`, `scripts/`, deployment files
+- `server/`, `scripts/`, deployment files, except one line in `Dockerfile` (below)
 - `client/package.json`, `client/package-lock.json` (no dependency added; fonts are vendored files)
 
 The `Scene` props listed in the contract are passed exactly as before. `LazyScene.tsx` is untouched. No network origin, hosted font or remote asset is introduced (a test in `client/src/premium-ui.test.tsx` fails if a premium stylesheet references a remote URL).
+
+**One deployment change, approved by the repository owner (2026-10-15).** The `Check training build` workflow failed at `docker build` on every push since `038dd12`. The cause: `client/src/sensors-v2.ts` imports `../../server/config/sensors-v2.json`, but the Dockerfile's client stage copied only `client/`. The Dockerfile now also copies `server/config/` into that stage. Verified with a local `docker build` and a Node 22 / Python 3.12 run of the workflow's npm steps. The engine owner may prefer to carry the same line on their branch.
 
 ## 2. Frontend changes that sit next to engine components
 
