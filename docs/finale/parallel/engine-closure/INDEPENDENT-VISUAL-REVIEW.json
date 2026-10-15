@@ -1,0 +1,158 @@
+{
+  "review_date": "2026-10-15",
+  "scope": "Independent renderer-only screenshot/source review. Synthetic explicit reference fixture; not outer product UI, empirical sensor calibration, training efficacy or physical hardware acceptance.",
+  "source_commit": "4c42fc934a6896ae5b9d62eeb84ed74cc2746a76",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "1f476588e75f051357c0b04e3fe95e390e64026fbdfb069f79ce631f5b675fa4",
+  "owner_supplied_hash_matches": true,
+  "source_files": [
+    {
+      "path": "client/src/Scene.tsx",
+      "sha256": "209b23c07839ec6d1fe5fac13310921980d10852965441a8ea8d577046fa6b58"
+    },
+    {
+      "path": "client/src/ContactRenderer.tsx",
+      "sha256": "cd53266fe27c25957c94e689bce120982a380cb84c635f7f5047b9065ec829d1"
+    },
+    {
+      "path": "client/src/airframe-geometry.ts",
+      "sha256": "a2d56cf838e74c4d6e45bc4e625b27810bc5ada6c24461bec58305005535b1ab"
+    },
+    {
+      "path": "client/src/render-contacts.ts",
+      "sha256": "4c35a29b0e38f8a57e964beee92b42872c86134edaa20e82f968ff9b31978ba4"
+    },
+    {
+      "path": "client/src/visibility.ts",
+      "sha256": "13a1b61da401d109f80b6be48c4cdaf961012594b122d39b99c0393ad71ea397"
+    },
+    {
+      "path": "client/src/render-contacts.test.ts",
+      "sha256": "07410d939701762f3e01a3b0ba9de781529fa50a44125f10cdf402621c098d7d"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "/private/tmp/vyuha-renderer-after/quad-day.jpg",
+      "sha256": "3076c6cdad2dddbb3cfacca4dcb0f8a22671a31d612d3e612001888649e77894",
+      "pixels": [
+        1440,
+        1080
+      ]
+    },
+    {
+      "path": "/private/tmp/vyuha-renderer-after/fixed-wing-day.jpg",
+      "sha256": "9419e5d9f7f2858e7334a7e3bbeeb16424728b9d0333edc1262e0178b8295db2",
+      "pixels": [
+        1440,
+        1080
+      ]
+    },
+    {
+      "path": "/private/tmp/vyuha-renderer-after/bird-day.jpg",
+      "sha256": "83faa2e558c132760fb90edb87a7633a96a45d26e7859bf1d12533a8cdf7f2a1",
+      "pixels": [
+        1440,
+        1080
+      ]
+    },
+    {
+      "path": "/private/tmp/vyuha-renderer-after/bird-black-hot.jpg",
+      "sha256": "025c428e5daebf1f741da5f5e55a9983306b9c7ecd1891d006ef00d13c3cea5e",
+      "pixels": [
+        1440,
+        1080
+      ]
+    },
+    {
+      "path": "/private/tmp/vyuha-renderer-after/quad-high-follow.jpg",
+      "sha256": "e88d9fac72c2b63a7ea1da7e001a2782a8d4e67ab5ed5b9b8b47dec9411bb9a1",
+      "pixels": [
+        1440,
+        1080
+      ]
+    },
+    {
+      "path": "/private/tmp/vyuha-renderer-after/quad-low-night.jpg",
+      "sha256": "090b9dac661fd593d4efeb1f2eefb1f26eb2fcfbfe32fe3f47efb1e8e3c30243",
+      "pixels": [
+        1440,
+        1080
+      ]
+    },
+    {
+      "path": "/private/tmp/vyuha-renderer-after/reference-200-final.jpg",
+      "sha256": "8c1d66102761f4987f0057e48274c9fb81b39477b29e5a2c8f3083268aa19894",
+      "pixels": [
+        1440,
+        1080
+      ]
+    }
+  ],
+  "release_blockers_found": [],
+  "refinements": [
+    {
+      "id": "REN-VIS-01",
+      "priority": "P3",
+      "issue": "Modest contrast in low-quality styled-night reference scene.",
+      "disposition": "Visible quad in supplied image; optional display/user evaluation. Do not force brightness or change sensor visibility."
+    },
+    {
+      "id": "REN-VIS-02",
+      "priority": "P3",
+      "issue": "Front-on bird/fixed-wing contours can converge at distance or particular wing phase.",
+      "disposition": "Expected illustrative ambiguity. More oblique/moving views can show differences; never promise always-correct recognition."
+    },
+    {
+      "id": "REN-VIS-03",
+      "priority": "P3",
+      "issue": "Terrain/buildings remain schematic and repetitive.",
+      "disposition": "Optional artwork refinement; new scenery must not silently alter sensor occlusion or scoring."
+    }
+  ],
+  "resource_consistency": {
+    "warm": {
+      "drawCalls": 19,
+      "geometries": 19,
+      "observedContacts": 200,
+      "scope": "previous WebGL frame",
+      "textures": 4,
+      "triangles": 78556
+    },
+    "after_churn": {
+      "drawCalls": 19,
+      "frameIntervals": {
+        "maxMs": 28.09999999404056,
+        "medianMs": 16.699999995530845,
+        "p95Ms": 17.899999998508775,
+        "samples": 61
+      },
+      "geometries": 19,
+      "observedContacts": 200,
+      "scope": "previous WebGL frame",
+      "textures": 4,
+      "triangles": 78556
+    },
+    "same_counts": true,
+    "limitation": "Previous-frame resource counts and callback intervals, not GPU timings, process memory or a long-run leak certification."
+  },
+  "additional_capture": {
+    "path": "/private/tmp/vyuha-renderer-after/production-day-selected.jpg",
+    "pixels": [
+      1280,
+      720
+    ],
+    "sha256": "6d38893cf19c8f6d13da777ef0765ec3370384491d30b540bddfe35890de676f",
+    "scope": "Paused blurred scene. Selected-contact/paused UI proof only; cannot validate readable running production airframe."
+  },
+  "limits": [
+    "No browser driving, source edits or heavy tests for this review.",
+    "Static images cannot independently prove motion smoothness, pause/seek fidelity, gating, resource disposal or long-run performance.",
+    "Fixture is explicit reference truth with all contacts visible; not trainee sensing, measured detection/classification or sensor calibration.",
+    "Display zoom2/3 is a crop, not added sensor resolution.",
+    "Thermal and styled-night treatments are illustrative materials, not measured heat signatures.",
+    "200-contact overview is a reference stress scene, not200 individually identifiable operational contacts.",
+    "Preserved baseline uses different scenario/camera/zoom/sensor state; not a matched before/after experiment.",
+    "No whole-product acceptance, score or physical-platform pass."
+  ]
+}

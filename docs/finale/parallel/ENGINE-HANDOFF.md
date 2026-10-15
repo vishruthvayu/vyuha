@@ -45,3 +45,9 @@ No new renderer implementation exists at this handoff checkpoint. Current engine
 Frontend developer's reviewed branch SHA is required before integration. Do not repeatedly merge unfinished changes. When both branches are ready, create `integration/vyuha-ultimate-finale`, merge normally and rerun complete acceptance after the last edit. G04–G07 remain open for broader browser/rendered, performance, clean-clone, final review and exact source/evidence/remote sealing. Optional advanced-model deferrals remain explicit; calibration and human efficacy are unproven.
 
 Exact-candidate Windows, Linux, Android, separate-device LAN HTTPS/trust/cached reload and physical WAN-off remain pending. No new RC or stable tag was created; preserve all prior tags. No PPT, demo, Canva or submission media work.
+
+## Verified renderer milestone (2026-10-15)
+
+Engine source hash `1f476588e75f051357c0b04e3fe95e390e64026fbdfb069f79ce631f5b675fa4` passed **690 backend /268 frontend**, zero failures, all included parity, lint, formatting and build28/cache`d5bc57078750`. [Engine implementation](engine-closure/IMPLEMENTATION.md) and [regression receipt](engine-closure/REGRESSION.json) identify changed modules and exact evidence. New procedural instancing, locally generated surfaces/sky, observation-constrained smoothing, reticle/camera options, bounded diagnostics and radar uncertainty/failure guards are implemented. This supersedes the earlier statement that renderer work had not begun.
+
+The outer UI remains frontend-owned and unmodified on this branch. Optional zoom/reducedMotion/metrics props are additive and documented; the frontend developer may choose suitable controls. UI integration still requires their ready exact SHA, review and complete merged-source verification. Clone/performance follow-up will be recorded against the pushed milestone. No release or protected tag changes.

@@ -8,12 +8,7 @@ import {
   type CameraPreset,
   type ThermalPalette,
 } from "./presentation";
-import {
-  ObservationVisibility,
-  opticalRenderShape,
-  type VisibleTrack,
-  type Vision,
-} from "./visibility";
+import { ObservationVisibility, type Vision } from "./visibility";
 import {
   SENSOR_VERSION,
   type TerrainBox,
@@ -30,7 +25,23 @@ import {
   sceneReviewEnvelope,
   type TerrainPresentationBox,
 } from "./scene-presentation";
+import { ContactRenderer } from "./ContactRenderer";
+import {
+  opticalFov,
+  renderContacts,
+  RenderFrameMeter,
+} from "./render-contacts";
+import { createSkyTexture, createSurfaceTexture } from "./surface-textures";
 export type { Vision } from "./visibility";
+export type RendererMetrics = {
+  scope: "previous WebGL frame";
+  drawCalls: number;
+  triangles: number;
+  geometries: number;
+  textures: number;
+  observedContacts: number;
+  frameIntervals: ReturnType<RenderFrameMeter["frameIntervals"]>;
+};
 class Boundary extends Component<
   { children: ReactNode; fallback: ReactNode },
   { failed: boolean }
@@ -52,6 +63,9 @@ function CameraRig({
   finale = false,
   sensorOrigin,
   referenceTruth = false,
+  opticalZoom = 1,
+  reducedMotion = false,
+  onMetrics,
 }: {
   target: Track | undefined;
   onFps: (n: number) => void;
@@ -61,10 +75,12 @@ function CameraRig({
   finale?: boolean;
   sensorOrigin?: SensorPosition;
   referenceTruth?: boolean;
+  opticalZoom?: number;
+  reducedMotion?: boolean;
+  onMetrics?: (metrics: RendererMetrics) => void;
 }) {
-  const { camera, size } = useThree();
-  const frames = useRef(0);
-  const then = useRef(0);
+  const { camera, size, gl } = useThree();
+  const frameMeter = useRef(new RenderFrameMeter());
   const aim = useRef(new THREE.Vector3(40, 18, 150));
   const desiredPosition = useMemo(() => new THREE.Vector3(), []);
   const desiredAim = useMemo(() => new THREE.Vector3(), []);
@@ -82,18 +98,30 @@ function CameraRig({
     [preset, tracks, selected, referenceTruth, size.width, size.height],
   );
   useFrame(({ clock }, dt) => {
+    if (camera instanceof THREE.PerspectiveCamera) {
+      const desiredFov = opticalFov(preset ? 52 : 38, opticalZoom);
+      if (Math.abs(camera.fov - desiredFov) > 0.001) {
+        camera.fov = reducedMotion
+          ? desiredFov
+          : THREE.MathUtils.damp(camera.fov, desiredFov, 8, Math.min(dt, 0.25));
+        camera.updateProjectionMatrix();
+      }
+    }
     if (preset && pose) {
       camera.position.lerp(
         desiredPosition.set(...pose.position),
-        1 - Math.exp(-dt * 5),
+        reducedMotion ? 1 : 1 - Math.exp(-dt * 5),
       );
-      aim.current.lerp(desiredAim.set(...pose.aim), 1 - Math.exp(-dt * 5));
+      aim.current.lerp(
+        desiredAim.set(...pose.aim),
+        reducedMotion ? 1 : 1 - Math.exp(-dt * 5),
+      );
     } else {
       const next =
         target && target.active
           ? desiredAim.set(target.x, target.altitude, target.z)
           : desiredAim.set(finale ? 0 : 40, 18, finale ? 1500 : 150);
-      aim.current.lerp(next, 1 - Math.exp(-dt * 7.67));
+      aim.current.lerp(next, reducedMotion ? 1 : 1 - Math.exp(-dt * 7.67));
       camera.position.set(
         sensorOrigin?.x ?? 0,
         sensorOrigin?.altitude ?? (finale ? 2 : 14),
@@ -101,123 +129,21 @@ function CameraRig({
       );
     }
     camera.lookAt(aim.current);
-    frames.current++;
-    const time = clock.elapsedTime;
-    if (time - then.current >= 1) {
-      onFps(Math.round(frames.current / (time - then.current)));
-      frames.current = 0;
-      then.current = time;
+    const fps = frameMeter.current.sample(clock.elapsedTime);
+    if (fps !== null) {
+      onFps(fps);
+      onMetrics?.({
+        scope: "previous WebGL frame",
+        drawCalls: gl.info.render.calls,
+        triangles: gl.info.render.triangles,
+        geometries: gl.info.memory.geometries,
+        textures: gl.info.memory.textures,
+        observedContacts: tracks.length,
+        frameIntervals: frameMeter.current.frameIntervals(),
+      });
     }
   });
   return null;
-}
-function Aircraft({
-  track,
-  vision,
-  selected,
-  palette = "white",
-}: {
-  track: VisibleTrack;
-  vision: Vision;
-  selected: boolean;
-  palette?: ThermalPalette;
-}) {
-  const group = useRef<THREE.Group>(null);
-  const target = useMemo(() => new THREE.Vector3(), []);
-  const shape = opticalRenderShape(track);
-  useFrame(({ clock }, dt) => {
-    if (!group.current) return;
-    target.set(track.x, track.altitude, track.z);
-    group.current.position.lerp(target, 1 - Math.exp(-dt * 21.4));
-    group.current.rotation.y = (-track.bearing * Math.PI) / 180;
-    if (shape === "bird")
-      group.current.rotation.z = Math.sin(clock.elapsedTime * 9) * 0.13;
-  });
-  const hot = vision === "thermal";
-  const color = hot
-    ? palettes[palette].hot
-    : selected
-      ? "#8ed6ff"
-      : vision === "night"
-        ? "#b9ff9b"
-        : "#bbc6ce";
-  return (
-    <group ref={group} position={[track.x, track.altitude, track.z]}>
-      {shape === "unresolved" ? (
-        <mesh>
-          <sphereGeometry args={[0.7, 6, 4]} />
-          <meshBasicMaterial color={color} />
-        </mesh>
-      ) : shape === "bird" ? (
-        <>
-          <mesh>
-            <sphereGeometry args={[0.65, 8, 6]} />
-            <meshBasicMaterial color={color} />
-          </mesh>
-          <mesh rotation={[0, 0, 0.12]}>
-            <boxGeometry args={[4, 0.12, 0.5]} />
-            <meshBasicMaterial color={color} />
-          </mesh>
-        </>
-      ) : shape === "fixed_wing" ? (
-        <>
-          <mesh>
-            <boxGeometry args={[0.8, 0.65, 4]} />
-            <meshStandardMaterial
-              color={color}
-              emissive={hot ? color : "#000"}
-              emissiveIntensity={0.7}
-            />
-          </mesh>
-          <mesh>
-            <boxGeometry args={[7, 0.15, 1.4]} />
-            <meshStandardMaterial color={color} />
-          </mesh>
-          <mesh position={[0, 0.5, 1.5]}>
-            <boxGeometry args={[2, 0.7, 0.4]} />
-            <meshStandardMaterial color={color} />
-          </mesh>
-        </>
-      ) : (
-        <>
-          <mesh>
-            <boxGeometry args={[1.3, 0.55, 1.3]} />
-            <meshStandardMaterial
-              color={color}
-              emissive={hot ? color : "#000"}
-              emissiveIntensity={1}
-            />
-          </mesh>
-          {[-1, 1].flatMap((x) =>
-            [-1, 1].map((z) => (
-              <group key={`${x}${z}`} position={[x, 0.2, z]}>
-                <mesh rotation={[-Math.PI / 2, 0, 0]}>
-                  <circleGeometry args={[0.7, 12]} />
-                  <meshBasicMaterial color={color} side={THREE.DoubleSide} />
-                </mesh>
-                <mesh>
-                  <boxGeometry args={[0.25, 0.25, 1.4]} />
-                  <meshStandardMaterial color={color} />
-                </mesh>
-              </group>
-            )),
-          )}
-        </>
-      )}
-      {selected && (
-        <mesh>
-          <sphereGeometry args={[4, 12, 8]} />
-          <meshBasicMaterial
-            color="#8ed6ff"
-            wireframe
-            transparent
-            depthTest={false}
-            opacity={0.35}
-          />
-        </mesh>
-      )}
-    </group>
-  );
 }
 function TerrainStructure({
   box,
@@ -226,6 +152,8 @@ function TerrainStructure({
   rural,
   palette,
   material,
+  texture,
+  shadows = false,
 }: {
   box: TerrainPresentationBox;
   index: number;
@@ -233,6 +161,8 @@ function TerrainStructure({
   rural: boolean;
   palette: ThermalPalette;
   material: ReturnType<typeof terrainMaterialState>;
+  texture: THREE.Texture;
+  shadows?: boolean;
 }) {
   const colors = useMemo(
     () =>
@@ -242,13 +172,18 @@ function TerrainStructure({
     [index, vision, rural, palette],
   );
   return (
-    <mesh position={[box.x, box.h / 2, box.z]}>
+    <mesh
+      position={[box.x, box.h / 2, box.z]}
+      castShadow={shadows}
+      receiveShadow={shadows}
+    >
       <boxGeometry args={[box.w, box.h, box.d]}>
         <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </boxGeometry>
       <meshStandardMaterial
         color="#ffffff"
         vertexColors
+        map={vision === "thermal" ? undefined : texture}
         roughness={0.95}
         metalness={0}
         {...material}
@@ -270,6 +205,10 @@ function World({
   terrainBoxes,
   sensorOrigin,
   referenceTruth = false,
+  contextKey,
+  opticalZoom,
+  reducedMotion,
+  onMetrics,
 }: {
   state: Snapshot;
   vision: Vision;
@@ -284,6 +223,10 @@ function World({
   terrainBoxes?: TerrainBox[];
   sensorOrigin?: SensorPosition;
   referenceTruth?: boolean;
+  contextKey: string;
+  opticalZoom?: number;
+  reducedMotion?: boolean;
+  onMetrics?: (metrics: RendererMetrics) => void;
 }) {
   const { camera, size } = useThree();
   const envelope = sceneReviewEnvelope(
@@ -312,6 +255,24 @@ function World({
   const bg = hot ? palettes[palette].background : night ? "#07191d" : "#91b2c2";
   const rural = terrain === "rural_forward_base";
   const detail = quality === "high" ? 32 : quality === "medium" ? 20 : 10;
+  const contacts = useMemo(() => renderContacts(state.tracks), [state.tracks]);
+  const sky = useMemo(
+    () => createSkyTexture(vision, rural, palette),
+    [vision, rural, palette],
+  );
+  const groundTexture = useMemo(() => {
+    const texture = createSurfaceTexture(quality, "ground");
+    texture.repeat.set(finale ? 48 : 6, finale ? 48 : 6);
+    return texture;
+  }, [quality, finale]);
+  const facadeTexture = useMemo(
+    () => createSurfaceTexture(quality, "facade"),
+    [quality],
+  );
+  useEffect(() => () => sky.dispose(), [sky]);
+  useEffect(() => () => groundTexture.dispose(), [groundTexture]);
+  useEffect(() => () => facadeTexture.dispose(), [facadeTexture]);
+  const shadows = quality === "high" && vision === "day";
   const buildings = useMemo(
     () =>
       finale
@@ -338,9 +299,9 @@ function World({
   );
   return (
     <>
-      <color attach="background" args={[bg]} />
+      <primitive attach="background" object={sky} />
       <fog attach="fog" args={[bg, envelope.fogNear, envelope.fogFar]} />
-      <ambientLight intensity={hot ? 1.4 : night ? 0.55 : 1.2} />
+      <ambientLight intensity={hot ? 1.4 : night ? 0.55 : 0.7} />
       <hemisphereLight
         args={[
           night ? "#31535a" : "#d4e2e4",
@@ -350,10 +311,22 @@ function World({
       />
       <directionalLight
         position={[40, 100, -40]}
-        intensity={hot ? 0.2 : night ? 0.6 : 1.8}
+        intensity={hot ? 0.2 : night ? 0.6 : 2.1}
+        castShadow={shadows}
+        shadow-mapSize={[1024, 1024]}
+        shadow-camera-left={-300}
+        shadow-camera-right={300}
+        shadow-camera-top={300}
+        shadow-camera-bottom={-300}
+        shadow-camera-far={600}
+        shadow-bias={-0.0004}
         color={hot ? "#ffffff" : night ? "#c1dadb" : "#fff4db"}
       />
       <CameraRig
+        key={contextKey}
+        opticalZoom={opticalZoom}
+        reducedMotion={reducedMotion}
+        onMetrics={onMetrics}
         target={state.tracks.find((t) => t.id === selected)}
         onFps={onFps}
         preset={cameraPreset}
@@ -363,10 +336,15 @@ function World({
         sensorOrigin={sensorOrigin}
         referenceTruth={referenceTruth}
       />
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.1, 150]}>
+      <mesh
+        rotation={[-Math.PI / 2, 0, 0]}
+        position={[0, -0.1, 150]}
+        receiveShadow={shadows}
+      >
         <planeGeometry args={finale ? [12000, 12000] : [700, 700]} />
         <meshStandardMaterial
           color={sceneGroundColor(vision, rural, palette)}
+          map={hot ? undefined : groundTexture}
           roughness={1}
           metalness={0}
         />
@@ -438,25 +416,28 @@ function World({
           rural={rural}
           palette={palette}
           material={material}
+          texture={facadeTexture}
+          shadows={shadows}
         />
       ))}
       <mesh position={[0, 2, -4]}>
         <boxGeometry args={[10, 4, 6]} />
         <meshStandardMaterial color={hot ? "#94a397" : "#5f705f"} />
       </mesh>
-      {state.tracks.map((t) => (
-        <Aircraft
-          key={t.id}
-          track={t}
-          vision={vision}
-          selected={t.id === selected}
-          palette={palette}
-        />
-      ))}
+      <ContactRenderer
+        contacts={contacts}
+        tick={state.tick}
+        contextKey={contextKey}
+        vision={vision}
+        selected={selected}
+        palette={palette}
+        quality={quality}
+        reducedMotion={reducedMotion}
+      />
     </>
   );
 }
-export function Scene(props: {
+export type SceneProps = {
   state: Snapshot;
   vision: Vision;
   selected: string | null;
@@ -473,7 +454,12 @@ export function Scene(props: {
   terrainBoxes?: TerrainBox[];
   sensorOrigin?: SensorPosition;
   engineVersion?: string;
-}) {
+  /** Display crop only; does not change sensor range, resolution or origin. */
+  opticalZoom?: number;
+  reducedMotion?: boolean;
+  onMetrics?: (metrics: RendererMetrics) => void;
+};
+export function Scene(props: SceneProps) {
   const visibility = useRef(new ObservationVisibility());
   const tracks = visibility.current.tracks(props.state, props.vision, {
     key: props.visibilityKey ?? "legacy-scene",
@@ -494,6 +480,7 @@ export function Scene(props: {
     <Boundary fallback={props.fallback}>
       <Canvas
         dpr={pixelRatio[props.quality ?? "medium"]}
+        shadows={props.quality === "high" && props.vision === "day"}
         camera={{
           position: props.cameraPreset
             ? [0, 240, 144]
@@ -506,7 +493,10 @@ export function Scene(props: {
           near: 0.1,
           far: finale ? 20000 : props.cameraPreset ? 1200 : 800,
         }}
-        gl={{ antialias: true, powerPreference: "high-performance" }}
+        gl={{
+          antialias: props.quality !== "low",
+          powerPreference: "high-performance",
+        }}
       >
         <World
           {...props}
@@ -514,6 +504,7 @@ export function Scene(props: {
           selected={selected}
           finale={finale}
           referenceTruth={props.groundTruth === true}
+          contextKey={`${props.visibilityKey ?? "legacy-scene"}:${props.vision}:${props.groundTruth === true}`}
         />
       </Canvas>
       {props.groundTruth === true && (
