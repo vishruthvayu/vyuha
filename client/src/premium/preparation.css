@@ -327,6 +327,62 @@
   color: var(--n-800);
 }
 
+/* Director selection: one flat card inside the disclosure, not nested panels */
+.director-selection .director-card {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+.director-selection .director-card > .panel-header {
+  min-height: 0;
+  padding: var(--s-2) 0 var(--s-3);
+  border: 0;
+  background: none;
+}
+.director-card > h3 {
+  margin: var(--s-5) 0 var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--t-11);
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--n-800);
+}
+.director-card > p:not(.footnote) {
+  margin: 0;
+  max-width: 82ch;
+  font-size: var(--t-14);
+  line-height: 1.6;
+  color: var(--n-900);
+}
+.director-card > ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.director-card > ul > li {
+  padding: 4px 10px;
+  border: 1px solid var(--n-500);
+  border-radius: var(--r-pill);
+  font-size: var(--t-12);
+  color: var(--n-1000);
+}
+.director-card > .footnote {
+  margin: var(--s-4) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--t-11);
+  color: var(--n-800);
+  overflow-wrap: anywhere;
+}
+.director-card > .button.primary {
+  margin-top: var(--s-4);
+}
+
 @media (max-width: 900px) {
   .drill-page[data-phase="ready"] > .training-config {
     grid-template-columns: minmax(0, 1fr);

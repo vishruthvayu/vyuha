@@ -573,6 +573,13 @@ export default function ExerciseStudio() {
           </p>
         )}
         <h3>Assign to connected, idle trainees</h3>
+        {!roster.some((r) => r.connected) && (
+          <p className="footnote">
+            No trainee in this unit is connected right now. Trainees appear here
+            while their training ground is open and reporting presence to this
+            server.
+          </p>
+        )}
         <div className="roster-options">
           {roster
             .filter((r) => r.connected)
