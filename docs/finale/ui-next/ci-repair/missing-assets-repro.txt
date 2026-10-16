@@ -1,0 +1,88 @@
+......FFF....                                                            [100%]
+=================================== FAILURES ===================================
+____ test_repeated_immediate_restart_after_active_http_connections[0.0.0.0] ____
+
+tmp_path = PosixPath('/var/tmp/pytest-of-naveen/pytest-506/test_repeated_immediate_restar0')
+host = '0.0.0.0'
+
+    @pytest.mark.skipif(os.name!='posix',reason='POSIX asyncio/Uvicorn reuse contract; nativeWindows remains separate')
+    @pytest.mark.parametrize('host',['0.0.0.0','127.0.0.1','owned'])
+    def test_repeated_immediate_restart_after_active_http_connections(tmp_path,host):
+     host=resolved_host(host)
+     port=0
+     for _ in range(5):
+      with socket.socket() as listener:
+       listener.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1);listener.bind((host,port));port=listener.getsockname()[1];listener.listen(1)
+       client=socket.create_connection(('127.0.0.1' if host=='0.0.0.0' else host,port),timeout=2)
+       connection,_=listener.accept()
+       client.sendall(b'GET / HTTP/1.0\r\n\r\n');assert connection.recv(4096)
+       connection.sendall(b'HTTP/1.0 200 OK\r\nContent-Length: 2\r\n\r\nOK');connection.shutdown(socket.SHUT_WR)
+       while client.recv(4096):pass
+       client.close();connection.close()
+>     result=probe(port,tmp_path);assert result.returncode==0,result.stderr
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E     AssertionError: VYUHA startup: Frontend assets missing. Run scripts/start-local.sh once with internet, or cd client && npm run build.
+E       
+E     assert 1 == 0
+E      +  where 1 = CompletedProcess(args=['/home/naveen/Vyuha-final-hardening/.venv/bin/python', '/var/tmp/vyuha-ci-fix/repro/scripts/pre...UHA startup: Frontend assets missing. Run scripts/start-local.sh once with internet, or cd client && npm run build.\n').returncode
+
+server/tests/test_rc2_startup.py:41: AssertionError
+___ test_repeated_immediate_restart_after_active_http_connections[127.0.0.1] ___
+
+tmp_path = PosixPath('/var/tmp/pytest-of-naveen/pytest-506/test_repeated_immediate_restar1')
+host = '127.0.0.1'
+
+    @pytest.mark.skipif(os.name!='posix',reason='POSIX asyncio/Uvicorn reuse contract; nativeWindows remains separate')
+    @pytest.mark.parametrize('host',['0.0.0.0','127.0.0.1','owned'])
+    def test_repeated_immediate_restart_after_active_http_connections(tmp_path,host):
+     host=resolved_host(host)
+     port=0
+     for _ in range(5):
+      with socket.socket() as listener:
+       listener.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1);listener.bind((host,port));port=listener.getsockname()[1];listener.listen(1)
+       client=socket.create_connection(('127.0.0.1' if host=='0.0.0.0' else host,port),timeout=2)
+       connection,_=listener.accept()
+       client.sendall(b'GET / HTTP/1.0\r\n\r\n');assert connection.recv(4096)
+       connection.sendall(b'HTTP/1.0 200 OK\r\nContent-Length: 2\r\n\r\nOK');connection.shutdown(socket.SHUT_WR)
+       while client.recv(4096):pass
+       client.close();connection.close()
+>     result=probe(port,tmp_path);assert result.returncode==0,result.stderr
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E     AssertionError: VYUHA startup: Frontend assets missing. Run scripts/start-local.sh once with internet, or cd client && npm run build.
+E       
+E     assert 1 == 0
+E      +  where 1 = CompletedProcess(args=['/home/naveen/Vyuha-final-hardening/.venv/bin/python', '/var/tmp/vyuha-ci-fix/repro/scripts/pre...UHA startup: Frontend assets missing. Run scripts/start-local.sh once with internet, or cd client && npm run build.\n').returncode
+
+server/tests/test_rc2_startup.py:41: AssertionError
+_____ test_repeated_immediate_restart_after_active_http_connections[owned] _____
+
+tmp_path = PosixPath('/var/tmp/pytest-of-naveen/pytest-506/test_repeated_immediate_restar2')
+host = '172.17.0.1'
+
+    @pytest.mark.skipif(os.name!='posix',reason='POSIX asyncio/Uvicorn reuse contract; nativeWindows remains separate')
+    @pytest.mark.parametrize('host',['0.0.0.0','127.0.0.1','owned'])
+    def test_repeated_immediate_restart_after_active_http_connections(tmp_path,host):
+     host=resolved_host(host)
+     port=0
+     for _ in range(5):
+      with socket.socket() as listener:
+       listener.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1);listener.bind((host,port));port=listener.getsockname()[1];listener.listen(1)
+       client=socket.create_connection(('127.0.0.1' if host=='0.0.0.0' else host,port),timeout=2)
+       connection,_=listener.accept()
+       client.sendall(b'GET / HTTP/1.0\r\n\r\n');assert connection.recv(4096)
+       connection.sendall(b'HTTP/1.0 200 OK\r\nContent-Length: 2\r\n\r\nOK');connection.shutdown(socket.SHUT_WR)
+       while client.recv(4096):pass
+       client.close();connection.close()
+>     result=probe(port,tmp_path);assert result.returncode==0,result.stderr
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E     AssertionError: VYUHA startup: Frontend assets missing. Run scripts/start-local.sh once with internet, or cd client && npm run build.
+E       
+E     assert 1 == 0
+E      +  where 1 = CompletedProcess(args=['/home/naveen/Vyuha-final-hardening/.venv/bin/python', '/var/tmp/vyuha-ci-fix/repro/scripts/pre...UHA startup: Frontend assets missing. Run scripts/start-local.sh once with internet, or cd client && npm run build.\n').returncode
+
+server/tests/test_rc2_startup.py:41: AssertionError
+=========================== short test summary info ============================
+FAILED server/tests/test_rc2_startup.py::test_repeated_immediate_restart_after_active_http_connections[0.0.0.0]
+FAILED server/tests/test_rc2_startup.py::test_repeated_immediate_restart_after_active_http_connections[127.0.0.1]
+FAILED server/tests/test_rc2_startup.py::test_repeated_immediate_restart_after_active_http_connections[owned]
+3 failed, 10 passed in 0.59s

@@ -62,3 +62,7 @@ Current runtime de30dfa1de7e0d1c59bb257f3020c2f5f074dc36 is clean-clone verified
 ## Analytics context continuation
 
 Runtime source `a87842bd7b99537a540fb7c6adb08f475f8eaed1` is pushed on `feature/vyuha-final-hardening`. Unit/trainee/session comparison selections now survive sharing, reload and browser history. Missing units, trainees and sessions remain explicit; delayed responses cannot substitute evidence. The phone comparison fits all four columns. Full frontend301/parity/lint/format/build pass; fresh backend708/259.37s passes, unchanged server source. Both fixture and real-production browser passes cover all eight widths, zero detected axe violations; real API checks retain two analytics/five AAR payload hashes and make no write requests. See ANALYTICS-CONTEXT.md and analytics-context/. No drill branch merge or release tag. Main Codex retains integration/release ownership.
+
+## Clean-runner workflow repair
+
+The user-reported GitHub failure is reproduced: backend startup tests run before production assets exist. Workflow now builds the frontend before backend integration tests and explicitly runs frontend lint/format checks. Fresh-checkout startup suite13 and frontend301/parity/build/lint/format/Docker pass. Preserve this ordering during integration. See CI-REPAIR.md; hosted run on the fixing commit is authoritative. No application or drill source changes.
