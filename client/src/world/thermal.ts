@@ -15,15 +15,25 @@ export type ThermalClass = {
   /** Solar gain by day: how much a face turned to the sun warms over a horizontal
    * one, and a face turned away cools (absorptivity over thermal mass). */
   sun?: number;
+  /** Sky only: apparent index at the horizon (a long, warm atmospheric path);
+   * the zenith keeps the class value. */
+  horizon?: { day: number; night: number };
 };
 export const THERMAL_CLASSES = {
-  sky: { day: 0.06, night: 0.03, variation: 0 },
+  sky: {
+    day: 0.06,
+    night: 0.03,
+    variation: 0,
+    horizon: { day: 0.42, night: 0.23 },
+  },
   ground: { day: 0.5, night: 0.36, variation: 0.22 },
   terrainFar: { day: 0.44, night: 0.33, variation: 0.12 },
   asphalt: { day: 0.62, night: 0.46, variation: 0.1, sun: 0.08 },
   concrete: { day: 0.48, night: 0.41, variation: 0.14, sun: 0.1 },
   plaster: { day: 0.47, night: 0.42, variation: 0.1, sun: 0.1 },
-  metalRoof: { day: 0.64, night: 0.2, variation: 0.08, sun: 0.13 },
+  // At night bare metal radiates to the cold sky: colder than ground and walls,
+  // still clearly warmer than the sky itself.
+  metalRoof: { day: 0.64, night: 0.28, variation: 0.08, sun: 0.13 },
   paintedMetal: { day: 0.56, night: 0.29, variation: 0.1, sun: 0.12 },
   steel: { day: 0.52, night: 0.26, variation: 0.05, sun: 0.1 },
   // Glass is opaque in long-wave IR: it shows reflected cold sky, not the warm
@@ -98,6 +108,8 @@ export type ThermalUniforms = {
   /** World direction to the sun and this class's solar gain (0 at night). */
   uSunDir: { value: THREE.Vector3 };
   uSunGain: { value: number };
+  /** Horizon index for the sky gradient; negative when the class has none. */
+  uHorizon: { value: number };
 };
 /** Fixed display ranges standing in for automatic gain control. The night scene
  * is colder and narrower, so it is stretched more. Hot engines saturate. */
@@ -115,6 +127,7 @@ export function thermalUniforms(): ThermalUniforms {
     uRange: { value: new THREE.Vector2(0, 1) },
     uSunDir: { value: new THREE.Vector3(0, 1, 0) },
     uSunGain: { value: 0 },
+    uHorizon: { value: -1 },
   };
 }
 export function setThermalUniforms(
@@ -132,6 +145,11 @@ export function setThermalUniforms(
   const [lo, hi] = night ? THERMAL_RANGE.night : THERMAL_RANGE.day;
   u.uRange.value.set(lo, hi);
   u.uSunGain.value = night ? 0 : (cls.sun ?? 0);
+  u.uHorizon.value = cls.horizon
+    ? night
+      ? cls.horizon.night
+      : cls.horizon.day
+    : -1;
 }
 export const THERMAL_GLSL = /* glsl */ `
 uniform vec3 uCold;
@@ -142,11 +160,21 @@ uniform float uVariation;
 uniform vec2 uRange;
 uniform vec3 uSunDir;
 uniform float uSunGain;
+uniform float uHorizon;
 vec3 thermalRamp(float t) {
   t = clamp((t - uRange.x) / max(uRange.y - uRange.x, 1e-3), 0.0, 1.0);
   return t < 0.5 ? mix(uCold, uMid, t * 2.0) : mix(uMid, uHot, t * 2.0 - 1.0);
 }
 `;
+
+/** Fades a flat card by how edge-on it is to the camera (geometric normal from
+ * screen-space derivatives of the view-space position). */
+export const EDGE_FADE_GLSL = (viewPosition: string) => /* glsl */ `
+  {
+    vec3 cardN = normalize( cross( dFdx( ${viewPosition} ), dFdy( ${viewPosition} ) ) );
+    float facing = abs( dot( cardN, normalize( ${viewPosition} ) ) );
+    diffuseColor.a *= smoothstep( 0.07, 0.34, facing );
+  }`;
 
 /** A palette-mapped twin of a surface material. Keeps the source's albedo map
  * (and vertex colour / instancing support) only to modulate the index. With a
@@ -177,12 +205,17 @@ export function createThermalMaterial(
     toneMapped: false,
   });
   material.userData.thermal = { uniforms, cls };
+  const edgeFade = source.userData.edgeFade === true;
   material.onBeforeCompile = (shader) => {
     Object.assign(shader.uniforms, uniforms);
     shader.vertexShader = shader.vertexShader
       .replace(
         "#include <common>",
-        "#include <common>\nvarying vec3 vThermalN;",
+        "#include <common>\nvarying vec3 vThermalN;\nvarying vec3 vThermalView;",
+      )
+      .replace(
+        "#include <project_vertex>",
+        "#include <project_vertex>\nvThermalView = mvPosition.xyz;",
       )
       .replace(
         "#include <begin_vertex>",
@@ -198,7 +231,7 @@ export function createThermalMaterial(
     shader.fragmentShader = shader.fragmentShader
       .replace(
         "#include <common>",
-        `#include <common>\nvarying vec3 vThermalN;\n${THERMAL_GLSL}`,
+        `#include <common>\nvarying vec3 vThermalN;\nvarying vec3 vThermalView;\n${THERMAL_GLSL}`,
       )
       .replace(
         "#include <map_fragment>",
@@ -217,11 +250,21 @@ export function createThermalMaterial(
           #endif
           tSun = uSunGain * ( max( dot( tn, uSunDir ), 0.0 ) - max( uSunDir.y, 0.0 ) );
         }
-        diffuseColor.rgb = thermalRamp( uTemp + tSun + ( tLum - 0.45 ) * uVariation );
+        float tBase = uTemp;
+        if ( uHorizon >= 0.0 && dot( vThermalN, vThermalN ) > 1e-8 ) {
+          float tUp = abs( normalize( vThermalN ).y );
+          tBase = mix( uTemp, uHorizon, pow( 1.0 - tUp, 3.0 ) );
+        }
+        diffuseColor.rgb = thermalRamp( tBase + tSun + ( tLum - 0.45 ) * uVariation );
         `,
       )
-      .replace("#include <color_fragment>", "");
+      .replace("#include <color_fragment>", "")
+      .replace(
+        "#include <alphatest_fragment>",
+        `${edgeFade ? EDGE_FADE_GLSL("vThermalView") : ""}\n#include <alphatest_fragment>`,
+      );
   };
-  material.customProgramCacheKey = () => "vyuha-thermal";
+  material.customProgramCacheKey = () =>
+    edgeFade ? "vyuha-thermal-fade" : "vyuha-thermal";
   return material;
 }

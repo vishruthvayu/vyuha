@@ -44,6 +44,8 @@ import {
   LAYER_OCCLUDERS,
   LAYER_WORLD,
 } from "./world/Environment";
+import { SceneryObstruction, sceneryObstacles } from "./world/obstruction";
+import { facilityLayout, withoutBoxes } from "./world/layout";
 export type { Vision } from "./visibility";
 export type RendererMetrics = {
   scope: "previous WebGL frame";
@@ -398,15 +400,20 @@ function World({
     () => (finale ? (terrainBoxes ?? []) : []),
     [finale, terrainBoxes],
   );
+  const world =
+    terrain === "rural_forward_base" ? "rural_forward_base" : "urban_outpost";
+  // Decorative scenery the sensors do not model: contacts behind it are drawn
+  // as markers, not as airframes painted on a wall.
+  const obstruction = useMemo(() => {
+    const o = new SceneryObstruction();
+    o.set(sceneryObstacles(withoutBoxes(facilityLayout(world), boxes)));
+    return o;
+  }, [world, boxes]);
   return (
     <>
       <LayeredRender />
       <Environment
-        terrain={
-          terrain === "rural_forward_base"
-            ? "rural_forward_base"
-            : "urban_outpost"
-        }
+        terrain={world}
         boxes={boxes}
         legacy={!finale}
         night={state.night}
@@ -448,6 +455,7 @@ function World({
         channel={inspect?.channel ?? "eo"}
         enabled={!!inspect}
         label={inspectLabel}
+        obstruction={obstruction}
       />
       <ContactRenderer
         poses={poses}
@@ -459,6 +467,7 @@ function World({
         quality={quality}
         reducedMotion={reducedMotion}
         review={referenceTruth && cameraPreset === "overview"}
+        obstruction={obstruction}
       />
     </>
   );

@@ -5,6 +5,7 @@ import type { MaterialKey } from "./kit";
 import { SPLAT_SIZE } from "./procedural-textures";
 import {
   THERMAL_CLASSES,
+  EDGE_FADE_GLSL,
   THERMAL_GLSL,
   createThermalMaterial,
   setThermalUniforms,
@@ -349,11 +350,19 @@ export function createFoliageMaterial(t: WorldTextures) {
   });
   // Card normals are tilted up for both faces; do not flip them on back faces
   // (three flips double-sided normals, which turned the back of every card black).
+  // A card seen edge-on fades out before the alpha test, so crossed and top
+  // cards never show as lines through the canopy.
+  material.userData.edgeFade = true;
   material.onBeforeCompile = (shader) => {
-    shader.fragmentShader = shader.fragmentShader.replace(
-      "#include <normal_fragment_begin>",
-      "#include <normal_fragment_begin>\nnormal = normalize( vNormal );",
-    );
+    shader.fragmentShader = shader.fragmentShader
+      .replace(
+        "#include <normal_fragment_begin>",
+        "#include <normal_fragment_begin>\nnormal = normalize( vNormal );",
+      )
+      .replace(
+        "#include <alphatest_fragment>",
+        `${EDGE_FADE_GLSL("vViewPosition")}\n#include <alphatest_fragment>`,
+      );
   };
   material.customProgramCacheKey = () => "vyuha-foliage";
   return material;

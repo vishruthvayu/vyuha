@@ -4,6 +4,7 @@ import * as THREE from "three";
 import { AIRFRAME_SPAN } from "./airframe-geometry";
 import type { ObservedPoseBuffer, RenderShape } from "./render-contacts";
 import { defaultSensorConfig } from "./sensors-v2";
+import type { SceneryObstruction } from "./world/obstruction";
 
 /** How many sensor pixels the selected contact covers at its observed range:
  * span / (range × IFOV), with the EO or IR IFOV from the frozen sensor config. */
@@ -38,6 +39,7 @@ export function InspectionPass({
   enabled,
   insetCss = 168,
   label,
+  obstruction,
 }: {
   poses: ObservedPoseBuffer;
   selected: string | null;
@@ -47,6 +49,8 @@ export function InspectionPass({
   insetCss?: number;
   /** DOM caption updated directly (no React state per frame). */
   label?: RefObject<HTMLDivElement | null>;
+  /** Decorative scenery in the line of sight hides the close-up. */
+  obstruction?: SceneryObstruction;
 }) {
   const { gl, scene, camera, size } = useThree();
   // A sensor pixel integrates the scene over its footprint: render at 4× the
@@ -113,6 +117,16 @@ export function InspectionPass({
     }
     v.set(pose.displayX, pose.displayY, pose.displayZ);
     const range = camera.position.distanceTo(v);
+    if (selected && obstruction?.blocked.has(selected)) {
+      // Decorative scenery stands in the way: no picture of the airframe through it.
+      if (caption) {
+        caption.style.display = "block";
+        caption.style.top = "14px";
+        caption.style.width = `${insetCss}px`;
+        caption.textContent = `${channel.toUpperCase()} CLOSE-UP · VIEW BLOCKED BY SCENERY · ${Math.round(range)} M`;
+      }
+      return;
+    }
     const pixels = pixelsOnTarget(shape, range, channel);
     const res = inspectionResolution(pixels);
     if (target.width !== res) {
@@ -153,7 +167,7 @@ export function InspectionPass({
       caption.style.display = "block";
       caption.style.top = `${margin + insetCss + 4}px`;
       caption.style.width = `${insetCss}px`;
-      caption.textContent = `${channel.toUpperCase()} CLOSE-UP · ${Math.max(1, Math.round(pixels))} PX ON TARGET · ${Math.round(range)} M`;
+      caption.textContent = `${channel.toUpperCase()} CLOSE-UP · ${Math.max(1, Math.round(pixels))} PX ACROSS TARGET · ${Math.round(range)} M`;
     }
   }, 2);
   return null;

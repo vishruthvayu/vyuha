@@ -1,6 +1,6 @@
 import { useContactMemory } from "./useContactMemory";
 import { useCommandTransport } from "./useCommandTransport";
-import { reportedContacts, visualPosition } from "./observed-contacts";
+import { reportedContacts } from "./observed-contacts";
 import OfficerGate from "./OfficerGate";
 import {
   palettes,
@@ -31,7 +31,7 @@ import {
   Zap,
 } from "lucide-react";
 import { Scene } from "./LazyScene";
-import type { Vision } from "./visibility";
+import { ObservationVisibility, type Vision } from "./visibility";
 import { initialTrainingMode, nextTrainingSeed } from "./training-setup";
 import { TrainingWelcome } from "./TrainingWelcome";
 import AARHistory from "./AARHistory";
@@ -423,7 +423,21 @@ export default function App({
       ? unitIdentity.callsign
       : (reviewCallsigns[id] ?? id);
   const target = visible.find((t) => t.id === selected);
-  const opticalPosition = visualPosition(target, vision);
+  // The view annotation reads the same held camera observation as the 3D view
+  // (`Scene`), so "TRACKING" and the drawn contact never disagree during the
+  // short observation hold.
+  const viewVisibility = useRef(new ObservationVisibility());
+  const viewed =
+    phase === "restoring" || !selected
+      ? undefined
+      : viewVisibility.current
+          .tracks(state, vision, {
+            key: `${scenario.id}:${sessionRef.current || "preview"}`,
+          })
+          .find((t) => t.id === selected);
+  const opticalPosition = viewed
+    ? { x: viewed.x, z: viewed.z, altitude: viewed.altitude }
+    : null;
   const running = phase === "running";
   const refresh = useCallback(async () => {
     if (reviewOnly) return;

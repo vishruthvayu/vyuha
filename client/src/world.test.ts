@@ -379,3 +379,51 @@ test("display haze follows the scenario fog monotonically between clear and dens
   assert.equal(displayVisibility(-1), displayVisibility(0));
   assert.equal(displayVisibility(9), displayVisibility(1));
 });
+
+test("scenery line-of-sight: buildings and canopies block, open sky and grazing edges do not", async () => {
+  const { segmentHits, sceneryObstacles, SceneryObstruction } =
+    await import("./world/obstruction");
+  const wall = {
+    x: 100,
+    z: 0,
+    cos: Math.cos(Math.PI / 2),
+    sin: Math.sin(Math.PI / 2),
+    hx: 2,
+    hz: 20,
+    y0: 0,
+    y1: 8,
+  };
+  // Rotated 90°: the 40 m side now runs along x at z = 0 ± 2.
+  assert.ok(segmentHits(wall, 0, 2, 0, 1000, 8, 0));
+  assert.ok(!segmentHits(wall, 0, 2, 0, 1000, 300, 0), "steep line clears it");
+  assert.ok(!segmentHits(wall, 0, 2, 50, 1000, 8, 50), "beside it");
+  assert.ok(!segmentHits(wall, 0, 2, 0, 70, 8, 0), "contact in front of it");
+
+  for (const [kind, boxes] of [
+    ["urban_outpost", URBAN_BOXES],
+    ["rural_forward_base", RURAL_BOXES],
+  ] as const) {
+    const obstacles = sceneryObstacles(
+      withoutBoxes(facilityLayout(kind), boxes),
+    );
+    assert.ok(obstacles.length > 10, kind);
+    const tallest = obstacles.reduce((a, b) => (b.y1 > a.y1 ? b : a));
+    const o = new SceneryObstruction();
+    o.set(obstacles);
+    const eye = { x: 0, y: 2, z: 0 };
+    // Directly behind the tallest object, low: blocked. High above: clear.
+    const r = Math.hypot(tallest.x, tallest.z);
+    const k = (r + 300) / r;
+    o.update(eye, (visit) => {
+      visit(
+        "behind",
+        tallest.x * k,
+        (tallest.y0 + tallest.y1) / 2,
+        tallest.z * k,
+      );
+      visit("above", tallest.x * k, 600, tallest.z * k);
+    });
+    assert.ok(o.blocked.has("behind"), kind);
+    assert.ok(!o.blocked.has("above"), kind);
+  }
+});

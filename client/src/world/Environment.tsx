@@ -524,6 +524,37 @@ export function Environment(props: EnvironmentProps) {
     pools.name = "night-light-pools";
     pools.visible = false;
     group.add(pools);
+    // The luminaires themselves at night: a soft additive glare at each head,
+    // world-sized so it shrinks with distance. Lights the scene, never contacts.
+    const heads: number[] = [];
+    for (const p of lamps) {
+      if (p.kind !== "lightPole") continue;
+      const c = Math.cos(p.rot),
+        sn = Math.sin(p.rot);
+      for (const lx of [-0.6, 0.6])
+        heads.push(p.x + lx * c + 0.62 * sn, 8.62, p.z - lx * sn + 0.62 * c);
+    }
+    const glowGeometry = new THREE.BufferGeometry();
+    glowGeometry.setAttribute(
+      "position",
+      new THREE.Float32BufferAttribute(heads, 3),
+    );
+    const glowMaterial = new THREE.PointsMaterial({
+      map: poolTexture,
+      color: "#fff3da",
+      size: 2.6,
+      sizeAttenuation: true,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      fog: false,
+      toneMapped: false,
+    });
+    disposables.push(glowGeometry, glowMaterial);
+    const glow = new THREE.Points(glowGeometry, glowMaterial);
+    glow.name = "night-lamp-glow";
+    glow.visible = false;
+    group.add(glow);
     return {
       group,
       swappable,
@@ -717,6 +748,8 @@ export function Environment(props: EnvironmentProps) {
       : (terrainMesh.userData.eoMaterial as THREE.Material);
     const pools = built.group.getObjectByName("night-light-pools");
     if (pools) pools.visible = !thermal && mode.night;
+    const glow = built.group.getObjectByName("night-lamp-glow");
+    if (glow) glow.visible = !thermal && mode.night;
     const sky = skyRef.current;
     if (sky) {
       const eo = mode.night ? skyMaterials.night : skyMaterials.day;

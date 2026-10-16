@@ -688,13 +688,14 @@ export function projectedPixels(
   );
 }
 /** Level of detail from projected size: 0 close (≥ 36 px), 1 medium, 2 far
- * marker (< 3 px). Hysteresis: stepping up needs 25 % more than stepping down,
- * so a contact on a boundary does not flicker between levels. */
+ * marker (< 6 px, where an airframe's body and arms are sub-pixel and a mesh
+ * only blends into the sky). Hysteresis: stepping up needs 25 % more than
+ * stepping down, so a contact on a boundary does not flicker between levels. */
 export function airframeLod(px: number, previous?: 0 | 1 | 2): 0 | 1 | 2 {
   const up = 1.25,
     down = 1;
   const near = 36,
-    far = 3;
+    far = 6;
   if (previous === 0) return px >= near * down * 0.8 ? 0 : px >= far ? 1 : 2;
   if (px >= near * (previous === undefined ? 1 : up)) return 0;
   if (previous === 2) return px >= far * up ? 1 : 2;

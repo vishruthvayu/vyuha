@@ -23,6 +23,8 @@ import {
   thermalUniforms,
 } from "./world/thermal";
 
+import type { SceneryObstruction } from "./world/obstruction";
+
 /** Contacts on layer 1 (drawn after the world; see LayeredRender in Scene.tsx). */
 const LAYER = 1;
 const CAPACITY = 256;
@@ -110,6 +112,38 @@ export function reviewRing(size = 32) {
   return data;
 }
 
+/** Soft round blob for an unresolved contact (white RGB, alpha falls off at
+ * the edge), instead of a hard square that reads as a dead pixel. */
+export function softDisc(size = 16) {
+  const data = new Uint8Array(size * size * 4);
+  const c = (size - 1) / 2;
+  for (let y = 0; y < size; y++)
+    for (let x = 0; x < size; x++) {
+      const d = Math.hypot(x - c, y - c) / (size / 2);
+      const a = Math.round(255 * Math.min(1, Math.max(0, (1 - d) / 0.35)));
+      data.set([255, 255, 255, a], (y * size + x) * 4);
+    }
+  return data;
+}
+
+/** Hollow diamond with a dark rim: a reported contact behind decorative scenery
+ * (RGBA, size²). The simulation does not model scenery, so the report stands;
+ * the marker says where it is without painting an airframe on a wall. */
+export function obstructedDiamond(size = 32) {
+  const data = new Uint8Array(size * size * 4);
+  const c = (size - 1) / 2,
+    r = size / 2;
+  for (let y = 0; y < size; y++)
+    for (let x = 0; x < size; x++) {
+      const d = (Math.abs(x - c) + Math.abs(y - c)) / r;
+      const band = d > 0.6 && d < 0.82;
+      const rim = (d >= 0.46 && d <= 0.6) || (d >= 0.82 && d < 0.98);
+      const v = band ? 255 : 0;
+      data.set([v, v, v, band ? 255 : rim ? 210 : 0], (y * size + x) * 4);
+    }
+  return data;
+}
+
 /** Instanced airframes for every observed contact. Only observation-scoped
  * descriptors reach this component (shape, position); never kind or identity. */
 export function ContactRenderer({
@@ -122,6 +156,7 @@ export function ContactRenderer({
   night = false,
   reducedMotion = false,
   review = false,
+  obstruction,
 }: {
   /** Shared with the camera rig; advanced once per frame before either reads it. */
   poses: ObservedPoseBuffer;
@@ -137,16 +172,21 @@ export function ContactRenderer({
    * ring and a stalk to the ground, in one neutral colour, so positions and
    * heights read from far above. Never used in a live view. */
   review?: boolean;
+  /** Line-of-sight test against decorative scenery (not modelled by sensors). */
+  obstruction?: SceneryObstruction;
 }) {
   const parts = useMemo(() => createAirframeParts(quality), [quality]);
   useEffect(() => () => parts.forEach((p) => p.geometry.dispose()), [parts]);
   const thermal = vision !== "day";
   const materials = useMemo(
     () => ({
+      // Matte plastics and composites: little sky reflection, so a small
+      // airframe reads as a dark shape against the sky, as the far marker does.
       eoBody: new THREE.MeshStandardMaterial({
         vertexColors: true,
-        roughness: 0.55,
-        metalness: 0.3,
+        roughness: 0.68,
+        metalness: 0.1,
+        envMapIntensity: 0.55,
       }),
       eoDisc: new THREE.MeshBasicMaterial({
         color: "#9aa0a6",
@@ -206,10 +246,17 @@ export function ContactRenderer({
       ),
     );
     geometry.setDrawRange(0, 0);
+    const disc = new THREE.DataTexture(softDisc(), 16, 16);
+    disc.magFilter = THREE.LinearFilter;
+    disc.needsUpdate = true;
     const material = new THREE.PointsMaterial({
-      size: 3,
+      size: 4,
       sizeAttenuation: false,
-      color: "#1c1f22",
+      map: disc,
+      transparent: true,
+      alphaTest: 0.02,
+      depthWrite: false,
+      color: "#2a2e32",
       toneMapped: false,
     });
     const points = new THREE.Points(geometry, material);
@@ -221,6 +268,7 @@ export function ContactRenderer({
   useEffect(
     () => () => {
       far.geometry.dispose();
+      (far.material as THREE.PointsMaterial).map?.dispose();
       (far.material as THREE.Material).dispose();
     },
     [far],
@@ -230,11 +278,12 @@ export function ContactRenderer({
     if (thermal)
       m.color.copy(
         thermalColor(
-          displayThermal(0.82, night),
+          // Mean of a small airframe: body near ambient plus a little motor heat.
+          displayThermal(0.68, night),
           vision === "night" ? "night" : palette,
         ),
       );
-    else m.color.set(night ? "#05070a" : "#1c1f22");
+    else m.color.set(night ? "#05070a" : "#2a2e32");
   }, [far, thermal, night, vision, palette]);
 
   const reviewMarks = useMemo(() => {
@@ -288,15 +337,49 @@ export function ContactRenderer({
       o.visible = false;
       o.geometry.setDrawRange(0, 0);
     }
-    return { points, lines, ring };
+    const diamond = new THREE.DataTexture(obstructedDiamond(), 32, 32);
+    diamond.magFilter = THREE.LinearFilter;
+    diamond.minFilter = THREE.LinearFilter;
+    diamond.needsUpdate = true;
+    const hiddenDots = new THREE.BufferGeometry();
+    hiddenDots.setAttribute(
+      "position",
+      new THREE.BufferAttribute(new Float32Array(CAPACITY * 3), 3).setUsage(
+        THREE.DynamicDrawUsage,
+      ),
+    );
+    hiddenDots.setDrawRange(0, 0);
+    const hidden = new THREE.Points(
+      hiddenDots,
+      new THREE.PointsMaterial({
+        size: 12,
+        sizeAttenuation: false,
+        map: diamond,
+        color: "#f1eee4",
+        transparent: true,
+        depthTest: false,
+        depthWrite: false,
+        fog: false,
+        toneMapped: false,
+      }),
+    );
+    hidden.layers.set(LAYER);
+    hidden.frustumCulled = false;
+    hidden.renderOrder = 6;
+    return { points, lines, ring, hidden, diamond };
   }, []);
   useEffect(
     () => () => {
-      for (const o of [reviewMarks.points, reviewMarks.lines]) {
+      for (const o of [
+        reviewMarks.points,
+        reviewMarks.lines,
+        reviewMarks.hidden,
+      ]) {
         o.geometry.dispose();
         (o.material as THREE.Material).dispose();
       }
       reviewMarks.ring.dispose();
+      reviewMarks.diamond.dispose();
     },
     [reviewMarks],
   );
@@ -345,6 +428,13 @@ export function ContactRenderer({
     const stalkPos = reviewMarks.lines.geometry.getAttribute(
       "position",
     ) as THREE.BufferAttribute;
+    const hiddenPos = reviewMarks.hidden.geometry.getAttribute(
+      "position",
+    ) as THREE.BufferAttribute;
+    let hiddenCount = 0;
+    obstruction?.update(camera.position, (visit) =>
+      poses.each((p) => visit(p.id, p.displayX, p.displayY, p.displayZ)),
+    );
     poses.each((p) => {
       seen.add(p.id);
       s.position.set(p.displayX, p.displayY, p.displayZ);
@@ -358,9 +448,13 @@ export function ContactRenderer({
       const px = projectedPixels(p.shape, distance, fov, size.height);
       const sized = airframeLod(px, lods.current.get(p.id));
       lods.current.set(p.id, sized);
-      if (sized === 2 && farCount < CAPACITY)
+      // Behind decorative scenery: a marker at the reported position, no airframe.
+      const hidden = obstruction?.blocked.has(p.id) === true;
+      if (hidden && hiddenCount < CAPACITY)
+        hiddenPos.setXYZ(hiddenCount++, p.displayX, p.displayY, p.displayZ);
+      if (!hidden && sized === 2 && farCount < CAPACITY)
         farPos.setXYZ(farCount++, s.position.x, s.position.y, s.position.z);
-      const lod = p.id === focusId ? 0 : sized;
+      const lod = hidden ? 2 : p.id === focusId ? 0 : sized;
       if (lod !== 2) {
         const { pitch, roll } = reducedMotion
           ? { pitch: 0, roll: 0 }
@@ -417,6 +511,8 @@ export function ContactRenderer({
     far.geometry.setDrawRange(0, farCount);
     farPos.needsUpdate = true;
     reviewMarks.points.visible = reviewMarks.lines.visible = review;
+    reviewMarks.hidden.geometry.setDrawRange(0, hiddenCount);
+    if (hiddenCount) hiddenPos.needsUpdate = true;
     reviewMarks.points.geometry.setDrawRange(0, reviewCount);
     reviewMarks.lines.geometry.setDrawRange(0, reviewCount * 2);
     if (review) dotPos.needsUpdate = stalkPos.needsUpdate = true;
@@ -453,6 +549,7 @@ export function ContactRenderer({
       <primitive object={far} />
       <primitive object={reviewMarks.lines} />
       <primitive object={reviewMarks.points} />
+      <primitive object={reviewMarks.hidden} />
       <lineSegments
         ref={marker}
         visible={false}

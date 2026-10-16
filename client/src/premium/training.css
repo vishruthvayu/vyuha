@@ -1605,3 +1605,30 @@ main:has(> .drill-page) > .topbar {
 .scene-container > .camera-corners {
   z-index: 2;
 }
+/* Reticle: centred on the canvas, where the camera aims (the legacy rule put it
+   2 % high, so it sat ~9 px off a tracked contact). Open in the middle so it
+   never covers a small target; dark outline for sky and cloud. */
+.scene-container > .crosshair {
+  top: 50%;
+  width: 64px;
+  height: 64px;
+  opacity: 0.92;
+  background:
+    linear-gradient(#e4ecdf, #e4ecdf) center top / 1px 20px no-repeat,
+    linear-gradient(#e4ecdf, #e4ecdf) center bottom / 1px 20px no-repeat,
+    linear-gradient(#e4ecdf, #e4ecdf) left center / 20px 1px no-repeat,
+    linear-gradient(#e4ecdf, #e4ecdf) right center / 20px 1px no-repeat;
+  filter: drop-shadow(0 0 1px rgb(0 0 0 / 0.85))
+    drop-shadow(0 0 1px rgb(0 0 0 / 0.6));
+}
+.scene-container > .crosshair::before {
+  inset: 19px;
+  border-color: rgb(228 236 223 / 0.75);
+}
+/* Labels over bright sky: a soft dark halo keeps small type readable. */
+.scene-container > .view-annotation,
+.scene-container > .view-annotation span {
+  text-shadow:
+    0 0 2px rgb(0 0 0 / 0.95),
+    0 1px 4px rgb(0 0 0 / 0.75);
+}
