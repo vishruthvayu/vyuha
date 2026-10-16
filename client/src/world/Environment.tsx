@@ -311,6 +311,7 @@ export function Environment(props: EnvironmentProps) {
       textures.splat,
       textures.hesco,
       textures.chainLink,
+      textures.white,
     );
     const terrainMesh = new THREE.Mesh(
       createTerrainGeometry(terrain, quality === "low" ? 0.6 : 1),
@@ -526,7 +527,14 @@ export function Environment(props: EnvironmentProps) {
     return {
       group,
       swappable,
-      dispose: () => disposables.forEach((d) => d.dispose()),
+      dispose: () => {
+        disposables.forEach((d) => d.dispose());
+        // Instanced meshes own their instance-matrix buffers (shared prop
+        // geometry from the loader cache is intentionally kept).
+        group.traverse((o) => {
+          if (o instanceof THREE.InstancedMesh) o.dispose();
+        });
+      },
     };
   }, [textures, quality, terrain, layout, boxes, props3d]);
   useEffect(() => () => built.dispose(), [built]);
