@@ -233,7 +233,8 @@ function urbanOutpost(): FacilityLayout {
         kind: "container",
         x: -60 + i * 3,
         z: -40,
-        rot: 0,
+        // Side by side: 2.44 m wide boxes on a 3 m pitch.
+        rot: Math.PI / 2,
         tint: (i * 2 + level) % 4,
         level,
       });

@@ -16,6 +16,9 @@ import {
   Batches,
   buildFacility,
   cityBlock,
+  concertina,
+  hangar,
+  line,
   warehouse,
   type MaterialKey,
 } from "./world/kit";
@@ -136,7 +139,7 @@ test("the facility merges into a handful of draw calls with every material therm
     const layout = facilityLayout(kind);
     const b = buildFacility(layout.placements, layout.lines);
     assert.ok(
-      b.triangles > 20000 && b.triangles < 250000,
+      b.triangles > 20000 && b.triangles < 200000,
       `${b.triangles} triangles`,
     );
     const merged = b.merged();
@@ -150,6 +153,165 @@ test("the facility merges into a handful of draw calls with every material therm
   }
   for (const key of Object.keys(MATERIAL_THERMAL) as MaterialKey[])
     assert.ok(MATERIAL_THERMAL[key] in THERMAL_CLASSES);
+});
+
+/** Every vertex of every merged batch, in world space. */
+function* vertices(b: Batches) {
+  for (const [key, g] of b.merged()) {
+    const p = g.getAttribute("position");
+    for (let i = 0; i < p.count; i++)
+      yield { key, x: p.getX(i), y: p.getY(i), z: p.getZ(i) };
+    g.dispose();
+  }
+}
+
+test("city block dressing keeps every vertex inside its box for any box shape, and towers carry balconies", () => {
+  const boxes = [...URBAN_BOXES];
+  // Portable scenarios may carry any box: thin, tiny, low, tall.
+  for (const w of [2, 7, 18, 40, 75, 130])
+    for (const d of [3, 12, 30, 95])
+      for (const height of [0.5, 4, 8, 14, 35, 80])
+        boxes.push({
+          x_min: -w / 2 + 11,
+          x_max: w / 2 + 11,
+          z_min: -d / 2 - 7,
+          z_max: d / 2 - 7,
+          height,
+        });
+  boxes.forEach((b, i) => {
+    const batches = new Batches();
+    cityBlock(batches, b, i * 7 + 3);
+    for (const v of vertices(batches))
+      assert.ok(
+        v.x >= b.x_min - 1e-6 &&
+          v.x <= b.x_max + 1e-6 &&
+          v.z >= b.z_min - 1e-6 &&
+          v.z <= b.z_max + 1e-6 &&
+          v.y >= -1e-6 &&
+          v.y <= b.height + 1e-6,
+        `${v.key} vertex ${v.x},${v.y},${v.z} outside box ${JSON.stringify(b)}`,
+      );
+  });
+  // The raid blocks' towers are set back; balcony slabs reach towards the
+  // box faces above the shop podium (and still stop short of them).
+  for (const [i, b] of URBAN_BOXES.entries()) {
+    const batches = new Batches();
+    cityBlock(batches, b, i * 7 + 3);
+    let projecting = 0;
+    for (const v of vertices(batches)) {
+      const toFace = Math.min(
+        v.x - b.x_min,
+        b.x_max - v.x,
+        v.z - b.z_min,
+        b.z_max - v.z,
+      );
+      if (v.key === "concrete" && v.y > 8 && toFace < 0.5) projecting++;
+    }
+    assert.ok(projecting > 100, `${projecting} balcony vertices`);
+  }
+});
+
+test("HESCO cells bulge between seams with the fill recessed under the mesh rim", () => {
+  const b = new Batches();
+  line(b, {
+    kind: "hesco",
+    path: [
+      [0, 0],
+      [0, 10.6],
+    ],
+  });
+  let bulge = 0,
+    seam = Infinity,
+    fillTop = -Infinity,
+    fillLow = Infinity,
+    rim = -Infinity;
+  for (const v of vertices(b)) {
+    if (v.key === "hesco") {
+      rim = Math.max(rim, v.y);
+      if (v.y > 0.2 && v.y < 1.8) {
+        bulge = Math.max(bulge, Math.abs(v.x));
+        seam = Math.min(seam, Math.abs(v.x));
+      }
+    }
+    if (v.key === "fabric") {
+      fillTop = Math.max(fillTop, v.y);
+      fillLow = Math.min(fillLow, v.y);
+    }
+  }
+  assert.ok(bulge > 0.53 + 0.03, `faces bulge (${bulge})`);
+  assert.ok(seam < 0.53 - 0.03, `seams are pulled in (${seam})`);
+  assert.ok(rim <= 2.1 + 1e-6 && fillTop < rim - 0.04, "fill below the rim");
+  assert.ok(fillLow > 1.9, "fill fills the cell");
+});
+
+test("the perimeter concertina coil stays within its triangle budget and on the outriggers", () => {
+  const fence = facilityLayout("urban_outpost").lines.find(
+    (l) => l.kind === "fence",
+  )!;
+  const b = new Batches();
+  let length = 0;
+  fence.path.slice(1).forEach(([x1, z1], i) => {
+    const [x0, z0] = fence.path[i];
+    const len = Math.hypot(x1 - x0, z1 - z0);
+    length += len;
+    concertina(b, new THREE.Matrix4(), len, i);
+  });
+  assert.ok(length > 600, `${length} m of fence`);
+  assert.ok(b.triangles <= 25000, `${b.triangles} coil triangles`);
+  // In the run's frame: local -x is outside the compound, above the fabric.
+  for (const v of vertices(b))
+    assert.ok(v.x < 0.2 && v.x > -0.6 && v.y > 2.55 && v.y < 3.3);
+});
+
+test("both hangar end walls are framed, with a personnel door and louvred vents on the rear", () => {
+  const p = {
+    kind: "hangar" as const,
+    x: 0,
+    z: 0,
+    rot: 0,
+    span: 20,
+    length: 28,
+  };
+  const b = new Batches();
+  hangar(b, p);
+  const at = (end: number) => ({ paint: 0, rubber: 0, low: 0, end });
+  const ends = [at(-1), at(1)];
+  for (const v of vertices(b))
+    for (const e of ends)
+      if (Math.abs(v.z - e.end * 14) < 0.7) {
+        if (v.key === "paint") e.paint++;
+        if (v.key === "rubber") e.rubber++;
+        if (v.key === "paint" && v.y > 0.3 && v.y < 2.6 && v.x < -2 && v.x > -6)
+          e.low++;
+      }
+  for (const e of ends) {
+    assert.ok(e.paint > 500, `end ${e.end}: framed (${e.paint})`);
+    assert.ok(e.rubber > 0, `end ${e.end}: louvred vent`);
+  }
+  // Rear (-z): a door between the ribs left of centre (seen from outside).
+  assert.ok(ends[0].low > 50, `rear personnel door (${ends[0].low})`);
+});
+
+test("the procedural kit is deterministic", () => {
+  const layout = facilityLayout("urban_outpost");
+  const a = buildFacility(layout.placements, layout.lines).merged();
+  const b = buildFacility(layout.placements, layout.lines).merged();
+  assert.deepEqual([...a.keys()], [...b.keys()]);
+  for (const [key, g] of a) {
+    const other = b.get(key)!;
+    assert.deepEqual(
+      g.getAttribute("position").array,
+      other.getAttribute("position").array,
+      key,
+    );
+    assert.deepEqual(
+      g.getAttribute("color").array,
+      other.getAttribute("color").array,
+      key,
+    );
+    g.dispose();
+    other.dispose();
+  }
 });
 
 test("thermal display is an illustrative, bounded mapping with hot sources saturating", () => {
