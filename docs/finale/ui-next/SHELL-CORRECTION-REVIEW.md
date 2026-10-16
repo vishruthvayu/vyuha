@@ -29,3 +29,7 @@ No live drill or Crew controls were operated. No application source was changed 
 4. **Mobile tables still depend on horizontal scrolling.** Analytics evidence fits inside a bounded table region, but score and AAR links initially sit beyond the visible columns. This avoids document overflow while still adding an interaction step. Retain keyboard-scrollable labelled regions and consider a compact mobile evidence row later.
 
 The correction resolves the concrete inconsistency of a second shell, different palette and different page-heading typography. No blocking navigation or viewport defect was reproduced in this targeted check. Direct owner acceptance and combined-source visual review remain necessary; the parallel drill's M3 work remains protected and was not inspected or merged here.
+
+## Root follow-up
+
+The single-result Enter weakness above was subsequently corrected. Two new regression tests and Chromium phone/desktop interaction receipts are in shell-correction/. The original independent findings remain recorded; the final search retest is by the implementing agent. Other density/mobile-table observations remain open for user review.

@@ -21,3 +21,9 @@ The first hardening pass departed from the existing premium composition by addin
 Representative current screenshots: shell-correction/analytics-1440.png, instructor-1440.png, studio-1440.png and corresponding 360px captures. Earlier frozen-browser/sidebar images are superseded for visual assessment.
 
 Remaining review findings: direct Enter in the search input does not activate a single result; mobile session chrome is tall; small tables require horizontal scrolling. These are recorded for follow-up. User visual acceptance, drill integration and physical/private-history gates are still open.
+
+## Follow-up: keyboard command search
+
+The independently reproduced single-match Enter issue is fixed. Enter activates exactly one nonempty match through the existing anchor and navigation callback. Arrow keys move between real result links and back to the input; Tab/native link behavior is preserved. Composition, modifier keys and repeated Enter are guarded. Two regressions cover these interactions and embedded Unit navigation without unloading a live workspace.
+
+After this change the complete frontend suite passes **291 tests**, plus lint, formatting and production build (36 offline asset URLs). Actual Chromium checks at 360/1440 verify Enter navigation, arrows and Escape focus return; two axe dialog scans have zero violations (manual contrast checks remain incomplete). See shell-correction/search-keyboard-receipt.json. This is still not a human visual or screen-reader acceptance.
