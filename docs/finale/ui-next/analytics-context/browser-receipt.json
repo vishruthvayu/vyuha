@@ -1,0 +1,136 @@
+{
+  "scope": "Actual application UI with intercepted, clearly labelled synthetic API fixtures",
+  "widths": [
+    {
+      "width": 360,
+      "reload_restored": true,
+      "document_overflow": false,
+      "comparison_table": {
+        "width": 277,
+        "container": 277,
+        "scroll": 277
+      }
+    },
+    {
+      "width": 390,
+      "reload_restored": true,
+      "document_overflow": false,
+      "comparison_table": {
+        "width": 307,
+        "container": 307,
+        "scroll": 307
+      }
+    },
+    {
+      "width": 428,
+      "reload_restored": true,
+      "document_overflow": false,
+      "comparison_table": {
+        "width": 345,
+        "container": 345,
+        "scroll": 345
+      }
+    },
+    {
+      "width": 768,
+      "reload_restored": true,
+      "document_overflow": false,
+      "comparison_table": {
+        "width": 654.9375,
+        "container": 655,
+        "scroll": 655
+      }
+    },
+    {
+      "width": 1024,
+      "reload_restored": true,
+      "document_overflow": false,
+      "comparison_table": {
+        "width": 895.5625,
+        "container": 896,
+        "scroll": 896
+      }
+    },
+    {
+      "width": 1280,
+      "reload_restored": true,
+      "document_overflow": false,
+      "comparison_table": {
+        "width": 1136.21875,
+        "container": 1136,
+        "scroll": 1136
+      }
+    },
+    {
+      "width": 1440,
+      "reload_restored": true,
+      "document_overflow": false,
+      "comparison_table": {
+        "width": 1286.625,
+        "container": 1287,
+        "scroll": 1287
+      }
+    },
+    {
+      "width": 1920,
+      "reload_restored": true,
+      "document_overflow": false,
+      "comparison_table": {
+        "width": 1337,
+        "container": 1337,
+        "scroll": 1337
+      }
+    }
+  ],
+  "non_read_requests": [],
+  "page_errors": [],
+  "axe": [
+    {
+      "width": 360,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 428,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 768,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1024,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1280,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1920,
+      "violations": [],
+      "incomplete": []
+    }
+  ],
+  "actions": [
+    "Session comparison selection restored by browser Back/Forward",
+    "Keyboard Tab moves from Session A to Session B",
+    "Trainee selection restored after page reload",
+    "Unavailable linked trainee shows recovery rather than substituted evidence"
+  ],
+  "fixture_unchanged": true
+}

@@ -926,3 +926,42 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Keep the observed difference alongside both original values on phone widths. */
+@media (max-width: 640px) {
+  .platform-shell .analytics-comparison-table {
+    min-width: 0;
+    width: 100%;
+    table-layout: fixed;
+  }
+  .platform-shell .analytics-comparison-table .comparison-difference-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .platform-shell .analytics-comparison-table caption {
+    white-space: normal;
+    line-height: 1.6;
+    padding: 12px;
+  }
+  .platform-shell .analytics-comparison-table :is(th, td) {
+    padding: 12px 6px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .platform-shell .analytics-comparison-table th:first-child {
+    width: 42%;
+  }
+  .platform-shell .analytics-comparison-table :is(th, td):nth-child(2),
+  .platform-shell .analytics-comparison-table :is(th, td):nth-child(3) {
+    width: 16%;
+  }
+  .platform-shell .analytics-comparison-table :is(th, td):not(:first-child) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+}

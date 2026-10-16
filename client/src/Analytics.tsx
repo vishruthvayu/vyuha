@@ -119,43 +119,100 @@ function viewFromHash(hash: string): AnalyticsView {
     ) ?? "overview"
   );
 }
+type AnalysisSelection = {
+  unit: string;
+  trainee: string;
+  a: string | null;
+  b: string | null;
+};
+function selectionFromUrl(identity?: UnitIdentity): AnalysisSelection {
+  const query = new URLSearchParams(window.location.search);
+  const unit = query.get("unit") || identity?.unit_id || "local";
+  return {
+    unit,
+    trainee:
+      query.get("trainee") ??
+      (unit === identity?.unit_id ? identity.trainee_id : ""),
+    a: query.get("sessionA"),
+    b: query.get("sessionB"),
+  };
+}
 export default function Analytics({ identity }: { identity?: UnitIdentity }) {
-  const [trainees, setTrainees] = useState<UnitIdentity[]>([]),
-    [tid, setTid] = useState(identity?.trainee_id ?? ""),
-    [unit, setUnit] = useState(identity?.unit_id ?? "local"),
+  const [roster, setRoster] = useState<{
+      unit: string;
+      trainees: UnitIdentity[];
+    } | null>(null),
+    [selection, setSelection] = useState(() => selectionFromUrl(identity)),
     [units, setUnits] = useState<{ id: string; name: string }[]>([]),
-    [history, setHistory] = useState<History | null>(null),
-    [unitHistory, setUnitHistory] = useState<{
+    [loadedHistory, setHistory] = useState<{
+      unit: string;
+      trainee: string;
+      data: History;
+    } | null>(null),
+    [loadedUnitHistory, setUnitHistory] = useState<{
+      unit: string;
       points: Point[];
       note: string;
     } | null>(null),
-    [a, setA] = useState(""),
-    [b, setB] = useState(""),
     [error, setError] = useState(""),
     [view, setView] = useState<AnalyticsView>(() =>
       viewFromHash(window.location.hash),
     );
+  const unit = selection.unit;
+  const unitHistory =
+    loadedUnitHistory?.unit === unit ? loadedUnitHistory : null;
+  const trainees = roster?.unit === unit ? roster.trainees : [];
+  const tid = selection.trainee
+    ? (trainees.find((t) => t.trainee_id === selection.trainee)?.trainee_id ??
+      "")
+    : (trainees[0]?.trainee_id ?? "");
+  const history =
+    loadedHistory?.unit === unit && loadedHistory.trainee === tid
+      ? loadedHistory.data
+      : null;
+  const a =
+    selection.a === null
+      ? (history?.sessions.at(-2)?.id ?? history?.sessions[0]?.id ?? "")
+      : (history?.sessions.find((s) => s.id === selection.a)?.id ?? "");
+  const b =
+    selection.b === null
+      ? (history?.sessions.at(-1)?.id ?? "")
+      : (history?.sessions.find((s) => s.id === selection.b)?.id ?? "");
   useEffect(() => {
-    const update = () => setView(viewFromHash(window.location.hash));
+    const update = () => {
+      setView(viewFromHash(window.location.hash));
+      setSelection(selectionFromUrl(identity));
+    };
     window.addEventListener("hashchange", update);
     window.addEventListener("popstate", update);
     return () => {
       window.removeEventListener("hashchange", update);
       window.removeEventListener("popstate", update);
     };
-  }, []);
+  }, [identity]);
   function navigateView(next: AnalyticsView) {
     const hash = viewHashes[next];
     if (window.location.hash !== hash) {
       const url = new URL(window.location.href);
       url.hash = hash;
-      window.history.pushState(
-        window.history.state,
-        "",
-        `${url.pathname}${url.search}${url.hash}`,
-      );
+      window.history.pushState(window.history.state, "", url);
     }
     setView(next);
+  }
+  function navigateSelection(next: AnalysisSelection) {
+    const url = new URL(window.location.href);
+    for (const [key, value] of Object.entries({
+      unit: next.unit,
+      trainee: next.trainee,
+      sessionA: next.a,
+      sessionB: next.b,
+    })) {
+      if (value === null) url.searchParams.delete(key);
+      else url.searchParams.set(key, value);
+    }
+    if (url.href !== window.location.href)
+      window.history.pushState(window.history.state, "", url);
+    setSelection(next);
   }
   useEffect(() => {
     let stopped = false;
@@ -173,21 +230,20 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
   useEffect(() => {
     let stopped = false;
     setUnitHistory(null);
-    setTrainees([]);
+    setRoster(null);
     setError("");
     void Promise.all([
-      api<{ trainees: UnitIdentity[] }>(`/units/${unit}/trainees`),
-      api<{ points: Point[]; note: string }>(`/units/${unit}/analytics`),
+      api<{ trainees: UnitIdentity[] }>(
+        `/units/${encodeURIComponent(unit)}/trainees`,
+      ),
+      api<{ points: Point[]; note: string }>(
+        `/units/${encodeURIComponent(unit)}/analytics`,
+      ),
     ])
       .then(([r, u]) => {
         if (!stopped) {
-          setTrainees(r.trainees);
-          setTid((old) =>
-            r.trainees.some((t) => t.trainee_id === old)
-              ? old
-              : (r.trainees[0]?.trainee_id ?? ""),
-          );
-          setUnitHistory(u);
+          setRoster({ unit, trainees: r.trainees });
+          setUnitHistory({ ...u, unit });
         }
       })
       .catch((e) => {
@@ -205,12 +261,10 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
       return () => {
         stopped = true;
       };
-    void api<History>(`/trainees/${tid}/analytics`)
+    void api<History>(`/trainees/${encodeURIComponent(tid)}/analytics`)
       .then((h) => {
         if (stopped) return;
-        setHistory(h);
-        setA(h.sessions.at(-2)?.id ?? h.sessions[0]?.id ?? "");
-        setB(h.sessions.at(-1)?.id ?? "");
+        setHistory({ unit, trainee: tid, data: h });
       })
       .catch((e) => {
         if (!stopped) setError(e.message);
@@ -256,13 +310,14 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
           Unit
           <select
             value={unit}
-            onChange={(e) => {
-              setTid("");
-              setHistory(null);
-              setA("");
-              setB("");
-              setUnit(e.target.value);
-            }}
+            onChange={(e) =>
+              navigateSelection({
+                unit: e.target.value,
+                trainee: "",
+                a: null,
+                b: null,
+              })
+            }
           >
             {units.map((u) => (
               <option key={u.id} value={u.id}>
@@ -273,10 +328,25 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
         </label>
         <label>
           Trainee
-          <select value={tid} onChange={(e) => setTid(e.target.value)}>
+          <select
+            value={tid}
+            disabled={roster?.unit !== unit || !trainees.length}
+            onChange={(e) =>
+              navigateSelection({
+                unit,
+                trainee: e.target.value,
+                a: null,
+                b: null,
+              })
+            }
+          >
             <option value={tid}>
               {trainees.find((t) => t.trainee_id === tid)?.callsign ??
-                (tid || "No trainees in this unit")}
+                (roster?.unit !== unit
+                  ? "Loading trainees…"
+                  : selection.trainee
+                    ? "Requested trainee unavailable"
+                    : "No trainees in this unit")}
             </option>
             {trainees
               .filter((t) => t.trainee_id !== tid)
@@ -288,6 +358,18 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
           </select>
         </label>
       </div>
+      {roster?.unit === unit && selection.trainee && !tid && (
+        <p role="status">
+          The linked trainee is unavailable in this unit. Choose an available
+          trainee to inspect their evidence.
+        </p>
+      )}
+      {history && ((selection.a && !a) || (selection.b && !b)) && (
+        <p role="status">
+          A linked session is unavailable for this trainee. Choose an available
+          session to compare; no substitute evidence has been selected.
+        </p>
+      )}
       <p className="analytics-view-hint">
         Choose an analysis view · scroll to see all views on narrow screens
       </p>
@@ -366,7 +448,9 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
           )}
         </section>
       )}
-      {view === "scenario" && <SkillHeatmap unit={unit} trainee={tid} />}
+      {view === "scenario" && tid && (
+        <SkillHeatmap key={`${unit}/${tid}`} unit={unit} trainee={tid} />
+      )}
       {history && (
         <>
           {view === "overview" && (
@@ -448,15 +532,20 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
               <h2>Session A vs Session B</h2>
               <div className="studio-fields">
                 {[
-                  ["A", a, setA],
-                  ["B", b, setB],
-                ].map(([label, id, set]) => (
+                  ["A", a],
+                  ["B", b],
+                ].map(([label, id]) => (
                   <label key={label as string}>
                     Session {label as string}
                     <select
                       value={id as string}
                       onChange={(e) =>
-                        (set as (id: string) => void)(e.target.value)
+                        navigateSelection({
+                          unit,
+                          trainee: tid,
+                          a: label === "A" ? e.target.value : a,
+                          b: label === "B" ? e.target.value : b,
+                        })
                       }
                     >
                       <option value="">Select session</option>
@@ -488,7 +577,7 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
                     role="region"
                     aria-label="Persisted session comparison"
                   >
-                    <table>
+                    <table className="analytics-comparison-table">
                       <caption>
                         Persisted hostile-node averages and distinct failure
                         counts
@@ -498,7 +587,12 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
                           <th>Metric</th>
                           <th>A</th>
                           <th>B</th>
-                          <th>Observed difference B − A</th>
+                          <th>
+                            <span className="comparison-difference-label">
+                              Observed difference{" "}
+                            </span>
+                            B − A
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -526,7 +620,11 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
                   </p>
                 </>
               ) : (
-                <p>Complete two tactical sessions for a comparison.</p>
+                <p>
+                  {history.sessions.length < 2
+                    ? "Complete two tactical sessions for a comparison."
+                    : "Choose Session A and Session B from the saved records to compare."}
+                </p>
               )}
             </section>
           )}
@@ -595,7 +693,7 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
       {!history && tid && view !== "unit" && view !== "scenario" && !error && (
         <p role="status">Loading selected trainee's persisted evidence…</p>
       )}
-      {!tid && view !== "unit" && view !== "scenario" && (
+      {!tid && view !== "unit" && (
         <p>
           No trainee selected. Choose a unit and trainee to inspect individual
           evidence.

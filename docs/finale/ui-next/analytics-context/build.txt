@@ -1,0 +1,44 @@
+npm notice run vyuha-trainer@1.1.0-rc.3 build
+npm notice run tsc -b && vite build && node scripts/offline.mjs
+vite v6.4.3 building for production...
+transforming...
+✓ 1689 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                 0.66 kB │ gzip:   0.40 kB
+dist/assets/instrument-serif-latin-400-normal-DnYpCC2O.woff2   21.03 kB
+dist/assets/instrument-serif-latin-400-italic-DKMiL14s.woff2   22.13 kB
+dist/assets/geist-mono-latin-wght-normal-XN7g48iV.woff2        23.13 kB
+dist/assets/blue-hour-960-B1ywJL9S.webp                        26.45 kB
+dist/assets/geist-latin-wght-normal-BgDaEnEv.woff2             29.40 kB
+dist/assets/sim.worker-CuQPYTBL.js                             30.26 kB
+dist/assets/blue-hour-1600-DiW3eLXV.webp                       67.29 kB
+dist/assets/index-BtPApGzM.css                                211.54 kB │ gzip:  38.24 kB
+dist/assets/import-json-DEPqWbQE.js                             0.40 kB │ gzip:   0.27 kB
+dist/assets/live-stream-NigEgNc1.js                             1.78 kB │ gzip:   1.00 kB
+dist/assets/observations-BnLGOxA3.js                            2.68 kB │ gzip:   0.99 kB
+dist/assets/presentation-DEBuChuu.js                            3.39 kB │ gzip:   1.60 kB
+dist/assets/Evaluation-h2hmW-bv.js                              3.91 kB │ gzip:   1.60 kB
+dist/assets/Radar-BuxKaAQf.js                                   5.08 kB │ gzip:   2.14 kB
+dist/assets/Transfer-NB_tUDIm.js                                7.09 kB │ gzip:   2.69 kB
+dist/assets/Recorded-C86hXFE6.js                                8.42 kB │ gzip:   2.98 kB
+dist/assets/Benchmark-DQJNdS64.js                               8.98 kB │ gzip:   3.67 kB
+dist/assets/Evidence-Cq9xPsqO.js                                9.08 kB │ gzip:   2.77 kB
+dist/assets/RapidID-X304-kzw.js                                 9.08 kB │ gzip:   3.46 kB
+dist/assets/Compliance-fpV3QtMZ.js                              9.59 kB │ gzip:   3.16 kB
+dist/assets/response-v2-BSJ-8O2H.js                            13.15 kB │ gzip:   4.88 kB
+dist/assets/Analytics-CJtRhrIQ.js                              19.75 kB │ gzip:   6.22 kB
+dist/assets/ExerciseStudio-B5IF4FL_.js                         19.85 kB │ gzip:   6.18 kB
+dist/assets/Instructor-BjVep1Ie.js                             22.04 kB │ gzip:   7.16 kB
+dist/assets/quality-CHHU4r_t.js                                24.69 kB │ gzip:   8.27 kB
+dist/assets/Crew-53CpR691.js                                   25.22 kB │ gzip:   7.76 kB
+dist/assets/App-kohOK8Fa.js                                    93.60 kB │ gzip:  28.47 kB
+dist/assets/index-CS5xDoXt.js                                 302.09 kB │ gzip:  93.50 kB
+dist/assets/Scene-vDYHwdDu.js                                 904.37 kB │ gzip: 245.05 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 3.23s
+Offline cache: 36 local assets (bf5ccc367f59)

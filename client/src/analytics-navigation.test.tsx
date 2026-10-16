@@ -28,6 +28,7 @@ async function mounted(
     window: JSDOM["window"],
     requests: string[],
   ) => Promise<void>,
+  respond?: (url: string) => unknown | Promise<unknown>,
 ) {
   const dom = new JSDOM(
     '<!doctype html><html lang="en"><head><title>Analytics navigation</title></head><body><div id="root"></div></body></html>',
@@ -43,23 +44,25 @@ async function mounted(
       "GET",
       "Navigation cannot write training evidence",
     );
-    const result = url.endsWith("/units")
-      ? { units: [{ id: "local", name: "Synthetic QA unit" }] }
-      : url.endsWith("/trainees")
-        ? { trainees: [trainee] }
-        : url.includes("/skill-heatmap")
-          ? {
-              unit_id: "local",
-              trainee_id: null,
-              included_sessions: 0,
-              excluded_sessions: 0,
-              note: "No completed fixture sessions",
-              skills: [],
-              rows: [],
-            }
-          : url.includes("/trainees/")
-            ? history
-            : { points: [], note: "Unit fixture only" };
+    const result =
+      (await respond?.(url)) ??
+      (url.endsWith("/units")
+        ? { units: [{ id: "local", name: "Synthetic QA unit" }] }
+        : url.endsWith("/trainees")
+          ? { trainees: [trainee] }
+          : url.includes("/skill-heatmap")
+            ? {
+                unit_id: "local",
+                trainee_id: null,
+                included_sessions: 0,
+                excluded_sessions: 0,
+                note: "No completed fixture sessions",
+                skills: [],
+                rows: [],
+              }
+            : url.includes("/trainees/")
+              ? history
+              : { points: [], note: "Unit fixture only" });
     return new Response(JSON.stringify(result), {
       headers: { "Content-Type": "application/json" },
     });
@@ -199,3 +202,247 @@ test("Empty analytics explains comparison prerequisites instead of offering an u
       false,
     );
   }));
+
+const comparisonSessions = ["first", "second", "third"].map((id, index) => ({
+  id,
+  title: `Synthetic ${id}`,
+  pack: "Synthetic QA",
+  seed: index,
+  observed_tick: 300,
+  score: 50 + index,
+  nodes: { detect: 10, classify: 10, prioritise: 10, engage: 20 + index },
+  leakers: 0,
+  roe_breaches: 0,
+  failures: {},
+}));
+const secondTrainee = {
+  ...trainee,
+  trainee_id: "second-trainee",
+  callsign: "Second QA",
+};
+const otherTrainee = {
+  ...trainee,
+  unit_id: "other",
+  trainee_id: "other-trainee",
+  callsign: "Other QA",
+};
+function comparisonFixture(url: string) {
+  if (url.endsWith("/units"))
+    return {
+      units: [
+        { id: "local", name: "Synthetic QA unit" },
+        { id: "other", name: "Other unit" },
+      ],
+    };
+  if (url.endsWith("/units/local/trainees"))
+    return { trainees: [trainee, secondTrainee] };
+  if (url.endsWith("/units/other/trainees"))
+    return { trainees: [otherTrainee] };
+  if (url.includes("/trainees/") && url.endsWith("/analytics"))
+    return { ...history, sessions: comparisonSessions };
+}
+async function select(
+  document: Document,
+  window: JSDOM["window"],
+  index: number,
+  value: string,
+) {
+  await act(async () => {
+    const input = document.querySelectorAll("select")[index];
+    assert.ok(input);
+    input.value = value;
+    input.dispatchEvent(new window.Event("change", { bubbles: true }));
+  });
+}
+function values(document: Document) {
+  return [...document.querySelectorAll("select")].map((input) => input.value);
+}
+
+test("Shared analytics link restores the exact trainee and session pair without writing evidence", async () => {
+  const before = JSON.stringify(comparisonSessions);
+  await mounted(
+    "http://qa.local/analytics?source=proof&unit=local&trainee=second-trainee&sessionA=third&sessionB=first#session-comparison",
+    async (document, _window, requests) => {
+      assert.deepEqual(values(document), [
+        "local",
+        "second-trainee",
+        "third",
+        "first",
+      ]);
+      assert.ok(
+        requests.some((url) =>
+          url.endsWith("/trainees/second-trainee/analytics"),
+        ),
+      );
+      assert.ok(
+        !requests.some((url) =>
+          url.endsWith("/trainees/synthetic-trainee/analytics"),
+        ),
+      );
+    },
+    comparisonFixture,
+  );
+  assert.equal(JSON.stringify(comparisonSessions), before);
+});
+
+test("Selection changes retain source context and restore comparison, trainee and unit through browser history", async () =>
+  mounted(
+    "http://qa.local/analytics?source=proof#session-comparison",
+    async (document, window) => {
+      assert.deepEqual(values(document), [
+        "local",
+        "synthetic-trainee",
+        "second",
+        "third",
+      ]);
+      await select(document, window, 2, "first");
+      assert.equal(
+        new URLSearchParams(window.location.search).get("sessionA"),
+        "first",
+      );
+      await select(document, window, 1, "second-trainee");
+      assert.deepEqual(values(document), [
+        "local",
+        "second-trainee",
+        "second",
+        "third",
+      ]);
+      await select(document, window, 0, "other");
+      assert.deepEqual(values(document), [
+        "other",
+        "other-trainee",
+        "second",
+        "third",
+      ]);
+      await traversal(window, "back");
+      assert.deepEqual(values(document), [
+        "local",
+        "second-trainee",
+        "second",
+        "third",
+      ]);
+      await traversal(window, "back");
+      assert.deepEqual(values(document), [
+        "local",
+        "synthetic-trainee",
+        "first",
+        "third",
+      ]);
+      await traversal(window, "forward");
+      assert.deepEqual(values(document), [
+        "local",
+        "second-trainee",
+        "second",
+        "third",
+      ]);
+      assert.equal(
+        new URLSearchParams(window.location.search).get("source"),
+        "proof",
+      );
+    },
+    comparisonFixture,
+  ));
+
+test("Unavailable linked trainees never trigger analytics requests or substitute another trainee", async () =>
+  mounted(
+    "http://qa.local/analytics?unit=local&trainee=missing#session-comparison",
+    async (document, window, requests) => {
+      assert.match(
+        document.body.textContent!,
+        /linked trainee is unavailable/i,
+      );
+      assert.equal(
+        requests.some((url) => /\/trainees\/[^/]+\/analytics$/.test(url)),
+        false,
+      );
+      await select(document, window, 1, "second-trainee");
+      assert.deepEqual(values(document), [
+        "local",
+        "second-trainee",
+        "second",
+        "third",
+      ]);
+    },
+    comparisonFixture,
+  ));
+
+test("Missing linked sessions stay unselected and explicit empty selection survives reload", async () =>
+  mounted(
+    "http://qa.local/analytics?unit=local&trainee=synthetic-trainee&sessionA=missing&sessionB=#session-comparison",
+    async (document, window) => {
+      assert.deepEqual(values(document), [
+        "local",
+        "synthetic-trainee",
+        "",
+        "",
+      ]);
+      assert.match(
+        document.body.textContent!,
+        /linked session is unavailable/i,
+      );
+      await select(document, window, 2, "first");
+      assert.equal(
+        new URLSearchParams(window.location.search).get("sessionB"),
+        "",
+      );
+      assert.doesNotMatch(
+        document.body.textContent!,
+        /linked session is unavailable/i,
+      );
+    },
+    comparisonFixture,
+  ));
+
+test("Delayed previous-trainee response cannot replace the newly selected trainee's evidence", async () => {
+  let release!: (value: unknown) => void;
+  const delayed = new Promise((resolve) => {
+    release = resolve;
+  });
+  await mounted(
+    "http://qa.local/analytics#session-comparison",
+    async (document, window) => {
+      await select(document, window, 1, "second-trainee");
+      assert.deepEqual(values(document), [
+        "local",
+        "second-trainee",
+        "second",
+        "third",
+      ]);
+      await act(async () => {
+        release({
+          ...history,
+          sessions: [
+            { ...comparisonSessions[0], id: "stale", title: "Stale evidence" },
+          ],
+        });
+      });
+      assert.deepEqual(values(document), [
+        "local",
+        "second-trainee",
+        "second",
+        "third",
+      ]);
+      assert.doesNotMatch(document.body.textContent!, /Stale evidence/);
+    },
+    (url) =>
+      url.endsWith("/trainees/synthetic-trainee/analytics")
+        ? delayed
+        : comparisonFixture(url),
+  );
+});
+
+test("An unavailable trainee link cannot show an aggregate heatmap as their individual evidence", async () =>
+  mounted(
+    "http://qa.local/analytics?unit=local&trainee=missing#scenario-skill",
+    async (document, _window, requests) => {
+      assert.match(
+        document.body.textContent!,
+        /linked trainee is unavailable/i,
+      );
+      assert.equal(
+        requests.some((url) => url.includes("skill-heatmap")),
+        false,
+      );
+    },
+    comparisonFixture,
+  ));

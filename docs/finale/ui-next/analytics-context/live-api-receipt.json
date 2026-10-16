@@ -1,0 +1,141 @@
+{
+  "scope": "Production assets served by real API; five isolated synthetic no-action sessions, no intercepted requests",
+  "widths": [
+    {
+      "width": 360,
+      "restored": true,
+      "comparison_table": {
+        "width": 277,
+        "container": 277,
+        "scroll": 277
+      }
+    },
+    {
+      "width": 390,
+      "restored": true,
+      "comparison_table": {
+        "width": 307,
+        "container": 307,
+        "scroll": 307
+      }
+    },
+    {
+      "width": 428,
+      "restored": true,
+      "comparison_table": {
+        "width": 345,
+        "container": 345,
+        "scroll": 345
+      }
+    },
+    {
+      "width": 768,
+      "restored": true,
+      "comparison_table": {
+        "width": 654.9375,
+        "container": 655,
+        "scroll": 655
+      }
+    },
+    {
+      "width": 1024,
+      "restored": true,
+      "comparison_table": {
+        "width": 895.5625,
+        "container": 896,
+        "scroll": 896
+      }
+    },
+    {
+      "width": 1280,
+      "restored": true,
+      "comparison_table": {
+        "width": 1136.21875,
+        "container": 1136,
+        "scroll": 1136
+      }
+    },
+    {
+      "width": 1440,
+      "restored": true,
+      "comparison_table": {
+        "width": 1286.625,
+        "container": 1287,
+        "scroll": 1287
+      }
+    },
+    {
+      "width": 1920,
+      "restored": true,
+      "comparison_table": {
+        "width": 1337,
+        "container": 1337,
+        "scroll": 1337
+      }
+    }
+  ],
+  "non_read_requests": [],
+  "page_errors": [],
+  "axe": [
+    {
+      "width": 360,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 390,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 428,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 768,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1024,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1280,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1920,
+      "violations": [],
+      "incomplete": []
+    }
+  ],
+  "evidence_hashes_before": {
+    "/trainees/T_047871999bb2423d82299d/analytics": "0b58187b47ba3395ab4ce5f9e236ee93db6606e24753a5bf1ab978fac3a6c4ae",
+    "/sessions/8953b1e5-8c1e-4e14-ba3c-18d7f5c66423/aar": "30b2f20f2f63d3488ce8372de1a042c66ad555e1bd07db89d7d0b189ab7fc702",
+    "/sessions/c93bcfa1-2a8e-4f3e-8ce7-800d9391846e/aar": "7509ea18e64d3dfb0f41f1dda57387202d83ae816092493ee61c82d3ef797504",
+    "/sessions/d5e26b64-deaf-47e8-add2-688b313ab8ad/aar": "192735b7f03808f1cdae8081df4f159408067291d3ae55731a4cdd8ce998b464",
+    "/trainees/T_a63fdc2083824fd5bade10/analytics": "58d58b8887939a9afc3dd16017b43b1d6189c438ae8b6aa7ff37f7c93277bdf2",
+    "/sessions/ca597246-e540-4804-8a43-c641ccce4e9e/aar": "21a601d55714c8132e66eabce20ecce936d62509806a2b4ea5e031fe9e3ab217",
+    "/sessions/5444e1f1-c33e-4279-bb5c-f48728402afa/aar": "d0ec6d5c17eb77963af138035fa375218079da9c2c9159e71e9453bbec289229"
+  },
+  "history_reload_and_keyboard": "PASS",
+  "evidence_hashes_after": {
+    "/trainees/T_047871999bb2423d82299d/analytics": "0b58187b47ba3395ab4ce5f9e236ee93db6606e24753a5bf1ab978fac3a6c4ae",
+    "/sessions/8953b1e5-8c1e-4e14-ba3c-18d7f5c66423/aar": "30b2f20f2f63d3488ce8372de1a042c66ad555e1bd07db89d7d0b189ab7fc702",
+    "/sessions/c93bcfa1-2a8e-4f3e-8ce7-800d9391846e/aar": "7509ea18e64d3dfb0f41f1dda57387202d83ae816092493ee61c82d3ef797504",
+    "/sessions/d5e26b64-deaf-47e8-add2-688b313ab8ad/aar": "192735b7f03808f1cdae8081df4f159408067291d3ae55731a4cdd8ce998b464",
+    "/trainees/T_a63fdc2083824fd5bade10/analytics": "58d58b8887939a9afc3dd16017b43b1d6189c438ae8b6aa7ff37f7c93277bdf2",
+    "/sessions/ca597246-e540-4804-8a43-c641ccce4e9e/aar": "21a601d55714c8132e66eabce20ecce936d62509806a2b4ea5e031fe9e3ab217",
+    "/sessions/5444e1f1-c33e-4279-bb5c-f48728402afa/aar": "d0ec6d5c17eb77963af138035fa375218079da9c2c9159e71e9453bbec289229"
+  },
+  "evidence_unchanged": true
+}
