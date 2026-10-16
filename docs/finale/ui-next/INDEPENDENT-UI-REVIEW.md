@@ -82,3 +82,27 @@ Representative full-page screenshots for all seven routes at 360/1440 are in `br
 Final targeted verification confirms the Instructor roster now has **217px** of visible list area for 217px of content, displaying all three synthetic rows. Analytics phone tabs form a grid: all five focused controls remain within x16–344px, with `:focus-visible` true and a visible cyan box-shadow ring. Earlier clipping findings are resolved for the tested state. [Focused mobile Analytics](browser-final/analytics-focus-360.png).
 
 Remaining product recommendations: reduce officer-session chrome on phones; progressively disclose long optional AAR/reference analysis; validate multi-session comparisons with multiple completed exercises belonging to the same trainee. No software blocker remains from the specific defects reproduced in this scoped review. This statement does not extend to unreviewed drill, physical devices, other identity/import/recovery states, full screen-reader behavior, or integrated release readiness.
+
+## Frozen-source acceptance: `7f028a8367f2eb047c90ac781bdf4dc5594b28b7`
+
+Repeated the matrix after the runtime source freeze, including the last Compliance, Unit, Crew history and profile presentation refinements. Runtime diff before and after capture was empty: SHA-256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`. Documentation/artifact additions do not change the runtime source.
+
+**80 route/viewport cases:** Analytics, Instructor, Exercise Studio, Recorded Practice, Data Transfer, Unit Overview, System Evidence, Compliance, Rapid ID and authenticated Ghost AAR at 360, 390, 428, 768, 1024, 1280, 1440 and 1920px. All had document width equal to viewport width. Initial/empty views were used where the isolated fixture had no corresponding records; Analytics/Instructor/Unit/AAR used the labelled synthetic trainee records. Rapid ID showed the local-mode CADET-01 initial recognition form. Ghost capture explicitly waited for the server-verified review and hypothetical-branch control to load.
+
+**20 axe scans:** all ten routes at 360 and 1440 returned zero violations for the configured WCAG A/AA tags. All incomplete rule results and affected targets are retained in the receipt. Automated zero violations remains distinct from screen-reader or complete accessibility acceptance.
+
+[Exact-source browser receipt](frozen-browser/browser-receipt.json) records source, diff hashes, dimensions, route headings, axe findings/incomplete checks and sampled keyboard interactions. `frozen-browser/` contains twenty representative full-page screenshots (all ten routes at 360/1440) and three filtered workflow screenshots.
+
+Sampled keyboard checks:
+
+- Unit search typed `SYNTHETIC-QA-1`, yielding one profile/one session; clearing restored three profiles/two sessions. Full-cohort summary remained labelled separately. Focus-visible state was present.
+- Compliance search typed `offline` (zero matches), cleared to all twelve requirements, then `radar` (one match). Keyboard ArrowDown/Enter selected PASS status and retained the matching row. Focus-visible state was present on search.
+- Crew officer history was opened and refreshed using its read-only history action. Keyboard search accepted `SYNTHETIC` and reported zero matching completed exercises for the empty Crew fixture. No creation, role-code operation or live Crew controls were exercised.
+
+No new release-blocking visual or accessibility defect was reproduced within this frozen-source scope. The previously documented density recommendations and untested states remain applicable. These results do not establish integrated drill quality, physical-device acceptance, scientific validation or final human visual approval.
+
+### Final semantic follow-up: `10a63fefba2201aa9c343d18ca1b0d3b24c0a112`
+
+The final runtime delta from the 80-case matrix source is limited to explicit `role="group"` semantics on three labelled containers: `Instructor.tsx` command status, `WhiteCell.tsx` evidence switch, and `review-TrendChart.tsx` legend. No layout or data behavior changed. The 80-case matrix remains attributed to `7f028a8`; it is not relabelled as a rerun on this commit.
+
+Repeated axe on populated Analytics, Instructor and officer Ghost at 360/1440 (six scans) against the final commit. Results: **zero violations; zero `aria-prohibited-attr` incomplete findings**. Remaining incomplete checks concern automated color-contrast determination over SVG/image/gradient content and remain recorded without treating them as passes. Exact source, unchanged runtime diff hash and affected file mapping are in [final semantic receipt](frozen-browser/FINAL-SEMANTIC-BROWSER.json). No runtime edits were made during this review.

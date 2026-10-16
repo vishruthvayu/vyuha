@@ -38,3 +38,11 @@ Research includes public source access limits and three interactive browser layo
 - Existing stylesheet entrypoint contract restored: `main.tsx` keeps `premium/premium.css` last; that file imports both scoped platform sheets. Existing regression preserved and passing.
 - Latest administration/Director/compliance/Crew/style batch: 37 passed. Initial complete frontend run found the import-order regression (288 passed, 1 failed); this was corrected, not waived. Final complete run remains required.
 - Independent review captured 56 route/width combinations and 14 axe scans without detected overflow/violations after the main responsive fixes. These working-tree captures predate the last administration refinements; final source receipt must supersede them for affected routes.
+
+## Final runtime acceptance checkpoint
+
+Final code: `10a63fefba2201aa9c343d18ca1b0d3b24c0a112` (pushed and independently clean-cloned). Final reruns: **708 backend passed / 263.13s; 289 frontend passed / 18.216s**, parity included. Lint/format/build pass; 36 offline asset URLs. Final reconstruction median at 200 contacts: **7.222s loopback HTTP**, three samples, no claimed speedup. `FINAL-VALIDATION.json` and `FINAL-SOURCE-INVENTORY.json` tie evidence to 326 tracked runtime/test/deployment inputs.
+
+Production HTTP/Chromium acceptance passed server scoring/Ghost/profiles, What-If immutability, distinct Crew roles/cross-Crew rejection/rotation/attribution/completion, signed transfer/duplicate/tamper handling, SQLite backup/restore and restart recovery, cached offline shell reload and browser import. Clean-clone and Docker records match the final code. A separate evidence-only checkpoint publishes these files without changing runtime source.
+
+See `FINAL-REPORT.md` for exact integration instructions, screenshot links, audit qualifications and remaining ownership/physical/private-history/user acceptance. No finished drill branch, merged SHA or RC is claimed. Main Codex remains merge/release owner. Home/preparation was protected; Rapid ID retains its existing focused workflow with the new surrounding shell. Review those scope limits explicitly during final product acceptance.

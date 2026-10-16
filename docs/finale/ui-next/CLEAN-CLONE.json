@@ -1,0 +1,301 @@
+{
+  "generated_at_utc": "2026-10-16T10:46:26.603506+00:00",
+  "source_sha": "10a63fefba2201aa9c343d18ca1b0d3b24c0a112",
+  "branch": "feature/vyuha-final-hardening",
+  "clone": {
+    "command": "git clone --no-hardlinks --branch feature/vyuha-final-hardening /home/naveen/Vyuha-final-hardening /tmp/vyuha-clean-clone-7f028a8",
+    "exit_code": 0,
+    "source": "local repository committed history",
+    "path": "/tmp/vyuha-clean-clone-7f028a8",
+    "tracked_or_untracked_git_status": "",
+    "is_remote_github_clone": false,
+    "final_update_commands": [
+      "git fetch origin feature/vyuha-final-hardening",
+      "git merge --ff-only origin/feature/vyuha-final-hardening"
+    ],
+    "final_update_exit_codes": [
+      0,
+      0
+    ],
+    "initial_source_sha": "7f028a8367f2eb047c90ac781bdf4dc5594b28b7"
+  },
+  "environment": {
+    "node": "v26.11.1",
+    "npm": "12.2.0",
+    "python": "Python 3.14.8",
+    "test_python": "/home/naveen/Vyuha-final-hardening/.venv/bin/python",
+    "python_dependencies_reinstalled": false,
+    "python_source": "cloned repository server modules",
+    "platform": "Linux container; not physical-device acceptance"
+  },
+  "commands": [
+    {
+      "name": "sha",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/tmp/vyuha-clean-clone-7f028a8",
+      "exit_code": 0,
+      "seconds": 0.002,
+      "log": "/tmp/vyuha-clean-sha.log"
+    },
+    {
+      "name": "install",
+      "command": [
+        "npm",
+        "ci"
+      ],
+      "cwd": "/tmp/vyuha-clean-clone-7f028a8/client",
+      "exit_code": 0,
+      "seconds": 3.292,
+      "log": "/tmp/vyuha-clean-install.log"
+    },
+    {
+      "name": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "cwd": "/tmp/vyuha-clean-clone-7f028a8/client",
+      "exit_code": 0,
+      "seconds": 12.228,
+      "log": "/tmp/vyuha-clean-build.log"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/tmp/vyuha-clean-clone-7f028a8/client",
+      "exit_code": 0,
+      "seconds": 4.024,
+      "log": "/tmp/vyuha-clean-lint.log"
+    },
+    {
+      "name": "format",
+      "command": [
+        "npm",
+        "run",
+        "format:check"
+      ],
+      "cwd": "/tmp/vyuha-clean-clone-7f028a8/client",
+      "exit_code": 0,
+      "seconds": 2.1,
+      "log": "/tmp/vyuha-clean-format.log"
+    },
+    {
+      "name": "test",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "/tmp/vyuha-clean-clone-7f028a8/client",
+      "exit_code": 0,
+      "seconds": 22.45,
+      "log": "/tmp/vyuha-clean-test.log"
+    },
+    {
+      "name": "audit",
+      "command": [
+        "npm",
+        "audit",
+        "--json"
+      ],
+      "cwd": "/tmp/vyuha-clean-clone-7f028a8/client",
+      "exit_code": 0,
+      "seconds": 1.094,
+      "log": "/tmp/vyuha-clean-audit.log"
+    }
+  ],
+  "frontend_tests": {
+    "total": 289,
+    "passed": 289,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "environment": {
+      "VYUHA_TEST_PYTHON": "/home/naveen/Vyuha-final-hardening/.venv/bin/python"
+    }
+  },
+  "npm_audit": {
+    "auditReportVersion": 2,
+    "vulnerabilities": {},
+    "metadata": {
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "dependencies": {
+        "prod": 15,
+        "dev": 404,
+        "optional": 79,
+        "peer": 17,
+        "peerOptional": 0,
+        "total": 423
+      }
+    }
+  },
+  "package_lock_sha256": "98b8c231712ececa75814c097ce4e2d3ad34cd40ba7bc4a970ecc9a8f049f4e9",
+  "resolved_versions": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "three": "0.180.0",
+    "vite": "6.4.3",
+    "typescript": "5.9.3",
+    "eslint": "9.39.5",
+    "prettier": "3.9.10",
+    "axe-core": "4.14.0",
+    "tsx": "4.23.15"
+  },
+  "production_assets": {
+    "exit_code": 0,
+    "seconds": 11.075,
+    "identical": true,
+    "file_count": 36,
+    "total_bytes": 1937305,
+    "hashes": {
+      "assets/Analytics-0bTxVGx_.js": "da5b1e96fa4e32a5873f496598e48bb4c5ffbf03f688cc7e073b9c1b64526bfe",
+      "assets/App-DcqHfHDi.js": "897d64cac34b5b49954cd4f9aca603c7004586c403b0a94bcd52107d2f8d7179",
+      "assets/Benchmark-_kLW_soy.js": "76cd3b98ae3847b7db88385c08d8526c7292d8708fcac38574f582a067e1b324",
+      "assets/Compliance-BoXjRDEG.js": "c7d8d552711699536598d09b160b4bafbb1c7ddab5606ff76ae5b6c6d07bd574",
+      "assets/Crew-D5CudtwY.js": "9aa7c22159e9e6e424300b1cc6006c064ce47a7d86038bbf1ad33d995ac0491a",
+      "assets/Evaluation-C5X-54tq.js": "43bba6df1b7983f37d10098797a06bc225fca12bf0a7e69406d9bcdb0cd06d7a",
+      "assets/Evidence-DB7KFDig.js": "a297b12769889d2fd16771e0b9a7466f7d2a3af56cefd81998a956f73eb97300",
+      "assets/ExerciseStudio-6DaynsuX.js": "36969ad4addf8aa8b1cbf88230120dc611bc78e76757c69903f9b4289561a806",
+      "assets/Instructor-CS1Y4iTB.js": "9d6da67632b950532c496b6b3dc39bd69ac2af7c1791011596774ce710b3b23f",
+      "assets/Radar-o4mSq__H.js": "abba9f527920fba96c9f7cc98ea35df44f5d34253d7bd22d06e1509e0a7dbef3",
+      "assets/RapidID-BjpKETlo.js": "b0cd8724b6bb3370f7ab7d5f4a2850f2bcb9a73b1f1a729fed54bf543e977638",
+      "assets/Recorded-BXMlzdbL.js": "79efdc068fb50db08d257e03c5a691e8cdb876c836befe854c06f64630c83ea6",
+      "assets/Scene-BHfMu0vv.js": "954871fce65f9da79bacf25076df86e5f32d94176c6c115ec6e68de9ee569b95",
+      "assets/Transfer-DHcNqlnz.js": "67a450c658966ef72cc7def66ef47fd203385391cdcc871c2f0595686f40a01b",
+      "assets/blue-hour-1600-DiW3eLXV.webp": "ee832ecd33f7e7789dcb081a86f7ea190af1161044f6bec440ba272458b079cd",
+      "assets/blue-hour-960-B1ywJL9S.webp": "40f6018013edf60bd257e7791a3bd3267c5c417f0e6081cd2b38698cf2fbad5d",
+      "assets/geist-latin-wght-normal-BgDaEnEv.woff2": "19f9c92546aa300c312235e3125af1b81394d8db9a4bc4a425cd5b641d2d54e1",
+      "assets/geist-mono-latin-wght-normal-XN7g48iV.woff2": "684ad5b531f81d43c1e8c7038262d5db7cdc1f68006e04d6c7769efa8d33c8cc",
+      "assets/import-json-DEPqWbQE.js": "0ed610860015c0f9673df34d95efab8c7ed42d4f5928566480caa77ec126380c",
+      "assets/index-B35phouu.js": "9e6e486420643e4e24004e114386e20d43d525ccd1b8769fc33414858f1f08e6",
+      "assets/index-Bb3ga6qX.css": "2cb20d7475730530ae4a35c514ea70cf26eeb814f5f4850e338e7561ba9e4aba",
+      "assets/instrument-serif-latin-400-italic-DKMiL14s.woff2": "5a51946dfffa82972bc98745359c46761515641fda557c25116459a9f83da4a7",
+      "assets/instrument-serif-latin-400-normal-DnYpCC2O.woff2": "5eb09b5ac0e28b67c2f041c8ba6d244604ca0c0980d65912ab2d47fed84ddc31",
+      "assets/live-stream-OtF412MN.js": "b991e2267cd400ddeb5136477fd86f560d44feec097c5db4e4a6c5a2721a85fc",
+      "assets/observations-BnLGOxA3.js": "bd6f4f4a041dfe78d7cbda832a0d0ccccd3bac47ad450302a2b98eac2f092440",
+      "assets/presentation-DEBuChuu.js": "2c2eed4e6e53d81827407fbde5bd42df2b042f38f5e07866efb6a8e0ce657c2e",
+      "assets/quality-B2-GpbvG.js": "e753d6a448270ca30ce5b24025ff6f95872ce6c69d09f983a5c611e99a922567",
+      "assets/response-v2-BSJ-8O2H.js": "e0a9c70eb590bfffdb8245ef07940ee54c314477cc2ea15cfb535e4c48236560",
+      "assets/sim.worker-CuQPYTBL.js": "c4e19a5df60bd199d823fbd14ef660241e2fce3176f3cf0b91616d6d3de29e09",
+      "examples/recorded-exercise.json": "9e80153eadf52a637130eb9495a77a038f97fa583095e0f628b8f46ff2c7343d",
+      "favicon.svg": "ad80061f8ab202c70b75b8cea093537e31373642c45d9f26c0a84300f6868acf",
+      "index.html": "771931f02a59074c1c29a03bffdd889b8000bdcd43bbc99b64d6d77226a15d2e",
+      "licenses/OFL-Geist-and-Geist-Mono.txt": "71609cbb5c78b5870d712eab73a31d76622635c6ed034ab5cee3b9ecbda8685f",
+      "licenses/OFL-Instrument-Serif.txt": "b6106a757902d2d412e09d94dc4a226fe3da80485208a98003969f1b8b6b1d74",
+      "manifest.webmanifest": "3c9a9d404d20793b0dfb430286f94ae5ecd1c559ccc7f21e340206d3fa1d745a",
+      "sw.js": "1240cb48bd78419f6f337a4e504d3f9cc082305e908da11b7096967778d196b5"
+    }
+  },
+  "offline_cache": {
+    "urls": 36,
+    "cache_version": "771931f02a59",
+    "note": "Includes root navigation alias; generated sw.js excluded from precache itself. 36 generated dist files in total."
+  },
+  "warnings": [
+    "npm ci: deprecated whatwg-encoding@3.1.1 and eslint@9.39.5",
+    "npm ci: environment blocked postinstall scripts for esbuild@0.28.2 and esbuild@0.25.12; production build succeeded without approving scripts",
+    "Vite: lazy Scene chunk approximately 904.37 kB minified, 245.05 kB gzip, exceeds default warning threshold; renderer ownership unchanged"
+  ],
+  "docker": {
+    "cli_version": "29.9.0",
+    "daemon_version": "29.9.0",
+    "daemon_info_exit_code": 0,
+    "image_build_performed": true,
+    "runtime_smoke_test_performed": true,
+    "build": {
+      "command": [
+        "docker",
+        "build",
+        "--tag",
+        "vyuha-hardening-qa:10a63fe",
+        "."
+      ],
+      "exit_code": 0,
+      "seconds": 22.899,
+      "log": "/tmp/vyuha-clean-docker-build.log"
+    },
+    "smoke": {
+      "image_tag": "vyuha-hardening-qa:10a63fe",
+      "image_id": "sha256:6040ef7822b40669f8b14e72cdaa594ba0206482cdfe8c2dd357ddb82dfba4de",
+      "mounts": [],
+      "published_externally": false,
+      "checks": [
+        {
+          "path": "/api/v1/health",
+          "status": 200,
+          "body": {
+            "status": "ok",
+            "engine_version": "vyuha-0.2.0",
+            "storage": "sqlite",
+            "mode": "local-demo",
+            "unit_id": "local"
+          }
+        },
+        {
+          "path": "/",
+          "status": 200,
+          "bytes": 659,
+          "body": null
+        },
+        {
+          "path": "/sw.js",
+          "status": 200,
+          "bytes": 2240,
+          "body": null
+        },
+        {
+          "path": "/api/v1/units/local/dashboard",
+          "status": 401,
+          "bytes": 37,
+          "body": {
+            "detail": "Officer sign-in required"
+          }
+        },
+        {
+          "path": "/api/v1/health after restart",
+          "status": 200,
+          "body": {
+            "status": "ok",
+            "engine_version": "vyuha-0.2.0",
+            "storage": "sqlite",
+            "mode": "local-demo",
+            "unit_id": "local"
+          }
+        }
+      ],
+      "run_exit_code": 0,
+      "binding": "http://127.0.0.1:32772",
+      "uid": "1000",
+      "non_root": true,
+      "restart_exit_code": 0,
+      "binding_after_restart": "http://127.0.0.1:32773",
+      "all_checks_passed": true,
+      "container_cleanup_exit_code": 0
+    },
+    "docker_asset_hashes_match_native": true,
+    "uses_build_cache": true,
+    "base_images_digest_pinned": false
+  },
+  "limits": [
+    "Local fresh Git clone verifies committed-source reproducibility, not GitHub remote availability.",
+    "npm dependencies freshly installed from package-lock; Python dependencies reused via explicit existing environment.",
+    "No physical Windows, native Linux, Android, separate-device LAN HTTPS or WAN-off acceptance performed.",
+    "No final release candidate or integration with visual developer certified.",
+    "Docker image build used normal build cache; Dockerfile base tags are not digest-pinned."
+  ]
+}
