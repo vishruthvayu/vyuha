@@ -20,6 +20,8 @@ At phone widths the comparison table fits Metric, A, B and B − A together. Its
 
 [Browser fixture receipt](analytics-context/browser-receipt.json), [real API receipt](analytics-context/live-api-receipt.json), [phone screenshot](analytics-context/live-comparison-360.png), [desktop screenshot](analytics-context/live-comparison-1440.png), [full frontend log](analytics-context/frontend-tests.txt), [build log](analytics-context/build.txt).
 
+Fresh backend verification passes 708 tests in 259.37 s, with one existing dependency deprecation warning. Server source is unchanged. A fresh GitHub clone of runtime `a87842bd7b99537a540fb7c6adb08f475f8eaed1` passes install, all 301 frontend tests, parity, lint, formatting and build; all production asset bytes match the native build. The prepared pinned Python interpreter is reused with cloned server source. [Backend log](analytics-context/backend-tests.txt) and [clean-clone receipt](analytics-context/clean-clone-receipt.json).
+
 ## Integration and limits
 
 Main Codex owns merging and release preparation. Preserve the premium stylesheet entrypoint and scoped styles. The Analytics URL parameters are a UI selection contract, not access credentials; normal officer authentication remains required when opening a shared link. IDs appear in browser history, consistent with existing session review links. No secrets, private sessions or source databases are included in screenshots or receipts.

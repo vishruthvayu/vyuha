@@ -1,5 +1,5 @@
 {
-  "tested_source_commit": "de30dfa1de7e0d1c59bb257f3020c2f5f074dc36",
+  "tested_source_commit": "a87842bd7b99537a540fb7c6adb08f475f8eaed1",
   "files": {
     "Dockerfile": "dfc4e77d06726fd970867ddd5b00efa7c5328a9388279e64f935d6833c45d11b",
     "client/eslint.config.mjs": "b02f6d9d285a39e5c9fed274e99919103724d8f3cfad9d951e2e349c82f97295",
@@ -12,7 +12,7 @@
     "client/scripts/offline.mjs": "fcd4865251d95743dd70697fd6e43377e3abf79ff27ea02bc834ae29aa05b14c",
     "client/src/AARHistory.tsx": "3555ac1631a04aa38b29e73ddabcfa28f048abd8276713e2dd7c2497f6c3dcfb",
     "client/src/AdvancedAAR.tsx": "a1302919e04483113d387751a70f743070ccd085779ae4bde8c67f6ed27668bd",
-    "client/src/Analytics.tsx": "463e4533ef1aea0f0b25589995e3268f3fdf628b324d449d9353728fbacbd903",
+    "client/src/Analytics.tsx": "85bfa7c3b5dff21635de6ac51a2286a45c58fea9fa426e9853cbd19a2823b608",
     "client/src/App.tsx": "22bd785d1b7c8235ac101d6c3bb0993da50c1e883706106b901addd8a27767d4",
     "client/src/Benchmark.tsx": "8195b321aa3a5ff23f0f3ecb773ffe035dbd847cf542102590e1e9101a20f7ae",
     "client/src/CapabilityTour.tsx": "a393934955a7505ad62bf5688ee799ada44efd6e59dec4196c9039cdd36a7e18",
@@ -58,7 +58,7 @@
     "client/src/accessibility.test.tsx": "470cc4cf5ccdaaad627d446bf14645958df18b52679ec77ca0db0e31cf248494",
     "client/src/advanced.test.tsx": "27222448e727fa75d02df1f0fe0886e4593604e0cced14d9ee1ba389436f2f7f",
     "client/src/airframe-geometry.ts": "a2d56cf838e74c4d6e45bc4e625b27810bc5ada6c24461bec58305005535b1ab",
-    "client/src/analytics-navigation.test.tsx": "3f2b6f6b1bc0a0e78ce21498a5b87ee5f716eb54b3763a72307fc6a9bc9a22f5",
+    "client/src/analytics-navigation.test.tsx": "89665483498576d5693f72b97e4b2f2faccb8770d3d6c8ee7538d1baafe1d327",
     "client/src/clock.test.ts": "3cfd31966e45547f5bcf9110c59693b03db26183412dd912e65e19546b52dac4",
     "client/src/clock.ts": "58173190affbddb5bdfcbcc4ff78c05b97b12ca08f946f94f9a836a9f5406451",
     "client/src/command-composer-input.test.tsx": "c53554e5aad6cc2232c367ded4e62e085c5d5b5347131df2c05fa13d783b86ef",
@@ -102,7 +102,7 @@
     "client/src/observed-contacts.ts": "2f3f3cc28252179de6b12b36487c8b9c004d6bff906c7dd80f418408acac72a2",
     "client/src/offline-worker.test.ts": "d0df1c69bafaba48c66a5470ecb6467172f981b626e2443650d25f6b9fecf1cd",
     "client/src/platform/authoring.css": "d6faa3658916ee89f85617d26be5c51b4f49f5abeb96460fecfdeab74d0ca266",
-    "client/src/platform/fieldwork.css": "3286b5f90e76b006dfe58f5331cdffb6cf15e50225cd652d09a0d1c3de018de6",
+    "client/src/platform/fieldwork.css": "d5f2b59158a11de3ba2dbdb250f19eb0da8ebda10c4b0f94fac065ecbada00ce",
     "client/src/polish.test.tsx": "0f4f29cfb0213948ba6c21cb1577ee3d8ceec6a433cfedaef30049c392567992",
     "client/src/premium-ui.test.tsx": "719acc6fa3b13a8c6243c2fb110b3f6de3c4135da2f3fb28e6629aaf1ac42341",
     "client/src/premium/analytics.css": "e74f207d3ab22dcd57e29e07519d6776b3b0a874e2191fef40d05aa52cf75f77",
@@ -329,5 +329,6 @@
     "server/units.py": "c550d6bf1241f295bb1207ab406133f8074f21c95fd06fe75d553beb8884d5f7",
     "server/white_cell.py": "d755f29890d9f7f8860b4e2a33f58c9c6b63735260a426ea2ae1360464b40821"
   },
-  "inventory_sha256": "e5ed5c9b5db9b74a0a2ffba7fc8e6e377acb84e6c0a8b53b907d0016fb64fde1"
+  "inventory_sha256": "d3010762b62eaa53c9c1b7808f039d4ee30cf20b49cb67617e468cafc9509d7f",
+  "hash_algorithm": "SHA256 of UTF-8 JSON(files), sorted keys, compact separators"
 }
