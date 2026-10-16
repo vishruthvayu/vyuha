@@ -264,7 +264,7 @@ export default function Instructor() {
           </nav>
         </details>
       </header>
-      <div className="command-pulse" aria-label="Session overview">
+      <div className="command-pulse" role="group" aria-label="Session overview">
         <div>
           <strong>
             {sessions.filter((s) => statusRank(s.status) < 3).length}

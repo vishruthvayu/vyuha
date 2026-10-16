@@ -412,7 +412,11 @@ export function WhiteCell({
         commands. Choose a trainee; use that session’s instructor controls for
         interventions.
       </p>
-      <div className="segmented" aria-label="White Cell evidence mode">
+      <div
+        className="segmented"
+        aria-label="White Cell evidence mode"
+        role="group"
+      >
         <button
           aria-pressed={mode === "observed"}
           onClick={() => setMode("observed")}

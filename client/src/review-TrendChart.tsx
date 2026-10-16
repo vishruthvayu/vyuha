@@ -31,7 +31,11 @@ export default function ReviewTrendChart({
     );
   return (
     <figure className="review-trend-chart">
-      <div className="review-chart-legend" aria-label="Displayed skill series">
+      <div
+        className="review-chart-legend"
+        role="group"
+        aria-label="Displayed skill series"
+      >
         {skills.map((skill, index) => (
           <label
             key={skill}
