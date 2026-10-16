@@ -112,74 +112,158 @@ async function requestCrew<T>(
     );
   return json;
 }
-export function CrewPicture({ state }: { state: CrewState }) {
+const ROLE_DUTY = {
+  spotter: "Watch the shared picture and designate contacts for the responder.",
+  responder:
+    "Classify designated contacts and choose a simulated response from the evidence.",
+} as const;
+/** Smallest ring scale that keeps every reported contact on the scope. */
+function scopeRange(contacts: CrewState["contacts"]) {
+  const far = Math.max(
+    0,
+    ...contacts.map((t) => Math.hypot(t.position.x, t.position.z)),
+  );
+  return (
+    [1000, 1500, 2000, 3000, 4000, 6000, 8000, 12000].find(
+      (r) => r >= far * 1.15,
+    ) ?? Math.ceil((far * 1.15) / 1000) * 1000
+  );
+}
+function contactStage(t: CrewState["contacts"][number]) {
+  if (t.classification) return "classified";
+  if (t.designated !== null && t.designated !== undefined) return "designated";
+  return "observed";
+}
+export function CrewPicture({
+  state,
+  selected = "",
+}: {
+  state: CrewState;
+  selected?: string;
+}) {
   const member = state.roster?.find((entry) => entry.id === state.member_id);
+  const phase =
+    state.status === "completed"
+      ? "completed"
+      : state.done
+        ? "scoring"
+        : state.paused
+          ? "paused"
+          : "running";
+  const range = scopeRange(state.contacts);
+  const elapsed = Math.min(1, state.tick / 30 / Math.max(1, state.duration));
   return (
     <>
-      <header className="crew-role-banner">
-        <div>
+      <header className="crew-role-banner" data-role={state.role}>
+        <div className="crew-role-identity">
           <div className="eyebrow">
             SHARED EXERCISE · {state.role.toUpperCase()}
           </div>
           <h2>
             {member?.callsign ?? "Assigned role"} · {state.name}
           </h2>
+          <p className="crew-role-duty">{ROLE_DUTY[state.role]}</p>
         </div>
-        <span className="status">
-          {state.status === "completed"
-            ? "Completed"
-            : state.done
-              ? "Awaiting scoring"
-              : state.paused
-                ? "Paused"
-                : "Running"}
-        </span>
+        <div className="crew-clock" data-phase={phase}>
+          <span className="status">
+            {state.status === "completed"
+              ? "Completed"
+              : state.done
+                ? "Awaiting scoring"
+                : state.paused
+                  ? "Paused"
+                  : "Running"}
+          </span>
+          <p className="command-lifecycle">
+            T+{(state.tick / 30).toFixed(2)}s / {state.duration}s ·{" "}
+            {state.status} ·{" "}
+            {state.status === "completed"
+              ? "Completed"
+              : state.done
+                ? "Awaiting officer scoring"
+                : state.paused
+                  ? "Paused"
+                  : "Running"}
+          </p>
+          <div className="crew-clock-track" aria-hidden="true">
+            <span style={{ inlineSize: `${(elapsed * 100).toFixed(1)}%` }} />
+          </div>
+        </div>
       </header>
-      <p className="command-lifecycle">
-        T+{(state.tick / 30).toFixed(2)}s / {state.duration}s · {state.status} ·{" "}
-        {state.status === "completed"
-          ? "Completed"
-          : state.done
-            ? "Awaiting officer scoring"
-            : state.paused
-              ? "Paused"
-              : "Running"}
-      </p>
-      <details className="evidence-disclosure">
-        <summary>Shared clock and evidence scope</summary>
-        <p>
-          {state.status === "completed" || state.paused
-            ? state.clock_note
-            : "Server advances logical time while connected clients poll; long stalls discard excess wall time."}
-        </p>
-        <p>{state.note}</p>
-      </details>
-      <svg
-        viewBox="-3000 -3000 6000 6000"
-        role="img"
-        aria-label="Shared observed crew picture"
-        style={{ width: "100%", maxWidth: 420, background: "#07121c" }}
-      >
-        <circle r="45" fill="#54dbc2" />
-        {state.contacts.map((t) => (
-          <g key={t.id}>
-            <circle
-              cx={t.position.x}
-              cy={-t.position.z}
-              r="55"
-              fill="#d4edf1"
+      <div className="crew-scope-column">
+        <figure className="crew-scope">
+          <svg
+            viewBox={`${-range} ${-range} ${range * 2} ${range * 2}`}
+            role="img"
+            aria-label={`Shared observed crew picture · ${state.contacts.length} reported contacts · outer ring ${range} m`}
+          >
+            <circle className="crew-scope-face" r={range} />
+            {[0.25, 0.5, 0.75, 1].map((f) => (
+              <circle key={f} className="crew-scope-ring" r={range * f} />
+            ))}
+            <path
+              className="crew-scope-axis"
+              d={`M${-range} 0H${range}M0 ${-range}V${range}`}
             />
-            <text
-              x={t.position.x + 70}
-              y={-t.position.z}
-              fontSize="150"
-              fill="white"
-            >
-              {t.id}
-            </text>
-          </g>
-        ))}
-      </svg>
+            {[0.5, 1].map((f) => (
+              <text
+                key={f}
+                className="crew-scope-scale"
+                x={range * 0.02}
+                y={-range * f + range * 0.06}
+                fontSize={range * 0.04}
+              >
+                {Math.round(range * f)} m
+              </text>
+            ))}
+            <circle className="crew-scope-own" r={range * 0.018} />
+            {state.contacts.map((t) => (
+              <g
+                key={t.id}
+                className="crew-scope-contact"
+                data-stage={contactStage(t)}
+                data-selected={t.id === selected ? "true" : undefined}
+              >
+                {t.id === selected && (
+                  <circle
+                    className="crew-scope-selection"
+                    cx={t.position.x}
+                    cy={-t.position.z}
+                    r={range * 0.045}
+                  />
+                )}
+                <circle
+                  cx={t.position.x}
+                  cy={-t.position.z}
+                  r={range * 0.016}
+                />
+                <text
+                  x={t.position.x + range * 0.03}
+                  y={-t.position.z - range * 0.02}
+                  fontSize={range * 0.042}
+                >
+                  {t.id}
+                </text>
+              </g>
+            ))}
+          </svg>
+          <figcaption>
+            <span data-stage="observed">Observed</span>
+            <span data-stage="designated">Designated</span>
+            <span data-stage="classified">Classified</span>
+            <span>Rings every {Math.round(range / 4)} m</span>
+          </figcaption>
+        </figure>
+        <details className="evidence-disclosure crew-scope-note">
+          <summary>Shared clock and evidence scope</summary>
+          <p>
+            {state.status === "completed" || state.paused
+              ? state.clock_note
+              : "Server advances logical time while connected clients poll; long stalls discard excess wall time."}
+          </p>
+          <p>{state.note}</p>
+        </details>
+      </div>
     </>
   );
 }
@@ -438,14 +522,25 @@ export default function Crew() {
     state.done ||
     !selectedContact;
   return (
-    <main className="instructor-page command-workspace crew-workspace">
-      <h1>Shared Crew Mode</h1>
-      <p>
-        Spotter designates. Responder classifies and selects a simulated
-        response. Both work in one authoritative server exercise; attribution
-        and the shared result stay together.
-      </p>
-      <section className="crew-join" aria-labelledby="crew-join-title">
+    <main
+      className="instructor-page command-workspace crew-workspace"
+      data-joined={joined ? "true" : undefined}
+      data-role={state?.role}
+    >
+      <header className="crew-page-header">
+        <div className="eyebrow">TWO-ROLE TRAINING</div>
+        <h1>Shared Crew Mode</h1>
+        <p>
+          Spotter designates. Responder classifies and selects a simulated
+          response. Both work in one authoritative server exercise; attribution
+          and the shared result stay together.
+        </p>
+      </header>
+      <section
+        className="crew-join"
+        aria-labelledby="crew-join-title"
+        data-joined={joined ? "true" : undefined}
+      >
         <div className="crew-section-heading">
           <div>
             <div className="eyebrow">TRAINEE ACCESS</div>
@@ -540,144 +635,212 @@ export default function Crew() {
         </section>
       )}
       {state && (
-        <section className="panel command-detail">
-          <CrewPicture state={state} />
-          <p className="crew-handoff" role="status">
-            {crewTask(state, selected)}
-          </p>
-          <label>
-            Observed contact
-            <select
-              value={selected}
-              onChange={(e) => setSelected(e.target.value)}
-            >
-              <option value="">Select contact</option>
-              {selected && !selectedContact && (
-                <option value={selected} disabled>
-                  {selected} · No current observation — wait for reacquisition
-                </option>
-              )}
-              {state.contacts.map((t) => (
-                <option key={t.id} value={t.id}>
-                  {t.id} · {t.classification ?? "unknown"} ·{" "}
-                  {Math.round(Math.hypot(t.position.x, t.position.z))}m
-                </option>
-              ))}
-            </select>
-          </label>
-          {state.contacts
-            .filter((t) => t.id === selected)
-            .map((t) => (
-              <p key={t.id}>
-                Radar: {t.observation.radar.state}. EO: {t.observation.eo.level}
-                . IR: {t.observation.ir.level}. RF:{" "}
-                {t.observation.rf.detected ? "detected" : "not detected"}. IFF:{" "}
-                {t.observation.iff.cue} · no reply does not prove hostility.
-                Designation: {t.designated === null ? "pending" : "recorded"}.
-              </p>
-            ))}
-          {state.role === "spotter" ? (
-            <button
-              className="button primary"
-              disabled={blocked || selectedContact?.designated !== null}
-              onClick={() => void act("designate")}
-            >
-              Designate shared contact
-            </button>
-          ) : (
-            <>
-              <label>
-                Contact type
-                <select
-                  value={kind}
-                  onChange={(e) => setKind(e.target.value as Kind)}
-                >
-                  {["bird", "quad", "fixed_wing", "fiber_fpv"].map((v) => (
-                    <option key={v}>{v}</option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                Identity
-                <select
-                  value={identity}
-                  onChange={(e) => setIdentity(e.target.value as Identity)}
-                >
-                  {["hostile", "friendly", "neutral"].map((v) => (
-                    <option key={v}>{v}</option>
-                  ))}
-                </select>
-              </label>
-              <button
-                className="button"
-                disabled={blocked || selectedContact?.designated === null}
-                title={
-                  selectedContact?.designated === null
-                    ? "Wait for the spotter to designate this contact."
-                    : undefined
-                }
-                onClick={() => void act("classify")}
+        <section
+          className="panel command-detail crew-station"
+          data-role={state.role}
+          aria-label={`${state.role === "spotter" ? "Spotter" : "Responder"} station`}
+        >
+          <CrewPicture state={state} selected={selected} />
+          <div className="crew-console">
+            <p className="crew-handoff" role="status">
+              {crewTask(state, selected)}
+            </p>
+            <label className="crew-contact-picker">
+              Observed contact
+              <select
+                value={selected}
+                onChange={(e) => setSelected(e.target.value)}
               >
-                Confirm shared classification
-              </button>
-              {(["hold", "rf_jam", "kinetic"] as const).map((e) => (
-                <button
-                  className="button"
-                  key={e}
-                  disabled={
-                    blocked ||
-                    selectedContact?.designated === null ||
-                    !selectedContact?.classification
-                  }
-                  title={
-                    !selectedContact?.classification
-                      ? "Confirm shared classification before choosing a response."
-                      : undefined
-                  }
-                  onClick={() => void act("engage", e)}
+                <option value="">Select contact</option>
+                {selected && !selectedContact && (
+                  <option value={selected} disabled>
+                    {selected} · No current observation — wait for reacquisition
+                  </option>
+                )}
+                {state.contacts.map((t) => (
+                  <option key={t.id} value={t.id}>
+                    {t.id} · {t.classification ?? "unknown"} ·{" "}
+                    {Math.round(Math.hypot(t.position.x, t.position.z))}m
+                  </option>
+                ))}
+              </select>
+            </label>
+            {state.contacts
+              .filter((t) => t.id === selected)
+              .map((t) => (
+                <div
+                  key={t.id}
+                  className="crew-evidence"
+                  role="group"
+                  aria-label={`Current observation of ${t.id}`}
                 >
-                  {
-                    {
-                      hold: "Hold fire",
-                      rf_jam: "RF jammer",
-                      kinetic: "Kinetic response",
-                    }[e]
-                  }
-                </button>
+                  <dl>
+                    <div>
+                      <dt>Radar</dt>
+                      <dd>{t.observation.radar.state}</dd>
+                    </div>
+                    <div>
+                      <dt>EO</dt>
+                      <dd>{t.observation.eo.level}</dd>
+                    </div>
+                    <div>
+                      <dt>IR</dt>
+                      <dd>{t.observation.ir.level}</dd>
+                    </div>
+                    <div>
+                      <dt>RF</dt>
+                      <dd>
+                        {t.observation.rf.detected
+                          ? "detected"
+                          : "not detected"}
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>IFF</dt>
+                      <dd>{t.observation.iff.cue}</dd>
+                    </div>
+                    <div data-recorded={t.designated !== null || undefined}>
+                      <dt>Designation</dt>
+                      <dd>{t.designated === null ? "pending" : "recorded"}</dd>
+                    </div>
+                  </dl>
+                  <p className="footnote">
+                    No IFF reply does not prove hostility.
+                  </p>
+                </div>
               ))}
-            </>
-          )}
-          <details className="evidence-disclosure">
-            <summary>
-              Recorded coordination · {state.attribution.length} accepted
-              decisions
-            </summary>
-            {state.attribution.length === 0 && (
-              <p>
+            {state.role === "spotter" ? (
+              <div className="crew-actions">
+                <button
+                  className="button primary"
+                  disabled={blocked || selectedContact?.designated !== null}
+                  onClick={() => void act("designate")}
+                >
+                  Designate shared contact
+                </button>
+              </div>
+            ) : (
+              <>
+                <fieldset className="crew-actions crew-classify">
+                  <legend>Shared classification</legend>
+                  <label>
+                    Contact type
+                    <select
+                      value={kind}
+                      onChange={(e) => setKind(e.target.value as Kind)}
+                    >
+                      {["bird", "quad", "fixed_wing", "fiber_fpv"].map((v) => (
+                        <option key={v}>{v}</option>
+                      ))}
+                    </select>
+                  </label>
+                  <label>
+                    Identity
+                    <select
+                      value={identity}
+                      onChange={(e) => setIdentity(e.target.value as Identity)}
+                    >
+                      {["hostile", "friendly", "neutral"].map((v) => (
+                        <option key={v}>{v}</option>
+                      ))}
+                    </select>
+                  </label>
+                  <button
+                    className="button"
+                    disabled={blocked || selectedContact?.designated === null}
+                    title={
+                      selectedContact?.designated === null
+                        ? "Wait for the spotter to designate this contact."
+                        : undefined
+                    }
+                    onClick={() => void act("classify")}
+                  >
+                    Confirm shared classification
+                  </button>
+                </fieldset>
+                <fieldset className="crew-actions crew-respond">
+                  <legend>Simulated response</legend>
+                  {(["hold", "rf_jam", "kinetic"] as const).map((e) => (
+                    <button
+                      className="button"
+                      key={e}
+                      data-effector={e}
+                      disabled={
+                        blocked ||
+                        selectedContact?.designated === null ||
+                        !selectedContact?.classification
+                      }
+                      title={
+                        !selectedContact?.classification
+                          ? "Confirm shared classification before choosing a response."
+                          : undefined
+                      }
+                      onClick={() => void act("engage", e)}
+                    >
+                      {
+                        {
+                          hold: "Hold fire",
+                          rf_jam: "RF jammer",
+                          kinetic: "Kinetic response",
+                        }[e]
+                      }
+                    </button>
+                  ))}
+                </fieldset>
+              </>
+            )}
+          </div>
+          <section className="crew-ledger" aria-labelledby="crew-ledger-title">
+            <h3 id="crew-ledger-title">
+              Recorded coordination{" "}
+              <span>· {state.attribution.length} accepted decisions</span>
+            </h3>
+            {state.attribution.length === 0 ? (
+              <p className="crew-ledger-empty">
                 No accepted decisions yet. Submitted requests appear here only
                 after server acceptance.
               </p>
+            ) : (
+              <div
+                className="crew-ledger-scroll"
+                tabIndex={0}
+                role="region"
+                aria-label="Accepted crew decisions, oldest first"
+              >
+                <ol>
+                  {state.attribution.map((a) => (
+                    <li
+                      key={a.timeline_order}
+                      data-role={a.role}
+                      data-own={a.member_id === state.member_id || undefined}
+                    >
+                      <span className="crew-ledger-order">
+                        Order {a.timeline_order}
+                      </span>
+                      <span className="crew-ledger-who">
+                        {a.callsign} · {a.role}
+                        {a.member_id === state.member_id && (
+                          <span className="crew-ledger-you"> · you</span>
+                        )}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
             )}
-            <ol>
-              {state.attribution.map((a) => (
-                <li key={a.timeline_order}>
-                  Order {a.timeline_order} · {a.callsign} · {a.role}
-                </li>
-              ))}
-            </ol>
-          </details>
+          </section>
           {state.coordination_metrics && (
             <CrewCoordination metrics={state.coordination_metrics} />
-          )}{" "}
+          )}
           {state.scorecard && (
-            <>
+            <div className="crew-result">
               <h3>
                 Server-verified shared result: {state.scorecard.score}/100
               </h3>
               <a href={officerReviewHref(state.session_id)}>
                 Open officer AAR (sign-in required)
               </a>
-            </>
+            </div>
           )}
         </section>
       )}
@@ -716,7 +879,7 @@ export default function Crew() {
                   </select>
                 </label>
               </div>
-              <p>
+              <p className="footnote">
                 Save a v0.4 raid in Exercise studio first. This setup assigns
                 WATCH / spotter and RESPONSE / responder.
               </p>
@@ -728,38 +891,49 @@ export default function Crew() {
                 Create shared crew
               </button>
               {issued && (
-                <>
-                  <p>Crew ID: {issued.id}</p>
-                  {issued.members.map((m) => (
-                    <details key={m.callsign}>
-                      <summary>
-                        {m.callsign} · {m.role} · reveal assigned role code
-                      </summary>
-                      <p>
-                        Expires {new Date(m.expires_at * 1000).toISOString()}
-                      </p>
-                      <code style={{ overflowWrap: "anywhere" }}>{m.code}</code>
-                    </details>
-                  ))}
-                  {(["resume", "pause", "complete"] as const).map((v) => (
-                    <button
-                      className="button"
-                      key={v}
-                      disabled={busy}
-                      onClick={() => void command(v)}
-                    >
-                      {v === "complete"
-                        ? "End and score crew"
-                        : v === "resume"
-                          ? "Start / resume crew"
-                          : "Pause crew"}
-                    </button>
-                  ))}
-                  <p>
+                <div className="crew-issued">
+                  <p className="crew-issued-id">Crew ID: {issued.id}</p>
+                  <div className="crew-issued-codes">
+                    {issued.members.map((m) => (
+                      <details key={m.callsign} data-role={m.role}>
+                        <summary>
+                          {m.callsign} · {m.role} · reveal assigned role code
+                        </summary>
+                        <p>
+                          Expires {new Date(m.expires_at * 1000).toISOString()}
+                        </p>
+                        <code style={{ overflowWrap: "anywhere" }}>
+                          {m.code}
+                        </code>
+                      </details>
+                    ))}
+                  </div>
+                  <div
+                    className="crew-transport"
+                    role="group"
+                    aria-label="Shared exercise clock"
+                  >
+                    {(["resume", "pause", "complete"] as const).map((v) => (
+                      <button
+                        className="button"
+                        key={v}
+                        data-command={v}
+                        disabled={busy}
+                        onClick={() => void command(v)}
+                      >
+                        {v === "complete"
+                          ? "End and score crew"
+                          : v === "resume"
+                            ? "Start / resume crew"
+                            : "Pause crew"}
+                      </button>
+                    ))}
+                  </div>
+                  <p className="footnote">
                     Save each code before leaving. After server restart, use the
                     instructor console to resume the same session.
                   </p>
-                </>
+                </div>
               )}
             </section>
             <CrewOfficerTools createdId={issued?.id ?? ""} />

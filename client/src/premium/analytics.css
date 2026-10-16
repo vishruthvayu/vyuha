@@ -1,0 +1,265 @@
+/* Training analytics as an evidence notebook: a quiet scope bar (unit,
+   trainee), an underline tab bar, then one evidence view at a time. Charts
+   and tables keep their data; only their reading surface changes. */
+
+.advanced-page > .studio-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 300px));
+  gap: var(--s-4);
+  margin: 0 0 var(--s-5);
+  max-width: none;
+}
+.advanced-page > .studio-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--t-11);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--n-800);
+}
+.advanced-page > .studio-fields select {
+  font-family: var(--font-sans);
+  font-size: var(--t-14);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Underline tabs: the selected view reads as a place, not a pressed button. */
+.advanced-page > .analytics-tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--s-1);
+  inline-size: 100%;
+  margin: 0 0 var(--s-6);
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--ink-hairline-strong);
+  border-radius: 0;
+  background: none;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.advanced-page > .analytics-tabs > button.button {
+  position: relative;
+  flex: none;
+  min-height: 44px;
+  margin: 0;
+  padding: 0 var(--s-4);
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  color: var(--n-900);
+  font-size: var(--t-14);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.advanced-page > .analytics-tabs > button.button:hover {
+  color: var(--n-1000);
+  background: none;
+}
+.advanced-page > .analytics-tabs > button.button[aria-pressed="true"] {
+  color: var(--n-1000);
+  background: none;
+  box-shadow: none;
+}
+.advanced-page > .analytics-tabs > button.button[aria-pressed="true"]::after {
+  content: "";
+  position: absolute;
+  inset: auto var(--s-3) -1px;
+  block-size: 2px;
+  border-radius: 2px 2px 0 0;
+  background: var(--gold-500);
+}
+.advanced-page > .analytics-tabs > button.button:focus-visible {
+  outline: none;
+  box-shadow: inset var(--focus-ring);
+  border-radius: var(--r-sm);
+}
+
+/* Evidence views */
+.advanced-page > .advanced-card {
+  margin: 0 0 var(--s-5);
+  padding: var(--s-6);
+}
+.advanced-page > .advanced-card > h2 {
+  margin: var(--s-1) 0 var(--s-4);
+  font-size: var(--t-20);
+  letter-spacing: var(--track-tight);
+}
+.advanced-page > .advanced-card > .eyebrow + h2 {
+  margin-top: var(--s-2);
+}
+.analytics-overview > .text-button {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 36px;
+  padding: 0;
+  color: var(--gold-500);
+  font-weight: 540;
+}
+.analytics-overview > .text-button::after {
+  content: "→";
+  transition: transform var(--d-fast) var(--ease-productive);
+}
+.analytics-overview > .text-button:hover::after {
+  transform: translateX(3px);
+}
+.advanced-page caption {
+  caption-side: top;
+  padding: 0 0 var(--s-3);
+  text-align: start;
+  font-family: var(--font-mono);
+  font-size: var(--t-11);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--n-800);
+}
+.advanced-page .table-scroll caption {
+  padding: var(--s-3) var(--s-4);
+}
+.advanced-page td {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Trend chart: readable axes at any width, quiet grid. */
+.review-trend-chart {
+  margin: 0;
+  display: grid;
+  gap: var(--s-3);
+}
+.review-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+.review-trend-chart svg {
+  inline-size: 100%;
+  min-width: 0;
+  block-size: auto;
+  max-block-size: 320px;
+  padding: var(--s-4) var(--s-2) var(--s-2);
+  background: var(--n-100);
+  border: 1px solid var(--ink-hairline);
+  border-radius: var(--r-md);
+}
+.review-trend-chart svg text {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  fill: var(--n-800);
+}
+.review-chart-axis line {
+  stroke: var(--n-500);
+  stroke-width: 1;
+}
+.review-chart-axis:nth-child(3) line {
+  stroke-dasharray: 3 4;
+}
+.review-trend-chart figcaption {
+  margin: 0;
+  font-size: var(--t-13);
+  color: var(--n-800);
+}
+@media (max-width: 1023px) {
+  .review-trend-chart svg text {
+    font-size: 13px;
+  }
+}
+@media (max-width: 720px) {
+  .review-trend-chart svg text {
+    font-size: 22px;
+  }
+}
+
+/* Scenario × skill matrix: compact rows, a single cyan ramp, quiet zeros. */
+#scenario-skill > label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 360px;
+  margin: 0 0 var(--s-3);
+}
+#scenario-skill > p:not([role]) {
+  max-width: 96ch;
+  color: var(--n-900);
+  font-size: var(--t-13);
+  line-height: 1.6;
+}
+.skill-heatmap th,
+.skill-heatmap td {
+  min-width: 128px;
+  padding: var(--s-3) var(--s-4);
+  vertical-align: middle;
+}
+.skill-heatmap tbody th {
+  font-family: var(--font-mono);
+  font-size: var(--t-11);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--n-1000);
+  font-weight: 500;
+}
+.skill-heatmap tbody th small {
+  margin-top: 4px;
+  color: var(--n-800);
+  letter-spacing: 0.04em;
+}
+.skill-heatmap td {
+  background: transparent;
+}
+.skill-heatmap td[style] {
+  background: rgb(140 203 214 / calc(0.05 + var(--estimate, 0) * 0.34));
+}
+.skill-heatmap details {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.skill-heatmap summary {
+  font-size: var(--t-15);
+  font-variant-numeric: tabular-nums;
+  color: var(--n-1000);
+  border-radius: var(--r-xs);
+}
+.skill-heatmap summary::-webkit-details-marker {
+  display: none;
+}
+.skill-heatmap summary small {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: var(--t-11);
+  color: var(--n-800);
+}
+.skill-heatmap td[data-empty] summary {
+  color: var(--n-700);
+}
+.skill-heatmap td[data-empty] summary small {
+  color: var(--n-700);
+}
+.skill-heatmap details[open] > div {
+  margin-top: var(--s-2);
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--r-sm);
+  background: var(--n-200);
+  color: var(--n-900);
+}
+
+@media (max-width: 720px) {
+  .advanced-page > .studio-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .advanced-page > .advanced-card {
+    padding: var(--s-5) var(--s-4);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .analytics-overview > .text-button::after {
+    transition: none;
+  }
+}

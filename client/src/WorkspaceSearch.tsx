@@ -65,13 +65,13 @@ export default function WorkspaceSearch({
     <>
       <button
         className="workspace-search-button"
-        aria-label="Find workspace"
+        aria-keyshortcuts="Control+K Meta+K"
         title="Find workspace (Control or Command K)"
         onClick={show}
       >
         <Search size={16} aria-hidden="true" />
         <span>Find workspace</span>
-        <kbd>⌘ / Ctrl K</kbd>
+        <kbd aria-hidden="true">⌘ / Ctrl K</kbd>
       </button>
       {open &&
         createPortal(

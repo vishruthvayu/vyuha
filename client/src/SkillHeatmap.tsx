@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { GhostSkill } from "./types";
 import { api } from "./storage";
 const labels: Record<GhostSkill, string> = {
@@ -60,12 +60,14 @@ export function HeatmapTable({ data }: { data: Heatmap }) {
                   return (
                     <td
                       key={k}
-                      style={{
-                        background:
-                          c.estimate == null
-                            ? "transparent"
-                            : `rgba(130,170,210,${0.06 + c.estimate * 0.23})`,
-                      }}
+                      data-empty={c.estimate == null || undefined}
+                      style={
+                        c.estimate == null
+                          ? undefined
+                          : ({
+                              "--estimate": c.estimate.toFixed(3),
+                            } as React.CSSProperties)
+                      }
                     >
                       <details>
                         <summary

@@ -63,7 +63,7 @@ export default function Transfer() {
     }
   }
   return (
-    <main className="instructor-page advanced-page">
+    <main className="instructor-page advanced-page utility-page">
       <PageHeader
         eyebrow="LOCAL DATA OPERATIONS"
         title="Data transfer"

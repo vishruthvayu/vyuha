@@ -41,7 +41,7 @@ export default function DrillSetup({
     <>
       {" "}
       {
-        <details className="evidence-disclosure drill-settings">
+        <details className="evidence-disclosure drill-settings" open>
           <summary>Drill settings</summary>
           <div className="setup-bar">
             <label>

@@ -72,6 +72,11 @@ export function NavigationLinks({
     secondary = resolveRoute(pathname)?.policy === "SECONDARY_REACHABLE";
   return (
     <nav aria-label="Main navigation" className="navigation-scroll">
+      {reviewCount > 0 && (
+        <span id="catalog-review-count" hidden>
+          {reviewCount} reviews in history
+        </span>
+      )}
       {navigationSections.map((section) => (
         <div className="navigation-group" key={section}>
           <div className="nav-label">{section}</div>
@@ -87,6 +92,11 @@ export function NavigationLinks({
                   className={`nav-item ${active === item.id ? "active" : ""}`}
                   href={href}
                   aria-label={item.label}
+                  aria-describedby={
+                    item.id === "review" && reviewCount > 0
+                      ? "catalog-review-count"
+                      : undefined
+                  }
                   aria-current={
                     active === item.id
                       ? secondary
@@ -99,7 +109,9 @@ export function NavigationLinks({
                   <Icon size={19} aria-hidden="true" />
                   <span>{item.label}</span>
                   {item.id === "review" && reviewCount > 0 && (
-                    <span className="nav-count">{reviewCount}</span>
+                    <span aria-hidden="true" className="nav-count">
+                      {reviewCount}
+                    </span>
                   )}
                 </a>
               );
@@ -143,6 +155,11 @@ export function PrimaryNavigationLinks({
   const active = activeNavigation(pathname, search, view);
   return (
     <nav className="mission-primary-navigation" aria-label="Primary workspaces">
+      {reviewCount > 0 && (
+        <span id="primary-review-count" hidden>
+          {reviewCount} reviews in history
+        </span>
+      )}
       {primaryIds.map((id) => {
         const item = navigationItems.find((candidate) => candidate.id === id)!;
         const href =
@@ -153,7 +170,12 @@ export function PrimaryNavigationLinks({
           <a
             key={id}
             href={href}
-            aria-label={item.label}
+            title={item.label}
+            aria-describedby={
+              id === "review" && reviewCount > 0
+                ? "primary-review-count"
+                : undefined
+            }
             aria-current={
               selected
                 ? nestedTraining ||
@@ -167,7 +189,9 @@ export function PrimaryNavigationLinks({
           >
             {primaryLabels[id]}
             {id === "review" && reviewCount > 0 && (
-              <span className="nav-count">{reviewCount}</span>
+              <span aria-hidden="true" className="nav-count">
+                {reviewCount}
+              </span>
             )}
           </a>
         );
@@ -316,7 +340,7 @@ export default function Navigation({
           <button
             ref={toggle}
             className="navigation-toggle mission-catalog-toggle"
-            aria-label="Toggle navigation"
+            aria-label="Workspaces"
             aria-expanded={open}
             aria-controls="workspace-navigation"
             onClick={toggleCatalogue}

@@ -48,9 +48,11 @@ import {
   syncMessage,
   type UnitIdentity,
 } from "./unit-state";
+import { PreparationTerrain } from "./PreparationTerrain";
 import { launchPreparedScenario } from "./Director";
 import DrillSetup from "./DrillSetup";
 import { DecisionWorkspace } from "./DecisionWorkspace";
+import { ReviewSections } from "./ReviewSections";
 import type { TrainingProfile } from "./types";
 import { GhostPanel, GhostTimeline, timelineSeek, ReplayTracks } from "./Ghost";
 import { HZ, inCivilZone, replay, score, Simulation } from "./sim";
@@ -1356,6 +1358,8 @@ export default function App({
         {view === "drill" ? (
           <div
             className={`page drill-page ${phase === "ready" && mode === "adaptive" && !prepared ? "training-awaiting" : ""}`}
+            data-phase={phase}
+            data-tactical={tactical ? "true" : undefined}
           >
             <p className="sync-status" role="status">
               {syncMessage(
@@ -1383,6 +1387,18 @@ export default function App({
               </div>
             </div>
             <div className="mission-bar">
+              <span className="mission-phase" data-phase={phase}>
+                <span aria-hidden="true" className="mission-phase-dot" />
+                {phase === "running"
+                  ? "Live"
+                  : phase === "paused"
+                    ? "Paused"
+                    : phase === "restoring"
+                      ? "Restoring"
+                      : phase === "complete"
+                        ? "Complete"
+                        : "Ready"}
+              </span>
               <div className="mission-name">
                 <span className="mission-number">01</span>
                 <div>
@@ -1406,6 +1422,10 @@ export default function App({
                 </div>
               </div>
               <div className="mission-facts">
+                <span className="mission-callsign">
+                  <small>CALLSIGN</small>
+                  {unitIdentity?.callsign ?? trainee}
+                </span>
                 <span>
                   <small>
                     {phase === "ready" && mode === "adaptive"
@@ -1550,67 +1570,6 @@ export default function App({
                   Illustrative training configuration
                 </p>
               )}
-              <details className="evidence-disclosure observation-preferences">
-                <summary>Observation preferences</summary>
-                <div className="setup-bar">
-                  <label>
-                    Graphics quality
-                    <select
-                      aria-label="Graphics quality"
-                      value={autoQuality ? "auto" : quality}
-                      onChange={(e) => {
-                        setAutoQuality(e.target.value === "auto");
-                        if (e.target.value === "auto") {
-                          setQuality("medium");
-                          setTactical(false);
-                        } else {
-                          setQuality(e.target.value as Quality);
-                          setTactical(e.target.value === "tactical");
-                        }
-                      }}
-                    >
-                      <option value="auto">Auto · current {quality}</option>
-                      <option value="high">High</option>
-                      <option value="medium">Medium</option>
-                      <option value="low">Low</option>
-                      <option value="tactical">Tactical 2D</option>
-                    </select>
-                  </label>
-                  <small>
-                    Graphics settings change rendering only; simulation stays at
-                    30 Hz.
-                  </small>
-                  <LocalAudio
-                    state={state}
-                    fog={scenario.fog}
-                    active={phase === "running"}
-                  />
-                </div>
-                <div className="setup-bar">
-                  {vision === "thermal" && (
-                    <label>
-                      Illustrative thermal palette
-                      <select
-                        aria-label="Thermal palette"
-                        value={palette}
-                        onChange={(e) =>
-                          setPalette(e.target.value as ThermalPalette)
-                        }
-                      >
-                        {Object.entries(palettes).map(([id, p]) => (
-                          <option key={id} value={id}>
-                            {p.label}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                  )}
-                  <small>
-                    Illustrative rendering only; sensor mechanics and scoring
-                    are unchanged.
-                  </small>
-                </div>
-              </details>
             </div>
             <div className="training-grid">
               <section className="sensor-workspace">
@@ -1619,6 +1578,71 @@ export default function App({
                     <Monitor size={16} />
                     <strong>EO / IR observation</strong>
                   </div>
+                  <details className="evidence-disclosure observation-preferences">
+                    <summary>Observation preferences</summary>
+                    <div className="observation-popover">
+                      <div className="setup-bar">
+                        <label>
+                          Graphics quality
+                          <select
+                            aria-label="Graphics quality"
+                            value={autoQuality ? "auto" : quality}
+                            onChange={(e) => {
+                              setAutoQuality(e.target.value === "auto");
+                              if (e.target.value === "auto") {
+                                setQuality("medium");
+                                setTactical(false);
+                              } else {
+                                setQuality(e.target.value as Quality);
+                                setTactical(e.target.value === "tactical");
+                              }
+                            }}
+                          >
+                            <option value="auto">
+                              Auto · current {quality}
+                            </option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                            <option value="tactical">Tactical 2D</option>
+                          </select>
+                        </label>
+                        <small>
+                          Graphics settings change rendering only; simulation
+                          stays at 30 Hz.
+                        </small>
+                        <LocalAudio
+                          state={state}
+                          fog={scenario.fog}
+                          active={phase === "running"}
+                        />
+                      </div>
+                      <div className="setup-bar">
+                        {vision === "thermal" && (
+                          <label>
+                            Illustrative thermal palette
+                            <select
+                              aria-label="Thermal palette"
+                              value={palette}
+                              onChange={(e) =>
+                                setPalette(e.target.value as ThermalPalette)
+                              }
+                            >
+                              {Object.entries(palettes).map(([id, p]) => (
+                                <option key={id} value={id}>
+                                  {p.label}
+                                </option>
+                              ))}
+                            </select>
+                          </label>
+                        )}
+                        <small>
+                          Illustrative rendering only; sensor mechanics and
+                          scoring are unchanged.
+                        </small>
+                      </div>
+                    </div>
+                  </details>
                   <div className="segmented">
                     {(["thermal", "day", "night"] as const).map((v) => (
                       <button
@@ -1722,6 +1746,7 @@ export default function App({
                   )}
                   {phase === "ready" && !(mode === "adaptive" && !prepared) && (
                     <div className="ready-overlay">
+                      <PreparationTerrain />
                       <span className="ready-icon">
                         <Crosshair size={28} />
                       </span>
@@ -1756,7 +1781,10 @@ export default function App({
                               : "Prepare adaptive drill"
                             : "Begin exercise"}
                       </button>
-                      <small>Example sensor and effector values</small>
+                      <small>
+                        Illustrative landscape · example sensor and effector
+                        values
+                      </small>
                     </div>
                   )}
                   {phase === "paused" && (
@@ -1767,27 +1795,6 @@ export default function App({
                     </div>
                   )}
                 </div>
-                <div className="scene-toolbar">
-                  {phase !== "restoring" && <SensorBadges state={state} />}
-                  <div>
-                    {scenario.fog === 0
-                      ? "Clear"
-                      : scenario.fog >= 0.5
-                        ? "Dense fog"
-                        : "Light fog"}{" "}
-                    · {scenario.fog}
-                  </div>
-                  <button
-                    className="text-button"
-                    aria-pressed={tactical}
-                    onClick={() => setTactical(!tactical)}
-                  >
-                    <Layers size={14} />
-                    {tactical ? "Use 3D view" : "2D fallback"}
-                  </button>
-                </div>
-              </section>
-              <aside className="right-panels">
                 <section className="panel radar-panel">
                   <div className="panel-header">
                     <div>
@@ -1816,6 +1823,27 @@ export default function App({
                     />
                   )}
                 </section>
+                <div className="scene-toolbar">
+                  {phase !== "restoring" && <SensorBadges state={state} />}
+                  <div>
+                    {scenario.fog === 0
+                      ? "Clear"
+                      : scenario.fog >= 0.5
+                        ? "Dense fog"
+                        : "Light fog"}{" "}
+                    · {scenario.fog}
+                  </div>
+                  <button
+                    className="text-button"
+                    aria-pressed={tactical}
+                    onClick={() => setTactical(!tactical)}
+                  >
+                    <Layers size={14} />
+                    {tactical ? "Use 3D view" : "2D fallback"}
+                  </button>
+                </div>
+              </section>
+              <aside className="right-panels">
                 <section className="panel contacts-panel">
                   <div className="panel-header">
                     <div>
@@ -2070,7 +2098,18 @@ export default function App({
                       ? `${selected}: no current sensor observation. Selection retained; wait for reacquisition.`
                       : nextStep(phase, target)}
                   </div>
-                  <div className="action-panel">
+                  <div
+                    className="action-panel"
+                    data-step={
+                      !target
+                        ? 0
+                        : target.designated === null
+                          ? 1
+                          : !target.classification
+                            ? 2
+                            : 3
+                    }
+                  >
                     <div className="action-heading">
                       <span className="step-number">
                         {target?.designated === null || !target
@@ -2322,9 +2361,14 @@ export default function App({
                     />
                   </details>
                 )}
-                <div className="aar-summary">
+                <div className="aar-summary" id="review-verdict">
                   <div
                     className={`score-circle ${current.scorecard.passed ? "passed" : ""}`}
+                    style={
+                      {
+                        "--score": current.scorecard.score,
+                      } as React.CSSProperties
+                    }
                   >
                     <strong>{current.scorecard.score}</strong>
                     <span>/ 100</span>
@@ -2406,7 +2450,17 @@ export default function App({
                     }
                   />
                 </div>
-                <div className="aar-grid">
+                <ReviewSections
+                  sections={[
+                    { id: "review-verdict", label: "Verdict" },
+                    { id: "review-replay", label: "Replay & decisions" },
+                    { id: "review-timeline", label: "Timeline" },
+                    { id: "review-path", label: "Decision path" },
+                    { id: "review-comparison", label: "Comparison" },
+                    { id: "review-score", label: "Score breakdown" },
+                  ]}
+                />
+                <div className="aar-grid" id="review-replay">
                   <section className="panel replay-panel">
                     <div className="panel-header">
                       <div>
@@ -2542,38 +2596,44 @@ export default function App({
                     }}
                   />
                 </div>
-                <GhostTimeline
-                  record={current}
-                  onJump={(e) => {
-                    if (e.decision_id) setReviewId(e.decision_id);
-                    const point = timelineSeek(e);
-                    seek(point.tick, point.beforeOrder, e.track_id);
-                    focusReplay();
-                  }}
-                />
-                <AdvancedAAR
-                  key={`advanced:${current.id}`}
-                  record={current}
-                  onReview={(r) => {
-                    setReviewId(r.decision_id);
-                    seek(
-                      r.tick,
-                      r.trainee_action ? (r.order ?? undefined) : undefined,
-                      r.track_id,
-                    );
-                    focusReplay();
-                  }}
-                />
-                <ExpertComparison
-                  key={`expert:${current.id}`}
-                  record={current}
-                />
-                <ReferenceRun
-                  key={`reference:${current.id}`}
-                  record={current}
-                />
-                <FusionReview key={`fusion:${current.id}`} record={current} />
-                <section className="panel score-table">
+                <div id="review-timeline" className="review-anchor">
+                  <GhostTimeline
+                    record={current}
+                    onJump={(e) => {
+                      if (e.decision_id) setReviewId(e.decision_id);
+                      const point = timelineSeek(e);
+                      seek(point.tick, point.beforeOrder, e.track_id);
+                      focusReplay();
+                    }}
+                  />
+                </div>
+                <div id="review-path" className="review-anchor">
+                  <AdvancedAAR
+                    key={`advanced:${current.id}`}
+                    record={current}
+                    onReview={(r) => {
+                      setReviewId(r.decision_id);
+                      seek(
+                        r.tick,
+                        r.trainee_action ? (r.order ?? undefined) : undefined,
+                        r.track_id,
+                      );
+                      focusReplay();
+                    }}
+                  />
+                </div>
+                <div id="review-comparison" className="review-anchor">
+                  <ExpertComparison
+                    key={`expert:${current.id}`}
+                    record={current}
+                  />
+                  <ReferenceRun
+                    key={`reference:${current.id}`}
+                    record={current}
+                  />
+                  <FusionReview key={`fusion:${current.id}`} record={current} />
+                </div>
+                <section className="panel score-table" id="review-score">
                   <div className="panel-header">
                     <div>
                       <Activity size={16} />

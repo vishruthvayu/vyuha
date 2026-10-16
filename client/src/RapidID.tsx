@@ -287,7 +287,7 @@ export default function RapidID({ identity }: { identity?: UnitIdentity }) {
     last = session?.reviews.at(-1),
     result = session?.result;
   return (
-    <main className="instructor-page advanced-page">
+    <main className="instructor-page advanced-page utility-page">
       <PageHeader
         eyebrow="CLASSIFICATION / IFF"
         title="Rapid ID"

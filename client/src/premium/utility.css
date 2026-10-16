@@ -1,0 +1,298 @@
+/* Utility pages (Rapid ID, Recorded practice, Data transfer, Informal
+   evaluation): a scope notice under the header, then form cards with a calm
+   vertical rhythm. Also native file pickers and Unit panels without padding. */
+
+/* Native file picker styled as a quiet control (all pages). */
+input[type="file"] {
+  inline-size: 100%;
+  max-inline-size: 560px;
+  min-height: 44px;
+  padding: 5px;
+  border: 1px dashed var(--n-600);
+  border-radius: var(--r-sm);
+  background: var(--n-100);
+  color: var(--n-900);
+  font-size: var(--t-13);
+  cursor: pointer;
+}
+input[type="file"]::file-selector-button {
+  min-height: 32px;
+  margin-inline-end: var(--s-3);
+  padding: 0 var(--s-3);
+  border: 1px solid var(--n-500);
+  border-radius: var(--r-xs);
+  background: var(--n-300);
+  color: var(--n-1000);
+  font: inherit;
+  font-weight: 540;
+  cursor: pointer;
+}
+input[type="file"]:hover::file-selector-button {
+  background: var(--n-400);
+}
+input[type="file"]:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+input[type="file"]:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Scope notice: the paragraph that states what a page does not claim. */
+.utility-page > .page-heading + p {
+  max-width: 96ch;
+  margin: 0 0 var(--s-5);
+  padding: var(--s-1) 0 var(--s-1) var(--s-4);
+  border-left: 2px solid var(--n-500);
+  color: var(--n-900);
+  font-size: var(--t-13);
+  line-height: 1.6;
+}
+.utility-page > p[role="alert"] {
+  margin: 0 0 var(--s-4);
+  padding: var(--s-3) var(--s-4);
+  border: 1px solid rgb(238 142 118 / 0.35);
+  border-radius: var(--r-md);
+  background: var(--coral-wash);
+  color: var(--coral-600);
+}
+
+/* Form cards: labelled fields at a readable width, buttons on a row. */
+.utility-page > .advanced-card > h2 {
+  margin: 0 0 var(--s-4);
+}
+.utility-page > .advanced-card > label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 560px;
+  margin: 0 0 var(--s-4);
+  font-size: var(--t-13);
+  color: var(--n-900);
+}
+.utility-page > .advanced-card > label > :is(select, input:not([type="file"])) {
+  inline-size: 100%;
+  min-height: 44px;
+}
+.utility-page > .advanced-card > p:not(.status):not(.amber-text) {
+  max-width: 82ch;
+  margin: 0 0 var(--s-4);
+  color: var(--n-900);
+  font-size: var(--t-14);
+  line-height: 1.6;
+}
+.utility-page > .advanced-card > .button {
+  margin: 0 var(--s-2) var(--s-4) 0;
+  min-height: 44px;
+}
+.utility-page > .advanced-card > :last-child {
+  margin-bottom: 0;
+}
+.utility-page > .advanced-card > a:not(.button) {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--gold-500);
+  font-size: var(--t-14);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgb(216 191 141 / 0.4);
+}
+.utility-page > .advanced-card > a:not(.button):hover {
+  text-decoration-color: currentColor;
+}
+.utility-page > .advanced-card + .advanced-card {
+  margin-top: var(--s-4);
+}
+
+/* Unit panels whose body paragraphs and tables sat on the panel edge. */
+.unit-failures > :is(p, table),
+.unit-status > p,
+.panel.score-table > p {
+  margin-inline: var(--s-5);
+}
+.unit-failures > table {
+  inline-size: calc(100% - 2 * var(--s-5));
+}
+.unit-failures > p,
+.unit-status > p,
+.panel.score-table > p {
+  margin-block: var(--s-3) 0;
+  color: var(--n-900);
+  font-size: var(--t-14);
+}
+.unit-failures > :last-child,
+.unit-status > :last-child,
+.panel.score-table > :last-child {
+  margin-bottom: var(--s-5);
+}
+.unit-status > p:first-of-type {
+  font-family: var(--font-mono);
+  font-size: var(--t-13);
+  color: var(--n-1000);
+}
+
+/* Rapid ID round: thermal viewer beside the briefing, evidence and answers. */
+.utility-page > .rapid-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-4);
+  max-width: none;
+}
+.rapid-card > .page-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0 0 var(--s-3);
+  border-bottom: 1px solid var(--ink-hairline);
+}
+.rapid-card > .page-heading h2 {
+  margin: 0;
+  font-size: var(--t-18);
+}
+.rapid-card [role="timer"] {
+  font-family: var(--font-mono);
+  font-size: var(--t-20);
+  font-variant-numeric: tabular-nums;
+  color: var(--gold-500);
+}
+.rapid-card > .rapid-silhouette {
+  inline-size: 100%;
+  max-inline-size: none;
+  block-size: auto;
+  border: 1px solid var(--ink-hairline-strong);
+  border-radius: var(--r-md);
+  background: var(--n-50);
+}
+.rapid-silhouette > rect:first-child {
+  fill: var(--n-50);
+}
+.utility-page > .rapid-card > p {
+  margin: 0;
+}
+.rapid-card > .ghost-evidence {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  border: 1px solid var(--ink-hairline);
+  border-radius: var(--r-md);
+  background: var(--ink-hairline);
+  overflow: hidden;
+}
+.rapid-card > .ghost-evidence > div {
+  display: block;
+  padding: var(--s-2) var(--s-3);
+  background: var(--n-200);
+}
+.rapid-card > .ghost-evidence dt {
+  font-family: var(--font-mono);
+  font-size: var(--t-11);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--n-800);
+}
+.rapid-card > .ghost-evidence dd {
+  margin: 2px 0 0;
+  font-size: var(--t-14);
+  color: var(--n-1000);
+}
+.rapid-card > .control-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--s-2);
+  margin: 0;
+}
+.rapid-card > .control-buttons > .button {
+  min-height: 48px;
+  margin: 0;
+  justify-content: center;
+}
+.rapid-card > p > .button {
+  margin: 0;
+  min-height: 44px;
+}
+.rapid-card > p.status,
+.rapid-card > p.amber-text {
+  justify-self: start;
+  white-space: normal;
+}
+@media (min-width: 1024px) {
+  .utility-page > .rapid-card {
+    grid-template-columns: minmax(0, 1.15fr) minmax(340px, 1fr);
+    column-gap: var(--s-8);
+    align-items: start;
+  }
+  .rapid-card > .page-heading {
+    grid-column: 1 / -1;
+  }
+  .rapid-card > .rapid-silhouette {
+    grid-column: 1;
+    grid-row: 2 / span 5;
+  }
+  .rapid-card > :not(.page-heading):not(.rapid-silhouette) {
+    grid-column: 2;
+  }
+}
+
+/* Operator guide: numbered step selector as a quiet stepper. */
+.guide-progress {
+  display: flex;
+  gap: var(--s-2);
+  margin: var(--s-4) 0;
+}
+.guide-progress > button {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 36px;
+  block-size: 36px;
+  padding: 0;
+  border: 1px solid var(--n-500);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--n-900);
+  font-family: var(--font-mono);
+  font-size: var(--t-13);
+  cursor: pointer;
+  transition:
+    background-color var(--d-fast) var(--ease-productive),
+    border-color var(--d-fast) var(--ease-productive),
+    color var(--d-fast) var(--ease-productive);
+}
+.guide-progress > button:hover {
+  border-color: var(--n-700);
+  color: var(--n-1000);
+}
+.guide-progress > button[aria-pressed="true"] {
+  border-color: var(--gold-500);
+  background: var(--gold-500);
+  color: var(--gold-ink);
+  font-weight: 600;
+}
+.guide-progress > button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.guide-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+.guide-actions > .button {
+  margin: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .guide-progress > button {
+    transition: none;
+  }
+}
+
+/* WCAG 2.2 target size: links that stand alone in list items get a
+   24 px minimum hit area (inline links inside sentences are exempt). */
+.instructor-page li > a:only-child:not(.button) {
+  display: inline-block;
+  min-block-size: 24px;
+  padding-block: 3px;
+}
