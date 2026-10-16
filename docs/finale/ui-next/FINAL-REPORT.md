@@ -4,7 +4,7 @@ Branch: `feature/vyuha-final-hardening`. Base: `db0ff23a67692d3db5dce07a031d17ea
 
 ## What changed after user review
 
-The user rejected the competing sidebar/palette. That direction is removed. The app again uses the existing premium top navigation, workspace catalogue, Instrument Serif page headings and shared semantic palette. Non-drill workflow improvements remain: Analytics evidence/AAR access, Instructor filters, authoring and Recorded layouts, Transfer verification feedback, Unit/Crew history search, Compliance filtering, profile evidence and recovery. Search now supports single-match Enter and arrow navigation through the existing links/callbacks.
+The user rejected the competing sidebar/palette. That direction is removed. The app again uses the existing premium top navigation, workspace catalogue, Instrument Serif page headings and shared semantic palette. Non-drill workflow improvements remain: Analytics evidence/AAR access, Instructor filters, authoring and Recorded layouts, Transfer verification feedback, Unit/Crew history search, Compliance filtering, profile evidence and recovery. Search now supports single-match Enter and arrow navigation through the existing links/callbacks. AAR timelines now support contact/event/reason/time search, combined category filtering, bounded initial rendering and provenance disclosure; original replay boundaries and recorded evidence are preserved. See [TIMELINE-INVESTIGATION.md](TIMELINE-INVESTIGATION.md).
 
 This is a correction of the visual foundation, not a claim that the complete ultimate product brief or final human visual acceptance is finished. The earlier source-scoped report is preserved as [HISTORICAL-FIELDWORK-REPORT.md](HISTORICAL-FIELDWORK-REPORT.md). Its sidebar screenshots and old full-source receipts must not be represented as current UI approval.
 
@@ -16,7 +16,7 @@ No App, scene/renderer, guided decision, root-token or training/preparation styl
 
 ## Current checks and evidence
 
-- Full frontend: **291 passed, 0 failed**, including Python/TypeScript parity and two new keyboard regressions.
+- Full frontend: **294 passed, 0 failed**, including Python/TypeScript parity, keyboard navigation and new read-only timeline regressions.
 - ESLint, configured formatting and production build pass; 36 local offline asset URLs. Existing lazy WebGL chunk warning retained.
 - Shell matrix: 80 route/viewport combinations, no horizontal document overflow; 20 axe scans, no detected violations; incomplete/manual checks preserved.
 - Search retest: real Chromium at 360/1440, Enter/arrow/Escape behavior passes, two axe dialog scans with zero violations.

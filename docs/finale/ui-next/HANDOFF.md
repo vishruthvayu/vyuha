@@ -52,3 +52,7 @@ See `FINAL-REPORT.md` for exact integration instructions, screenshot links, audi
 User rejected the competing shell. See SHELL-CORRECTION.md: sidebar removed, premium top navigation/display typography/semantic tokens restored, recent branch ancestry and separate drill WIP inspected. New browser matrix80/20axe plus frontend289/lint/format/build pass; current visuals are in shell-correction/. Earlier sidebar screenshots are historical. No drill branch merge or final visual approval.
 
 Search follow-up: Enter opens a single result; arrows browse links/back to input; native callbacks retained. Full frontend291, lint/format/build pass and real keyboard receipts recorded. See the updated FINAL-REPORT.md for current scope. Backend source remains unchanged from the prior708-test checkpoint.
+
+## AAR investigation milestone
+
+Recorded timeline search/category filtering, exact counts, bounded 100-event initial render, more-evidence keyboard focus and native provenance disclosure are implemented without changing event order or replay boundaries. Frontend 294, lint/format/build pass; synthetic server-verified browser searches/replay remain read-only and retain AAR hashes. See TIMELINE-INVESTIGATION.md and timeline-investigation/ for current-source receipts. No backend or drill changes.

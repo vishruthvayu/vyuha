@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Flag, ChevronRight, Activity } from "lucide-react";
 import type {
   Action,
@@ -404,7 +404,6 @@ export function GhostTimeline({
   record: TrainingRecord;
   onJump: (e: TimelineItem) => void;
 }) {
-  const [category, setCategory] = useState("all");
   const g = record.ghost_summary;
   if (!record.timeline || !g) return null;
   return (
@@ -518,13 +517,101 @@ export function GhostTimeline({
       <section className="panel ghost-timeline">
         <div className="panel-header">
           <div>
-            <Activity size={16} />
+            <Activity size={16} aria-hidden="true" />
             <strong>Exercise timeline</strong>
           </div>
+        </div>
+        <details className="evidence-disclosure timeline-provenance">
+          <summary>Recorded interval and scoring horizon</summary>
+          {record.replay_metadata ? (
+            <>
+              <p>
+                Observed interval ends at{" "}
+                {tickLabel(record.replay_metadata.observed_end_tick)}. Scoring
+                horizon: {tickLabel(record.replay_metadata.scoring_end_tick)}.
+              </p>
+              <p className="footnote">
+                {record.replay_metadata.note}
+                {record.replay_metadata.horizon_source === "last_recorded_event"
+                  ? " Legacy finish time is unknown; the reviewed interval ends at its last recorded event."
+                  : ""}
+              </p>
+            </>
+          ) : (
+            <p>
+              The server did not supply replay horizon metadata for this review.
+            </p>
+          )}
+        </details>
+        <TimelineEvents
+          key={record.id}
+          items={record.timeline}
+          onJump={onJump}
+        />
+      </section>
+    </>
+  );
+}
+
+/** Read-only investigation of the server's ordered timeline; no inferred events. */
+export function TimelineEvents({
+  items,
+  onJump,
+}: {
+  items: readonly TimelineItem[];
+  onJump: (event: TimelineItem) => void;
+}) {
+  const [category, setCategory] = useState("all");
+  const [query, setQuery] = useState("");
+  const [limit, setLimit] = useState(100);
+  const list = useRef<HTMLDivElement>(null);
+  const searchInput = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    if (limit > 100) {
+      // Keep keyboard users at the first newly revealed event, including when
+      // the final batch removes the load-more control.
+      const buttons =
+        list.current?.querySelectorAll<HTMLButtonElement>("button");
+      buttons?.item(limit - 100)?.focus();
+    }
+  }, [limit]);
+  const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const matching = items.filter((item) => {
+    if (category !== "all" && item.category !== category) return false;
+    const searchable =
+      `${item.track_id ?? ""} ${item.title} ${item.code} ${item.category.replaceAll("_", " ")} ${tickLabel(item.tick)}`.toLowerCase();
+    return terms.every((term) => searchable.includes(term));
+  });
+  function clear() {
+    setQuery("");
+    setCategory("all");
+    setLimit(100);
+    searchInput.current?.focus();
+  }
+  return (
+    <>
+      <div className="timeline-tools">
+        <label>
+          Find recorded evidence
+          <input
+            ref={searchInput}
+            type="search"
+            placeholder="Contact, event, reason or time…"
+            value={query}
+            onChange={(event) => {
+              setQuery(event.target.value);
+              setLimit(100);
+            }}
+          />
+        </label>
+        <label>
+          Timeline category
           <select
-            aria-label="Timeline category"
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={(event) => {
+              setCategory(event.target.value);
+              setLimit(100);
+            }}
           >
             <option value="all">All meaningful events</option>
             {[
@@ -536,43 +623,61 @@ export function GhostTimeline({
               "asset_impact",
               "score_error",
               "tactic_phase",
-            ].map((c) => (
-              <option key={c} value={c}>
-                {c.replaceAll("_", " ")}
+            ].map((value) => (
+              <option key={value} value={value}>
+                {value.replaceAll("_", " ")}
               </option>
             ))}
           </select>
-        </div>
-        <p className="footnote">
-          {record.replay_metadata?.note}
-          {record.replay_metadata?.horizon_source === "last_recorded_event"
-            ? " Legacy finish time is unknown; the reviewed interval ends at its last recorded event."
-            : ""}
+        </label>
+      </div>
+      <div className="timeline-results-bar">
+        <p role="status">
+          Showing {Math.min(limit, matching.length)} of {matching.length}{" "}
+          matching events · {items.length} recorded
         </p>
-        {!record.timeline.some(
-          (e) => category === "all" || e.category === category,
-        ) && <p role="status">No recorded events in this category.</p>}
-        <div className="timeline-list">
-          {record.timeline
-            .filter((e) => category === "all" || e.category === category)
-            .map((e) => (
-              <button
-                key={e.id}
-                className={`timeline-item ${e.category}`}
-                data-category={e.category}
-                aria-label={`Jump to ${e.title}`}
-                onClick={() => onJump(e)}
-              >
-                <span className="mono">{tickLabel(e.tick)}</span>
-                <span>
-                  <small>{e.category.replaceAll("_", " ")}</small>
-                  {e.title}
-                </span>
-                <ChevronRight size={15} />
-              </button>
-            ))}
-        </div>
-      </section>
+        {(query || category !== "all") && (
+          <button className="button subtle" onClick={clear}>
+            Clear timeline filters
+          </button>
+        )}
+      </div>
+      {!matching.length && (
+        <p className="timeline-empty">
+          {items.length
+            ? "No recorded events match these filters. Clear them or search for another contact or event."
+            : "No events are recorded in this review."}
+        </p>
+      )}
+      <div className="timeline-list" ref={list}>
+        {matching.slice(0, limit).map((item) => (
+          <button
+            key={item.id}
+            className={`timeline-item ${item.category}`}
+            data-category={item.category}
+            aria-label={`Jump to ${item.title} at ${tickLabel(item.tick)}${item.track_id ? ` · ${item.track_id}` : ""}`}
+            onClick={() => onJump(item)}
+          >
+            <span className="mono">{tickLabel(item.tick)}</span>
+            <span>
+              <small>
+                {item.category.replaceAll("_", " ")}
+                {item.track_id ? ` · ${item.track_id}` : ""}
+              </small>
+              {item.title}
+            </span>
+            <ChevronRight size={15} aria-hidden="true" />
+          </button>
+        ))}
+      </div>
+      {matching.length > limit && (
+        <button
+          className="button subtle timeline-load-more"
+          onClick={() => setLimit((current) => current + 100)}
+        >
+          Show {Math.min(100, matching.length - limit)} more recorded events
+        </button>
+      )}
     </>
   );
 }

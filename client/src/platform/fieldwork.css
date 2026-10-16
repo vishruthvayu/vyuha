@@ -877,3 +877,52 @@
   text-align: right;
   font-family: var(--font-mono);
 }
+/* Review-only investigation controls reuse the existing premium surface/tokens. */
+.ghost-timeline .timeline-tools {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 0.6fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+.ghost-timeline .timeline-tools label {
+  display: grid;
+  gap: 8px;
+  color: var(--n-900);
+  font-size: 12px;
+  min-width: 0;
+}
+.ghost-timeline .timeline-tools :is(input, select) {
+  min-width: 0;
+  width: 100%;
+  min-height: 44px;
+}
+.ghost-timeline .timeline-results-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--n-500);
+}
+.ghost-timeline .timeline-results-bar p {
+  font: 11px var(--font-mono);
+  color: var(--n-900);
+  margin: 0;
+}
+.ghost-timeline .timeline-results-bar .button {
+  min-height: 44px;
+}
+.ghost-timeline .timeline-load-more {
+  margin-top: 16px;
+  min-height: 44px;
+}
+.ghost-timeline .timeline-empty {
+  color: var(--n-900);
+  padding: 16px 0;
+}
+@media (max-width: 600px) {
+  .ghost-timeline .timeline-tools {
+    grid-template-columns: 1fr;
+  }
+}
