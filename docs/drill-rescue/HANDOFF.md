@@ -154,6 +154,13 @@ Performance status (data in PROGRESS.md, M3 performance):
     passes 2 and 3;
   - check whether the GPU timer catches compositor work.
 * On the idle NVIDIA dGPU every tier holds 60 fps.
+* Unverified hypothesis: GPU time-slicing. Desktop clients share the iGPU, and a
+  ~3 ms frame can be preempted mid-way and wait out another context's slice,
+  while the old ~0.4 ms frame finished inside one slice.
+  - Test: run the same benchmark from a TTY session with no compositor, or with
+    the desktop idle.
+  - If confirmed, the remedies are less GPU work per frame (e.g. Medium without
+    MSAA) or an automatic-quality policy that steps down at sustained < 55 fps.
 
 ### M4 — aircraft: done (PROGRESS.md)
 Open polish:

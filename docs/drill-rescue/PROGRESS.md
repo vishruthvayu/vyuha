@@ -26,9 +26,9 @@ the merge, so no conflicting renderer work was in flight.
 | 1 | Audit, baseline, research | done — `BASELINE-DEFECTS.md`, `RESEARCH-AND-ASSET-SELECTION.md`, `bench/` |
 | 2 | Guided trainee workflow + evidence-based camera / interpolation fixes | done — see below |
 | 3 | Environment upgrade | done — pushed `b7706cc` |
-| 4 | Aircraft upgrade | done — see below |
-| 5 | Camera, sensors, polish | in progress — sensor close-up done (below) |
-| 6 | Final validation | planned |
+| 4 | Aircraft upgrade | done — pushed `868e0ed` |
+| 5 | Camera, sensors, polish | done — close-up in `868e0ed`, IR treatment and resource release in `6c4518c` |
+| 6 | Final validation | in progress — see below |
 
 ## Milestone 2 — guided workflow, camera and motion fixes
 
@@ -241,3 +241,26 @@ Screenshots: `screenshots/m4/`:
 * EO and IR close-ups at 24–142 px on target;
 * a 2.4 m fixed-wing at 141 m in the 6× main view;
 * the IR pusher motor hot against cooler wings.
+
+## Milestone 5 — polish (`6c4518c`)
+
+* The legacy night-vision canvas filter (`style.css`: sepia + hue-rotate +
+  saturate) tinted the in-shader IR palette a second time; it is removed for the
+  live views. IR views get a faint static detector grain and a lens vignette; EO a
+  light vignette. CSS only; nothing animates.
+* Resource release on world rebuild: instanced meshes and the per-build white
+  texture.
+
+## Milestone 6 — validation (in progress)
+
+* **Soak** (`tools/drill-rescue/soak.mjs`): a live drill with 12 cycles of
+  THERMAL / IR / DAY TV and High / Low / Medium switching plus re-selection. Live
+  WebGL objects: buffers 251→257, textures 55→59, framebuffers 6→8. JS heap after
+  forced GC stays near 41 MB. Programs grow 78→121 as three.js caches shader
+  variants across 33 forced quality changes.
+* **Long session** (`tools/drill-rescue/longrun.mjs`, `bench/longrun-nvidia-urban-day.json`):
+  180 s, 200 contacts, Medium, urban day, NVIDIA:
+  - median 60 fps, 5th percentile 60 (one 24 fps sample);
+  - simulation tick median 0.5 ms, p95 1 ms;
+  - textures 51 and buffers 251, constant for the whole run;
+  - heap oscillates with GC and does not grow.
