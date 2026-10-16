@@ -1,0 +1,260 @@
+/* Scoped to the surrounding platform; drill styles are unaffected. */
+.platform-shell .authoring-steps {
+  display: flex;
+  gap: 24px;
+  border-block: 1px solid var(--line, #34414c);
+  padding: 8px 0;
+  margin-bottom: 24px;
+}
+.platform-shell .authoring-steps a {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.platform-shell .authoring-steps span {
+  font:
+    12px ui-monospace,
+    monospace;
+  color: #abb6bd;
+}
+.platform-shell .authoring-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.platform-shell .authoring-section-heading h2 {
+  margin: 6px 0 12px;
+}
+.platform-shell .authoring-meta {
+  color: var(--text-muted, #abb6bd);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.platform-shell .authoring-page :is(.eyebrow, .footnote),
+.platform-shell .authoring-composer legend {
+  color: #abb6bd;
+}
+.platform-shell .authoring-composer .raid-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+  min-width: 0;
+  gap: 0;
+  padding: 0;
+  margin: 24px 0;
+  border: 0;
+  background: none;
+}
+.platform-shell .authoring-composer .raid-controls > legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.platform-shell .authoring-field-group {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.65fr) minmax(0, 2fr);
+  column-gap: 36px;
+  padding: 24px 0;
+  border-top: 1px solid var(--line, #34414c);
+}
+.platform-shell .authoring-field-group h3 {
+  grid-column: 1;
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+.platform-shell .authoring-field-group > p {
+  grid-column: 1;
+  margin: 0;
+  color: var(--text-muted, #abb6bd);
+  line-height: 1.6;
+  font-size: 13px;
+}
+.platform-shell .authoring-field-grid {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-content: start;
+}
+.platform-shell .authoring-field-grid label {
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+.platform-shell
+  .authoring-field-grid
+  :is(input:not([type="checkbox"]), select) {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.platform-shell .authoring-field-grid .authoring-check {
+  display: flex;
+  align-items: center;
+  line-height: 1.5;
+  min-height: 44px;
+  cursor: pointer;
+}
+.platform-shell .authoring-check input {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  margin: 12px 4px;
+}
+.platform-shell .authoring-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.platform-shell .authoring-notice {
+  padding: 16px 18px;
+  border-left: 2px solid var(--accent, #d4bc89);
+  background: rgba(154, 170, 178, 0.06);
+  line-height: 1.6;
+}
+.platform-shell .authoring-provenance {
+  margin-block: 18px;
+  min-width: 0;
+}
+.platform-shell .authoring-provenance summary {
+  cursor: pointer;
+  padding: 12px 0;
+  min-height: 44px;
+  box-sizing: border-box;
+}
+.platform-shell .authoring-provenance :is(code, pre) {
+  display: block;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  max-height: 440px;
+  overflow: auto;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.platform-shell .authoring-roster {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-block: 18px;
+}
+.platform-shell .authoring-roster label {
+  padding: 12px;
+  border: 1px solid var(--line, #34414c);
+  min-height: 44px;
+  box-sizing: border-box;
+}
+.platform-shell .recorded-scope {
+  max-width: 100ch;
+  line-height: 1.8;
+}
+.platform-shell .recorded-source {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.platform-shell .recorded-source-column {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  min-width: 0;
+}
+.platform-shell .recorded-source-column > p {
+  margin: 0;
+  color: var(--text-muted, #abb6bd);
+  line-height: 1.6;
+}
+.platform-shell .recorded-source-column > label {
+  display: grid;
+  gap: 8px;
+}
+.platform-shell .recorded-source-column > :is(button, a) {
+  justify-self: start;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.platform-shell .recorded-source-column input {
+  max-width: 100%;
+}
+.platform-shell .recorded-empty {
+  padding: 32px 0;
+  max-width: 66ch;
+}
+.platform-shell .recorded-empty p {
+  line-height: 1.8;
+  color: var(--text-muted, #abb6bd);
+}
+.platform-shell .recorded-workbench {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  gap: 28px;
+  margin-top: 24px;
+}
+.platform-shell .recorded-picture {
+  min-width: 0;
+}
+.platform-shell .recorded-decisions {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  border-left: 1px solid var(--line, #34414c);
+  padding-left: 24px;
+}
+.platform-shell .recorded-decisions label {
+  display: grid;
+  gap: 6px;
+}
+.platform-shell .recorded-decision-count {
+  border-top: 1px solid var(--line, #34414c);
+  padding-top: 16px;
+  line-height: 1.7;
+}
+@media (max-width: 1100px) {
+  .platform-shell .authoring-field-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .platform-shell .authoring-section-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 0;
+  }
+  .platform-shell .authoring-field-group {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .platform-shell .authoring-field-grid {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: 12px;
+  }
+  .platform-shell .recorded-source,
+  .platform-shell .recorded-workbench {
+    grid-template-columns: 1fr;
+  }
+  .platform-shell .recorded-decisions {
+    border-left: 0;
+    border-top: 1px solid var(--line, #34414c);
+    padding: 20px 0 0;
+  }
+  .platform-shell .authoring-steps {
+    flex-wrap: wrap;
+    gap: 0 24px;
+  }
+}
+@media (max-width: 440px) {
+  .platform-shell .authoring-field-grid {
+    grid-template-columns: 1fr;
+  }
+  .platform-shell .authoring-actions > button {
+    width: 100%;
+  }
+}

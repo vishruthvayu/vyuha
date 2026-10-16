@@ -188,7 +188,7 @@ export default function ExerciseStudio() {
   const pack = packs.find((p) => p.id === form.pack_id),
     chosen = library.find((s) => s.id === selected);
   return (
-    <main className="instructor-page advanced-page command-workspace">
+    <main className="instructor-page advanced-page command-workspace authoring-page">
       <header className="page-heading">
         <div>
           <div className="eyebrow">INSTRUCTOR · EXERCISE SYSTEM</div>
@@ -203,6 +203,14 @@ export default function ExerciseStudio() {
           <a href="/">Open trainee</a>
         </nav>
       </header>
+      <nav className="authoring-steps" aria-label="Exercise workflow">
+        <a href="#raid-composer">
+          <span>01</span> Compose an exercise
+        </a>
+        <a href="#scenario-library">
+          <span>02</span> Select & assign
+        </a>
+      </nav>
       <RaidStudio
         onSaved={(saved) => {
           setLibrary((items) => [
@@ -535,7 +543,25 @@ export default function ExerciseStudio() {
         className="panel advanced-card command-detail"
         id="scenario-library"
       >
-        <h2>Scenario library</h2>
+        <div className="authoring-section-heading">
+          <div>
+            <span className="eyebrow">02 / ASSIGN</span>
+            <h2>Scenario library</h2>
+          </div>
+          <span className="authoring-meta">
+            {library.length} saved exercises
+          </span>
+        </div>
+        <p>
+          Choose a saved version, then assign an independent session to each
+          available trainee.
+        </p>
+        {!library.length && (
+          <p className="authoring-notice">
+            No saved exercises are available. Compile and save a raid above to
+            create your first library entry.
+          </p>
+        )}
         <label>
           Saved exercise
           <select
@@ -573,6 +599,11 @@ export default function ExerciseStudio() {
           </p>
         )}
         <h3>Assign to connected, idle trainees</h3>
+        <p className="authoring-meta">
+          {trainees.length} selected ·{" "}
+          {roster.filter((r) => r.connected && !r.busy).length} available in
+          this unit
+        </p>
         {!roster.some((r) => r.connected) && (
           <p className="footnote">
             No trainee in this unit is connected right now. Trainees appear here
@@ -580,7 +611,7 @@ export default function ExerciseStudio() {
             server.
           </p>
         )}
-        <div className="roster-options">
+        <div className="roster-options authoring-roster">
           {roster
             .filter((r) => r.connected)
             .map((r) => (

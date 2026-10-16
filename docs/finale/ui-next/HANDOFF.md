@@ -22,3 +22,11 @@ Do not edit App.tsx, Scene.tsx, ContactRenderer.tsx, DecisionWorkspace.tsx, airf
 ## Runtime isolation
 
 Use dedicated localhost ports 5187 (frontend) and 8017 (API), and synthetic database/auth files under `/tmp/vyuha-hardening-qa`. No user database or officer credential is used.
+
+## Platform milestone 1
+
+Implemented platform-only desktop route directory, scoped Fieldwork design layer, Analytics evidence ledger/AAR links and honest comparison prerequisites, Instructor search/status filtering, split Transfer workbench, operation-specific Operator Guide disclosures, Ghost evidence investigation layout, page-crash recovery boundary, and authoring/Recorded compositions. Shared root tokens and all listed drill-owner files remain untouched.
+
+Validation during implementation: production build passes (36 offline assets; existing large WebGL chunk warning retained); ESLint and configured formatting pass; targeted workflow batches 21/24/17/20/5 all passed (overlapping batches, not additive totals). Independent review found mobile White Cell clipping, tab focus clipping, inadequate roster height, empty-state misleading CTA and contrast defects; corrections are implemented and being rechecked. Historical private 18/22 source databases are absent here, so their old receipts are retained as historical only.
+
+Research includes public source access limits and three interactive browser layout studies. Screenshots under `before-*` are genuine baseline captures against an isolated empty synthetic server at 1440px. No user credential/database is used. Current work is not a release candidate or whole-product visual approval.

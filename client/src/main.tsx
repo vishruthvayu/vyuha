@@ -6,6 +6,10 @@ import "./design-system.css";
 import "./mission-navigation.css";
 import "./crew-officer-polish.css";
 import "./premium/premium.css";
+import "./platform/fieldwork.css";
+import "./platform/authoring.css";
+import PlatformRail from "./PlatformRail";
+import WorkspaceBoundary from "./WorkspaceBoundary";
 import { LoadingWorkspace } from "./UI";
 import { UnitGateway } from "./Unit";
 import Navigation from "./Navigation";
@@ -81,7 +85,8 @@ createRoot(document.getElementById("root")!).render(
       </Suspense>
     ) : (
       <div
-        className="app-shell route-shell"
+        className="app-shell route-shell platform-shell"
+        data-route={route?.id}
         data-workflow={
           route?.section === "System / evidence" || route?.id === "transfer"
             ? "evidence"
@@ -91,6 +96,7 @@ createRoot(document.getElementById("root")!).render(
         }
       >
         <Navigation />
+        <PlatformRail />
         <div className="route-content" id="workspace-content" tabIndex={-1}>
           <header className="topbar">
             <div className="breadcrumb">
@@ -98,15 +104,17 @@ createRoot(document.getElementById("root")!).render(
               <span> / {route?.title ?? "PAGE NOT FOUND"}</span>
             </div>
           </header>
-          <Suspense
-            fallback={
-              <main>
-                <LoadingWorkspace />
-              </main>
-            }
-          >
-            {content}
-          </Suspense>
+          <WorkspaceBoundary>
+            <Suspense
+              fallback={
+                <main>
+                  <LoadingWorkspace />
+                </main>
+              }
+            >
+              {content}
+            </Suspense>
+          </WorkspaceBoundary>
         </div>
       </div>
     )}

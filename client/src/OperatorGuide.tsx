@@ -100,6 +100,40 @@ export default function OperatorGuide({ onClose }: { onClose: () => void }) {
             Replay tour
           </button>
         </div>
+        <div className="guide-operations">
+          <h3>Working with VYUHA</h3>
+          {[
+            [
+              "Instructor operations",
+              "Sign in to the Instructor console, select the trainee’s session, then issue a command. A server receipt confirms acceptance; the command lifecycle shows whether the trainee applied it. Use the original request when retrying.",
+            ],
+            [
+              "Crew roles and access",
+              "An officer creates the shared exercise and role codes. Spotters designate; responders classify and respond. Keep codes private. Rotation replaces a member’s access code. Crew coordination belongs to the shared exercise and does not award individual mastery.",
+            ],
+            [
+              "Offline and recovery",
+              "Load the app once over a secure connection to prepare its offline assets. A disconnected trainee can queue local evidence. Keep the same browser and reconnect to the original server to synchronize. Device-only results require server verification; officer operations require a connection.",
+            ],
+            [
+              "Investigating an AAR",
+              "Open a completed session from Analytics or Unit overview. Select a decision in Ghost, inspect what was available, then compare the action, outcome and explanation. What-If creates a separate branch and leaves the original result unchanged.",
+            ],
+            [
+              "Recorded practice",
+              "Import a schema-compatible recording or use the bundled example. Recorded observations expire after one second. Practice records decisions without a tactical score or skill-profile update.",
+            ],
+            [
+              "Sign-in or server problems",
+              "If the server restarts, sign in again. Check the server address and trusted HTTPS certificate. Pending commands and transfers can be retried using their original request or file. Do not clear browser storage while decisions are waiting to sync.",
+            ],
+          ].map(([title, text]) => (
+            <details key={title} className="evidence-disclosure">
+              <summary>{title}</summary>
+              <p>{text}</p>
+            </details>
+          ))}
+        </div>
         <p className="guide-caution">
           Values are illustrative training parameters. They do not represent
           operational doctrine.

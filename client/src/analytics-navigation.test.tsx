@@ -184,3 +184,18 @@ test("Analytics tab navigation preserves query and browser history for back, for
       assert.equal(window.location.search, "?source=proof");
     },
   ));
+
+test("Empty analytics explains comparison prerequisites instead of offering an unusable action", async () =>
+  mounted("http://qa.local/analytics", async (document) => {
+    assert.match(
+      document.body.textContent!,
+      /comparison becomes available after two completed/i,
+    );
+    assert.equal(
+      [...document.querySelectorAll(".analytics-overview button")].some(
+        (button) =>
+          button.textContent?.includes("Inspect two recorded sessions"),
+      ),
+      false,
+    );
+  }));

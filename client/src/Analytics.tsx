@@ -5,6 +5,8 @@ import { api } from "./storage";
 import type { UnitIdentity } from "./unit-state";
 import type { GhostSkill } from "./types";
 import { skillLabel } from "./Ghost";
+import { officerReviewHref } from "./routes";
+import { EmptyState } from "./UI";
 type Point = {
   sequence: number;
   session_id: string;
@@ -286,6 +288,9 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
           </select>
         </label>
       </div>
+      <p className="analytics-view-hint">
+        Choose an analysis view · scroll to see all views on narrow screens
+      </p>
       <nav className="analytics-tabs" aria-label="Analytics views">
         {(
           [
@@ -310,29 +315,35 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
         <section className="panel advanced-card analytics-overview">
           <div className="eyebrow">SELECTED TRAINEE · PERSISTED EVIDENCE</div>
           <h2>Evidence at a glance</h2>
-          <div className="review-result-grid">
-            <article className="metric">
-              <span>Completed tactical sessions</span>
+          <div className="analytics-evidence-ledger">
+            <div className="analytics-ledger-total">
               <strong>{history ? history.sessions.length : "—"}</strong>
-              <small>Selected trainee only</small>
-            </article>
-            <article className="metric">
-              <span>Processed learning-ledger entries</span>
-              <strong>{history ? history.points.length : "—"}</strong>
-              <small>Ledger entries; not people or actions</small>
-            </article>
-            <article className="metric">
-              <span>Latest recorded score</span>
-              <strong>
-                {history?.sessions.at(-1)
-                  ? `${history.sessions.at(-1)!.score}/100`
-                  : "—"}
-              </strong>
+              <span>completed tactical sessions</span>
               <small>
-                {history?.sessions.at(-1)?.title ??
-                  "No completed tactical session"}
+                {history ? history.points.length : "—"} processed
+                learning-ledger entries
               </small>
-            </article>
+            </div>
+            <div className="analytics-ledger-context">
+              <span>Latest recorded exercise</span>
+              <h3>
+                {history?.sessions.at(-1)?.title ??
+                  "Your evidence starts with a completed drill"}
+              </h3>
+              <p>
+                {history?.sessions.at(-1)
+                  ? `${history.sessions.at(-1)!.score}/100 · frozen server result. Open its AAR to inspect decisions and the scoring rubric.`
+                  : "Choose a trainee with completed training to explore decisions, skill estimates and scenario comparisons."}
+              </p>
+              {history?.sessions.at(-1) && (
+                <a
+                  className="text-button"
+                  href={officerReviewHref(history.sessions.at(-1)!.id)}
+                >
+                  Investigate latest AAR →
+                </a>
+              )}
+            </div>
           </div>
           <p className="review-evidence-boundary">
             Scores are simulated exercise outcomes. Skill means are historical
@@ -340,12 +351,19 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
             individual learning profiles. Observed differences do not establish
             learning efficacy.
           </p>
-          <button
-            className="text-button"
-            onClick={() => navigateView("comparison")}
-          >
-            Inspect two recorded sessions
-          </button>
+          {history && history.sessions.length >= 2 ? (
+            <button
+              className="text-button"
+              onClick={() => navigateView("comparison")}
+            >
+              Inspect two recorded sessions
+            </button>
+          ) : (
+            <p className="footnote">
+              Session comparison becomes available after two completed tactical
+              exercises for the selected trainee.
+            </p>
+          )}
         </section>
       )}
       {view === "scenario" && <SkillHeatmap unit={unit} trainee={tid} />}
@@ -355,6 +373,68 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
             <section className="panel advanced-card analytics-detail">
               <h2>Trainee skill trend</h2>
               <Trend history={history} />
+            </section>
+          )}
+          {view === "overview" && (
+            <section className="panel advanced-card analytics-session-ledger">
+              <div className="analytics-section-heading">
+                <div>
+                  <p className="eyebrow">FROZEN RESULTS</p>
+                  <h2>Exercise evidence</h2>
+                </div>
+                <span>{history.sessions.length} recorded</span>
+              </div>
+              {history.sessions.length ? (
+                <div
+                  className="table-scroll"
+                  tabIndex={0}
+                  role="region"
+                  aria-label="Completed exercise evidence"
+                >
+                  <table>
+                    <thead>
+                      <tr>
+                        <th scope="col">Exercise / scenario</th>
+                        <th scope="col">Observed time</th>
+                        <th scope="col">Score</th>
+                        <th scope="col">Review</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[...history.sessions].reverse().map((session) => (
+                        <tr key={session.id}>
+                          <td>
+                            <strong>{session.title}</strong>
+                            <small>
+                              {session.pack} · seed {session.seed}
+                            </small>
+                          </td>
+                          <td>
+                            {session.observed_tick === null
+                              ? "Unknown"
+                              : `${(session.observed_tick / 30).toFixed(2)}s`}
+                          </td>
+                          <td className="mono">{session.score}/100</td>
+                          <td>
+                            <a
+                              href={officerReviewHref(session.id)}
+                              aria-label={`Review ${session.title} · ${session.id.slice(0, 8)}`}
+                            >
+                              Open AAR →
+                            </a>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <EmptyState title="No completed exercises yet">
+                  Complete a tactical drill for this trainee to create a
+                  verified decision record. Baseline priors alone do not show
+                  learning.
+                </EmptyState>
+              )}
             </section>
           )}
           {view === "comparison" && (

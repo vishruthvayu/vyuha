@@ -165,7 +165,7 @@ export function GhostPanel({
     <section className="panel ghost-panel ghost-v2">
       <div className="panel-header">
         <div>
-          <Flag size={16} />
+          <Flag size={16} aria-hidden="true" />
           <h2 className="panel-title">Ghost Expert</h2>
         </div>
         <span className="status">
@@ -270,125 +270,127 @@ export function GhostPanel({
           <p className="review-evidence-boundary">
             Decision evidence stays pinned while you move the replay cursor.
           </p>
-          <EvidenceView review={r} />
-          <section className="ghost-section ghost-comparison">
-            <div>
-              <h3>Your decision</h3>
-              <strong>{actionLabel(r.trainee_action)}</strong>
-            </div>
-            <div>
-              <h3>Expected decision</h3>
-              <strong>
-                {r.decision_kind === "prioritisation"
-                  ? `Prioritise ${r.expected_action.track_id} · permitted response: ${actionLabel(r.expected_action)}`
-                  : actionLabel(r.expected_action)}
-              </strong>
-              <small>
-                {r.expected_action.basis === "ground_truth_reference"
-                  ? "Ground-truth rubric reference; identity must first be established"
-                  : "Based on available evidence"}
-              </small>
-            </div>
-          </section>
-          <section className="ghost-section">
-            <h3>Why</h3>
-            <p>{r.explanation}</p>
-            <small className="mono">{r.reason_code}</small>
-            {r.context_commands.length > 0 && (
-              <p className="ghost-context">
-                Instructor context:{" "}
-                {r.context_commands
-                  .map((seq) => {
-                    const c = record.commands?.find((x) => x.seq === seq);
-                    return c
-                      ? `#${seq} ${c.type.replaceAll("_", " ")} at ${tickLabel(c.tick)}`
-                      : `#${seq}`;
-                  })
-                  .join(" · ")}
-              </p>
-            )}
-          </section>
-          <details
-            className="ghost-section ground-truth"
-            data-evidence-scope="ground-truth"
-          >
-            <summary>Ground truth after review</summary>
-            <dl className="ghost-evidence">
+          <div className="ghost-investigation" key={r.decision_id}>
+            <EvidenceView review={r} />
+            <section className="ghost-section ghost-comparison">
               <div>
-                <dt>Type</dt>
-                <dd>{KIND_LABEL[r.ground_truth.kind]}</dd>
+                <h3>Your decision</h3>
+                <strong>{actionLabel(r.trainee_action)}</strong>
               </div>
               <div>
-                <dt>Identity</dt>
-                <dd>{r.ground_truth.identity}</dd>
+                <h3>Expected decision</h3>
+                <strong>
+                  {r.decision_kind === "prioritisation"
+                    ? `Prioritise ${r.expected_action.track_id} · permitted response: ${actionLabel(r.expected_action)}`
+                    : actionLabel(r.expected_action)}
+                </strong>
+                <small>
+                  {r.expected_action.basis === "ground_truth_reference"
+                    ? "Ground-truth rubric reference; identity must first be established"
+                    : "Based on available evidence"}
+                </small>
               </div>
-              <div>
-                <dt>Physical RF link</dt>
-                <dd>{r.ground_truth.rf_link ? "Present" : "None"}</dd>
-              </div>
-              <div>
-                <dt>Spawn</dt>
-                <dd>{tickLabel(r.ground_truth.spawn_tick)}</dd>
-              </div>
-            </dl>
-            <p className="footnote">
-              These are reconstructed simulation facts, not a claim about what
-              the trainee knew.
-            </p>
-          </details>
-          <section className="ghost-section">
-            <h3>Consequence</h3>
-            <p>{r.consequence.text}</p>
-            <small className="mono">{r.consequence.reason_code}</small>
-          </section>
-          <section className="ghost-section">
-            <h3>Score impact</h3>
-            <strong>
-              {r.score_effect.node === "detect"
-                ? "Detection"
-                : r.score_effect.node === "classify"
-                  ? "Classification"
-                  : r.score_effect.node === "prioritise"
-                    ? "Prioritisation"
-                    : "Engagement"}
-              : {r.score_effect.points_awarded} /{" "}
-              {r.score_effect.points_possible}
-            </strong>
-            <p className="footnote">
-              Final contact node, shared across all attempts. This is not a
-              separate per-action award.
-            </p>
-            {r.score_effect.session_penalty > 0 && (
-              <p>
-                Contact asset penalty: −{r.score_effect.session_penalty}{" "}
-                {r.score_effect.penalty_basis === "scoring_projection"
-                  ? "(frozen-duration scoring projection, not an observed impact)"
-                  : "(observed impact)"}
-              </p>
-            )}
-            {r.score_effect.session_failure && (
-              <p className="amber-text">
-                The recorded non-hostile response triggered the session safety
-                rule.
-              </p>
-            )}
-          </section>
-          <section className="ghost-section">
-            <h3>Training skill</h3>
-            <p>
-              {r.decision_kind === "prioritisation"
-                ? "Ranking is recorded in the 15-point node; it adds no observations to the four-skill profile."
-                : r.skill_tags.length
-                  ? r.skill_tags.map((s) => skillLabel[s]).join(" · ")
-                  : "No mistake tag for this decision."}
-            </p>
-            {r.skill_tags.includes("degraded_sensor_response") && (
+            </section>
+            <section className="ghost-section">
+              <h3>Why</h3>
+              <p>{r.explanation}</p>
+              <small className="mono">{r.reason_code}</small>
+              {r.context_commands.length > 0 && (
+                <p className="ghost-context">
+                  Instructor context:{" "}
+                  {r.context_commands
+                    .map((seq) => {
+                      const c = record.commands?.find((x) => x.seq === seq);
+                      return c
+                        ? `#${seq} ${c.type.replaceAll("_", " ")} at ${tickLabel(c.tick)}`
+                        : `#${seq}`;
+                    })
+                    .join(" · ")}
+                </p>
+              )}
+            </section>
+            <details
+              className="ghost-section ground-truth"
+              data-evidence-scope="ground-truth"
+            >
+              <summary>Ground truth after review</summary>
+              <dl className="ghost-evidence">
+                <div>
+                  <dt>Type</dt>
+                  <dd>{KIND_LABEL[r.ground_truth.kind]}</dd>
+                </div>
+                <div>
+                  <dt>Identity</dt>
+                  <dd>{r.ground_truth.identity}</dd>
+                </div>
+                <div>
+                  <dt>Physical RF link</dt>
+                  <dd>{r.ground_truth.rf_link ? "Present" : "None"}</dd>
+                </div>
+                <div>
+                  <dt>Spawn</dt>
+                  <dd>{tickLabel(r.ground_truth.spawn_tick)}</dd>
+                </div>
+              </dl>
               <p className="footnote">
-                Sensor degradation is context; this tag does not prove it caused
-                the mistake.
+                These are reconstructed simulation facts, not a claim about what
+                the trainee knew.
               </p>
-            )}
-          </section>
+            </details>
+            <section className="ghost-section">
+              <h3>Consequence</h3>
+              <p>{r.consequence.text}</p>
+              <small className="mono">{r.consequence.reason_code}</small>
+            </section>
+            <section className="ghost-section">
+              <h3>Score impact</h3>
+              <strong>
+                {r.score_effect.node === "detect"
+                  ? "Detection"
+                  : r.score_effect.node === "classify"
+                    ? "Classification"
+                    : r.score_effect.node === "prioritise"
+                      ? "Prioritisation"
+                      : "Engagement"}
+                : {r.score_effect.points_awarded} /{" "}
+                {r.score_effect.points_possible}
+              </strong>
+              <p className="footnote">
+                Final contact node, shared across all attempts. This is not a
+                separate per-action award.
+              </p>
+              {r.score_effect.session_penalty > 0 && (
+                <p>
+                  Contact asset penalty: −{r.score_effect.session_penalty}{" "}
+                  {r.score_effect.penalty_basis === "scoring_projection"
+                    ? "(frozen-duration scoring projection, not an observed impact)"
+                    : "(observed impact)"}
+                </p>
+              )}
+              {r.score_effect.session_failure && (
+                <p className="amber-text">
+                  The recorded non-hostile response triggered the session safety
+                  rule.
+                </p>
+              )}
+            </section>
+            <section className="ghost-section">
+              <h3>Training skill</h3>
+              <p>
+                {r.decision_kind === "prioritisation"
+                  ? "Ranking is recorded in the 15-point node; it adds no observations to the four-skill profile."
+                  : r.skill_tags.length
+                    ? r.skill_tags.map((s) => skillLabel[s]).join(" · ")
+                    : "No mistake tag for this decision."}
+              </p>
+              {r.skill_tags.includes("degraded_sensor_response") && (
+                <p className="footnote">
+                  Sensor degradation is context; this tag does not prove it
+                  caused the mistake.
+                </p>
+              )}
+            </section>
+          </div>
         </div>
       )}
     </section>
