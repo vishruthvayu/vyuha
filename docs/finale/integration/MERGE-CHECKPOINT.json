@@ -1,0 +1,33 @@
+{
+  "scope": "INITIAL_MERGE_SMOKE_NOT_FINAL_ACCEPTANCE",
+  "shared_baseline": "7e3184b15ba38e8242efc6f80c446c9d861b032e",
+  "engine": "ea641a2779f0c8ccc838b147611c4c45c3f123b6",
+  "UI": "8aff5410bb070af7ff74c441c7524d54ede749d0",
+  "merge": "75cc97f3d3b7827dcaf74c5b9ebdca579fc01094",
+  "overlapping_changed_paths": [],
+  "frontend": {
+    "passed": 282,
+    "failed": 0,
+    "milliseconds": 49663.970208
+  },
+  "backend_smoke": {
+    "passed": 33,
+    "failed": 0,
+    "seconds": 43.77
+  },
+  "build": {
+    "status": "PASS",
+    "assets": 34,
+    "cache": "46380d26a8b6"
+  },
+  "live_browser": "Actual adaptive prepare/start/pause,3D rendering + radar + decision dock in premium shell;no console errors/warnings captured",
+  "database": "Disposable separate integration database;production unchanged",
+  "remaining_confirmed_findings": [
+    "Crew designation eligibility contract",
+    "Production font licence packaging",
+    "Analytics empty-cell contrast",
+    "Renderer reduced-motion connection"
+  ],
+  "software_final_acceptance": "OPEN",
+  "stable_approval": false
+}
