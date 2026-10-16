@@ -46,3 +46,7 @@ Final code: `10a63fefba2201aa9c343d18ca1b0d3b24c0a112` (pushed and independently
 Production HTTP/Chromium acceptance passed server scoring/Ghost/profiles, What-If immutability, distinct Crew roles/cross-Crew rejection/rotation/attribution/completion, signed transfer/duplicate/tamper handling, SQLite backup/restore and restart recovery, cached offline shell reload and browser import. Clean-clone and Docker records match the final code. A separate evidence-only checkpoint publishes these files without changing runtime source.
 
 See `FINAL-REPORT.md` for exact integration instructions, screenshot links, audit qualifications and remaining ownership/physical/private-history/user acceptance. No finished drill branch, merged SHA or RC is claimed. Main Codex remains merge/release owner. Home/preparation was protected; Rapid ID retains its existing focused workflow with the new surrounding shell. Review those scope limits explicitly during final product acceptance.
+
+## Resumed UI correction
+
+User rejected the competing shell. See SHELL-CORRECTION.md: sidebar removed, premium top navigation/display typography/semantic tokens restored, recent branch ancestry and separate drill WIP inspected. New browser matrix80/20axe plus frontend289/lint/format/build pass; current visuals are in shell-correction/. Earlier sidebar screenshots are historical. No drill branch merge or final visual approval.

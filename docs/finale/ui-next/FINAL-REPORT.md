@@ -1,5 +1,7 @@
 # VYUHA hardening branch — integration review handoff
 
+> **UI continuation update:** the competing sidebar/palette was rejected and corrected. Read [SHELL-CORRECTION.md](SHELL-CORRECTION.md) and its newer screenshots first. This report describes the earlier source checkpoint; it is not current visual acceptance.
+
 ## Source and ownership
 
 Base: `db0ff23a67692d3db5dce07a031d17ea50a409b3` (actual GitHub integration HEAD fetched 2026-10-16).

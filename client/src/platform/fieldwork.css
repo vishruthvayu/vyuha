@@ -1,126 +1,30 @@
 /* Fieldwork: surrounding platform only. Shared tokens and drill are untouched. */
 .platform-shell {
-  --platform-edge: #333c3b;
-  --platform-paper: #151b1c;
-  --platform-muted: #adb8b2;
-  --platform-accent: #d8bf8d;
+  --platform-edge: var(--n-500);
+  --platform-paper: var(--n-150);
+  --platform-muted: var(--n-900);
+  --platform-accent: var(--gold-500);
   display: block;
-  background: #101516;
+  background: var(--n-100);
   min-height: 100dvh;
 }
-.platform-shell .mission-navigation {
-  background: #0c1112;
-  backdrop-filter: none;
-  padding-inline: 24px;
-}
-.platform-rail {
-  position: fixed;
-  inset: var(--appbar-h) auto 0 0;
-  width: 232px;
-  display: flex;
-  flex-direction: column;
-  background: #0c1112;
-  border-right: 1px solid var(--platform-edge);
-  padding: 24px 14px 12px;
-  z-index: 20;
-}
-.platform-rail-heading {
-  display: grid;
-  gap: 4px;
-  padding: 0 12px 14px;
-  font: 10px var(--font-mono);
-  letter-spacing: 0.12em;
-  color: var(--platform-muted);
-}
-.platform-edition {
-  color: #7f9187;
-  font-size: 10px;
-}
-.platform-rail .navigation-scroll {
-  overflow: auto;
-  flex: 1;
-  min-height: 0;
-  padding: 0;
-}
-.platform-rail .navigation-group {
-  margin: 0 0 18px;
-}
-.platform-rail .nav-label {
-  margin: 0 12px 5px;
-  padding: 0;
-  font: 10px var(--font-mono);
-  letter-spacing: 0.09em;
-  color: #93a39a;
-  text-transform: uppercase;
-}
-.platform-rail .nav-item {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  min-height: 36px;
-  padding: 7px 12px;
-  margin: 1px 0;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  color: #b9c2bb;
-  font-size: 12px;
-  line-height: 1.35;
-  text-decoration: none;
-}
-.platform-rail .nav-item svg {
-  width: 15px;
-  height: 15px;
-  opacity: 0.75;
-  flex: none;
-}
-.platform-rail .nav-item:hover {
-  background: #1c2726;
-  color: #f4eee2;
-}
-.platform-rail .nav-item.active {
-  background: #25302b;
-  border-color: #3f5042;
-  color: #ede6d4;
-}
-.platform-rail .nav-item.active svg {
-  opacity: 1;
-  color: #d8bf8d;
-}
-.platform-rail-footer {
-  border-top: 1px solid #293431;
-  padding: 12px 8px 0;
-}
-.platform-return {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  text-decoration: none;
-}
-.platform-rail-footer p {
-  display: flex;
-  gap: 6px;
-  color: #a0b1a5;
-  font-size: 10px;
-  margin-bottom: 0;
-}
 .platform-shell > .route-content {
-  margin-left: 232px;
+  margin-left: 0;
   width: auto;
   min-width: 0;
 }
 .platform-shell .topbar {
   height: 48px;
   padding-inline: clamp(20px, 3vw, 48px);
-  background: #101516;
-  border-bottom: 1px solid #293431;
+  background: var(--n-100);
+  border-bottom: 1px solid var(--n-300);
 }
 .platform-shell .breadcrumb {
-  color: #9bad9f;
+  color: var(--n-900);
   font-size: 10px;
 }
 .platform-shell .breadcrumb span {
-  color: #e4e5da;
+  color: var(--n-1000);
 }
 .platform-shell main.instructor-page {
   padding: 30px clamp(20px, 3vw, 48px) 64px;
@@ -129,24 +33,24 @@
 .platform-shell .page-heading {
   padding: 0 0 24px;
   margin-bottom: 24px;
-  border-bottom: 1px solid #35413d;
+  border-bottom: 1px solid var(--n-500);
   gap: 20px;
 }
 .platform-shell .page-heading .eyebrow {
-  color: #b9c8b8;
+  color: var(--n-900);
   font: 10px var(--font-mono);
   letter-spacing: 0.14em;
 }
 .platform-shell .page-heading h1 {
-  font-family: var(--font-sans);
-  font-size: clamp(28px, 2.7vw, 42px);
-  font-weight: 450;
-  letter-spacing: -0.045em;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3vw, 48px);
+  font-weight: 400;
+  letter-spacing: var(--track-display);
   margin: 10px 0;
 }
 .platform-shell .page-heading p {
   font-size: 14px;
-  color: #b8c1b9;
+  color: var(--n-900);
   max-width: 70ch;
 }
 .platform-shell .panel {
@@ -164,22 +68,22 @@
 .platform-shell input:not([type="checkbox"]):not([type="range"]),
 .platform-shell select,
 .platform-shell textarea {
-  background-color: #0e1415;
-  border-color: #43504a;
-  color: #ede8db;
+  background-color: var(--n-100);
+  border-color: var(--n-600);
+  color: var(--n-1000);
   min-height: 42px;
 }
 .platform-shell label {
-  color: #c1c9bf;
+  color: var(--n-900);
 }
 .platform-shell .button {
   min-height: 40px;
   font-size: 13px;
 }
 .platform-shell .button.primary {
-  background: #d8bf8d;
-  color: #181a14;
-  border-color: #d8bf8d;
+  background: var(--gold-500);
+  color: var(--n-100);
+  border-color: var(--gold-500);
 }
 .platform-shell [role="alert"] {
   padding: 14px 18px;
@@ -187,21 +91,21 @@
   border-left-width: 3px;
   border-radius: 5px;
   background: #33211e;
-  color: #ffd7c7;
+  color: var(--n-1000);
   overflow-wrap: anywhere;
 }
 .platform-shell .officer-session-bar {
   margin: 0;
   padding: 8px clamp(20px, 3vw, 48px);
   border: 0;
-  border-bottom: 1px solid #293431;
-  background: #131b17;
+  border-bottom: 1px solid var(--n-300);
+  background: var(--n-100);
   border-radius: 0;
   font-size: 11px;
-  color: #b2c1ad;
+  color: var(--n-900);
 }
 .platform-shell .table-scroll {
-  border: 1px solid #35413d;
+  border: 1px solid var(--n-500);
   border-radius: 6px;
 }
 .platform-shell table {
@@ -209,8 +113,8 @@
   width: 100%;
 }
 .platform-shell th {
-  background: #1d2724;
-  color: #c5d0c1;
+  background: var(--n-300);
+  color: var(--n-900);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.02em;
@@ -219,27 +123,27 @@
   background: transparent;
   font-size: 12px;
   padding: 14px 16px;
-  border-bottom: 1px solid #2b3632;
+  border-bottom: 1px solid var(--n-500);
 }
 .platform-shell tbody tr:last-child td {
   border-bottom: 0;
 }
 .platform-shell tbody tr:hover {
-  background: #202b27;
+  background: var(--n-300);
 }
 .platform-shell td small {
-  color: #a4b3a5;
+  color: var(--n-900);
 }
 .platform-shell details {
-  border-color: #35413d;
+  border-color: var(--n-500);
 }
 .platform-shell summary {
   min-height: 40px;
   align-content: center;
 }
 .platform-shell .ui-empty {
-  border: 1px dashed #46564b;
-  background: #121a17;
+  border: 1px dashed var(--n-600);
+  background: var(--n-100);
   padding: 32px 24px;
 }
 .platform-shell .ui-empty h2 {
@@ -248,23 +152,23 @@
   font-weight: 400;
 }
 .platform-shell .ui-empty-mark {
-  color: #d8bf8d;
+  color: var(--gold-500);
 }
 .platform-shell .metric {
   background: transparent;
   box-shadow: none;
   border: 0;
-  border-right: 1px solid #3c4941;
+  border-right: 1px solid var(--n-600);
   border-radius: 0;
 }
 .platform-shell .metric:last-child {
   border-right: 0;
 }
 .platform-shell .metric span {
-  color: #adbcad;
+  color: var(--n-900);
 }
 .platform-shell .metric small {
-  color: #9cae9d;
+  color: var(--n-900);
 }
 .platform-shell .page-heading,
 .platform-shell .advanced-card {
@@ -278,25 +182,6 @@
   to {
     opacity: 1;
     transform: none;
-  }
-}
-@media (min-width: 1101px) {
-  .platform-shell .mission-primary-navigation {
-    display: none;
-  }
-  .platform-shell .mission-navigation-tools {
-    margin-left: auto;
-  }
-  .platform-shell .mission-catalog-toggle {
-    display: none;
-  }
-}
-@media (max-width: 1100px) {
-  .platform-rail {
-    display: none;
-  }
-  .platform-shell > .route-content {
-    margin-left: 0;
   }
 }
 @media (max-width: 600px) {
@@ -337,26 +222,26 @@
   align-items: center;
 }
 .platform-shell .analytics-ledger-total {
-  border-right: 1px solid #435047;
+  border-right: 1px solid var(--n-600);
   display: grid;
   gap: 4px;
   padding-right: 24px;
 }
 .platform-shell .analytics-ledger-total > strong {
   font: 64px/1 var(--font-display);
-  color: #d8bf8d;
+  color: var(--gold-500);
 }
 .platform-shell .analytics-ledger-total > span {
   font-size: 13px;
 }
 .platform-shell .analytics-ledger-total > small {
-  color: #a9b8a9;
+  color: var(--n-900);
 }
 .platform-shell .analytics-ledger-context > span {
   font: 10px var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #a9b8a9;
+  color: var(--n-900);
 }
 .platform-shell .analytics-ledger-context h3 {
   font-size: 21px;
@@ -365,7 +250,7 @@
 .platform-shell .analytics-ledger-context p {
   max-width: 60ch;
   font-size: 13px;
-  color: #bac5b9;
+  color: var(--n-900);
 }
 .platform-shell .analytics-section-heading {
   display: flex;
@@ -378,7 +263,7 @@
   margin: 4px 0;
 }
 .platform-shell .analytics-section-heading > span {
-  color: #b0c0ae;
+  color: var(--n-900);
   font: 11px var(--font-mono);
 }
 .platform-shell .analytics-session-ledger td small {
@@ -394,7 +279,7 @@
   align-items: center;
   gap: 32px;
   padding: 0 0 20px;
-  border-bottom: 1px solid #35413d;
+  border-bottom: 1px solid var(--n-500);
 }
 .platform-shell .command-pulse > div {
   display: flex;
@@ -405,19 +290,19 @@
   font: 28px var(--font-mono);
 }
 .platform-shell .command-pulse span {
-  color: #acbeae;
+  color: var(--n-900);
   font-size: 12px;
 }
 .platform-shell .command-pulse > a {
   margin-left: auto;
-  color: #d8bf8d;
+  color: var(--gold-500);
   font-size: 12px;
 }
 .platform-shell .session-filters {
   display: grid;
   gap: 12px;
   padding: 16px;
-  border-bottom: 1px solid #35413d;
+  border-bottom: 1px solid var(--n-500);
 }
 .platform-shell .session-filters label {
   display: grid;
@@ -426,7 +311,7 @@
 }
 .platform-shell .session-filters p {
   margin: 0;
-  color: #acbeae;
+  color: var(--n-900);
   font-size: 11px;
 }
 .platform-shell .instructor-grid {
@@ -438,9 +323,9 @@
   padding: 14px 16px;
 }
 .platform-shell .instructor-session.selected {
-  background: #28352b;
-  box-shadow: inset 3px 0 #d8bf8d;
-  border-color: #435047;
+  background: var(--n-300);
+  box-shadow: inset 3px 0 var(--gold-500);
+  border-color: var(--n-600);
 }
 .platform-shell .command-overview > .panel-header {
   padding: 14px 16px;
@@ -470,7 +355,7 @@
   }
   .platform-shell .analytics-ledger-total {
     border-right: 0;
-    border-bottom: 1px solid #435047;
+    border-bottom: 1px solid var(--n-600);
     padding: 0 0 20px;
   }
   .platform-shell .command-pulse {
@@ -503,7 +388,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #d8bf8d;
+  color: var(--gold-500);
   font: 11px var(--font-mono);
   letter-spacing: 0.08em;
 }
@@ -513,7 +398,7 @@
 }
 .platform-shell .transfer-operation > p {
   font-size: 13px;
-  color: #bac5b9;
+  color: var(--n-900);
 }
 .platform-shell .transfer-operation label {
   display: grid;
@@ -529,11 +414,11 @@
   grid-template-columns: 1fr 1.3fr;
   gap: 12px;
   padding: 12px 0;
-  border-bottom: 1px solid #35413d;
+  border-bottom: 1px solid var(--n-500);
   font-size: 12px;
 }
 .platform-shell .transfer-manifest dt {
-  color: #9fb29f;
+  color: var(--n-900);
 }
 .platform-shell .transfer-manifest dd {
   margin: 0;
@@ -542,14 +427,14 @@
   display: flex;
   gap: 14px;
   align-items: center;
-  border: 1px dashed #52644e;
+  border: 1px dashed var(--n-600);
   border-radius: 6px;
   padding: 20px;
-  background: #101912;
+  background: var(--n-100);
 }
 .platform-shell .transfer-file-summary svg {
   flex: none;
-  color: #aec7a5;
+  color: var(--n-900);
 }
 .platform-shell .transfer-file-summary strong {
   display: block;
@@ -559,7 +444,7 @@
 .platform-shell .transfer-file-summary span {
   display: block;
   font-size: 11px;
-  color: #b0c0aa;
+  color: var(--n-900);
   margin-top: 5px;
 }
 .platform-shell .transfer-checks {
@@ -576,9 +461,9 @@
   align-self: flex-start;
 }
 .platform-shell .transfer-feedback {
-  border-left: 3px solid #b3c5a0;
+  border-left: 3px solid var(--n-900);
   padding: 16px;
-  background: #1b2c20;
+  background: var(--n-300);
 }
 .platform-shell .transfer-security {
   margin-top: 24px;
@@ -717,7 +602,7 @@
 .platform-shell .eyebrow,
 .platform-shell .advanced-card > .eyebrow,
 .platform-shell .analytics-overview > .eyebrow {
-  color: #b8c6b5;
+  color: var(--n-900);
 }
 .platform-shell #white-cell > .segmented {
   display: flex;
@@ -732,7 +617,7 @@
 .platform-shell .analytics-view-hint {
   display: none;
   font-size: 11px;
-  color: #b4c4b0;
+  color: var(--n-900);
   margin: 0 0 8px;
 }
 @media (max-width: 720px) {
@@ -752,7 +637,7 @@
     white-space: normal;
     padding: 8px 10px;
     min-height: 44px;
-    border: 1px solid #3e4c41;
+    border: 1px solid var(--n-600);
     border-radius: 4px;
     text-align: left;
     justify-content: flex-start;
@@ -761,8 +646,8 @@
     .advanced-page
     > .analytics-tabs
     > button.button[aria-pressed="true"] {
-    background: #29372c;
-    border-color: #8a9b72;
+    background: var(--n-300);
+    border-color: var(--n-800);
   }
   .platform-shell .advanced-page > .analytics-tabs > button.button::after {
     display: none;
@@ -818,7 +703,7 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0;
   padding: 16px 0;
-  border-block: 1px solid #35413d;
+  border-block: 1px solid var(--n-500);
   margin: 0 0 24px;
 }
 .platform-shell .unit-summary-band .metric {
@@ -831,7 +716,7 @@
   gap: 20px;
   flex-wrap: wrap;
   padding: 20px 0;
-  border-block: 1px solid #35413d;
+  border-block: 1px solid var(--n-500);
   margin-block: 24px;
 }
 .platform-shell .unit-evidence-filter label,
@@ -850,7 +735,7 @@
 .platform-shell .unit-evidence-filter p,
 .platform-shell .evidence-filters p {
   font-size: 11px;
-  color: #b9c8b4;
+  color: var(--n-900);
   max-width: 44ch;
   margin: 0;
 }
@@ -868,7 +753,7 @@
   grid-template-columns: minmax(140px, 0.7fr) minmax(0, 2fr);
   gap: 12px 28px;
   border: 0;
-  border-top: 1px solid #3c4941;
+  border-top: 1px solid var(--n-600);
   border-radius: 0;
   padding: 24px 0;
   background: transparent;
@@ -899,7 +784,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0;
-  border: 1px solid #3c4941;
+  border: 1px solid var(--n-600);
   border-radius: 6px;
   overflow: hidden;
 }
@@ -908,19 +793,19 @@
   border: 0;
   border-radius: 0;
   background: transparent;
-  border-bottom: 1px solid #3c4941;
+  border-bottom: 1px solid var(--n-600);
 }
 .platform-shell .evidence-index a:nth-child(odd) {
-  border-right: 1px solid #3c4941;
+  border-right: 1px solid var(--n-600);
 }
 .platform-shell .evidence-index a:hover {
-  background: #223026;
+  background: var(--n-300);
 }
 .platform-shell .evidence-index strong {
   font-size: 15px;
 }
 .platform-shell .evidence-index small {
-  color: #b0c0aa;
+  color: var(--n-900);
   font-size: 12px;
 }
 @media (max-width: 720px) {

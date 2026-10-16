@@ -6,7 +6,6 @@ import "./design-system.css";
 import "./mission-navigation.css";
 import "./crew-officer-polish.css";
 import "./premium/premium.css";
-import PlatformRail from "./PlatformRail";
 import WorkspaceBoundary from "./WorkspaceBoundary";
 import { LoadingWorkspace } from "./UI";
 import { UnitGateway } from "./Unit";
@@ -94,7 +93,6 @@ createRoot(document.getElementById("root")!).render(
         }
       >
         <Navigation />
-        <PlatformRail />
         <div className="route-content" id="workspace-content" tabIndex={-1}>
           <header className="topbar">
             <div className="breadcrumb">
