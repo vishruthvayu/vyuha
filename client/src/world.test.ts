@@ -27,6 +27,7 @@ import {
   THERMAL_CLASSES,
   THERMAL_RANGE,
   displayThermal,
+  solarShift,
   thermalColor,
 } from "./world/thermal";
 import { displayVisibility } from "./world/displayVisibility";
@@ -340,6 +341,32 @@ test("thermal display is an illustrative, bounded mapping with hot sources satur
   const w = thermalColor(1, "white"),
     b = thermalColor(1, "black");
   assert.ok(w.r > 0.9 && b.r < 0.1);
+});
+
+test("day sun heating warms faces turned to the sun, cools the shaded side, and stops at night", () => {
+  const sun = new THREE.Vector3(0.5, 0.74, -0.45).normalize();
+  const up = new THREE.Vector3(0, 1, 0);
+  const lit = new THREE.Vector3(sun.x, 0, sun.z).normalize();
+  const shaded = lit.clone().negate();
+  const span = THERMAL_RANGE.day[1] - THERMAL_RANGE.day[0];
+  for (const [name, cls] of Object.entries(THERMAL_CLASSES)) {
+    assert.equal(solarShift(cls, false, up, sun), 0, name);
+    assert.equal(solarShift(cls, true, shaded, sun), 0, name);
+    const warm = solarShift(cls, false, sun, sun);
+    const cool = solarShift(cls, false, shaded, sun);
+    assert.ok(warm >= 0 && cool <= 0, name);
+    // Never more than a fifth of the day display range either way.
+    assert.ok(Math.abs(cool) <= span / 5 && warm <= span / 5, name);
+    assert.ok(solarShift(cls, false, lit, sun) >= cool, name);
+  }
+  // Sources with their own heat and the sky do not respond to sunlight.
+  for (const name of ["sky", "lamp", "exhaust", "motor"] as const)
+    assert.equal(solarShift(THERMAL_CLASSES[name], false, shaded, sun), 0);
+  // Thin metal responds more than masonry.
+  assert.ok(
+    solarShift(THERMAL_CLASSES.metalRoof, false, shaded, sun) <
+      solarShift(THERMAL_CLASSES.plaster, false, shaded, sun),
+  );
 });
 
 test("display haze follows the scenario fog monotonically between clear and dense", () => {

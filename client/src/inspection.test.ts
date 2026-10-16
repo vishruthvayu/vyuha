@@ -54,3 +54,24 @@ test("attitude cues come only from the displayed path and stay bounded", async (
       .pitch < 0,
   );
 });
+
+test("after-action review markers are a hollow ring with a dark rim", async () => {
+  const { reviewRing } = await import("./ContactRenderer");
+  const n = 32,
+    ring = reviewRing(n);
+  const at = (x: number, y: number) =>
+    ring.subarray((y * n + x) * 4, (y * n + x) * 4 + 4);
+  assert.equal(
+    at(16, 16)[3],
+    0,
+    "centre stays clear so the contact shows through",
+  );
+  assert.equal(at(0, 0)[3], 0, "corners are transparent");
+  const band = at(16 + 10, 16);
+  assert.deepEqual([...band], [255, 255, 255, 255]);
+  const rim = at(16 + 14, 16);
+  assert.ok(
+    rim[3] > 0 && rim[0] === 0,
+    "dark rim keeps the ring visible on light ground",
+  );
+});

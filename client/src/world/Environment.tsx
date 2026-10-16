@@ -666,7 +666,7 @@ export function Environment(props: EnvironmentProps) {
     [envMaps],
   );
 
-  const twins = useMemo(() => new ThermalTwins(), []);
+  const twins = useMemo(() => new ThermalTwins(sunDirection), [sunDirection]);
   useEffect(() => () => twins.dispose(), [twins]);
   const sunRef = useRef<THREE.DirectionalLight>(null);
   const hemiRef = useRef<THREE.HemisphereLight>(null);

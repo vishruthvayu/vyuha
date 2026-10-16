@@ -93,6 +93,23 @@ function thermalAirframeMaterial(transparent: boolean) {
   return material;
 }
 
+/** Alpha ring with a dark rim for after-action review markers (RGBA, size²). */
+export function reviewRing(size = 32) {
+  const data = new Uint8Array(size * size * 4);
+  const c = (size - 1) / 2,
+    r = size / 2;
+  for (let y = 0; y < size; y++)
+    for (let x = 0; x < size; x++) {
+      const d = Math.hypot(x - c, y - c) / r;
+      const ring = d > 0.56 && d < 0.8;
+      const rim = (d >= 0.44 && d <= 0.56) || (d >= 0.8 && d < 0.94);
+      const o = (y * size + x) * 4;
+      const v = ring ? 255 : 0;
+      data.set([v, v, v, ring ? 255 : rim ? 200 : 0], o);
+    }
+  return data;
+}
+
 /** Instanced airframes for every observed contact. Only observation-scoped
  * descriptors reach this component (shape, position); never kind or identity. */
 export function ContactRenderer({
@@ -104,6 +121,7 @@ export function ContactRenderer({
   focusId = null,
   night = false,
   reducedMotion = false,
+  review = false,
 }: {
   /** Shared with the camera rig; advanced once per frame before either reads it. */
   poses: ObservedPoseBuffer;
@@ -115,6 +133,10 @@ export function ContactRenderer({
   focusId?: string | null;
   night?: boolean;
   reducedMotion?: boolean;
+  /** After-action overview of reference truth: every contact gets a fixed-size
+   * ring and a stalk to the ground, in one neutral colour, so positions and
+   * heights read from far above. Never used in a live view. */
+  review?: boolean;
 }) {
   const parts = useMemo(() => createAirframeParts(quality), [quality]);
   useEffect(() => () => parts.forEach((p) => p.geometry.dispose()), [parts]);
@@ -215,6 +237,70 @@ export function ContactRenderer({
     else m.color.set(night ? "#05070a" : "#1c1f22");
   }, [far, thermal, night, vision, palette]);
 
+  const reviewMarks = useMemo(() => {
+    const ring = new THREE.DataTexture(reviewRing(), 32, 32);
+    ring.magFilter = THREE.LinearFilter;
+    ring.minFilter = THREE.LinearFilter;
+    ring.needsUpdate = true;
+    const dots = new THREE.BufferGeometry();
+    dots.setAttribute(
+      "position",
+      new THREE.BufferAttribute(new Float32Array(CAPACITY * 3), 3).setUsage(
+        THREE.DynamicDrawUsage,
+      ),
+    );
+    const stalks = new THREE.BufferGeometry();
+    stalks.setAttribute(
+      "position",
+      new THREE.BufferAttribute(new Float32Array(CAPACITY * 6), 3).setUsage(
+        THREE.DynamicDrawUsage,
+      ),
+    );
+    const points = new THREE.Points(
+      dots,
+      new THREE.PointsMaterial({
+        size: 13,
+        sizeAttenuation: false,
+        map: ring,
+        color: "#ffe3ad",
+        transparent: true,
+        depthTest: false,
+        depthWrite: false,
+        fog: false,
+        toneMapped: false,
+      }),
+    );
+    const lines = new THREE.LineSegments(
+      stalks,
+      new THREE.LineBasicMaterial({
+        color: "#ffe3ad",
+        transparent: true,
+        opacity: 0.6,
+        depthWrite: false,
+        fog: false,
+        toneMapped: false,
+      }),
+    );
+    for (const o of [points, lines]) {
+      o.layers.set(LAYER);
+      o.frustumCulled = false;
+      o.renderOrder = 6;
+      o.visible = false;
+      o.geometry.setDrawRange(0, 0);
+    }
+    return { points, lines, ring };
+  }, []);
+  useEffect(
+    () => () => {
+      for (const o of [reviewMarks.points, reviewMarks.lines]) {
+        o.geometry.dispose();
+        (o.material as THREE.Material).dispose();
+      }
+      reviewMarks.ring.dispose();
+    },
+    [reviewMarks],
+  );
+
   const marker = useRef<THREE.LineSegments>(null);
   const bracket = useMemo(
     () =>
@@ -252,9 +338,22 @@ export function ContactRenderer({
       ? 0
       : (poses.displayTick / 30) * SPIN_RPS * Math.PI * 2;
     const seen = new Set<string>();
+    let reviewCount = 0;
+    const dotPos = reviewMarks.points.geometry.getAttribute(
+      "position",
+    ) as THREE.BufferAttribute;
+    const stalkPos = reviewMarks.lines.geometry.getAttribute(
+      "position",
+    ) as THREE.BufferAttribute;
     poses.each((p) => {
       seen.add(p.id);
       s.position.set(p.displayX, p.displayY, p.displayZ);
+      if (review && reviewCount < CAPACITY) {
+        dotPos.setXYZ(reviewCount, p.displayX, p.displayY, p.displayZ);
+        stalkPos.setXYZ(reviewCount * 2, p.displayX, p.displayY, p.displayZ);
+        stalkPos.setXYZ(reviewCount * 2 + 1, p.displayX, 0, p.displayZ);
+        reviewCount++;
+      }
       const distance = camera.position.distanceTo(s.position);
       const px = projectedPixels(p.shape, distance, fov, size.height);
       const sized = airframeLod(px, lods.current.get(p.id));
@@ -317,6 +416,10 @@ export function ContactRenderer({
       if (!seen.has(id)) lods.current.delete(id);
     far.geometry.setDrawRange(0, farCount);
     farPos.needsUpdate = true;
+    reviewMarks.points.visible = reviewMarks.lines.visible = review;
+    reviewMarks.points.geometry.setDrawRange(0, reviewCount);
+    reviewMarks.lines.geometry.setDrawRange(0, reviewCount * 2);
+    if (review) dotPos.needsUpdate = stalkPos.needsUpdate = true;
     parts.forEach((_, i) => {
       const mesh = meshes.current[i];
       if (!mesh) return;
@@ -348,6 +451,8 @@ export function ContactRenderer({
         />
       ))}
       <primitive object={far} />
+      <primitive object={reviewMarks.lines} />
+      <primitive object={reviewMarks.points} />
       <lineSegments
         ref={marker}
         visible={false}

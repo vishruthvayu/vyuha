@@ -243,18 +243,43 @@ export function createGroundMaterial(
         uniform float uSplatSize, uNormal, uThermal;
         uniform vec3 uTint, uGrassTint;
         ${THERMAL_GLSL}
+        float gHash(vec2 q) { return fract(sin(dot(q, vec2(127.1, 311.7))) * 43758.5453); }
+        // Smooth value noise in [0, 1].
+        float gNoise(vec2 q) {
+          vec2 i = floor(q), f = fract(q);
+          f = f * f * (3.0 - 2.0 * f);
+          return mix(mix(gHash(i), gHash(i + vec2(1.0, 0.0)), f.x),
+                     mix(gHash(i + vec2(0.0, 1.0)), gHash(i + vec2(1.0, 1.0)), f.x), f.y);
+        }
         vec3 groundAlbedo(vec2 p, out float wear) {
           float dist = length(vGroundWorld - cameraPosition);
           vec3 near = texture2D(tNear, p / 4.0).rgb;
           // Second scale only where tiling is visible; beyond ~400 m the macro layer dominates.
           if (dist < 420.0) near = mix(near, texture2D(tNear, p / 10.3 + vec2(0.31, 0.77)).rgb, 0.45 * (1.0 - dist / 420.0));
-          vec3 macro = texture2D(tMacro, p / 26.0).rgb;
-          float macroL = dot(macro, vec3(0.333)) / 0.16;
-          // Large-scale variation from two rotated, incommensurate samples: no visible period from the air.
+          // Tiled layers would repeat as a lattice from raised cameras. A smooth noise
+          // field picks one of several offsets of each tile and blends between
+          // neighbours, so nearby tiles differ (explicit gradients avoid mip seams).
           vec2 pr = mat2(0.8, -0.6, 0.6, 0.8) * p;
-          float broad = (dot(texture2D(tMacro, p / 1130.0).rgb, vec3(0.333)) + dot(texture2D(tMacro, pr / 731.0 + 0.37).rgb, vec3(0.333))) / 0.32;
+          // Large-scale variation: the 1130 m tile, offset per noise cell.
+          vec2 bUv = p / 1130.0;
+          vec2 bDx = dFdx(bUv), bDy = dFdy(bUv);
+          float bK = gNoise(p / 650.0) * 3.0 + gNoise(pr / 1700.0) * 2.0;
+          float bI = floor(bK);
+          float broadA = dot(textureGrad(tMacro, bUv + sin(vec2(3.0, 7.0) * bI), bDx, bDy).rgb, vec3(0.333));
+          float broadB = dot(textureGrad(tMacro, bUv + sin(vec2(3.0, 7.0) * (bI + 1.0)), bDx, bDy).rgb, vec3(0.333));
+          float broad = mix(broadA, broadB, smoothstep(0.2, 0.8, fract(bK))) / 0.16;
+          // Ground detail: the 26 m tile, offset the same way.
+          vec2 mUv = p / 26.0;
+          vec2 mDx = dFdx(mUv), mDy = dFdy(mUv);
+          float mK = gNoise(p / 47.0) * 5.0 + gNoise(pr / 113.0) * 3.0;
+          float mI = floor(mK), mF = fract(mK);
+          float macroA = dot(textureGrad(tMacro, mUv + sin(vec2(3.0, 7.0) * mI), mDx, mDy).rgb, vec3(0.333));
+          float macroB = dot(textureGrad(tMacro, mUv + sin(vec2(3.0, 7.0) * (mI + 1.0)), mDx, mDy).rgb, vec3(0.333));
+          float macroL = mix(macroA, macroB, smoothstep(0.2, 0.8, mF)) / 0.16;
+          // From far above, keep the tile's contrast low; the broad field carries the variation.
+          float macroK = 0.55 * (1.0 - 0.45 * smoothstep(300.0, 2000.0, dist));
           vec3 base = near * mix(vec3(1.0), uTint * 1.25, 0.55);
-          base *= mix(1.0, macroL, 0.55) * mix(1.0, broad, 0.45);
+          base *= mix(1.0, macroL, macroK) * mix(1.0, broad, 0.45);
           vec2 su = p / uSplatSize + 0.5;
           float inside = step(0.0, su.x) * step(su.x, 1.0) * step(0.0, su.y) * step(su.y, 1.0);
           vec4 s = inside > 0.5 ? texture2D(tSplat, vec2(su.x, 1.0 - su.y)) : vec4(0.0);
@@ -337,12 +362,18 @@ export function createFoliageMaterial(t: WorldTextures) {
 /** Thermal twins for a set of materials, cached and updated in place. */
 export class ThermalTwins {
   private twins = new Map<THREE.Material, THREE.MeshBasicMaterial>();
+  private sun?: THREE.Vector3;
+  /** `sun`: world direction to the day sun, for per-face solar heating. */
+  constructor(sun?: THREE.Vector3) {
+    this.sun = sun;
+  }
   get(source: THREE.Material, cls: ThermalClassName) {
     let twin = this.twins.get(source);
     if (!twin) {
       twin = createThermalMaterial(
         source as THREE.MeshStandardMaterial,
         THERMAL_CLASSES[cls],
+        this.sun,
       );
       this.twins.set(source, twin);
     }

@@ -458,6 +458,7 @@ function World({
         palette={palette}
         quality={quality}
         reducedMotion={reducedMotion}
+        review={referenceTruth && cameraPreset === "overview"}
       />
     </>
   );
