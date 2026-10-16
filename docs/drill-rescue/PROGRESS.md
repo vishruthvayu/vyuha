@@ -25,9 +25,9 @@ the merge, so no conflicting renderer work was in flight.
 |---|---|---|
 | 1 | Audit, baseline, research | done — `BASELINE-DEFECTS.md`, `RESEARCH-AND-ASSET-SELECTION.md`, `bench/` |
 | 2 | Guided trainee workflow + evidence-based camera / interpolation fixes | done — see below |
-| 3 | Environment upgrade | done — see below |
-| 4 | Aircraft upgrade | planned |
-| 5 | Camera, sensors, polish | planned |
+| 3 | Environment upgrade | done — pushed `b7706cc` |
+| 4 | Aircraft upgrade | done — see below |
+| 5 | Camera, sensors, polish | in progress — sensor close-up done (below) |
 | 6 | Final validation | planned |
 
 ## Milestone 2 — guided workflow, camera and motion fixes
@@ -186,3 +186,58 @@ Still open:
 * AAR overview too high to read the base;
 * no sensor noise or vignetting;
 * city blocks lack balconies and low buildings between them.
+
+## Milestone 4 — aircraft (+ the M5 sensor close-up)
+
+* **Original airframes** (`airframe-geometry.ts`), real proportions:
+  - **generic multirotor**, 0.82 m motor to motor: rounded hull and canopy, battery
+    bay, carbon arms, motor mounts and bells, two-blade pitched props, skids,
+    gimbal ball and lens;
+  - **fixed-wing**, 2.4 m span: lathed fuselage, tapered high wing with dihedral,
+    tail, pusher motor pod, camera ball;
+  - **bird**, 0.95 m: lathed body, head, beak, fan tail, fingered wings hinged at
+    the shoulder;
+  - **unresolved blob**.
+  Each has a close and a medium level of detail. Every vertex carries an
+  illustrative heat index: motors and engines hot, battery bay warm, structure
+  ambient.
+* **Renderer** (`ContactRenderer.tsx`):
+  - one instanced batch per shape/LOD/part;
+  - LOD chosen per contact by projected size, with 25 % hysteresis;
+  - contacts under 3 px become fixed-size point markers;
+  - props spin and show blur discs; bird wings flap; all driven by logical time and
+    static under reduced motion;
+  - multirotors tilt into travel and bank in turns; fixed wings and birds bank with
+    turn rate and pitch with climb. Attitude comes only from the displayed
+    (observed) path.
+  - Thermal: a per-vertex heat shader on the selected palette and display range.
+* **Hidden truth.** The airframe depends only on the observed silhouette class. There
+  is exactly one multirotor for quad, no-RF FPV and friendly UAV. LOD depends only on
+  projected size. Tests: `render-contacts.test.ts` ("Airframe choice depends only on
+  the observed silhouette…"), `guided-decision.test.tsx` (dock invariance).
+* **Sensor-limited close-up (M5)** (`InspectionPass.tsx`). For the selected contact
+  at observation level *recognise* or *identify*, a 168 px inset (top right of the
+  live view) shows it at the pixel count the sensor actually puts on target:
+  - pixel count = span / (range × IFOV), using `eo_ifov_rad` / `ir_ifov_rad` from
+    `sensors-v2.json`;
+  - rendered 4× supersampled, box-filtered to that resolution, then enlarged
+    nearest-neighbour;
+  - captioned, e.g. "EO CLOSE-UP · 24 PX ON TARGET · 280 M".
+  It can never show detail the sensor could not resolve, and it is not shown in
+  reference-truth review.
+* The C2 bunker is lowered to a 1 m bermed structure, and the foreground sandbag ring
+  is replaced by a short entrance wall, so rear bearings stay open (review item).
+
+Measured (`bench/m4.jsonl`, urban day, EO):
+* NVIDIA: 60 fps, 1 % low 59.5 at Medium and High, 8 and 200 contacts, both cameras.
+* Intel iGPU (run alone): Low 59.9–60, Medium 53.6–57.6 at trainee 8/200.
+* Draw calls 35–41 and ~108–120 k triangles, unchanged from M3: at these distances
+  the airframes are mostly far markers.
+
+Tests: 310/310 (new: airframe structure and silhouette invariance, LOD hysteresis,
+pixels-on-target maths, attitude bounds).
+
+Screenshots: `screenshots/m4/`:
+* EO and IR close-ups at 24–142 px on target;
+* a 2.4 m fixed-wing at 141 m in the 6× main view;
+* the IR pusher motor hot against cooler wings.

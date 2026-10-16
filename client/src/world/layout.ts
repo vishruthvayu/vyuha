@@ -166,16 +166,19 @@ function inBox([x, z]: XZ, b: TerrainBox, margin: number) {
 
 const COMMON_CORE = (placements: Placement[], lines: Line[]) => {
   placements.push(
-    { kind: "bunker", x: 0, z: -7.5, rot: 0 },
+    { kind: "bunker", x: 0, z: -9, rot: 0 },
     { kind: "sensorMast", x: 0, z: 0 },
   );
-  // Sandbag ring around the sensor and the bunker entrance, below the eye line.
-  const ring: XZ[] = [];
-  for (let i = 0; i <= 20; i++) {
-    const a = (i / 20) * Math.PI * 1.6 + Math.PI * 0.7;
-    ring.push([Math.sin(a) * 5.2, Math.cos(a) * 5.2]);
-  }
-  lines.push({ kind: "sandbags", path: ring });
+  // A short sandbag wall shielding the bunker entrance (south side), low and
+  // off the sensor's forward views.
+  lines.push({
+    kind: "sandbags",
+    path: [
+      [0.6, -11.4],
+      [3.4, -11.4],
+      [4.4, -10.6],
+    ],
+  });
 };
 
 function urbanOutpost(): FacilityLayout {
@@ -651,7 +654,7 @@ export function withoutBoxes(
 export function placementHeight(p: Placement) {
   switch (p.kind) {
     case "bunker":
-      return 1.6;
+      return 1.04;
     case "sensorMast":
       return 1.9;
     case "building":

@@ -19,7 +19,7 @@ EXPERIENCE TRANSFORMATION" prompt. Its non-negotiables are in §3.
 |---|---|
 | Branch | `feature/vyuha-drill-experience-rescue` (push only here; never force-push; no tags; never merge into integration or release branches) |
 | Base | `integration/vyuha-ultimate-finale` @ `db0ff23` |
-| Milestone commits | M1 `63a2a04` · M2 `b489741` · M3 see `PROGRESS.md` |
+| Milestone commits | M1 `63a2a04` · M2 `b489741` · M3 `b7706cc` · M4 (+ M5 close-up) see `PROGRESS.md` |
 | Unpushed work | If `PROGRESS.md` does not list a milestone as pushed, its work in progress is uncommitted in the local worktree `/home/naveen/vyuha-drill-rescue` on the owner's machine (`git status` there). |
 | Docs | `docs/drill-rescue/` — `BASELINE-DEFECTS.md`, `RESEARCH-AND-ASSET-SELECTION.md`, `PROGRESS.md`, `ASSET-PROVENANCE.md` (from M3), this file |
 | Browser harness | `tools/drill-rescue/` (README inside) |
@@ -155,40 +155,23 @@ Performance status (data in PROGRESS.md, M3 performance):
   - check whether the GPU timer catches compositor work.
 * On the idle NVIDIA dGPU every tier holds 60 fps.
 
-### M4 — aircraft
-* Author original models in Blender with a new `art/blender_airframes.py`:
-  - **generic multirotor:** body shell, 4 arms, motor bells, 2-blade props as separate
-    nodes, skids, small gimbal ball; ~0.7 m span;
-  - **fixed-wing:** lofted fuselage, tapered wings, V or H tail, pusher prop; ~2.4 m
-    span;
-  - **bird:** body plus two wing halves hinged at the shoulder;
-  - LOD0 ~3–6 k triangles, LOD1 ~400–800, LOD2 ~60, plus a minimum-pixel glint for
-    far contacts. Export GLB (no textures, or one small atlas; vertex colours are
-    fine) into `client/src/world/assets/`.
-* Replace `airframe-geometry.ts` / `ContactRenderer.tsx` internals:
-  - instanced per LOD and part, LOD chosen per contact by projected size with
-    hysteresis;
-  - rotor discs spin from `poses.displayTick` (static blur discs under reduced motion);
-  - attitude from `RenderPose.velocity*` / `yawRate`: multirotor pitch with speed and
-    bank with yaw rate; fixed-wing bank with turn rate.
-* Thermal: per-part classes (`motor` hot, `airframeWarm` battery bay, `feathers` for
-  birds) via `ThermalTwins`. Night EO: contacts are dark silhouettes (no artificial
-  light).
-* Keep `renderContacts` descriptor tests. Add a test that the airframe chosen for a
-  contact depends only on `shape` (and LOD on distance), never on kind or identity.
-* Fixed capacity is already in place; keep it.
+### M4 — aircraft: done (PROGRESS.md)
+Open polish:
+* rotor blur discs could fade with spin rate;
+* the bird texture is flat vertex colour;
+* the fixed-wing could get panel lines;
+* no landing lights or nav lights. These are deliberately absent at night: no
+  artificial illumination of contacts.
 
-### M5 — camera and sensors
-* Sensor-resolution inspection inset:
-  - for the selected contact at observation level `recognise` or `identify`, render a
-    small view at the pixel count the EO/IR IFOV gives at the observed range
-    (`eo_ifov_rad`/`ir_ifov_rad` in `sensors-v2.json`), then upscale it;
-  - label it with "observed at <range>, <level>".
-* Radar picture and track list already share the selection; add a matching accent on
-  the 3D reticle.
-* Thermal grain overlay (CSS, static under reduced motion).
-* Verify sensor switch, zoom and observation loss with `switch-burst.mjs`, and
-  tracking at 6× with the burst analysis in `guided-drill.mjs`.
+### M5 — camera and sensors (close-up done; rest open)
+* Done: the sensor-limited close-up (`InspectionPass.tsx`).
+* Open:
+  - thermal grain/vignette overlay (CSS, static under reduced motion);
+  - the AAR overview camera is too high (~2.5 km) to read the base. Consider a
+    capped overview height or contact markers in reference-truth review;
+  - a matching accent between the radar selection and the 3D reticle;
+  - verify switching, zoom and observation loss again with `switch-burst.mjs` /
+    `guided-drill.mjs` after M4.
 
 ### M6 — final validation
 * Benchmark matrix for both builds: 8/25/50/100/200 × Low/Medium/High × trainee/overview

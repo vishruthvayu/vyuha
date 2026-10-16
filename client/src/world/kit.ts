@@ -921,15 +921,31 @@ export function warehouse(
 }
 export function bunker(b: Batches, p: Extract<Placement, { kind: "bunker" }>) {
   const m = frame(p.x, 0, p.z, p.rot);
-  // Earth-bermed command bunker below the sensor eye line.
-  b.add("concrete", box(7.5, 1.2, 5), local(m, 0, 0.6, 0));
-  b.add("concreteFloor", box(8.2, 0.25, 5.7), local(m, 0, 1.32, 0));
-  b.add("fabric", box(8.6, 0.35, 6), local(m, 0, 1.6, 0), [0.66, 0.6, 0.46]);
-  b.add("paint", box(1.1, 1.0, 0.1), local(m, 2.2, 0.5, 2.52), PAINT.olive);
+  // Low, earth-bermed command bunker: roof well below the 2 m sensor eye so it
+  // never fills a rear bearing. Sloped berms instead of vertical walls.
+  b.add("concrete", box(7, 0.9, 4.6), local(m, 0, 0.45, 0));
+  b.add("concreteFloor", box(7.4, 0.14, 5), local(m, 0, 0.97, 0));
+  for (const side of [-1, 1]) {
+    // Berm on the long sides: a sloped earth/sandbag face down to the ground.
+    b.add(
+      "fabric",
+      box(7.6, 0.12, 1.6),
+      local(m, 0, 0.45, side * 2.95, side * -0.62, 0, 0),
+      [0.62, 0.55, 0.42],
+    );
+    b.add(
+      "fabric",
+      box(1.6, 0.12, 5.4),
+      local(m, side * 4.1, 0.45, 0, 0, 0, side * 0.62),
+      [0.62, 0.55, 0.42],
+    );
+  }
+  // Entrance on the south face with a short sandbag wall.
+  b.add("paint", box(1.0, 0.8, 0.08), local(m, 2.0, 0.42, -2.34), PAINT.olive);
   b.add(
     "steel",
     cylinder(0.03, 0.03, 3.6, 4),
-    local(m, -3.4, 3.2, -2),
+    local(m, -3.0, 2.8, 1.6),
     PAINT.dark,
   );
 }

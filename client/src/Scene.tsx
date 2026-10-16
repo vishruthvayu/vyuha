@@ -1,10 +1,21 @@
-import { Component, useEffect, useMemo, useRef, type ReactNode } from "react";
+import {
+  Component,
+  useEffect,
+  useMemo,
+  useRef,
+  type ReactNode,
+  type RefObject,
+} from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import type { Snapshot, Track } from "./types";
 import { pixelRatio, type Quality } from "./quality";
 import { type CameraPreset, type ThermalPalette } from "./presentation";
-import { ObservationVisibility, type Vision } from "./visibility";
+import {
+  ObservationVisibility,
+  opticalRenderShape,
+  type Vision,
+} from "./visibility";
 import {
   SENSOR_VERSION,
   type TerrainBox,
@@ -12,6 +23,8 @@ import {
 } from "./sensors-v2";
 import { sceneCameraPose, sceneReviewEnvelope } from "./scene-presentation";
 import { ContactRenderer } from "./ContactRenderer";
+import { InspectionPass } from "./InspectionPass";
+import type { RenderShape } from "./render-contacts";
 import {
   ViewBlend,
   liveCameraMode,
@@ -330,12 +343,17 @@ function World({
   onMetrics,
   selectedId = null,
   cue,
+  inspect,
+  inspectLabel,
 }: {
   state: Snapshot;
   vision: Vision;
   selected: string | null;
   selectedId?: string | null;
   cue?: SensorPosition | null;
+  /** Sensor-limited close-up of the selected contact (live view only). */
+  inspect?: { shape: RenderShape; channel: "eo" | "ir" } | null;
+  inspectLabel?: RefObject<HTMLDivElement | null>;
   onFps: (n: number) => void;
   terrain?: string;
   quality?: Quality;
@@ -423,8 +441,18 @@ function World({
         referenceTruth={referenceTruth}
       />
       {!cameraPreset && selectedId && !selected && <CueMarker cue={cue} />}
+      <InspectionPass
+        poses={poses}
+        selected={selected}
+        shape={inspect?.shape ?? null}
+        channel={inspect?.channel ?? "eo"}
+        enabled={!!inspect}
+        label={inspectLabel}
+      />
       <ContactRenderer
         poses={poses}
+        focusId={inspect ? selected : null}
+        night={state.night}
         vision={vision}
         selected={selected}
         palette={palette}
@@ -476,6 +504,23 @@ export function Scene(props: SceneProps) {
   const selected = tracks.some((t) => t.id === props.selected)
     ? props.selected
     : null;
+  // Close-up only when a camera resolves the shape (recognise / identify) and
+  // only in the live sensor view, never in reference-truth review.
+  const focus = tracks.find((t) => t.id === selected);
+  const level = focus
+    ? (focus.visual_level ?? (focus.thermal ? "recognise" : "none"))
+    : "none";
+  const inspect =
+    focus &&
+    !props.cameraPreset &&
+    props.groundTruth !== true &&
+    (level === "recognise" || level === "identify")
+      ? {
+          shape: opticalRenderShape(focus) as RenderShape,
+          channel: (props.vision === "day" ? "eo" : "ir") as "eo" | "ir",
+        }
+      : null;
+  const inspectLabel = useRef<HTMLDivElement>(null);
   return (
     <Boundary fallback={props.fallback}>
       <Canvas
@@ -509,11 +554,38 @@ export function Scene(props: SceneProps) {
           state={observedState}
           selected={selected}
           selectedId={props.selected}
+          inspect={inspect}
+          inspectLabel={inspectLabel}
           finale={finale}
           referenceTruth={props.groundTruth === true}
           contextKey={`${props.visibilityKey ?? "legacy-scene"}:${props.vision}:${props.groundTruth === true}`}
         />
       </Canvas>
+      {inspect && (
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            top: 14,
+            right: 14,
+            width: 168,
+            height: 168,
+            border: "1px solid rgba(142, 214, 255, 0.55)",
+            pointerEvents: "none",
+          }}
+        />
+      )}
+      <div
+        ref={inspectLabel}
+        className="view-annotation"
+        style={{
+          display: "none",
+          position: "absolute",
+          right: 14,
+          textAlign: "right",
+          lineHeight: 1.3,
+        }}
+      />
       {props.groundTruth === true && (
         <div
           className="view-annotation"
