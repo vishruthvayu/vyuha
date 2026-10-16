@@ -1,8 +1,8 @@
 {
   "description": "Exact input bytes for Analytics source, regressions, scoped stylesheet and dependency manifests used by these checks",
   "sha256": {
-    "client/src/Analytics.tsx": "1ae870eabf87c6876a50d4982f4c87a432fef4fd9115c3b83b73777c4a3a8984",
-    "client/src/analytics-navigation.test.tsx": "2174b8be8fb5c59be993a96484ffd47c87059e9118a1dc51dea242da94f211b8",
+    "client/src/Analytics.tsx": "85bfa7c3b5dff21635de6ac51a2286a45c58fea9fa426e9853cbd19a2823b608",
+    "client/src/analytics-navigation.test.tsx": "89665483498576d5693f72b97e4b2f2faccb8770d3d6c8ee7538d1baafe1d327",
     "client/src/platform/fieldwork.css": "d5f2b59158a11de3ba2dbdb250f19eb0da8ebda10c4b0f94fac065ecbada00ce",
     "client/package.json": "d74053b5e0a94cf1b0f301ec789ecb79551df6af70bebe7667f00d4578b4aebb",
     "client/package-lock.json": "98b8c231712ececa75814c097ce4e2d3ad34cd40ba7bc4a970ecc9a8f049f4e9"

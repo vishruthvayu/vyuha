@@ -319,6 +319,11 @@ export default function Analytics({ identity }: { identity?: UnitIdentity }) {
               })
             }
           >
+            {!units.some((u) => u.id === unit) && (
+              <option value={unit}>
+                {units.length ? "Requested unit unavailable" : "Loading units…"}
+              </option>
+            )}
             {units.map((u) => (
               <option key={u.id} value={u.id}>
                 {u.name}

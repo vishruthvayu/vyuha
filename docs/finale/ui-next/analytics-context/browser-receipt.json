@@ -130,7 +130,8 @@
     "Session comparison selection restored by browser Back/Forward",
     "Keyboard Tab moves from Session A to Session B",
     "Trainee selection restored after page reload",
-    "Unavailable linked trainee shows recovery rather than substituted evidence"
+    "Unavailable linked trainee shows recovery rather than substituted evidence",
+    "Unavailable linked unit retains the requested identity instead of showing the first unit"
   ],
   "fixture_unchanged": true
 }

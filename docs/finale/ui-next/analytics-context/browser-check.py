@@ -88,6 +88,11 @@ async def main():
         await page.get_by_text('The linked trainee is unavailable', exact=False).wait_for()
         await page.screenshot(path=str(OUT / 'unavailable-trainee-1920.png'), full_page=True)
         receipt['actions'].append('Unavailable linked trainee shows recovery rather than substituted evidence')
+        await page.goto(BASE + '/analytics?unit=missing#session-comparison')
+        await page.get_by_text('Requested unit unavailable', exact=True).wait_for(state='attached')
+        assert await page.locator('select').first.input_value() == 'missing'
+        await page.screenshot(path=str(OUT / 'unavailable-unit-1920.png'), full_page=True)
+        receipt['actions'].append('Unavailable linked unit retains the requested identity instead of showing the first unit')
         assert before == json.dumps(HISTORY, sort_keys=True)
         assert not receipt['non_read_requests']
         assert not receipt['page_errors']

@@ -446,3 +446,25 @@ test("An unavailable trainee link cannot show an aggregate heatmap as their indi
     },
     comparisonFixture,
   ));
+
+test("Unavailable unit links keep their requested unit visible instead of displaying a different unit", async () =>
+  mounted(
+    "http://qa.local/analytics?unit=missing#session-comparison",
+    async (document, _window, requests) => {
+      const unit = document.querySelector("select")!;
+      assert.equal(unit.value, "missing");
+      assert.equal(
+        unit.selectedOptions[0].textContent,
+        "Requested unit unavailable",
+      );
+      assert.match(document.body.textContent!, /Unit not found/);
+      assert.equal(
+        requests.some((url) => /\/trainees\/[^/]+\/analytics$/.test(url)),
+        false,
+      );
+    },
+    (url) => {
+      if (url.includes("/units/missing/")) throw new Error("Unit not found");
+      return comparisonFixture(url);
+    },
+  ));
