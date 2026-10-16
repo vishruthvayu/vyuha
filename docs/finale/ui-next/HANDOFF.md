@@ -30,3 +30,11 @@ Implemented platform-only desktop route directory, scoped Fieldwork design layer
 Validation during implementation: production build passes (36 offline assets; existing large WebGL chunk warning retained); ESLint and configured formatting pass; targeted workflow batches 21/24/17/20/5 all passed (overlapping batches, not additive totals). Independent review found mobile White Cell clipping, tab focus clipping, inadequate roster height, empty-state misleading CTA and contrast defects; corrections are implemented and being rechecked. Historical private 18/22 source databases are absent here, so their old receipts are retained as historical only.
 
 Research includes public source access limits and three interactive browser layout studies. Screenshots under `before-*` are genuine baseline captures against an isolated empty synthetic server at 1440px. No user credential/database is used. Current work is not a release candidate or whole-product visual approval.
+
+## Reliability and administration milestone
+
+- Backend: malformed Last-Event-ID command-stream cursors return 422 before consuming a stream slot; 8 regression cases. Added concurrent three-trainee command/acknowledgment/completion isolation coverage. Independent full backend run: 708 passed (246.68s), 85 targeted passed. No scoring formula or training service changed.
+- Unit/Crew history now support finding recorded trainees/exercises; full-cohort summaries retain their scope. Compliance has text/status filters and a traceability-row composition. Profile estimates use aligned evidence rows with accessible native meters.
+- Existing stylesheet entrypoint contract restored: `main.tsx` keeps `premium/premium.css` last; that file imports both scoped platform sheets. Existing regression preserved and passing.
+- Latest administration/Director/compliance/Crew/style batch: 37 passed. Initial complete frontend run found the import-order regression (288 passed, 1 failed); this was corrected, not waived. Final complete run remains required.
+- Independent review captured 56 route/width combinations and 14 axe scans without detected overflow/violations after the main responsive fixes. These working-tree captures predate the last administration refinements; final source receipt must supersede them for affected routes.

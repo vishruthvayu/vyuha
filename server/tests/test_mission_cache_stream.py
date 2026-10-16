@@ -82,3 +82,25 @@ def test_crew_stream_rejects_unauthorized_and_checks_live_expiry(shared,monkeypa
     c.headers.update(officer)
 
 from server.tests.test_crew import shared
+
+
+@pytest.mark.parametrize('cursor', ['²', '١', '9'*5000, '101', '-1', '1.0', ''])
+def test_command_stream_malformed_cursor_fails_closed_without_consuming_slot(client,cursor):
+    # Direct request objects retain non-ASCII header text that HTTP clients reject.
+    _,sid=session(client)
+    request=SimpleNamespace(headers={'last-event-id':cursor})
+    before=streams._ACTIVE
+    from fastapi import HTTPException
+    with pytest.raises(HTTPException) as rejected:
+        streams.command_stream(sid,request,0)
+    assert rejected.value.status_code==422
+    assert streams._ACTIVE==before
+
+
+def test_command_stream_oversized_http_cursor_returns_validation_error(client):
+    _,sid=session(client)
+    before=streams._ACTIVE
+    response=client.get(f'/api/v1/sessions/{sid}/command-stream',headers={'Last-Event-ID':'9'*5000})
+    assert response.status_code==422
+    assert response.json()['detail']=='Invalid command cursor'
+    assert streams._ACTIVE==before

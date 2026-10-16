@@ -13,3 +13,7 @@
 @import "./analytics.css";
 @import "./studio.css";
 @import "./utility.css";
+
+/* Finale platform refinements are scoped; shared drill tokens stay stable. */
+@import "../platform/fieldwork.css";
+@import "../platform/authoring.css";

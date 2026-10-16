@@ -6,8 +6,6 @@ import "./design-system.css";
 import "./mission-navigation.css";
 import "./crew-officer-polish.css";
 import "./premium/premium.css";
-import "./platform/fieldwork.css";
-import "./platform/authoring.css";
 import PlatformRail from "./PlatformRail";
 import WorkspaceBoundary from "./WorkspaceBoundary";
 import { LoadingWorkspace } from "./UI";

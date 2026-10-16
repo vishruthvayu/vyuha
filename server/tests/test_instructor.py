@@ -148,3 +148,39 @@ def test_additive_schema_preserves_legacy_sessions(tmp_path,monkeypatch):
     with storage.connect() as db:
         row=db.execute("SELECT * FROM sessions WHERE id='legacy'").fetchone()
         assert row['status']=='completed' and row['trainee']=='CADET-01' and row['last_seen'] is None
+
+
+def test_parallel_trainees_keep_commands_acknowledgements_and_completion_isolated(client):
+    spec=client.post('/api/v1/scenarios/generate',json={}).json()
+    sessions=[client.post('/api/v1/sessions',json={'scenario_id':spec['id'],'trainee':f'ISOLATED-{i}'}).json()['id'] for i in range(3)]
+
+    def operate(sid):
+        commands=[]
+        for index,(kind,payload) in enumerate([
+            ('pause',{}),('sensor_fault',{'sensor':'rf','mode':'failed'}),
+            ('sensor_restore',{'sensor':'rf'})]):
+            commands.append(issue(client,sid,kind,payload,f'{sid}-{index}'))
+        return commands
+
+    with ThreadPoolExecutor(max_workers=3) as pool:
+        issued=list(pool.map(operate,sessions))
+    for sid,commands in zip(sessions,issued):
+        actual=client.get(f'/api/v1/sessions/{sid}/commands').json()['commands']
+        assert actual==commands
+        assert [command['seq'] for command in commands]==[1,2,3]
+        assert all(command['session_id']==sid for command in commands)
+
+    # Acknowledging and completing A must not apply or end B/C.
+    sid=sessions[0]
+    applied=[{**command,'tick':0,'order':i} for i,command in enumerate(issued[0])]
+    assert heartbeat(client,sid,applied,tick=0,paused=True).status_code==200
+    assert client.post(f'/api/v1/sessions/{sid}/complete',json={'end_tick':spec['duration']*30,'execution_tick':0}).status_code==200
+    assert client.get(f'/api/v1/sessions/{sid}/aar').json()['commands']==applied
+    for untouched in sessions[1:]:
+        detail=client.get(f'/api/v1/instructor/sessions/{untouched}').json()
+        assert detail['status']=='RECOVERABLE' and detail['telemetry'] is None
+        assert all(command['tick'] is None for command in detail['commands'])
+        assert client.get(f'/api/v1/sessions/{untouched}/aar').status_code==409
+    assert client.get('/api/v1/trainees/ISOLATED-0/profile').json()['sessions']==1
+    assert client.get('/api/v1/trainees/ISOLATED-1/profile').json()['sessions']==0
+    assert client.get('/api/v1/trainees/ISOLATED-2/profile').json()['sessions']==0

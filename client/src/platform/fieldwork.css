@@ -801,7 +801,7 @@
   .page > .aar-summary > div:nth-child(2) {
     grid-column: 1;
   }
-  .page > .aar-summary .score-orb {
+  .page > .aar-summary .score-circle {
     justify-self: start;
   }
   .page > .aar-summary h2 {
@@ -811,4 +811,184 @@
   .page > .aar-summary > .next-drill {
     grid-column: 1;
   }
+}
+/* Cohort investigation and audit filtering: summaries retain their full scope. */
+.platform-shell .unit-summary-band {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  padding: 16px 0;
+  border-block: 1px solid #35413d;
+  margin: 0 0 24px;
+}
+.platform-shell .unit-summary-band .metric {
+  padding: 12px 20px;
+}
+.platform-shell .unit-evidence-filter,
+.platform-shell .evidence-filters {
+  display: flex;
+  align-items: end;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px 0;
+  border-block: 1px solid #35413d;
+  margin-block: 24px;
+}
+.platform-shell .unit-evidence-filter label,
+.platform-shell .evidence-filters label,
+.crew-history-filter {
+  display: grid;
+  gap: 8px;
+  font-size: 12px;
+  min-width: 0;
+}
+.platform-shell .unit-evidence-filter label,
+.platform-shell .evidence-filters label:first-child {
+  flex: 1;
+  min-width: min(100%, 240px);
+}
+.platform-shell .unit-evidence-filter p,
+.platform-shell .evidence-filters p {
+  font-size: 11px;
+  color: #b9c8b4;
+  max-width: 44ch;
+  margin: 0;
+}
+.crew-history-filter {
+  margin-block: 20px;
+  max-width: 540px;
+}
+.platform-shell .compliance-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.platform-shell .compliance-card {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.7fr) minmax(0, 2fr);
+  gap: 12px 28px;
+  border: 0;
+  border-top: 1px solid #3c4941;
+  border-radius: 0;
+  padding: 24px 0;
+  background: transparent;
+}
+.platform-shell .compliance-card > .eyebrow {
+  grid-column: 1;
+  grid-row: 1;
+}
+.platform-shell .compliance-card > h2 {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  font-size: 20px;
+}
+.platform-shell .compliance-card > p,
+.platform-shell .compliance-card > footer,
+.platform-shell .compliance-card > details {
+  grid-column: 2;
+  margin: 0;
+}
+.platform-shell .compliance-card > .ui-status {
+  grid-column: 1;
+  align-self: start;
+  justify-self: start;
+  white-space: normal;
+}
+.platform-shell .evidence-index {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  border: 1px solid #3c4941;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.platform-shell .evidence-index a {
+  padding: 20px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  border-bottom: 1px solid #3c4941;
+}
+.platform-shell .evidence-index a:nth-child(odd) {
+  border-right: 1px solid #3c4941;
+}
+.platform-shell .evidence-index a:hover {
+  background: #223026;
+}
+.platform-shell .evidence-index strong {
+  font-size: 15px;
+}
+.platform-shell .evidence-index small {
+  color: #b0c0aa;
+  font-size: 12px;
+}
+@media (max-width: 720px) {
+  .platform-shell .unit-summary-band {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .platform-shell .unit-summary-band .metric:nth-child(2) {
+    border-right: 0;
+  }
+  .platform-shell .compliance-card {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .platform-shell .compliance-card > * {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+  .platform-shell .evidence-index {
+    grid-template-columns: 1fr;
+  }
+  .platform-shell .evidence-index a:nth-child(odd) {
+    border-right: 0;
+  }
+}
+/* Four-skill profile: aligned evidence rows, without implying readiness. */
+.profile-skill-ledger {
+  display: grid;
+  margin: 20px 0;
+}
+.profile-skill-ledger > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--n-500);
+}
+.profile-skill-ledger > div > span {
+  font-size: 13px;
+  color: var(--n-1000);
+}
+.profile-skill-ledger > div > strong {
+  font: 16px var(--font-mono);
+}
+.profile-skill-ledger meter {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 8px;
+  border: 0;
+  background: var(--n-400);
+  border-radius: 2px;
+}
+.profile-skill-ledger meter::-webkit-meter-bar {
+  background: var(--n-400);
+  border: 0;
+  border-radius: 2px;
+}
+.profile-skill-ledger meter::-webkit-meter-optimum-value {
+  background: var(--cyan-500);
+  border-radius: 2px;
+}
+.profile-skill-ledger meter::-moz-meter-bar {
+  background: var(--cyan-500);
+}
+.profile-skill-ledger small {
+  font-size: 11px;
+  color: var(--n-900);
+}
+.profile-skill-ledger small:last-child {
+  text-align: right;
+  font-family: var(--font-mono);
 }
