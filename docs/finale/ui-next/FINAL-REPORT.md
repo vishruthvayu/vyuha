@@ -1,6 +1,6 @@
 # Current hardening handoff — premium shell correction
 
-Branch: `feature/vyuha-final-hardening`. Base: `db0ff23a67692d3db5dce07a031d17ea50a409b3`. Current pushed SHA is supplied by GitHub branch HEAD and the handoff response; no merge or release tag is made here.
+Branch: `feature/vyuha-final-hardening`. Base: `db0ff23a67692d3db5dce07a031d17ea50a409b3`. Current runtime source is `de30dfa1de7e0d1c59bb257f3020c2f5f074dc36`; any later evidence-only commit keeps those runtime bytes. [CURRENT-VALIDATION.json](CURRENT-VALIDATION.json) and [CURRENT-SOURCE-INVENTORY.json](CURRENT-SOURCE-INVENTORY.json) identify the verified source. No merge or release tag is made here.
 
 ## What changed after user review
 
@@ -21,7 +21,7 @@ No App, scene/renderer, guided decision, root-token or training/preparation styl
 - Shell matrix: 80 route/viewport combinations, no horizontal document overflow; 20 axe scans, no detected violations; incomplete/manual checks preserved.
 - Search retest: real Chromium at 360/1440, Enter/arrow/Escape behavior passes, two axe dialog scans with zero violations.
 - Independent correction review compares actual screens with premium references and records remaining density/table limitations.
-- Backend files are unchanged. The prior **708-test** backend receipt remains attributed to its tested source; it is not relabelled as a new backend run. Earlier Docker/transfer/recovery receipts likewise retain their original source identity. Merged-source acceptance must be repeated by main Codex.
+- Backend files are unchanged. The prior **708-test** backend receipt remains attributed to its tested source; it is not relabelled as a new backend run. The current clean local clone passes 294 tests, install/build/lint/format and reproduces native assets byte-for-byte; see timeline-investigation/clean-clone-receipt.json. Earlier Docker/transfer/recovery receipts retain their original source identity. Merged-source acceptance must be repeated by main Codex.
 
 Latest captures and logs: [shell-correction/](shell-correction/browser-receipt.json), [desktop Analytics](shell-correction/analytics-1440.png), [phone Analytics](shell-correction/analytics-360.png), [Instructor](shell-correction/instructor-1440.png), [Studio](shell-correction/studio-1440.png), [search interactions](shell-correction/search-keyboard-receipt.json). Synthetic data only. No full screen-reader audit or human visual approval is claimed.
 

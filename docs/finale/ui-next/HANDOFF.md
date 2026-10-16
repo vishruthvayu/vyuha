@@ -56,3 +56,5 @@ Search follow-up: Enter opens a single result; arrows browse links/back to input
 ## AAR investigation milestone
 
 Recorded timeline search/category filtering, exact counts, bounded 100-event initial render, more-evidence keyboard focus and native provenance disclosure are implemented without changing event order or replay boundaries. Frontend 294, lint/format/build pass; synthetic server-verified browser searches/replay remain read-only and retain AAR hashes. See TIMELINE-INVESTIGATION.md and timeline-investigation/ for current-source receipts. No backend or drill changes.
+
+Current runtime de30dfa1de7e0d1c59bb257f3020c2f5f074dc36 is clean-clone verified (294 frontend tests, build/lint/format, identical assets). Current receipts are CURRENT-VALIDATION.json and CURRENT-SOURCE-INVENTORY.json; backend source bytes equal its previous 708-test inventory but no new backend rerun is claimed for this UI-only continuation.

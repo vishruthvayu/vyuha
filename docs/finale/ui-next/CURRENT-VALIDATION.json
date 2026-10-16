@@ -1,0 +1,61 @@
+{
+  "tested_runtime_commit": "de30dfa1de7e0d1c59bb257f3020c2f5f074dc36",
+  "branch": "feature/vyuha-final-hardening",
+  "base": "db0ff23a67692d3db5dce07a031d17ea50a409b3",
+  "status": "REVIEWABLE_CHECKPOINT; HUMAN VISUAL AND COMBINED DRILL ACCEPTANCE OPEN",
+  "runtime_inventory_sha256": "e5ed5c9b5db9b74a0a2ffba7fc8e6e377acb84e6c0a8b53b907d0016fb64fde1",
+  "frontend": {
+    "passed": 294,
+    "failed": 0,
+    "parity": "included",
+    "lint": "PASS",
+    "format": "PASS",
+    "build": "PASS",
+    "offline_asset_urls": 36
+  },
+  "clean_clone": {
+    "source_commit": "de30dfa1de7e0d1c59bb257f3020c2f5f074dc36",
+    "all_commands_passed": true,
+    "native_assets_identical": true,
+    "receipt": "timeline-investigation/clean-clone-receipt.json",
+    "scope": "local clean Git clone, reused pinned Python interpreter; no Docker rebuild"
+  },
+  "browser": {
+    "shell_matrix_cases": 80,
+    "shell_axe_scans": 20,
+    "search_retest_widths": [
+      360,
+      1440
+    ],
+    "timeline_widths": [
+      360,
+      390,
+      428,
+      768,
+      1024,
+      1280,
+      1440,
+      1920
+    ],
+    "timeline_axe_violations": 0,
+    "aar_unchanged": true,
+    "non_read_requests": 0,
+    "manual_checks_incomplete": true
+  },
+  "backend": {
+    "fresh_rerun_in_this_correction": false,
+    "previous_passed": 708,
+    "previous_tested_source": "10a63fefba2201aa9c343d18ca1b0d3b24c0a112",
+    "all_tracked_server_bytes_equal_previous_tested_inventory": true
+  },
+  "protected_drill_files_changed": [],
+  "not_merged": "feature/vyuha-drill-experience-rescue",
+  "release_candidate": null,
+  "remaining": [
+    "Direct user visual walkthrough",
+    "Drill developer ready-SHA and integration by main Codex",
+    "Full merged-source acceptance",
+    "Private18/22 history databases unavailable",
+    "Physical platform/LAN HTTPS/WAN-off and scientific validation"
+  ]
+}
