@@ -78,7 +78,7 @@ def test_every_registered_sensitive_route_rejects_expired_revoked_and_ambient_cr
         return (path.startswith(('/api/v1/instructor/','/api/v1/white-cell','/api/v1/raids','/api/v1/evaluations'))
             or re.fullmatch(r'/api/v1/trainees/[^/]+/analytics',path)
             or re.fullmatch(r'/api/v1/units/[^/]+/(dashboard|trainees|exercises(?:/[^/]+)?|analytics|skill-heatmap)',path)
-            or path in ('/api/v1/crews/catalogue','/api/v1/crews/history','/api/v1/bundle/import')
+            or path in ('/api/v1/crews/catalogue','/api/v1/crews/history','/api/v1/crews/manage','/api/v1/bundle/import')
             or re.fullmatch(r'/api/v1/crews/[^/]+/members(?:/[^/]+/(rotate|revoke))?',path)
             or re.fullmatch(r'/api/v1/units/[^/]+/bundle/export',path)
             or method=='POST' and (path=='/api/v1/crews' or re.fullmatch(r'/api/v1/crews/[^/]+/(control|complete)',path)

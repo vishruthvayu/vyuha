@@ -5,6 +5,7 @@ import {
   type ComponentProps,
   type ReactNode,
 } from "react";
+import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
 import type { Scene as SceneComponent } from "./Scene";
 const Renderer = lazy(() =>
   import("./Scene").then((m) => ({ default: m.Scene })),
@@ -22,6 +23,7 @@ export class RendererBoundary extends Component<
   }
 }
 export function Scene(props: ComponentProps<typeof SceneComponent>) {
+  const reducedMotion = usePrefersReducedMotion();
   return (
     <RendererBoundary fallback={props.fallback}>
       <Suspense
@@ -35,7 +37,10 @@ export function Scene(props: ComponentProps<typeof SceneComponent>) {
           </div>
         }
       >
-        <Renderer {...props} />
+        <Renderer
+          {...props}
+          reducedMotion={props.reducedMotion ?? reducedMotion}
+        />
       </Suspense>
     </RendererBoundary>
   );

@@ -1,8 +1,10 @@
-import {readdir,readFile,writeFile} from 'node:fs/promises';
+import {readdir,readFile,writeFile,mkdir,copyFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {join} from 'node:path';
 import {Script} from 'node:vm';
 async function files(path){let result=[];for(const entry of await readdir(path,{withFileTypes:true})){const name=join(path,entry.name);if(entry.isDirectory())result.push(...await files(name));else result.push(name);}return result;}
+await mkdir('dist/licenses',{recursive:true});
+for(const name of ['OFL-Geist-and-Geist-Mono.txt','OFL-Instrument-Serif.txt'])await copyFile(join('src/premium/fonts',name),join('dist/licenses',name));
 const list=(await files('dist')).filter(f=>!f.endsWith('sw.js'));const urls=['/',...list.map(f=>'/'+f.replace(/^dist\//,''))];
 const version=createHash('sha256').update(await readFile('dist/index.html')).digest('hex').slice(0,12);
 const workerSource=`const CACHE='vyuha-${version}';const ASSETS=${JSON.stringify(urls)};

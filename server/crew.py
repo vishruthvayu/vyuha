@@ -157,7 +157,7 @@ def picture(db,row,rt,actor):
     for t in sim.tracks:
         p=observed_position(t) if t['active'] else None
         if p:
-            observed.append(dict(id=t['id'],position=p,observation=copy.deepcopy(t['observation']),designated=t['designated'],classification=t['classification'],declared=t['declared']))
+            observed.append(dict(id=t['id'],position=p,observation=copy.deepcopy(t['observation']),designated=t['designated'],classification=t['classification'],declared=t['declared'],designatable=t['detected'] is not None and t['designated'] is None,designation_reason='Already designated.' if t['designated'] is not None else 'Wait for confirmed sensor evidence or optical reacquisition.' if t['detected'] is None else 'Current server evidence permits designation.'))
     roster=[dict(id=m['id'],callsign=m['callsign'],role=m['role']) for m in db.execute('SELECT * FROM crew_members WHERE crew_id=? ORDER BY id',(row['id'],))]
     attribution=[dict(r) for r in db.execute('SELECT a.timeline_order,a.member_id,a.role,m.callsign FROM crew_attribution a JOIN crew_members m ON m.id=a.member_id WHERE a.session_id=? ORDER BY a.timeline_order',(row['session_id'],))]
     card=db.execute('SELECT scorecard FROM sessions WHERE id=?',(row['session_id'],)).fetchone()['scorecard']
@@ -201,6 +201,15 @@ def history(limit:int=100):
     from .crew_history import completed_history
     if isinstance(limit,bool) or not 1<=limit<=100:raise HTTPException(422,'History limit must be1–100')
     with storage.connect() as db:return completed_history(db,limit)
+
+
+@router.get('/manage')
+def manageable(limit:int=20):
+    # Officer-only discovery returns identifiers, never hashed/plaintext codes.
+    if isinstance(limit,bool) or not 1<=limit<=100:raise HTTPException(422,'Crew limit must be1–100')
+    with storage.connect() as db:
+        rows=db.execute('SELECT c.id,c.name,c.session_id,s.status,s.created_at FROM crews c JOIN sessions s ON s.id=c.session_id ORDER BY s.created_at DESC,c.id DESC LIMIT ?',(limit,)).fetchall()
+        return dict(crews=[dict(row) for row in rows],limit=limit,note='Codes cannot be recovered. Rotate a lost code to invalidate the previous assignment; accepted evidence is unchanged.')
 
 
 @router.get('/{cid}/members')

@@ -52,7 +52,7 @@ def protected(method,path):
         return True
     if re.fullmatch(r'/api/v1/trainees/[^/]+/analytics',path) or path=='/api/v1/evaluations' or path.startswith('/api/v1/evaluations/'):
         return True
-    if path in ['/api/v1/crews/catalogue','/api/v1/crews/history'] or re.fullmatch(r'/api/v1/crews/[^/]+/members(?:/[^/]+/(?:rotate|revoke))?',path):return True
+    if path in ['/api/v1/crews/catalogue','/api/v1/crews/history','/api/v1/crews/manage'] or re.fullmatch(r'/api/v1/crews/[^/]+/members(?:/[^/]+/(?:rotate|revoke))?',path):return True
     if method=='POST' and (path=='/api/v1/crews' or re.fullmatch(r'/api/v1/crews/[^/]+/(control|complete)',path)):return True
     if path in ['/api/v1/bundle/import'] or re.fullmatch(r'/api/v1/units/[^/]+/bundle/export',path):return True
     if re.fullmatch(r'/api/v1/units/[^/]+/(dashboard|trainees|exercises(?:/[^/]+)?|analytics|skill-heatmap)',path):return True

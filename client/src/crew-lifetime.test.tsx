@@ -58,6 +58,7 @@ async function run(
           rf: { detected: false },
           iff: { cue: "no_reply" },
         },
+        designatable: true,
         designated: role === "responder" ? 200 : null,
         classification: null,
         declared: null,

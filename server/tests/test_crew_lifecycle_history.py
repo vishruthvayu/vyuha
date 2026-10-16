@@ -51,7 +51,7 @@ def test_lifecycle_admin_routes_are_protected_scoped_and_bounded(shared):
     c=shared['client'];cid=shared['cid'];mid=shared['issued']['members'][0]['member_id'];officer=dict(c.headers)
     c.headers.clear()
     for headers in [{},{'Authorization':'Bearer forged'},shared['headers'][0]]:
-        for method,path in [('GET','/history'),('GET',f'/{cid}/members'),('POST',f'/{cid}/members/{mid}/rotate'),('POST',f'/{cid}/members/{mid}/revoke')]:
+        for method,path in [('GET','/manage'),('GET','/history'),('GET',f'/{cid}/members'),('POST',f'/{cid}/members/{mid}/rotate'),('POST',f'/{cid}/members/{mid}/revoke')]:
             assert c.request(method,'/api/v1/crews'+path,headers=headers,json={} if method=='POST' else None).status_code==401
     c.headers.update(officer)
     assert c.get('/api/v1/crews/history?limit=101').status_code==422
@@ -149,3 +149,15 @@ def test_completed_code_revocation_does_not_change_cards_attribution_or_skills(s
     assert c.get(f'/api/v1/crews/{cid}/state',headers=shared['headers'][0]).status_code==401
     assert c.get('/api/v1/crews/history').status_code==200
     assert immutable()==before
+
+
+def test_officer_crew_discovery_survives_reload_without_recoverable_secrets(shared):
+    c=shared['client'];cid=shared['cid']
+    with storage.connect() as db:before=list(db.iterdump())
+    response=c.get('/api/v1/crews/manage?limit=20');assert response.status_code==200
+    items=response.json()['crews'];found=next(x for x in items if x['id']==cid)
+    assert set(found)=={'id','name','session_id','status','created_at'}
+    assert all(m['code'] not in response.text for m in shared['issued']['members'])
+    assert c.get('/api/v1/crews/manage?limit=101').status_code==422
+    assert c.get('/api/v1/crews/manage?limit=0').status_code==422
+    with storage.connect() as db:assert list(db.iterdump())==before

@@ -168,6 +168,9 @@ export function CrewHistoryResults({ data }: { data: CrewHistoryData }) {
 
 export default function CrewOfficerTools({ createdId }: { createdId: string }) {
   const [crewId, setCrewId] = useState(createdId);
+  const [existing, setExisting] = useState<
+    { id: string; name: string; status: string; created_at: string }[] | null
+  >(null);
   const [roster, setRoster] = useState<Roster | null>(null);
   const [history, setHistory] = useState<CrewHistoryData | null>(null);
   const [minutes, setMinutes] = useState(480);
@@ -182,13 +185,13 @@ export default function CrewOfficerTools({ createdId }: { createdId: string }) {
     setRoster(null);
     setRevealed(null);
   }, [createdId]);
-  async function loadMembers() {
+  async function loadMembers(targetId = crewId) {
     setBusy(true);
     setError("");
     setRevealed(null);
     try {
       setRoster(
-        await api<Roster>(`/crews/${encodeURIComponent(crewId)}/members`),
+        await api<Roster>(`/crews/${encodeURIComponent(targetId)}/members`),
       );
     } catch (reason) {
       setError((reason as Error).message);
@@ -217,6 +220,24 @@ export default function CrewOfficerTools({ createdId }: { createdId: string }) {
       setBusy(false);
     }
   }
+  async function findCrews() {
+    setBusy(true);
+    setError("");
+    setRevealed(null);
+    try {
+      setExisting(
+        (
+          await api<{ crews: NonNullable<typeof existing> }>(
+            "/crews/manage?limit=20",
+          )
+        ).crews,
+      );
+    } catch (reason) {
+      setError((reason as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
   async function loadHistory() {
     setBusy(true);
     setError("");
@@ -238,6 +259,39 @@ export default function CrewOfficerTools({ createdId }: { createdId: string }) {
           changes accepted decisions or results. Older unbounded codes require
           officer rotation.
         </p>
+        <button
+          className="button subtle"
+          disabled={busy}
+          onClick={() => void findCrews()}
+        >
+          Find existing crews
+        </button>
+        <p className="footnote">
+          Reloaded or lost an issued code? Find the crew, load its roles and
+          rotate the lost code. Original codes are never stored in this browser
+          or recovered from the server.
+        </p>
+        {existing && (
+          <ul aria-label="Existing crews to manage">
+            {existing.map((item) => (
+              <li key={item.id}>
+                <button
+                  className="button subtle"
+                  disabled={busy}
+                  onClick={() => {
+                    setCrewId(item.id);
+                    setRoster(null);
+                    setRevealed(null);
+                    void loadMembers(item.id);
+                  }}
+                >
+                  Manage {item.name} · {item.status} · {item.created_at}
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+        {existing?.length === 0 && <p>No local crews found.</p>}
         <label>
           Crew ID to manage
           <input

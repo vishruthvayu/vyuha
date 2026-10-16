@@ -9,6 +9,7 @@ async function run(
   role: "spotter" | "responder",
   body: (document: Document, actions: () => number) => Promise<void>,
   ready = true,
+  designatable: boolean | null = true,
 ) {
   const dom = new JSDOM(
     '<html><head></head><body><div id="root"></div></body></html>',
@@ -54,6 +55,7 @@ async function run(
           rf: { detected: false },
           iff: { cue: "no_reply" },
         },
+        ...(designatable === null ? {} : { designatable }),
         designated: role === "responder" && ready ? 200 : null,
         classification: role === "responder" && ready ? "quad" : null,
         declared: null,
@@ -211,3 +213,25 @@ test("Responder cannot submit classification or effects before the shared design
     },
     false,
   ));
+
+test("Spotter cannot designate tentative or unknown eligibility and sees the server prerequisite", async () => {
+  for (const permitted of [false, null]) {
+    await run(
+      "spotter",
+      async (document, actions) => {
+        const button = [...document.querySelectorAll("button")].find(
+          (b) => b.textContent === "Designate shared contact",
+        )!;
+        assert.ok(button.disabled);
+        assert.match(
+          document.getElementById("crew-designation-eligibility")!.textContent!,
+          /server-confirmed/,
+        );
+        await act(async () => button.click());
+        assert.equal(actions(), 0);
+      },
+      true,
+      permitted,
+    );
+  }
+});

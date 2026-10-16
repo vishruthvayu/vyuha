@@ -201,3 +201,28 @@ def test_equal_tick_control_snapshots_have_monotonic_revision(shared):
     assert [s['revision'] for s in [initial,running,paused,resumed]]==[0,1,2,3]
     assert paused['paused'] and not resumed['paused']
     assert resumed['attribution']==[]
+
+
+def test_designation_eligibility_uses_server_detection_without_leaking_truth(shared):
+    tid=visible(shared);key=(str(storage.DB_PATH.resolve()),shared['cid'])
+    sim=crew._CACHE[key]['sim'];track=next(t for t in sim.tracks if t['id']==tid)
+    # A reported position alone does not satisfy the authoritative detected gate.
+    track['detected']=None
+    state=shared['state']();contact=next(t for t in state['contacts'] if t['id']==tid)
+    assert contact['designatable'] is False
+    assert 'Wait for' in contact['designation_reason']
+    assert not {'kind','identity','detected','truth'} & set(contact)
+    before=len(state['attribution'])
+    assert shared['act'](0,'ineligible','designate',tid).status_code==422
+    assert len(shared['state']()['attribution'])==before
+    # Prior working-sensor detection remains valid even with a tentative/coasting
+    # current plot; don't invent a stricter "confirmed radar now" client rule.
+    # Rejected transactions restore a private runtime copy; reacquire it.
+    sim=crew._CACHE[key]['sim'];track=next(t for t in sim.tracks if t['id']==tid)
+    track['detected']=max(0,sim.tick-1)
+    track['observation']['radar']['state']='coasting'
+    contact=next(t for t in shared['state']()['contacts'] if t['id']==tid)
+    assert contact['designatable'] is True
+    assert shared['act'](0,'eligible','designate',tid).status_code==200
+    assert next(t for t in shared['state']()['contacts'] if t['id']==tid)['designatable'] is False
+    assert shared['act'](1,'wrong-role-eligibility','designate',tid).status_code==403

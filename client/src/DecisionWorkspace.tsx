@@ -24,6 +24,7 @@ export function DecisionWorkspace({
       </section>
       <aside
         className="decision-evidence"
+        tabIndex={0}
         aria-label="Evidence for the selected contact"
       >
         {evidence}

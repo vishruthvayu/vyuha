@@ -44,6 +44,8 @@ export type CrewState = {
     position: { x: number; z: number; altitude: number };
     observation: SensorObservation;
     designated: number | null;
+    designatable?: boolean;
+    designation_reason?: string;
     classification: Kind | null;
     declared: Identity | null;
   }[];
@@ -713,11 +715,16 @@ export default function Crew() {
               <div className="crew-actions">
                 <button
                   className="button primary"
-                  disabled={blocked || selectedContact?.designated !== null}
+                  disabled={blocked || selectedContact?.designatable !== true}
+                  aria-describedby="crew-designation-eligibility"
                   onClick={() => void act("designate")}
                 >
                   Designate shared contact
                 </button>
+                <p id="crew-designation-eligibility" className="footnote">
+                  {selectedContact?.designation_reason ??
+                    "Select a contact and wait for server-confirmed designation eligibility."}
+                </p>
               </div>
             ) : (
               <>

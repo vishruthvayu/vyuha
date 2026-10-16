@@ -212,9 +212,12 @@
   background: var(--n-50);
   border: 1px solid var(--ink-hairline);
   border-radius: var(--r-lg);
-  overflow: hidden;
+  overflow: visible;
 }
 .sensor-workspace > .panel-header {
+  position: relative;
+  z-index: 12;
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
   display: flex;
   align-items: center;
   gap: var(--s-2);
@@ -316,7 +319,7 @@
 
 /* View settings popover in the view header */
 .observation-preferences {
-  position: relative;
+  position: static;
   border: 0;
   background: none;
   margin: 0;
@@ -334,8 +337,11 @@
 .observation-preferences[open] > .observation-popover {
   position: absolute;
   top: calc(100% + 8px);
-  right: 0;
-  width: min(440px, 80vw);
+  right: 8px;
+  width: min(440px, calc(100% - 16px));
+  max-height: min(320px, 45dvh);
+  overflow: auto;
+  overscroll-behavior: contain;
   z-index: 30;
   display: flex;
   flex-direction: column;
@@ -664,6 +670,7 @@
 }
 .decision-evidence > .panel,
 .decision-evidence > details.panel {
+  flex-shrink: 0;
   background: transparent;
   border: 0;
   border-bottom: 1px solid var(--ink-hairline);

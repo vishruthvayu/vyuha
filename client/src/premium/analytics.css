@@ -237,10 +237,10 @@
   color: var(--n-800);
 }
 .skill-heatmap td[data-empty] summary {
-  color: var(--n-700);
+  color: var(--n-900);
 }
 .skill-heatmap td[data-empty] summary small {
-  color: var(--n-700);
+  color: var(--n-800);
 }
 .skill-heatmap details[open] > div {
   margin-top: var(--s-2);

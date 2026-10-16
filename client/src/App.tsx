@@ -1278,6 +1278,7 @@ export default function App({
   };
   const [palette, setPalette] = useState<ThermalPalette>("white"),
     [cameraPreset, setCameraPreset] = useState<CameraPreset>("overview"),
+    [opticalZoom, setOpticalZoom] = useState(1),
     [replayTactical, setReplayTactical] = useState(false),
     [replayFps, setReplayFps] = useState(0);
   // Reconstruction depends on immutable evidence and seek position, not camera/FPS/notice updates.
@@ -1611,6 +1612,24 @@ export default function App({
                           Graphics settings change rendering only; simulation
                           stays at 30 Hz.
                         </small>
+                        <label>
+                          Display magnification · {opticalZoom}×
+                          <input
+                            type="range"
+                            aria-label="Display magnification"
+                            min="1"
+                            max="6"
+                            step="1"
+                            value={opticalZoom}
+                            onChange={(event) =>
+                              setOpticalZoom(Number(event.target.value))
+                            }
+                          />
+                        </label>
+                        <small>
+                          Display crop only; sensor ranges and evidence are
+                          unchanged.
+                        </small>
                         <LocalAudio
                           state={state}
                           fog={scenario.fog}
@@ -1683,6 +1702,7 @@ export default function App({
                     />
                   ) : (
                     <Scene
+                      opticalZoom={opticalZoom}
                       terrainBoxes={scenario.terrain_boxes}
                       engineVersion={scenario.engine_version}
                       visibilityKey={`${scenario.id}:${sessionRef.current || "preview"}`}
