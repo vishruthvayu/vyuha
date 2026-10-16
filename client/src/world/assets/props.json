@@ -1,0 +1,86 @@
+{
+ "barrel": {
+  "source": "https://polyhaven.com/a/barrel_03",
+  "source_triangles": 1473,
+  "triangles": 360,
+  "texture": 256,
+  "bytes": 39276,
+  "size_m": [
+   0.64,
+   0.93,
+   0.65
+  ]
+ },
+ "jersey-barrier": {
+  "source": "https://polyhaven.com/a/concrete_road_barrier_02",
+  "source_triangles": 23822,
+  "triangles": 420,
+  "texture": 256,
+  "bytes": 42360,
+  "size_m": [
+   1.56,
+   1.12,
+   0.44
+  ]
+ },
+ "covered-car": {
+  "source": "https://polyhaven.com/a/covered_car",
+  "source_triangles": 12592,
+  "triangles": 1400,
+  "texture": 512,
+  "bytes": 142300,
+  "size_m": [
+   1.78,
+   1.39,
+   4.39
+  ]
+ },
+ "boulder-a": {
+  "source": "https://polyhaven.com/a/namaqualand_boulder_02",
+  "source_triangles": 97964,
+  "triangles": 419,
+  "texture": 256,
+  "bytes": 65292,
+  "size_m": [
+   2.5,
+   0.85,
+   1.23
+  ]
+ },
+ "boulder-b": {
+  "source": "https://polyhaven.com/a/namaqualand_boulder_05",
+  "source_triangles": 89618,
+  "triangles": 300,
+  "texture": 256,
+  "bytes": 52128,
+  "size_m": [
+   1.35,
+   0.51,
+   0.73
+  ]
+ },
+ "utility-box": {
+  "source": "https://polyhaven.com/a/utility_box_02",
+  "source_triangles": 6268,
+  "triangles": 320,
+  "texture": 256,
+  "bytes": 43324,
+  "size_m": [
+   0.92,
+   1.12,
+   0.43
+  ]
+ },
+ "crate": {
+  "source": "https://polyhaven.com/a/wooden_crate_02",
+  "source_triangles": 5176,
+  "triangles": 160,
+  "texture": 256,
+  "bytes": 38356,
+  "size_m": [
+   0.53,
+   0.46,
+   1.16
+  ]
+ }
+}

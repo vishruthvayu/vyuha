@@ -3,28 +3,14 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import type { Snapshot, Track } from "./types";
 import { pixelRatio, type Quality } from "./quality";
-import {
-  palettes,
-  type CameraPreset,
-  type ThermalPalette,
-} from "./presentation";
+import { type CameraPreset, type ThermalPalette } from "./presentation";
 import { ObservationVisibility, type Vision } from "./visibility";
 import {
   SENSOR_VERSION,
   type TerrainBox,
   type SensorPosition,
 } from "./sensors-v2";
-import {
-  terrainPresentationBounds,
-  terrainMaterialState,
-  buildingSurfaceColors,
-  buildingVertexColors,
-  roadPaint,
-  sceneCameraPose,
-  sceneGroundColor,
-  sceneReviewEnvelope,
-  type TerrainPresentationBox,
-} from "./scene-presentation";
+import { sceneCameraPose, sceneReviewEnvelope } from "./scene-presentation";
 import { ContactRenderer } from "./ContactRenderer";
 import {
   ViewBlend,
@@ -39,7 +25,12 @@ import {
   RenderFrameMeter,
   type RenderContact,
 } from "./render-contacts";
-import { createSkyTexture, createSurfaceTexture } from "./surface-textures";
+import {
+  Environment,
+  LAYER_CONTACTS,
+  LAYER_OCCLUDERS,
+  LAYER_WORLD,
+} from "./world/Environment";
 export type { Vision } from "./visibility";
 export type RendererMetrics = {
   scope: "previous WebGL frame";
@@ -219,6 +210,38 @@ function CameraRig({
   });
   return null;
 }
+/** Draws the frame in three passes so decorative scenery can never hide a
+ * contact the sensors report, while authoritative occluders still do:
+ *  1. world (sky, terrain, facility, vegetation, occluder dressing);
+ *  2. depth only, after clearing depth: the exact authoritative terrain boxes;
+ *  3. contacts and markers, depth-tested against pass 2 only.
+ * The static shadow map is rendered once, not every frame. */
+function LayeredRender() {
+  const { gl, scene, camera } = useThree();
+  useEffect(() => {
+    gl.info.autoReset = false;
+    gl.shadowMap.autoUpdate = false;
+    gl.shadowMap.needsUpdate = true;
+    return () => {
+      gl.info.autoReset = true;
+      gl.shadowMap.autoUpdate = true;
+    };
+  }, [gl]);
+  useFrame(() => {
+    gl.info.reset();
+    gl.autoClear = false;
+    gl.clear(true, true, true);
+    camera.layers.set(LAYER_WORLD);
+    gl.render(scene, camera);
+    gl.clearDepth();
+    camera.layers.set(LAYER_OCCLUDERS);
+    gl.render(scene, camera);
+    camera.layers.set(LAYER_CONTACTS);
+    gl.render(scene, camera);
+    camera.layers.set(LAYER_WORLD);
+  }, 1);
+  return null;
+}
 /** Advances the shared observed poses once per frame, before the camera and the
  * contact renderer read them (it is mounted first, so its frame callback runs first). */
 function PoseDriver({
@@ -268,7 +291,12 @@ function CueMarker({ cue }: { cue?: SensorPosition | null }) {
     );
   });
   return (
-    <lineSegments ref={ref} visible={false} renderOrder={20}>
+    <lineSegments
+      ref={ref}
+      visible={false}
+      renderOrder={20}
+      layers={LAYER_CONTACTS}
+    >
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[ring, 3]} />
       </bufferGeometry>
@@ -280,52 +308,6 @@ function CueMarker({ cue }: { cue?: SensorPosition | null }) {
         opacity={0.85}
       />
     </lineSegments>
-  );
-}
-function TerrainStructure({
-  box,
-  index,
-  vision,
-  rural,
-  palette,
-  material,
-  texture,
-  shadows = false,
-}: {
-  box: TerrainPresentationBox;
-  index: number;
-  vision: Vision;
-  rural: boolean;
-  palette: ThermalPalette;
-  material: ReturnType<typeof terrainMaterialState>;
-  texture: THREE.Texture;
-  shadows?: boolean;
-}) {
-  const colors = useMemo(
-    () =>
-      buildingVertexColors(
-        buildingSurfaceColors(index, vision, rural, palette),
-      ),
-    [index, vision, rural, palette],
-  );
-  return (
-    <mesh
-      position={[box.x, box.h / 2, box.z]}
-      castShadow={shadows}
-      receiveShadow={shadows}
-    >
-      <boxGeometry args={[box.w, box.h, box.d]}>
-        <bufferAttribute attach="attributes-color" args={[colors, 3]} />
-      </boxGeometry>
-      <meshStandardMaterial
-        color="#ffffff"
-        vertexColors
-        map={vision === "thermal" ? undefined : texture}
-        roughness={0.95}
-        metalness={0}
-        {...material}
-      />
-    </mesh>
   );
 }
 function World({
@@ -377,9 +359,10 @@ function World({
     cameraPreset,
     size.width / Math.max(1, size.height),
     {
-      far: finale ? 20000 : cameraPreset ? 1200 : 800,
-      fogNear: finale ? 8000 : cameraPreset ? 650 : 160 - fog * 100,
-      fogFar: finale ? 18000 : cameraPreset ? 1200 : 550 - fog * 300,
+      // The sky dome (15 km) and the far terrain ring need a long far plane.
+      far: 20000,
+      fogNear: 0,
+      fogFar: 0,
     },
   );
   useEffect(() => {
@@ -391,78 +374,31 @@ function World({
       camera.updateProjectionMatrix();
     }
   }, [camera, envelope.far]);
-  const hot = vision === "thermal";
-  const night = vision !== "day";
-  const bg = hot ? palettes[palette].background : night ? "#07191d" : "#91b2c2";
-  const rural = terrain === "rural_forward_base";
-  const detail = quality === "high" ? 32 : quality === "medium" ? 20 : 10;
   const contacts = useMemo(() => renderContacts(state.tracks), [state.tracks]);
   const poses = useMemo(() => new ObservedPoseBuffer(), []);
-  const sky = useMemo(
-    () => createSkyTexture(vision, rural, palette),
-    [vision, rural, palette],
-  );
-  const groundTexture = useMemo(() => {
-    const texture = createSurfaceTexture(quality, "ground");
-    texture.repeat.set(finale ? 48 : 6, finale ? 48 : 6);
-    return texture;
-  }, [quality, finale]);
-  const facadeTexture = useMemo(
-    () => createSurfaceTexture(quality, "facade"),
-    [quality],
-  );
-  useEffect(() => () => sky.dispose(), [sky]);
-  useEffect(() => () => groundTexture.dispose(), [groundTexture]);
-  useEffect(() => () => facadeTexture.dispose(), [facadeTexture]);
-  const shadows = quality === "high" && vision === "day";
-  const buildings = useMemo(
-    () =>
-      finale
-        ? terrainPresentationBounds(terrainBoxes ?? [])
-        : Array.from(
-            { length: rural ? Math.max(2, Math.floor(detail / 5)) : detail },
-            (_, i) => {
-              const side = i % 2 === 0 ? -1 : 1;
-              return {
-                x: side * (20 + ((i * 17) % 55)),
-                z: 35 + Math.floor(i / 2) * 13,
-                w: 7 + ((i * 3) % 8),
-                h: 4 + ((i * 7) % 18),
-                d: 8 + ((i * 5) % 8),
-              };
-            },
-          ),
-    [rural, detail, finale, terrainBoxes],
-  );
-  const paint = useMemo(() => roadPaint(finale, quality), [finale, quality]);
-  const material = useMemo(
-    () => terrainMaterialState(referenceTruth, cameraPreset),
-    [referenceTruth, cameraPreset],
+  const boxes = useMemo(
+    () => (finale ? (terrainBoxes ?? []) : []),
+    [finale, terrainBoxes],
   );
   return (
     <>
-      <primitive attach="background" object={sky} />
-      <fog attach="fog" args={[bg, envelope.fogNear, envelope.fogFar]} />
-      <ambientLight intensity={hot ? 1.4 : night ? 0.55 : 0.7} />
-      <hemisphereLight
-        args={[
-          night ? "#31535a" : "#d4e2e4",
-          "#293627",
-          hot ? 0 : night ? 0.15 : 0.5,
-        ]}
-      />
-      <directionalLight
-        position={[40, 100, -40]}
-        intensity={hot ? 0.2 : night ? 0.6 : 2.1}
-        castShadow={shadows}
-        shadow-mapSize={[1024, 1024]}
-        shadow-camera-left={-300}
-        shadow-camera-right={300}
-        shadow-camera-top={300}
-        shadow-camera-bottom={-300}
-        shadow-camera-far={600}
-        shadow-bias={-0.0004}
-        color={hot ? "#ffffff" : night ? "#c1dadb" : "#fff4db"}
+      <LayeredRender />
+      <Environment
+        terrain={
+          terrain === "rural_forward_base"
+            ? "rural_forward_base"
+            : "urban_outpost"
+        }
+        boxes={boxes}
+        legacy={!finale}
+        night={state.night}
+        vision={vision}
+        palette={palette}
+        quality={quality}
+        fog={fog}
+        translucentOccluders={referenceTruth && cameraPreset !== undefined}
+        logicalTick={() => poses.displayTick}
+        reducedMotion={reducedMotion}
       />
       <PoseDriver
         poses={poses}
@@ -486,96 +422,6 @@ function World({
         sensorOrigin={sensorOrigin}
         referenceTruth={referenceTruth}
       />
-      <mesh
-        rotation={[-Math.PI / 2, 0, 0]}
-        position={[0, -0.1, 150]}
-        receiveShadow={shadows}
-      >
-        <planeGeometry args={finale ? [12000, 12000] : [700, 700]} />
-        <meshStandardMaterial
-          color={sceneGroundColor(vision, rural, palette)}
-          map={hot ? undefined : groundTexture}
-          roughness={1}
-          metalness={0}
-        />
-      </mesh>
-      <gridHelper
-        args={[
-          finale ? 12000 : 600,
-          finale ? 120 : 60,
-          hot ? "#3e4944" : "#31433b",
-          hot ? "#303a35" : "#23312c",
-        ]}
-        position={[0, 0, 160]}
-        onUpdate={(grid) => {
-          const materials = Array.isArray(grid.material)
-            ? grid.material
-            : [grid.material];
-          materials.forEach((value) => {
-            value.transparent = true;
-            value.opacity = 0.12;
-            value.depthWrite = false;
-          });
-        }}
-      />
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.05, 155]}>
-        <planeGeometry args={[18, finale ? 8000 : 400]} />
-        <meshStandardMaterial color={hot ? "#262e2c" : "#343b3c"} />
-      </mesh>
-      {!hot &&
-        paint.map((mark, index) => (
-          <mesh
-            key={`road-paint-${index}`}
-            rotation={[-Math.PI / 2, 0, 0]}
-            position={mark.position}
-          >
-            <planeGeometry args={mark.size} />
-            <meshStandardMaterial
-              color={night ? "#526b67" : "#c6c8b2"}
-              roughness={1}
-            />
-          </mesh>
-        ))}
-      {rural &&
-        !finale &&
-        Array.from({ length: Math.floor(detail / 2) }, (_, i) => (
-          <group
-            key={`tree-${i}`}
-            position={[
-              (i % 2 ? -1 : 1) * (85 + ((i * 17) % 70)),
-              0,
-              25 + i * 12,
-            ]}
-          >
-            <mesh position={[0, 3, 0]}>
-              <cylinderGeometry args={[0.5, 0.7, 6, 5]} />
-              <meshStandardMaterial color={hot ? "#59625c" : "#574c34"} />
-            </mesh>
-            <mesh position={[0, 8, 0]}>
-              <coneGeometry args={[5, 10, 6]} />
-              <meshStandardMaterial color={hot ? "#70776b" : "#354e2c"} />
-            </mesh>
-          </group>
-        ))}
-      {buildings.map((box, index) => (
-        <TerrainStructure
-          key={index}
-          box={box}
-          index={index}
-          vision={vision}
-          rural={rural}
-          palette={palette}
-          material={material}
-          texture={facadeTexture}
-          shadows={shadows}
-        />
-      ))}
-      {/* Protected asset: a low, earth-bermed node below the sensor's eye line, so
-          it never fills the view on rear bearings (baseline A2). */}
-      <mesh position={[0, 0.7, -9]}>
-        <boxGeometry args={[8, 1.4, 6]} />
-        <meshStandardMaterial color={hot ? "#94a397" : "#5f705f"} />
-      </mesh>
       {!cameraPreset && selectedId && !selected && <CueMarker cue={cue} />}
       <ContactRenderer
         poses={poses}
@@ -634,7 +480,13 @@ export function Scene(props: SceneProps) {
     <Boundary fallback={props.fallback}>
       <Canvas
         dpr={pixelRatio[props.quality ?? "medium"]}
-        shadows={props.quality === "high" && props.vision === "day"}
+        shadows={
+          props.quality === "high"
+            ? "soft"
+            : props.quality === "medium"
+              ? "percentage"
+              : false
+        }
         camera={{
           position: props.cameraPreset
             ? [0, 240, 144]
@@ -644,8 +496,8 @@ export function Scene(props: SceneProps) {
                 props.sensorOrigin?.z ?? (finale ? 0 : 4),
               ],
           fov: props.cameraPreset ? 52 : 38,
-          near: 0.1,
-          far: finale ? 20000 : props.cameraPreset ? 1200 : 800,
+          near: props.cameraPreset ? 1 : 0.5,
+          far: 20000,
         }}
         gl={{
           antialias: props.quality !== "low",

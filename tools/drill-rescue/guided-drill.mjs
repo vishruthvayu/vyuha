@@ -30,6 +30,7 @@ log({ step: 'select', pick });
 if (pick) await c.click(pick.x, pick.y);
 await sleep(1200); await c.ev(`window.__fp.d.length = 0`);
 await shot('03-selected'); await dock('selected');
+await c.ev(`window.__fp.d.length = 0`); await sleep(4000); log({ step: 'frames', label: 'tracking-clean', ...(await c.ev(FRAME_READ)) });
 for (let i = 0; i < 12; i++) { await shot(`04-burst-${String(i).padStart(2, '0')}`, '.scene-container'); await sleep(60); }
 log({ step: 'frames', label: 'tracking', ...(await c.ev(FRAME_READ)) });
 log({ step: 'designate', clicked: await c.clickEl(`[...document.querySelectorAll('.guided button')].find(b => b.innerText.trim().startsWith('Designate') && !b.disabled)`) });

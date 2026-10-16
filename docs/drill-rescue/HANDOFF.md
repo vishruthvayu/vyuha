@@ -110,7 +110,7 @@ Baseline reproduction, root causes and benchmark: `BASELINE-DEFECTS.md`,
   `CueMarker`.
 * Tests: `guided-decision.test.tsx` (14 tests).
 
-### M3 — environment (see `PROGRESS.md` for whether it has been pushed)
+### M3 — environment (pushed; see `PROGRESS.md`)
 * `world/terrain.ts`: flat disc + relief rings; `terrainHeight` is 0 inside 1 700 m.
 * `world/layout.ts`: urban outpost and rural forward base layouts (pure data),
   `withoutBoxes`, `placementHeight`, `SENSOR_CLEARING`.
@@ -137,43 +137,23 @@ Baseline reproduction, root causes and benchmark: `BASELINE-DEFECTS.md`,
 
 ## 6. What is left (in order)
 
-### M3 finish
-1. **Performance on Medium.** Measured on the Intel UHD iGPU at a ~1 268 × 400
-   canvas:
-   - Low ≈ 59–60 fps;
-   - Medium ≈ 43–54 fps (noisy; 4× MSAA alone costs ~7 fps);
-   - High ≈ 38–40 fps.
+### M3 — done (see PROGRESS.md)
+Remaining polish found after M3, not blocking:
+* the AAR OVERVIEW camera sits ~2.5 km up, so the base and the contacts are tiny.
+  Consider contact markers or a lower overview in reference-truth review (M5);
+* the reviewer findings recorded in PROGRESS.md and not yet fixed.
 
-   The GPU is fill-rate bound. Options already tried: branching ground layers, PCF
-   instead of PCF-soft shadows on Medium, Lambert ground, ground normals only on
-   High, sky anisotropy 1. Next candidates:
-   - drop the broad second macro sample;
-   - render Medium without MSAA but with FXAA (`three/addons/postprocessing`, no new
-     package);
-   - reduce foliage overdraw (alphaTest cards);
-   - verify that `gl.render` ×3 does not re-sort/re-upload;
-   - measure on the NVIDIA dGPU as an upper bound, by starting Chrome with
-     `__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia`.
-
-   Record a clear tradeoff in `PROGRESS.md` if Medium cannot reach 60 on this iGPU.
-   The owner's reference machine is an M1, roughly 3× this GPU.
-2. Visual fixes: corrugated metal too dark (lower metalness ~0.35, lighter tint),
-   sandbags too dark, check the night EO and thermal looks (`world-shot.mjs` with
-   `night` / `thermal`), check the AAR overview/observer/follow cameras.
-3. Tests (new `world.test.ts`):
-   - terrain height is 0 inside `FLAT_RADIUS`;
-   - no placement intersects the boxes after `withoutBoxes`;
-   - only items ≤ 1.6 m inside `SENSOR_CLEARING`;
-   - `cityBlock` / `warehouse` geometry stays inside its box (check the merged
-     bounding box of a `Batches` built for one box);
-   - every kit material key has a thermal class;
-   - `displayVisibility` is monotonic.
-4. `docs/drill-rescue/ASSET-PROVENANCE.md` from `art/*.json`, the download ledger and
-   `client/src/world/assets/{props,vegetation,textures,sky}.json`. Also ship
-   `client/public/licenses/POLYHAVEN-CC0.txt`; `public/` is copied to `dist/` and
-   precached.
-5. Before/after screenshots into `docs/drill-rescue/screenshots/m3/`; full
-   test/lint/format/build; commit and push; update `PROGRESS.md` and this file.
+Performance status (data in PROGRESS.md, M3 performance):
+* On the shared Intel iGPU, Medium averages ~50–54 fps (Low ~59, High ~39). The
+  median GPU time is ~3 ms per frame, but ~10 % of frames take 12–15 ms.
+* The old, very light scene does not show those spikes, so they are **not** explained
+  by desktop contention alone. Next steps:
+  - check whether the spikes scale with screen area by halving the pixel ratio
+    (they vanished at 0.5);
+  - check whether they follow the three `gl.render` passes, by temporarily merging
+    passes 2 and 3;
+  - check whether the GPU timer catches compositor work.
+* On the idle NVIDIA dGPU every tier holds 60 fps.
 
 ### M4 — aircraft
 * Author original models in Blender with a new `art/blender_airframes.py`:

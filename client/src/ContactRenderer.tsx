@@ -162,6 +162,7 @@ export function ContactRenderer({
           ref={(mesh) => {
             meshes.current[i] = mesh;
             if (mesh) {
+              mesh.layers.set(1);
               mesh.count = 0;
               mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
             }
@@ -169,7 +170,7 @@ export function ContactRenderer({
           args={[part.geometry, materials[part.layer], capacity]}
         />
       ))}
-      <lineSegments ref={marker} visible={false} renderOrder={20}>
+      <lineSegments ref={marker} visible={false} renderOrder={20} layers={1}>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[bracket, 3]} />
         </bufferGeometry>
