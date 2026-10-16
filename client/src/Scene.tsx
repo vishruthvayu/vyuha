@@ -27,9 +27,17 @@ import {
 } from "./scene-presentation";
 import { ContactRenderer } from "./ContactRenderer";
 import {
+  ViewBlend,
+  liveCameraMode,
+  slewSeconds,
+  type CameraMode,
+} from "./camera-view";
+import {
+  ObservedPoseBuffer,
   opticalFov,
   renderContacts,
   RenderFrameMeter,
+  type RenderContact,
 } from "./render-contacts";
 import { createSkyTexture, createSurfaceTexture } from "./surface-textures";
 export type { Vision } from "./visibility";
@@ -54,12 +62,20 @@ class Boundary extends Component<
     return this.state.failed ? this.props.fallback : this.props.children;
   }
 }
+/** Live sensor view: the camera stays at the sensor origin and points at
+ *  - the selected contact's displayed pose while a camera observes it ("track");
+ *  - otherwise its latest reported position from any sensor ("cue"), as a radar
+ *    cue slews a real EO/IR head;
+ *  - otherwise the last bearing ("hold"). It never swings to a default sector
+ *    while a contact is selected, and is not remounted when the sensor changes. */
 function CameraRig({
-  target,
   onFps,
   preset,
   tracks,
   selected,
+  selectedId,
+  cue,
+  poses,
   finale = false,
   sensorOrigin,
   referenceTruth = false,
@@ -67,11 +83,15 @@ function CameraRig({
   reducedMotion = false,
   onMetrics,
 }: {
-  target: Track | undefined;
   onFps: (n: number) => void;
   preset?: CameraPreset;
   tracks: Track[];
+  /** Selected contact if it is drawn in this view (optically observed). */
   selected: string | null;
+  /** The trainee's selection, whether or not this view can draw it. */
+  selectedId: string | null;
+  cue?: SensorPosition | null;
+  poses: ObservedPoseBuffer;
   finale?: boolean;
   sensorOrigin?: SensorPosition;
   referenceTruth?: boolean;
@@ -81,9 +101,17 @@ function CameraRig({
 }) {
   const { camera, size, gl } = useThree();
   const frameMeter = useRef(new RenderFrameMeter());
-  const aim = useRef(new THREE.Vector3(40, 18, 150));
-  const desiredPosition = useMemo(() => new THREE.Vector3(), []);
-  const desiredAim = useMemo(() => new THREE.Vector3(), []);
+  const aim = useRef(new THREE.Vector3(0, 18, finale ? 1500 : 150));
+  const view = useRef({
+    mode: "" as CameraMode | "",
+    id: null as string | null,
+    cue: new THREE.Vector3(NaN, NaN, NaN),
+    aimBlend: new ViewBlend(),
+    positionBlend: new ViewBlend(),
+  });
+  const goal = useMemo(() => new THREE.Vector3(), []);
+  const goalPosition = useMemo(() => new THREE.Vector3(), []);
+  const origin = useMemo(() => new THREE.Vector3(), []);
   const pose = useMemo(
     () =>
       preset
@@ -107,26 +135,72 @@ function CameraRig({
         camera.updateProjectionMatrix();
       }
     }
+    const v = view.current;
+    let mode: CameraMode;
     if (preset && pose) {
-      camera.position.lerp(
-        desiredPosition.set(...pose.position),
-        reducedMotion ? 1 : 1 - Math.exp(-dt * 5),
-      );
-      aim.current.lerp(
-        desiredAim.set(...pose.aim),
-        reducedMotion ? 1 : 1 - Math.exp(-dt * 5),
-      );
+      mode = "preset";
+      goal.set(...pose.aim);
+      goalPosition.set(...pose.position);
+      // Follow and observer framing ride on the displayed pose, so the camera and
+      // the model share one smooth path instead of two different filters.
+      const shown = selected ? poses.pose(selected) : undefined;
+      if (shown && !pose.fallback && pose.effective !== "overview") {
+        goalPosition.sub(goal);
+        goal.set(shown.displayX, shown.displayY, shown.displayZ);
+        goalPosition.add(goal);
+      }
     } else {
-      const next =
-        target && target.active
-          ? desiredAim.set(target.x, target.altitude, target.z)
-          : desiredAim.set(finale ? 0 : 40, 18, finale ? 1500 : 150);
-      aim.current.lerp(next, reducedMotion ? 1 : 1 - Math.exp(-dt * 7.67));
-      camera.position.set(
+      origin.set(
         sensorOrigin?.x ?? 0,
         sensorOrigin?.altitude ?? (finale ? 2 : 14),
         sensorOrigin?.z ?? (finale ? 0 : 4),
       );
+      goalPosition.copy(origin);
+      const shown = selected ? poses.pose(selected) : undefined;
+      mode = liveCameraMode(!!shown, selectedId, cue);
+      if (shown) goal.set(shown.displayX, shown.displayY, shown.displayZ);
+      else if (mode === "cue" && cue) goal.set(cue.x, cue.altitude, cue.z);
+      else if (mode === "hold") goal.copy(aim.current);
+      else goal.set(finale ? 0 : 40, 18, finale ? 1500 : 150);
+    }
+    // A cue that jumps (a radar sweep) re-slews; small IR/EO updates are followed.
+    const cueJump =
+      mode === "cue" &&
+      (!Number.isFinite(v.cue.x) ||
+        goal.clone().sub(origin).angleTo(v.cue.clone().sub(origin)) >
+          THREE.MathUtils.degToRad(1.5));
+    const changed = mode !== v.mode || selectedId !== v.id || cueJump;
+    if (changed) {
+      const duration =
+        mode === "preset"
+          ? 0.8
+          : slewSeconds(
+              aim.current
+                .clone()
+                .sub(goalPosition)
+                .angleTo(goal.clone().sub(goalPosition)),
+            );
+      v.aimBlend.start(aim.current, duration);
+      v.positionBlend.start(camera.position, mode === "preset" ? 0.8 : 0.01);
+      v.mode = mode;
+      v.id = selectedId;
+      if (mode === "cue") v.cue.copy(goal);
+    }
+    if (reducedMotion) {
+      aim.current.copy(goal);
+      camera.position.copy(goalPosition);
+    } else {
+      if (v.aimBlend.active)
+        v.aimBlend.apply(
+          aim.current,
+          goal,
+          mode === "preset" ? null : goalPosition,
+          dt,
+        );
+      else aim.current.copy(goal);
+      if (v.positionBlend.active)
+        v.positionBlend.apply(camera.position, goalPosition, null, dt);
+      else camera.position.copy(goalPosition);
     }
     camera.lookAt(aim.current);
     const fps = frameMeter.current.sample(clock.elapsedTime);
@@ -144,6 +218,69 @@ function CameraRig({
     }
   });
   return null;
+}
+/** Advances the shared observed poses once per frame, before the camera and the
+ * contact renderer read them (it is mounted first, so its frame callback runs first). */
+function PoseDriver({
+  poses,
+  contacts,
+  tick,
+  contextKey,
+  reducedMotion,
+}: {
+  poses: ObservedPoseBuffer;
+  contacts: readonly RenderContact[];
+  tick: number;
+  contextKey: string;
+  reducedMotion: boolean;
+}) {
+  useFrame((_, dt) => {
+    poses.update(contacts, tick, contextKey);
+    poses.forEachFrame(dt, () => {}, reducedMotion);
+  });
+  return null;
+}
+/** Dashed ring at a radar-cued position the cameras cannot see: shows where the
+ * camera is pointing and why no airframe is drawn. Evidence position only. */
+function CueMarker({ cue }: { cue?: SensorPosition | null }) {
+  const ref = useRef<THREE.LineSegments>(null);
+  const ring = useMemo(() => {
+    const points: number[] = [];
+    for (let i = 0; i < 12; i++) {
+      const a0 = (i / 12) * Math.PI * 2,
+        a1 = a0 + (Math.PI * 2) / 24;
+      points.push(Math.cos(a0), Math.sin(a0), 0, Math.cos(a1), Math.sin(a1), 0);
+    }
+    return new Float32Array(points);
+  }, []);
+  useFrame(({ camera, size }) => {
+    const m = ref.current;
+    if (!m) return;
+    m.visible = !!cue;
+    if (!cue) return;
+    m.position.set(cue.x, cue.altitude, cue.z);
+    m.quaternion.copy(camera.quaternion);
+    const distance = camera.position.distanceTo(m.position);
+    const fov = camera instanceof THREE.PerspectiveCamera ? camera.fov : 38;
+    m.scale.setScalar(
+      (distance * Math.tan((fov * Math.PI) / 360) * 22) /
+        Math.max(1, size.height),
+    );
+  });
+  return (
+    <lineSegments ref={ref} visible={false} renderOrder={20}>
+      <bufferGeometry>
+        <bufferAttribute attach="attributes-position" args={[ring, 3]} />
+      </bufferGeometry>
+      <lineBasicMaterial
+        color="#e6b25e"
+        transparent
+        depthTest={false}
+        depthWrite={false}
+        opacity={0.85}
+      />
+    </lineSegments>
+  );
 }
 function TerrainStructure({
   box,
@@ -207,12 +344,16 @@ function World({
   referenceTruth = false,
   contextKey,
   opticalZoom,
-  reducedMotion,
+  reducedMotion = false,
   onMetrics,
+  selectedId = null,
+  cue,
 }: {
   state: Snapshot;
   vision: Vision;
   selected: string | null;
+  selectedId?: string | null;
+  cue?: SensorPosition | null;
   onFps: (n: number) => void;
   terrain?: string;
   quality?: Quality;
@@ -256,6 +397,7 @@ function World({
   const rural = terrain === "rural_forward_base";
   const detail = quality === "high" ? 32 : quality === "medium" ? 20 : 10;
   const contacts = useMemo(() => renderContacts(state.tracks), [state.tracks]);
+  const poses = useMemo(() => new ObservedPoseBuffer(), []);
   const sky = useMemo(
     () => createSkyTexture(vision, rural, palette),
     [vision, rural, palette],
@@ -322,12 +464,20 @@ function World({
         shadow-bias={-0.0004}
         color={hot ? "#ffffff" : night ? "#c1dadb" : "#fff4db"}
       />
+      <PoseDriver
+        poses={poses}
+        contacts={contacts}
+        tick={state.tick}
+        contextKey={contextKey}
+        reducedMotion={reducedMotion}
+      />
       <CameraRig
-        key={contextKey}
         opticalZoom={opticalZoom}
         reducedMotion={reducedMotion}
         onMetrics={onMetrics}
-        target={state.tracks.find((t) => t.id === selected)}
+        selectedId={selectedId}
+        cue={selected ? null : cue}
+        poses={poses}
         onFps={onFps}
         preset={cameraPreset}
         tracks={state.tracks}
@@ -420,14 +570,15 @@ function World({
           shadows={shadows}
         />
       ))}
-      <mesh position={[0, 2, -4]}>
-        <boxGeometry args={[10, 4, 6]} />
+      {/* Protected asset: a low, earth-bermed node below the sensor's eye line, so
+          it never fills the view on rear bearings (baseline A2). */}
+      <mesh position={[0, 0.7, -9]}>
+        <boxGeometry args={[8, 1.4, 6]} />
         <meshStandardMaterial color={hot ? "#94a397" : "#5f705f"} />
       </mesh>
+      {!cameraPreset && selectedId && !selected && <CueMarker cue={cue} />}
       <ContactRenderer
-        contacts={contacts}
-        tick={state.tick}
-        contextKey={contextKey}
+        poses={poses}
         vision={vision}
         selected={selected}
         palette={palette}
@@ -456,6 +607,9 @@ export type SceneProps = {
   engineVersion?: string;
   /** Display crop only; does not change sensor range, resolution or origin. */
   opticalZoom?: number;
+  /** Latest reported position of the selected contact from any sensor (radar,
+   * EO or IR). The live camera slews to it when no camera observes the contact. */
+  cue?: SensorPosition | null;
   reducedMotion?: boolean;
   onMetrics?: (metrics: RendererMetrics) => void;
 };
@@ -502,6 +656,7 @@ export function Scene(props: SceneProps) {
           {...props}
           state={observedState}
           selected={selected}
+          selectedId={props.selected}
           finale={finale}
           referenceTruth={props.groundTruth === true}
           contextKey={`${props.visibilityKey ?? "legacy-scene"}:${props.vision}:${props.groundTruth === true}`}

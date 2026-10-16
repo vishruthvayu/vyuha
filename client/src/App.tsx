@@ -3,8 +3,6 @@ import { useCommandTransport } from "./useCommandTransport";
 import { reportedContacts, visualPosition } from "./observed-contacts";
 import OfficerGate from "./OfficerGate";
 import {
-  controlReason,
-  nextStep,
   palettes,
   cameraPose,
   type CameraPreset,
@@ -17,7 +15,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Activity,
   ArrowDownToLine,
-  Check,
   ChevronRight,
   Crosshair,
   Layers,
@@ -52,6 +49,11 @@ import { PreparationTerrain } from "./PreparationTerrain";
 import { launchPreparedScenario } from "./Director";
 import DrillSetup from "./DrillSetup";
 import { DecisionWorkspace } from "./DecisionWorkspace";
+import {
+  GuidedDecision,
+  decisionRecord,
+  type ActionFeedback,
+} from "./GuidedDecision";
 import { ReviewSections } from "./ReviewSections";
 import type { TrainingProfile } from "./types";
 import { GhostPanel, GhostTimeline, timelineSeek, ReplayTracks } from "./Ghost";
@@ -86,12 +88,12 @@ import {
   KIND_LABEL,
   type Action,
   type AppliedCommand,
-  type Identity,
   type Kind,
   type Record as TrainingRecord,
   type Scenario,
   type ScoreCard,
   type Snapshot,
+  type Track,
 } from "./types";
 
 const initial = makeScenario();
@@ -152,8 +154,23 @@ export default function App({
   const [vision, setVision] = useState<Vision>("thermal");
   const [tactical, setTactical] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
-  const [kind, setKind] = useState<Kind>("quad");
-  const [identity, setIdentity] = useState<Identity>("hostile");
+  const [feedback, setFeedback] = useState<ActionFeedback | null>(null);
+  const feedbackSeq = useRef(0);
+  const [guidance, setGuidanceState] = useState(() => {
+    try {
+      return localStorage.getItem("vyuha.guidance") !== "off";
+    } catch {
+      return true;
+    }
+  });
+  const setGuidance = (on: boolean) => {
+    setGuidanceState(on);
+    try {
+      localStorage.setItem("vyuha.guidance", on ? "on" : "off");
+    } catch {
+      // Guidance still toggles for this page when storage is unavailable.
+    }
+  };
   const [records, setRecords] = useState<TrainingRecord[]>([]);
   const [current, setCurrent] = useState<TrainingRecord | null>(null);
   const [replayTick, setReplayTick] = useState(0);
@@ -708,6 +725,25 @@ export default function App({
             .catch(() => {});
         }
       }
+      if ((m.type === "accepted" || m.type === "rejected") && m.action) {
+        const done = m.action;
+        setFeedback((f) =>
+          f &&
+          f.status === "submitted" &&
+          f.action.k === done.k &&
+          f.action.track === done.track
+            ? {
+                ...f,
+                status: m.type === "accepted" ? "accepted" : "rejected",
+                tick: done.tick,
+                reason:
+                  m.type === "rejected"
+                    ? "The contact changed state before the action reached the exercise engine (for example it lost its observation or stopped being active). Check the contact and try again."
+                    : undefined,
+              }
+            : f,
+        );
+      }
       if (m.type === "accepted" && m.action) {
         const advice = latestAdvice.current;
         if (
@@ -971,6 +1007,11 @@ export default function App({
   };
   const act = (data: Omit<Action, "tick">) => {
     if (!running || !workerInitialized.current) return;
+    setFeedback({
+      seq: ++feedbackSeq.current,
+      action: data,
+      status: "submitted",
+    });
     worker.current?.postMessage({
       type: "action",
       scope: workerScope.current,
@@ -1003,9 +1044,18 @@ export default function App({
   };
   const choose = (id: string) => {
     setSelected(id);
-    const t = state.tracks.find((t) => t.id === id);
-    setKind(t?.classification || "quad");
-    setIdentity(t?.declared || "hostile");
+  };
+  // Convenience only: the nearest reported contact the trainee has not designated
+  // (then any reported contact without a response). Never a recommendation.
+  const nextContact = () => {
+    const by = (t: Track) => Math.hypot(t.x, t.z);
+    const others = visible
+      .filter((t) => t.id !== selected)
+      .sort((a, b) => by(a) - by(b));
+    const next =
+      others.find((t) => t.designated === null) ??
+      others.find((t) => !t.attempts.length);
+    if (next) choose(next.id);
   };
   const resumeDraft = () => {
     if (!recovery) return;
@@ -1703,6 +1753,15 @@ export default function App({
                   ) : (
                     <Scene
                       opticalZoom={opticalZoom}
+                      cue={
+                        target
+                          ? {
+                              x: target.x,
+                              z: target.z,
+                              altitude: target.altitude,
+                            }
+                          : null
+                      }
                       terrainBoxes={scenario.terrain_boxes}
                       engineVersion={scenario.engine_version}
                       visibilityKey={`${scenario.id}:${sessionRef.current || "preview"}`}
@@ -1738,11 +1797,30 @@ export default function App({
                               ? "IR NIGHT DISPLAY / ILLUSTRATIVE"
                               : "NIGHT VISION / SIMULATED"}
                         <span>
-                          {selected
-                            ? `TRACKING ${selected}`
-                            : "OBSERVATION SECTOR"}
+                          {!selected
+                            ? "OBSERVATION SECTOR"
+                            : opticalPosition
+                              ? `TRACKING ${selected}`
+                              : target
+                                ? `${selected} · CUED BY ${target.observation?.radar.position ? "RADAR" : "SENSOR REPORT"} · NOT SEEN BY THIS CAMERA`
+                                : `${selected} · NO CURRENT REPORT · HOLDING BEARING`}
                         </span>
                       </div>
+                      {vision === "day" &&
+                        state.tracks.some(
+                          (t) =>
+                            t.active && t.observation?.eo.available === false,
+                        ) && (
+                          <div
+                            className="view-annotation view-unavailable"
+                            role="note"
+                          >
+                            DAY TV HAS NO PICTURE
+                            <span>
+                              Night or sensor fault · use THERMAL or IR
+                            </span>
+                          </div>
+                        )}
                       <div className="crosshair">
                         <span />
                         <span />
@@ -1753,9 +1831,11 @@ export default function App({
                           ? "RURAL FORWARD BASE"
                           : "URBAN OUTPOST"}
                         <span>
-                          {selected && opticalPosition
-                            ? `BEARING ${Math.round(((Math.atan2(opticalPosition.x, opticalPosition.z) * 180) / Math.PI + 360) % 360)}° · ALT ${opticalPosition.altitude} m`
-                            : "Select a radar contact to focus the camera"}
+                          {selected && (opticalPosition ?? target)
+                            ? `${opticalPosition ? "" : "CUE "}BEARING ${Math.round(((Math.atan2((opticalPosition ?? target)!.x, (opticalPosition ?? target)!.z) * 180) / Math.PI + 360) % 360)}° · ALT ${Math.round((opticalPosition ?? target)!.altitude)} m`
+                            : selected
+                              ? "Holding last bearing"
+                              : "Select a radar contact to focus the camera"}
                         </span>
                       </div>
                       <div className="view-annotation bottom-right">
@@ -2112,164 +2192,23 @@ export default function App({
                     </>
                   }
                 >
-                  <div className="next-guidance" role="status">
-                    <b>NEXT</b>{" "}
-                    {phase === "running" && selected && !target
-                      ? `${selected}: no current sensor observation. Selection retained; wait for reacquisition.`
-                      : nextStep(phase, target)}
-                  </div>
-                  <div
-                    className="action-panel"
-                    data-step={
-                      !target
-                        ? 0
-                        : target.designated === null
-                          ? 1
-                          : !target.classification
-                            ? 2
-                            : 3
-                    }
-                  >
-                    <div className="action-heading">
-                      <span className="step-number">
-                        {target?.designated === null || !target
-                          ? "1"
-                          : !target?.classification
-                            ? "2"
-                            : "3"}
-                      </span>
-                      <div>
-                        <strong>
-                          {!target
-                            ? "Select a contact"
-                            : target.designated === null
-                              ? "Designate contact"
-                              : !target.classification
-                                ? "Classify the contact"
-                                : "Choose a response"}
-                        </strong>
-                        <small>
-                          {!target
-                            ? "Select a radar marker or contact in the list."
-                            : `${target.id} · ${Math.round(Math.hypot(target.x, target.z))} m illustrative range`}
-                        </small>
-                      </div>
-                      {target && (
-                        <span className="pill muted">
-                          {target.declared || "UNCLASSIFIED"}
-                        </span>
-                      )}
-                    </div>
-                    <div className="action-controls">
-                      <button
-                        className="button designate"
-                        disabled={!!controlReason("designate", phase, target)}
-                        title={controlReason("designate", phase, target)}
-                        onClick={() =>
-                          target && act({ k: "designate", track: target.id })
-                        }
-                      >
-                        <Crosshair size={16} />
-                        {target?.designated !== null && target
-                          ? "Designated"
-                          : "Designate"}
-                      </button>
-                      <label className="sr-only" htmlFor="kind">
-                        Contact type
-                      </label>
-                      <select
-                        id="kind"
-                        disabled={!!controlReason("classify", phase, target)}
-                        title={controlReason("classify", phase, target)}
-                        value={kind}
-                        onChange={(e) => setKind(e.target.value as Kind)}
-                      >
-                        {Object.entries(KIND_LABEL).map(([k, v]) => (
-                          <option key={k} value={k}>
-                            {v}
-                          </option>
-                        ))}
-                      </select>
-                      <label className="sr-only" htmlFor="identity">
-                        Contact identity
-                      </label>
-                      <select
-                        id="identity"
-                        disabled={!!controlReason("classify", phase, target)}
-                        title={controlReason("classify", phase, target)}
-                        value={identity}
-                        onChange={(e) =>
-                          setIdentity(e.target.value as Identity)
-                        }
-                      >
-                        <option value="hostile">Hostile</option>
-                        <option value="friendly">Friendly</option>
-                        <option value="neutral">Neutral</option>
-                      </select>
-                      <button
-                        className="button subtle"
-                        disabled={!!controlReason("classify", phase, target)}
-                        title={controlReason("classify", phase, target)}
-                        onClick={() =>
-                          target &&
-                          act({
-                            k: "classify",
-                            track: target.id,
-                            kind,
-                            identity,
-                          })
-                        }
-                      >
-                        <Check size={16} /> Confirm ID
-                      </button>
-                    </div>
-                    <div className="effector-row">
-                      {(
-                        [
-                          { id: "hold", label: "Hold fire", Icon: Shield },
-                          { id: "rf_jam", label: "RF jammer", Icon: Radio },
-                          { id: "kinetic", label: "Kinetic", Icon: Target },
-                        ] as const
-                      ).map(({ id, label, Icon }) => (
-                        <button
-                          key={id}
-                          className={`effector ${id}`}
-                          disabled={
-                            !!controlReason(
-                              "respond",
-                              phase,
-                              target,
-                              !scenario.doctrine ||
-                                scenario.doctrine.rules.effectors.includes(id),
-                            )
-                          }
-                          title={controlReason(
-                            "respond",
-                            phase,
-                            target,
-                            !scenario.doctrine ||
-                              scenario.doctrine.rules.effectors.includes(id),
-                          )}
-                          onClick={() =>
-                            target &&
-                            act({ k: "engage", track: target.id, effector: id })
-                          }
-                        >
-                          <Icon size={18} />
-                          <div>
-                            <strong>{label}</strong>
-                            <small>
-                              {id === "hold"
-                                ? "Monitor contact"
-                                : id === "rf_jam"
-                                  ? "RF-link threats only"
-                                  : "Check range and ROE"}
-                            </small>
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+                  <GuidedDecision
+                    phase={phase}
+                    selected={selected}
+                    target={target}
+                    record={decisionRecord(
+                      state.tracks.find((t) => t.id === selected),
+                    )}
+                    state={state}
+                    scenario={scenario}
+                    vision={vision}
+                    rf={rfObservation}
+                    feedback={feedback}
+                    guidance={guidance}
+                    onGuidance={setGuidance}
+                    onAct={act}
+                    onNext={nextContact}
+                  />
                 </DecisionWorkspace>
               )}
             </div>

@@ -1,31 +1,27 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { createAirframeParts } from "./airframe-geometry";
 import { palettes, type ThermalPalette } from "./presentation";
 import type { Quality } from "./quality";
 import {
-  ObservedPoseBuffer,
   wingAngle,
-  type RenderContact,
+  type ObservedPoseBuffer,
   type RenderShape,
 } from "./render-contacts";
 import type { Vision } from "./visibility";
 
 /** All instances share original procedural geometry. Only observation-scoped descriptors enter. */
 export function ContactRenderer({
-  contacts,
-  tick,
-  contextKey,
+  poses,
   vision,
   palette,
   quality,
   selected,
   reducedMotion = false,
 }: {
-  contacts: readonly RenderContact[];
-  tick: number;
-  contextKey: string;
+  /** Shared with the camera rig; advanced once per frame before either reads it. */
+  poses: ObservedPoseBuffer;
   vision: Vision;
   palette: ThermalPalette;
   quality: Quality;
@@ -44,8 +40,9 @@ export function ContactRenderer({
       ]),
     [],
   );
-  const poses = useRef(new ObservedPoseBuffer());
-  const capacity = 2 ** Math.ceil(Math.log2(Math.max(8, contacts.length)));
+  // Fixed capacity: re-creating instanced meshes when the count crossed a power of
+  // two caused allocation and upload spikes (baseline A6).
+  const [capacity, setCapacity] = useState(256);
   const counters = useMemo(() => new Uint32Array(parts.length), [parts]);
   const indices = useMemo(() => {
     const result = new Map<RenderShape, number[]>();
@@ -109,48 +106,45 @@ export function ContactRenderer({
     [materials],
   );
 
-  useFrame(({ camera, size }, dt) => {
-    poses.current.update(contacts, tick, contextKey);
+  useFrame(({ camera, size }) => {
     counters.fill(0);
     if (marker.current) marker.current.visible = false;
-    poses.current.forEachFrame(
-      dt,
-      (p) => {
-        scratch.position.set(p.displayX, p.displayY, p.displayZ);
-        scratch.rotation.setFromEuler(
-          scratch.euler.set(0, p.displayHeading, 0),
-        );
-        scratch.base.compose(scratch.position, scratch.rotation, scratch.scale);
-        for (const i of indices.get(p.shape) ?? []) {
-          const mesh = meshes.current[i];
-          if (!mesh) continue;
-          scratch.matrix.copy(scratch.base);
-          const side = parts[i].wing;
-          if (side)
-            scratch.matrix.multiply(
-              scratch.wing.makeRotationZ(
-                side * (reducedMotion ? 0 : wingAngle(p.id, tick)),
-              ),
-            );
-          mesh.setMatrixAt(counters[i]++, scratch.matrix);
-        }
-        if (marker.current && p.id === selected) {
-          marker.current.visible = true;
-          marker.current.position.copy(scratch.position);
-          marker.current.quaternion.copy(camera.quaternion);
-          const distance = camera.position.distanceTo(scratch.position);
-          const minimum =
-            camera instanceof THREE.PerspectiveCamera
-              ? (distance * Math.tan((camera.fov * Math.PI) / 360) * 12) /
-                Math.max(1, size.height)
-              : 0;
-          marker.current.scale.setScalar(
-            Math.max(p.shape === "fixed_wing" ? 3 : 1.5, minimum),
+    let count = 0;
+    poses.each((p) => {
+      count++;
+      scratch.position.set(p.displayX, p.displayY, p.displayZ);
+      scratch.rotation.setFromEuler(scratch.euler.set(0, p.displayHeading, 0));
+      scratch.base.compose(scratch.position, scratch.rotation, scratch.scale);
+      for (const i of indices.get(p.shape) ?? []) {
+        const mesh = meshes.current[i];
+        if (!mesh) continue;
+        scratch.matrix.copy(scratch.base);
+        const side = parts[i].wing;
+        if (side)
+          scratch.matrix.multiply(
+            scratch.wing.makeRotationZ(
+              side * (reducedMotion ? 0 : wingAngle(p.id, poses.displayTick)),
+            ),
           );
-        }
-      },
-      reducedMotion,
-    );
+        if (counters[i] < capacity)
+          mesh.setMatrixAt(counters[i]++, scratch.matrix);
+      }
+      if (marker.current && p.id === selected) {
+        marker.current.visible = true;
+        marker.current.position.copy(scratch.position);
+        marker.current.quaternion.copy(camera.quaternion);
+        const distance = camera.position.distanceTo(scratch.position);
+        const minimum =
+          camera instanceof THREE.PerspectiveCamera
+            ? (distance * Math.tan((camera.fov * Math.PI) / 360) * 12) /
+              Math.max(1, size.height)
+            : 0;
+        marker.current.scale.setScalar(
+          Math.max(p.shape === "fixed_wing" ? 3 : 1.5, minimum),
+        );
+      }
+    });
+    if (count > capacity) setCapacity(2 ** Math.ceil(Math.log2(count)));
     parts.forEach((_, i) => {
       const mesh = meshes.current[i];
       if (!mesh) return;

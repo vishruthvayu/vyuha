@@ -44,6 +44,6 @@ onmessage=(e:MessageEvent<{type:string;scope?:string;scenario?:Scenario;action?:
  else if(m.type==='control'&&sim&&m.command&&!ended){
   if(sim.control(m.command,sim.state.tick,order)){order++;if(m.command.type==='resume')localPaused=false;if(m.command.type==='pause'||m.command.type==='resume')clock.reset(performance.now());emit({type:'controlled',commands:sim.commands});}publish();
  }else if(m.type==='action'&&sim&&m.action&&!localPaused&&!ended){
-  const a={...m.action,tick:sim.state.tick,order};if(sim.act(a)){order++;emit({type:'accepted',action:a});}publish();
+  const a={...m.action,tick:sim.state.tick,order};if(sim.act(a)){order++;emit({type:'accepted',action:a});}else emit({type:'rejected',action:a});publish();
  }
 };
