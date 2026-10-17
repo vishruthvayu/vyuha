@@ -24,6 +24,10 @@ Check which GPU WebGL uses (Intel iGPU here, through ANGLE/Mesa): open a tab, th
 
 | Script | Use |
 |---|---|
+| `acceptance.mjs <app> <out> guided\|keyboard\|focusscan\|world\|aar [--w= --h=] [--axe]` | Trusted-input workflow, AAR and accessibility receipts. World captures are explicitly synthetic renderer views. |
+| `mobile-controls.mjs <app> <out>` | Eight viewport widths; hit-testing and actual 2D fallback/3D recovery clicks. |
+| `contact-layout.mjs <app> <out>` | Eight widths of labelled synthetic stale-contact rows; detects text escaping a scrollable roster. |
+| `offline-check.mjs <app> <out>` | Current service-worker cache completeness and offline shell/renderer reload through CDP. Does not certify physical WAN-off or backend workflows. |
 | `guided-drill.mjs <app> <out> [adaptive\|library] [--lib=Title] [--wait=N] [--w= --h=] [--axe]` | Full guided drill: select → designate → classify → respond → outcome, vision switches, end. Logs dock text, frame stats and, with `--axe`, axe results per step. |
 | `baseline-drill.mjs` | The same drill against the *old* dock (baseline build). |
 | `switch-burst.mjs <app> <out> <libTitle\|adaptive> <wait>` | Burst captures around THERMAL / DAY TV switches (camera continuity). |

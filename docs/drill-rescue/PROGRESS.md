@@ -383,3 +383,14 @@ require a minimum observed sensor pixel count and captures the active view befor
 AAR capture respects existing scroll margins instead of bypassing them with a
 hardcoded offset. These harness changes do not change observations or scoring.
 Graphics measurements and final source-matched evidence remain the next gate.
+
+## Takeover: final walkthrough corrections
+
+Fresh walkthroughs exposed two more presentation defects: preparation's live-only
+bottom camera captions collided with its illustrative-landscape disclosure, and
+wrapped last-report timestamps could spill into the next row when the roster flex
+container shrank its children. Preparation now uses its own disclosure; contact rows
+retain intrinsic height inside the scrollable roster. A labelled synthetic eight-row
+browser regression verifies containment at all eight requested widths. Full328
+frontend/parity, lint, format and build pass after these corrections. Current-source
+performance and final acceptance receipts are recorded separately from older M6 data.

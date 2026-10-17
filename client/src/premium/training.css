@@ -560,6 +560,7 @@
 .contact-item,
 .right-panels .contact-item {
   display: grid;
+  flex-shrink: 0;
   grid-template-columns: 22px minmax(0, 1fr) 14px;
   align-items: center;
   gap: var(--s-3);
