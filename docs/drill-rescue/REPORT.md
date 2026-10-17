@@ -1,150 +1,151 @@
-> DRAFT RECOVERED DURING TAKEOVER — historical milestone numbers below are not final-source acceptance. See PROGRESS.md for latest implementation and the forthcoming ACCEPTANCE.md.
+# Drill rescue — source-scoped handoff
 
-# Drill experience rescue — report
+The inherited world/aircraft/workflow implementation is preserved. This continuation
+reproduced and fixed request-feedback races, accessibility failures and actual phone
+layout defects, and collected acceptance evidence against a frozen production build.
+This is an integration handoff, not a release candidate or final human visual approval.
 
-Branch `feature/vyuha-drill-experience-rescue`, based on
-`integration/vyuha-ultimate-finale` @ `db0ff23`. The final SHA is in §1. This report
-summarises; the evidence is in the sibling documents:
+## Source
 
-* `BASELINE-DEFECTS.md` — what was wrong, how it was reproduced, root causes;
-* `RESEARCH-AND-ASSET-SELECTION.md` — sources inspected, accepted and rejected;
-* `ASSET-PROVENANCE.md` — every bundled asset, licence, author, processing, MD5;
-* `PROGRESS.md` — milestone by milestone, with measurements;
-* `ACCEPTANCE.md` — real-browser acceptance states, accessibility and keyboard;
-* `HANDOFF.md` — how to run, measure and continue; open items in order.
+| Item | Exact reference |
+|---|---|
+| Common integration base | `db0ff23a67692d3db5dce07a031d17ea50a409b3` |
+| Drill branch | `feature/vyuha-drill-experience-rescue` |
+| Tested runtime freeze | `5d40a24165dff5ace27c6131318da599ad828b0d` |
+| Surrounding-platform hardening branch | `feature/vyuha-final-hardening` at `8fba805e8a3355ac34ea329e232eb0e4ec9dcd20` |
+| Combined source / release candidate | Not created; retained by main Codex |
 
-## 1. Source
+Later evidence/tooling commits retain the runtime hashes in
+[validation/SOURCE-INVENTORY.json](validation/SOURCE-INVENTORY.json). The final pushed
+branch SHA is supplied with the handoff and can be verified using `git ls-remote`.
+Protected releases were not rewritten or deleted. No force push or integration merge.
 
-| Milestone | Commit | Content |
-|---|---|---|
-| M1 | `63a2a04` | baseline reproduction, defects, research, benchmark baseline |
-| M2 | `b489741` | guided decision dock, evidence-based camera, sample interpolation |
-| — | `8e26e8d` | handoff document, browser harness |
-| M3 | `b7706cc` | environment: sky, terrain, base, occluder dressing, night, thermal |
-| M4 | `868e0ed` | airframes with LODs and motion cues; sensor-limited close-up (M5) |
-| M5 | `6c4518c` | IR display treatment, resource release on rebuild |
-| M6 | see PROGRESS.md | acceptance, review fixes, final measurements |
+## Product changes
 
-Every commit was pushed to `origin/feature/vyuha-drill-experience-rescue`, and the
-remote SHA was checked after each push. Nothing was merged, tagged or force-pushed.
+**World and aircraft, inherited and retained:** distinct urban/rural layouts,
+original modular buildings/hangars/towers/fencing/HESCO and technical props, local
+PBR ground/materials, day/night skies and facility lighting, terrain relief outside
+the authoritative sensor clearing, and bounded illustrative thermal/IR presentation.
+Original multirotor, fixed-wing and bird geometry use LOD/instancing and motion from
+observed paths. A shared generic multirotor avoids encoding hidden affiliation or
+control method. Decorative scenery produces an explicitly hollow behind-scenery
+marker rather than inventing new sensor occlusion or painting an aircraft on a wall.
 
-## 2. Visual quality (before → after)
+**Camera and evidence:** the observed-pose buffer interpolates bounded samples;
+camera/airframe follow the displayed observation, hold the last bearing on loss and
+preserve context across sensor switches. Inspection is gated by observed shape and
+sensor pixels on target. Responsive inset painting clears the phone's main reticle
+without increasing eligible detail. Live zoom captures do not freeze simulation time.
 
-Screenshots are real captures from the built app in Chrome.
-* `screenshots/baseline/` — before;
-* `screenshots/m3/` — before/after pairs for urban day, rural day, night EO, thermal,
-  IR night display and AAR;
-* `screenshots/m4/` — airframes and close-ups;
-* `screenshots/acceptance/` — the 17 states.
+**Guided decisions:** Select → Designate → Classify → Respond → Outcome; descriptive
+choices, no preselected answer, visible public evidence/resources/reach, optional
+process guidance, and outcomes from public response state. The continuation adds
+request-correlated worker receipts and explicit pause/end rejection. Transport IDs
+never enter authoritative action records. Accepted keyboard decisions move focus to
+a labelled next-step group; pointer/external focus is preserved.
 
-* **World.**
-  - Before: a grid plane, a gradient sky and untextured boxes.
-  - After: a photographed sky; flat-then-rolling terrain with blended PBR ground; a
-    procedural base for both terrains (buildings, hangar, towers, masts, containers,
-    fence, HESCO, gate, lights); decimated CC0 props; tree impostors; authoritative
-    occluders dressed as buildings *inside* their volume.
-* **Aircraft.**
-  - Before: boxes and flat discs at 2–3× scale.
-  - After: an original generic multirotor, fixed-wing, bird and unresolved blob at
-    real scale, with close/medium detail and far markers; spinning props and blur
-    discs, flapping wings; attitude from the observed path.
-* **Lighting and atmosphere.** Lighting follows the scenario's day/night state. The
-  sun direction is measured from the sky photograph. Haze comes from scenario fog.
-  Night EO is dark with facility lights.
-* **Thermal.** An illustrative per-surface temperature model with a fixed display
-  range: cold sky, warm asphalt, sun-heated metal, cool glass, hot motors and
-  engines. The IR night display is a green phosphor image with grain and vignette.
-* **Camera.**
-  - Track the displayed pose, slew to the radar cue, or hold the bearing; never swing
-    to a default sector, never remount on sensor change.
-  - Slews are spherical at about 150°/s.
-* **Sensor close-up.** The selected contact is shown at the pixel count the sensor's
-  IFOV puts on target. It can never show unobservable detail.
+**Phone and review corrections:** footer height now exposes fog and real 2D fallback;
+range/unit stay together; preparation disclosure no longer collides with live camera
+captions; wrapped stale reports retain their own row height. AAR event buttons keep
+their full visible text in accessible names. Keyboard focus clears the sticky header.
 
-## 3. Training UX
+No new npm library, runtime service, external font or remote decoder was added. The
+server tree remains identical to the integration base. Scoring, sensors, schemas,
+authentication, authorization and historical references were not changed here.
 
-Guided **Select → Designate → Classify → Respond → Outcome** dock:
-* no pre-selected answer;
-* option cards with definitions, and evidence beside each choice;
-* effector reach and restricted zone from the engine's own rule on the *reported*
-  position;
-* public resources (rounds, channels, cooldown);
-* every action acknowledged as submitted, accepted or not accepted;
-* outcomes from the public response state;
-* optional guidance (remembered per device);
-* next-contact helper;
-* honest view annotations (TRACKING / CUED BY RADAR / HOLDING BEARING / DAY TV HAS NO
-  PICTURE).
+## Research and assets
 
-Guidance explains process, never the answer; a test checks it names no identity.
+[RESEARCH-AND-ASSET-SELECTION.md](RESEARCH-AND-ASSET-SELECTION.md) preserves the original
+developer's inspected sources, API records, unavailable resources and rejected
+alternatives. Selected sources include Poly Haven materials/skies/props and official
+Three.js/R3F performance and glTF tooling references. Aircraft and architecture are
+original. Other asset libraries were not bundled without suitable fit and rights.
+This takeover checked the implementation and ledger rather than claiming a new asset
+research campaign. The surrounding-platform design research remains on the hardening
+branch; this track did not introduce a competing shell or palette.
 
-Accessibility: axe WCAG 2.0–2.2 A/AA found 0 violations at every guided step, at 1440
-and 390. Native radio groups and buttons; focus ring on cards. Details in
-`ACCEPTANCE.md`.
+[ASSET-PROVENANCE.md](ASSET-PROVENANCE.md), `art/ledger/` and the regeneration scripts
+record sources, creators, licences and processing. All external runtime world assets
+are CC0 derivatives; original geometry/atlases are repository-generated. Poly Haven
+and font notices ship locally. Current world resources: **41 files, 2,716,920 bytes**.
+Production dist: **4,773,790 bytes**, 72 offline URLs. The lazy Scene chunk is still
+~1.06 MB minified (~300 kB gzip), with Vite's existing size warning retained.
 
-## 4. Engineering
+## Verification
 
-* **Tests:** 310/310 frontend (287 at the base). Added tests cover:
-  - guided dock states and hidden-truth invariance;
-  - camera mode and slew bounds;
-  - motion smoothness;
-  - world invariants (flat ground in optical range, scenery clear of occluders,
-    dressing inside boxes, batches and thermal classes);
-  - airframe silhouette invariance and LOD hysteresis;
-  - pixels-on-target maths;
-  - attitude bounds.
+- Full frontend: **328 passed, 0 failed**, including Python/TypeScript parity,
+  hidden-truth, observation, airframe, guided workflow, actual-worker receipt/order
+  isolation and mounted App/focus regressions.
+- ESLint, configured formatting, explicit world formatting and production build pass.
+- Separate GitHub checkout: fresh `npm ci`, 328 tests, lint, format, build; all 72
+  production files byte-identical to the served build. Git objects were reused with
+  `--reference --dissociate`; node_modules and dist were built independently.
+  Local parity used the existing requirements-pinned Python 3.14 environment.
+- Exact frozen-source [GitHub run 39013253493](https://github.com/vishruthvayu/vyuha-sih26247/actions/runs/39013253493)
+  passes: **699 backend tests** (one dependency warning), 328 frontend/parity, lint,
+  format, production build and Docker. Fresh Python 3.12 dependencies install on the
+  hosted runner. See [hosted summary](validation/hosted-summary.txt) and
+  [step/source receipt](validation/github-frozen.json).
+- Two frozen-source real-browser drills save independently scored AARs. Desktop
+  records kinetic neutralisation; phone records an accepted attempt with no
+  observable effect. 22 axe states (11 per width), 0 violations, no JavaScript runtime
+  exceptions or contact-row/document overflow in those state receipts.
+- Eight responsive widths pass footer hit-testing and actual 2D/3D recovery clicks.
+  Labelled synthetic wrapped-roster checks pass at all eight; independent review
+  additionally confirms the actual stale contact after neutralisation.
+- The current service-worker cache contains 72 expected URLs, 0 missing; cached shell
+  and renderer reload in CDP offline mode. This does not certify physical WAN-off.
 
-  Backend parity tests run inside the suite with the server venv.
-* **Motion:** displayed speed of a 15 m/s contact had SD 8.75 m/s (min 3.6, max 32);
-  it is now 0.25 m/s (1.3 with ±12 ms delivery jitter).
-* **Performance (measured, `PROGRESS.md` M3/M4, `bench/`):**
-  - NVIDIA RTX 5060 Laptop: 60 fps, 1 % low 59.5, every tier, both cameras, 8–200
-    contacts.
-  - Intel UHD 770 iGPU, shared with the desktop: Low 59–60; Medium ~51–57; High ~39.
-    The baseline held 60 there.
-  - Median GPU time at Medium is ~3 ms per frame, but ~10 % of frames take 12–15 ms
-    on this iGPU. The cause is open (see `HANDOFF.md`).
-  - The world costs 35–47 draw calls and ~108–137 k triangles.
-* **Resources:** 12 cycles of sensor and quality switching leave buffers and textures
-  stable (251→257 and 55→59) and the heap stable after GC. Instanced meshes and
-  per-build textures are released on rebuild.
-* **Assets:** 2.6 MB of world assets. All are Poly Haven CC0 or original; the CC0
-  notice ships in `dist/licenses/`. `dist/` is 4.8 MB in total and precached offline.
-* **Hidden truth:**
-  - the renderer reads only `visual_shape`, `visual_level` and observed positions;
-  - one multirotor stands for quad, no-RF FPV and friendly UAV;
-  - LOD depends only on projected size;
-  - the dock reads only observations, public state and the trainee's own decisions
-    (tested by rendering every hidden kind × identity and comparing output);
-  - the close-up is limited to sensor resolution;
-  - no artificial illumination of contacts at night.
-* **Unchanged:** simulation, sensors, scoring, replay, parity fixtures, server. The worker transport also echoes request IDs and explicitly rejects paused/ended
-  actions; receipt metadata never enters authoritative event records.
+[ACCEPTANCE.md](ACCEPTANCE.md) explains keyboard/accessibility scope and the retained
+Canvas2D warnings/transient AAR 409 entries. [AUDIT-TAKEOVER.md](AUDIT-TAKEOVER.md)
+records ten reproduced findings and independent reviews. The historical 211 statuses
+remain 93 verified/71 partial/29 deferred/17 external/1 N/A, with no bulk recertification.
 
-## 5. Integration notes for the owner
+The [current 36-cell graphics matrix and two Medium 200 repeats](BENCHMARK.md)
+are complete: application medians are 60 FPS, with three retained long-frame cells
+(worst 216.7 ms). Long-run/resource/interaction checks are still being collected. Earlier M6 NVIDIA/idle-Intel matrices remain historical; they are
+not final-source measurements, M1 acceptance or evidence of no performance tradeoff.
 
-* **Merge risk:**
-  - `App.tsx`: the decision dock section is replaced; selection and
-    acknowledgement state were added;
-  - `Scene.tsx`, `ContactRenderer.tsx` and `airframe-geometry.ts` are rewritten;
-  - `render-contacts.ts`: the pose buffer is rewritten, API compatible;
-  - `premium/training.css`: dock styles replaced, IR overlay added;
-  - `sim.worker.ts`: one line.
-* **After merge, re-run:**
-  - full frontend tests with the backend parity venv;
-  - backend pytest (untouched by this branch);
-  - a drill on a real device;
-  - `tools/drill-rescue/bench.mjs` on the reference M1.
-* **Product decision needed:** on integrated GPUs, ask whether automatic quality
-  should step down at sustained < 55 fps instead of < 20. That policy lives in
-  `quality.ts` and was deliberately not changed.
+## Actual screenshots
 
-## 6. Outstanding issues and limitations
+All are real production-browser captures. Guided views use synthetic server sessions;
+world views are explicitly synthetic benchmark scenes. The baseline is db0ff23;
+current views use the frozen runtime bytes. These are qualitative comparisons, not
+identical-track scientific A/B trials.
 
-See `HANDOFF.md` §6 and `PROGRESS.md`. Main items:
-* the iGPU frame-time spikes;
-* AAR overview altitude;
-* reviewer items still open (per-face sun heating in day thermal, shadow detail on
-  lattice masts, city-block streetscape, sensor noise in EO);
-* no physical-device or screen-reader test in this work;
-* the thermal model is illustrative, not radiometric.
+| State | Evidence |
+|---|---|
+| Baseline workstation / primitive world | [Before](screenshots/baseline/02-active-day-workstation.webp) |
+| Preparation | [Desktop](screenshots/acceptance/1440/01-preparation.png), [phone](screenshots/acceptance/390/01-preparation.png) |
+| Active base / day / EO | [Current](screenshots/acceptance/1440/09-eo.png) |
+| Rural environment | [Current](screenshots/acceptance/world/rural_forward_base-day-day-trainee-25-4-medium.png) |
+| Night EO | [Current](screenshots/acceptance/world/urban_outpost-night-day-trainee-25-4-medium.png) |
+| Night thermal | [Current](screenshots/acceptance/world/rural_forward_base-night-thermal-trainee-25-4-medium.png) |
+| IR night display | [Current](screenshots/acceptance/world/urban_outpost-night-night-trainee-25-4-medium.png) |
+| Multirotor close-up | [1×](screenshots/acceptance/390/closeup-1-1x.png), [6×](screenshots/acceptance/390/closeup-1-6x.png), [thermal](screenshots/acceptance/390/closeup-1-thermal-6x.png) |
+| Multiple contacts | [200-contact reference overview](screenshots/acceptance/world/urban_outpost-day-day-overview-200-4-medium.png) |
+| Contact/radar selection | [Current](screenshots/acceptance/1440/11-selection.png) |
+| Accepted designation | [Current](screenshots/acceptance/1440/12-designated.png) |
+| Classification | [Desktop](screenshots/acceptance/1440/13-classification.png), [phone](screenshots/acceptance/390/13-classification.png) |
+| Response choices | [Desktop](screenshots/acceptance/1440/14-response-choices.png), [phone](screenshots/acceptance/390/14-response-choices.png) |
+| Response acknowledgment/outcome | [Current](screenshots/acceptance/1440/15-response-feedback.png) |
+| Completion/server scoring | [Current](screenshots/acceptance/1440/16-completed.png) |
+| AAR transition/reference replay | [Overview](screenshots/acceptance/1440/17-aar-overview.png), [observer](screenshots/acceptance/1440/17-aar-observer.png), [follow](screenshots/acceptance/1440/17-aar-follow.png), [phone](screenshots/acceptance/390/17-aar-replay.png) |
+
+## Remaining acceptance and integration
+
+[INTEGRATION.md](INTEGRATION.md) gives exact inputs, shared paths/contracts and checks.
+Only CI workflow and Ghost overlap with the hardening track. Preserve hardening's
+filtered/incremental timeline and drill's native accessible labels together. Merge
+App and the worker protocol together, then retest the actual combined application.
+
+The result is more credible than the baseline, but it is not photorealistic. Distant
+urban massing/repetitive windows, flat in-range terrain, clean road edges and sparse
+faceted hills remain artistic limitations. Automatic quality policy and AAR framing
+remain unchanged product choices. Still-image approval does not prove motion quality.
+
+Private original 18/22-session databases were unavailable. Physical M1, Windows,
+Android, separate-device LAN HTTPS/WAN-off, full screen-reader review and empirical
+thermal/training validation remain pending. Linux software/headless GPU checks do
+not replace a physical end-user walkthrough. Main Codex must run full merged-source
+acceptance and obtain direct user visual approval before preparing a candidate.
