@@ -63,6 +63,10 @@ EXPERIENCE TRANSFORMATION" prompt. Its non-negotiables are in §3.
 
 ## 4. Running it
 
+Current isolated production preview: http://127.0.0.1:8033/ (drill track only).
+Ports 8031 and 8040 may serve older development assets. Choose an unused port for a
+new checkout; never overwrite an existing user database or officer configuration.
+
 ```bash
 # one-time
 git worktree add -b <branch> <dir> origin/feature/vyuha-drill-experience-rescue   # or clone
@@ -83,8 +87,9 @@ covers flags, the scripts and their arguments. Two instances were used:
 * `9352` with `--disable-gpu-vsync --disable-frame-rate-limit`: GPU headroom, read
   from the app's own FPS.
 
-The GPU is shared with the desktop, so run every benchmark twice; one run was an
-outlier at about −20 fps.
+The GPU is shared with the desktop. Historical older-browser runs included a roughly
+−20 FPS outlier; current results and exact repeat scope are in BENCHMARK.md. For
+owner acceptance, repeat measurements on the actual reference hardware.
 
 Library scenarios for night and rural acceptance must be authored as an officer:
 `node tools/drill-rescue/author-scenarios.mjs http://127.0.0.1:8031 <password-file>`.
@@ -151,18 +156,21 @@ Baseline reproduction, root causes and benchmark: `BASELINE-DEFECTS.md`,
   non-repeating ground, scenery line-of-sight markers, held HUD visibility, centred
   reticle, consistent small-target rendering, lamp glare, foliage edge fade; final
   benchmark matrices (NVIDIA and idle iGPU), soak, long run; two independent visual
-  reviews; real-browser acceptance captures (external inherited evidence; final `ACCEPTANCE.md` pending).
+  reviews; real-browser acceptance captures (historical inherited captures plus current source-matched `ACCEPTANCE.md`).
 
 ## 6. What is left (in order)
 
-Major implementation milestones are pushed. Final source-matched acceptance, report
-reconciliation and the items below remain open; this is not yet an integration-ready claim.
+Implementation and source-scoped software/browser validation are pushed. Current
+results are in `REPORT.md`, `ACCEPTANCE.md`, `BENCHMARK.md` and `validation/`. This is
+an integration-review handoff; rare frame outliers, final human visual acceptance,
+physical-device and combined-source gates remain open. It is not release approval.
 In priority order:
 
 1. **Remaining product choices** (unchanged by this continuation):
-   * automatic quality steps down only below 20 fps (`quality.ts`); on a busy shared
-     iGPU, High and Medium can sit at 40–55 fps while an idle iGPU holds 60
-     everywhere (`PROGRESS.md`, final benchmark);
+   * automatic quality steps down only below 20 fps (`quality.ts`), unchanged.
+     Historical older-source/browser runs reported 40–55 fps; current 36-cell
+     application medians are 60 with rare tail stalls. These are not controlled
+     comparisons that establish a desktop-load cause;
    * the AAR overview fits only the active tracks (`scene-presentation.ts`, tested);
      including the protected asset would keep it in frame;
    * the AAR follow/observer presets fall back to Overview when the selected track

@@ -38,12 +38,19 @@ Check which GPU WebGL uses (Intel iGPU here, through ANGLE/Mesa): open a tab, th
 | `ph-download.py ph-spec.json` | Downloads the Poly Haven CC0 sources into `$ASSETS_SRC` and writes a ledger with MD5s. |
 | `ptyrun.py` | Runs `scripts/start-local.sh` under a PTY, typing the officer password from a file at the hidden prompt. |
 | `probes/pose-motion*.ts` | Display-speed statistics of the pose buffer (`npx tsx`). |
-| `closeup-shot.mjs <app> <out> [wait] [width] [height] [minPixels] [library-title-prefix]` | Live drill: select contacts until a camera resolves one, then capture the view and the sensor close-up at 1× and 6×, in EO and thermal. |
+| `closeup-shot.mjs <app> <out> [wait] [width] [height] [minPixels] [library-title-prefix] [observed-shape-filter]` | Live drill: select contacts until a camera resolves one, then capture the view and the sensor close-up at 1× and 6×, in EO and thermal. |
 | `soak.mjs <app> <cycles>` | Resource soak: repeated sensor and quality switching in a live drill; JS heap after forced GC and live WebGL objects (`gl-resources.js`). |
 | `longrun.mjs <app> <out.json> [world] [vision] [tier]` | 180 s, 200-contact run on `/system/benchmark`; FPS samples, simulation tick times, heap and live WebGL objects every 15 s. |
+| `interaction-check.mjs <app> <out>` | Trusted selection/sensor pointerdown to two-rAF scheduling receipts; not physical display latency or completed camera slew. |
+| `observe-stability.mjs <out.json> [seconds]` | Attach rAF-gap/longtask logging to the already-running isolated benchmark; does not open a scene or establish a root cause. |
 | `gpu-timer.js` | Injected by `bench.mjs`: median GPU ms per animation frame (`EXT_disjoint_timer_query_webgl2`). It is meaningful on the iGPU; on a laptop dGPU it follows power states. |
 | `bench-markdown.py <file.jsonl> <label>...` | Markdown tables from benchmark rows. |
 
 Run benchmarks on an otherwise idle GPU, one at a time. Concurrent browser work
 (even on another GPU) costs CPU and shows up as single long frames.
 
+
+The close-up observed-shape filter requires v2 public observation facts. Legacy
+scenarios expose a generic camera cue, so a legacy filtered attempt is not a passing
+shape-specific check. `docs/drill-rescue/validation/fixedwing/fixture.json` records the isolated v2 QA
+scenario used for final fixed-wing capture. No source or sensor rule is altered.

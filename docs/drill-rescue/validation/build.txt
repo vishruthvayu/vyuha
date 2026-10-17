@@ -75,5 +75,5 @@ dist/assets/Scene-CVRRBUiW.js                                 1,056.57 kB │ gz
 - Using dynamic import() to code-split the application
 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
-✓ built in 3.62s
+✓ built in 3.49s
 Offline cache: 72 local assets (2a894f3c0624)

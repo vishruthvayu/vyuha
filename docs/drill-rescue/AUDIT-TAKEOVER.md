@@ -55,8 +55,8 @@ These reviews deliberately do not infer runtime performance from screenshots.
 | Area | Status | Reason / required work |
 |---|---|---|
 | Combined-source acceptance | PARTIAL | Branches individually validated; owner must merge and repeat full acceptance |
-| Current graphics matrix / stability | PARTIAL at this checkpoint | Final source run in progress; BENCHMARK.md will record all results, including outliers |
-| Rare long-frame intervals | PARTIAL | Current shared-Intel runs include 116.7/216.7 ms stalls despite 60 FPS medians; retain raw results, repeat affected cells and validate on the reference device; no cause or resolution is asserted |
+| Current graphics matrix / stability | PARTIAL |36-cell matrix,4 repeats,180-second run and12-cycle soak recorded; rare long frames and modest soak heap/program growth prevent a blanket stability sign-off |
+| Rare long-frame intervals | PARTIAL | Current shared-Intel runs include 116.7/216.7/200 ms stalls despite 60 FPS medians; retain raw results, affected cells were repeated without long frames; validate on the reference device; no cause or resolution is asserted |
 | Architecture and landscape realism | PARTIAL | More credible than baseline; rectangular distant massing, repetitive windows, flat in-range terrain and faceted distant hills remain |
 | Physical M1, Windows, Android and separate-device LAN HTTPS/WAN-off | EXTERNALLY BLOCKED | No such physical acceptance performed on this source; Linux software/headless GPU checks do not establish a physical user walkthrough; use existing platform runbooks |
 | Full screen-reader audit | NOT IMPLEMENTED in this workstream | Keyboard, axe and manual pixel checks do not replace it |

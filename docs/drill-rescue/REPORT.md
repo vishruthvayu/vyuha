@@ -101,9 +101,11 @@ Canvas2D warnings/transient AAR 409 entries. [AUDIT-TAKEOVER.md](AUDIT-TAKEOVER.
 records ten reproduced findings and independent reviews. The historical 211 statuses
 remain 93 verified/71 partial/29 deferred/17 external/1 N/A, with no bulk recertification.
 
-The [current 36-cell graphics matrix and two Medium 200 repeats](BENCHMARK.md)
+The [current 36-cell graphics matrix and four repeat cells](BENCHMARK.md)
 are complete: application medians are 60 FPS, with three retained long-frame cells
-(worst 216.7 ms). Long-run/resource/interaction checks are still being collected. Earlier M6 NVIDIA/idle-Intel matrices remain historical; they are
+(worst 216.7 ms). The 180-second run and 12-cycle soak are complete; counts/endpoints and bounded
+interaction timings are recorded there. These are not proof of leak-free or
+glitch-free operation. Earlier M6 NVIDIA/idle-Intel matrices remain historical; they are
 not final-source measurements, M1 acceptance or evidence of no performance tradeoff.
 
 ## Actual screenshots
@@ -123,6 +125,7 @@ identical-track scientific A/B trials.
 | Night thermal | [Current](screenshots/acceptance/world/rural_forward_base-night-thermal-trainee-25-4-medium.png) |
 | IR night display | [Current](screenshots/acceptance/world/urban_outpost-night-night-trainee-25-4-medium.png) |
 | Multirotor close-up | [1×](screenshots/acceptance/390/closeup-1-1x.png), [6×](screenshots/acceptance/390/closeup-1-6x.png), [thermal](screenshots/acceptance/390/closeup-1-thermal-6x.png) |
+| Fixed-wing inspection | [1×](screenshots/acceptance/fixedwing/closeup-0-1x.png), [6×](screenshots/acceptance/fixedwing/closeup-0-6x.png), [thermal](screenshots/acceptance/fixedwing/closeup-0-thermal-6x.png) — labelled synthetic v2 QA scenario; public observed Shape checked |
 | Multiple contacts | [200-contact reference overview](screenshots/acceptance/world/urban_outpost-day-day-overview-200-4-medium.png) |
 | Contact/radar selection | [Current](screenshots/acceptance/1440/11-selection.png) |
 | Accepted designation | [Current](screenshots/acceptance/1440/12-designated.png) |
@@ -141,7 +144,8 @@ App and the worker protocol together, then retest the actual combined applicatio
 
 The result is more credible than the baseline, but it is not photorealistic. Distant
 urban massing/repetitive windows, flat in-range terrain, clean road edges and sparse
-faceted hills remain artistic limitations. Automatic quality policy and AAR framing
+faceted hills and sensor-adjacent masts filling some zoomed bearings remain artistic
+limitations. Automatic quality policy and AAR framing
 remain unchanged product choices. Still-image approval does not prove motion quality.
 
 Private original 18/22-session databases were unavailable. Physical M1, Windows,

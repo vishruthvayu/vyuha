@@ -69,5 +69,18 @@ Remaining: direct owner visual walkthrough; physical reference laptop/phone;
 screen reader; other operating systems; scientific validation of illustrative
 thermal/training models; merged-source acceptance. Procedural building massing,
 repetitive distant windows, clean road edges and faceted sparse hills remain
-artistic limitations. Graphics and long-session measurements are pending until
-BENCHMARK.md and the final report are written.
+artistic limitations. Current-source measurements and their unresolved long-frame limitations are in
+[BENCHMARK.md](BENCHMARK.md); they do not close physical or combined-source gates.
+
+## Fixed-wing inspection scope
+
+Normal mixed-library and adaptive sampling did not produce a passing eligible
+fixed-wing close-up in those attempts; their failure logs are retained. Legacy
+guidance intentionally exposes only a generic optical cue rather than a Shape fact.
+A separate clearly labelled, officer-authored v2 QA fixture (seed 12883, two fixed-wing
+contacts, rural day, DIRECT) was therefore created in the isolated database. The
+capture waits for the public observed “Fixed-wing” fact and at least 48 pixels across
+the target. Captured EO 51→57 px at 394→349 m and IR 43 px at 312 m; live motion changes these
+values between images. No hidden kind is read by the capture selector and no
+observation is fabricated. This is visual coverage, not a recognition scorecard.
+See [fixture and attempt receipts](validation/fixedwing/fixture.json).

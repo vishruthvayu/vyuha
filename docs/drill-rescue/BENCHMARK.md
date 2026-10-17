@@ -58,13 +58,44 @@ These occurred roughly five minutes apart in this run. Timing alone does not ide
 a cause, so no application fix or external-cause attribution is asserted. Both 200-
 contact Medium repeats returned 60 FPS mean/app median, 16.8 ms maximum, 0 frames over
 33.4ms and 1% low 59.5 FPS. These repeats do not erase the original results or directly
-retest the rural 25/overview-Low outlier cells. Further affected-cell repeats follow.
+retest the rural 25/overview-Low outlier cells. The rural 25 Medium and rural 200 overview Low cells were also repeated: each returned 60 FPS mean/app median, 16.8 ms maximum and 0 frames over 33.4 ms. All four repeat receipts are retained; they do not resolve the initial stalls.
 
 ## Stability, resources and interaction
 
-The current 180-second run, 12-cycle sensor/quality soak and trusted-input timing
-receipts are pending completion at this checkpoint. A lightweight rAF-gap/longtask
-diagnostic attaches partway through the long run; it is not a root-cause trace.
+The 180-second urban EO/Medium/200 run completes 5399 simulation ticks with 60 median
+FPS, 60 fifth-percentile FPS and a lowest reported window of 36 FPS. Worker median
+tick 0.600 ms/p95 1.300 ms. Reported JS heap 71.6→52.5 MiB. Thirteen resource snapshots
+from 15.01 s through 195.09 s retain 53 textures, 261 buffers, 6 framebuffers and 60 programs.
+The final 15 seconds are after the 180-second measurement. These counts do not measure
+GPU memory bytes and do not prove indefinite leak freedom.
+
+A diagnostic attached after the run started sampled 8828 frame intervals: maximum
+16.8 ms, no gaps over 50 ms, no longtask entries in that partial window. It does not
+cover the entire run or identify the cause of the original short-run stalls.
+
+The 12-cycle live sensor/quality soak reports after forced GC:
+
+| Measurement | Start | After cycle 1 | After cycle 12 | End |
+|---|---:|---:|---:|---:|
+| JS heap (MiB) |32.4|52.3|58.0|58.3|
+| Textures |51|57|57|57|
+| Buffers |255|260|252|252|
+| Framebuffers |6|6|6|6|
+| Programs |33|79|82|82|
+
+Texture/framebuffer endpoint counts match after cycles 1 and 12; heap and program counts
+increase modestly, so this is not a leak-free or multi-hour stability proof. Raw
+heap fields retain the older MB naming but divide bytes by 2^20 (MiB).
+
+Trusted pointerdown to two-rAF scheduling: 4 selection samples median 30.7 ms/max 32.1 ms;
+12 sensor changes median 31.1 ms/max 73.4 ms. This measures UI/frame scheduling, including
+browser work, not physical display latency or completed camera slews.
+
+Raw: [long run](validation/bench/longrun.json),
+[partial diagnostic](validation/bench/longrun-diagnostic.json),
+[soak endpoints](validation/bench/soak.txt),
+[affected-cell repeats](validation/bench/affected-repeat.jsonl),
+[interaction receipts](validation/interaction/receipt.json).
 
 ## Interpretation
 

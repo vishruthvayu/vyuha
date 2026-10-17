@@ -14,8 +14,8 @@ await setSel(`s => [...s.options].some(o => o.value === '200')`, '200');
 await setSel(`s => [...s.options].some(o => o.value === 'tactical') && [...s.options].some(o => o.value === 'high')`, tier);
 await sleep(600);
 await c.clickButton('Run ');
-const marks = [];
-for (let t = 0; t <= 185; t += 15) { await sleep(15000); marks.push({ t, ...(await c.ev(`({ heapMB: +(performance.memory.usedJSHeapSize/1048576).toFixed(1), ...window.__glr })`)) }); }
+const marks = []; const began = Date.now();
+for (let sample = 0; sample < 13; sample++) { await sleep(15000); marks.push({ t: +((Date.now() - began) / 1000).toFixed(2), ...(await c.ev(`({ heapMB: +(performance.memory.usedJSHeapSize/1048576).toFixed(1), ...window.__glr })`)) }); }
 const report = await c.ev(`JSON.parse(document.querySelector('#benchmark-report').textContent)`);
 const fps = report.fps_samples; const sorted = [...fps].sort((a, b) => a - b);
 const summary = { world, vision, tier, contacts: 200, seconds: report.seconds, simulation_tick: report.simulation_tick, median_render_fps: report.median_render_fps, min_fps_sample: sorted[0], p05_fps: sorted[Math.floor(sorted.length * 0.05)], median_sim_tick_ms: report.median_sim_tick_ms, p95_sim_tick_ms: report.p95_sim_tick_ms, heap_first_mb: +(report.heap_samples[0]?.used_js_heap_bytes / 1048576).toFixed(1), heap_last_mb: +(report.heap_samples.at(-1)?.used_js_heap_bytes / 1048576).toFixed(1), resources: marks };

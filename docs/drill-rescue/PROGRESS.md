@@ -410,3 +410,38 @@ in receipts. Real active close-ups, ten synthetic world views, keyboard, eight-w
 fallback/recovery and labelled roster fixtures, and offline cache/reload evidence
 are checked in. Current36-cell graphics matrix plus repeats/long run/resource soak
 are still running; this checkpoint does not claim final graphics acceptance.
+
+## Final source-scoped handoff
+
+Frozen runtime5d40a24165dff5ace27c6131318da599ad828b0d passes the exact hosted run
+39013253493:699 backend,328 frontend/parity, build, lint, format and Docker. A final
+local328/parity/lint/format/world-format/build rerun passes; all376 runtime paths
+and72 rebuilt production-file hashes remain identical to the accepted source.
+
+Current Intel/Chrome151 graphics evidence:36 short cells and4 repeats,180-second
+200-contact run,12-cycle sensor/quality resource soak, and bounded trusted-input
+frame-scheduling samples. All short-cell app medians are60; three initial cells
+retain116.7/216.7/200ms long intervals. Repeats show no long intervals, but no cause
+or resolution is asserted. Long-run app median60/minwindow36; live WebGL resource
+counts stay constant across its13 samples. Soak endpoints show modest heap/program
+growth after cycle1; this is not indefinite leak-free proof. BENCHMARK.md has raw
+receipts and method/limitations.
+
+Mixed-library/adaptive fixed-wing attempts yielded no passing eligible view. A
+labelled isolated officer-authored v2 QA fixture then provided actual public
+Fixed-wing evidence and eligible EO51→57px/IR43px captures. No hidden truth or
+simulation rule was changed to obtain them. The fixture and failed-attempt logs
+are retained. Interaction samples measure pointerdown to two rAF callbacks,
+not physical display latency or completed camera slews.
+
+Ten reproduced takeover findings are closed, with independent safety/pixel reviews.
+The211-row inherited reconciliation is preserved without recertification. Rare
+long-frame intervals and final artistic/user/physical/scientific acceptance remain
+open. Main Codex owns combined-source integration and release preparation; no
+merge, force push, stable or candidate tag was made. INTEGRATION.md identifies the
+Ghost native-label/filter conflict and the matching CI ordering repair.
+
+Final independent evidence review reconciled the matrix, source/link inventory,
+resource endpoints and fixture captions. It caught an upper-middle selection
+median in the timing helper; the summary now uses the conventional average of the
+middle pair (30.7ms), with raw observations unchanged.

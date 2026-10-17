@@ -1,0 +1,80 @@
+{
+  "runtime_source": "5d40a24165dff5ace27c6131318da599ad828b0d",
+  "runtime_tree_sha256": "2839c19fe6ea3ccf1d4f874cf2d53c258ba6ee3a51cdde309a27d76111b23889",
+  "runtime_paths_verified": 376,
+  "hosted_run": {
+    "id": 39013253493,
+    "source": "5d40a24165dff5ace27c6131318da599ad828b0d",
+    "conclusion": "success",
+    "backend_passed": 699,
+    "frontend_passed": 328,
+    "production_build": "PASS",
+    "lint": "PASS",
+    "format": "PASS",
+    "docker": "PASS"
+  },
+  "browser": {
+    "axe_states": 22,
+    "violations": 0,
+    "widths": [
+      360,
+      390,
+      428,
+      768,
+      1024,
+      1280,
+      1440,
+      1920
+    ],
+    "runtime_exceptions_in_guided_runs": 0
+  },
+  "graphics": {
+    "matrix_cells": 36,
+    "repeat_cells": 4,
+    "application_median_fps_all_cells": 60,
+    "worst_matrix_frame_ms": 216.7,
+    "status": "PARTIAL: retained rare long frames; not physical reference acceptance"
+  },
+  "audit": {
+    "takeover_findings_closed": 10,
+    "historical_inventory_totals_unchanged": {
+      "verified": 93,
+      "partial": 71,
+      "deferred": 29,
+      "externally_blocked": 17,
+      "not_applicable": 1
+    }
+  },
+  "limits": [
+    "No combined-source merge or release reference",
+    "Human visual and physical platform acceptance pending",
+    "Private historical18/22-session databases unavailable",
+    "Full screen-reader/scientific calibration not performed",
+    "Resource endpoints do not prove indefinite leak freedom"
+  ],
+  "tools_sha256": {
+    "tools/drill-rescue/lib.mjs": "be7ca94890e224b6795aba75f1103749171cec63db96b1eab579c37db22e2d81",
+    "tools/drill-rescue/acceptance.mjs": "7c30ecec5d95367cdac4ad793ff197a73bd41e440baed17080c2b2519bfdc53e",
+    "tools/drill-rescue/contact-layout.mjs": "2073c610e7d54020aca3041e1d99022dd78c6a6c6db9e1eb48be897e2d179021",
+    "tools/drill-rescue/guided-drill.mjs": "9c278ee7818e49f8106b9cfea45169662d1bb984c6e05c5437666ea1a9777d48",
+    "tools/drill-rescue/mobile-controls.mjs": "8c8a005e00996f17db54ce91a0a206e7d715b93e42746354eb9f52c6005c2afc",
+    "tools/drill-rescue/baseline-drill.mjs": "2812a31713b5401c1cf3e8e836ef9725b3724f79e5a4c9efe19dafdb1b4a5c89",
+    "tools/drill-rescue/bench.mjs": "ff07561b18c268c6efa737bdb8419bdc498b68b88de2f0ae03dc8218827828e5",
+    "tools/drill-rescue/observe-stability.mjs": "804d0499a4d0327ad66b50c0363ceb94c2280547632967b18fcf8a76d8aae71e",
+    "tools/drill-rescue/aar-shot.mjs": "992812d517eb0ee8172c4270d157d9f47d9cda4d30058ad46cc3d0b799604b3d",
+    "tools/drill-rescue/closeup-shot.mjs": "df89d199ef5ef37d6844db0013bb18a49d7d2a64bdae644aef0e10acd3c5f951",
+    "tools/drill-rescue/longrun.mjs": "fe73ad8a59dee415ec817e442f07b279aef308666827b96326781ad3e5316a7c",
+    "tools/drill-rescue/switch-burst.mjs": "d2e1f5dc2eac76c483cf574028f196de3b71f9a467aeee151a0ad1c236f15144",
+    "tools/drill-rescue/drill.mjs": "19736cc6d37fd38a16f6f819c8c2d2218c78ef16dd02d8ae4197e659ea30ac35",
+    "tools/drill-rescue/phone-debug.mjs": "a15bbb55d2479f3a5eaa45b3a3770d22aecef16bf477abca040c0b7fff77f3e2",
+    "tools/drill-rescue/axe.mjs": "c212fdd8d26686ef8d1f3175505cd1be69046a547f12cab702d7d697f8f359df",
+    "tools/drill-rescue/seed-scan.mjs": "7cdbff2a5388e0c11caada54764d2d228e1c366e3bc97bafb41ac76cb1b8f98e",
+    "tools/drill-rescue/world-shot.mjs": "605d22ce3410af485a7f52687ee3de38aafdbe2d28414932d08d72bb735adf9a",
+    "tools/drill-rescue/offline-check.mjs": "2b000155d6a3f4aceb7f715e1d6c92d0a72e3f46f3a5f1b605e6980fb3be9867",
+    "tools/drill-rescue/author-scenarios.mjs": "9856ba27a4703cc6ed8b9dedbfeb9bbf2100d8cb9b0a8883f4450e1138e6f484",
+    "tools/drill-rescue/soak.mjs": "c4edb45e13bdfb3e14f6a979c23051d9871ffa6b4d41da1b4e781645e846d629",
+    "tools/drill-rescue/interaction-check.mjs": "1fa6c836e47d865ca2b12c8b359447ffe0eec476121fb68cfef7dbed4db1e1e3"
+  },
+  "production_assets_reverified_byte_identical": true,
+  "independent_final_evidence_review": "Matrix, source hashes, links, hosted counts, resource endpoints and captions reconciled; conventional median corrected without altering observations."
+}
