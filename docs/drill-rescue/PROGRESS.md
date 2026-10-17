@@ -367,3 +367,19 @@ Full frontend327/parity, ESLint, configured formatting and production build pass
 focus scan finds0 obscured controls (previously4). Final source-matched photos,
 keyboard walkthrough and performance matrix follow this checkpoint. No engine,
 scoring, backend, integration branch or release ref changes.
+
+## Takeover: second pixel pass and phone recovery
+
+Independent pixel review reproduced two phone defects: the fixed168px close-up
+occluded the main crosshair, and the44px wrapping footer hid fog/2D fallback under
+the radar. Close-up painted size now fits outside a32px central clearance without
+changing sensor sampling or eligible detail. The footer contributes its wrapped
+height; an inherited100% badge width is overridden locally. A real-browser check
+at360/390/428/768/1024/1280/1440/1920 confirms no document overflow, uncovered footer
+controls, and successful2D fallback/3D recovery. Five inset geometry/sample tests.
+Full frontend328/parity/lint/format/build pass. Close-up capture harness now scrolls
+the actual view into frame (phone offscreen crops had produced blank images), can
+require a minimum observed sensor pixel count and pauses before zoom comparisons.
+AAR capture respects existing scroll margins instead of bypassing them with a
+hardcoded offset. These harness changes do not change observations or scoring.
+Graphics measurements and final source-matched evidence remain the next gate.

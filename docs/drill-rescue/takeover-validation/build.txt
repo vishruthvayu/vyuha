@@ -47,33 +47,33 @@ dist/assets/ground-dry-albedo-C1a3AO5I.webp                     215.47 kB
 dist/assets/ground-dry-normal-C0OkiSMX.webp                     232.53 kB
 dist/assets/ground-macro-albedo-BF6IrQeg.webp                   278.89 kB
 dist/assets/vegetation-atlas-CkUBdN-5.webp                      571.93 kB
-dist/assets/index-CvthHdg4.css                                  193.63 kB │ gzip:  35.62 kB
+dist/assets/index-Dmf2lvIk.css                                  194.00 kB │ gzip:  35.67 kB
 dist/assets/import-json-DEPqWbQE.js                               0.40 kB │ gzip:   0.27 kB
 dist/assets/visibility-CFPvGPvL.js                                1.50 kB │ gzip:   0.77 kB
-dist/assets/live-stream-gFtDjAQM.js                               1.78 kB │ gzip:   1.00 kB
+dist/assets/live-stream-4qMONWUO.js                               1.78 kB │ gzip:   1.00 kB
 dist/assets/observations-CFixGWqv.js                              2.51 kB │ gzip:   0.94 kB
 dist/assets/presentation-Ct-AeMlE.js                              2.92 kB │ gzip:   1.42 kB
-dist/assets/Transfer-BoffFwL_.js                                  3.58 kB │ gzip:   1.78 kB
-dist/assets/Evaluation-CJK9BhOa.js                                3.91 kB │ gzip:   1.60 kB
-dist/assets/Radar-CjaaclsN.js                                     5.08 kB │ gzip:   2.14 kB
-dist/assets/Recorded-C2KzrJt2.js                                  6.25 kB │ gzip:   2.33 kB
-dist/assets/Compliance-Q-NhknNc.js                                8.69 kB │ gzip:   2.88 kB
-dist/assets/Evidence-CLUfZkqr.js                                  9.08 kB │ gzip:   2.77 kB
-dist/assets/RapidID-D51YbY1B.js                                   9.08 kB │ gzip:   3.46 kB
-dist/assets/Benchmark-BZurdg7r.js                                10.13 kB │ gzip:   4.00 kB
+dist/assets/Transfer-Dv09eO9u.js                                  3.58 kB │ gzip:   1.78 kB
+dist/assets/Evaluation-BvRohXOW.js                                3.91 kB │ gzip:   1.60 kB
+dist/assets/Radar-cIycDPBJ.js                                     5.08 kB │ gzip:   2.14 kB
+dist/assets/Recorded-dTegDmel.js                                  6.25 kB │ gzip:   2.33 kB
+dist/assets/Compliance-DAG-n8hv.js                                8.69 kB │ gzip:   2.88 kB
+dist/assets/Evidence-DBfWMpPc.js                                  9.08 kB │ gzip:   2.77 kB
+dist/assets/RapidID-C0yP7RQF.js                                   9.08 kB │ gzip:   3.46 kB
+dist/assets/Benchmark-Cclq72oT.js                                10.13 kB │ gzip:   4.00 kB
 dist/assets/response-v2-CKu7QcVd.js                              13.15 kB │ gzip:   4.88 kB
-dist/assets/Analytics-DSuk_eu-.js                                16.10 kB │ gzip:   5.24 kB
-dist/assets/ExerciseStudio-BnkGuHjj.js                           17.43 kB │ gzip:   5.63 kB
-dist/assets/Instructor-B8gaD__u.js                               20.71 kB │ gzip:   6.80 kB
-dist/assets/Crew-CzbAoSUj.js                                     24.67 kB │ gzip:   7.60 kB
-dist/assets/quality-o2VMrGzP.js                                  24.73 kB │ gzip:   8.30 kB
-dist/assets/App-BYOq8YGW.js                                     106.70 kB │ gzip:  33.10 kB
-dist/assets/index-Bj-LBODf.js                                   295.15 kB │ gzip:  91.23 kB
-dist/assets/Scene-o4O3LnWO.js                                 1,056.47 kB │ gzip: 299.61 kB
+dist/assets/Analytics-B9ysMJaX.js                                16.10 kB │ gzip:   5.24 kB
+dist/assets/ExerciseStudio-DZuF9M_c.js                           17.43 kB │ gzip:   5.63 kB
+dist/assets/Instructor-CdEs5ewb.js                               20.71 kB │ gzip:   6.80 kB
+dist/assets/Crew-CGplDbcy.js                                     24.67 kB │ gzip:   7.60 kB
+dist/assets/quality-BiM40nbr.js                                  24.73 kB │ gzip:   8.30 kB
+dist/assets/App-Dk4dK3Ht.js                                     106.70 kB │ gzip:  33.10 kB
+dist/assets/index-B2BsLG7D.js                                   295.15 kB │ gzip:  91.23 kB
+dist/assets/Scene-BO8oqhVq.js                                 1,056.57 kB │ gzip: 299.64 kB
 
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
-✓ built in 3.44s
-Offline cache: 72 local assets (b3ca7cf24dcb)
+✓ built in 3.35s
+Offline cache: 72 local assets (f689ca71b327)

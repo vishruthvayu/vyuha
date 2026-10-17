@@ -92,3 +92,14 @@ test("behind-scenery marker is a hollow diamond and the far marker a soft round 
   assert.equal(b(0, 0), 0, "round: corners clear");
   assert.ok(b(15, 8) < b(12, 8), "soft edge");
 });
+
+test("inspection inset leaves the main sight centre clear across phone and workstation canvases", async () => {
+  const { inspectionDisplaySize } = await import("./InspectionPass");
+  for (const [width, height] of [[328,281],[358,281],[396,281],[700,400],[1034,433],[1440,600]]) {
+    const inset = inspectionDisplaySize(width,height);
+    assert.ok(width-inset-14 >= width/2+32);
+    assert.ok(14+inset <= height/2-32);
+    assert.ok(inset <= 168);
+  }
+  assert.equal(inspectionDisplaySize(1034,433),168,"desktop close-up size is retained");
+});

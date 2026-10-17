@@ -1642,3 +1642,28 @@ html:has(.sensor-workspace) {
   outline: 2px solid var(--accent);
   outline-offset: 6px;
 }
+
+/* Wrapped phone controls must contribute height before the radar panel. */
+@media (max-width: 640px) {
+  .sensor-workspace > .scene-toolbar {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 12px;
+  }
+  .sensor-workspace > .scene-toolbar > div:not(.sensor-badges) {
+    order: 3;
+    flex: 1 0 100%;
+    margin-left: 0;
+  }
+  .sensor-workspace > .scene-toolbar > button {
+    flex: none;
+    margin-left: auto;
+    min-height: 32px;
+  }
+}
+@media (max-width: 640px) {
+  .sensor-workspace > .scene-toolbar > .sensor-badges {
+    width: auto;
+  }
+}

@@ -27,6 +27,19 @@ export function inspectionResolution(pixels: number) {
   return Math.round(Math.min(192, Math.max(8, pixels / INSPECTION_FILL)));
 }
 
+/** Keep the inset outside a 32px clearance around the main sight centre.
+ * This only changes painted size; sensor sampling resolution stays unchanged. */
+export function inspectionDisplaySize(
+  width: number,
+  height: number,
+  preferred = 168,
+) {
+  return Math.max(
+    16,
+    Math.floor(Math.min(preferred, width / 2 - 46, height / 2 - 46)),
+  );
+}
+
 /** Sensor-limited close-up of the selected contact, drawn into a corner of the
  * canvas after the main passes. Only for observation levels that resolve a
  * shape (recognise / identify); the airframe is the generic one for the observed
@@ -117,12 +130,17 @@ export function InspectionPass({
     }
     v.set(pose.displayX, pose.displayY, pose.displayZ);
     const range = camera.position.distanceTo(v);
+    const displaySize = inspectionDisplaySize(
+      size.width,
+      size.height,
+      insetCss,
+    );
     if (selected && obstruction?.blocked.has(selected)) {
       // Decorative scenery stands in the way: no picture of the airframe through it.
       if (caption) {
         caption.style.display = "block";
         caption.style.top = "14px";
-        caption.style.width = `${insetCss}px`;
+        caption.style.width = `${displaySize}px`;
         caption.textContent = `${channel.toUpperCase()} CLOSE-UP · VIEW BLOCKED BY SCENERY · ${Math.round(range)} M`;
       }
       return;
@@ -154,19 +172,19 @@ export function InspectionPass({
     // Blit into the top-right corner with nearest-neighbour upscaling
     // (viewport units are CSS pixels; origin bottom-left).
     const margin = 14;
-    const x = size.width - insetCss - margin;
-    const y = size.height - insetCss - margin;
+    const x = size.width - displaySize - margin;
+    const y = size.height - displaySize - margin;
     gl.setScissorTest(true);
-    gl.setScissor(x, y, insetCss, insetCss);
-    gl.setViewport(x, y, insetCss, insetCss);
+    gl.setScissor(x, y, displaySize, displaySize);
+    gl.setViewport(x, y, displaySize, displaySize);
     gl.clearDepth();
     gl.render(inset.quadScene, inset.ortho);
     gl.setScissorTest(false);
     gl.setViewport(0, 0, size.width, size.height);
     if (caption) {
       caption.style.display = "block";
-      caption.style.top = `${margin + insetCss + 4}px`;
-      caption.style.width = `${insetCss}px`;
+      caption.style.top = `${margin + displaySize + 4}px`;
+      caption.style.width = `${displaySize}px`;
       caption.textContent = `${channel.toUpperCase()} CLOSE-UP · ${Math.max(1, Math.round(pixels))} PX ACROSS TARGET · ${Math.round(range)} M`;
     }
   }, 2);

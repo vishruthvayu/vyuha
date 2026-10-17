@@ -33,7 +33,7 @@ const setSelect = (label, pred) => c.ev(`(() => { const s = document.querySelect
 const text = sel => c.ev(`document.querySelector(${J(sel)})?.innerText?.replace(/\\s+/g,' ').trim() ?? null`);
 const headerBottom = `(() => { const h = document.querySelector('header'); if (!h) return 0; const p = getComputedStyle(h).position; return /sticky|fixed/.test(p) ? Math.max(0, h.getBoundingClientRect().bottom) : 0; })()`;
 // Scroll so the element's top sits just below a sticky header (phone layout).
-const scrollTo = async (sel, pad = 8) => c.ev(`(() => { const e = document.querySelector(${J(sel)}); if (!e) return false; const hb = ${headerBottom}; const r = e.getBoundingClientRect(); window.scrollTo(0, Math.max(0, r.top + scrollY - hb - ${pad})); return true; })()`);
+const scrollTo = async (sel, pad = 8) => c.ev(`(() => { const e = document.querySelector(${J(sel)}); if (!e) return false; const hb = Math.max(${headerBottom}, parseFloat(getComputedStyle(e).scrollMarginTop) || 0); const r = e.getBoundingClientRect(); window.scrollTo(0, Math.max(0, r.top + scrollY - hb - ${pad})); return true; })()`);
 const top = () => c.ev(`window.scrollTo(0, 0)`);
 const shot = async name => { await c.send('Page.bringToFront'); await sleep(120); const r = await c.send('Page.captureScreenshot', { format: 'png' }); writeFileSync(`${OUT}/${name}.png`, Buffer.from(r.data, 'base64')); return name; };
 const shotEl = async (name, sel) => { await c.send('Page.bringToFront'); const clip = await c.ev(`(() => { const e = document.querySelector(${J(sel)}); if (!e) return null; const r = e.getBoundingClientRect(); return { x: r.x + scrollX, y: r.y + scrollY, width: r.width, height: r.height, scale: 1 }; })()`); if (!clip) return null; const r = await c.send('Page.captureScreenshot', { format: 'png', clip }); writeFileSync(`${OUT}/${name}.png`, Buffer.from(r.data, 'base64')); return name; };
@@ -126,11 +126,12 @@ if (PLAN === 'guided') {
   await sleep(150); await top(); await shot('16a-ending');
   await c.waitFor(`/Session saved|Saved on this device|Server verified/.test(document.body.innerText)`, 20000);
   await sleep(800); await top(); await shot('16-completed'); await record('complete', { notice: await c.ev(`[...document.querySelectorAll('[role=status], .notice, .toast')].map(e => e.innerText.trim()).filter(Boolean).join(' | ').slice(0, 300)`) });
+  await c.clickEl(`document.querySelector('button[aria-label="Dismiss notification"]')`);
   await c.ev(`document.querySelector('#review-replay')?.scrollIntoView({ block: 'start' })`); await sleep(2500);
-  if (phone) await scrollTo('#review-replay'); else await c.ev(`(() => { const e = document.querySelector('#review-replay'); window.scrollTo(0, e.getBoundingClientRect().top + scrollY - 70); })()`);
+  await scrollTo('#review-replay');
   await sleep(1500); await shot('17-aar-replay'); await record('aar-replay', { footnote: await text('.replay-camera-controls + .footnote') });
   log({ step: 'aar-jump', ok: await c.clickButton('Jump to selected decision') }); await sleep(2000);
-  if (phone) await scrollTo('#review-replay'); else await c.ev(`(() => { const e = document.querySelector('#review-replay'); window.scrollTo(0, e.getBoundingClientRect().top + scrollY - 70); })()`);
+  await scrollTo('#review-replay');
   for (const p of ['OVERVIEW', 'OBSERVER', 'FOLLOW TARGET']) { const ok = await c.clickButton(p); await sleep(2500); if (phone) await scrollTo('#review-replay'); await shot('17-aar-' + p.split(' ')[0].toLowerCase()); log({ step: 'aar', p, ok, tick: await text('.replay-panel .panel-header .mono'), footnote: await text('.replay-camera-controls + .footnote') }); }
   await finish();
 }
@@ -182,7 +183,7 @@ if (PLAN === 'library') {
 
 if (PLAN === 'aar') {
   // Latest saved exercise in the after-action review; replay presets at several seek points.
-  const replayTop = async () => { if (phone) await scrollTo('#review-replay'); else await c.ev(`(() => { const e = document.querySelector('#review-replay'); if (e) window.scrollTo(0, e.getBoundingClientRect().top + scrollY - 64); })()`); await sleep(400); };
+  const replayTop = async () => { await scrollTo('#review-replay'); await sleep(400); };
   await c.nav(APP + '/?view=aar'); await sleep(3000);
   if (!(await c.ev(`!!document.querySelector('#review-replay')`))) { await c.clickEl(`document.querySelector('.aar-history-list button')`); await sleep(3500); }
   await top(); await shot('16-verdict'); await record('aar-verdict', { title: await text('.page h2') });
