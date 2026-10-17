@@ -19,7 +19,7 @@ EXPERIENCE TRANSFORMATION" prompt. Its non-negotiables are in §3.
 |---|---|
 | Branch | `feature/vyuha-drill-experience-rescue` (push only here; never force-push; no tags; never merge into integration or release branches) |
 | Base | `integration/vyuha-ultimate-finale` @ `db0ff23` |
-| Milestone commits | M1 `63a2a04` · M2 `b489741` · M3 `b7706cc` · M4 (+ M5 close-up) see `PROGRESS.md` |
+| Milestone commits | M1 `63a2a04` · M2 `b489741` · M3 `b7706cc` · M4 `868e0ed` · M5 `6c4518c` · env polish `59a4fac` · M6 `d4f18f8`, `df7de54`, `b403077` and later (see `PROGRESS.md` and `REPORT.md`) |
 | Unpushed work | If `PROGRESS.md` does not list a milestone as pushed, its work in progress is uncommitted in the local worktree `/home/naveen/vyuha-drill-rescue` on the owner's machine (`git status` there). |
 | Docs | `docs/drill-rescue/` — `BASELINE-DEFECTS.md`, `RESEARCH-AND-ASSET-SELECTION.md`, `PROGRESS.md`, `ASSET-PROVENANCE.md` (from M3), this file |
 | Browser harness | `tools/drill-rescue/` (README inside) |
@@ -43,6 +43,9 @@ EXPERIENCE TRANSFORMATION" prompt. Its non-negotiables are in §3.
   1. world;
   2. clear depth, then draw the box proxies depth-only;
   3. contacts.
+  A reported contact whose line of sight crosses decorative scenery is drawn as a
+  hollow "behind scenery" marker, not as an airframe on the wall
+  (`world/obstruction.ts`); its close-up says VIEW BLOCKED BY SCENERY.
 * **No new simulation semantics.** Engine files (`sim*.ts`, `sensors-v2.ts`,
   `response-v2.ts`, `visibility.ts`, `types.ts`, `server/**`) are untouched. The single
   shared edit is additive: `sim.worker.ts` also posts `{type:'rejected'}`. Flag it to
@@ -135,66 +138,53 @@ Baseline reproduction, root causes and benchmark: `BASELINE-DEFECTS.md`,
   `tools/drill-rescue/ph-spec.json` and downloaded by `ph-download.py`, which writes
   a ledger with MD5s.
 
+### M4–M6 (pushed; see `PROGRESS.md` and `REPORT.md`)
+* M4: original airframes with LODs (`airframe-geometry.ts`), motion cues and attitude
+  from the observed path (`ContactRenderer.tsx`), sensor-limited close-up
+  (`InspectionPass.tsx`).
+* M5: IR grain/vignette (CSS), resource release on rebuild.
+* Env polish (`59a4fac`): HESCO cells, concertina coil, hangar ends, city-block
+  podiums and balconies.
+* M6: day sun heating and sky gradient in thermal, AAR overview markers,
+  non-repeating ground, scenery line-of-sight markers, held HUD visibility, centred
+  reticle, consistent small-target rendering, lamp glare, foliage edge fade; final
+  benchmark matrices (NVIDIA and idle iGPU), soak, long run; two independent visual
+  reviews; real-browser acceptance captures (external inherited evidence; final `ACCEPTANCE.md` pending).
+
 ## 6. What is left (in order)
 
-### M3 — done (see PROGRESS.md)
-Remaining polish found after M3, not blocking:
-* the AAR OVERVIEW camera sits ~2.5 km up, so the base and the contacts are tiny.
-  Consider contact markers or a lower overview in reference-truth review (M5);
-* the reviewer findings recorded in PROGRESS.md and not yet fixed.
+Major implementation milestones are pushed. Final source-matched acceptance, report
+reconciliation and the items below remain open; this is not yet an integration-ready claim.
+In priority order:
 
-Performance status (data in PROGRESS.md, M3 performance):
-* On the shared Intel iGPU, Medium averages ~50–54 fps (Low ~59, High ~39). The
-  median GPU time is ~3 ms per frame, but ~10 % of frames take 12–15 ms.
-* The old, very light scene does not show those spikes, so they are **not** explained
-  by desktop contention alone. Next steps:
-  - check whether the spikes scale with screen area by halving the pixel ratio
-    (they vanished at 0.5);
-  - check whether they follow the three `gl.render` passes, by temporarily merging
-    passes 2 and 3;
-  - check whether the GPU timer catches compositor work.
-* On the idle NVIDIA dGPU every tier holds 60 fps.
-* Unverified hypothesis: GPU time-slicing. Desktop clients share the iGPU, and a
-  ~3 ms frame can be preempted mid-way and wait out another context's slice,
-  while the old ~0.4 ms frame finished inside one slice.
-  - Test: run the same benchmark from a TTY session with no compositor, or with
-    the desktop idle.
-  - If confirmed, the remedies are less GPU work per frame (e.g. Medium without
-    MSAA) or an automatic-quality policy that steps down at sustained < 55 fps.
+1. **Owner decisions** (do not change without the owner):
+   * automatic quality steps down only below 20 fps (`quality.ts`); on a busy shared
+     iGPU, High and Medium can sit at 40–55 fps while an idle iGPU holds 60
+     everywhere (`PROGRESS.md`, final benchmark);
+   * the AAR overview fits only the active tracks (`scene-presentation.ts`, tested);
+     including the protected asset would keep it in frame;
+   * the AAR follow/observer presets fall back to Overview when the selected track
+     has ended (product behaviour, stated in the UI).
+2. **Art polish** found by the second review and not done:
+   * observer camera framing on `/system/benchmark` and in the AAR (mostly ground);
+   * the urban outpost reads as a base beside a few blocks rather than a town; more
+     low buildings and walls would need care, because any decorative object above
+     the 2 m sensor eye can stand between the sensor and a contact (it is then
+     drawn as a "behind scenery" marker);
+   * parked covered cars are identical and in a row (`layout.ts` props);
+   * the same sky in both worlds; the rural far ridge is flat-shaded;
+   * the red/white lattice mast beside the sensor fills part of some views;
+   * cloud softness at 6× (sky texture resolution); per-face lattice-mast shadows;
+   * fixed-wing panel lines, rotor blur fading with spin rate, bird texture.
+3. **Validation on real hardware**: a drill on a physical laptop and phone, and a
+   screen reader pass (not done here).
+4. **Re-run after integration** (owner): full frontend tests with the backend
+   parity venv, backend pytest, `tools/drill-rescue/bench.mjs` on the reference
+   machine, `tools/drill-rescue/acceptance.mjs` (see `ACCEPTANCE.md`).
 
-### M4 — aircraft: done (PROGRESS.md)
-Open polish:
-* rotor blur discs could fade with spin rate;
-* the bird texture is flat vertex colour;
-* the fixed-wing could get panel lines;
-* no landing lights or nav lights. These are deliberately absent at night: no
-  artificial illumination of contacts.
-
-### M5 — camera and sensors (close-up done; rest open)
-* Done: the sensor-limited close-up (`InspectionPass.tsx`).
-* Open:
-  - thermal grain/vignette overlay (CSS, static under reduced motion);
-  - the AAR overview camera is too high (~2.5 km) to read the base. Consider a
-    capped overview height or contact markers in reference-truth review;
-  - a matching accent between the radar selection and the 3D reticle;
-  - verify switching, zoom and observation loss again with `switch-burst.mjs` /
-    `guided-drill.mjs` after M4.
-
-### M6 — final validation
-* Benchmark matrix for both builds: 8/25/50/100/200 × Low/Medium/High × trainee/overview
-  with `bench.mjs`, twice each, on world `urban_outpost:day` and
-  `rural_forward_base:night`. Include uncapped headroom.
-* Long session: the 180 s benchmark plus a full drill; watch the JS heap and
-  `gl.info.memory` for leaks after repeated sensor switches and quality changes.
-* Acceptance screenshots for the 17 states in the brief, at 1440 and 390.
-* axe on every guided step at both widths; keyboard walk through the dock.
-* Independent visual review: ask a fresh reviewer agent to list what still looks
-  prototype-like, then fix the major findings.
-* Final `docs/drill-rescue/REPORT.md`: SHA, before/after images, benchmarks, asset
-  sizes, licences, hidden-truth verification, tradeoffs, outstanding issues, and
-  integration notes. Integration notes cover the worker change, possible conflicts
-  in `App.tsx` / `Scene.tsx` / `training.css`, and that the owner should rerun
-  parity/history tests after merging.
+How to continue any item: §4 for running, `tools/drill-rescue/README.md` for the
+harness, `PROGRESS.md` for the measured state. Commit to this branch only, push,
+check the remote SHA, and record the change in `PROGRESS.md`.
 
 ## 7. Gotchas met so far
 
@@ -213,3 +203,28 @@ Open polish:
 * Thermal materials must be `toneMapped:false`, or ACES shifts palette colours.
 * The adaptive Director almost never picks rural. Use the benchmark World selector or
   officer-authored library scenarios.
+* Tiled ground layers that look fine from the sensor repeat as a lattice from raised
+  cameras (observer, overview, AAR). Check those views. An autocorrelation of a
+  capture shows a clear peak at the tile period. Per-cell tile offsets from smooth
+  noise (`materials.ts`) remove it.
+* On this laptop the iGPU is shared with the desktop. For renderer-only numbers,
+  switch the panel off (`kscreen-doctor --dpms off` on KDE Wayland) and run one
+  benchmark at a time.
+* To check a change without disturbing a run against port 8031, build into another
+  folder (`npx vite build --outDir <dir>`) and serve it with `vite preview` on
+  another port. Use a config whose `preview.proxy` sends `/api` to 8031.
+* The HUD and the 3D view must read the same held observation
+  (`ObservationVisibility`); otherwise a contact near a detection threshold makes
+  the annotation flicker against the drawing.
+
+## Ownership takeover — 17 October 2026
+
+The user explicitly handed the drill branch to the hardening developer after the
+previous developer stopped. Inherited uncommitted test/docs/report were backed up
+outside Git before editing. The acceptance harness was recovered from the external
+work directory. Pushed b403077 independently passes318 tests; the inherited sprite
+regression makes319. The final report remains a draft until source-matched browser,
+accessibility and performance checks complete. The missing-dist CI order is repaired
+using the already verified hardening workflow, without merging application branches.
+Inherited acceptance logs expose an AAR timeline accessible-name failure at both
+widths; resolving and retesting it is part of this continuation.

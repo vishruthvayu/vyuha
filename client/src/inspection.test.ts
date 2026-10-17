@@ -75,3 +75,20 @@ test("after-action review markers are a hollow ring with a dark rim", async () =
     "dark rim keeps the ring visible on light ground",
   );
 });
+
+test("behind-scenery marker is a hollow diamond and the far marker a soft round blob", async () => {
+  const { obstructedDiamond, softDisc } = await import("./ContactRenderer");
+  const n = 32,
+    d = obstructedDiamond(n);
+  const a = (x: number, y: number) => d[(y * n + x) * 4 + 3];
+  assert.equal(a(16, 16), 0, "hollow centre");
+  assert.equal(a(0, 0), 0, "corners outside the diamond");
+  assert.equal(a(16 + 11, 16), 255, "band on the axis");
+  assert.equal(a(16 + 8, 16 + 8), 0, "a square ring would be opaque here");
+  const m = 16,
+    disc = softDisc(m);
+  const b = (x: number, y: number) => disc[(y * m + x) * 4 + 3];
+  assert.equal(b(7, 7), 255, "solid core");
+  assert.equal(b(0, 0), 0, "round: corners clear");
+  assert.ok(b(15, 8) < b(12, 8), "soft edge");
+});

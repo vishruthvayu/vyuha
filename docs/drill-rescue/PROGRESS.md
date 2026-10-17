@@ -264,3 +264,85 @@ Screenshots: `screenshots/m4/`:
   - simulation tick median 0.5 ms, p95 1 ms;
   - textures 51 and buffers 251, constant for the whole run;
   - heap oscillates with GC and does not grow.
+
+### Environment polish (`59a4fac`, from a parallel agent on `agent/env-polish`)
+
+Modelled HESCO cells, concertina coil on the fence, framed hangar ends, city-block
+podiums, balconies and roof zones (all inside the authoritative boxes), tents and
+container details. Five new world tests, including per-vertex containment of every
+city-block shape and a facility bound of < 200 k triangles. Urban facility
+triangles rose from ~108–137 k to ~178–191 k on screen.
+
+### Fixes after the M3 review items and the final captures (`df7de54`)
+
+* **Day sun heating in thermal.** Scenery thermal twins warm faces turned to the
+  day sun and cool the shaded side (`solarShift`, bounded per class to a fifth of
+  the display range, zero at night; sky, lamps, exhausts and contacts do not
+  respond). Horizontal faces keep their class value.
+* **AAR overview markers.** In the reference-truth overview only, every contact
+  gets a fixed-size ring and a stalk to the ground in one neutral colour, so
+  positions read from 2–3 km up. Live views never show them.
+* **Non-repeating ground.** From raised cameras the 26 m macro tile showed as a
+  regular dot lattice and the 1 130 m broad tile as a grid of identical light
+  patches (measured by autocorrelation of the captures: a peak at the tile period).
+  Both tiles now take per-cell offsets from a smooth value-noise field and blend
+  between neighbours with explicit gradients (no mip seams).
+
+Tests: 317/317.
+
+### Final benchmark on the Intel iGPU, desktop idle (`bench/final-igpu.jsonl`)
+
+Measured on the env-polish build (`d4f18f8`) with the laptop panel switched off,
+so the desktop compositor and other windows were not drawing on the shared iGPU.
+60 cells: urban day EO and rural night thermal × trainee/overview × Low/Medium/High
+× 8/25/50/100/200 contacts, 20 s each.
+
+| World | Camera | Low: fps / GPU ms | Medium: fps / GPU ms | High: fps / GPU ms |
+|---|---|---|---|---|
+| urban day, EO | trainee | 60 / 2.9–3.2 | 60 / 4.6–4.8 | 60 / 7.9–8.6 |
+| urban day, EO | overview | 60 / 2.9–3.0 | 60 / 4.0–4.2 | 60 / 5.8–6.1 |
+| rural night, thermal | trainee | 60 / 1.4 | 60 / 2.4 | 60 / 5.7 |
+| rural night, thermal | overview | 60 / 1.6–1.7 | 60 / 2.4 | 60 / 4.1–4.2 |
+
+Every cell: 1 % low 59.5 fps, worst frame 16.8 ms, no frame over 33 ms. The
+contact count does not change GPU time (instanced airframes).
+
+Reading, together with the M3/M4 runs on the same machine with the desktop active
+(Medium ~51–57 fps, ~10 % of frames at 12–15 ms):
+* the renderer itself fits the frame on this iGPU at every tier: median GPU time
+  at Medium is under 5 ms of the 16.7 ms frame, and High under 9 ms;
+* the earlier drops track desktop GPU load, consistent with the time-slicing
+  hypothesis in `HANDOFF.md`. A trainee machine running only the browser should
+  see the idle numbers; a busy shared desktop will not. The automatic-quality
+  policy question in `REPORT.md` still stands.
+
+### Second independent visual review (fresh reviewer agent, final-build screenshots)
+
+The reviewer listed 8 major and 11 minor items. Each was checked on the pixels;
+fixed in `b403077` unless noted:
+
+| Finding | Verdict | Change |
+|---|---|---|
+| Contact drawn on a wall: T1 at 1 096 m, 8 m up, behind a two-storey decorative building | real — the sensors do not model decorative scenery, and contacts are drawn over it so evidence is never hidden | Line-of-sight test against decorative scenery (`world/obstruction.ts`: oriented solid cores of buildings, hangars, containers, tents, tower cabins, tree canopies, HESCO). A contact behind it is a hollow "behind scenery" diamond at the reported position; its close-up reads VIEW BLOCKED BY SCENERY. Contacts behind authoritative boxes are already not reported. |
+| HUD says NOT SEEN while the dot is still drawn | real — the 3D view holds an observation for 6 ticks (200 ms), the HUD did not | The HUD now reads the same held observation (`ObservationVisibility`) as the 3D view. No hidden truth was shown: the dot was the held observation. |
+| Track box 9 px below the reticle at every zoom | real — CSS put the reticle at `top: 48%` | Reticle at the canvas centre, open centre (20 px gap), dark outline. |
+| Target harder to see when zooming in | real — far marker was a hard dark 3 px square; the mesh took over at 3 px where every part is sub-pixel, and was metallic | Far marker is a soft round blob in the airframe's mean tone (EO dark grey, IR body-plus-motor); mesh from 6 px; matte EO airframe. |
+| Hangar invisible on the IR night display | real — bare metal at night was set as cold as the sky | Metal roofs: colder than ground, warmer than sky. Thermal sky warms toward the horizon (zenith cold), so the horizon is no longer a hard step. |
+| Tree card seams | real — crossed and top cards seen edge-on | Cards fade with the angle to the camera before the alpha test (EO and thermal). |
+| Lamp heads black at night | real | Soft additive glare in front of each luminaire (night EO only); lights nothing else. |
+| Small labels lost over cloud | real | Dark halo on view annotations. "PX ON TARGET" now reads "PX ACROSS TARGET". |
+| AAR follow and observer identical | harness, not product — the replay had no active selection at the seek time; the app says so ("Selected contact is absent or ended; showing Overview") | none |
+| Bright line across the AAR frame | not a defect — the asphalt access road, warm in day thermal | none |
+| AAR overview omits the protected asset | owner's design — the overview fits "only its supplied active scope" (tested in `scene-presentation.test.tsx`) | noted for the owner |
+| Observer framing, "urban" reads as a few blocks, same sky in both worlds, distant ridge flat, identical parked cars, sensor-adjacent mast, cloud softness at 6× | open — art scope, not defects | listed in `HANDOFF.md` |
+
+Tests: 319/319 (new: scenery line-of-sight; review, obstruction and far-marker sprites).
+
+## Ownership takeover checkpoint (17 October)
+
+User transferred the inactive developer's drill branch to root. Preserved inherited
+WIP, recovered the external acceptance harness, and corrected CI ordering so builds
+precede backend startup tests (the hardening branch already verifies this fix).
+Inherited acceptance captures are available outside Git; they expose an AAR timeline
+accessible-name failure, so acceptance remains open. Final report is explicitly draft.
+No application-branch integration or release ref changes.
