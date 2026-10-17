@@ -384,6 +384,12 @@
     rgb(11 13 14 / 0.55)
   );
 }
+/* Preparation has its own disclosure; live-camera captions do not describe it. */
+.scene-container:has(> .ready-overlay) > .view-annotation.bottom-left,
+.scene-container:has(> .ready-overlay) > .view-annotation.bottom-right {
+  display: none;
+}
+
 .ready-overlay h2,
 .pause-overlay h2 {
   font-family: var(--font-display);
