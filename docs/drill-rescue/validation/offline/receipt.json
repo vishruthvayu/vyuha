@@ -1,0 +1,14 @@
+{
+  "installed": {
+    "scope": "http://127.0.0.1:8033/",
+    "active": "activated"
+  },
+  "assets": {
+    "cache": "vyuha-2a894f3c0624",
+    "expected": 72,
+    "missing": []
+  },
+  "offlineReload": true,
+  "title": "VYUHA · Counter-drone trainer",
+  "scope": "Cached application shell and renderer assets in CDP offline mode; backend-dependent workflows and physical WAN-off not certified."
+}

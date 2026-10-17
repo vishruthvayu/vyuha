@@ -1,0 +1,53 @@
+{
+  "fixture": "synthetic layout only",
+  "checks": [
+    {
+      "width": 360,
+      "rows": 8,
+      "overflowing": 0,
+      "documentOverflow": 0
+    },
+    {
+      "width": 390,
+      "rows": 8,
+      "overflowing": 0,
+      "documentOverflow": 0
+    },
+    {
+      "width": 428,
+      "rows": 8,
+      "overflowing": 0,
+      "documentOverflow": 0
+    },
+    {
+      "width": 768,
+      "rows": 8,
+      "overflowing": 0,
+      "documentOverflow": 0
+    },
+    {
+      "width": 1024,
+      "rows": 8,
+      "overflowing": 0,
+      "documentOverflow": 0
+    },
+    {
+      "width": 1280,
+      "rows": 8,
+      "overflowing": 0,
+      "documentOverflow": 0
+    },
+    {
+      "width": 1440,
+      "rows": 8,
+      "overflowing": 0,
+      "documentOverflow": 0
+    },
+    {
+      "width": 1920,
+      "rows": 8,
+      "overflowing": 0,
+      "documentOverflow": 0
+    }
+  ]
+}

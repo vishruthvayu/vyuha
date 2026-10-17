@@ -1,5 +1,8 @@
 # Drill experience rescue — handoff
 
+Current continuation and merge instructions: see `REPORT.md`, `ACCEPTANCE.md` and
+`INTEGRATION.md`. Runtime freeze: `5d40a24165dff5ace27c6131318da599ad828b0d`.
+
 This is the document to read first if you are picking this work up. It says what
 exists, how to run and measure it, what is left, and how to finish. It is updated at
 every milestone; the state below is current as of the commit that last touched it.
@@ -156,7 +159,7 @@ Major implementation milestones are pushed. Final source-matched acceptance, rep
 reconciliation and the items below remain open; this is not yet an integration-ready claim.
 In priority order:
 
-1. **Owner decisions** (do not change without the owner):
+1. **Remaining product choices** (unchanged by this continuation):
    * automatic quality steps down only below 20 fps (`quality.ts`); on a busy shared
      iGPU, High and Medium can sit at 40–55 fps while an idle iGPU holds 60
      everywhere (`PROGRESS.md`, final benchmark);

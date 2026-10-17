@@ -394,3 +394,19 @@ retain intrinsic height inside the scrollable roster. A labelled synthetic eight
 browser regression verifies containment at all eight requested widths. Full328
 frontend/parity, lint, format and build pass after these corrections. Current-source
 performance and final acceptance receipts are recorded separately from older M6 data.
+
+## Frozen-source browser evidence
+
+Runtime freeze5d40a24165dff5ace27c6131318da599ad828b0d is pushed. Separate GitHub
+checkout (Git object cache reused with --reference --dissociate) has a fresh npm ci,
+328 frontend/parity tests, lint, format and build passing. All72 production files
+are byte-identical to the served build. Python parity used the existing pinned
+requirements virtualenv; hosted CI separately installs Python3.12 dependencies.
+
+Frozen desktop/phone guided drills record22 axe states with0 violations, no JS
+exceptions, no contact-row overflow and no document horizontal overflow. Both save
+independently scored AARs. Expected transient AAR409 and Canvas2D warnings are retained
+in receipts. Real active close-ups, ten synthetic world views, keyboard, eight-width
+fallback/recovery and labelled roster fixtures, and offline cache/reload evidence
+are checked in. Current36-cell graphics matrix plus repeats/long run/resource soak
+are still running; this checkpoint does not claim final graphics acceptance.

@@ -1,0 +1,25 @@
+{
+  "browser": "Chrome/151.0.7922.173",
+  "protocol": "1.3",
+  "javascript": "15.1.206.23",
+  "os": "",
+  "devices": [
+    {
+      "vendor": "",
+      "device": ""
+    },
+    {
+      "vendor": "",
+      "device": ""
+    }
+  ],
+  "glRenderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL ES 3.2 Mesa 26.2.4-arch1.1)",
+  "glVendor": "Google Inc. (Intel)",
+  "flags": "headless=new, enable-gpu, ignore-gpu-blocklist, no-sandbox; normal vsync; isolated CDP9355",
+  "viewport": {
+    "width": 1440,
+    "height": 900,
+    "deviceScaleFactor": 1
+  },
+  "conditions": "Intel GPU shared with normal active desktop; one benchmark browser workload at a time; not the M1 reference device."
+}
