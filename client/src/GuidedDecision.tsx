@@ -1,4 +1,11 @@
-import { useEffect, useId, useState, type ReactNode } from "react";
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type MouseEvent,
+  type ReactNode,
+} from "react";
 import {
   Check,
   ChevronRight,
@@ -379,6 +386,12 @@ export function GuidedDecision({
   onNext?: () => void;
 }) {
   const uid = useId();
+  const dock = useRef<HTMLDivElement>(null);
+  const stepBody = useRef<HTMLDivElement>(null);
+  const keyboardIntent = useRef<{
+    selected: string | null;
+    step: string;
+  } | null>(null);
   const [revisit, setRevisit] = useState<"classify" | "respond" | null>(null);
   const [kind, setKind] = useState<Kind | null>(null);
   const [identity, setIdentity] = useState<Identity | null>(null);
@@ -433,6 +446,33 @@ export function GuidedDecision({
     state.tick,
   );
   const stepIndex = DECISION_STEPS.findIndex((s) => s.id === step);
+  function submit(
+    event: MouseEvent<HTMLButtonElement>,
+    action: DecisionAction,
+  ) {
+    keyboardIntent.current = event.detail === 0 ? { selected, step } : null;
+    onAct(action);
+  }
+  useEffect(() => {
+    const intent = keyboardIntent.current;
+    if (!intent) return;
+    if (
+      intent.selected !== selected ||
+      ownFeedback?.status === "rejected" ||
+      phase !== "running"
+    ) {
+      keyboardIntent.current = null;
+      return;
+    }
+    if (step === intent.step || ownFeedback?.status !== "accepted") return;
+    keyboardIntent.current = null;
+    // Preserve deliberate navigation outside the dock while awaiting a receipt.
+    if (
+      document.activeElement === document.body ||
+      dock.current?.contains(document.activeElement)
+    )
+      stepBody.current?.focus();
+  }, [step, selected, phase, ownFeedback]);
   const statusText = ownFeedback
     ? feedbackText(ownFeedback)
     : phase === "paused"
@@ -443,7 +483,7 @@ export function GuidedDecision({
           ? "Exercise complete. Review your decisions in the after-action review."
           : "";
   return (
-    <div className="guided" data-step={step}>
+    <div ref={dock} className="guided" data-step={step}>
       <div className="guided-head">
         <ol className="guided-steps" aria-label="Decision steps">
           {DECISION_STEPS.map((s, i) => (
@@ -489,7 +529,13 @@ export function GuidedDecision({
         </button>
       </div>
       {guidance && running && <p className="guided-coach">{COACH[step]}</p>}
-      <div className="guided-body">
+      <div
+        ref={stepBody}
+        className="guided-body"
+        tabIndex={-1}
+        role="group"
+        aria-label={`${DECISION_STEPS[stepIndex]?.label ?? step}${selected ? ` ${selected}` : ""}`}
+      >
         {step === "select" && (
           <div className="guided-prompt">
             <Crosshair size={18} aria-hidden="true" />
@@ -516,8 +562,8 @@ export function GuidedDecision({
               className="button designate"
               disabled={!!designateWhy}
               aria-describedby={`${uid}-designate`}
-              onClick={() =>
-                target && onAct({ k: "designate", track: target.id })
+              onClick={(event) =>
+                target && submit(event, { k: "designate", track: target.id })
               }
             >
               <Crosshair size={16} aria-hidden="true" />
@@ -575,11 +621,16 @@ export function GuidedDecision({
                 className="button primary"
                 disabled={!!classifyWhy}
                 aria-describedby={`${uid}-classify`}
-                onClick={() =>
+                onClick={(event) =>
                   target &&
                   kind &&
                   identity &&
-                  onAct({ k: "classify", track: target.id, kind, identity })
+                  submit(event, {
+                    k: "classify",
+                    track: target.id,
+                    kind,
+                    identity,
+                  })
                 }
               >
                 <Check size={16} aria-hidden="true" /> Confirm classification
@@ -639,9 +690,9 @@ export function GuidedDecision({
                     className={`effector-card ${e.effector}`}
                     disabled={e.disabled}
                     aria-describedby={`${uid}-${e.effector}`}
-                    onClick={() =>
+                    onClick={(event) =>
                       target &&
-                      onAct({
+                      submit(event, {
                         k: "engage",
                         track: target.id,
                         effector: e.effector,

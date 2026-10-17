@@ -346,3 +346,24 @@ precede backend startup tests (the hardening branch already verifies this fix).
 Inherited acceptance captures are available outside Git; they expose an AAR timeline
 accessible-name failure, so acceptance remains open. Final report is explicitly draft.
 No application-branch integration or release ref changes.
+
+## Takeover: decision receipts and accessibility
+
+Fixed two independently reproduced worker/App defects: same-contact same-kind rapid
+submissions could settle the wrong feedback, and pause/end races could leave a
+submission pending forever. The UI now matches an opaque request ID echoed by the
+worker. Paused/ended requests reject explicitly. The actual-worker regression
+checks rapid payloads, old-scope isolation and exact saved action/order fields with
+no request metadata. Two mounted App regressions protect older-receipt rejection.
+
+AAR timeline buttons now retain their complete visible text as their native
+accessible names (the inherited WCAG2.5.3 failure). Active-drill document scroll
+padding prevents phone keyboard focus under the sticky header. Keyboard-submitted
+decisions transfer focus to a labelled next-step group on acceptance, preserving
+pointer behavior and deliberate external focus. Five mounted focus regressions.
+
+Full frontend327/parity, ESLint, configured formatting and production build pass;
+72 offline assets. Refreshed preliminary1440/390 guided/AAR axe passes and phone
+focus scan finds0 obscured controls (previously4). Final source-matched photos,
+keyboard walkthrough and performance matrix follow this checkpoint. No engine,
+scoring, backend, integration branch or release ref changes.

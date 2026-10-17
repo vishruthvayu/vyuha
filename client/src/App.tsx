@@ -676,6 +676,8 @@ export default function App({
         initialized?: boolean;
         state?: Snapshot;
         action?: Action;
+        request_id?: number;
+        reason?: string;
         events?: Action[];
         commands?: AppliedCommand[];
         paused?: boolean;
@@ -744,6 +746,7 @@ export default function App({
         setFeedback((f) =>
           f &&
           f.status === "submitted" &&
+          f.seq === m.request_id &&
           f.action.k === done.k &&
           f.action.track === done.track
             ? {
@@ -752,7 +755,11 @@ export default function App({
                 tick: done.tick,
                 reason:
                   m.type === "rejected"
-                    ? "The contact changed state before the action reached the exercise engine (for example it lost its observation or stopped being active). Check the contact and try again."
+                    ? m.reason === "paused"
+                      ? "The exercise paused before this decision was applied. Resume, check the contact and try again."
+                      : m.reason === "ended"
+                        ? "The exercise ended before this decision was applied. Review the saved decisions in the AAR."
+                        : "The contact changed state before the action reached the exercise engine (for example it lost its observation or stopped being active). Check the contact and try again."
                     : undefined,
               }
             : f,
@@ -1021,14 +1028,16 @@ export default function App({
   };
   const act = (data: Omit<Action, "tick">) => {
     if (!running || !workerInitialized.current) return;
+    const requestId = ++feedbackSeq.current;
     setFeedback({
-      seq: ++feedbackSeq.current,
+      seq: requestId,
       action: data,
       status: "submitted",
     });
     worker.current?.postMessage({
       type: "action",
       scope: workerScope.current,
+      request_id: requestId,
       action: { ...data, tick: state.tick },
     });
   };

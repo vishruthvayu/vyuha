@@ -568,3 +568,129 @@ test("view blends converge on a moving goal in bounded time without angular jump
   assert.ok(frames <= Math.ceil(duration * 60) + 1);
   assert.ok(aim.distanceTo(goal) < 1e-6);
 });
+
+const designationFeedback = (
+  status: ActionFeedback["status"],
+): ActionFeedback => ({
+  seq: 1,
+  action: { k: "designate", track: "T4" },
+  status,
+  tick: 150,
+});
+async function activateDesignation(document: Document, detail: number) {
+  const designate = button(document, "Designate T4")!;
+  designate.focus();
+  await act(async () =>
+    designate.dispatchEvent(
+      new document.defaultView!.MouseEvent("click", {
+        bubbles: true,
+        detail,
+      }),
+    ),
+  );
+  return designate;
+}
+const designatedContact = () => contact({ designated: 150 });
+
+test(
+  "keyboard designation hands focus to the labelled classification group after acceptance and the next snapshot",
+  withDom(async (document) => {
+    const view = await mount(document);
+    const designate = await activateDesignation(document, 0);
+    assert.deepEqual(view.acts, [{ k: "designate", track: "T4" }]);
+    await view.rerender({ feedback: designationFeedback("submitted") });
+    assert.equal(document.activeElement, designate);
+    // The worker acknowledges first, and only then publishes the new snapshot.
+    await view.rerender({ feedback: designationFeedback("accepted") });
+    assert.equal(document.activeElement, designate);
+    const target = designatedContact();
+    await view.rerender({
+      target,
+      record: decisionRecord(target),
+      feedback: designationFeedback("accepted"),
+    });
+    const group = document.querySelector<HTMLElement>(".guided-body")!;
+    assert.equal(document.activeElement, group);
+    assert.equal(group.getAttribute("tabindex"), "-1");
+    assert.equal(group.getAttribute("role"), "group");
+    assert.match(group.getAttribute("aria-label")!, /classif/i);
+    assert.match(group.getAttribute("aria-label")!, /T4/);
+    assert.ok(group.querySelector('input[type="radio"]'));
+    await act(async () => view.root.unmount());
+  }),
+);
+
+test(
+  "pointer designation does not move focus when the next step appears",
+  withDom(async (document) => {
+    const view = await mount(document);
+    await activateDesignation(document, 1);
+    const target = designatedContact();
+    await view.rerender({
+      target,
+      record: decisionRecord(target),
+      feedback: designationFeedback("accepted"),
+    });
+    assert.notEqual(
+      document.activeElement,
+      document.querySelector(".guided-body"),
+    );
+    await act(async () => view.root.unmount());
+  }),
+);
+
+test(
+  "keyboard acknowledgment never steals focus moved outside the decision workspace",
+  withDom(async (document) => {
+    const view = await mount(document);
+    await activateDesignation(document, 0);
+    const external = document.createElement("button");
+    external.textContent = "Other workspace action";
+    document.body.append(external);
+    external.focus();
+    const target = designatedContact();
+    await view.rerender({
+      target,
+      record: decisionRecord(target),
+      feedback: designationFeedback("accepted"),
+    });
+    assert.equal(document.activeElement, external);
+    await act(async () => view.root.unmount());
+  }),
+);
+
+test(
+  "a rejected keyboard action clears focus handoff before a later state transition",
+  withDom(async (document) => {
+    const view = await mount(document);
+    await activateDesignation(document, 0);
+    await view.rerender({ feedback: designationFeedback("rejected") });
+    const target = designatedContact();
+    await view.rerender({ target, record: decisionRecord(target) });
+    assert.notEqual(
+      document.activeElement,
+      document.querySelector(".guided-body"),
+    );
+    await act(async () => view.root.unmount());
+  }),
+);
+
+test(
+  "changing contact clears a keyboard action's pending focus handoff",
+  withDom(async (document) => {
+    const view = await mount(document);
+    await activateDesignation(document, 0);
+    const target = contact({ id: "T5", designated: 150 });
+    await view.rerender({
+      selected: "T5",
+      target,
+      record: decisionRecord(target),
+      feedback: designationFeedback("accepted"),
+    });
+    assert.notEqual(
+      document.activeElement,
+      document.querySelector(".guided-body"),
+    );
+    await act(async () => view.root.unmount());
+  }),
+);

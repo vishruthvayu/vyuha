@@ -118,8 +118,8 @@ and 390. Native radio groups and buttons; focus ring on cards. Details in
     (tested by rendering every hidden kind × identity and comparing output);
   - the close-up is limited to sensor resolution;
   - no artificial illumination of contacts at night.
-* **Unchanged:** simulation, sensors, scoring, replay, parity fixtures, server. The
-  only shared-file change is additive: `sim.worker.ts` also posts `rejected`.
+* **Unchanged:** simulation, sensors, scoring, replay, parity fixtures, server. The worker transport also echoes request IDs and explicitly rejects paused/ended
+  actions; receipt metadata never enters authoritative event records.
 
 ## 5. Integration notes for the owner
 

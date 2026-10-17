@@ -1632,3 +1632,13 @@ main:has(> .drill-page) > .topbar {
     0 0 2px rgb(0 0 0 / 0.95),
     0 1px 4px rgb(0 0 0 / 0.75);
 }
+
+/* Keyboard focus must clear the sticky app header on the active drill. */
+html:has(.sensor-workspace) {
+  scroll-padding-block-start: calc(var(--appbar-h) + 12px);
+}
+
+.guided-body:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+}

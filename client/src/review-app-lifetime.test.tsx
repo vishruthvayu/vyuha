@@ -230,6 +230,8 @@ async function mounted(
     workerMessages: {
       type: string;
       scope?: string;
+      request_id?: number;
+      action?: import("./types").Action;
       scenario?: Scenario;
       events?: import("./types").Action[];
       commands?: import("./types").AppliedCommand[];
@@ -262,6 +264,8 @@ async function mounted(
   const workerMessages: {
     type: string;
     scope?: string;
+    request_id?: number;
+    action?: import("./types").Action;
     scenario?: Scenario;
     events?: import("./types").Action[];
     commands?: import("./types").AppliedCommand[];
@@ -277,6 +281,8 @@ async function mounted(
     postMessage(message: {
       type: string;
       scope?: string;
+      request_id?: number;
+      action?: import("./types").Action;
       scenario?: Scenario;
     }) {
       workerMessages.push(message);
@@ -718,3 +724,105 @@ test("Actual App restored draft locks evidence until its own initialized replay 
       assert.equal(document.querySelector(".aar-summary"), null);
     },
   ));
+
+for (const olderStatus of ["accepted", "rejected"] as const) {
+  test(`Actual App ignores an older ${olderStatus} acknowledgment while a different classification is pending`, () =>
+    mounted("restoration", async ({ document, workerMessages, emitWorker }) => {
+      await click(document, "Resume saved drill");
+      const init = [...workerMessages]
+        .reverse()
+        .find((message) => message.type === "init")!;
+      const restored = replay(
+        restoredScenario,
+        restoredEvents,
+        990,
+        restoredCommands,
+      ).snapshot();
+      const contact = reportedContacts(restored).find(
+        (track) => track.id === designated.id,
+      )!;
+      assert.ok(contact, "Restored contact still has a sensor report");
+      assert.equal(contact.classification, null);
+      await act(async () =>
+        emitWorker({
+          type: "snapshot",
+          scope: init.scope,
+          scenario_id: restoredScenario.id,
+          initialized: true,
+          state: restored,
+          paused: false,
+        }),
+      );
+      const row = [
+        ...document.querySelectorAll<HTMLButtonElement>(".contact-item"),
+      ].find((button) => button.textContent?.includes(contact.id));
+      assert.ok(row);
+      await act(async () =>
+        row.dispatchEvent(
+          new document.defaultView!.Event("pointerdown", { bubbles: true }),
+        ),
+      );
+      const chooseRadio = async (value: string) => {
+        const radio = document.querySelector<HTMLInputElement>(
+          `.guided input[type="radio"][value="${value}"]`,
+        );
+        assert.ok(radio, `Missing classification choice ${value}`);
+        await act(async () => radio.click());
+      };
+      await chooseRadio("quad");
+      await chooseRadio("neutral");
+      await click(document, "Confirm classification");
+      const first = [...workerMessages]
+        .reverse()
+        .find((message) => message.type === "action")!;
+      await chooseRadio("bird");
+      await chooseRadio("friendly");
+      await click(document, "Confirm classification");
+      const second = [...workerMessages]
+        .reverse()
+        .find((message) => message.type === "action")!;
+      assert.ok(Number.isInteger(first.request_id));
+      assert.ok(Number.isInteger(second.request_id));
+      assert.notEqual(first.request_id, second.request_id);
+      assert.equal(first.action!.k, "classify");
+      assert.equal(first.action!.track, second.action!.track);
+      assert.equal(second.action!.k, "classify");
+      assert.equal(first.action!.kind, "quad");
+      assert.equal(first.action!.identity, "neutral");
+      assert.equal(second.action!.kind, "bird");
+      assert.equal(second.action!.identity, "friendly");
+      const status = () =>
+        document.querySelector(".guided-status")!.textContent!;
+      const pending = status();
+      assert.match(pending, /Bird.*friendly.*submitted/);
+      await act(async () =>
+        emitWorker({
+          type: olderStatus,
+          scope: init.scope,
+          scenario_id: restoredScenario.id,
+          request_id: first.request_id,
+          action: { ...first.action!, tick: 990, order: 2 },
+        }),
+      );
+      assert.equal(
+        status(),
+        pending,
+        "An older same-contact/kind reply must not settle the newer choice",
+      );
+      await act(async () =>
+        emitWorker({
+          type: "accepted",
+          scope: init.scope,
+          scenario_id: restoredScenario.id,
+          request_id: second.request_id,
+          action: {
+            ...second.action!,
+            tick: 990,
+            order: olderStatus === "accepted" ? 3 : 2,
+          },
+        }),
+      );
+      assert.match(status(), /Bird.*friendly.*accepted at 00:33/);
+      assert.doesNotMatch(status(), /submitted|not accepted/);
+    }));
+}

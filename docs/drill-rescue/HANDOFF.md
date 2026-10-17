@@ -47,9 +47,8 @@ EXPERIENCE TRANSFORMATION" prompt. Its non-negotiables are in §3.
   hollow "behind scenery" marker, not as an airframe on the wall
   (`world/obstruction.ts`); its close-up says VIEW BLOCKED BY SCENERY.
 * **No new simulation semantics.** Engine files (`sim*.ts`, `sensors-v2.ts`,
-  `response-v2.ts`, `visibility.ts`, `types.ts`, `server/**`) are untouched. The single
-  shared edit is additive: `sim.worker.ts` also posts `{type:'rejected'}`. Flag it to
-  the integration owner.
+  `response-v2.ts`, `visibility.ts`, `types.ts`, `server/**`) are untouched. The worker protocol adds correlated accepted/rejected receipts; request IDs stay
+  outside authoritative Action records. Flag this UI/worker contract to integration.
 * **Offline.** All assets ship in the build; `scripts/offline.mjs` precaches all of
   `dist/`. Do not add CDNs or remote decoders. World asset budget: ≤ 6 MB (now ≈ 2.7 MB).
 * **Licences.** Only CC0 (Poly Haven) or original assets. No Sketchfab, BlenderKit,
