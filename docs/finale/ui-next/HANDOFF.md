@@ -66,3 +66,7 @@ Runtime source `a87842bd7b99537a540fb7c6adb08f475f8eaed1` is pushed on `feature/
 ## Clean-runner workflow repair
 
 The user-reported GitHub failure is reproduced: backend startup tests run before production assets exist. Workflow now builds the frontend before backend integration tests and explicitly runs frontend lint/format checks. Fresh-checkout startup suite13 and frontend301/parity/build/lint/format/Docker pass. Preserve this ordering during integration. See CI-REPAIR.md; hosted run on the fixing commit is authoritative. No application or drill source changes.
+
+## Latest drill handoff preflight (17 October)
+
+Read updated drill docs and preserved developer WIP. Pushed drill b403077 independently passes318/parity/lint/configured+world formatting/build in a separate detached worktree; local319 includes one uncommitted test. Packaged72 offline URLs resolve. Drill hosted CI still has the missing-dist ordering failures already fixed on hardening. Referenced acceptance report/harness/captures are not yet published; final matrices precede the latest visual fixes. No changed path overlaps between branches, no merge or simulator edits. See DRILL-PREFLIGHT.md and drill-preflight/receipt.json. Await explicit ownership handoff before concurrent drill edits.
