@@ -379,7 +379,7 @@ at360/390/428/768/1024/1280/1440/1920 confirms no document overflow, uncovered f
 controls, and successful2D fallback/3D recovery. Five inset geometry/sample tests.
 Full frontend328/parity/lint/format/build pass. Close-up capture harness now scrolls
 the actual view into frame (phone offscreen crops had produced blank images), can
-require a minimum observed sensor pixel count and pauses before zoom comparisons.
+require a minimum observed sensor pixel count and captures the active view before zoom comparisons (ranges can change with actual motion).
 AAR capture respects existing scroll margins instead of bypassing them with a
 hardcoded offset. These harness changes do not change observations or scoring.
 Graphics measurements and final source-matched evidence remain the next gate.

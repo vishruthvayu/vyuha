@@ -141,7 +141,7 @@ export function InspectionPass({
         caption.style.display = "block";
         caption.style.top = "14px";
         caption.style.width = `${displaySize}px`;
-        caption.textContent = `${channel.toUpperCase()} CLOSE-UP · VIEW BLOCKED BY SCENERY · ${Math.round(range)} M`;
+        caption.textContent = `${channel.toUpperCase()} CLOSE-UP · VIEW BLOCKED BY SCENERY · ${Math.round(range)}\u00a0M`;
       }
       return;
     }
@@ -185,7 +185,7 @@ export function InspectionPass({
       caption.style.display = "block";
       caption.style.top = `${margin + displaySize + 4}px`;
       caption.style.width = `${displaySize}px`;
-      caption.textContent = `${channel.toUpperCase()} CLOSE-UP · ${Math.max(1, Math.round(pixels))} PX ACROSS TARGET · ${Math.round(range)} M`;
+      caption.textContent = `${channel.toUpperCase()} CLOSE-UP · ${Math.max(1, Math.round(pixels))} PX ACROSS TARGET · ${Math.round(range)}\u00a0M`;
     }
   }, 2);
   return null;
