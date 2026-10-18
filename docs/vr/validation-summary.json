@@ -1,0 +1,31 @@
+{
+  "status": "SOFTWARE_CHECKS_PASSED_HARDWARE_VALIDATION_PENDING",
+  "validated_at": "2026-10-18T16:20:43Z",
+  "source_sha256": "baf7a00dbb172e652bba7d721095193f75702eb2c6b7e582d8d0c234edfba391",
+  "backend_passed": 139,
+  "frontend_passed": 72,
+  "existing_parity_checkpoints": 312,
+  "browser_checks_passed": 11,
+  "unexpected_browser_errors": 0,
+  "known_emulator_limitations": [
+    {
+      "stage": "emulated WebGL context loss",
+      "message": "Cannot read properties of null (reading '0')",
+      "stack": "TypeError: Cannot read properties of null (reading '0')\n    at onDeviceFrame (<anonymous>:2:58553)"
+    }
+  ],
+  "build": "passed",
+  "offline_assets": 26,
+  "pdf_pages": 9,
+  "physical_headset": "NOT TESTED",
+  "artifacts_sha256": {
+    "VYUHA-VR-GUIDE.pdf": "c46db29eeb6f54a47bf3ba19bc646e4730d6e9a6eae25f81ac920c7ff6dc699b",
+    "evidence/backend-tests.txt": "1311e9f35230d0b9c9fe68bb1781cf791bb18c2198dbf632329f8b3d392c0093",
+    "evidence/browser-results.json": "eab27498611b22850c8373b87462554b47400eb35651a3abb5a582866bed5943",
+    "evidence/build.txt": "2ccd6087bd22cb480ec7b7355671c04dc9162db0f90a2cc269a9919b6d9de221",
+    "evidence/desktop-preview.png": "3847e7ec3cd89288939a4e37a75962e66a5ec1c9dd292fb6fa9fa438606ff1eb",
+    "evidence/emulated-stereo.png": "d7d4ff232020137ec1c418c27ede11c14c3ec1c9288f92182b5b478c24a5dda2",
+    "evidence/frontend-tests.txt": "3dd7a5e4a8205cb1518f3465ebb29c3563b61dbe1f218e7b999c90bf1d478073",
+    "evidence/verified-review.png": "95c02dcbbf0f1d694fe3374387efbf611e699a350d670f3a57050ae736036b4c"
+  }
+}

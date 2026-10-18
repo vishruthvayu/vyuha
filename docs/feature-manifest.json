@@ -189,10 +189,10 @@
     },
     {
       "name": "VR/WebXR",
-      "status": "DEFERRED",
-      "implemented": false,
-      "evidence_scope": "Future work; no submission claim of implementation or operational validation",
-      "source": "docs/STAGE-6-HARDENING.md"
+      "status": "EXPERIMENTAL",
+      "implemented": true,
+      "evidence_scope": "New working-tree feature after v1.0.1: stationary WebXR cockpit and desktop preview, shared training/scoring pipeline, automated software and IWER browser checks. Physical headset compatibility, comfort and sustained FPS NOT TESTED. Historical release manifests do not validate this addition.",
+      "source": "docs/vr/VALIDATION.md"
     },
     {
       "name": "Rain model",

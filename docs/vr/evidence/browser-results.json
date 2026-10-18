@@ -1,0 +1,42 @@
+{
+  "scope": "Automated headless Chromium + IWER 2.6.0 Meta Quest 3 emulation; temporary SQLite DB; not a physical headset, comfort or device-performance test.",
+  "source_sha256": "baf7a00dbb172e652bba7d721095193f75702eb2c6b7e582d8d0c234edfba391",
+  "timestamp_utc": "2026-10-18T16:20:43Z",
+  "checks": [
+    "Desktop without headset: truthful capability state and disabled entry",
+    "Desktop cockpit: begin, select, designate, classify, arm, cancel, confirm and pause",
+    "Closing preview restores ordinary renderer; decisions saved and server verified",
+    "Emulated permission denial is recoverable and creates no live session",
+    "Emulated XR frame contains separate left-eye and right-eye views",
+    "Both emulated controllers raycast scene buttons; selection, type, identity, classification and response reach worker",
+    "Pending response expires after eight seconds and requires a separate confirmation",
+    "Emulated visibility loss pauses simulation; visible again never auto-resumes",
+    "Controller exit and headset/system exit pause training; re-entry works",
+    "Natural full-duration VR exercise ends session, opens debrief and is independently server verified",
+    "Graphics context loss exits immersive mode and pauses the drill"
+  ],
+  "page_errors": [],
+  "known_emulator_limitations": [
+    {
+      "stage": "emulated WebGL context loss",
+      "message": "Cannot read properties of null (reading '0')",
+      "stack": "TypeError: Cannot read properties of null (reading '0')\n    at onDeviceFrame (<anonymous>:2:58553)"
+    }
+  ],
+  "verified_sessions": [
+    {
+      "id": "28994e92-5f0d-4dc9-9ec8-5543e43f89e2",
+      "events": 3,
+      "execution_tick": null,
+      "score": 0
+    },
+    {
+      "id": "ab565581-6e58-4311-97bc-00033582ad0b",
+      "events": 3,
+      "execution_tick": null,
+      "score": 0
+    }
+  ],
+  "elapsed_seconds": 91.59,
+  "physical_headset": "NOT TESTED"
+}

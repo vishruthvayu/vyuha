@@ -32,7 +32,7 @@ Dedicated physical WAN-off/LAN-on validation: **NOT PERFORMED BEFORE SUBMISSION*
 
 The canonical [feature manifest](docs/feature-manifest.json) uses IMPLEMENTED, VALIDATED, EXPERIMENTAL and DEFERRED with explicit evidence scopes. Supported capabilities include urban/rural terrain and fog, five Red Force patterns, three illustrative Doctrine Packs, immutable Scenario Studio exercises, auditable hostile-order scoring, 10–20-round Rapid ID, individual/unit analytics, graphics fallback and recovery.
 
-Ghost is rule-grounded, with no LLM. Recorded JSON observation practice is experimental and does not invent tactical scores, impacts or missing ground truth. Consent-gated evaluation tooling has no completed human study. Portable HMAC bundles verify shared-secret integrity, not donor identity or non-repudiation. Local audio is a non-scoring illustrative cue. Crew roles, live sensor feeds, VR, rain, validated military models and production identity remain deferred.
+Ghost is rule-grounded, with no LLM. Recorded JSON observation practice is experimental and does not invent tactical scores, impacts or missing ground truth. Consent-gated evaluation tooling has no completed human study. Portable HMAC bundles verify shared-secret integrity, not donor identity or non-repudiation. Local audio is a non-scoring illustrative cue. Crew roles, live sensor feeds, rain, validated military models and production identity remain deferred. An experimental VR cockpit is now implemented; its scope is documented below.
 
 The [final validation record](docs/FINAL-VALIDATION.md), [release evidence](docs/release-evidence.json) and `/system/evidence` distinguish architecture, software checks, physical LAN evidence, simulated load and missing physical WAN validation. The UI warns when source differs from its validation manifest. `/system/benchmark` measures device rendering and worker cost without reducing simulation fidelity.
 
@@ -80,3 +80,13 @@ Navigation audit: [route matrix](docs/qa-navigation/ROUTE-MATRIX.md) and [audit/
 Final software release branch: `release/v1.0.1`; immutable tag: `v1.0.1`. This includes competitive polish plus the navigation/discoverability fix. [Final software validation](docs/release-v1.0.1/FINAL-VALIDATION.md) records the fresh 139 backend /64 frontend /312 parity checks, production build, 18/18 baseline and21/21 current history compatibility, and final UI navigation. The served evidence manifest is refreshed; earlier performance/physical/media measurements retain explicit historical provenance.
 
 The exact tagged commit and verified remote refs are in the external `outputs/release-v1.0.1` seal receipt. Use [the final recording-source instructions](docs/DEMO-RUNBOOK.md) for the planned 7–8 minute video. Existing PDF/PPT/video/submission archives remain historical and were not regenerated. Freeze features after the verified tag; any critical blocker needs separate validation and an explicit patch-release decision.
+
+## VR observation post — new working-tree feature
+
+Open **Training ground → Open VR cockpit**. The stationary cockpit has an interactive laptop preview plus WebXR stereo rendering, head tracking, two controller rays, in-scene sensor evidence and decision controls. Decisions use the existing worker, event log, scoring and review. A second confirmation is required for VR responses; leaving VR or losing immersive visibility pauses the drill.
+
+Start with the [illustrated beginner guide](client/public/vr-guide.html) (also available inside the app at `/vr-guide.html`) or the [printable PDF](docs/vr/VYUHA-VR-GUIDE.pdf). [VR validation and limitations](docs/vr/VALIDATION.md) record software checks and emulated browser evidence. **Physical headset comfort, tracking, compatibility and sustained FPS remain untested.** This feature is experimental and does not change the historical v1.0.1 release/tag or its evidence claims.
+
+Laptop preview uses the ordinary local startup. A headset connecting over LAN needs trusted HTTPS. Configure `VYUHA_SSL_CERTFILE` and `VYUHA_SSL_KEYFILE`, then run `bash scripts/start-vr.sh --build`; certificate trust and address matching must be set up on the headset. The guide explains this from first principles.
+
+Repeat the browser checks after building with `.venv/bin/python scripts/test-vr-browser.py`. This uses a temporary database and a pinned development-only IWER emulator, without touching trainee records. Regenerate the PDF with `.venv/bin/python scripts/render-vr-guide.py`.

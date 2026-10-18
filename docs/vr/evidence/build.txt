@@ -1,0 +1,28 @@
+vite v6.4.3 building for production...
+transforming...
+✓ 1634 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                           0.66 kB │ gzip:   0.40 kB
+dist/assets/sim.worker-gI5K36jQ.js        8.23 kB
+dist/assets/App-C_uxw7lG.css              1.16 kB │ gzip:   0.54 kB
+dist/assets/index-DgT2H3Ge.css           36.92 kB │ gzip:   8.94 kB
+dist/assets/import-json-DqA3I991.js       0.36 kB │ gzip:   0.25 kB
+dist/assets/observations-DJGegytG.js      1.72 kB │ gzip:   0.75 kB
+dist/assets/Transfer-xqyOYYAJ.js          3.01 kB │ gzip:   1.46 kB
+dist/assets/Radar-Ddv0-l30.js             3.04 kB │ gzip:   1.29 kB
+dist/assets/presentation-DEBuChuu.js      3.39 kB │ gzip:   1.60 kB
+dist/assets/Evaluation-C51rmku5.js        3.77 kB │ gzip:   1.52 kB
+dist/assets/Recorded-SE_0cMlG.js          5.32 kB │ gzip:   1.98 kB
+dist/assets/Evidence-WYo_Forw.js          6.02 kB │ gzip:   1.88 kB
+dist/assets/Benchmark-BmjbLvQh.js         6.22 kB │ gzip:   2.53 kB
+dist/assets/Analytics-DkQKnvwJ.js         8.92 kB │ gzip:   2.99 kB
+dist/assets/RapidID-DQAuEiXu.js           9.17 kB │ gzip:   3.44 kB
+dist/assets/Instructor-BbOMg9MR.js        9.67 kB │ gzip:   3.21 kB
+dist/assets/ExerciseStudio-DaPf42QM.js   10.90 kB │ gzip:   3.62 kB
+dist/assets/VRCockpit-BfLYmJdU.js        14.29 kB │ gzip:   5.91 kB
+dist/assets/App-CcWewf_7.js              46.12 kB │ gzip:  14.24 kB
+dist/assets/index-Du5Bv2me.js           279.37 kB │ gzip:  86.47 kB
+dist/assets/scenario-DsTkXLVo.js        899.53 kB │ gzip: 243.54 kB
+✓ built in 2.80s
+Offline cache: 26 local assets (b900c3f2be74)
