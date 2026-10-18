@@ -318,7 +318,7 @@ function ChoiceGroup<T extends string>({
 }) {
   return (
     <fieldset className="choice-group" disabled={disabled}>
-      <legend>
+      <legend tabIndex={0}>
         {legend}
         {evidence && <span className="choice-evidence">{evidence}</span>}
       </legend>
@@ -408,6 +408,12 @@ export function GuidedDecision({
       setRevisit(null);
   }, [feedback, selected]);
   const step = decisionStep(selected, target, record, revisit);
+  useEffect(() => {
+    const active = stepBody.current?.querySelector<HTMLElement>(
+      '.guided-stage[data-active="true"]',
+    );
+    if (active) active.scrollTop = 0;
+  }, [step, selected]);
   const running = phase === "running";
   const ownFeedback =
     feedback && feedback.action.track === selected ? feedback : null;
@@ -485,7 +491,7 @@ export function GuidedDecision({
   return (
     <div ref={dock} className="guided" data-step={step}>
       <div className="guided-head">
-        <ol className="guided-steps" aria-label="Decision steps">
+        <ol className="guided-steps" aria-label="Decision steps" tabIndex={0}>
           {DECISION_STEPS.map((s, i) => (
             <li
               key={s.id}
@@ -530,6 +536,8 @@ export function GuidedDecision({
       </div>
       <p
         className="guided-coach"
+        tabIndex={guidance && running ? 0 : undefined}
+        aria-label="Decision guidance"
         aria-hidden={!guidance || !running}
         data-enabled={guidance && running}
       >
@@ -656,7 +664,7 @@ export function GuidedDecision({
               >
                 <Check size={16} aria-hidden="true" /> Confirm classification
               </button>
-              <p id={`${uid}-classify`} className="guided-why">
+              <p id={`${uid}-classify`} className="guided-why" tabIndex={0}>
                 {classifyWhy ??
                   "Shape alone cannot show the control method or intent. You can change this later."}
               </p>
@@ -813,7 +821,12 @@ export function GuidedDecision({
           </div>
         }
       </div>
-      <p className="guided-status" role="status" aria-live="polite">
+      <p
+        className="guided-status"
+        role="status"
+        aria-live="polite"
+        tabIndex={statusText ? 0 : undefined}
+      >
         {statusText}
       </p>
     </div>

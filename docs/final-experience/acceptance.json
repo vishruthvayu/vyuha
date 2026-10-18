@@ -1,0 +1,32 @@
+{
+  "base_sha": "e07fb6a07916ad4f0fa48e88a484534b040decfa",
+  "branch": "feature/vyuha-final-experience-polish",
+  "completed_at_utc": "2026-10-18T17:30:49Z",
+  "frontend_pass": 347,
+  "backend_pass": 708,
+  "full_natural_90_second_candidate_drills": [
+    {
+      "world": "urban",
+      "verified_session": "837d164a-0851-4193-9193-0ce567f22338",
+      "event_count": 3
+    },
+    {
+      "world": "rural",
+      "verified_session": "e15bba47-74e3-4851-b4c7-7a9ba79c2d6d",
+      "event_count": 3
+    }
+  ],
+  "final_ui_server_verified_drills": 11,
+  "max_recorded_geometry_drift_px": 0,
+  "scoped_classification_axe_violations": 0,
+  "renderer_hashes_verified_by": "closure-receipt.json",
+  "authoritative_backend_unchanged": true,
+  "test_log_sha256": {
+    "final-checks/frontend-tests.txt": "441cdb34c5286abcb1ea1d13142d7d8eb3ee1267378c4a56b8a9bd876c7e0170",
+    "final-checks/lint.txt": "0489d31bcaa93dd1471527d97cc33beac87291af667029afe4f4fac5a7248e60",
+    "final-checks/format.txt": "55be2801178119f7f43c2301f75a6da31cfb6df04c0dff4fce903d4c3de5859b",
+    "final-checks/build.txt": "f36ef04c0b398a6f602c939821298f2958ff0e2ffb24a61cfbfe56a7e1ac8a9c",
+    "rendering/backend-tests.txt": "906e119952322be4a0ba1e1f7d69c2fbaab16956fdacaec3ffa3b18ca4725e89"
+  },
+  "limitations": "See HANDOFF.md; one physical host, no headset or reference-device certification, 60 Hz cap unchanged."
+}

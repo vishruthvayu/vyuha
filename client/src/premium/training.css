@@ -1837,3 +1837,107 @@ html:has(.sensor-workspace) {
     height: clamp(300px, 45vh, 420px);
   }
 }
+
+/* Dynamic resource receipts must not resize the decision viewport. Each inert
+   stage has the same responsive scrollport; controls retain their positions
+   when channels fill, reload timers appear, or outcomes arrive. */
+.guided-body,
+.guided-body > .guided-stage {
+  block-size: 216px;
+  min-block-size: 0;
+}
+.guided-body > .guided-stage {
+  overflow: auto;
+  scrollbar-gutter: stable;
+  align-content: start;
+}
+.guided-coach {
+  min-block-size: 4em;
+  max-block-size: 4em;
+}
+.guided-summary {
+  block-size: 24px;
+  flex: none;
+  overflow: auto;
+}
+.effector-cards {
+  flex: none;
+}
+.effector-card {
+  block-size: 176px;
+  overflow: auto;
+}
+.guided-coach:focus-visible,
+.guided-status:focus-visible,
+.choice-group legend:focus-visible,
+.guided-why:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+@container (min-width: 901px) {
+  .guided-head {
+    grid-template-columns: max-content minmax(0, 1fr) auto;
+    grid-template-areas: "steps target toggle";
+    min-block-size: 32px;
+  }
+}
+@container (max-width: 900px) {
+  .guided-body,
+  .guided-body > .guided-stage {
+    block-size: 340px;
+  }
+}
+@container (max-width: 620px) {
+  .guided-body,
+  .guided-body > .guided-stage {
+    block-size: 540px;
+  }
+  .guided-coach {
+    min-block-size: 6em;
+    max-block-size: 6em;
+  }
+  .guided-summary {
+    block-size: 44px;
+  }
+  .effector-card {
+    block-size: 144px;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .drill-page:is(
+    [data-phase="running"],
+    [data-phase="paused"],
+    [data-phase="restoring"],
+    [data-phase="complete"]
+  ) {
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+  .drill-page:is(
+      [data-phase="running"],
+      [data-phase="paused"],
+      [data-phase="restoring"],
+      [data-phase="complete"]
+    )
+    .scene-container {
+    flex: none;
+    height: clamp(300px, 45vh, 420px);
+  }
+}
+
+/* Reserve both header rows even when the active step label changes length. */
+@container (max-width: 900px) {
+  .guided-head {
+    grid-template-areas: "steps steps" "target toggle";
+    grid-template-rows: 32px 32px;
+    block-size: 68px;
+  }
+  .guided-steps {
+    flex-wrap: nowrap;
+    overflow: auto;
+  }
+  .guided-steps li {
+    flex-shrink: 0;
+  }
+}

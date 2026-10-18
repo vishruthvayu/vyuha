@@ -1,0 +1,1997 @@
+{
+  "cases": [
+    {
+      "width": 360,
+      "stages": [
+        {
+          "stage": "designate",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 334,
+              "h": 259.1875
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 334,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1337.515625,
+              "w": 336,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1506.515625,
+              "w": 306,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2054.515625,
+              "w": 306,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "classify",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 334,
+              "h": 259.1875
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 334,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1337.515625,
+              "w": 336,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1506.515625,
+              "w": 306,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2054.515625,
+              "w": 306,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "respond",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 334,
+              "h": 259.1875
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 334,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1337.515625,
+              "w": 336,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1506.515625,
+              "w": 306,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2054.515625,
+              "w": 306,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "outcome",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 334,
+              "h": 259.1875
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 334,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1337.515625,
+              "w": 336,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1506.515625,
+              "w": 306,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2054.515625,
+              "w": 306,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "paused",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 334,
+              "h": 259.1875
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 334,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1337.515625,
+              "w": 336,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1506.515625,
+              "w": 306,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2054.515625,
+              "w": 306,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "guidance-off",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 334,
+              "h": 259.1875
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 334,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1337.515625,
+              "w": 336,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1506.515625,
+              "w": 306,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2054.515625,
+              "w": 306,
+              "h": 34.5
+            }
+          }
+        }
+      ],
+      "max_deltas_px": {
+        ".scene-container": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".sensor-workspace > .panel-header": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".decision-workspace": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".guided-body": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".guided-status": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        }
+      },
+      "verified": true,
+      "axe_violations": []
+    },
+    {
+      "width": 390,
+      "stages": [
+        {
+          "stage": "designate",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 364,
+              "h": 280.796875
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 364,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1325.125,
+              "w": 366,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1494.125,
+              "w": 336,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2042.125,
+              "w": 336,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "classify",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 364,
+              "h": 280.796875
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 364,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1325.125,
+              "w": 366,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1494.125,
+              "w": 336,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2042.125,
+              "w": 336,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "respond",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 364,
+              "h": 280.796875
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 364,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1325.125,
+              "w": 366,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1494.125,
+              "w": 336,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2042.125,
+              "w": 336,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "outcome",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 364,
+              "h": 280.796875
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 364,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1325.125,
+              "w": 366,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1494.125,
+              "w": 336,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2042.125,
+              "w": 336,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "paused",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 364,
+              "h": 280.796875
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 364,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1325.125,
+              "w": 366,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1494.125,
+              "w": 336,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2042.125,
+              "w": 336,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "guidance-off",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 364,
+              "h": 280.796875
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 364,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1325.125,
+              "w": 366,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1494.125,
+              "w": 336,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2042.125,
+              "w": 336,
+              "h": 34.5
+            }
+          }
+        }
+      ],
+      "max_deltas_px": {
+        ".scene-container": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".sensor-workspace > .panel-header": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".decision-workspace": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".guided-body": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".guided-status": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        }
+      },
+      "verified": true,
+      "axe_violations": []
+    },
+    {
+      "width": 428,
+      "stages": [
+        {
+          "stage": "designate",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 402,
+              "h": 308.15625
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 402,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1352.484375,
+              "w": 404,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1521.484375,
+              "w": 374,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2069.484375,
+              "w": 374,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "classify",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 402,
+              "h": 308.15625
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 402,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1352.484375,
+              "w": 404,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1521.484375,
+              "w": 374,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2069.484375,
+              "w": 374,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "respond",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 402,
+              "h": 308.15625
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 402,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1352.484375,
+              "w": 404,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1521.484375,
+              "w": 374,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2069.484375,
+              "w": 374,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "outcome",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 402,
+              "h": 308.15625
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 402,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1352.484375,
+              "w": 404,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1521.484375,
+              "w": 374,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2069.484375,
+              "w": 374,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "paused",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 402,
+              "h": 308.15625
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 402,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1352.484375,
+              "w": 404,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1521.484375,
+              "w": 374,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2069.484375,
+              "w": 374,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "guidance-off",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 342.34375,
+              "w": 402,
+              "h": 308.15625
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 13,
+              "y": 265.34375,
+              "w": 402,
+              "h": 77
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1352.484375,
+              "w": 404,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1521.484375,
+              "w": 374,
+              "h": 540
+            },
+            ".guided-status": {
+              "x": 29,
+              "y": 2069.484375,
+              "w": 374,
+              "h": 34.5
+            }
+          }
+        }
+      ],
+      "max_deltas_px": {
+        ".scene-container": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".sensor-workspace > .panel-header": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".decision-workspace": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".guided-body": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".guided-status": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        }
+      },
+      "verified": true,
+      "axe_violations": []
+    },
+    {
+      "width": 768,
+      "stages": [
+        {
+          "stage": "designate",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 276.484375,
+              "w": 734,
+              "h": 430.078125
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 228.484375,
+              "w": 734,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 1417.5,
+              "w": 736,
+              "h": 540.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 1562.5,
+              "w": 706,
+              "h": 340
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 1910.5,
+              "w": 706,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "classify",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 276.484375,
+              "w": 734,
+              "h": 430.078125
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 228.484375,
+              "w": 734,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 1417.5,
+              "w": 736,
+              "h": 540.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 1562.5,
+              "w": 706,
+              "h": 340
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 1910.5,
+              "w": 706,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "respond",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 276.484375,
+              "w": 734,
+              "h": 430.078125
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 228.484375,
+              "w": 734,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 1417.5,
+              "w": 736,
+              "h": 540.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 1562.5,
+              "w": 706,
+              "h": 340
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 1910.5,
+              "w": 706,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "outcome",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 276.484375,
+              "w": 734,
+              "h": 430.078125
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 228.484375,
+              "w": 734,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 1417.5,
+              "w": 736,
+              "h": 540.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 1562.5,
+              "w": 706,
+              "h": 340
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 1910.5,
+              "w": 706,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "paused",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 276.484375,
+              "w": 734,
+              "h": 430.078125
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 228.484375,
+              "w": 734,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 1417.5,
+              "w": 736,
+              "h": 540.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 1562.5,
+              "w": 706,
+              "h": 340
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 1910.5,
+              "w": 706,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "guidance-off",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 276.484375,
+              "w": 734,
+              "h": 430.078125
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 228.484375,
+              "w": 734,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 1417.5,
+              "w": 736,
+              "h": 540.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 1562.5,
+              "w": 706,
+              "h": 340
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 1910.5,
+              "w": 706,
+              "h": 34.5
+            }
+          }
+        }
+      ],
+      "max_deltas_px": {
+        ".scene-container": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".sensor-workspace > .panel-header": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".decision-workspace": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".guided-body": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".guided-status": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        }
+      },
+      "verified": true,
+      "axe_violations": []
+    },
+    {
+      "width": 1024,
+      "stages": [
+        {
+          "stage": "designate",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 648,
+              "h": 420
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 648,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 675.890625,
+              "w": 650,
+              "h": 540.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 820.890625,
+              "w": 620,
+              "h": 340
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 1168.890625,
+              "w": 620,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "classify",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 648,
+              "h": 420
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 648,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 675.890625,
+              "w": 650,
+              "h": 540.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 820.890625,
+              "w": 620,
+              "h": 340
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 1168.890625,
+              "w": 620,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "respond",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 648,
+              "h": 420
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 648,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 675.890625,
+              "w": 650,
+              "h": 540.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 820.890625,
+              "w": 620,
+              "h": 340
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 1168.890625,
+              "w": 620,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "outcome",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 648,
+              "h": 420
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 648,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 675.890625,
+              "w": 650,
+              "h": 540.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 820.890625,
+              "w": 620,
+              "h": 340
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 1168.890625,
+              "w": 620,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "paused",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 648,
+              "h": 420
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 648,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 675.890625,
+              "w": 650,
+              "h": 540.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 820.890625,
+              "w": 620,
+              "h": 340
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 1168.890625,
+              "w": 620,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "guidance-off",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 648,
+              "h": 420
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 648,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 675.890625,
+              "w": 650,
+              "h": 540.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 820.890625,
+              "w": 620,
+              "h": 340
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 1168.890625,
+              "w": 620,
+              "h": 34.5
+            }
+          }
+        }
+      ],
+      "max_deltas_px": {
+        ".scene-container": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".sensor-workspace > .panel-header": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".decision-workspace": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".guided-body": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".guided-status": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        }
+      },
+      "verified": true,
+      "axe_violations": []
+    },
+    {
+      "width": 1280,
+      "stages": [
+        {
+          "stage": "designate",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 904,
+              "h": 324
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 904,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 579.890625,
+              "w": 906,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 688.890625,
+              "w": 876,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 912.890625,
+              "w": 876,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "classify",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 904,
+              "h": 324
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 904,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 579.890625,
+              "w": 906,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 688.890625,
+              "w": 876,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 912.890625,
+              "w": 876,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "respond",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 904,
+              "h": 324
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 904,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 579.890625,
+              "w": 906,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 688.890625,
+              "w": 876,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 912.890625,
+              "w": 876,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "outcome",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 904,
+              "h": 324
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 904,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 579.890625,
+              "w": 906,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 688.890625,
+              "w": 876,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 912.890625,
+              "w": 876,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "paused",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 904,
+              "h": 324
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 904,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 579.890625,
+              "w": 906,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 688.890625,
+              "w": 876,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 912.890625,
+              "w": 876,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "guidance-off",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 904,
+              "h": 324
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 904,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 579.890625,
+              "w": 906,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 688.890625,
+              "w": 876,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 912.890625,
+              "w": 876,
+              "h": 34.5
+            }
+          }
+        }
+      ],
+      "max_deltas_px": {
+        ".scene-container": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".sensor-workspace > .panel-header": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".decision-workspace": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".guided-body": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".guided-status": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        }
+      },
+      "verified": true,
+      "axe_violations": []
+    },
+    {
+      "width": 1440,
+      "stages": [
+        {
+          "stage": "designate",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 1034,
+              "h": 299.609375
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 555.5,
+              "w": 1036,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1006,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1006,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "classify",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 1034,
+              "h": 299.609375
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 555.5,
+              "w": 1036,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1006,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1006,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "respond",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 1034,
+              "h": 299.609375
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 555.5,
+              "w": 1036,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1006,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1006,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "outcome",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 1034,
+              "h": 299.609375
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 555.5,
+              "w": 1036,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1006,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1006,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "paused",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 1034,
+              "h": 299.609375
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 555.5,
+              "w": 1036,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1006,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1006,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "guidance-off",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 1034,
+              "h": 299.609375
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 555.5,
+              "w": 1036,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1006,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1006,
+              "h": 34.5
+            }
+          }
+        }
+      ],
+      "max_deltas_px": {
+        ".scene-container": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".sensor-workspace > .panel-header": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".decision-workspace": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".guided-body": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".guided-status": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        }
+      },
+      "verified": true,
+      "axe_violations": []
+    },
+    {
+      "width": 1920,
+      "stages": [
+        {
+          "stage": "designate",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 1474,
+              "h": 299.609375
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 1474,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 555.5,
+              "w": 1476,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1446,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1446,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "classify",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 1474,
+              "h": 299.609375
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 1474,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 555.5,
+              "w": 1476,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1446,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1446,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "respond",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 1474,
+              "h": 299.609375
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 1474,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 555.5,
+              "w": 1476,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1446,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1446,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "outcome",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 1474,
+              "h": 299.609375
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 1474,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 555.5,
+              "w": 1476,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1446,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1446,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "paused",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 1474,
+              "h": 299.609375
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 1474,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 555.5,
+              "w": 1476,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1446,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1446,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "guidance-off",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 198.890625,
+              "w": 1474,
+              "h": 299.609375
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 150.890625,
+              "w": 1474,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 555.5,
+              "w": 1476,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1446,
+              "h": 216
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1446,
+              "h": 34.5
+            }
+          }
+        }
+      ],
+      "max_deltas_px": {
+        ".scene-container": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".sensor-workspace > .panel-header": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".decision-workspace": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".guided-body": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".guided-status": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        }
+      },
+      "verified": true,
+      "axe_violations": []
+    }
+  ],
+  "errors": []
+}
