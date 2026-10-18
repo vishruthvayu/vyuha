@@ -1,0 +1,868 @@
+{
+  "label": "candidate-final",
+  "scope": "Headless Chromium on this host; browser frame intervals and WebGL workload, not physical headset or reference-device certification.",
+  "cpu_throttle": 1,
+  "cases": [
+    {
+      "type": "live",
+      "world": "urban",
+      "night": false,
+      "scenario_id": "raid_53cc73a3d1082b5b4911ff6a",
+      "scenario_sha256": "ffc1abf64a188e357229c45da8dba637cfc3ac9993c8ef569c54e3ef0520c81d",
+      "measurements": {
+        "THERMAL": {
+          "seconds": 5.002,
+          "frames": 300,
+          "mean_fps": 60.0,
+          "median_ms": 16.69999999999891,
+          "p95_ms": 16.799999999999272,
+          "p99_ms": 16.80000000000109,
+          "max_ms": 16.80000000000109,
+          "over_33ms": 0,
+          "over_50ms": 0,
+          "mean_draw_calls": 41.20666666666666,
+          "mean_triangles": 190222.78666666665,
+          "script_ms_per_second": 132.88360072324463,
+          "task_ms_per_second": 248.6598598996383,
+          "layout_count": 87,
+          "heap_end_bytes": 34093988,
+          "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+        },
+        "DAY TV": {
+          "seconds": 5.001,
+          "frames": 300,
+          "mean_fps": 60.0,
+          "median_ms": 16.700000000000728,
+          "p95_ms": 16.700000000000728,
+          "p99_ms": 16.80000000000291,
+          "max_ms": 16.80000000000291,
+          "over_33ms": 0,
+          "over_50ms": 0,
+          "mean_draw_calls": 48.03333333333333,
+          "mean_triangles": 208482.46666666667,
+          "script_ms_per_second": 158.89197712033157,
+          "task_ms_per_second": 301.77924169954224,
+          "layout_count": 109,
+          "heap_end_bytes": 32147816,
+          "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+        },
+        "IR NIGHT DISPLAY": {
+          "seconds": 5.002,
+          "frames": 301,
+          "mean_fps": 60.0,
+          "median_ms": 16.69999999999709,
+          "p95_ms": 16.700000000004366,
+          "p99_ms": 16.799999999999272,
+          "max_ms": 16.80000000000291,
+          "over_33ms": 0,
+          "over_50ms": 0,
+          "mean_draw_calls": 46.09966777408638,
+          "mean_triangles": 205648.99667774086,
+          "script_ms_per_second": 142.0921851384622,
+          "task_ms_per_second": 290.91674570477386,
+          "layout_count": 100,
+          "heap_end_bytes": 36238892,
+          "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+        }
+      },
+      "layouts": [
+        {
+          "stage": "selected",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 285.265625
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 571.15625,
+              "w": 1036,
+              "h": 364.84375
+            },
+            ".guided-classify": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 124.8125
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 180.34375
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1006,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "classify",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 285.265625
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 571.15625,
+              "w": 1036,
+              "h": 364.84375
+            },
+            ".guided-classify": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 124.8125
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 180.34375
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1006,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "respond",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 285.265625
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 571.15625,
+              "w": 1036,
+              "h": 364.84375
+            },
+            ".guided-classify": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 124.8125
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 180.34375
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1006,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "outcome",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 285.265625
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 571.15625,
+              "w": 1036,
+              "h": 364.84375
+            },
+            ".guided-classify": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 124.8125
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 180.34375
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1006,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "paused",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 285.265625
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 571.15625,
+              "w": 1036,
+              "h": 364.84375
+            },
+            ".guided-classify": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 124.8125
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 180.34375
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1006,
+              "h": 34.5
+            }
+          }
+        }
+      ],
+      "verified_session": "837d164a-0851-4193-9193-0ce567f22338",
+      "event_count": 3,
+      "history_schema": "vyuha-0.4.0"
+    },
+    {
+      "type": "live",
+      "world": "rural",
+      "night": true,
+      "scenario_id": "raid_feba82eb62f21a16f9c06f33",
+      "scenario_sha256": "01588786e8ad617e5683ea7ce01db633ea63560e5d8ce9fb4a86b4bf52c413c6",
+      "measurements": {
+        "THERMAL": {
+          "seconds": 5.002,
+          "frames": 301,
+          "mean_fps": 60.0,
+          "median_ms": 16.69999999999891,
+          "p95_ms": 16.700000000000728,
+          "p99_ms": 16.80000000000109,
+          "max_ms": 16.80000000000291,
+          "over_33ms": 0,
+          "over_50ms": 0,
+          "mean_draw_calls": 28.727574750830566,
+          "mean_triangles": 148962.3388704319,
+          "script_ms_per_second": 123.52637401273739,
+          "task_ms_per_second": 230.00071575199263,
+          "layout_count": 83,
+          "heap_end_bytes": 33659452,
+          "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+        },
+        "DAY TV": {
+          "seconds": 5.002,
+          "frames": 300,
+          "mean_fps": 60.0,
+          "median_ms": 16.69999999999709,
+          "p95_ms": 16.799999999999272,
+          "p99_ms": 16.80000000000291,
+          "max_ms": 16.80000000000291,
+          "over_33ms": 0,
+          "over_50ms": 0,
+          "mean_draw_calls": 30,
+          "mean_triangles": 142170,
+          "script_ms_per_second": 133.3093586968085,
+          "task_ms_per_second": 226.8351915389399,
+          "layout_count": 68,
+          "heap_end_bytes": 36327972,
+          "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+        },
+        "IR NIGHT DISPLAY": {
+          "seconds": 5.001,
+          "frames": 301,
+          "mean_fps": 60.0,
+          "median_ms": 16.700000000000728,
+          "p95_ms": 16.700000000000728,
+          "p99_ms": 16.799999999999272,
+          "max_ms": 16.80000000000291,
+          "over_33ms": 0,
+          "over_50ms": 0,
+          "mean_draw_calls": 33.02325581395349,
+          "mean_triangles": 165441.14950166113,
+          "script_ms_per_second": 134.924667897799,
+          "task_ms_per_second": 276.86329908129284,
+          "layout_count": 96,
+          "heap_end_bytes": 17373664,
+          "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+        }
+      },
+      "layouts": [
+        {
+          "stage": "selected",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 285.265625
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 571.15625,
+              "w": 1036,
+              "h": 364.84375
+            },
+            ".guided-classify": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 124.8125
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 180.34375
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1006,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "classify",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 285.265625
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 571.15625,
+              "w": 1036,
+              "h": 364.84375
+            },
+            ".guided-classify": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 124.8125
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 180.34375
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1006,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "respond",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 285.265625
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 571.15625,
+              "w": 1036,
+              "h": 364.84375
+            },
+            ".guided-classify": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 124.8125
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 180.34375
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1006,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "outcome",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 285.265625
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 571.15625,
+              "w": 1036,
+              "h": 364.84375
+            },
+            ".guided-classify": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 124.8125
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 180.34375
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1006,
+              "h": 34.5
+            }
+          }
+        },
+        {
+          "stage": "paused",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 285.265625
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 571.15625,
+              "w": 1036,
+              "h": 364.84375
+            },
+            ".guided-classify": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 124.8125
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 700.15625,
+              "w": 1006,
+              "h": 180.34375
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 888.5,
+              "w": 1006,
+              "h": 34.5
+            }
+          }
+        }
+      ],
+      "verified_session": "e15bba47-74e3-4851-b4c7-7a9ba79c2d6d",
+      "event_count": 3,
+      "history_schema": "vyuha-0.4.0"
+    },
+    {
+      "type": "matrix",
+      "repeat": 0,
+      "world": "urban_outpost:day",
+      "view": "day",
+      "contacts": 8,
+      "quality": "medium",
+      "measurement": {
+        "seconds": 15.003,
+        "frames": 901,
+        "mean_fps": 60.0,
+        "median_ms": 16.69999999999891,
+        "p95_ms": 16.700000000000728,
+        "p99_ms": 16.80000000000109,
+        "max_ms": 16.80000000000291,
+        "over_33ms": 0,
+        "over_50ms": 0,
+        "mean_draw_calls": 39,
+        "mean_triangles": 181790,
+        "script_ms_per_second": 116.04051736141528,
+        "task_ms_per_second": 136.788873564887,
+        "layout_count": 62,
+        "heap_end_bytes": 36463144,
+        "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+      }
+    },
+    {
+      "type": "matrix",
+      "repeat": 0,
+      "world": "rural_forward_base:night",
+      "view": "thermal",
+      "contacts": 100,
+      "quality": "medium",
+      "measurement": {
+        "seconds": 15.003,
+        "frames": 901,
+        "mean_fps": 60.0,
+        "median_ms": 16.69999999999891,
+        "p95_ms": 16.700000000000728,
+        "p99_ms": 16.800000000000182,
+        "max_ms": 16.80000000000109,
+        "over_33ms": 0,
+        "over_50ms": 0,
+        "mean_draw_calls": 28,
+        "mean_triangles": 138606,
+        "script_ms_per_second": 193.42241438841293,
+        "task_ms_per_second": 220.12631984560758,
+        "layout_count": 65,
+        "heap_end_bytes": 16615864,
+        "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+      }
+    },
+    {
+      "type": "matrix",
+      "repeat": 0,
+      "world": "urban_outpost:day",
+      "view": "day",
+      "contacts": 200,
+      "quality": "medium",
+      "measurement": {
+        "seconds": 15.002,
+        "frames": 900,
+        "mean_fps": 60.0,
+        "median_ms": 16.69999999999891,
+        "p95_ms": 16.799999999999272,
+        "p99_ms": 16.80000000000109,
+        "max_ms": 16.80000000000109,
+        "over_33ms": 0,
+        "over_50ms": 0,
+        "mean_draw_calls": 39,
+        "mean_triangles": 181790,
+        "script_ms_per_second": 200.5404506666087,
+        "task_ms_per_second": 228.65229843513683,
+        "layout_count": 69,
+        "heap_end_bytes": 40474948,
+        "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+      }
+    },
+    {
+      "type": "matrix",
+      "repeat": 0,
+      "world": "rural_forward_base:night",
+      "view": "thermal",
+      "contacts": 200,
+      "quality": "medium",
+      "measurement": {
+        "seconds": 15.002,
+        "frames": 901,
+        "mean_fps": 60.0,
+        "median_ms": 16.69999999999891,
+        "p95_ms": 16.799999999999272,
+        "p99_ms": 16.80000000000109,
+        "max_ms": 16.80000000000291,
+        "over_33ms": 0,
+        "over_50ms": 0,
+        "mean_draw_calls": 28,
+        "mean_triangles": 138606,
+        "script_ms_per_second": 261.600142669217,
+        "task_ms_per_second": 291.97468114199046,
+        "layout_count": 70,
+        "heap_end_bytes": 29391248,
+        "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+      }
+    },
+    {
+      "type": "matrix",
+      "repeat": 1,
+      "world": "urban_outpost:day",
+      "view": "day",
+      "contacts": 8,
+      "quality": "medium",
+      "measurement": {
+        "seconds": 15.003,
+        "frames": 901,
+        "mean_fps": 60.0,
+        "median_ms": 16.69999999999891,
+        "p95_ms": 16.700000000000728,
+        "p99_ms": 16.800000000000182,
+        "max_ms": 16.80000000000291,
+        "over_33ms": 0,
+        "over_50ms": 0,
+        "mean_draw_calls": 39,
+        "mean_triangles": 181790,
+        "script_ms_per_second": 120.448254161019,
+        "task_ms_per_second": 141.6822949144836,
+        "layout_count": 63,
+        "heap_end_bytes": 20006664,
+        "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+      }
+    },
+    {
+      "type": "matrix",
+      "repeat": 1,
+      "world": "rural_forward_base:night",
+      "view": "thermal",
+      "contacts": 100,
+      "quality": "medium",
+      "measurement": {
+        "seconds": 15.001,
+        "frames": 900,
+        "mean_fps": 60.0,
+        "median_ms": 16.69999999999891,
+        "p95_ms": 16.700000000000728,
+        "p99_ms": 16.800000000000182,
+        "max_ms": 16.80000000000109,
+        "over_33ms": 0,
+        "over_50ms": 0,
+        "mean_draw_calls": 28,
+        "mean_triangles": 138606,
+        "script_ms_per_second": 201.40499769730326,
+        "task_ms_per_second": 228.7351400791351,
+        "layout_count": 66,
+        "heap_end_bytes": 36608036,
+        "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+      }
+    },
+    {
+      "type": "matrix",
+      "repeat": 1,
+      "world": "urban_outpost:day",
+      "view": "day",
+      "contacts": 200,
+      "quality": "medium",
+      "measurement": {
+        "seconds": 15.001,
+        "frames": 901,
+        "mean_fps": 60.0,
+        "median_ms": 16.69999999999891,
+        "p95_ms": 16.700000000000728,
+        "p99_ms": 16.80000000000109,
+        "max_ms": 16.80000000000291,
+        "over_33ms": 0,
+        "over_50ms": 0,
+        "mean_draw_calls": 39,
+        "mean_triangles": 181790,
+        "script_ms_per_second": 208.63233151952235,
+        "task_ms_per_second": 236.8635512556751,
+        "layout_count": 68,
+        "heap_end_bytes": 33009084,
+        "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+      }
+    },
+    {
+      "type": "matrix",
+      "repeat": 1,
+      "world": "rural_forward_base:night",
+      "view": "thermal",
+      "contacts": 200,
+      "quality": "medium",
+      "measurement": {
+        "seconds": 15.001,
+        "frames": 901,
+        "mean_fps": 60.0,
+        "median_ms": 16.69999999999891,
+        "p95_ms": 16.700000000000728,
+        "p99_ms": 16.80000000000109,
+        "max_ms": 16.80000000000291,
+        "over_33ms": 0,
+        "over_50ms": 0,
+        "mean_draw_calls": 28,
+        "mean_triangles": 138606,
+        "script_ms_per_second": 303.798245623722,
+        "task_ms_per_second": 336.2009680338485,
+        "layout_count": 67,
+        "heap_end_bytes": 22815472,
+        "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+      }
+    },
+    {
+      "type": "matrix",
+      "repeat": 2,
+      "world": "urban_outpost:day",
+      "view": "day",
+      "contacts": 8,
+      "quality": "medium",
+      "measurement": {
+        "seconds": 15.002,
+        "frames": 901,
+        "mean_fps": 60.0,
+        "median_ms": 16.69999999999891,
+        "p95_ms": 16.700000000000728,
+        "p99_ms": 16.80000000000109,
+        "max_ms": 16.80000000000291,
+        "over_33ms": 0,
+        "over_50ms": 0,
+        "mean_draw_calls": 39,
+        "mean_triangles": 181790,
+        "script_ms_per_second": 122.76719196020915,
+        "task_ms_per_second": 143.3536405470492,
+        "layout_count": 64,
+        "heap_end_bytes": 49338404,
+        "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+      }
+    },
+    {
+      "type": "matrix",
+      "repeat": 2,
+      "world": "rural_forward_base:night",
+      "view": "thermal",
+      "contacts": 100,
+      "quality": "medium",
+      "measurement": {
+        "seconds": 15.002,
+        "frames": 900,
+        "mean_fps": 60.0,
+        "median_ms": 16.69999999999891,
+        "p95_ms": 16.700000000000728,
+        "p99_ms": 16.800000000000182,
+        "max_ms": 16.80000000000109,
+        "over_33ms": 0,
+        "over_50ms": 0,
+        "mean_draw_calls": 28,
+        "mean_triangles": 138606,
+        "script_ms_per_second": 201.6465857848967,
+        "task_ms_per_second": 228.16918191733993,
+        "layout_count": 66,
+        "heap_end_bytes": 13350160,
+        "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+      }
+    },
+    {
+      "type": "matrix",
+      "repeat": 2,
+      "world": "urban_outpost:day",
+      "view": "day",
+      "contacts": 200,
+      "quality": "medium",
+      "measurement": {
+        "seconds": 15.002,
+        "frames": 901,
+        "mean_fps": 60.0,
+        "median_ms": 16.69999999999891,
+        "p95_ms": 16.799999999999272,
+        "p99_ms": 16.800000000000182,
+        "max_ms": 16.80000000000109,
+        "over_33ms": 0,
+        "over_50ms": 0,
+        "mean_draw_calls": 39,
+        "mean_triangles": 181790,
+        "script_ms_per_second": 207.53532848119528,
+        "task_ms_per_second": 235.20616792286253,
+        "layout_count": 68,
+        "heap_end_bytes": 38598192,
+        "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+      }
+    },
+    {
+      "type": "matrix",
+      "repeat": 2,
+      "world": "rural_forward_base:night",
+      "view": "thermal",
+      "contacts": 200,
+      "quality": "medium",
+      "measurement": {
+        "seconds": 15.001,
+        "frames": 900,
+        "mean_fps": 60.0,
+        "median_ms": 16.69999999999891,
+        "p95_ms": 16.700000000000728,
+        "p99_ms": 16.80000000000109,
+        "max_ms": 16.80000000000291,
+        "over_33ms": 0,
+        "over_50ms": 0,
+        "mean_draw_calls": 28,
+        "mean_triangles": 138606,
+        "script_ms_per_second": 304.15314208036165,
+        "task_ms_per_second": 336.0738913942065,
+        "layout_count": 68,
+        "heap_end_bytes": 10719464,
+        "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+      }
+    }
+  ],
+  "page_errors": [],
+  "browser": "141.0.7390.37",
+  "completed_at_utc": "2026-10-18T17:09:00Z"
+}

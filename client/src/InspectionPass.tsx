@@ -1,3 +1,4 @@
+import { InspectionCadence } from "./render-work";
 import { useEffect, useMemo, type RefObject } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
@@ -53,7 +54,11 @@ export function InspectionPass({
   insetCss = 168,
   label,
   obstruction,
+  displayKey,
+  frame,
 }: {
+  frame?: RefObject<HTMLDivElement | null>;
+  displayKey: string;
   poses: ObservedPoseBuffer;
   selected: string | null;
   shape: RenderShape | null;
@@ -120,10 +125,14 @@ export function InspectionPass({
     [target, fine, inset],
   );
   const v = useMemo(() => new THREE.Vector3(), []);
-  useFrame(() => {
+  const cadence = useMemo(() => new InspectionCadence(), []);
+  useFrame(({ clock }) => {
     const pose = selected ? poses.pose(selected) : undefined;
     const caption = label?.current;
+    const border = frame?.current;
     if (!enabled || !pose || !shape || shape === "unresolved") {
+      cadence.invalidate();
+      if (border) border.style.display = "none";
       if (caption && caption.style.display !== "none")
         caption.style.display = "none";
       return;
@@ -136,6 +145,8 @@ export function InspectionPass({
       insetCss,
     );
     if (selected && obstruction?.blocked.has(selected)) {
+      cadence.invalidate();
+      if (border) border.style.display = "none";
       // Decorative scenery stands in the way: no picture of the airframe through it.
       if (caption) {
         caption.style.display = "block";
@@ -145,30 +156,39 @@ export function InspectionPass({
       }
       return;
     }
+    if (border) {
+      border.style.display = "block";
+      const extent = `${displaySize}px`;
+      if (border.style.width !== extent)
+        border.style.width = border.style.height = extent;
+    }
     const pixels = pixelsOnTarget(shape, range, channel);
     const res = inspectionResolution(pixels);
-    if (target.width !== res) {
-      target.setSize(res, res);
-      fine.setSize(res * SS, res * SS);
+    const key = `${displayKey}:${selected}:${shape}:${channel}:${res}:${camera.position.x}:${camera.position.y}:${camera.position.z}`;
+    if (cadence.refresh(clock.elapsedTime, key)) {
+      if (target.width !== res) {
+        target.setSize(res, res);
+        fine.setSize(res * SS, res * SS);
+      }
+      const span = AIRFRAME_SPAN[shape] / INSPECTION_FILL;
+      inset.cam.position.copy(camera.position);
+      inset.cam.fov = THREE.MathUtils.radToDeg(2 * Math.atan(span / 2 / range));
+      inset.cam.near = Math.max(0.5, range * 0.5);
+      inset.cam.far = 20000;
+      inset.cam.updateProjectionMatrix();
+      inset.cam.lookAt(v);
+      // Same three passes as the main view, supersampled, then box-filtered down.
+      gl.setRenderTarget(fine);
+      gl.clear(true, true, true);
+      for (const layer of [0, 2, 1]) {
+        if (layer === 2) gl.clearDepth();
+        inset.cam.layers.set(layer);
+        gl.render(scene, inset.cam);
+      }
+      gl.setRenderTarget(target);
+      gl.render(inset.downScene, inset.ortho);
+      gl.setRenderTarget(null);
     }
-    const span = AIRFRAME_SPAN[shape] / INSPECTION_FILL;
-    inset.cam.position.copy(camera.position);
-    inset.cam.fov = THREE.MathUtils.radToDeg(2 * Math.atan(span / 2 / range));
-    inset.cam.near = Math.max(0.5, range * 0.5);
-    inset.cam.far = 20000;
-    inset.cam.updateProjectionMatrix();
-    inset.cam.lookAt(v);
-    // Same three passes as the main view, supersampled, then box-filtered down.
-    gl.setRenderTarget(fine);
-    gl.clear(true, true, true);
-    for (const layer of [0, 2, 1]) {
-      if (layer === 2) gl.clearDepth();
-      inset.cam.layers.set(layer);
-      gl.render(scene, inset.cam);
-    }
-    gl.setRenderTarget(target);
-    gl.render(inset.downScene, inset.ortho);
-    gl.setRenderTarget(null);
     // Blit into the top-right corner with nearest-neighbour upscaling
     // (viewport units are CSS pixels; origin bottom-left).
     const margin = 14;
@@ -185,7 +205,8 @@ export function InspectionPass({
       caption.style.display = "block";
       caption.style.top = `${margin + displaySize + 4}px`;
       caption.style.width = `${displaySize}px`;
-      caption.textContent = `${channel.toUpperCase()} CLOSE-UP · ${Math.max(1, Math.round(pixels))} PX ACROSS TARGET · ${Math.round(range)}\u00a0M`;
+      const text = `${channel.toUpperCase()} CLOSE-UP · ${Math.max(1, Math.round(pixels))} PX ACROSS TARGET · ${Math.round(range)}\u00a0M`;
+      if (caption.textContent !== text) caption.textContent = text;
     }
   }, 2);
   return null;

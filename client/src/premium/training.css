@@ -1788,3 +1788,52 @@ html:has(.sensor-workspace) {
 .effector-facts {
   min-block-size: 42px;
 }
+/* Sensor inset housing follows its painted size on narrow viewports. */
+.scene-container .inspection-frame {
+  border-color: rgb(230 235 220 / 0.68) !important;
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 0.75),
+    0 2px 8px rgb(0 0 0 / 0.24);
+  z-index: 2;
+}
+.scene-container .inspection-caption {
+  padding: 3px 5px;
+  border-radius: 2px;
+  background: rgb(8 12 13 / 0.8);
+  color: #edf0df;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  z-index: 3;
+}
+.choice-evidence {
+  display: block;
+  margin-top: 3px;
+}
+.choice-group legend {
+  min-block-size: 4.5em;
+  max-block-size: 4.5em;
+}
+@media (min-width: 1024px) and (max-height: 859px) {
+  /* A short laptop screen may scroll; never sacrifice the optical picture to
+     squeeze the largest decision step into one viewport. */
+  .drill-page:is(
+    [data-phase="running"],
+    [data-phase="paused"],
+    [data-phase="restoring"],
+    [data-phase="complete"]
+  ) {
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+  .drill-page:is(
+      [data-phase="running"],
+      [data-phase="paused"],
+      [data-phase="restoring"],
+      [data-phase="complete"]
+    )
+    .scene-container {
+    flex: none;
+    height: clamp(300px, 45vh, 420px);
+  }
+}

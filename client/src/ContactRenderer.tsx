@@ -1,3 +1,4 @@
+import { uploadInstances } from "./render-work";
 import { useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -409,6 +410,7 @@ export function ContactRenderer({
     [],
   );
 
+  const seen = useMemo(() => new Set<string>(), []);
   useFrame(({ camera, size }) => {
     counters.fill(0);
     let farCount = 0;
@@ -420,7 +422,7 @@ export function ContactRenderer({
     const spin = reducedMotion
       ? 0
       : (poses.displayTick / 30) * SPIN_RPS * Math.PI * 2;
-    const seen = new Set<string>();
+    seen.clear();
     let reviewCount = 0;
     const dotPos = reviewMarks.points.geometry.getAttribute(
       "position",
@@ -519,8 +521,7 @@ export function ContactRenderer({
     parts.forEach((_, i) => {
       const mesh = meshes.current[i];
       if (!mesh) return;
-      mesh.count = counters[i];
-      mesh.instanceMatrix.needsUpdate = true;
+      uploadInstances(mesh, counters[i]);
     });
   });
   return (

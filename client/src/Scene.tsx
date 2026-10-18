@@ -1,5 +1,6 @@
 import {
   Component,
+  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -234,15 +235,20 @@ function CameraRig({
 function LayeredRender() {
   const { gl, scene, camera } = useThree();
   useEffect(() => {
+    const previousMatrixUpdates = scene.matrixWorldAutoUpdate;
+    scene.matrixWorldAutoUpdate = false;
     gl.info.autoReset = false;
     gl.shadowMap.autoUpdate = false;
     gl.shadowMap.needsUpdate = true;
     return () => {
+      scene.matrixWorldAutoUpdate = previousMatrixUpdates;
       gl.info.autoReset = true;
       gl.shadowMap.autoUpdate = true;
     };
-  }, [gl]);
+  }, [gl, scene]);
   useFrame(() => {
+    // Update the shared scene graph once for all main/inset layer passes.
+    scene.updateMatrixWorld();
     gl.info.reset();
     gl.autoClear = false;
     gl.clear(true, true, true);
@@ -347,6 +353,7 @@ function World({
   cue,
   inspect,
   inspectLabel,
+  inspectFrame,
 }: {
   state: Snapshot;
   vision: Vision;
@@ -356,6 +363,7 @@ function World({
   /** Sensor-limited close-up of the selected contact (live view only). */
   inspect?: { shape: RenderShape; channel: "eo" | "ir" } | null;
   inspectLabel?: RefObject<HTMLDivElement | null>;
+  inspectFrame?: RefObject<HTMLDivElement | null>;
   onFps: (n: number) => void;
   terrain?: string;
   quality?: Quality;
@@ -396,6 +404,7 @@ function World({
   }, [camera, envelope.far]);
   const contacts = useMemo(() => renderContacts(state.tracks), [state.tracks]);
   const poses = useMemo(() => new ObservedPoseBuffer(), []);
+  const logicalTick = useCallback(() => poses.displayTick, [poses]);
   const boxes = useMemo(
     () => (finale ? (terrainBoxes ?? []) : []),
     [finale, terrainBoxes],
@@ -422,7 +431,7 @@ function World({
         quality={quality}
         fog={fog}
         translucentOccluders={referenceTruth && cameraPreset !== undefined}
-        logicalTick={() => poses.displayTick}
+        logicalTick={logicalTick}
         reducedMotion={reducedMotion}
       />
       <PoseDriver
@@ -449,12 +458,14 @@ function World({
       />
       {!cameraPreset && selectedId && !selected && <CueMarker cue={cue} />}
       <InspectionPass
+        displayKey={`${contextKey}:${palette}:${state.night}:${quality}:${fog}`}
         poses={poses}
         selected={selected}
         shape={inspect?.shape ?? null}
         channel={inspect?.channel ?? "eo"}
         enabled={!!inspect}
         label={inspectLabel}
+        frame={inspectFrame}
         obstruction={obstruction}
       />
       <ContactRenderer
@@ -531,6 +542,7 @@ export function Scene(props: SceneProps) {
         }
       : null;
   const inspectLabel = useRef<HTMLDivElement>(null);
+  const inspectFrame = useRef<HTMLDivElement>(null);
   return (
     <Boundary fallback={props.fallback}>
       <Canvas
@@ -566,6 +578,7 @@ export function Scene(props: SceneProps) {
           selectedId={props.selected}
           inspect={inspect}
           inspectLabel={inspectLabel}
+          inspectFrame={inspectFrame}
           finale={finale}
           referenceTruth={props.groundTruth === true}
           contextKey={`${props.visibilityKey ?? "legacy-scene"}:${props.vision}:${props.groundTruth === true}`}
@@ -574,6 +587,8 @@ export function Scene(props: SceneProps) {
       {inspect && (
         <div
           aria-hidden="true"
+          ref={inspectFrame}
+          className="inspection-frame"
           style={{
             position: "absolute",
             top: 14,
@@ -587,7 +602,7 @@ export function Scene(props: SceneProps) {
       )}
       <div
         ref={inspectLabel}
-        className="view-annotation"
+        className="view-annotation inspection-caption"
         style={{
           display: "none",
           position: "absolute",
