@@ -1,0 +1,10 @@
+Poly Haven assets — CC0 1.0 Universal (public domain dedication)
+
+The 3D world of this application includes sky images, textures, decimated
+photoscanned props and rendered vegetation impostors derived from assets
+published by Poly Haven (https://polyhaven.com) under CC0 1.0:
+https://creativecommons.org/publicdomain/zero/1.0/
+
+Per-asset sources, authors and processing: docs/drill-rescue/ASSET-PROVENANCE.md
+in the VYUHA source repository. Attribution is not required by CC0; it is given
+there with thanks to the Poly Haven authors.

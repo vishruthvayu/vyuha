@@ -1,37 +1,51 @@
-import { Component, useEffect, useMemo, useRef, type ReactNode } from "react";
+import {
+  Component,
+  useEffect,
+  useMemo,
+  useRef,
+  type ReactNode,
+  type RefObject,
+} from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import type { Snapshot, Track } from "./types";
 import { pixelRatio, type Quality } from "./quality";
+import { type CameraPreset, type ThermalPalette } from "./presentation";
 import {
-  palettes,
-  type CameraPreset,
-  type ThermalPalette,
-} from "./presentation";
-import { ObservationVisibility, type Vision } from "./visibility";
+  ObservationVisibility,
+  opticalRenderShape,
+  type Vision,
+} from "./visibility";
 import {
   SENSOR_VERSION,
   type TerrainBox,
   type SensorPosition,
 } from "./sensors-v2";
-import {
-  terrainPresentationBounds,
-  terrainMaterialState,
-  buildingSurfaceColors,
-  buildingVertexColors,
-  roadPaint,
-  sceneCameraPose,
-  sceneGroundColor,
-  sceneReviewEnvelope,
-  type TerrainPresentationBox,
-} from "./scene-presentation";
+import { sceneCameraPose, sceneReviewEnvelope } from "./scene-presentation";
 import { ContactRenderer } from "./ContactRenderer";
+import { InspectionPass } from "./InspectionPass";
+import type { RenderShape } from "./render-contacts";
 import {
+  ViewBlend,
+  liveCameraMode,
+  slewSeconds,
+  type CameraMode,
+} from "./camera-view";
+import {
+  ObservedPoseBuffer,
   opticalFov,
   renderContacts,
   RenderFrameMeter,
+  type RenderContact,
 } from "./render-contacts";
-import { createSkyTexture, createSurfaceTexture } from "./surface-textures";
+import {
+  Environment,
+  LAYER_CONTACTS,
+  LAYER_OCCLUDERS,
+  LAYER_WORLD,
+} from "./world/Environment";
+import { SceneryObstruction, sceneryObstacles } from "./world/obstruction";
+import { facilityLayout, withoutBoxes } from "./world/layout";
 export type { Vision } from "./visibility";
 export type RendererMetrics = {
   scope: "previous WebGL frame";
@@ -54,12 +68,20 @@ class Boundary extends Component<
     return this.state.failed ? this.props.fallback : this.props.children;
   }
 }
+/** Live sensor view: the camera stays at the sensor origin and points at
+ *  - the selected contact's displayed pose while a camera observes it ("track");
+ *  - otherwise its latest reported position from any sensor ("cue"), as a radar
+ *    cue slews a real EO/IR head;
+ *  - otherwise the last bearing ("hold"). It never swings to a default sector
+ *    while a contact is selected, and is not remounted when the sensor changes. */
 function CameraRig({
-  target,
   onFps,
   preset,
   tracks,
   selected,
+  selectedId,
+  cue,
+  poses,
   finale = false,
   sensorOrigin,
   referenceTruth = false,
@@ -67,11 +89,15 @@ function CameraRig({
   reducedMotion = false,
   onMetrics,
 }: {
-  target: Track | undefined;
   onFps: (n: number) => void;
   preset?: CameraPreset;
   tracks: Track[];
+  /** Selected contact if it is drawn in this view (optically observed). */
   selected: string | null;
+  /** The trainee's selection, whether or not this view can draw it. */
+  selectedId: string | null;
+  cue?: SensorPosition | null;
+  poses: ObservedPoseBuffer;
   finale?: boolean;
   sensorOrigin?: SensorPosition;
   referenceTruth?: boolean;
@@ -81,9 +107,17 @@ function CameraRig({
 }) {
   const { camera, size, gl } = useThree();
   const frameMeter = useRef(new RenderFrameMeter());
-  const aim = useRef(new THREE.Vector3(40, 18, 150));
-  const desiredPosition = useMemo(() => new THREE.Vector3(), []);
-  const desiredAim = useMemo(() => new THREE.Vector3(), []);
+  const aim = useRef(new THREE.Vector3(0, 18, finale ? 1500 : 150));
+  const view = useRef({
+    mode: "" as CameraMode | "",
+    id: null as string | null,
+    cue: new THREE.Vector3(NaN, NaN, NaN),
+    aimBlend: new ViewBlend(),
+    positionBlend: new ViewBlend(),
+  });
+  const goal = useMemo(() => new THREE.Vector3(), []);
+  const goalPosition = useMemo(() => new THREE.Vector3(), []);
+  const origin = useMemo(() => new THREE.Vector3(), []);
   const pose = useMemo(
     () =>
       preset
@@ -107,26 +141,72 @@ function CameraRig({
         camera.updateProjectionMatrix();
       }
     }
+    const v = view.current;
+    let mode: CameraMode;
     if (preset && pose) {
-      camera.position.lerp(
-        desiredPosition.set(...pose.position),
-        reducedMotion ? 1 : 1 - Math.exp(-dt * 5),
-      );
-      aim.current.lerp(
-        desiredAim.set(...pose.aim),
-        reducedMotion ? 1 : 1 - Math.exp(-dt * 5),
-      );
+      mode = "preset";
+      goal.set(...pose.aim);
+      goalPosition.set(...pose.position);
+      // Follow and observer framing ride on the displayed pose, so the camera and
+      // the model share one smooth path instead of two different filters.
+      const shown = selected ? poses.pose(selected) : undefined;
+      if (shown && !pose.fallback && pose.effective !== "overview") {
+        goalPosition.sub(goal);
+        goal.set(shown.displayX, shown.displayY, shown.displayZ);
+        goalPosition.add(goal);
+      }
     } else {
-      const next =
-        target && target.active
-          ? desiredAim.set(target.x, target.altitude, target.z)
-          : desiredAim.set(finale ? 0 : 40, 18, finale ? 1500 : 150);
-      aim.current.lerp(next, reducedMotion ? 1 : 1 - Math.exp(-dt * 7.67));
-      camera.position.set(
+      origin.set(
         sensorOrigin?.x ?? 0,
         sensorOrigin?.altitude ?? (finale ? 2 : 14),
         sensorOrigin?.z ?? (finale ? 0 : 4),
       );
+      goalPosition.copy(origin);
+      const shown = selected ? poses.pose(selected) : undefined;
+      mode = liveCameraMode(!!shown, selectedId, cue);
+      if (shown) goal.set(shown.displayX, shown.displayY, shown.displayZ);
+      else if (mode === "cue" && cue) goal.set(cue.x, cue.altitude, cue.z);
+      else if (mode === "hold") goal.copy(aim.current);
+      else goal.set(finale ? 0 : 40, 18, finale ? 1500 : 150);
+    }
+    // A cue that jumps (a radar sweep) re-slews; small IR/EO updates are followed.
+    const cueJump =
+      mode === "cue" &&
+      (!Number.isFinite(v.cue.x) ||
+        goal.clone().sub(origin).angleTo(v.cue.clone().sub(origin)) >
+          THREE.MathUtils.degToRad(1.5));
+    const changed = mode !== v.mode || selectedId !== v.id || cueJump;
+    if (changed) {
+      const duration =
+        mode === "preset"
+          ? 0.8
+          : slewSeconds(
+              aim.current
+                .clone()
+                .sub(goalPosition)
+                .angleTo(goal.clone().sub(goalPosition)),
+            );
+      v.aimBlend.start(aim.current, duration);
+      v.positionBlend.start(camera.position, mode === "preset" ? 0.8 : 0.01);
+      v.mode = mode;
+      v.id = selectedId;
+      if (mode === "cue") v.cue.copy(goal);
+    }
+    if (reducedMotion) {
+      aim.current.copy(goal);
+      camera.position.copy(goalPosition);
+    } else {
+      if (v.aimBlend.active)
+        v.aimBlend.apply(
+          aim.current,
+          goal,
+          mode === "preset" ? null : goalPosition,
+          dt,
+        );
+      else aim.current.copy(goal);
+      if (v.positionBlend.active)
+        v.positionBlend.apply(camera.position, goalPosition, null, dt);
+      else camera.position.copy(goalPosition);
     }
     camera.lookAt(aim.current);
     const fps = frameMeter.current.sample(clock.elapsedTime);
@@ -145,50 +225,104 @@ function CameraRig({
   });
   return null;
 }
-function TerrainStructure({
-  box,
-  index,
-  vision,
-  rural,
-  palette,
-  material,
-  texture,
-  shadows = false,
+/** Draws the frame in three passes so decorative scenery can never hide a
+ * contact the sensors report, while authoritative occluders still do:
+ *  1. world (sky, terrain, facility, vegetation, occluder dressing);
+ *  2. depth only, after clearing depth: the exact authoritative terrain boxes;
+ *  3. contacts and markers, depth-tested against pass 2 only.
+ * The static shadow map is rendered once, not every frame. */
+function LayeredRender() {
+  const { gl, scene, camera } = useThree();
+  useEffect(() => {
+    gl.info.autoReset = false;
+    gl.shadowMap.autoUpdate = false;
+    gl.shadowMap.needsUpdate = true;
+    return () => {
+      gl.info.autoReset = true;
+      gl.shadowMap.autoUpdate = true;
+    };
+  }, [gl]);
+  useFrame(() => {
+    gl.info.reset();
+    gl.autoClear = false;
+    gl.clear(true, true, true);
+    camera.layers.set(LAYER_WORLD);
+    gl.render(scene, camera);
+    gl.clearDepth();
+    camera.layers.set(LAYER_OCCLUDERS);
+    gl.render(scene, camera);
+    camera.layers.set(LAYER_CONTACTS);
+    gl.render(scene, camera);
+    camera.layers.set(LAYER_WORLD);
+  }, 1);
+  return null;
+}
+/** Advances the shared observed poses once per frame, before the camera and the
+ * contact renderer read them (it is mounted first, so its frame callback runs first). */
+function PoseDriver({
+  poses,
+  contacts,
+  tick,
+  contextKey,
+  reducedMotion,
 }: {
-  box: TerrainPresentationBox;
-  index: number;
-  vision: Vision;
-  rural: boolean;
-  palette: ThermalPalette;
-  material: ReturnType<typeof terrainMaterialState>;
-  texture: THREE.Texture;
-  shadows?: boolean;
+  poses: ObservedPoseBuffer;
+  contacts: readonly RenderContact[];
+  tick: number;
+  contextKey: string;
+  reducedMotion: boolean;
 }) {
-  const colors = useMemo(
-    () =>
-      buildingVertexColors(
-        buildingSurfaceColors(index, vision, rural, palette),
-      ),
-    [index, vision, rural, palette],
-  );
+  useFrame((_, dt) => {
+    poses.update(contacts, tick, contextKey);
+    poses.forEachFrame(dt, () => {}, reducedMotion);
+  });
+  return null;
+}
+/** Dashed ring at a radar-cued position the cameras cannot see: shows where the
+ * camera is pointing and why no airframe is drawn. Evidence position only. */
+function CueMarker({ cue }: { cue?: SensorPosition | null }) {
+  const ref = useRef<THREE.LineSegments>(null);
+  const ring = useMemo(() => {
+    const points: number[] = [];
+    for (let i = 0; i < 12; i++) {
+      const a0 = (i / 12) * Math.PI * 2,
+        a1 = a0 + (Math.PI * 2) / 24;
+      points.push(Math.cos(a0), Math.sin(a0), 0, Math.cos(a1), Math.sin(a1), 0);
+    }
+    return new Float32Array(points);
+  }, []);
+  useFrame(({ camera, size }) => {
+    const m = ref.current;
+    if (!m) return;
+    m.visible = !!cue;
+    if (!cue) return;
+    m.position.set(cue.x, cue.altitude, cue.z);
+    m.quaternion.copy(camera.quaternion);
+    const distance = camera.position.distanceTo(m.position);
+    const fov = camera instanceof THREE.PerspectiveCamera ? camera.fov : 38;
+    m.scale.setScalar(
+      (distance * Math.tan((fov * Math.PI) / 360) * 22) /
+        Math.max(1, size.height),
+    );
+  });
   return (
-    <mesh
-      position={[box.x, box.h / 2, box.z]}
-      castShadow={shadows}
-      receiveShadow={shadows}
+    <lineSegments
+      ref={ref}
+      visible={false}
+      renderOrder={20}
+      layers={LAYER_CONTACTS}
     >
-      <boxGeometry args={[box.w, box.h, box.d]}>
-        <bufferAttribute attach="attributes-color" args={[colors, 3]} />
-      </boxGeometry>
-      <meshStandardMaterial
-        color="#ffffff"
-        vertexColors
-        map={vision === "thermal" ? undefined : texture}
-        roughness={0.95}
-        metalness={0}
-        {...material}
+      <bufferGeometry>
+        <bufferAttribute attach="attributes-position" args={[ring, 3]} />
+      </bufferGeometry>
+      <lineBasicMaterial
+        color="#e6b25e"
+        transparent
+        depthTest={false}
+        depthWrite={false}
+        opacity={0.85}
       />
-    </mesh>
+    </lineSegments>
   );
 }
 function World({
@@ -207,12 +341,21 @@ function World({
   referenceTruth = false,
   contextKey,
   opticalZoom,
-  reducedMotion,
+  reducedMotion = false,
   onMetrics,
+  selectedId = null,
+  cue,
+  inspect,
+  inspectLabel,
 }: {
   state: Snapshot;
   vision: Vision;
   selected: string | null;
+  selectedId?: string | null;
+  cue?: SensorPosition | null;
+  /** Sensor-limited close-up of the selected contact (live view only). */
+  inspect?: { shape: RenderShape; channel: "eo" | "ir" } | null;
+  inspectLabel?: RefObject<HTMLDivElement | null>;
   onFps: (n: number) => void;
   terrain?: string;
   quality?: Quality;
@@ -236,9 +379,10 @@ function World({
     cameraPreset,
     size.width / Math.max(1, size.height),
     {
-      far: finale ? 20000 : cameraPreset ? 1200 : 800,
-      fogNear: finale ? 8000 : cameraPreset ? 650 : 160 - fog * 100,
-      fogFar: finale ? 18000 : cameraPreset ? 1200 : 550 - fog * 300,
+      // The sky dome (15 km) and the far terrain ring need a long far plane.
+      far: 20000,
+      fogNear: 0,
+      fogFar: 0,
     },
   );
   useEffect(() => {
@@ -250,84 +394,51 @@ function World({
       camera.updateProjectionMatrix();
     }
   }, [camera, envelope.far]);
-  const hot = vision === "thermal";
-  const night = vision !== "day";
-  const bg = hot ? palettes[palette].background : night ? "#07191d" : "#91b2c2";
-  const rural = terrain === "rural_forward_base";
-  const detail = quality === "high" ? 32 : quality === "medium" ? 20 : 10;
   const contacts = useMemo(() => renderContacts(state.tracks), [state.tracks]);
-  const sky = useMemo(
-    () => createSkyTexture(vision, rural, palette),
-    [vision, rural, palette],
+  const poses = useMemo(() => new ObservedPoseBuffer(), []);
+  const boxes = useMemo(
+    () => (finale ? (terrainBoxes ?? []) : []),
+    [finale, terrainBoxes],
   );
-  const groundTexture = useMemo(() => {
-    const texture = createSurfaceTexture(quality, "ground");
-    texture.repeat.set(finale ? 48 : 6, finale ? 48 : 6);
-    return texture;
-  }, [quality, finale]);
-  const facadeTexture = useMemo(
-    () => createSurfaceTexture(quality, "facade"),
-    [quality],
-  );
-  useEffect(() => () => sky.dispose(), [sky]);
-  useEffect(() => () => groundTexture.dispose(), [groundTexture]);
-  useEffect(() => () => facadeTexture.dispose(), [facadeTexture]);
-  const shadows = quality === "high" && vision === "day";
-  const buildings = useMemo(
-    () =>
-      finale
-        ? terrainPresentationBounds(terrainBoxes ?? [])
-        : Array.from(
-            { length: rural ? Math.max(2, Math.floor(detail / 5)) : detail },
-            (_, i) => {
-              const side = i % 2 === 0 ? -1 : 1;
-              return {
-                x: side * (20 + ((i * 17) % 55)),
-                z: 35 + Math.floor(i / 2) * 13,
-                w: 7 + ((i * 3) % 8),
-                h: 4 + ((i * 7) % 18),
-                d: 8 + ((i * 5) % 8),
-              };
-            },
-          ),
-    [rural, detail, finale, terrainBoxes],
-  );
-  const paint = useMemo(() => roadPaint(finale, quality), [finale, quality]);
-  const material = useMemo(
-    () => terrainMaterialState(referenceTruth, cameraPreset),
-    [referenceTruth, cameraPreset],
-  );
+  const world =
+    terrain === "rural_forward_base" ? "rural_forward_base" : "urban_outpost";
+  // Decorative scenery the sensors do not model: contacts behind it are drawn
+  // as markers, not as airframes painted on a wall.
+  const obstruction = useMemo(() => {
+    const o = new SceneryObstruction();
+    o.set(sceneryObstacles(withoutBoxes(facilityLayout(world), boxes)));
+    return o;
+  }, [world, boxes]);
   return (
     <>
-      <primitive attach="background" object={sky} />
-      <fog attach="fog" args={[bg, envelope.fogNear, envelope.fogFar]} />
-      <ambientLight intensity={hot ? 1.4 : night ? 0.55 : 0.7} />
-      <hemisphereLight
-        args={[
-          night ? "#31535a" : "#d4e2e4",
-          "#293627",
-          hot ? 0 : night ? 0.15 : 0.5,
-        ]}
+      <LayeredRender />
+      <Environment
+        terrain={world}
+        boxes={boxes}
+        legacy={!finale}
+        night={state.night}
+        vision={vision}
+        palette={palette}
+        quality={quality}
+        fog={fog}
+        translucentOccluders={referenceTruth && cameraPreset !== undefined}
+        logicalTick={() => poses.displayTick}
+        reducedMotion={reducedMotion}
       />
-      <directionalLight
-        position={[40, 100, -40]}
-        intensity={hot ? 0.2 : night ? 0.6 : 2.1}
-        castShadow={shadows}
-        shadow-mapSize={[1024, 1024]}
-        shadow-camera-left={-300}
-        shadow-camera-right={300}
-        shadow-camera-top={300}
-        shadow-camera-bottom={-300}
-        shadow-camera-far={600}
-        shadow-bias={-0.0004}
-        color={hot ? "#ffffff" : night ? "#c1dadb" : "#fff4db"}
+      <PoseDriver
+        poses={poses}
+        contacts={contacts}
+        tick={state.tick}
+        contextKey={contextKey}
+        reducedMotion={reducedMotion}
       />
       <CameraRig
-        key={contextKey}
         opticalZoom={opticalZoom}
         reducedMotion={reducedMotion}
         onMetrics={onMetrics}
-        target={state.tracks.find((t) => t.id === selected)}
+        selectedId={selectedId}
+        cue={selected ? null : cue}
+        poses={poses}
         onFps={onFps}
         preset={cameraPreset}
         tracks={state.tracks}
@@ -336,103 +447,27 @@ function World({
         sensorOrigin={sensorOrigin}
         referenceTruth={referenceTruth}
       />
-      <mesh
-        rotation={[-Math.PI / 2, 0, 0]}
-        position={[0, -0.1, 150]}
-        receiveShadow={shadows}
-      >
-        <planeGeometry args={finale ? [12000, 12000] : [700, 700]} />
-        <meshStandardMaterial
-          color={sceneGroundColor(vision, rural, palette)}
-          map={hot ? undefined : groundTexture}
-          roughness={1}
-          metalness={0}
-        />
-      </mesh>
-      <gridHelper
-        args={[
-          finale ? 12000 : 600,
-          finale ? 120 : 60,
-          hot ? "#3e4944" : "#31433b",
-          hot ? "#303a35" : "#23312c",
-        ]}
-        position={[0, 0, 160]}
-        onUpdate={(grid) => {
-          const materials = Array.isArray(grid.material)
-            ? grid.material
-            : [grid.material];
-          materials.forEach((value) => {
-            value.transparent = true;
-            value.opacity = 0.12;
-            value.depthWrite = false;
-          });
-        }}
+      {!cameraPreset && selectedId && !selected && <CueMarker cue={cue} />}
+      <InspectionPass
+        poses={poses}
+        selected={selected}
+        shape={inspect?.shape ?? null}
+        channel={inspect?.channel ?? "eo"}
+        enabled={!!inspect}
+        label={inspectLabel}
+        obstruction={obstruction}
       />
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.05, 155]}>
-        <planeGeometry args={[18, finale ? 8000 : 400]} />
-        <meshStandardMaterial color={hot ? "#262e2c" : "#343b3c"} />
-      </mesh>
-      {!hot &&
-        paint.map((mark, index) => (
-          <mesh
-            key={`road-paint-${index}`}
-            rotation={[-Math.PI / 2, 0, 0]}
-            position={mark.position}
-          >
-            <planeGeometry args={mark.size} />
-            <meshStandardMaterial
-              color={night ? "#526b67" : "#c6c8b2"}
-              roughness={1}
-            />
-          </mesh>
-        ))}
-      {rural &&
-        !finale &&
-        Array.from({ length: Math.floor(detail / 2) }, (_, i) => (
-          <group
-            key={`tree-${i}`}
-            position={[
-              (i % 2 ? -1 : 1) * (85 + ((i * 17) % 70)),
-              0,
-              25 + i * 12,
-            ]}
-          >
-            <mesh position={[0, 3, 0]}>
-              <cylinderGeometry args={[0.5, 0.7, 6, 5]} />
-              <meshStandardMaterial color={hot ? "#59625c" : "#574c34"} />
-            </mesh>
-            <mesh position={[0, 8, 0]}>
-              <coneGeometry args={[5, 10, 6]} />
-              <meshStandardMaterial color={hot ? "#70776b" : "#354e2c"} />
-            </mesh>
-          </group>
-        ))}
-      {buildings.map((box, index) => (
-        <TerrainStructure
-          key={index}
-          box={box}
-          index={index}
-          vision={vision}
-          rural={rural}
-          palette={palette}
-          material={material}
-          texture={facadeTexture}
-          shadows={shadows}
-        />
-      ))}
-      <mesh position={[0, 2, -4]}>
-        <boxGeometry args={[10, 4, 6]} />
-        <meshStandardMaterial color={hot ? "#94a397" : "#5f705f"} />
-      </mesh>
       <ContactRenderer
-        contacts={contacts}
-        tick={state.tick}
-        contextKey={contextKey}
+        poses={poses}
+        focusId={inspect ? selected : null}
+        night={state.night}
         vision={vision}
         selected={selected}
         palette={palette}
         quality={quality}
         reducedMotion={reducedMotion}
+        review={referenceTruth && cameraPreset === "overview"}
+        obstruction={obstruction}
       />
     </>
   );
@@ -456,6 +491,9 @@ export type SceneProps = {
   engineVersion?: string;
   /** Display crop only; does not change sensor range, resolution or origin. */
   opticalZoom?: number;
+  /** Latest reported position of the selected contact from any sensor (radar,
+   * EO or IR). The live camera slews to it when no camera observes the contact. */
+  cue?: SensorPosition | null;
   reducedMotion?: boolean;
   onMetrics?: (metrics: RendererMetrics) => void;
 };
@@ -476,11 +514,34 @@ export function Scene(props: SceneProps) {
   const selected = tracks.some((t) => t.id === props.selected)
     ? props.selected
     : null;
+  // Close-up only when a camera resolves the shape (recognise / identify) and
+  // only in the live sensor view, never in reference-truth review.
+  const focus = tracks.find((t) => t.id === selected);
+  const level = focus
+    ? (focus.visual_level ?? (focus.thermal ? "recognise" : "none"))
+    : "none";
+  const inspect =
+    focus &&
+    !props.cameraPreset &&
+    props.groundTruth !== true &&
+    (level === "recognise" || level === "identify")
+      ? {
+          shape: opticalRenderShape(focus) as RenderShape,
+          channel: (props.vision === "day" ? "eo" : "ir") as "eo" | "ir",
+        }
+      : null;
+  const inspectLabel = useRef<HTMLDivElement>(null);
   return (
     <Boundary fallback={props.fallback}>
       <Canvas
         dpr={pixelRatio[props.quality ?? "medium"]}
-        shadows={props.quality === "high" && props.vision === "day"}
+        shadows={
+          props.quality === "high"
+            ? "soft"
+            : props.quality === "medium"
+              ? "percentage"
+              : false
+        }
         camera={{
           position: props.cameraPreset
             ? [0, 240, 144]
@@ -490,8 +551,8 @@ export function Scene(props: SceneProps) {
                 props.sensorOrigin?.z ?? (finale ? 0 : 4),
               ],
           fov: props.cameraPreset ? 52 : 38,
-          near: 0.1,
-          far: finale ? 20000 : props.cameraPreset ? 1200 : 800,
+          near: props.cameraPreset ? 1 : 0.5,
+          far: 20000,
         }}
         gl={{
           antialias: props.quality !== "low",
@@ -502,11 +563,39 @@ export function Scene(props: SceneProps) {
           {...props}
           state={observedState}
           selected={selected}
+          selectedId={props.selected}
+          inspect={inspect}
+          inspectLabel={inspectLabel}
           finale={finale}
           referenceTruth={props.groundTruth === true}
           contextKey={`${props.visibilityKey ?? "legacy-scene"}:${props.vision}:${props.groundTruth === true}`}
         />
       </Canvas>
+      {inspect && (
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            top: 14,
+            right: 14,
+            width: 168,
+            height: 168,
+            border: "1px solid rgba(142, 214, 255, 0.55)",
+            pointerEvents: "none",
+          }}
+        />
+      )}
+      <div
+        ref={inspectLabel}
+        className="view-annotation"
+        style={{
+          display: "none",
+          position: "absolute",
+          right: 14,
+          textAlign: "right",
+          lineHeight: 1.3,
+        }}
+      />
       {props.groundTruth === true && (
         <div
           className="view-annotation"

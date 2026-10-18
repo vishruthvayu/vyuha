@@ -86,6 +86,35 @@ export function finaleScaleScenario(count: number, duration = 90): Scenario {
     },
   };
 }
+/** Authoritative box sets used by procedural raids (server/raid_v2.py). */
+const RAID_BOXES = {
+  urban_outpost: [
+    { x_min: 120, x_max: 210, z_min: 300, z_max: 390, height: 28 },
+    { x_min: -230, x_max: -130, z_min: -350, z_max: -240, height: 35 },
+  ],
+  rural_forward_base: [
+    { x_min: -160, x_max: -90, z_min: 200, z_max: 260, height: 10 },
+  ],
+};
+export type BenchmarkWorld = keyof typeof RAID_BOXES;
+/** The finale stress fixture placed on a chosen terrain and time of day, with
+ * that terrain's raid occluders, so rendering cost includes a full world. */
+export function worldScaleScenario(
+  count: number,
+  duration: number,
+  world: BenchmarkWorld,
+  night: boolean,
+): Scenario {
+  const base = finaleScaleScenario(count, duration);
+  return {
+    ...base,
+    id: `${base.id}_${world}_${night ? "night" : "day"}`,
+    night,
+    terrain: world === "rural_forward_base" ? "rural" : "urban",
+    terrain_id: world,
+    terrain_boxes: RAID_BOXES[world],
+  };
+}
 export function median(values: number[]) {
   if (!values.length) return null;
   const v = [...values].sort((a, b) => a - b);
@@ -109,6 +138,8 @@ export default function Benchmark() {
     [hardware, setHardware] = useState(""),
     [ram, setRam] = useState(""),
     [elapsed, setElapsed] = useState(0);
+  const [world, setWorld] = useState<BenchmarkWorld>("rural_forward_base"),
+    [night, setNight] = useState(true);
   const [vision, setVision] = useState<Vision>("thermal"),
     [palette, setPalette] = useState<ThermalPalette>("white"),
     [camera, setCamera] = useState<CameraPreset | "trainee">("trainee");
@@ -175,7 +206,7 @@ export default function Benchmark() {
       type: "init",
       scenario:
         engine === "finale"
-          ? finaleScaleScenario(count, duration === 180 ? 180 : 90)
+          ? worldScaleScenario(count, duration === 180 ? 180 : 90, world, night)
           : scaleScenario(count),
       benchmark: true,
     });
@@ -209,6 +240,8 @@ export default function Benchmark() {
     workload:
       "synthetic simultaneous-contact stress fixture; not a solvable Raid Composer exercise",
     vision,
+    world,
+    night,
     thermal_palette: palette,
     camera_preset: camera,
     hardware_class: hardware,
@@ -302,6 +335,29 @@ export default function Benchmark() {
             onChange={(e) => setRam(e.target.value)}
             maxLength={8}
           />
+        </label>
+        <label>
+          World
+          <select
+            aria-label="Benchmark world"
+            disabled={running}
+            value={`${world}:${night ? "night" : "day"}`}
+            onChange={(e) => {
+              const [w, t] = e.target.value.split(":");
+              setWorld(w as BenchmarkWorld);
+              setNight(t === "night");
+              resetResults();
+            }}
+          >
+            <option value="rural_forward_base:night">
+              Rural forward base · night
+            </option>
+            <option value="rural_forward_base:day">
+              Rural forward base · day
+            </option>
+            <option value="urban_outpost:day">Urban outpost · day</option>
+            <option value="urban_outpost:night">Urban outpost · night</option>
+          </select>
         </label>
         <label>
           View
@@ -450,6 +506,10 @@ export default function Benchmark() {
         ) : (
           <Scene
             state={state}
+            terrain={world}
+            terrainBoxes={engine === "finale" ? RAID_BOXES[world] : undefined}
+            engineVersion={engine === "finale" ? "vyuha-0.4.0" : undefined}
+            fog={0.15}
             selected={
               camera === "follow" || camera === "observer" ? "T1" : null
             }

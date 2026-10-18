@@ -9,7 +9,7 @@ import {makeScenario} from './scenario';
 import {reportedContacts} from './observed-contacts';
 import type {Action,AppliedCommand,Scenario,Snapshot} from './types';
 
-type WorkerReply = {type:string;scope?:string;scenario_id?:string;initialized?:boolean;state?:Snapshot;events?:Action[];commands?:AppliedCommand[];action?:Action};
+type WorkerReply = {type:string;request_id?:number;reason?:string;scope?:string;scenario_id?:string;initialized?:boolean;state?:Snapshot;events?:Action[];commands?:AppliedCommand[];action?:Action};
 function workerFixture() {
  const messages:WorkerReply[]=[];
  const context={
@@ -71,4 +71,42 @@ test('restoring an already-ended saved horizon finalizes once with its original 
  const final=messages.at(-1)!;assert.equal(final.type,'finalized');assert.deepEqual(final.events,[action]);assert.deepEqual(final.commands,[command]);
  send({type:'play',scope:'ended-recovery'});send({type:'finish',scope:'ended-recovery'});
  assert.equal(messages.filter(message=>message.type==='finalized').length,1);
+});
+
+test('worker receipts correlate rapid decisions and reject paused/ended intents without changing authoritative evidence',()=>{
+ const {messages,send}=workerFixture();
+ const replies=()=>messages.filter(m=>m.type==='accepted'||m.type==='rejected');
+ send({type:'init',scope:'decisions',scenario,events:[],tick:990});
+ const current=reportedContacts(messages.at(-1)!.state!).find(t=>t.detected!==null&&!t.designated)!;
+ assert.ok(current);
+ const designate={k:'designate',track:current.id,tick:0};
+ send({type:'action',scope:'decisions',request_id:10,action:designate});
+ assert.equal(replies().at(-1)?.type,'rejected');
+ assert.equal(replies().at(-1)?.request_id,10);
+ assert.equal(replies().at(-1)?.reason,'paused');
+ send({type:'play',scope:'decisions'});
+ send({type:'action',scope:'decisions',request_id:11,action:designate});
+ assert.equal(replies().at(-1)?.type,'accepted');
+ assert.equal(replies().at(-1)?.request_id,11);
+ for(const [request_id,kind,identity] of [[12,'quad','neutral'],[13,'bird','friendly']] as const)
+  send({type:'action',scope:'decisions',request_id,action:{k:'classify',track:current.id,tick:0,kind,identity}});
+ const rapid=replies().filter(m=>m.request_id===12||m.request_id===13);
+ assert.deepEqual(rapid.map(m=>[m.request_id,m.action?.kind]),[[12,'quad'],[13,'bird']]);
+ send({type:'action',scope:'decisions',request_id:14,action:{k:'classify',track:'UNKNOWN',tick:0,kind:'fixed_wing',identity:'hostile'}});
+ assert.equal(replies().at(-1)?.type,'rejected');
+ assert.equal(replies().at(-1)?.request_id,14);
+ const count=messages.length;
+ send({type:'action',scope:'old-scope',request_id:15,action:designate});
+ assert.equal(messages.length,count,'Stale scope cannot affect the current run');
+ send({type:'finish',scope:'decisions'});
+ const events=messages.find(m=>m.type==='finalized')!.events!;
+ assert.deepEqual(JSON.parse(JSON.stringify(events)),[
+  {k:'designate',track:current.id,tick:990,order:0},
+  {k:'classify',track:current.id,tick:990,kind:'quad',identity:'neutral',order:1},
+  {k:'classify',track:current.id,tick:990,kind:'bird',identity:'friendly',order:2},
+ ],'Only accepted authoritative actions are saved, with unchanged order and no receipt metadata');
+ send({type:'action',scope:'decisions',request_id:16,action:designate});
+ assert.equal(replies().at(-1)?.type,'rejected');
+ assert.equal(replies().at(-1)?.request_id,16);
+ assert.equal(replies().at(-1)?.reason,'ended');
 });

@@ -1,0 +1,147 @@
+{
+  "source": "5d40a24165dff5ace27c6131318da599ad828b0d",
+  "scope": "Pointerdown to two requestAnimationFrame callbacks; UI scheduling only, not physical display or completed camera slew.",
+  "summary": {
+    "selection": {
+      "samples": 4,
+      "medianMs": 30.7,
+      "maxMs": 32.1
+    },
+    "sensor": {
+      "samples": 12,
+      "medianMs": 31.1,
+      "maxMs": 73.4
+    }
+  },
+  "samples": [
+    {
+      "kind": "selection",
+      "target": "T1\nUnknown contact\n607 m \u00b7 Not designated",
+      "trusted": true,
+      "twoFrameMs": 30.9,
+      "selected": "T1 Unknown contact",
+      "view": "scene-container day "
+    },
+    {
+      "kind": "selection",
+      "target": "T2\nUnknown contact\n925 m \u00b7 Not designated",
+      "trusted": true,
+      "twoFrameMs": 30.5,
+      "selected": "T2 Unknown contact",
+      "view": "scene-container day "
+    },
+    {
+      "kind": "selection",
+      "target": "T1\nUnknown contact\n585 m \u00b7 Not designated",
+      "trusted": true,
+      "twoFrameMs": 27,
+      "selected": "T1 Unknown contact",
+      "view": "scene-container day "
+    },
+    {
+      "kind": "selection",
+      "target": "T2\nUnknown contact\n890 m \u00b7 Not designated",
+      "trusted": true,
+      "twoFrameMs": 32.1,
+      "selected": "T2 Unknown contact",
+      "view": "scene-container day "
+    },
+    {
+      "kind": "sensor",
+      "target": "THERMAL",
+      "trusted": true,
+      "twoFrameMs": 73.4,
+      "selected": "T2 Unknown contact",
+      "view": "scene-container thermal "
+    },
+    {
+      "kind": "sensor",
+      "target": "IR NIGHT DISPLAY",
+      "trusted": true,
+      "twoFrameMs": 30,
+      "selected": "T2 Unknown contact",
+      "view": "scene-container night "
+    },
+    {
+      "kind": "sensor",
+      "target": "DAY TV",
+      "trusted": true,
+      "twoFrameMs": 37.1,
+      "selected": "T2 Unknown contact",
+      "view": "scene-container day "
+    },
+    {
+      "kind": "sensor",
+      "target": "THERMAL",
+      "trusted": true,
+      "twoFrameMs": 32.4,
+      "selected": "T2 Unknown contact",
+      "view": "scene-container thermal "
+    },
+    {
+      "kind": "sensor",
+      "target": "IR NIGHT DISPLAY",
+      "trusted": true,
+      "twoFrameMs": 31.7,
+      "selected": "T2 Unknown contact",
+      "view": "scene-container night "
+    },
+    {
+      "kind": "sensor",
+      "target": "DAY TV",
+      "trusted": true,
+      "twoFrameMs": 31.1,
+      "selected": "T2 Unknown contact",
+      "view": "scene-container day "
+    },
+    {
+      "kind": "sensor",
+      "target": "THERMAL",
+      "trusted": true,
+      "twoFrameMs": 29.9,
+      "selected": "T2 Unknown contact",
+      "view": "scene-container thermal "
+    },
+    {
+      "kind": "sensor",
+      "target": "IR NIGHT DISPLAY",
+      "trusted": true,
+      "twoFrameMs": 31.1,
+      "selected": "T2 Unknown contact",
+      "view": "scene-container night "
+    },
+    {
+      "kind": "sensor",
+      "target": "DAY TV",
+      "trusted": true,
+      "twoFrameMs": 30.8,
+      "selected": "T2 Unknown contact",
+      "view": "scene-container day "
+    },
+    {
+      "kind": "sensor",
+      "target": "THERMAL",
+      "trusted": true,
+      "twoFrameMs": 29.6,
+      "selected": "T2 Unknown contact",
+      "view": "scene-container thermal "
+    },
+    {
+      "kind": "sensor",
+      "target": "IR NIGHT DISPLAY",
+      "trusted": true,
+      "twoFrameMs": 29.9,
+      "selected": "T2 Unknown contact",
+      "view": "scene-container night "
+    },
+    {
+      "kind": "sensor",
+      "target": "DAY TV",
+      "trusted": true,
+      "twoFrameMs": 32.1,
+      "selected": "T2 Unknown contact",
+      "view": "scene-container day "
+    }
+  ],
+  "median_convention": "Conventional median: average of middle pair for even sample count; raw samples unchanged."
+}

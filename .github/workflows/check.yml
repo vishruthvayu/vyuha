@@ -17,11 +17,24 @@ jobs:
           python-version: '3.12'
       - run: python -m venv .venv
       - run: .venv/bin/python -m pip install -r server/requirements.lock.txt
-      - run: .venv/bin/python -m pytest server/tests -q
-      - run: npm ci --no-audit --no-fund
+      - name: Install frontend dependencies
+        run: npm ci --no-audit --no-fund
         working-directory: client
-      - run: npm test
+      # Startup/restart tests exercise production preflight, which requires dist.
+      # Build in this clean checkout before running those integration tests.
+      - name: Build production frontend and offline assets
+        run: npm run build
         working-directory: client
-      - run: npm run build
+      - name: Verify backend and production startup
+        run: .venv/bin/python -m pytest server/tests -q
+      - name: Verify frontend and Python parity
+        run: npm test
         working-directory: client
-      - run: docker build -t vyuha:check .
+      - name: Lint frontend
+        run: npm run lint
+        working-directory: client
+      - name: Check frontend formatting
+        run: npm run format:check
+        working-directory: client
+      - name: Build production Docker image
+        run: docker build -t vyuha:check .

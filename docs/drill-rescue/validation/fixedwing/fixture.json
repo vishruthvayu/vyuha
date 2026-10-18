@@ -1,0 +1,365 @@
+{
+  "purpose": "Synthetic officer-authored visual acceptance, not a scored recognition benchmark",
+  "request": {
+    "name": "QA fixed-wing visual fixture",
+    "schema_version": 2,
+    "seed": 12883,
+    "duration": 90,
+    "focus": "classification_iff",
+    "family": "DIRECT",
+    "terrain": "rural",
+    "night": false,
+    "fog": 0,
+    "mix": [
+      "fixed_wing",
+      "fixed_wing"
+    ]
+  },
+  "scenario": {
+    "version": 2,
+    "engine_version": "vyuha-0.4.0",
+    "id": "raid_74e3424724c4956d8d0a5434",
+    "seed": 12883,
+    "title": "QA fixed-wing visual fixture",
+    "duration": 90,
+    "night": false,
+    "fog": 0,
+    "jamStart": 2700,
+    "jamEnd": 2700,
+    "focus": "classification_iff",
+    "tracks": [
+      {
+        "id": "T1",
+        "kind": "fixed_wing",
+        "identity": "hostile",
+        "rf": false,
+        "spawn": 60,
+        "bearing": 335,
+        "distance": 1956.118,
+        "speed": 30.187,
+        "altitude": 88.566,
+        "motion": {
+          "version": 1,
+          "primitive": "dogleg",
+          "phase_s": 16.2,
+          "lateral_m": 78.202,
+          "period_s": 15.956,
+          "turn_deg": -31.802
+        },
+        "radar_range": 3000,
+        "thermal_range": 1200,
+        "threat_profile": "fixed_wing"
+      },
+      {
+        "id": "T2",
+        "kind": "fixed_wing",
+        "identity": "hostile",
+        "rf": false,
+        "spawn": 63,
+        "bearing": 324,
+        "distance": 1543.043,
+        "speed": 25.379,
+        "altitude": 134.443,
+        "motion": {
+          "version": 1,
+          "primitive": "orbit_then_dash",
+          "phase_s": 4,
+          "lateral_m": 61.356,
+          "period_s": 18.388,
+          "turn_deg": -22.649
+        },
+        "radar_range": 3000,
+        "thermal_range": 1200,
+        "threat_profile": "fixed_wing"
+      }
+    ],
+    "terrain": "rural",
+    "terrain_id": "rural_forward_base",
+    "terrain_version": 1,
+    "difficulty_label": "standard",
+    "sensor_version": "vyuha-0.4.0",
+    "sensor_config": {
+      "radar_reference_range_m": 3000,
+      "radar_reference_rcs_db": -15,
+      "radar_reference_snr": 30,
+      "radar_max_range_m": 5000,
+      "radar_pfa": 0.000001,
+      "radar_reliability": 0.95,
+      "radar_jam_factor": 0.15,
+      "radar_occlusion_factor": 0.1,
+      "radar_confirm_hits": 3,
+      "radar_window_sweeps": 5,
+      "radar_loss_sweeps": 3,
+      "radar_sweep_ticks": 30,
+      "rcs_spread_db": 3,
+      "eo_ifov_rad": 0.00012,
+      "ir_ifov_rad": 0.00018,
+      "eo_max_range_m": 1500,
+      "ir_max_range_m": 1200,
+      "optical_reliability": 0.95,
+      "optical_sample_ticks": 3,
+      "clear_visibility_m": 20000,
+      "dense_visibility_m": 200,
+      "ir_fog_factor": 0.45,
+      "rf_tx_dbm": 20,
+      "rf_gain_db": 6,
+      "rf_sensitivity_dbm": -96,
+      "rf_path_exponent": 2.2,
+      "rf_shadow_db": 6,
+      "rf_reliability": 0.9,
+      "rf_max_range_m": 4000,
+      "rf_bearing_error_deg": 5,
+      "iff_reply_probability": 0.95,
+      "civil_beacon_probability": 0.9,
+      "iff_max_range_m": 2500,
+      "false_track_probability": 0.05,
+      "false_track_lifetime_sweeps": 3,
+      "false_track_maximum": 2
+    },
+    "terrain_boxes": [
+      {
+        "x_min": -160,
+        "x_max": -90,
+        "z_min": 200,
+        "z_max": 260,
+        "height": 10
+      }
+    ],
+    "doctrine": {
+      "id": "army-forward-post",
+      "version": 1,
+      "name": "Illustrative finale local pack",
+      "description": "Frozen meter-scale training research configuration; not official doctrine",
+      "example_values": true,
+      "rules": {
+        "rf_range": 1500,
+        "kinetic_range": 1000,
+        "restricted": {
+          "enabled": false,
+          "x_lt": -300,
+          "z_gt": 200
+        },
+        "effectors": [
+          "hold",
+          "rf_jam",
+          "kinetic"
+        ],
+        "risk_weights": {
+          "quad": 1,
+          "fixed_wing": 1.2,
+          "fiber_fpv": 1.5,
+          "bird": 0
+        },
+        "asset_risk": 1,
+        "distance_precision": 6,
+        "hold_any_range": true
+      },
+      "defaults": {
+        "fog": 0,
+        "night": false,
+        "mix": []
+      },
+      "allowed_tactics": [
+        "DIRECT",
+        "SATURATION",
+        "DECOY_THEN_STRIKE",
+        "STAGGERED_WAVES",
+        "LOW_APPROACH",
+        "SPLIT_SWARM",
+        "PROBE_AND_RETREAT",
+        "BLIND_SECTOR"
+      ],
+      "rubric": {
+        "detect": 25,
+        "classify": 25,
+        "prioritise": 15,
+        "engage": 35
+      }
+    },
+    "prioritisation_version": 1,
+    "threat_config": {
+      "version": 1,
+      "id": "illustrative-threat-library-v1",
+      "label": "Illustrative training research parameters; not operational equipment specifications",
+      "units": {
+        "distance": "m",
+        "speed": "m/s",
+        "altitude": "m",
+        "time": "s"
+      },
+      "profiles": {
+        "hostile_quad": {
+          "kind": "quad",
+          "identity": "hostile",
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ],
+          "altitude_m": [
+            15,
+            90
+          ]
+        },
+        "no_rf_fpv": {
+          "kind": "fiber_fpv",
+          "identity": "hostile",
+          "rf": false,
+          "speed_mps": [
+            20,
+            35
+          ],
+          "altitude_m": [
+            4,
+            30
+          ]
+        },
+        "fixed_wing": {
+          "kind": "fixed_wing",
+          "identity": "hostile",
+          "rf": false,
+          "speed_mps": [
+            25,
+            42
+          ],
+          "altitude_m": [
+            40,
+            180
+          ]
+        },
+        "bird": {
+          "kind": "bird",
+          "identity": "neutral",
+          "rf": false,
+          "speed_mps": [
+            4,
+            12
+          ],
+          "altitude_m": [
+            15,
+            80
+          ]
+        },
+        "friendly_uav": {
+          "kind": "quad",
+          "identity": "friendly",
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ],
+          "altitude_m": [
+            20,
+            100
+          ]
+        },
+        "civil_uav": {
+          "kind": "quad",
+          "identity": "neutral",
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ],
+          "altitude_m": [
+            20,
+            100
+          ],
+          "registration_beacon": true
+        }
+      }
+    },
+    "effector_config": {
+      "version": 1,
+      "id": "illustrative-local-response-v1",
+      "label": "Illustrative bounded training actions; not real weapon performance or official doctrine",
+      "units": {
+        "distance": "m"
+      },
+      "sensor_geometry": {
+        "radar_range_m": 3000,
+        "day_camera_range_m": 1500,
+        "thermal_range_m": 1200
+      },
+      "effectors": {
+        "hold": {
+          "enabled": true
+        },
+        "rf_jam": {
+          "enabled": true,
+          "max_range_m": 1500,
+          "requires_rf_link": true
+        },
+        "kinetic": {
+          "enabled": true,
+          "max_range_m": 1000
+        }
+      },
+      "engagement_channels": 1,
+      "asset_radius_m": 8,
+      "minimum_response_window_s": 7
+    },
+    "raid": {
+      "version": 2,
+      "family": "DIRECT",
+      "requested_seed": 12883,
+      "waves": [
+        {
+          "tick": 60,
+          "role": "direct",
+          "contacts": [
+            "T1",
+            "T2"
+          ]
+        }
+      ],
+      "formation_model": "Closed-form shared leader with bounded slots and optional split; not autonomous swarm AI",
+      "constraints": {
+        "response_window_s": 7,
+        "peak_hostile_cap": 6,
+        "max_contacts": 200
+      },
+      "anti_repeat": {
+        "rejected_attempts": 0,
+        "history_considered": 0
+      },
+      "signature": [
+        "fixed_wing:7:0:dogleg",
+        "fixed_wing:7:0:orbit_then_dash"
+      ],
+      "fingerprint": "84a8a5f2fc31eabbbcadef10",
+      "validation": {
+        "basis": "Geometric baseline check with declared ranges; not calibrated sensor reliability or a certified human-solvability claim",
+        "response_windows": {
+          "T1": {
+            "first_tick": 1011,
+            "last_tick": 1996,
+            "usable_ticks": 986
+          },
+          "T2": {
+            "first_tick": 825,
+            "last_tick": 1997,
+            "usable_ticks": 1173
+          }
+        },
+        "peak_simultaneous_hostiles": 2,
+        "saturation_index": 2
+      }
+    },
+    "red_force": {
+      "version": 2,
+      "tactic": "DIRECT",
+      "tactic_seed": 12883,
+      "phases": [
+        {
+          "tick": 60,
+          "role": "direct",
+          "contacts": [
+            "T1",
+            "T2"
+          ]
+        }
+      ]
+    }
+  }
+}

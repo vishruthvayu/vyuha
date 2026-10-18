@@ -38,6 +38,19 @@ export type RenderPose = {
   displayHeading: number;
   anchorX: number;
   anchorZ: number;
+  /** Start of the current display segment and the logical tick of its target sample. */
+  fromX: number;
+  fromY: number;
+  fromZ: number;
+  sampleTick: number;
+  /** Segment duration in seconds and progress through it (0..1). */
+  segment: number;
+  progress: number;
+  /** Smoothed displayed velocity (m/s) and yaw rate (rad/s): cosmetic attitude only. */
+  velocityX: number;
+  velocityY: number;
+  velocityZ: number;
+  yawRate: number;
 };
 /** Cosmetic phase comes from logical time, so pauses and repeated seeks agree. */
 export function wingAngle(id: string, tick: number) {
@@ -98,10 +111,24 @@ export class RenderFrameMeter {
     };
   }
 }
-/** Interpolate only between supplied observations. Never extrapolate a hidden trajectory. */
+/** Display segment length relative to the interval between two observed samples.
+ * Slightly longer than the sample interval, so delivery jitter never produces a
+ * stop-and-go: each new sample starts from the current display position. */
+export const SEGMENT_STRETCH = 1.15;
+const TICK_SECONDS = 1 / 30;
+/** Interpolate only between supplied observations. Never extrapolate a hidden trajectory.
+ * Each new observed sample starts a linear segment from the current displayed
+ * position to that sample, lasting about one sample interval. The display therefore
+ * moves at the observed speed with roughly one sample of latency, and stops at the
+ * latest sample when no newer one arrives. */
 export class ObservedPoseBuffer {
   private poses = new Map<string, RenderPose>();
   private tick: number | null = null;
+  private sinceUpdate = 0;
+  /** Logical time for cosmetic animation: the latest snapshot tick, advanced by
+   * wall time for at most one publish interval (3 ticks). It therefore stops
+   * when the exercise pauses and follows seeks. */
+  displayTick = 0;
   private context = "";
   private input: readonly RenderContact[] | null = null;
   update(contacts: readonly RenderContact[], tick: number, context: string) {
@@ -131,8 +158,18 @@ export class ObservedPoseBuffer {
           displayHeading: 0,
           anchorX: t.x,
           anchorZ: t.z,
+          fromX: t.x,
+          fromY: t.y,
+          fromZ: t.z,
+          sampleTick: tick,
+          segment: 0,
+          progress: 1,
+          velocityX: 0,
+          velocityY: 0,
+          velocityZ: 0,
+          yawRate: 0,
         });
-      } else {
+      } else if (old.x !== t.x || old.y !== t.y || old.z !== t.z) {
         // Bearing is line-of-sight, not heading. Estimate only from supplied samples.
         const dx = t.x - old.anchorX,
           dz = t.z - old.anchorZ;
@@ -141,12 +178,21 @@ export class ObservedPoseBuffer {
           old.anchorX = t.x;
           old.anchorZ = t.z;
         }
+        const interval = Math.min(15, Math.max(1, tick - old.sampleTick));
+        old.fromX = old.displayX;
+        old.fromY = old.displayY;
+        old.fromZ = old.displayZ;
+        old.segment = interval * TICK_SECONDS * SEGMENT_STRETCH;
+        old.progress = 0;
+        old.sampleTick = tick;
         old.x = t.x;
         old.y = t.y;
         old.z = t.z;
       }
     }
+    if (tick !== this.tick) this.sinceUpdate = 0;
     this.tick = tick;
+    this.displayTick = tick;
     this.input = contacts;
   }
   forEachFrame(
@@ -154,21 +200,46 @@ export class ObservedPoseBuffer {
     visit: (pose: Readonly<RenderPose>) => void,
     reducedMotion = false,
   ) {
-    const alpha =
-      reducedMotion || !Number.isFinite(dt) || dt > 0.25
-        ? 1
-        : 1 - Math.exp(-Math.max(0, dt) * 21.4);
+    const step = Number.isFinite(dt) ? Math.max(0, dt) : 0;
+    const snap = reducedMotion || !Number.isFinite(dt) || dt > 0.25;
+    this.sinceUpdate += step;
+    this.displayTick = (this.tick ?? 0) + Math.min(3, this.sinceUpdate * 30);
     for (const p of this.poses.values()) {
-      p.displayX += (p.x - p.displayX) * alpha;
-      p.displayY += (p.y - p.displayY) * alpha;
-      p.displayZ += (p.z - p.displayZ) * alpha;
+      const beforeX = p.displayX,
+        beforeY = p.displayY,
+        beforeZ = p.displayZ;
+      p.progress =
+        snap || p.segment <= 0 ? 1 : Math.min(1, p.progress + step / p.segment);
+      p.displayX = p.fromX + (p.x - p.fromX) * p.progress;
+      p.displayY = p.fromY + (p.y - p.fromY) * p.progress;
+      p.displayZ = p.fromZ + (p.z - p.fromZ) * p.progress;
+      // Attitude cues come from the displayed (observed) path only.
+      const smooth = snap || step <= 0 ? 1 : 1 - Math.exp(-step * 6);
+      if (step > 0) {
+        p.velocityX += ((p.displayX - beforeX) / step - p.velocityX) * smooth;
+        p.velocityY += ((p.displayY - beforeY) / step - p.velocityY) * smooth;
+        p.velocityZ += ((p.displayZ - beforeZ) / step - p.velocityZ) * smooth;
+      }
       const angle = Math.atan2(
         Math.sin(p.heading - p.displayHeading),
         Math.cos(p.heading - p.displayHeading),
       );
-      p.displayHeading += angle * alpha;
+      const turn = snap ? 1 : 1 - Math.exp(-step * 7);
+      p.displayHeading += angle * turn;
+      if (step > 0) p.yawRate += ((angle * turn) / step - p.yawRate) * smooth;
+      if (snap) {
+        p.velocityX = p.velocityY = p.velocityZ = p.yawRate = 0;
+      }
       visit(p);
     }
+  }
+  /** Visit the current displayed poses without advancing them. */
+  each(visit: (pose: Readonly<RenderPose>) => void) {
+    for (const p of this.poses.values()) visit(p);
+  }
+  /** Current displayed pose of one contact, for camera framing. */
+  pose(id: string): Readonly<RenderPose> | undefined {
+    return this.poses.get(id);
   }
   snapshot() {
     return [...this.poses.values()].map((p) => ({ ...p }));

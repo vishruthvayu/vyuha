@@ -1,0 +1,21 @@
+{
+  "port": 9354,
+  "intervalMs": 1200,
+  "pages": [
+    {
+      "hidden": false,
+      "canvas": 0,
+      "rafCallbacks": 61
+    },
+    {
+      "hidden": true,
+      "canvas": 1,
+      "rafCallbacks": 0
+    },
+    {
+      "hidden": true,
+      "canvas": 1,
+      "rafCallbacks": 0
+    }
+  ]
+}

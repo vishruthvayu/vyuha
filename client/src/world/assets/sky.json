@@ -1,0 +1,42 @@
+{
+ "source": "Poly Haven (CC0)",
+ "below_horizon_deg": 5,
+ "skies": {
+  "sky-day": {
+   "source": "kloofendal_48d_partly_cloudy_puresky",
+   "width": 4096,
+   "height": 1081,
+   "exposure": 0.62,
+   "bytes": 100282,
+   "sun": {
+    "u": 0.59516,
+    "v": 0.23398,
+    "elevation_deg": 47.88,
+    "direction": [
+     0.5543,
+     0.74178,
+     -0.37751
+    ],
+    "peak_luminance": 74608.8
+   }
+  },
+  "sky-night": {
+   "source": "qwantani_night_puresky",
+   "width": 2048,
+   "height": 540,
+   "exposure": 0.028,
+   "bytes": 13352,
+   "sun": {
+    "u": 0.62162,
+    "v": 0.35473,
+    "elevation_deg": 26.15,
+    "direction": [
+     0.64807,
+     0.4407,
+     -0.62111
+    ],
+    "peak_luminance": 217.2
+   }
+  }
+ }
+}

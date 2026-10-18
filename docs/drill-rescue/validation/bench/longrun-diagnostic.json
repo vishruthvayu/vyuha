@@ -1,0 +1,11 @@
+{
+  "source": "5d40a24165dff5ace27c6131318da599ad828b0d",
+  "installedAt": "2026-10-17T07:42:07.584Z",
+  "scope": "Partial long-run diagnostic attached after measurement start; rAF gaps and browser longtask entries; no physical display or root-cause proof.",
+  "data": {
+    "frames": 8828,
+    "maxFrameMs": 16.800000000017462,
+    "gaps": [],
+    "longtasks": []
+  }
+}

@@ -16,7 +16,7 @@ const clock=new FixedStepClock();
 let timer:ReturnType<typeof setInterval>|null=null;
 function publish(initialized=false){if(sim)emit({type:'snapshot',state:sim.snapshot(),paused:localPaused||sim.state.paused,initialized});}
 function finish(){if(!sim||ended)return;ended=true;localPaused=true;publish();emit({type:'finalized',events:sim.events,commands:sim.commands});}
-onmessage=(e:MessageEvent<{type:string;scope?:string;scenario?:Scenario;action?:Action;events?:Action[];commands?:AppliedCommand[];command?:InstructorCommand;tick?:number;benchmark?:boolean;hidden?:boolean}>)=>{
+onmessage=(e:MessageEvent<{type:string;scope?:string;request_id?:number;scenario?:Scenario;action?:Action;events?:Action[];commands?:AppliedCommand[];command?:InstructorCommand;tick?:number;benchmark?:boolean;hidden?:boolean}>)=>{
  const m=e.data;
  // Benchmark retains its unscoped worker protocol. Training initialization is
  // scoped; late actions, commands and finish intents cannot cross ownership.
@@ -43,7 +43,12 @@ onmessage=(e:MessageEvent<{type:string;scope?:string;scenario?:Scenario;action?:
  else if(m.type==='finish')finish();
  else if(m.type==='control'&&sim&&m.command&&!ended){
   if(sim.control(m.command,sim.state.tick,order)){order++;if(m.command.type==='resume')localPaused=false;if(m.command.type==='pause'||m.command.type==='resume')clock.reset(performance.now());emit({type:'controlled',commands:sim.commands});}publish();
- }else if(m.type==='action'&&sim&&m.action&&!localPaused&&!ended){
-  const a={...m.action,tick:sim.state.tick,order};if(sim.act(a)){order++;emit({type:'accepted',action:a});}publish();
+ }else if(m.type==='action'&&sim&&m.action){
+  // Request correlation belongs to transport metadata, never authoritative events.
+  const a={...m.action,tick:sim.state.tick,order};
+  const reason=ended||sim.state.done?'ended':localPaused||sim.state.paused?'paused':undefined;
+  if(!reason&&sim.act(a)){order++;emit({type:'accepted',action:a,request_id:m.request_id});}
+  else emit({type:'rejected',action:a,request_id:m.request_id,reason:reason??'state_changed'});
+  publish();
  }
 };

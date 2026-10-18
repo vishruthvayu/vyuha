@@ -1,0 +1,121 @@
+{
+ "world": "urban_outpost:day",
+ "vision": "day",
+ "tier": "medium",
+ "contacts": 200,
+ "seconds": 180,
+ "simulation_tick": 5399,
+ "median_render_fps": 60,
+ "min_fps_sample": 36,
+ "p05_fps": 60,
+ "median_sim_tick_ms": 0.6000000014901161,
+ "p95_sim_tick_ms": 1.2999999970197678,
+ "heap_first_mb": 71.6,
+ "heap_last_mb": 52.5,
+ "resources": [
+  {
+   "t": 15.01,
+   "heapMB": 45.2,
+   "texture": 53,
+   "buffer": 261,
+   "framebuffer": 6,
+   "program": 60
+  },
+  {
+   "t": 30.02,
+   "heapMB": 64.5,
+   "texture": 53,
+   "buffer": 261,
+   "framebuffer": 6,
+   "program": 60
+  },
+  {
+   "t": 45.02,
+   "heapMB": 50.7,
+   "texture": 53,
+   "buffer": 261,
+   "framebuffer": 6,
+   "program": 60
+  },
+  {
+   "t": 60.03,
+   "heapMB": 57.6,
+   "texture": 53,
+   "buffer": 261,
+   "framebuffer": 6,
+   "program": 60
+  },
+  {
+   "t": 75.04,
+   "heapMB": 51.5,
+   "texture": 53,
+   "buffer": 261,
+   "framebuffer": 6,
+   "program": 60
+  },
+  {
+   "t": 90.05,
+   "heapMB": 64.4,
+   "texture": 53,
+   "buffer": 261,
+   "framebuffer": 6,
+   "program": 60
+  },
+  {
+   "t": 105.05,
+   "heapMB": 62.3,
+   "texture": 53,
+   "buffer": 261,
+   "framebuffer": 6,
+   "program": 60
+  },
+  {
+   "t": 120.06,
+   "heapMB": 64.5,
+   "texture": 53,
+   "buffer": 261,
+   "framebuffer": 6,
+   "program": 60
+  },
+  {
+   "t": 135.06,
+   "heapMB": 56.9,
+   "texture": 53,
+   "buffer": 261,
+   "framebuffer": 6,
+   "program": 60
+  },
+  {
+   "t": 150.07,
+   "heapMB": 68,
+   "texture": 53,
+   "buffer": 261,
+   "framebuffer": 6,
+   "program": 60
+  },
+  {
+   "t": 165.07,
+   "heapMB": 54.2,
+   "texture": 53,
+   "buffer": 261,
+   "framebuffer": 6,
+   "program": 60
+  },
+  {
+   "t": 180.08,
+   "heapMB": 56,
+   "texture": 53,
+   "buffer": 261,
+   "framebuffer": 6,
+   "program": 60
+  },
+  {
+   "t": 195.09,
+   "heapMB": 42,
+   "texture": 53,
+   "buffer": 261,
+   "framebuffer": 6,
+   "program": 60
+  }
+ ]
+}

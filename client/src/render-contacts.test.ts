@@ -12,7 +12,11 @@ import {
   wingAngle,
   type RenderContact,
 } from "./render-contacts";
-import { createAirframeParts } from "./airframe-geometry";
+import {
+  airframeLod,
+  createAirframeParts,
+  projectedPixels,
+} from "./airframe-geometry";
 import {
   createSkyTexture,
   createSurfaceTexture,
@@ -198,25 +202,30 @@ test("Optical zoom is a finite bounded crop, with default framing unchanged", ()
     assert.equal(opticalFov(52, zoom), opticalFov(52));
 });
 
-test("Original airframes are finite merged geometry, bounded in scale and constant in batch count across contact workloads", () => {
-  const vertexCounts: number[] = [];
+test("Original airframes are finite, bounded, quality-scaled geometry with a constant batch count", () => {
+  const triangles: number[] = [];
   for (const quality of ["low", "medium", "high"] as const) {
     const parts = createAirframeParts(quality);
-    assert.equal(parts.length, 9);
-    let vertices = 0;
-    for (const { geometry } of parts) {
+    // Same instanced batches whatever the quality or contact count.
+    assert.equal(parts.length, 18);
+    let tris = 0;
+    for (const { geometry, shape, lod, role } of parts) {
       const positions = geometry.getAttribute("position");
-      vertices += positions.count;
+      tris += positions.count / 3;
       assert.equal(positions.count % 3, 0);
       assert.ok([...positions.array].every(Number.isFinite));
       assert.ok(
         [...geometry.getAttribute("normal").array].every(Number.isFinite),
       );
+      const heat = geometry.getAttribute("heat");
+      assert.equal(heat.count, positions.count);
+      assert.ok([...heat.array].every((h) => h >= 0 && h <= 1));
       assert.ok(
         geometry.boundingSphere!.radius > 0 &&
-          geometry.boundingSphere!.radius < 5,
+          geometry.boundingSphere!.radius < 1.6,
       );
-      assert.equal(geometry.groups.length, 0);
+      if (lod === 0 && role === "body" && shape !== "unresolved")
+        assert.ok(positions.count > 300);
       geometry.dispose();
     }
     assert.deepEqual(
@@ -224,13 +233,45 @@ test("Original airframes are finite merged geometry, bounded in scale and consta
         .filter((p) => p.wing)
         .map((p) => p.wing)
         .sort(),
-      [-1, 1],
+      [-1, -1, 1, 1],
     );
-    vertexCounts.push(vertices);
+    triangles.push(tris);
   }
-  assert.ok(
-    vertexCounts[0] < vertexCounts[1] && vertexCounts[1] < vertexCounts[2],
+  assert.ok(triangles[0] < triangles[1] && triangles[1] < triangles[2]);
+});
+
+test("Airframe choice depends only on the observed silhouette, and detail only on projected size", () => {
+  const parts = createAirframeParts("medium");
+  const shapes = new Set(parts.map((p) => p.shape));
+  assert.deepEqual([...shapes].sort(), [
+    "bird",
+    "fixed_wing",
+    "multirotor",
+    "unresolved",
+  ]);
+  // One multirotor for every multirotor contact (quad, no-RF FPV, friendly UAV alike).
+  assert.equal(
+    new Set(
+      parts.filter(
+        (p) => p.shape === "multirotor" && p.role === "body" && p.lod === 0,
+      ),
+    ).size,
+    1,
   );
+  // Levels of detail step by projected size with hysteresis, never by identity.
+  assert.equal(airframeLod(100), 0);
+  assert.equal(airframeLod(10), 1);
+  assert.equal(airframeLod(1), 2);
+  assert.equal(
+    airframeLod(33, 0),
+    0,
+    "stays close until well below the threshold",
+  );
+  assert.equal(airframeLod(40, 1), 1, "needs 25 % more to step up");
+  assert.equal(airframeLod(3.2, 2), 2);
+  const px = projectedPixels("multirotor", 300, 38, 441);
+  assert.ok(px > 1 && px < 4, `${px}`);
+  parts.forEach((p) => p.geometry.dispose());
 });
 
 test("Paint and sky use reproducible local bounded pixels and disposable GPU textures without new terrain volumes", () => {

@@ -558,7 +558,6 @@ export function GhostTimeline({
                 key={e.id}
                 className={`timeline-item ${e.category}`}
                 data-category={e.category}
-                aria-label={`Jump to ${e.title}`}
                 onClick={() => onJump(e)}
               >
                 <span className="mono">{tickLabel(e.tick)}</span>
@@ -566,7 +565,7 @@ export function GhostTimeline({
                   <small>{e.category.replaceAll("_", " ")}</small>
                   {e.title}
                 </span>
-                <ChevronRight size={15} />
+                <ChevronRight size={15} aria-hidden="true" />
               </button>
             ))}
         </div>

@@ -1,0 +1,192 @@
+{
+ "ground-dry": {
+  "source": "https://polyhaven.com/a/dry_ground_01",
+  "files": {
+   "albedo": {
+    "file": "ground-dry-albedo.webp",
+    "size": 1024,
+    "bytes": 215472
+   },
+   "normal": {
+    "file": "ground-dry-normal.webp",
+    "size": 1024,
+    "bytes": 232528
+   },
+   "orm": {
+    "file": "ground-dry-orm.webp",
+    "size": 1024,
+    "bytes": 98930
+   }
+  }
+ },
+ "ground-macro": {
+  "source": "https://polyhaven.com/a/aerial_ground_rock",
+  "files": {
+   "albedo": {
+    "file": "ground-macro-albedo.webp",
+    "size": 1024,
+    "bytes": 278892
+   }
+  }
+ },
+ "ground-laterite": {
+  "source": "https://polyhaven.com/a/red_laterite_soil_stones",
+  "files": {
+   "albedo": {
+    "file": "ground-laterite-albedo.webp",
+    "size": 512,
+    "bytes": 41690
+   },
+   "normal": {
+    "file": "ground-laterite-normal.webp",
+    "size": 512,
+    "bytes": 131152
+   }
+  }
+ },
+ "ground-gravel": {
+  "source": "https://polyhaven.com/a/gravelly_sand",
+  "files": {
+   "albedo": {
+    "file": "ground-gravel-albedo.webp",
+    "size": 512,
+    "bytes": 65134
+   },
+   "normal": {
+    "file": "ground-gravel-normal.webp",
+    "size": 512,
+    "bytes": 115800
+   }
+  }
+ },
+ "ground-grass": {
+  "source": "https://polyhaven.com/a/sparse_grass",
+  "files": {
+   "albedo": {
+    "file": "ground-grass-albedo.webp",
+    "size": 512,
+    "bytes": 47122
+   }
+  }
+ },
+ "asphalt": {
+  "source": "https://polyhaven.com/a/asphalt_02",
+  "files": {
+   "albedo": {
+    "file": "asphalt-albedo.webp",
+    "size": 512,
+    "bytes": 84410
+   },
+   "normal": {
+    "file": "asphalt-normal.webp",
+    "size": 512,
+    "bytes": 88116
+   },
+   "orm": {
+    "file": "asphalt-orm.webp",
+    "size": 512,
+    "bytes": 60422
+   }
+  }
+ },
+ "concrete-floor": {
+  "source": "https://polyhaven.com/a/concrete_floor_worn_001",
+  "files": {
+   "albedo": {
+    "file": "concrete-floor-albedo.webp",
+    "size": 512,
+    "bytes": 9180
+   },
+   "normal": {
+    "file": "concrete-floor-normal.webp",
+    "size": 512,
+    "bytes": 4252
+   },
+   "orm": {
+    "file": "concrete-floor-orm.webp",
+    "size": 512,
+    "bytes": 14518
+   }
+  }
+ },
+ "concrete-wall": {
+  "source": "https://polyhaven.com/a/concrete_wall_008",
+  "files": {
+   "albedo": {
+    "file": "concrete-wall-albedo.webp",
+    "size": 512,
+    "bytes": 12846
+   },
+   "normal": {
+    "file": "concrete-wall-normal.webp",
+    "size": 512,
+    "bytes": 3788
+   },
+   "orm": {
+    "file": "concrete-wall-orm.webp",
+    "size": 512,
+    "bytes": 9860
+   }
+  }
+ },
+ "plaster": {
+  "source": "https://polyhaven.com/a/beige_wall_001",
+  "files": {
+   "albedo": {
+    "file": "plaster-albedo.webp",
+    "size": 512,
+    "bytes": 958
+   },
+   "normal": {
+    "file": "plaster-normal.webp",
+    "size": 512,
+    "bytes": 10170
+   },
+   "orm": {
+    "file": "plaster-orm.webp",
+    "size": 512,
+    "bytes": 2716
+   }
+  }
+ },
+ "corrugated": {
+  "source": "https://polyhaven.com/a/corrugated_iron_02",
+  "files": {
+   "albedo": {
+    "file": "corrugated-albedo.webp",
+    "size": 512,
+    "bytes": 7600
+   },
+   "normal": {
+    "file": "corrugated-normal.webp",
+    "size": 512,
+    "bytes": 7650
+   },
+   "orm": {
+    "file": "corrugated-orm.webp",
+    "size": 512,
+    "bytes": 18136
+   }
+  }
+ },
+ "painted-metal": {
+  "source": "https://polyhaven.com/a/painted_metal_shutter",
+  "files": {
+   "albedo": {
+    "file": "painted-metal-albedo.webp",
+    "size": 512,
+    "bytes": 16164
+   },
+   "normal": {
+    "file": "painted-metal-normal.webp",
+    "size": 512,
+    "bytes": 14804
+   },
+   "orm": {
+    "file": "painted-metal-orm.webp",
+    "size": 512,
+    "bytes": 9108
+   }
+  }
+ }
+}
