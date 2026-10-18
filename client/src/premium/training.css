@@ -1674,3 +1674,117 @@ html:has(.sensor-workspace) {
     width: auto;
   }
 }
+
+/* Every step participates in one intrinsic grid cell, reserving the tallest
+   panel before decisions. Inactive steps are inert and aria-hidden in JSX. */
+.guided-body {
+  display: grid;
+  align-items: start;
+}
+.guided-body > .guided-stage {
+  grid-area: 1 / 1;
+  min-width: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.guided-body > .guided-stage[data-active="true"] {
+  visibility: visible;
+  pointer-events: auto;
+}
+.guided-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "steps toggle" "target target";
+  min-block-size: 60px;
+  align-items: center;
+  gap: 4px 12px;
+}
+.guided-steps {
+  grid-area: steps;
+}
+.guided-toggle {
+  grid-area: toggle;
+}
+.guided-target {
+  grid-area: target;
+  min-block-size: 32px;
+  align-items: center;
+}
+.guided-target > span {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.guided-coach {
+  min-block-size: 3em;
+  max-block-size: 3em;
+  overflow: auto;
+  box-sizing: border-box;
+}
+.guided-coach[data-enabled="false"] {
+  visibility: hidden;
+}
+.guided-status,
+.guided-status:empty {
+  display: block;
+  min-block-size: 3em;
+  max-block-size: 3em;
+  overflow: auto;
+}
+.choice-group legend {
+  display: block;
+  min-block-size: 3.5em;
+  max-block-size: 3.5em;
+  overflow: auto;
+}
+.effector-card {
+  min-block-size: 176px;
+}
+.effector-facts {
+  min-block-size: 72px;
+  align-content: start;
+}
+.guided-outcome {
+  min-block-size: 96px;
+}
+.sensor-workspace > .panel-header {
+  flex: none;
+}
+.observation-popover {
+  max-block-size: min(440px, 65vh);
+  overflow: auto;
+}
+@container (max-width: 620px) {
+  .effector-card {
+    min-block-size: 114px;
+  }
+  .effector-facts {
+    min-block-size: 40px;
+  }
+}
+@media (max-width: 1023px) {
+  /* New reports scroll inside their rail instead of pushing decisions down. */
+  .training-grid > .right-panels {
+    block-size: 300px;
+  }
+  .right-panels > .contacts-panel {
+    block-size: 100%;
+  }
+  .right-panels .contact-list {
+    flex: 1 1 auto;
+    min-block-size: 0;
+    max-block-size: none !important;
+    overflow: auto;
+  }
+}
+.guided-classify .guided-commit > .guided-why {
+  block-size: 3em;
+  overflow: auto;
+}
+.effector-card {
+  min-block-size: 112px;
+}
+.effector-facts {
+  min-block-size: 42px;
+}

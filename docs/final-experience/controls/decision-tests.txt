@@ -1,0 +1,48 @@
+✔ decision steps follow the trainee's own recorded decisions (1.044886ms)
+✔ classification starts with no answer and confirms exactly the trainee's choice (105.966757ms)
+✔ hidden kind, identity and RF truth cannot change what the dock shows (161.989823ms)
+✔ disabled actions explain themselves in visible text (10.63848ms)
+✔ response eligibility uses published reach, the restricted zone and public resources (0.349689ms)
+✔ the respond step shows reach against the observed range and sends the chosen effector (13.611491ms)
+✔ every action is acknowledged: submitted, accepted or not accepted (22.62141ms)
+✔ the outcome comes from the public response state, not from guesses (16.266211ms)
+✔ guidance is optional and explains process without naming an answer (12.888823ms)
+✔ shape evidence reflects only the active camera's observation level (0.317245ms)
+✔ displayed motion is steady for a steadily observed contact (no 10 Hz surge and stall) (1.56412ms)
+✔ pausing freezes cosmetic logical time; it never runs past one publish interval (0.681405ms)
+✔ a selected contact never sends the live camera back to the default sector (41.759024ms)
+✔ view blends converge on a moving goal in bounded time without angular jumps (1.158418ms)
+✔ keyboard designation hands focus to the labelled classification group after acceptance and the next snapshot (25.671956ms)
+✔ pointer designation does not move focus when the next step appears (12.985842ms)
+✔ keyboard acknowledgment never steals focus moved outside the decision workspace (14.32703ms)
+✔ a rejected keyboard action clears focus handoff before a later state transition (14.607152ms)
+✔ changing contact clears a keyboard action's pending focus handoff (17.157884ms)
+✖ decision stages retain controls while inactive stages are inert and cannot accept classification early (10.239628ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 19
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1322.486889
+
+✖ failing tests:
+
+test at src/guided-decision.test.tsx:705:1
+✖ decision stages retain controls while inactive stages are inert and cannot accept classification early (10.239628ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at <anonymous> (/home/naveen/Vyuha-final-experience-polish/client/src/guided-decision.test.tsx:712:12)
+      at async TestContext.<anonymous> (/home/naveen/Vyuha-final-experience-polish/client/src/guided-decision.test.tsx:133:7)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

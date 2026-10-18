@@ -471,7 +471,7 @@ export function GuidedDecision({
       document.activeElement === document.body ||
       dock.current?.contains(document.activeElement)
     )
-      stepBody.current?.focus();
+      stepBody.current?.focus({ preventScroll: true });
   }, [step, selected, phase, ownFeedback]);
   const statusText = ownFeedback
     ? feedbackText(ownFeedback)
@@ -528,7 +528,13 @@ export function GuidedDecision({
           Guidance
         </button>
       </div>
-      {guidance && running && <p className="guided-coach">{COACH[step]}</p>}
+      <p
+        className="guided-coach"
+        aria-hidden={!guidance || !running}
+        data-enabled={guidance && running}
+      >
+        {guidance && running ? COACH[step] : "\u00a0"}
+      </p>
       <div
         ref={stepBody}
         className="guided-body"
@@ -536,8 +542,13 @@ export function GuidedDecision({
         role="group"
         aria-label={`${DECISION_STEPS[stepIndex]?.label ?? step}${selected ? ` ${selected}` : ""}`}
       >
-        {step === "select" && (
-          <div className="guided-prompt">
+        {
+          <div
+            className="guided-stage guided-prompt"
+            data-active={step === "select"}
+            aria-hidden={step !== "select"}
+            inert={step !== "select"}
+          >
             <Crosshair size={18} aria-hidden="true" />
             <p>
               {selected && !target
@@ -550,9 +561,14 @@ export function GuidedDecision({
               </button>
             )}
           </div>
-        )}
-        {step === "designate" && (
-          <div className="guided-prompt">
+        }
+        {
+          <div
+            className="guided-stage guided-prompt"
+            data-active={step === "designate"}
+            aria-hidden={step !== "designate"}
+            inert={step !== "designate"}
+          >
             <div className="guided-facts">
               <Fact label="Shape">{shape.text}</Fact>
               <Fact label="Range">{range} m</Fact>
@@ -574,9 +590,14 @@ export function GuidedDecision({
                 "Marks the contact as detected and being worked. Your designation time is recorded."}
             </p>
           </div>
-        )}
-        {step === "classify" && (
-          <div className="guided-classify">
+        }
+        {
+          <div
+            className="guided-stage guided-classify"
+            data-active={step === "classify"}
+            aria-hidden={step !== "classify"}
+            inert={step !== "classify"}
+          >
             <ChoiceGroup
               legend="Type"
               evidence={
@@ -587,7 +608,7 @@ export function GuidedDecision({
                 </>
               }
               name={`${uid}-kind`}
-              disabled={!running || !target}
+              disabled={!!controlReason("classify", phase, target)}
               value={kind}
               onChange={setKind}
               options={(Object.keys(KIND_LABEL) as Kind[]).map((k) => ({
@@ -604,7 +625,7 @@ export function GuidedDecision({
                 </>
               }
               name={`${uid}-identity`}
-              disabled={!running || !target}
+              disabled={!!controlReason("classify", phase, target)}
               value={identity}
               onChange={setIdentity}
               options={(["hostile", "friendly", "neutral"] as const).map(
@@ -650,9 +671,14 @@ export function GuidedDecision({
               )}
             </div>
           </div>
-        )}
-        {step === "respond" && (
-          <div className="guided-respond">
+        }
+        {
+          <div
+            className="guided-stage guided-respond"
+            data-active={step === "respond"}
+            aria-hidden={step !== "respond"}
+            inert={step !== "respond"}
+          >
             <p className="guided-summary">
               Classified{" "}
               <strong>
@@ -737,9 +763,14 @@ export function GuidedDecision({
               result.
             </p>
           </div>
-        )}
-        {step === "outcome" && (
-          <div className="guided-outcome">
+        }
+        {
+          <div
+            className="guided-stage guided-outcome"
+            data-active={step === "outcome"}
+            aria-hidden={step !== "outcome"}
+            inert={step !== "outcome"}
+          >
             {lastAttempt ? (
               <p
                 className="outcome-line"
@@ -780,7 +811,7 @@ export function GuidedDecision({
               )}
             </div>
           </div>
-        )}
+        }
       </div>
       <p className="guided-status" role="status" aria-live="polite">
         {statusText}
