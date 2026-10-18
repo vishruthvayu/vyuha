@@ -156,3 +156,25 @@ test("No-match recovery clears filters and resets the visible batch without inve
     assert.equal(document.querySelector("select")!.value, "all");
     assert.equal(document.querySelectorAll(".timeline-item").length, 100);
   }));
+
+test("merged searchable timeline retains native visible event labels", async () => {
+  await mounted(async (document) => {
+    const buttons = [
+      ...document.querySelectorAll<HTMLButtonElement>("button.timeline-item"),
+    ];
+    assert.equal(buttons.length, 100);
+    for (const button of buttons) {
+      assert.equal(
+        button.hasAttribute("aria-label"),
+        false,
+        "Do not override category, time or contact text",
+      );
+      assert.ok(button.querySelector(".mono")?.textContent);
+      assert.ok(button.querySelector("small")?.textContent);
+      assert.equal(
+        button.querySelector("svg")?.getAttribute("aria-hidden"),
+        "true",
+      );
+    }
+  });
+});

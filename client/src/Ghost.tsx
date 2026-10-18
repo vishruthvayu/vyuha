@@ -655,7 +655,6 @@ export function TimelineEvents({
             key={item.id}
             className={`timeline-item ${item.category}`}
             data-category={item.category}
-            aria-label={`Jump to ${item.title} at ${tickLabel(item.tick)}${item.track_id ? ` · ${item.track_id}` : ""}`}
             onClick={() => onJump(item)}
           >
             <span className="mono">{tickLabel(item.tick)}</span>
