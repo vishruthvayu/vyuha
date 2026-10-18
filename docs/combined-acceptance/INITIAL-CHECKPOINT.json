@@ -1,0 +1,31 @@
+{
+  "commit": "f3904f84ac64b89883290199dbf035697970565f",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "869bf6357441c62030e887cb2dc3c793ba7f4d9821c6831d4ee73d2854808db9",
+  "base": "db0ff23a67692d3db5dce07a031d17ea50a409b3",
+  "drill": "ef130686d0ccce9d6e4245dec0ca5a97a2a047b5",
+  "hardening": "8fba805e8a3355ac34ea329e232eb0e4ec9dcd20",
+  "branch": "integration/vyuha-combined-acceptance",
+  "acceptance": "IN PROGRESS \u2014 not a release candidate",
+  "initial_checks": {
+    "frontend": 343,
+    "frontend_failed": 0,
+    "backend_smoke": 45,
+    "build": "PASS",
+    "offline_assets": 72,
+    "lint": "PASS",
+    "format": "PASS",
+    "world_format": "PASS"
+  },
+  "preservation": "Original integration checkout and five uncommitted files remain untouched; binary patch stored outside Git.",
+  "pending": [
+    "full backend",
+    "Docker",
+    "merged browser workflows",
+    "historical18/22",
+    "security/transfer/restore/recovery",
+    "performance",
+    "clean-clone",
+    "owner visual review"
+  ]
+}
