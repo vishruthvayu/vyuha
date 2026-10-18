@@ -71,10 +71,12 @@ export function EvidenceResponseComparison({
         evidence then available. This reference is an inspectable training
         policy, not a certified military expert.
       </p>
-      <p>
-        {report.summary.agreements} / {report.summary.recorded_responses}{" "}
-        recorded responses match the policy. {report.summary.interpretation}
-      </p>
+      {report.summary.recorded_responses > 0 && (
+        <p>
+          {report.summary.agreements} / {report.summary.recorded_responses}{" "}
+          recorded responses match the policy. {report.summary.interpretation}
+        </p>
+      )}
       <div className="review-result-grid">
         <article className="metric">
           <span>Supported reference choices</span>

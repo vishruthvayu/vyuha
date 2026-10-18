@@ -177,7 +177,8 @@ test("replay contact history uses observed contacts and trainee labels across se
       onSelect={() => {}}
     />,
   );
-  assert.match(after, /Replay track T9/);
+  assert.match(after, /<b>T9<\/b>/);
+  assert.doesNotMatch(after, /aria-label="Replay track/);
   assert.match(after, /No-RF FPV/);
   assert.match(after, /active/);
 });

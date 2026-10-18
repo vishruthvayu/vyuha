@@ -698,11 +698,7 @@ export function ReplayTracks({
       {state.tracks
         .filter((t) => t.detected !== null)
         .map((t) => (
-          <button
-            key={t.id}
-            aria-label={`Replay track ${t.id}`}
-            onClick={() => onSelect(t.id)}
-          >
+          <button key={t.id} onClick={() => onSelect(t.id)}>
             <b>{t.id}</b>
             <span>
               {t.classification

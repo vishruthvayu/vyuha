@@ -90,7 +90,10 @@ test("response comparison has no fabricated agreement fraction when no responses
     />,
   );
   assert.match(html, /No engagement was recorded/);
-  assert.doesNotMatch(html, /NaN|Infinity|100%/);
+  assert.doesNotMatch(
+    html,
+    /NaN|Infinity|100%|0 \/ 0|recorded responses match the policy/,
+  );
 });
 test("comparison preserves supplied original report and explains unchanged history", () => {
   const before = JSON.stringify(report);
