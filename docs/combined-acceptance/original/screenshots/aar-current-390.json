@@ -1,0 +1,18 @@
+{
+  "url": "http://127.0.0.1:8086/?view=aar&session=ff5ca198-20c8-409c-9781-de76aba84b5b",
+  "width": 390,
+  "height": 844,
+  "scale": 1,
+  "axe": {
+    "name": "axe-core",
+    "version": "4.14.0"
+  },
+  "violations": [],
+  "passes": 36,
+  "incomplete": [
+    {
+      "id": "color-contrast",
+      "nodes": 29
+    }
+  ]
+}

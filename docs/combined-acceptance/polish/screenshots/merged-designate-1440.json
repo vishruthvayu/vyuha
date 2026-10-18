@@ -1,0 +1,47 @@
+{
+  "height": 900,
+  "rects": [
+    {
+      "rect": {
+        "bottom": 400.734375,
+        "height": 202.0078125,
+        "left": 17,
+        "right": 1051,
+        "top": 198.7265625,
+        "width": 1034,
+        "x": 17,
+        "y": 198.7265625
+      },
+      "selector": "CANVAS."
+    },
+    {
+      "rect": {
+        "bottom": 825.234375,
+        "height": 354.5,
+        "left": 33,
+        "right": 1039,
+        "top": 470.734375,
+        "width": 1006,
+        "x": 33,
+        "y": 470.734375
+      },
+      "selector": "DIV.guided"
+    },
+    {
+      "rect": {
+        "bottom": 782.734375,
+        "height": 216,
+        "left": 33,
+        "right": 1039,
+        "top": 566.734375,
+        "width": 1006,
+        "x": 33,
+        "y": 566.734375
+      },
+      "selector": "DIV.guided-body"
+    }
+  ],
+  "scale": 1,
+  "scrollWidth": 1440,
+  "width": 1440
+}

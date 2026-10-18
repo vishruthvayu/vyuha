@@ -1,0 +1,14 @@
+{
+  "image": "vyuha:combined-e07fb6a",
+  "image_id": "sha256:f0063578cdcae2abfb443c079d5831f79f8b2018460a1d4dbd6f6846f18bbac1",
+  "health": {
+    "status": "ok",
+    "engine_version": "vyuha-0.2.0",
+    "storage": "sqlite",
+    "mode": "local-demo",
+    "unit_id": "local"
+  },
+  "root_status": 200,
+  "anonymous_instructor": 401,
+  "scope": "Linux/arm64 container on macOS Apple M1; not native Linux deployment acceptance."
+}

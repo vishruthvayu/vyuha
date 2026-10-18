@@ -1,0 +1,24 @@
+{
+  "url": "http://127.0.0.1:8086/instructor",
+  "width": 1440,
+  "height": 900,
+  "scale": 1,
+  "axe": {
+    "name": "axe-core",
+    "version": "4.14.0"
+  },
+  "violations": [],
+  "passes": 31,
+  "incomplete": [
+    {
+      "id": "color-contrast",
+      "nodes": 3
+    }
+  ],
+  "geometry": {
+    "height": 900,
+    "scale": 1,
+    "scrollWidth": 1440,
+    "width": 1440
+  }
+}

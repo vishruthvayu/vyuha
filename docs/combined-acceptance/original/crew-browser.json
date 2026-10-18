@@ -1,0 +1,13 @@
+{
+  "crew_id": "crew_19c108259bfe41f0ad77",
+  "session_id": "fa29de82-0831-4cde-bc73-5abe5b053839",
+  "accepted_roles": [
+    "spotter",
+    "responder",
+    "responder"
+  ],
+  "accepted_actions": 3,
+  "individual_profiles_unchanged_on_shared_completion": true,
+  "individual_profiles_sha256": "36515781b9aae93d6e8bb36e053d4e4de534ab4f43b068dae4994c58075c904c",
+  "method": "Real browser Spotter and Responder actions; officer start/completion via authenticated API; dedicated synthetic DB."
+}

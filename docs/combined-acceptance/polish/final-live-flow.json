@@ -1,0 +1,32 @@
+{
+  "runtime_commit": "126aab44a83fec76b782d5a6acbec9b8dc454bce",
+  "session_id": "bf47c374-849d-4c0c-844c-8f12443fd8ea",
+  "status": "completed",
+  "accepted_actions": [
+    {
+      "k": "designate",
+      "order": 0,
+      "tick": 1609,
+      "track": "T2"
+    },
+    {
+      "identity": "hostile",
+      "k": "classify",
+      "kind": "quad",
+      "order": 1,
+      "tick": 1924,
+      "track": "T2"
+    },
+    {
+      "effector": "hold",
+      "k": "engage",
+      "order": 2,
+      "tick": 2044,
+      "track": "T2"
+    }
+  ],
+  "fusion_receipts": 3,
+  "browser": "Codex in-app Chromium on MacBook Air M1",
+  "workflow": "Actual designation, radio classification, response, pause, guidance off; geometry captured in DOM; completion reached server verification. Synthetic isolated library fixture.",
+  "scope": "No commands/actions injected via browser runtime or direct database. SQLite used only afterward to read receipt counts."
+}

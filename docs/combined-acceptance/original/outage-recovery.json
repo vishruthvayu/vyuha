@@ -1,0 +1,16 @@
+{
+  "session": "eefc7f83-cf67-4536-8e93-40642d410543",
+  "counts": {
+    "chunks": 0,
+    "fusion_exposures": 0
+  },
+  "after": {
+    "chunks": 2,
+    "fusion_exposures": 0
+  },
+  "actions": 3,
+  "queued_actions_recovered": 2,
+  "response_recorded_after_reconnection": 1,
+  "fusion": "Disabled in this scenario; separate enabled acceptance required.",
+  "scope": "Loaded 2D browser and real server process outage; no physical network test."
+}

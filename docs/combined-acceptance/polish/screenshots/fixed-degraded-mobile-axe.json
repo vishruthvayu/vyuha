@@ -1,0 +1,22 @@
+{
+  "url": "http://127.0.0.1:8092/",
+  "width": 390,
+  "height": 844,
+  "scale": 1,
+  "axe": {
+    "name": "axe-core",
+    "version": "4.14.0"
+  },
+  "violations": [],
+  "passes": 29,
+  "incomplete": [
+    {
+      "id": "aria-prohibited-attr",
+      "nodes": 1
+    },
+    {
+      "id": "color-contrast",
+      "nodes": 31
+    }
+  ]
+}

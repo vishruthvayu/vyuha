@@ -1,0 +1,33 @@
+{
+  "commit": "95c2fe97af04391dd6e59a825d1ccb7aef2f33e1",
+  "session_id": "03ea0468-0d9b-45fc-94eb-254dc70f8808",
+  "server_process_stopped_and_restarted": true,
+  "while_server_down": "3 locally accepted designate/classify/hold actions; explicit 2D transport isolation",
+  "actions_after_recovery": [
+    {
+      "k": "designate",
+      "order": 0,
+      "tick": 1193,
+      "track": "T2"
+    },
+    {
+      "identity": "hostile",
+      "k": "classify",
+      "kind": "quad",
+      "order": 1,
+      "tick": 1422,
+      "track": "T2"
+    },
+    {
+      "effector": "hold",
+      "k": "engage",
+      "order": 2,
+      "tick": 1431,
+      "track": "T2"
+    }
+  ],
+  "fusion_receipts_before": 0,
+  "fusion_receipts_after": 3,
+  "completed": "Server verified and Ghost rendered",
+  "physical_scope": "One M1 host and Codex in-app Chromium; no WAN disconnect or physical LAN certification."
+}

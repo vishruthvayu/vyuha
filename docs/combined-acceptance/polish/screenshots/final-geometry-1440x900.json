@@ -1,0 +1,224 @@
+[
+  {
+    "stage": "designate",
+    "height": 900,
+    "rects": [
+      {
+        "h": 405,
+        "selector": "scene-container thermal ",
+        "w": 1034,
+        "x": 17,
+        "y": 228.8984375
+      },
+      {
+        "h": 380.5,
+        "selector": "decision-workspace",
+        "w": 1036,
+        "x": 16,
+        "y": 690.8984375
+      },
+      {
+        "h": 216,
+        "selector": "guided-body",
+        "w": 1006,
+        "x": 33,
+        "y": 799.8984375
+      },
+      {
+        "h": 34.5,
+        "selector": "guided-status",
+        "w": 1006,
+        "x": 33,
+        "y": 1023.8984375
+      }
+    ],
+    "scale": 1,
+    "scrollY": 0,
+    "width": 1440
+  },
+  {
+    "stage": "classify",
+    "height": 900,
+    "rects": [
+      {
+        "h": 405,
+        "selector": "scene-container thermal ",
+        "w": 1034,
+        "x": 17,
+        "y": 228.8984375
+      },
+      {
+        "h": 380.5,
+        "selector": "decision-workspace",
+        "w": 1036,
+        "x": 16,
+        "y": 690.8984375
+      },
+      {
+        "h": 216,
+        "selector": "guided-body",
+        "w": 1006,
+        "x": 33,
+        "y": 799.8984375
+      },
+      {
+        "h": 34.5,
+        "selector": "guided-status",
+        "w": 1006,
+        "x": 33,
+        "y": 1023.8984375
+      }
+    ],
+    "scale": 1,
+    "scrollY": 235.5,
+    "width": 1440
+  },
+  {
+    "stage": "respond",
+    "height": 900,
+    "rects": [
+      {
+        "h": 405,
+        "selector": "scene-container thermal ",
+        "w": 1034,
+        "x": 17,
+        "y": 228.8984375
+      },
+      {
+        "h": 380.5,
+        "selector": "decision-workspace",
+        "w": 1036,
+        "x": 16,
+        "y": 692.21875
+      },
+      {
+        "h": 216,
+        "selector": "guided-body",
+        "w": 1006,
+        "x": 33,
+        "y": 801.21875
+      },
+      {
+        "h": 34.5,
+        "selector": "guided-status",
+        "w": 1006,
+        "x": 33,
+        "y": 1025.21875
+      }
+    ],
+    "scale": 1,
+    "scrollY": 236.5,
+    "width": 1440
+  },
+  {
+    "stage": "outcome",
+    "height": 900,
+    "rects": [
+      {
+        "h": 405,
+        "selector": "scene-container thermal ",
+        "w": 1034,
+        "x": 17,
+        "y": 228.8984375
+      },
+      {
+        "h": 380.5,
+        "selector": "decision-workspace",
+        "w": 1036,
+        "x": 16,
+        "y": 690.8984375
+      },
+      {
+        "h": 216,
+        "selector": "guided-body",
+        "w": 1006,
+        "x": 33,
+        "y": 799.8984375
+      },
+      {
+        "h": 34.5,
+        "selector": "guided-status",
+        "w": 1006,
+        "x": 33,
+        "y": 1023.8984375
+      }
+    ],
+    "scale": 1,
+    "scrollY": 235.5,
+    "width": 1440
+  },
+  {
+    "stage": "paused",
+    "height": 900,
+    "rects": [
+      {
+        "h": 405,
+        "selector": "scene-container thermal ",
+        "w": 1034,
+        "x": 17,
+        "y": 228.8984375
+      },
+      {
+        "h": 380.5,
+        "selector": "decision-workspace",
+        "w": 1036,
+        "x": 16,
+        "y": 690.8984375
+      },
+      {
+        "h": 216,
+        "selector": "guided-body",
+        "w": 1006,
+        "x": 33,
+        "y": 799.8984375
+      },
+      {
+        "h": 34.5,
+        "selector": "guided-status",
+        "w": 1006,
+        "x": 33,
+        "y": 1023.8984375
+      }
+    ],
+    "scale": 1,
+    "scrollY": 0,
+    "width": 1440
+  },
+  {
+    "stage": "guidance-off",
+    "height": 900,
+    "rects": [
+      {
+        "h": 405,
+        "selector": "scene-container thermal ",
+        "w": 1034,
+        "x": 17,
+        "y": 228.8984375
+      },
+      {
+        "h": 380.5,
+        "selector": "decision-workspace",
+        "w": 1036,
+        "x": 16,
+        "y": 690.8984375
+      },
+      {
+        "h": 216,
+        "selector": "guided-body",
+        "w": 1006,
+        "x": 33,
+        "y": 799.8984375
+      },
+      {
+        "h": 34.5,
+        "selector": "guided-status",
+        "w": 1006,
+        "x": 33,
+        "y": 1023.8984375
+      }
+    ],
+    "scale": 1,
+    "scrollY": 235.5,
+    "width": 1440
+  }
+]
