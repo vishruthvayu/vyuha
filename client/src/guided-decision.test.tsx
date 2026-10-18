@@ -454,7 +454,14 @@ test(
       guidance: false,
       onGuidance: (v) => (on = v),
     });
-    assert.equal(document.querySelector(".guided-coach"), null);
+    assert.equal(
+      document.querySelector(".guided-coach")?.getAttribute("aria-hidden"),
+      "true",
+    );
+    assert.equal(
+      document.querySelector(".guided-coach")?.textContent?.trim(),
+      "",
+    );
     await click(button(document, "Guidance")!);
     assert.equal(on, true);
     await view.rerender({ guidance: true });
@@ -692,5 +699,45 @@ test(
       document.querySelector(".guided-body"),
     );
     await act(async () => view.root.unmount());
+  }),
+);
+
+test(
+  "decision stages retain controls while inactive stages are inert and cannot accept classification early",
+  withDom(async (document) => {
+    const view = await mount(document);
+    const radio = document.querySelector<HTMLInputElement>(
+      'input[value="quad"]',
+    )!;
+    assert.equal(radio.closest("fieldset")?.disabled, true);
+    assert.equal(document.querySelectorAll(".guided-stage").length, 5);
+    const d = contact({ designated: 140 });
+    await view.rerender({ target: d, record: decisionRecord(d) });
+    assert.equal(document.querySelector('input[value="quad"]') === radio, true);
+    assert.equal(radio.closest("fieldset")?.disabled, false);
+    assert.equal(
+      document.querySelectorAll('.guided-stage[inert][aria-hidden="true"]')
+        .length,
+      4,
+    );
+    assert.equal(
+      document.querySelectorAll('.guided-stage[data-active="true"]').length,
+      1,
+    );
+    const c = contact({
+      designated: 140,
+      classification: "quad",
+      declared: "neutral",
+    });
+    await view.rerender({ target: c, record: decisionRecord(c) });
+    assert.equal(document.querySelector('input[value="quad"]') === radio, true);
+    assert.equal(
+      document.querySelector(".guided-respond")?.getAttribute("aria-hidden"),
+      "false",
+    );
+    assert.equal(
+      document.querySelector(".guided-classify")?.hasAttribute("inert"),
+      true,
+    );
   }),
 );

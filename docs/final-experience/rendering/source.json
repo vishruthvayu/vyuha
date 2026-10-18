@@ -1,0 +1,13 @@
+{
+  "scope": "Renderer verified in two full live drills, three-repeat matrices and fixed-size close-up probes. UI axe/finite-resource closure remains in progress.",
+  "files_sha256": {
+    "client/src/Scene.tsx": "5a92fe38e0043bca5c0366d34b24655615f1c276221ccd1d74a773572f6d635a",
+    "client/src/InspectionPass.tsx": "f43c2e4db08acff329ac265d9434de0ce2bb698756d58eb848d9f73361422a33",
+    "client/src/ContactRenderer.tsx": "9718776e51694bb2901661268110664f8bf00e613acaa36e4feb03f91acae1e3",
+    "client/src/render-work.ts": "4d52900dde762a1e9841843388e126105c9ec262d464e16353962947ad25d365",
+    "client/src/world/Environment.tsx": "ee7110b29585608adeb0e3f3decec5e5bad0fbbbea55cfdb7c65fd75912c0b71",
+    "client/src/world/contact-shading.ts": "971f869a782450d2ad8767cb7c79b53c950d7a07e5a6bd2545d615798aa0ff07",
+    "client/src/world/materials.ts": "83ddc42f768d2b08bfe9d48cceeefc257545968eef9675a33d8ea961f359639f",
+    "client/src/world/obstruction.ts": "e4253639c4de84626979dca0fb3b78fac355c27062459f9a40cf20daf2c6fa41"
+  }
+}

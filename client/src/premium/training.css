@@ -1674,3 +1674,270 @@ html:has(.sensor-workspace) {
     width: auto;
   }
 }
+
+/* Every step participates in one intrinsic grid cell, reserving the tallest
+   panel before decisions. Inactive steps are inert and aria-hidden in JSX. */
+.guided-body {
+  display: grid;
+  align-items: start;
+}
+.guided-body > .guided-stage {
+  grid-area: 1 / 1;
+  min-width: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.guided-body > .guided-stage[data-active="true"] {
+  visibility: visible;
+  pointer-events: auto;
+}
+.guided-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "steps toggle" "target target";
+  min-block-size: 60px;
+  align-items: center;
+  gap: 4px 12px;
+}
+.guided-steps {
+  grid-area: steps;
+}
+.guided-toggle {
+  grid-area: toggle;
+}
+.guided-target {
+  grid-area: target;
+  min-block-size: 32px;
+  align-items: center;
+}
+.guided-target > span {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.guided-coach {
+  min-block-size: 3em;
+  max-block-size: 3em;
+  overflow: auto;
+  box-sizing: border-box;
+}
+.guided-coach[data-enabled="false"] {
+  visibility: hidden;
+}
+.guided-status,
+.guided-status:empty {
+  display: block;
+  min-block-size: 3em;
+  max-block-size: 3em;
+  overflow: auto;
+}
+.choice-group legend {
+  display: block;
+  min-block-size: 3.5em;
+  max-block-size: 3.5em;
+  overflow: auto;
+}
+.effector-card {
+  min-block-size: 176px;
+}
+.effector-facts {
+  min-block-size: 72px;
+  align-content: start;
+}
+.guided-outcome {
+  min-block-size: 96px;
+}
+.sensor-workspace > .panel-header {
+  flex: none;
+}
+.observation-popover {
+  max-block-size: min(440px, 65vh);
+  overflow: auto;
+}
+@container (max-width: 620px) {
+  .effector-card {
+    min-block-size: 114px;
+  }
+  .effector-facts {
+    min-block-size: 40px;
+  }
+}
+@media (max-width: 1023px) {
+  /* New reports scroll inside their rail instead of pushing decisions down. */
+  .training-grid > .right-panels {
+    block-size: 300px;
+  }
+  .right-panels > .contacts-panel {
+    block-size: 100%;
+  }
+  .right-panels .contact-list {
+    flex: 1 1 auto;
+    min-block-size: 0;
+    max-block-size: none !important;
+    overflow: auto;
+  }
+}
+.guided-classify .guided-commit > .guided-why {
+  block-size: 3em;
+  overflow: auto;
+}
+.effector-card {
+  min-block-size: 112px;
+}
+.effector-facts {
+  min-block-size: 42px;
+}
+/* Sensor inset housing follows its painted size on narrow viewports. */
+.scene-container .inspection-frame {
+  border-color: rgb(230 235 220 / 0.68) !important;
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 0.75),
+    0 2px 8px rgb(0 0 0 / 0.24);
+  z-index: 2;
+}
+.scene-container .inspection-caption {
+  padding: 3px 5px;
+  border-radius: 2px;
+  background: rgb(8 12 13 / 0.8);
+  color: #edf0df;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  z-index: 3;
+}
+.choice-evidence {
+  display: block;
+  margin-top: 3px;
+}
+.choice-group legend {
+  min-block-size: 4.5em;
+  max-block-size: 4.5em;
+}
+@media (min-width: 1024px) and (max-height: 859px) {
+  /* A short laptop screen may scroll; never sacrifice the optical picture to
+     squeeze the largest decision step into one viewport. */
+  .drill-page:is(
+    [data-phase="running"],
+    [data-phase="paused"],
+    [data-phase="restoring"],
+    [data-phase="complete"]
+  ) {
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+  .drill-page:is(
+      [data-phase="running"],
+      [data-phase="paused"],
+      [data-phase="restoring"],
+      [data-phase="complete"]
+    )
+    .scene-container {
+    flex: none;
+    height: clamp(300px, 45vh, 420px);
+  }
+}
+
+/* Dynamic resource receipts must not resize the decision viewport. Each inert
+   stage has the same responsive scrollport; controls retain their positions
+   when channels fill, reload timers appear, or outcomes arrive. */
+.guided-body,
+.guided-body > .guided-stage {
+  block-size: 216px;
+  min-block-size: 0;
+}
+.guided-body > .guided-stage {
+  overflow: auto;
+  scrollbar-gutter: stable;
+  align-content: start;
+}
+.guided-coach {
+  min-block-size: 4em;
+  max-block-size: 4em;
+}
+.guided-summary {
+  block-size: 24px;
+  flex: none;
+  overflow: auto;
+}
+.effector-cards {
+  flex: none;
+}
+.effector-card {
+  block-size: 176px;
+  overflow: auto;
+}
+.guided-coach:focus-visible,
+.guided-status:focus-visible,
+.choice-group legend:focus-visible,
+.guided-why:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+@container (min-width: 901px) {
+  .guided-head {
+    grid-template-columns: max-content minmax(0, 1fr) auto;
+    grid-template-areas: "steps target toggle";
+    min-block-size: 32px;
+  }
+}
+@container (max-width: 900px) {
+  .guided-body,
+  .guided-body > .guided-stage {
+    block-size: 340px;
+  }
+}
+@container (max-width: 620px) {
+  .guided-body,
+  .guided-body > .guided-stage {
+    block-size: 540px;
+  }
+  .guided-coach {
+    min-block-size: 6em;
+    max-block-size: 6em;
+  }
+  .guided-summary {
+    block-size: 44px;
+  }
+  .effector-card {
+    block-size: 144px;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .drill-page:is(
+    [data-phase="running"],
+    [data-phase="paused"],
+    [data-phase="restoring"],
+    [data-phase="complete"]
+  ) {
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+  .drill-page:is(
+      [data-phase="running"],
+      [data-phase="paused"],
+      [data-phase="restoring"],
+      [data-phase="complete"]
+    )
+    .scene-container {
+    flex: none;
+    height: clamp(300px, 45vh, 420px);
+  }
+}
+
+/* Reserve both header rows even when the active step label changes length. */
+@container (max-width: 900px) {
+  .guided-head {
+    grid-template-areas: "steps steps" "target toggle";
+    grid-template-rows: 32px 32px;
+    block-size: 68px;
+  }
+  .guided-steps {
+    flex-wrap: nowrap;
+    overflow: auto;
+  }
+  .guided-steps li {
+    flex-shrink: 0;
+  }
+}

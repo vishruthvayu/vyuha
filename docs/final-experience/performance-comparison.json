@@ -1,0 +1,227 @@
+{
+  "aggregation": "Arithmetic mean across all per-run summaries. p95/p99 columns are mean per-run percentiles, not pooled percentiles. Maximums and complete samples remain in raw JSON. No outlier trimming.",
+  "comparisons": [
+    {
+      "category": "matrix",
+      "world": "rural_forward_base:night",
+      "contacts": 100,
+      "repeats": 3,
+      "before": {
+        "mean_fps": 60.0,
+        "p95_ms": 16.799999999999272,
+        "p99_ms": 16.80000000000109,
+        "max_ms": 16.800000000002303,
+        "mean_draw_calls": 28,
+        "script_ms_per_second": 199.2047622772049,
+        "task_ms_per_second": 225.00017344211463
+      },
+      "after": {
+        "mean_fps": 60.0,
+        "p95_ms": 16.700000000000728,
+        "p99_ms": 16.800000000000182,
+        "max_ms": 16.80000000000109,
+        "mean_draw_calls": 28,
+        "script_ms_per_second": 198.82466595687097,
+        "task_ms_per_second": 225.67688061402754
+      },
+      "script_reduction_pct": 0.19080684416821705
+    },
+    {
+      "category": "matrix",
+      "world": "rural_forward_base:night",
+      "contacts": 200,
+      "repeats": 3,
+      "before": {
+        "mean_fps": 60.0,
+        "p95_ms": 16.733333333333576,
+        "p99_ms": 16.800000000000484,
+        "max_ms": 16.8000000000017,
+        "mean_draw_calls": 28,
+        "script_ms_per_second": 303.92850287724576,
+        "task_ms_per_second": 335.7751927182872
+      },
+      "after": {
+        "mean_fps": 60.0,
+        "p95_ms": 16.733333333333576,
+        "p99_ms": 16.80000000000109,
+        "max_ms": 16.80000000000291,
+        "mean_draw_calls": 28,
+        "script_ms_per_second": 289.8505101244335,
+        "task_ms_per_second": 321.4165135233485
+      },
+      "script_reduction_pct": 4.632008060954462
+    },
+    {
+      "category": "matrix",
+      "world": "urban_outpost:day",
+      "contacts": 8,
+      "repeats": 3,
+      "before": {
+        "mean_fps": 60.0,
+        "p95_ms": 16.700000000000728,
+        "p99_ms": 16.80000000000079,
+        "max_ms": 16.80000000000291,
+        "mean_draw_calls": 38,
+        "script_ms_per_second": 124.58025576657445,
+        "task_ms_per_second": 144.35235309310968
+      },
+      "after": {
+        "mean_fps": 60.0,
+        "p95_ms": 16.700000000000728,
+        "p99_ms": 16.80000000000079,
+        "max_ms": 16.80000000000291,
+        "mean_draw_calls": 39,
+        "script_ms_per_second": 119.75198782754781,
+        "task_ms_per_second": 140.60826967547328
+      },
+      "script_reduction_pct": 3.8756285330424687
+    },
+    {
+      "category": "matrix",
+      "world": "urban_outpost:day",
+      "contacts": 200,
+      "repeats": 3,
+      "before": {
+        "mean_fps": 60.0,
+        "p95_ms": 16.733333333333576,
+        "p99_ms": 16.800000000000484,
+        "max_ms": 16.800000000002303,
+        "mean_draw_calls": 38,
+        "script_ms_per_second": 210.70699111485152,
+        "task_ms_per_second": 237.7427679682862
+      },
+      "after": {
+        "mean_fps": 60.0,
+        "p95_ms": 16.766666666666424,
+        "p99_ms": 16.80000000000079,
+        "max_ms": 16.8000000000017,
+        "mean_draw_calls": 39,
+        "script_ms_per_second": 205.5693702224421,
+        "task_ms_per_second": 233.5740058712248
+      },
+      "script_reduction_pct": 2.4382773752433384
+    },
+    {
+      "category": "throttle4",
+      "world": "rural_forward_base:night",
+      "contacts": 200,
+      "repeats": 2,
+      "before": {
+        "mean_fps": 60.0,
+        "p95_ms": 16.700000000000728,
+        "p99_ms": 16.80000000000109,
+        "max_ms": 16.80000000000291,
+        "mean_draw_calls": 28,
+        "script_ms_per_second": 622.0687216883769,
+        "task_ms_per_second": 684.5466677367408
+      },
+      "after": {
+        "mean_fps": 60.0,
+        "p95_ms": 16.700000000000728,
+        "p99_ms": 16.800000000000182,
+        "max_ms": 16.800000000002,
+        "mean_draw_calls": 28,
+        "script_ms_per_second": 612.4225876316823,
+        "task_ms_per_second": 680.1839961171388
+      },
+      "script_reduction_pct": 1.5506540869815282
+    },
+    {
+      "category": "throttle4",
+      "world": "urban_outpost:day",
+      "contacts": 200,
+      "repeats": 2,
+      "before": {
+        "mean_fps": 60.0,
+        "p95_ms": 16.75,
+        "p99_ms": 16.80000000000109,
+        "max_ms": 16.800000000002,
+        "mean_draw_calls": 38,
+        "script_ms_per_second": 441.84690500666426,
+        "task_ms_per_second": 499.8173015380198
+      },
+      "after": {
+        "mean_fps": 60.0,
+        "p95_ms": 16.799999999999272,
+        "p99_ms": 16.800000000002,
+        "max_ms": 16.80000000000291,
+        "mean_draw_calls": 39,
+        "script_ms_per_second": 438.7760759859922,
+        "task_ms_per_second": 497.75921841343927
+      },
+      "script_reduction_pct": 0.6949984227287418
+    },
+    {
+      "category": "closeup",
+      "vision": "THERMAL",
+      "repeats": 3,
+      "canvas": {
+        "width": 1034,
+        "height": 400,
+        "cssWidth": 1034,
+        "cssHeight": 400
+      },
+      "before": {
+        "mean_fps": 60.00249663739934,
+        "p95_ms": 16.700000000000728,
+        "p99_ms": 16.80000000000109,
+        "max_ms": 16.80000000000109,
+        "mean_draw_calls": 64.08460471567268,
+        "mean_triangles": 209330.03051317614,
+        "script_ms_per_second": 157.5044687383859,
+        "gpu_mean_ms": 4.523726246296296,
+        "gpu_p95_ms": 7.582881666666666
+      },
+      "after": {
+        "mean_fps": 60.00249656313252,
+        "p95_ms": 16.733333333333576,
+        "p99_ms": 16.80000000000109,
+        "max_ms": 16.8000000000017,
+        "mean_draw_calls": 45.38158826600083,
+        "mean_triangles": 147507.51182852307,
+        "script_ms_per_second": 142.05804586640764,
+        "gpu_mean_ms": 3.2782376952965273,
+        "gpu_p95_ms": 5.8364926666666666
+      },
+      "mean_draw_calls_reduction_pct": 29.184882285928804,
+      "script_ms_per_second_reduction_pct": 9.806974364412914,
+      "gpu_mean_ms_reduction_pct": 27.532359015302614
+    },
+    {
+      "category": "closeup",
+      "vision": "DAY TV",
+      "repeats": 3,
+      "canvas": {
+        "width": 1034,
+        "height": 400,
+        "cssWidth": 1034,
+        "cssHeight": 400
+      },
+      "before": {
+        "mean_fps": 60.00243992426888,
+        "p95_ms": 16.733333333333576,
+        "p99_ms": 16.80000000000079,
+        "max_ms": 16.80000000000109,
+        "mean_draw_calls": 64.08502733584088,
+        "mean_triangles": 209331.23733196047,
+        "script_ms_per_second": 181.19865263984713,
+        "gpu_mean_ms": 7.250281739280577,
+        "gpu_p95_ms": 10.813281
+      },
+      "after": {
+        "mean_fps": 60.00266308721858,
+        "p95_ms": 16.733333333333576,
+        "p99_ms": 16.80000000000109,
+        "max_ms": 16.8000000000017,
+        "mean_draw_calls": 46.903837263060566,
+        "mean_triangles": 148014.7424872862,
+        "script_ms_per_second": 173.70108564361036,
+        "gpu_mean_ms": 5.33859056891723,
+        "gpu_p95_ms": 8.790399
+      },
+      "mean_draw_calls_reduction_pct": 26.80999101824737,
+      "script_ms_per_second_reduction_pct": 4.1377608977805345,
+      "gpu_mean_ms_reduction_pct": 26.367129431759693
+    }
+  ]
+}

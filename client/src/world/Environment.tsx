@@ -1,4 +1,5 @@
-import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
+import { createContactShading } from "./contact-shading";
+import { memo, useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
@@ -257,7 +258,7 @@ export type EnvironmentProps = {
   reducedMotion: boolean;
 };
 
-export function Environment(props: EnvironmentProps) {
+export const Environment = memo(function Environment(props: EnvironmentProps) {
   const { terrain, boxes, legacy, quality } = props;
   const layout = useMemo(() => {
     const base = withoutBoxes(facilityLayout(terrain), boxes);
@@ -297,6 +298,12 @@ export function Environment(props: EnvironmentProps) {
       disposables.push(geometry);
       return mesh;
     };
+    // One inexpensive EO-only batch. No shadow decals enter thermal imagery.
+    if (quality !== "low") {
+      const shade = createContactShading(layout);
+      group.add(shade.mesh);
+      disposables.push(shade);
+    }
     // Terrain.
     const ground = createGroundMaterial(textures, quality, terrain, false);
     const groundThermal = createGroundMaterial(
@@ -746,6 +753,10 @@ export function Environment(props: EnvironmentProps) {
     terrainMesh.material = thermal
       ? groundThermal
       : (terrainMesh.userData.eoMaterial as THREE.Material);
+    const contactShade = built.group.getObjectByName(
+      "foundation-contact-shading",
+    );
+    if (contactShade) contactShade.visible = !thermal;
     const pools = built.group.getObjectByName("night-light-pools");
     if (pools) pools.visible = !thermal && mode.night;
     const glow = built.group.getObjectByName("night-lamp-glow");
@@ -880,4 +891,4 @@ export function Environment(props: EnvironmentProps) {
       />
     </>
   );
-}
+});

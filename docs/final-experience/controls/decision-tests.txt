@@ -1,0 +1,28 @@
+✔ decision steps follow the trainee's own recorded decisions (0.967673ms)
+✔ classification starts with no answer and confirms exactly the trainee's choice (102.086798ms)
+✔ hidden kind, identity and RF truth cannot change what the dock shows (158.804131ms)
+✔ disabled actions explain themselves in visible text (9.875229ms)
+✔ response eligibility uses published reach, the restricted zone and public resources (0.336962ms)
+✔ the respond step shows reach against the observed range and sends the chosen effector (13.142698ms)
+✔ every action is acknowledged: submitted, accepted or not accepted (20.451805ms)
+✔ the outcome comes from the public response state, not from guesses (16.338744ms)
+✔ guidance is optional and explains process without naming an answer (12.882124ms)
+✔ shape evidence reflects only the active camera's observation level (0.28153ms)
+✔ displayed motion is steady for a steadily observed contact (no 10 Hz surge and stall) (1.593506ms)
+✔ pausing freezes cosmetic logical time; it never runs past one publish interval (0.62684ms)
+✔ a selected contact never sends the live camera back to the default sector (38.204937ms)
+✔ view blends converge on a moving goal in bounded time without angular jumps (1.224979ms)
+✔ keyboard designation hands focus to the labelled classification group after acceptance and the next snapshot (24.210038ms)
+✔ pointer designation does not move focus when the next step appears (13.900779ms)
+✔ keyboard acknowledgment never steals focus moved outside the decision workspace (14.410212ms)
+✔ a rejected keyboard action clears focus handoff before a later state transition (14.328318ms)
+✔ changing contact clears a keyboard action's pending focus handoff (17.5317ms)
+✔ decision stages retain controls while inactive stages are inert and cannot accept classification early (15.407835ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1039.246621

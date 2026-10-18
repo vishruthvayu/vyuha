@@ -1,0 +1,459 @@
+{
+  "label": "e07fb6a",
+  "scope": "Headless Chromium on this host; browser frame intervals and WebGL workload, not physical headset or reference-device certification.",
+  "cases": [
+    {
+      "type": "live",
+      "world": "urban",
+      "night": false,
+      "scenario_id": "raid_53cc73a3d1082b5b4911ff6a",
+      "scenario_sha256": "ffc1abf64a188e357229c45da8dba637cfc3ac9993c8ef569c54e3ef0520c81d",
+      "measurements": {
+        "THERMAL": {
+          "seconds": 5.001,
+          "frames": 300,
+          "mean_fps": 60.0,
+          "median_ms": 16.69999999999891,
+          "p95_ms": 16.700000000000728,
+          "p99_ms": 16.80000000000291,
+          "max_ms": 16.80000000000291,
+          "over_33ms": 0,
+          "over_50ms": 0,
+          "mean_draw_calls": 42.413333333333334,
+          "mean_triangles": 202682.42666666667,
+          "script_ms_per_second": 138.6056646525917,
+          "task_ms_per_second": 281.2391664023912,
+          "layout_count": 130,
+          "heap_end_bytes": 24461860,
+          "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+        },
+        "DAY TV": {
+          "seconds": 5.002,
+          "frames": 301,
+          "mean_fps": 60.0,
+          "median_ms": 16.69999999999709,
+          "p95_ms": 16.799999999999272,
+          "p99_ms": 16.799999999999272,
+          "max_ms": 16.80000000000291,
+          "over_33ms": 0,
+          "over_50ms": 0,
+          "mean_draw_calls": 55.78737541528239,
+          "mean_triangles": 254674.2458471761,
+          "script_ms_per_second": 174.27159060291723,
+          "task_ms_per_second": 430.24343419396337,
+          "layout_count": 274,
+          "heap_end_bytes": 19269156,
+          "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+        },
+        "IR NIGHT DISPLAY": {
+          "seconds": 5.001,
+          "frames": 300,
+          "mean_fps": 60.0,
+          "median_ms": 16.69999999999709,
+          "p95_ms": 16.799999999995634,
+          "p99_ms": 16.80000000000291,
+          "max_ms": 16.80000000000291,
+          "over_33ms": 0,
+          "over_50ms": 0,
+          "mean_draw_calls": 53.723333333333336,
+          "mean_triangles": 246650.24666666667,
+          "script_ms_per_second": 145.37364840783326,
+          "task_ms_per_second": 384.12369053503994,
+          "layout_count": 255,
+          "heap_end_bytes": 36469940,
+          "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+        }
+      },
+      "layouts": [
+        {
+          "stage": "selected",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 519.3125
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 805.203125,
+              "w": 1036,
+              "h": 130.796875
+            },
+            ".guided-status": {
+              "x": 0,
+              "y": 0,
+              "w": 0,
+              "h": 0
+            }
+          }
+        },
+        {
+          "stage": "classify",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 433.8125
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 719.703125,
+              "w": 1036,
+              "h": 216.296875
+            },
+            ".guided-classify": {
+              "x": 33,
+              "y": 797.5,
+              "w": 1006,
+              "h": 99.109375
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 904.609375,
+              "w": 1006,
+              "h": 18.390625
+            }
+          }
+        },
+        {
+          "stage": "respond",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 378.3125
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 664.203125,
+              "w": 1036,
+              "h": 271.796875
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 742,
+              "w": 1006,
+              "h": 154.609375
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 904.609375,
+              "w": 1006,
+              "h": 18.390625
+            }
+          }
+        },
+        {
+          "stage": "outcome",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 492.921875
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 778.8125,
+              "w": 1036,
+              "h": 157.1875
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 904.609375,
+              "w": 1006,
+              "h": 18.390625
+            }
+          }
+        },
+        {
+          "stage": "paused",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 526.921875
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 812.8125,
+              "w": 1036,
+              "h": 123.1875
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 904.609375,
+              "w": 1006,
+              "h": 18.390625
+            }
+          }
+        }
+      ],
+      "verified_session": "9b4ce116-d6da-4545-a953-11a6f4a2f824",
+      "event_count": 3,
+      "history_schema": "vyuha-0.4.0"
+    },
+    {
+      "type": "live",
+      "world": "rural",
+      "night": true,
+      "scenario_id": "raid_feba82eb62f21a16f9c06f33",
+      "scenario_sha256": "01588786e8ad617e5683ea7ce01db633ea63560e5d8ce9fb4a86b4bf52c413c6",
+      "measurements": {
+        "THERMAL": {
+          "seconds": 5.002,
+          "frames": 301,
+          "mean_fps": 60.0,
+          "median_ms": 16.69999999999891,
+          "p95_ms": 16.700000000000728,
+          "p99_ms": 16.80000000000109,
+          "max_ms": 16.80000000000109,
+          "over_33ms": 0,
+          "over_50ms": 0,
+          "mean_draw_calls": 30.348837209302324,
+          "mean_triangles": 158179.7607973422,
+          "script_ms_per_second": 131.6440940373956,
+          "task_ms_per_second": 248.95079957511314,
+          "layout_count": 106,
+          "heap_end_bytes": 16348256,
+          "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+        },
+        "DAY TV": {
+          "seconds": 5.001,
+          "frames": 301,
+          "mean_fps": 60.0,
+          "median_ms": 16.69999999999709,
+          "p95_ms": 16.700000000000728,
+          "p99_ms": 16.799999999999272,
+          "max_ms": 16.80000000000291,
+          "over_33ms": 0,
+          "over_50ms": 0,
+          "mean_draw_calls": 29,
+          "mean_triangles": 142134,
+          "script_ms_per_second": 137.00570603663982,
+          "task_ms_per_second": 222.36576883032816,
+          "layout_count": 63,
+          "heap_end_bytes": 22197896,
+          "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+        },
+        "IR NIGHT DISPLAY": {
+          "seconds": 5.002,
+          "frames": 301,
+          "mean_fps": 60.0,
+          "median_ms": 16.69999999999709,
+          "p95_ms": 16.700000000004366,
+          "p99_ms": 16.80000000000291,
+          "max_ms": 16.80000000000291,
+          "over_33ms": 0,
+          "over_50ms": 0,
+          "mean_draw_calls": 41.13953488372093,
+          "mean_triangles": 209914.9900332226,
+          "script_ms_per_second": 142.2549563194316,
+          "task_ms_per_second": 368.5468412076652,
+          "layout_count": 223,
+          "heap_end_bytes": 39721680,
+          "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-S), OpenGL 4.6)"
+        }
+      },
+      "layouts": [
+        {
+          "stage": "selected",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 519.3125
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 805.203125,
+              "w": 1036,
+              "h": 130.796875
+            },
+            ".guided-status": {
+              "x": 0,
+              "y": 0,
+              "w": 0,
+              "h": 0
+            }
+          }
+        },
+        {
+          "stage": "classify",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 433.8125
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 719.703125,
+              "w": 1036,
+              "h": 216.296875
+            },
+            ".guided-classify": {
+              "x": 33,
+              "y": 797.5,
+              "w": 1006,
+              "h": 99.109375
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 904.609375,
+              "w": 1006,
+              "h": 18.390625
+            }
+          }
+        },
+        {
+          "stage": "respond",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 378.3125
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 664.203125,
+              "w": 1036,
+              "h": 271.796875
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 742,
+              "w": 1006,
+              "h": 154.609375
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 904.609375,
+              "w": 1006,
+              "h": 18.390625
+            }
+          }
+        },
+        {
+          "stage": "outcome",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 492.921875
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 778.8125,
+              "w": 1036,
+              "h": 157.1875
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 904.609375,
+              "w": 1006,
+              "h": 18.390625
+            }
+          }
+        },
+        {
+          "stage": "paused",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 526.921875
+            },
+            ".sensor-workspace > .panel-header": {
+              "x": 17,
+              "y": 180.890625,
+              "w": 1034,
+              "h": 48
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 812.8125,
+              "w": 1036,
+              "h": 123.1875
+            },
+            ".guided-status": {
+              "x": 33,
+              "y": 904.609375,
+              "w": 1006,
+              "h": 18.390625
+            }
+          }
+        }
+      ],
+      "verified_session": "321a4bcf-f680-4d12-ab52-fc4abcc36a48",
+      "event_count": 3,
+      "history_schema": "vyuha-0.4.0"
+    }
+  ],
+  "page_errors": [],
+  "browser": "141.0.7390.37",
+  "completed_scope": "Two natural-duration, server-verified live drills; benchmark matrix is a separate receipt."
+}
