@@ -63,6 +63,12 @@ const seconds = (value: number | null) =>
   value === null ? "No recorded pair" : `${value.toFixed(2)}s`;
 
 export function CrewHistoryResults({ data }: { data: CrewHistoryData }) {
+  const [query, setQuery] = useState("");
+  const sessions = data.sessions.filter((session) =>
+    `${session.name} ${session.session_id} ${session.scenario.title}`
+      .toLowerCase()
+      .includes(query.trim().toLowerCase()),
+  );
   return (
     <>
       <p className="crew-history-count">
@@ -104,7 +110,23 @@ export function CrewHistoryResults({ data }: { data: CrewHistoryData }) {
         </div>
       ))}
       <h3>Completed session timeline</h3>
-      {data.sessions.map((session) => (
+      <label className="crew-history-filter">
+        Find a completed crew exercise
+        <input
+          type="search"
+          value={query}
+          placeholder="Crew name, exercise or session ID"
+          onChange={(e) => setQuery(e.target.value)}
+        />
+      </label>
+      <p role="status">{sessions.length} matching completed exercises</p>
+      {query && !sessions.length && (
+        <p>
+          No completed exercises match this search. Clear it to inspect the full
+          shared history.
+        </p>
+      )}
+      {sessions.map((session) => (
         <details className="evidence-disclosure" key={session.session_id}>
           <summary>
             {session.name} · {session.completed_at ?? session.created_at} ·

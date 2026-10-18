@@ -24,7 +24,8 @@ export default function WorkspaceSearch({
   const [open, setOpen] = useState(false),
     [query, setQuery] = useState("");
   const dialog = useRef<HTMLDivElement>(null),
-    input = useRef<HTMLInputElement>(null);
+    input = useRef<HTMLInputElement>(null),
+    results = useRef<HTMLElement>(null);
   const close = useCallback(() => setOpen(false), []);
   const show = useCallback(() => {
     const modal = document.querySelector('[aria-modal="true"]');
@@ -59,7 +60,9 @@ export default function WorkspaceSearch({
     };
   }, [open, close, show]);
   const items = navigationItems.filter((i) =>
-    (i.label + " " + i.section).toLowerCase().includes(query.toLowerCase()),
+    (i.label + " " + i.section)
+      .toLowerCase()
+      .includes(query.trim().toLowerCase()),
   );
   return (
     <>
@@ -102,9 +105,55 @@ export default function WorkspaceSearch({
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Training, Crew, analytics…"
+                  onKeyDown={(event) => {
+                    if (
+                      event.nativeEvent.isComposing ||
+                      event.altKey ||
+                      event.ctrlKey ||
+                      event.metaKey
+                    )
+                      return;
+                    const links =
+                      results.current?.querySelectorAll<HTMLAnchorElement>("a");
+                    if (!links?.length) return;
+                    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+                      event.preventDefault();
+                      links[
+                        event.key === "ArrowDown" ? 0 : links.length - 1
+                      ].focus();
+                    } else if (
+                      event.key === "Enter" &&
+                      query.trim() &&
+                      links.length === 1 &&
+                      !event.repeat
+                    ) {
+                      event.preventDefault();
+                      links[0].click();
+                    }
+                  }}
                 />
               </label>
-              <nav aria-label="Workspace search results">
+              <nav
+                ref={results}
+                aria-label="Workspace search results"
+                onKeyDown={(event) => {
+                  if (event.key !== "ArrowDown" && event.key !== "ArrowUp")
+                    return;
+                  const links = [
+                    ...(results.current?.querySelectorAll<HTMLAnchorElement>(
+                      "a",
+                    ) ?? []),
+                  ];
+                  const index = links.indexOf(
+                    document.activeElement as HTMLAnchorElement,
+                  );
+                  if (index < 0) return;
+                  event.preventDefault();
+                  const next = index + (event.key === "ArrowDown" ? 1 : -1);
+                  if (next < 0 || next >= links.length) input.current?.focus();
+                  else links[next].focus();
+                }}
+              >
                 {items.map((i) => {
                   const item = {
                     ...i,
@@ -131,8 +180,8 @@ export default function WorkspaceSearch({
                 </p>
               )}
               <p className="footnote">
-                Escape closes this window. Tab moves through the matching
-                destinations.
+                Enter opens a single match. Arrow keys or Tab browse matching
+                destinations. Escape closes this window.
               </p>
             </div>
           </div>,

@@ -75,7 +75,11 @@ def command_stream(sid:str,request:Request,after:int=Query(default=0,ge=0,le=100
     if not authorized(request,sid):raise HTTPException(401,'Crew membership or officer sign-in required')
     raw=request.headers.get('last-event-id')
     if raw is not None:
-        if not raw.isdigit() or not 0<=int(raw)<=100:raise HTTPException(422,'Invalid command cursor')
+        # Only server-issued ASCII sequence IDs are valid. Unicode isdigit()
+        # also accepts characters int() cannot parse; bound length before int()
+        # so oversized headers cannot trigger Python's integer conversion limit.
+        if not 1<=len(raw)<=3 or not raw.isascii() or not raw.isdecimal() or not 0<=int(raw)<=100:
+            raise HTTPException(422,'Invalid command cursor')
         after=max(after,int(raw))
     def read(previous):
         with storage.connect() as db:

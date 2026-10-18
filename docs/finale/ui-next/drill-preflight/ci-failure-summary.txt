@@ -1,0 +1,7 @@
+2026-10-16T19:28:21.3887585Z E     AssertionError: VYUHA startup: Frontend assets missing. Run scripts/start-local.sh once with internet, or cd client && npm run build.
+2026-10-16T19:28:21.3914864Z E     AssertionError: VYUHA startup: Frontend assets missing. Run scripts/start-local.sh once with internet, or cd client && npm run build.
+2026-10-16T19:28:21.3930409Z E     AssertionError: VYUHA startup: Frontend assets missing. Run scripts/start-local.sh once with internet, or cd client && npm run build.
+2026-10-16T19:28:21.3939789Z FAILED server/tests/test_rc2_startup.py::test_repeated_immediate_restart_after_active_http_connections[0.0.0.0] - AssertionError: VYUHA startup: Frontend assets missing. Run scripts/start-local.sh once with internet, or cd client && npm run build.
+2026-10-16T19:28:21.3955286Z FAILED server/tests/test_rc2_startup.py::test_repeated_immediate_restart_after_active_http_connections[127.0.0.1] - AssertionError: VYUHA startup: Frontend assets missing. Run scripts/start-local.sh once with internet, or cd client && npm run build.
+2026-10-16T19:28:21.3998644Z FAILED server/tests/test_rc2_startup.py::test_repeated_immediate_restart_after_active_http_connections[owned] - AssertionError: VYUHA startup: Frontend assets missing. Run scripts/start-local.sh once with internet, or cd client && npm run build.
+2026-10-16T19:28:21.4015403Z 3 failed, 696 passed, 1 warning in 235.68s (0:03:55)

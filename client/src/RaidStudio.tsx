@@ -91,162 +91,215 @@ export default function RaidStudio({
   }
   return (
     <section
-      className="panel advanced-card composer-workbench"
+      className="panel advanced-card composer-workbench authoring-composer"
+      aria-busy={busy}
       id="raid-composer"
     >
-      <h2>Finale Raid Composer · engine 0.4</h2>
+      <div className="authoring-section-heading">
+        <div>
+          <span className="eyebrow">01 / COMPOSE</span>
+          <h2>Raid composer</h2>
+        </div>
+        <span className="authoring-meta">
+          Engine 0.4 · seeded & reproducible
+        </span>
+      </div>
       <p>
         Compile seeded rosters, coordinated formations and motion into a frozen
         exercise. Values are illustrative training assumptions.
       </p>
       <fieldset className="setup-bar raid-controls" disabled={busy}>
         <legend>Raid configuration</legend>
-        <label>
-          Name
-          <input
-            value={name}
-            maxLength={70}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
-        <label>
-          Seed
-          <input
-            type="number"
-            min={0}
-            max={4294967295}
-            value={seed}
-            onChange={(e) =>
-              setSeed(
-                Math.max(
-                  0,
-                  Math.min(4294967295, Math.trunc(Number(e.target.value) || 0)),
-                ),
-              )
-            }
-          />
-        </label>
-        <label>
-          Duration (seconds)
-          <input
-            ref={durationInput}
-            type="number"
-            min={60}
-            max={180}
-            step={1}
-            required
-            value={durationDraft}
-            aria-invalid={durationError ? true : undefined}
-            aria-describedby={durationError ? durationErrorId : undefined}
-            onChange={(e) => {
-              setDurationDraft(e.target.value);
-              setDurationError("");
-            }}
-            onBlur={() =>
-              setDurationError(validDuration ? "" : durationMessage)
-            }
-          />
-        </label>
-        <label>
-          Difficulty
-          <select
-            value={difficulty}
-            onChange={(e) => setDifficulty(e.target.value)}
-          >
-            {["foundational", "standard", "challenging"].map((d) => (
-              <option key={d}>{d}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Raid family
-          <select value={family} onChange={(e) => setFamily(e.target.value)}>
-            <option value="">Seeded selection</option>
-            {[
-              "DIRECT",
-              "SATURATION",
-              "DECOY_THEN_STRIKE",
-              "STAGGERED_WAVES",
-              "LOW_APPROACH",
-              "SPLIT_SWARM",
-              "PROBE_AND_RETREAT",
-              "BLIND_SECTOR",
-            ].map((d) => (
-              <option key={d}>{d}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={delayed}
-            onChange={(e) => setDelayed(e.target.checked)}
-          />
-          Finite resources and delayed effects
-        </label>
-        <label>
-          Fusion mode
-          <select
-            value={fusionMode}
-            onChange={(e) => setFusionMode(e.target.value)}
-          >
-            <option value="off">Off</option>
-            <option value="training">Training advice</option>
-            <option value="assessment">Assessment (hidden)</option>
-            <option value="bias">Automation-bias exercise</option>
-          </select>
-        </label>
-        <label>
-          Terrain
-          <select value={terrain} onChange={(e) => setTerrain(e.target.value)}>
-            <option>urban</option>
-            <option>rural</option>
-          </select>
-        </label>
-        <label>
-          Conditions
-          <select
-            value={night ? "night" : "day"}
-            onChange={(e) => setNight(e.target.value === "night")}
-          >
-            <option value="day">Day</option>
-            <option value="night">Night</option>
-          </select>
-        </label>
-        <label>
-          Fog
-          <input
-            type="number"
-            min={0}
-            max={0.8}
-            step={0.05}
-            value={fog}
-            onChange={(e) =>
-              setFog(Math.max(0, Math.min(0.8, Number(e.target.value) || 0)))
-            }
-          />
-        </label>
+        <div className="authoring-field-group">
+          <h3>Exercise identity</h3>
+          <p>Name the exercise and set its repeatable starting conditions.</p>
+          <div className="authoring-field-grid">
+            <label>
+              Name
+              <input
+                value={name}
+                maxLength={70}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </label>
+            <label>
+              Seed
+              <input
+                type="number"
+                min={0}
+                max={4294967295}
+                value={seed}
+                onChange={(e) =>
+                  setSeed(
+                    Math.max(
+                      0,
+                      Math.min(
+                        4294967295,
+                        Math.trunc(Number(e.target.value) || 0),
+                      ),
+                    ),
+                  )
+                }
+              />
+            </label>
+            <label>
+              Duration (seconds)
+              <input
+                ref={durationInput}
+                type="number"
+                min={60}
+                max={180}
+                step={1}
+                required
+                value={durationDraft}
+                aria-invalid={durationError ? true : undefined}
+                aria-describedby={durationError ? durationErrorId : undefined}
+                onChange={(e) => {
+                  setDurationDraft(e.target.value);
+                  setDurationError("");
+                }}
+                onBlur={() =>
+                  setDurationError(validDuration ? "" : durationMessage)
+                }
+              />
+            </label>
+          </div>
+        </div>
+        <div className="authoring-field-group">
+          <h3>Training challenge</h3>
+          <p>
+            Choose workload, response constraints and the assistance trainees
+            receive.
+          </p>
+          <div className="authoring-field-grid">
+            <label>
+              Difficulty
+              <select
+                value={difficulty}
+                onChange={(e) => setDifficulty(e.target.value)}
+              >
+                {["foundational", "standard", "challenging"].map((d) => (
+                  <option key={d}>{d}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Raid family
+              <select
+                value={family}
+                onChange={(e) => setFamily(e.target.value)}
+              >
+                <option value="">Seeded selection</option>
+                {[
+                  "DIRECT",
+                  "SATURATION",
+                  "DECOY_THEN_STRIKE",
+                  "STAGGERED_WAVES",
+                  "LOW_APPROACH",
+                  "SPLIT_SWARM",
+                  "PROBE_AND_RETREAT",
+                  "BLIND_SECTOR",
+                ].map((d) => (
+                  <option key={d}>{d}</option>
+                ))}
+              </select>
+            </label>
+            <label className="authoring-check">
+              <input
+                type="checkbox"
+                checked={delayed}
+                onChange={(e) => setDelayed(e.target.checked)}
+              />
+              Finite resources and delayed effects
+            </label>
+            <label>
+              Fusion mode
+              <select
+                value={fusionMode}
+                onChange={(e) => setFusionMode(e.target.value)}
+              >
+                <option value="off">Off</option>
+                <option value="training">Training advice</option>
+                <option value="assessment">Assessment (hidden)</option>
+                <option value="bias">Automation-bias exercise</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div className="authoring-field-group">
+          <h3>Environment</h3>
+          <p>Set the terrain and visibility used by the compiled exercise.</p>
+          <div className="authoring-field-grid">
+            <label>
+              Terrain
+              <select
+                value={terrain}
+                onChange={(e) => setTerrain(e.target.value)}
+              >
+                <option>urban</option>
+                <option>rural</option>
+              </select>
+            </label>
+            <label>
+              Conditions
+              <select
+                value={night ? "night" : "day"}
+                onChange={(e) => setNight(e.target.value === "night")}
+              >
+                <option value="day">Day</option>
+                <option value="night">Night</option>
+              </select>
+            </label>
+            <label>
+              Fog
+              <input
+                type="number"
+                min={0}
+                max={0.8}
+                step={0.05}
+                value={fog}
+                onChange={(e) =>
+                  setFog(
+                    Math.max(0, Math.min(0.8, Number(e.target.value) || 0)),
+                  )
+                }
+              />
+            </label>
+          </div>
+        </div>
       </fieldset>
       {durationError && (
         <p id={durationErrorId} role="alert">
           {durationError}
         </p>
       )}
-      <button
-        className="button subtle"
-        disabled={busy}
-        onClick={() => void generate()}
-      >
-        {busy ? "Compiling raid…" : "Preview raid"}
-      </button>
-      <button
-        className="button primary"
-        disabled={busy}
-        onClick={() => void generate(true)}
-      >
-        Compile and save frozen raid
-      </button>
-      {error && <p role="alert">{error}</p>}
+      <div className="authoring-actions">
+        <button
+          className="button subtle"
+          disabled={busy}
+          onClick={() => void generate()}
+        >
+          {busy ? "Compiling raid…" : "Preview raid"}
+        </button>
+        <button
+          className="button primary"
+          disabled={busy}
+          onClick={() => void generate(true)}
+        >
+          Compile and save frozen raid
+        </button>
+      </div>
+      {busy && (
+        <p role="status" className="authoring-notice">
+          Compiling the seeded exercise. Configuration is held until the server
+          responds.
+        </p>
+      )}
+      {error && (
+        <p role="alert" className="recovery-banner">
+          {error} Your configuration is retained; retry preview or save.
+        </p>
+      )}
       {stale && (
         <p className="composer-stale" role="status">
           Configuration changed. The result below belongs to the previous
@@ -268,7 +321,10 @@ export default function RaidStudio({
               Open training ground
             </a>
           )}
-          <p>Fingerprint {scenario.raid?.fingerprint}</p>
+          <details className="authoring-provenance">
+            <summary>Reproducibility fingerprint</summary>
+            <code>{scenario.raid?.fingerprint}</code>
+          </details>
           <p>
             {saved
               ? "Saved. Open Training ground → Scripted / Library, then select this raid."

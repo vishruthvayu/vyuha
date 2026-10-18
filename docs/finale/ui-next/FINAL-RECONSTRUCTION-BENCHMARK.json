@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "measured_at_utc": "2026-10-16T10:48:48.787613+00:00",
+  "code_commit": "10a63fefba2201aa9c343d18ca1b0d3b24c0a112",
+  "sensor_source_sha256": "d53d7fb14e44485db97961fd7d2426bafb7f54e3c7b9409286f5e828bf99768f",
+  "environment": {
+    "os": "Linux",
+    "python": "3.14.8",
+    "machine": "x86_64"
+  },
+  "method": "3 alternating direct build_review and actual loopback HTTP GET AAR samples for each frozen scenario. Synthetic three hostile contacts plus birds, no actions/commands, full observed 60-second horizon. Separate cProfile run at 200 contacts. Disposable SQLite only; no user database or physical network validation.",
+  "limitations": [
+    "Software loopback HTTP on this workstation; no separate physical client.",
+    "Shared workstation activity may affect runtime. cProfile instrumentation is not unprofiled latency.",
+    "Scenario contact count changes the fixed synthetic bird roster; this does not measure human learning or operational calibration."
+  ],
+  "scale": [
+    {
+      "contacts": 8,
+      "duration_seconds": 60,
+      "observed_tick": 1800,
+      "scoring_tick": 1800,
+      "direct_seconds": [
+        0.3714249010081403,
+        0.3661478249996435,
+        0.36273534200154245
+      ],
+      "http_seconds": [
+        0.36924013899988495,
+        0.37026097599300556,
+        0.368851811013883
+      ],
+      "direct_median_seconds": 0.3661478249996435,
+      "http_median_seconds": 0.36924013899988495,
+      "full_review_card_sha256": "51609b487a6f82665f3e9f2a400f763e8c0a24b2d2e3f8ad8531c02e8275775d",
+      "all_repeats_and_http_equal": true,
+      "matches_baseline": null
+    },
+    {
+      "contacts": 25,
+      "duration_seconds": 60,
+      "observed_tick": 1800,
+      "scoring_tick": 1800,
+      "direct_seconds": [
+        0.9328177749994211,
+        0.9443554560129996,
+        0.9448074030224234
+      ],
+      "http_seconds": [
+        0.9591011309821624,
+        0.9592076260014437,
+        0.9817415510187857
+      ],
+      "direct_median_seconds": 0.9443554560129996,
+      "http_median_seconds": 0.9592076260014437,
+      "full_review_card_sha256": "6235c9793c8ca4d64cbe32875c0fb9c7bf2ec2a81e86eeb74c9ec6359eedb7ac",
+      "all_repeats_and_http_equal": true,
+      "matches_baseline": null
+    },
+    {
+      "contacts": 50,
+      "duration_seconds": 60,
+      "observed_tick": 1800,
+      "scoring_tick": 1800,
+      "direct_seconds": [
+        1.8161163410113659,
+        1.7805366550164763,
+        1.7743067939882167
+      ],
+      "http_seconds": [
+        1.853221093013417,
+        1.8325148200092372,
+        1.8305213660059962
+      ],
+      "direct_median_seconds": 1.7805366550164763,
+      "http_median_seconds": 1.8325148200092372,
+      "full_review_card_sha256": "4728ad023307e8a79ee112c276e3e7f0f2ccc27a45f512f056b35e541e5787ee",
+      "all_repeats_and_http_equal": true,
+      "matches_baseline": null
+    },
+    {
+      "contacts": 100,
+      "duration_seconds": 60,
+      "observed_tick": 1800,
+      "scoring_tick": 1800,
+      "direct_seconds": [
+        3.4031727250257973,
+        3.4552876249945257,
+        3.514303767995443
+      ],
+      "http_seconds": [
+        3.5420325440063607,
+        3.568396663002204,
+        3.560510871990118
+      ],
+      "direct_median_seconds": 3.4552876249945257,
+      "http_median_seconds": 3.560510871990118,
+      "full_review_card_sha256": "5e64be1f878ad9e7cc666dd9b757c275a80e16758f2b56475bacf6eb4ea53533",
+      "all_repeats_and_http_equal": true,
+      "matches_baseline": null
+    },
+    {
+      "contacts": 200,
+      "duration_seconds": 60,
+      "observed_tick": 1800,
+      "scoring_tick": 1800,
+      "direct_seconds": [
+        7.0782478880137205,
+        6.930388201988535,
+        7.150662351981737
+      ],
+      "http_seconds": [
+        7.222244712989777,
+        7.081792212004075,
+        7.234316564019537
+      ],
+      "direct_median_seconds": 7.0782478880137205,
+      "http_median_seconds": 7.222244712989777,
+      "full_review_card_sha256": "b055b2634730b69ebdaf1bb89e1f0d1f128985d0aba797c40fa695b0c92a1cf9",
+      "all_repeats_and_http_equal": true,
+      "matches_baseline": null
+    }
+  ],
+  "profile": {
+    "instrumented_seconds": 26.35027671400002,
+    "total_calls": 52673792,
+    "primitive_calls": 52629615,
+    "hot_functions": [
+      {
+        "file": "review.py",
+        "line": 12,
+        "function": "build_review",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 0.0006434170000000001,
+        "cumulative_seconds": 26.350513301000003
+      },
+      {
+        "file": "review_v2.py",
+        "line": 127,
+        "function": "build_review",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 0.00048426100000000004,
+        "cumulative_seconds": 26.349848464
+      },
+      {
+        "file": "engine.py",
+        "line": 33,
+        "function": "replay",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 1.3076000000000002e-05,
+        "cumulative_seconds": 26.346409992
+      },
+      {
+        "file": "engine_v2.py",
+        "line": 102,
+        "function": "replay",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 0.00949851,
+        "cumulative_seconds": 26.346393522000003
+      },
+      {
+        "file": "engine_v2.py",
+        "line": 34,
+        "function": "observe",
+        "primitive_calls": 1801,
+        "total_calls": 1801,
+        "self_seconds": 1.281984231,
+        "cumulative_seconds": 26.067561495000003
+      },
+      {
+        "file": "engine_v1_0_1.py",
+        "line": 146,
+        "function": "step",
+        "primitive_calls": 1800,
+        "total_calls": 1800,
+        "self_seconds": 0.00448827,
+        "cumulative_seconds": 26.067217268
+      },
+      {
+        "file": "sensors_v2.py",
+        "line": 205,
+        "function": "_observe_sensors",
+        "primitive_calls": 360200,
+        "total_calls": 360200,
+        "self_seconds": 2.645400575,
+        "cumulative_seconds": 21.383539352
+      },
+      {
+        "file": "sensors_v2.py",
+        "line": 146,
+        "function": "_optical_observation",
+        "primitive_calls": 720400,
+        "total_calls": 720400,
+        "self_seconds": 2.82415558,
+        "cumulative_seconds": 11.492294173000001
+      },
+      {
+        "file": "sensors_v2.py",
+        "line": 80,
+        "function": "line_of_sight",
+        "primitive_calls": 649995,
+        "total_calls": 649995,
+        "self_seconds": 2.623412611,
+        "cumulative_seconds": 5.6788957810000005
+      },
+      {
+        "file": "sensors_v2.py",
+        "line": 179,
+        "function": "_copy_sensor_memory",
+        "primitive_calls": 360000,
+        "total_calls": 360000,
+        "self_seconds": 2.8119341920000003,
+        "cumulative_seconds": 4.9035653880000005
+      },
+      {
+        "file": "raid_v2.py",
+        "line": 130,
+        "function": "raid_position",
+        "primitive_calls": 319858,
+        "total_calls": 319858,
+        "self_seconds": 1.8526550210000001,
+        "cumulative_seconds": 2.927751535
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'get' of 'dict' objects>",
+        "primitive_calls": 12867443,
+        "total_calls": 12867443,
+        "self_seconds": 2.2067060140000003,
+        "cumulative_seconds": 2.2067060140000003
+      },
+      {
+        "file": "sensors_v2.py",
+        "line": 62,
+        "function": "validate_environment",
+        "primitive_calls": 653597,
+        "total_calls": 653597,
+        "self_seconds": 1.1976999350000002,
+        "cumulative_seconds": 1.7649313160000002
+      },
+      {
+        "file": "sensors_v2.py",
+        "line": 107,
+        "function": "range_m",
+        "primitive_calls": 996027,
+        "total_calls": 996027,
+        "self_seconds": 0.749264864,
+        "cumulative_seconds": 1.089703185
+      },
+      {
+        "file": "sensors_v2.py",
+        "line": 200,
+        "function": "_copy_sensor_position",
+        "primitive_calls": 270169,
+        "total_calls": 270169,
+        "self_seconds": 0.54477007,
+        "cumulative_seconds": 0.88938225
+      },
+      {
+        "file": "sensors_v2.py",
+        "line": 135,
+        "function": "optical_probability",
+        "primitive_calls": 913271,
+        "total_calls": 913271,
+        "self_seconds": 0.552277193,
+        "cumulative_seconds": 0.803597709
+      },
+      {
+        "file": "sensors_v2.py",
+        "line": 191,
+        "function": "<genexpr>",
+        "primitive_calls": 3201021,
+        "total_calls": 3201021,
+        "self_seconds": 0.801571853,
+        "cumulative_seconds": 0.801571853
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.max>",
+        "primitive_calls": 5138916,
+        "total_calls": 5138916,
+        "self_seconds": 0.742567643,
+        "cumulative_seconds": 0.742575447
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.min>",
+        "primitive_calls": 4183221,
+        "total_calls": 4183221,
+        "self_seconds": 0.6157117950000001,
+        "cumulative_seconds": 0.6157117950000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method math.isfinite>",
+        "primitive_calls": 3852401,
+        "total_calls": 3852401,
+        "self_seconds": 0.5226318280000001,
+        "cumulative_seconds": 0.5226318280000001
+      }
+    ]
+  }
+}

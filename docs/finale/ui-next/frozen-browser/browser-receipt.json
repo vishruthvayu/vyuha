@@ -1,0 +1,1643 @@
+{
+  "time_utc": "2026-10-16T10:38:23.182412+00:00",
+  "source_commit": "7f028a8367f2eb047c90ac781bdf4dc5594b28b7",
+  "runtime_diff_sha256_start": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "runtime_diff_sha256_end": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "scope": "Isolated synthetic QA fixture; Chromium headless, device scale1, default zoom; frozen runtime code. Empty/initial route states where no data. No physical-device/full screen-reader/drill acceptance.",
+  "results": [
+    {
+      "route": "analytics",
+      "path": "/analytics",
+      "width": 360,
+      "height": 900,
+      "dimensions": {
+        "viewport": 360,
+        "document": 360,
+        "height": 2412
+      },
+      "heading": "Training analytics",
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-prohibited-attr",
+            "nodes": [
+              {
+                "target": [
+                  ".review-chart-legend"
+                ],
+                "summary": "Fix all of the following:\n  aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+              }
+            ]
+          },
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  "text[y=\"192\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "text[y=\"112\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "text[y=\"32\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "text[x=\"48\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "text[x=\"672\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "route": "instructor",
+      "path": "/instructor",
+      "width": 360,
+      "height": 900,
+      "dimensions": {
+        "viewport": 360,
+        "document": 360,
+        "height": 2295
+      },
+      "heading": "Instructor console",
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-prohibited-attr",
+            "nodes": [
+              {
+                "target": [
+                  ".command-pulse"
+                ],
+                "summary": "Fix all of the following:\n  aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+              },
+              {
+                "target": [
+                  ".segmented"
+                ],
+                "summary": "Fix all of the following:\n  aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+              }
+            ]
+          },
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  "select"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "route": "studio",
+      "path": "/exercises",
+      "width": 360,
+      "height": 900,
+      "dimensions": {
+        "viewport": 360,
+        "document": 360,
+        "height": 2914
+      },
+      "heading": "Exercise studio",
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "route": "recorded",
+      "path": "/recorded",
+      "width": 360,
+      "height": 900,
+      "dimensions": {
+        "viewport": 360,
+        "document": 360,
+        "height": 1273
+      },
+      "heading": "Recorded practice",
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "route": "transfer",
+      "path": "/transfer",
+      "width": 360,
+      "height": 900,
+      "dimensions": {
+        "viewport": 360,
+        "document": 360,
+        "height": 1911
+      },
+      "heading": "Data transfer",
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "route": "unit",
+      "path": "/unit",
+      "width": 360,
+      "height": 900,
+      "dimensions": {
+        "viewport": 360,
+        "document": 360,
+        "height": 3711
+      },
+      "heading": "Unit training overview",
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "route": "evidence",
+      "path": "/system/evidence",
+      "width": 360,
+      "height": 900,
+      "dimensions": {
+        "viewport": 360,
+        "document": 360,
+        "height": 6161
+      },
+      "heading": "VYUHA system evidence",
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "route": "compliance",
+      "path": "/system/compliance",
+      "width": 360,
+      "height": 900,
+      "dimensions": {
+        "viewport": 360,
+        "document": 360,
+        "height": 7466
+      },
+      "heading": "Requirements, demonstrated",
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  "label:nth-child(2) > select"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "section:nth-child(3) > label > select"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "route": "rapid-id",
+      "path": "/rapid-id",
+      "width": 360,
+      "height": 900,
+      "dimensions": {
+        "viewport": 360,
+        "document": 360,
+        "height": 900
+      },
+      "heading": "Rapid ID",
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "route": "ghost",
+      "path": "/?session=7390956f-34b6-43dd-b384-b4b8a1f3a35b&review=officer",
+      "width": 360,
+      "height": 900,
+      "dimensions": {
+        "viewport": 360,
+        "document": 360,
+        "height": 10075
+      },
+      "heading": "After-action review",
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  ".setup-bar > span"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".setup-bar > .subtle.button"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".mission-navigation-brand > strong"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".navigation-toggle > span"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".breadcrumb"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".breadcrumb > span"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".connection"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "div > .eyebrow"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "h1"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".page-heading > div > p"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".page-heading > .subtle.button"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".score-circle > strong"
+                ],
+                "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+              },
+              {
+                "target": [
+                  ".score-circle > span"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".amber"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "div:nth-child(2) > h2"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "#review-verdict > div:nth-child(2) > p"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".verification"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "a[href$=\"#review-replay\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "a[href$=\"#review-timeline\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "a[href$=\"#review-path\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "a[href$=\"#review-comparison\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "a[href$=\"#review-score\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".view-annotation"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  ".view-annotation > span"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "select[aria-label=\"Decision review\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "select[aria-label=\"Timeline category\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "route": "analytics",
+      "path": "/analytics",
+      "width": 390,
+      "height": 900,
+      "dimensions": {
+        "viewport": 390,
+        "document": 390,
+        "height": 2347
+      },
+      "heading": "Training analytics"
+    },
+    {
+      "route": "instructor",
+      "path": "/instructor",
+      "width": 390,
+      "height": 900,
+      "dimensions": {
+        "viewport": 390,
+        "document": 390,
+        "height": 2219
+      },
+      "heading": "Instructor console"
+    },
+    {
+      "route": "studio",
+      "path": "/exercises",
+      "width": 390,
+      "height": 900,
+      "dimensions": {
+        "viewport": 390,
+        "document": 390,
+        "height": 2914
+      },
+      "heading": "Exercise studio"
+    },
+    {
+      "route": "recorded",
+      "path": "/recorded",
+      "width": 390,
+      "height": 900,
+      "dimensions": {
+        "viewport": 390,
+        "document": 390,
+        "height": 1252
+      },
+      "heading": "Recorded practice"
+    },
+    {
+      "route": "transfer",
+      "path": "/transfer",
+      "width": 390,
+      "height": 900,
+      "dimensions": {
+        "viewport": 390,
+        "document": 390,
+        "height": 1840
+      },
+      "heading": "Data transfer"
+    },
+    {
+      "route": "unit",
+      "path": "/unit",
+      "width": 390,
+      "height": 900,
+      "dimensions": {
+        "viewport": 390,
+        "document": 390,
+        "height": 3644
+      },
+      "heading": "Unit training overview"
+    },
+    {
+      "route": "evidence",
+      "path": "/system/evidence",
+      "width": 390,
+      "height": 900,
+      "dimensions": {
+        "viewport": 390,
+        "document": 390,
+        "height": 5812
+      },
+      "heading": "VYUHA system evidence"
+    },
+    {
+      "route": "compliance",
+      "path": "/system/compliance",
+      "width": 390,
+      "height": 900,
+      "dimensions": {
+        "viewport": 390,
+        "document": 390,
+        "height": 7282
+      },
+      "heading": "Requirements, demonstrated"
+    },
+    {
+      "route": "rapid-id",
+      "path": "/rapid-id",
+      "width": 390,
+      "height": 900,
+      "dimensions": {
+        "viewport": 390,
+        "document": 390,
+        "height": 900
+      },
+      "heading": "Rapid ID"
+    },
+    {
+      "route": "ghost",
+      "path": "/?session=7390956f-34b6-43dd-b384-b4b8a1f3a35b&review=officer",
+      "width": 390,
+      "height": 900,
+      "dimensions": {
+        "viewport": 390,
+        "document": 390,
+        "height": 9810
+      },
+      "heading": "After-action review"
+    },
+    {
+      "route": "analytics",
+      "path": "/analytics",
+      "width": 428,
+      "height": 900,
+      "dimensions": {
+        "viewport": 428,
+        "document": 428,
+        "height": 2320
+      },
+      "heading": "Training analytics"
+    },
+    {
+      "route": "instructor",
+      "path": "/instructor",
+      "width": 428,
+      "height": 900,
+      "dimensions": {
+        "viewport": 428,
+        "document": 428,
+        "height": 2152
+      },
+      "heading": "Instructor console"
+    },
+    {
+      "route": "studio",
+      "path": "/exercises",
+      "width": 428,
+      "height": 900,
+      "dimensions": {
+        "viewport": 428,
+        "document": 428,
+        "height": 2853
+      },
+      "heading": "Exercise studio"
+    },
+    {
+      "route": "recorded",
+      "path": "/recorded",
+      "width": 428,
+      "height": 900,
+      "dimensions": {
+        "viewport": 428,
+        "document": 428,
+        "height": 1252
+      },
+      "heading": "Recorded practice"
+    },
+    {
+      "route": "transfer",
+      "path": "/transfer",
+      "width": 428,
+      "height": 900,
+      "dimensions": {
+        "viewport": 428,
+        "document": 428,
+        "height": 1742
+      },
+      "heading": "Data transfer"
+    },
+    {
+      "route": "unit",
+      "path": "/unit",
+      "width": 428,
+      "height": 900,
+      "dimensions": {
+        "viewport": 428,
+        "document": 428,
+        "height": 3506
+      },
+      "heading": "Unit training overview"
+    },
+    {
+      "route": "evidence",
+      "path": "/system/evidence",
+      "width": 428,
+      "height": 900,
+      "dimensions": {
+        "viewport": 428,
+        "document": 428,
+        "height": 5374
+      },
+      "heading": "VYUHA system evidence"
+    },
+    {
+      "route": "compliance",
+      "path": "/system/compliance",
+      "width": 428,
+      "height": 900,
+      "dimensions": {
+        "viewport": 428,
+        "document": 428,
+        "height": 6884
+      },
+      "heading": "Requirements, demonstrated"
+    },
+    {
+      "route": "rapid-id",
+      "path": "/rapid-id",
+      "width": 428,
+      "height": 900,
+      "dimensions": {
+        "viewport": 428,
+        "document": 428,
+        "height": 900
+      },
+      "heading": "Rapid ID"
+    },
+    {
+      "route": "ghost",
+      "path": "/?session=7390956f-34b6-43dd-b384-b4b8a1f3a35b&review=officer",
+      "width": 428,
+      "height": 900,
+      "dimensions": {
+        "viewport": 428,
+        "document": 428,
+        "height": 9534
+      },
+      "heading": "After-action review"
+    },
+    {
+      "route": "analytics",
+      "path": "/analytics",
+      "width": 768,
+      "height": 900,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "height": 1901
+      },
+      "heading": "Training analytics"
+    },
+    {
+      "route": "instructor",
+      "path": "/instructor",
+      "width": 768,
+      "height": 900,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "height": 1695
+      },
+      "heading": "Instructor console"
+    },
+    {
+      "route": "studio",
+      "path": "/exercises",
+      "width": 768,
+      "height": 900,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "height": 2155
+      },
+      "heading": "Exercise studio"
+    },
+    {
+      "route": "recorded",
+      "path": "/recorded",
+      "width": 768,
+      "height": 900,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "height": 964
+      },
+      "heading": "Recorded practice"
+    },
+    {
+      "route": "transfer",
+      "path": "/transfer",
+      "width": 768,
+      "height": 900,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "height": 1627
+      },
+      "heading": "Data transfer"
+    },
+    {
+      "route": "unit",
+      "path": "/unit",
+      "width": 768,
+      "height": 900,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "height": 2958
+      },
+      "heading": "Unit training overview"
+    },
+    {
+      "route": "evidence",
+      "path": "/system/evidence",
+      "width": 768,
+      "height": 900,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "height": 4178
+      },
+      "heading": "VYUHA system evidence"
+    },
+    {
+      "route": "compliance",
+      "path": "/system/compliance",
+      "width": 768,
+      "height": 900,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "height": 5330
+      },
+      "heading": "Requirements, demonstrated"
+    },
+    {
+      "route": "rapid-id",
+      "path": "/rapid-id",
+      "width": 768,
+      "height": 900,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "height": 900
+      },
+      "heading": "Rapid ID"
+    },
+    {
+      "route": "ghost",
+      "path": "/?session=7390956f-34b6-43dd-b384-b4b8a1f3a35b&review=officer",
+      "width": 768,
+      "height": 900,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "height": 6969
+      },
+      "heading": "After-action review"
+    },
+    {
+      "route": "analytics",
+      "path": "/analytics",
+      "width": 1024,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1024,
+        "document": 1024,
+        "height": 1895
+      },
+      "heading": "Training analytics"
+    },
+    {
+      "route": "instructor",
+      "path": "/instructor",
+      "width": 1024,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1024,
+        "document": 1024,
+        "height": 1685
+      },
+      "heading": "Instructor console"
+    },
+    {
+      "route": "studio",
+      "path": "/exercises",
+      "width": 1024,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1024,
+        "document": 1024,
+        "height": 2078
+      },
+      "heading": "Exercise studio"
+    },
+    {
+      "route": "recorded",
+      "path": "/recorded",
+      "width": 1024,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1024,
+        "document": 1024,
+        "height": 944
+      },
+      "heading": "Recorded practice"
+    },
+    {
+      "route": "transfer",
+      "path": "/transfer",
+      "width": 1024,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1024,
+        "document": 1024,
+        "height": 1115
+      },
+      "heading": "Data transfer"
+    },
+    {
+      "route": "unit",
+      "path": "/unit",
+      "width": 1024,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1024,
+        "document": 1024,
+        "height": 2742
+      },
+      "heading": "Unit training overview"
+    },
+    {
+      "route": "evidence",
+      "path": "/system/evidence",
+      "width": 1024,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1024,
+        "document": 1024,
+        "height": 3851
+      },
+      "heading": "VYUHA system evidence"
+    },
+    {
+      "route": "compliance",
+      "path": "/system/compliance",
+      "width": 1024,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1024,
+        "document": 1024,
+        "height": 5047
+      },
+      "heading": "Requirements, demonstrated"
+    },
+    {
+      "route": "rapid-id",
+      "path": "/rapid-id",
+      "width": 1024,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1024,
+        "document": 1024,
+        "height": 900
+      },
+      "heading": "Rapid ID"
+    },
+    {
+      "route": "ghost",
+      "path": "/?session=7390956f-34b6-43dd-b384-b4b8a1f3a35b&review=officer",
+      "width": 1024,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1024,
+        "document": 1024,
+        "height": 6267
+      },
+      "heading": "After-action review"
+    },
+    {
+      "route": "analytics",
+      "path": "/analytics",
+      "width": 1280,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1280,
+        "document": 1280,
+        "height": 1905
+      },
+      "heading": "Training analytics"
+    },
+    {
+      "route": "instructor",
+      "path": "/instructor",
+      "width": 1280,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1280,
+        "document": 1280,
+        "height": 1692
+      },
+      "heading": "Instructor console"
+    },
+    {
+      "route": "studio",
+      "path": "/exercises",
+      "width": 1280,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1280,
+        "document": 1280,
+        "height": 1852
+      },
+      "heading": "Exercise studio"
+    },
+    {
+      "route": "recorded",
+      "path": "/recorded",
+      "width": 1280,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1280,
+        "document": 1280,
+        "height": 950
+      },
+      "heading": "Recorded practice"
+    },
+    {
+      "route": "transfer",
+      "path": "/transfer",
+      "width": 1280,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1280,
+        "document": 1280,
+        "height": 1122
+      },
+      "heading": "Data transfer"
+    },
+    {
+      "route": "unit",
+      "path": "/unit",
+      "width": 1280,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1280,
+        "document": 1280,
+        "height": 2748
+      },
+      "heading": "Unit training overview"
+    },
+    {
+      "route": "evidence",
+      "path": "/system/evidence",
+      "width": 1280,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1280,
+        "document": 1280,
+        "height": 3835
+      },
+      "heading": "VYUHA system evidence"
+    },
+    {
+      "route": "compliance",
+      "path": "/system/compliance",
+      "width": 1280,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1280,
+        "document": 1280,
+        "height": 5054
+      },
+      "heading": "Requirements, demonstrated"
+    },
+    {
+      "route": "rapid-id",
+      "path": "/rapid-id",
+      "width": 1280,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1280,
+        "document": 1280,
+        "height": 900
+      },
+      "heading": "Rapid ID"
+    },
+    {
+      "route": "ghost",
+      "path": "/?session=7390956f-34b6-43dd-b384-b4b8a1f3a35b&review=officer",
+      "width": 1280,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1280,
+        "document": 1280,
+        "height": 5274
+      },
+      "heading": "After-action review"
+    },
+    {
+      "route": "analytics",
+      "path": "/analytics",
+      "width": 1440,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "height": 1892
+      },
+      "heading": "Training analytics",
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-prohibited-attr",
+            "nodes": [
+              {
+                "target": [
+                  ".review-chart-legend"
+                ],
+                "summary": "Fix all of the following:\n  aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+              }
+            ]
+          },
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  "text[y=\"192\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "text[y=\"112\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "text[y=\"32\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "text[x=\"48\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "text[x=\"672\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "route": "instructor",
+      "path": "/instructor",
+      "width": 1440,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "height": 1675
+      },
+      "heading": "Instructor console",
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "aria-prohibited-attr",
+            "nodes": [
+              {
+                "target": [
+                  ".command-pulse"
+                ],
+                "summary": "Fix all of the following:\n  aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+              },
+              {
+                "target": [
+                  ".segmented"
+                ],
+                "summary": "Fix all of the following:\n  aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+              }
+            ]
+          },
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  "select"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "route": "studio",
+      "path": "/exercises",
+      "width": 1440,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "height": 1856
+      },
+      "heading": "Exercise studio",
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "route": "recorded",
+      "path": "/recorded",
+      "width": 1440,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "height": 954
+      },
+      "heading": "Recorded practice",
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "route": "transfer",
+      "path": "/transfer",
+      "width": 1440,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "height": 1107
+      },
+      "heading": "Data transfer",
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "route": "unit",
+      "path": "/unit",
+      "width": 1440,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "height": 2730
+      },
+      "heading": "Unit training overview",
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "route": "evidence",
+      "path": "/system/evidence",
+      "width": 1440,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "height": 3729
+      },
+      "heading": "VYUHA system evidence",
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "route": "compliance",
+      "path": "/system/compliance",
+      "width": 1440,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "height": 4937
+      },
+      "heading": "Requirements, demonstrated",
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  "label:nth-child(2) > select"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "section:nth-child(3) > label > select"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "route": "rapid-id",
+      "path": "/rapid-id",
+      "width": 1440,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "height": 900
+      },
+      "heading": "Rapid ID",
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "route": "ghost",
+      "path": "/?session=7390956f-34b6-43dd-b384-b4b8a1f3a35b&review=officer",
+      "width": 1440,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "height": 5265
+      },
+      "heading": "After-action review",
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": [
+              {
+                "target": [
+                  ".setup-bar > span"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".setup-bar > .subtle.button"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".mission-navigation-brand > strong"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "a[title=\"Training ground\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".active"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "a[href$=\"crew\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "a[href$=\"instructor\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "a[href$=\"analytics\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".mission-guide-button > span"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".mission-guide-prefix"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".navigation-toggle > span"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".breadcrumb"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".breadcrumb > span"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".connection"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "div > .eyebrow"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "h1"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".page-heading > div > p"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".page-heading > .subtle.button"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".score-circle > strong"
+                ],
+                "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+              },
+              {
+                "target": [
+                  ".score-circle > span"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".amber"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "div:nth-child(2) > h2"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "#review-verdict > div:nth-child(2) > p"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".verification"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "a[href$=\"#review-replay\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "a[href$=\"#review-timeline\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "a[href$=\"#review-path\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "a[href$=\"#review-comparison\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "a[href$=\"#review-score\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  ".view-annotation"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  ".view-annotation > span"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "select[aria-label=\"Decision review\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              },
+              {
+                "target": [
+                  "select[aria-label=\"Timeline category\"]"
+                ],
+                "summary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "route": "analytics",
+      "path": "/analytics",
+      "width": 1920,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1920,
+        "document": 1920,
+        "height": 1856
+      },
+      "heading": "Training analytics"
+    },
+    {
+      "route": "instructor",
+      "path": "/instructor",
+      "width": 1920,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1920,
+        "document": 1920,
+        "height": 1658
+      },
+      "heading": "Instructor console"
+    },
+    {
+      "route": "studio",
+      "path": "/exercises",
+      "width": 1920,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1920,
+        "document": 1920,
+        "height": 1859
+      },
+      "heading": "Exercise studio"
+    },
+    {
+      "route": "recorded",
+      "path": "/recorded",
+      "width": 1920,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1920,
+        "document": 1920,
+        "height": 935
+      },
+      "heading": "Recorded practice"
+    },
+    {
+      "route": "transfer",
+      "path": "/transfer",
+      "width": 1920,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1920,
+        "document": 1920,
+        "height": 1096
+      },
+      "heading": "Data transfer"
+    },
+    {
+      "route": "unit",
+      "path": "/unit",
+      "width": 1920,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1920,
+        "document": 1920,
+        "height": 2628
+      },
+      "heading": "Unit training overview"
+    },
+    {
+      "route": "evidence",
+      "path": "/system/evidence",
+      "width": 1920,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1920,
+        "document": 1920,
+        "height": 3667
+      },
+      "heading": "VYUHA system evidence"
+    },
+    {
+      "route": "compliance",
+      "path": "/system/compliance",
+      "width": 1920,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1920,
+        "document": 1920,
+        "height": 4875
+      },
+      "heading": "Requirements, demonstrated"
+    },
+    {
+      "route": "rapid-id",
+      "path": "/rapid-id",
+      "width": 1920,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1920,
+        "document": 1920,
+        "height": 900
+      },
+      "heading": "Rapid ID"
+    },
+    {
+      "route": "ghost",
+      "path": "/?session=7390956f-34b6-43dd-b384-b4b8a1f3a35b&review=officer",
+      "width": 1920,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1920,
+        "document": 1920,
+        "height": 5271
+      },
+      "heading": "After-action review"
+    }
+  ],
+  "keyboard_interactions": {
+    "unit": {
+      "query": "SYNTHETIC-QA-1",
+      "value": "SYNTHETIC-QA-1",
+      "focus_visible": true,
+      "status": [
+        "1 matching profiles \u00b7 1 matching sessions. Unit summary includes the full cohort."
+      ],
+      "cleared_status": [
+        "3 matching profiles \u00b7 2 matching sessions. Unit summary includes the full cohort."
+      ]
+    },
+    "compliance": {
+      "query": "offline",
+      "value": "offline",
+      "focus_visible": true,
+      "status": [
+        "0 of 12 findings in this scope"
+      ],
+      "cleared_status": [
+        "12 of 12 findings in this scope"
+      ],
+      "positive_query": "radar",
+      "positive_status": [
+        "1 of 12 findings in this scope"
+      ],
+      "keyboard_status_filter": "PASS",
+      "filtered_status": [
+        "1 of 12 findings in this scope"
+      ]
+    },
+    "crew_history": {
+      "query": "SYNTHETIC",
+      "value": "SYNTHETIC",
+      "status": [
+        "0 matching completed exercises"
+      ],
+      "scope": "Empty completed Crew history. Read-only refresh, no live controls."
+    }
+  }
+}

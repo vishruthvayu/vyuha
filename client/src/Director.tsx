@@ -27,11 +27,17 @@ export function ProfilePanel({ profile }: { profile: TrainingProfile | null }) {
             VYUHA training mastery estimates · {profile.sessions} processed
             sessions · not validated operational competence.
           </p>
-          <div className="ghost-skill-grid">
+          <div className="profile-skill-ledger">
             {Object.entries(profile.skills).map(([skill, p]) => (
               <div key={skill}>
                 <span>{skillLabel[skill as GhostSkill]}</span>
                 <strong>{Math.round(p.mean * 100)}%</strong>
+                <meter
+                  min={0}
+                  max={1}
+                  value={p.mean}
+                  aria-label={`${skillLabel[skill as GhostSkill]} Bayesian estimate`}
+                />
                 <small>
                   {p.observations === 0
                     ? "Baseline prior · 0 observations"

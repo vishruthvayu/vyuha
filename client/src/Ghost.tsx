@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Flag, ChevronRight, Activity } from "lucide-react";
 import type {
   Action,
@@ -165,7 +165,7 @@ export function GhostPanel({
     <section className="panel ghost-panel ghost-v2">
       <div className="panel-header">
         <div>
-          <Flag size={16} />
+          <Flag size={16} aria-hidden="true" />
           <h2 className="panel-title">Ghost Expert</h2>
         </div>
         <span className="status">
@@ -270,125 +270,127 @@ export function GhostPanel({
           <p className="review-evidence-boundary">
             Decision evidence stays pinned while you move the replay cursor.
           </p>
-          <EvidenceView review={r} />
-          <section className="ghost-section ghost-comparison">
-            <div>
-              <h3>Your decision</h3>
-              <strong>{actionLabel(r.trainee_action)}</strong>
-            </div>
-            <div>
-              <h3>Expected decision</h3>
-              <strong>
-                {r.decision_kind === "prioritisation"
-                  ? `Prioritise ${r.expected_action.track_id} · permitted response: ${actionLabel(r.expected_action)}`
-                  : actionLabel(r.expected_action)}
-              </strong>
-              <small>
-                {r.expected_action.basis === "ground_truth_reference"
-                  ? "Ground-truth rubric reference; identity must first be established"
-                  : "Based on available evidence"}
-              </small>
-            </div>
-          </section>
-          <section className="ghost-section">
-            <h3>Why</h3>
-            <p>{r.explanation}</p>
-            <small className="mono">{r.reason_code}</small>
-            {r.context_commands.length > 0 && (
-              <p className="ghost-context">
-                Instructor context:{" "}
-                {r.context_commands
-                  .map((seq) => {
-                    const c = record.commands?.find((x) => x.seq === seq);
-                    return c
-                      ? `#${seq} ${c.type.replaceAll("_", " ")} at ${tickLabel(c.tick)}`
-                      : `#${seq}`;
-                  })
-                  .join(" · ")}
-              </p>
-            )}
-          </section>
-          <details
-            className="ghost-section ground-truth"
-            data-evidence-scope="ground-truth"
-          >
-            <summary>Ground truth after review</summary>
-            <dl className="ghost-evidence">
+          <div className="ghost-investigation" key={r.decision_id}>
+            <EvidenceView review={r} />
+            <section className="ghost-section ghost-comparison">
               <div>
-                <dt>Type</dt>
-                <dd>{KIND_LABEL[r.ground_truth.kind]}</dd>
+                <h3>Your decision</h3>
+                <strong>{actionLabel(r.trainee_action)}</strong>
               </div>
               <div>
-                <dt>Identity</dt>
-                <dd>{r.ground_truth.identity}</dd>
+                <h3>Expected decision</h3>
+                <strong>
+                  {r.decision_kind === "prioritisation"
+                    ? `Prioritise ${r.expected_action.track_id} · permitted response: ${actionLabel(r.expected_action)}`
+                    : actionLabel(r.expected_action)}
+                </strong>
+                <small>
+                  {r.expected_action.basis === "ground_truth_reference"
+                    ? "Ground-truth rubric reference; identity must first be established"
+                    : "Based on available evidence"}
+                </small>
               </div>
-              <div>
-                <dt>Physical RF link</dt>
-                <dd>{r.ground_truth.rf_link ? "Present" : "None"}</dd>
-              </div>
-              <div>
-                <dt>Spawn</dt>
-                <dd>{tickLabel(r.ground_truth.spawn_tick)}</dd>
-              </div>
-            </dl>
-            <p className="footnote">
-              These are reconstructed simulation facts, not a claim about what
-              the trainee knew.
-            </p>
-          </details>
-          <section className="ghost-section">
-            <h3>Consequence</h3>
-            <p>{r.consequence.text}</p>
-            <small className="mono">{r.consequence.reason_code}</small>
-          </section>
-          <section className="ghost-section">
-            <h3>Score impact</h3>
-            <strong>
-              {r.score_effect.node === "detect"
-                ? "Detection"
-                : r.score_effect.node === "classify"
-                  ? "Classification"
-                  : r.score_effect.node === "prioritise"
-                    ? "Prioritisation"
-                    : "Engagement"}
-              : {r.score_effect.points_awarded} /{" "}
-              {r.score_effect.points_possible}
-            </strong>
-            <p className="footnote">
-              Final contact node, shared across all attempts. This is not a
-              separate per-action award.
-            </p>
-            {r.score_effect.session_penalty > 0 && (
-              <p>
-                Contact asset penalty: −{r.score_effect.session_penalty}{" "}
-                {r.score_effect.penalty_basis === "scoring_projection"
-                  ? "(frozen-duration scoring projection, not an observed impact)"
-                  : "(observed impact)"}
-              </p>
-            )}
-            {r.score_effect.session_failure && (
-              <p className="amber-text">
-                The recorded non-hostile response triggered the session safety
-                rule.
-              </p>
-            )}
-          </section>
-          <section className="ghost-section">
-            <h3>Training skill</h3>
-            <p>
-              {r.decision_kind === "prioritisation"
-                ? "Ranking is recorded in the 15-point node; it adds no observations to the four-skill profile."
-                : r.skill_tags.length
-                  ? r.skill_tags.map((s) => skillLabel[s]).join(" · ")
-                  : "No mistake tag for this decision."}
-            </p>
-            {r.skill_tags.includes("degraded_sensor_response") && (
+            </section>
+            <section className="ghost-section">
+              <h3>Why</h3>
+              <p>{r.explanation}</p>
+              <small className="mono">{r.reason_code}</small>
+              {r.context_commands.length > 0 && (
+                <p className="ghost-context">
+                  Instructor context:{" "}
+                  {r.context_commands
+                    .map((seq) => {
+                      const c = record.commands?.find((x) => x.seq === seq);
+                      return c
+                        ? `#${seq} ${c.type.replaceAll("_", " ")} at ${tickLabel(c.tick)}`
+                        : `#${seq}`;
+                    })
+                    .join(" · ")}
+                </p>
+              )}
+            </section>
+            <details
+              className="ghost-section ground-truth"
+              data-evidence-scope="ground-truth"
+            >
+              <summary>Ground truth after review</summary>
+              <dl className="ghost-evidence">
+                <div>
+                  <dt>Type</dt>
+                  <dd>{KIND_LABEL[r.ground_truth.kind]}</dd>
+                </div>
+                <div>
+                  <dt>Identity</dt>
+                  <dd>{r.ground_truth.identity}</dd>
+                </div>
+                <div>
+                  <dt>Physical RF link</dt>
+                  <dd>{r.ground_truth.rf_link ? "Present" : "None"}</dd>
+                </div>
+                <div>
+                  <dt>Spawn</dt>
+                  <dd>{tickLabel(r.ground_truth.spawn_tick)}</dd>
+                </div>
+              </dl>
               <p className="footnote">
-                Sensor degradation is context; this tag does not prove it caused
-                the mistake.
+                These are reconstructed simulation facts, not a claim about what
+                the trainee knew.
               </p>
-            )}
-          </section>
+            </details>
+            <section className="ghost-section">
+              <h3>Consequence</h3>
+              <p>{r.consequence.text}</p>
+              <small className="mono">{r.consequence.reason_code}</small>
+            </section>
+            <section className="ghost-section">
+              <h3>Score impact</h3>
+              <strong>
+                {r.score_effect.node === "detect"
+                  ? "Detection"
+                  : r.score_effect.node === "classify"
+                    ? "Classification"
+                    : r.score_effect.node === "prioritise"
+                      ? "Prioritisation"
+                      : "Engagement"}
+                : {r.score_effect.points_awarded} /{" "}
+                {r.score_effect.points_possible}
+              </strong>
+              <p className="footnote">
+                Final contact node, shared across all attempts. This is not a
+                separate per-action award.
+              </p>
+              {r.score_effect.session_penalty > 0 && (
+                <p>
+                  Contact asset penalty: −{r.score_effect.session_penalty}{" "}
+                  {r.score_effect.penalty_basis === "scoring_projection"
+                    ? "(frozen-duration scoring projection, not an observed impact)"
+                    : "(observed impact)"}
+                </p>
+              )}
+              {r.score_effect.session_failure && (
+                <p className="amber-text">
+                  The recorded non-hostile response triggered the session safety
+                  rule.
+                </p>
+              )}
+            </section>
+            <section className="ghost-section">
+              <h3>Training skill</h3>
+              <p>
+                {r.decision_kind === "prioritisation"
+                  ? "Ranking is recorded in the 15-point node; it adds no observations to the four-skill profile."
+                  : r.skill_tags.length
+                    ? r.skill_tags.map((s) => skillLabel[s]).join(" · ")
+                    : "No mistake tag for this decision."}
+              </p>
+              {r.skill_tags.includes("degraded_sensor_response") && (
+                <p className="footnote">
+                  Sensor degradation is context; this tag does not prove it
+                  caused the mistake.
+                </p>
+              )}
+            </section>
+          </div>
         </div>
       )}
     </section>
@@ -402,7 +404,6 @@ export function GhostTimeline({
   record: TrainingRecord;
   onJump: (e: TimelineItem) => void;
 }) {
-  const [category, setCategory] = useState("all");
   const g = record.ghost_summary;
   if (!record.timeline || !g) return null;
   return (
@@ -516,13 +517,101 @@ export function GhostTimeline({
       <section className="panel ghost-timeline">
         <div className="panel-header">
           <div>
-            <Activity size={16} />
+            <Activity size={16} aria-hidden="true" />
             <strong>Exercise timeline</strong>
           </div>
+        </div>
+        <details className="evidence-disclosure timeline-provenance">
+          <summary>Recorded interval and scoring horizon</summary>
+          {record.replay_metadata ? (
+            <>
+              <p>
+                Observed interval ends at{" "}
+                {tickLabel(record.replay_metadata.observed_end_tick)}. Scoring
+                horizon: {tickLabel(record.replay_metadata.scoring_end_tick)}.
+              </p>
+              <p className="footnote">
+                {record.replay_metadata.note}
+                {record.replay_metadata.horizon_source === "last_recorded_event"
+                  ? " Legacy finish time is unknown; the reviewed interval ends at its last recorded event."
+                  : ""}
+              </p>
+            </>
+          ) : (
+            <p>
+              The server did not supply replay horizon metadata for this review.
+            </p>
+          )}
+        </details>
+        <TimelineEvents
+          key={record.id}
+          items={record.timeline}
+          onJump={onJump}
+        />
+      </section>
+    </>
+  );
+}
+
+/** Read-only investigation of the server's ordered timeline; no inferred events. */
+export function TimelineEvents({
+  items,
+  onJump,
+}: {
+  items: readonly TimelineItem[];
+  onJump: (event: TimelineItem) => void;
+}) {
+  const [category, setCategory] = useState("all");
+  const [query, setQuery] = useState("");
+  const [limit, setLimit] = useState(100);
+  const list = useRef<HTMLDivElement>(null);
+  const searchInput = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    if (limit > 100) {
+      // Keep keyboard users at the first newly revealed event, including when
+      // the final batch removes the load-more control.
+      const buttons =
+        list.current?.querySelectorAll<HTMLButtonElement>("button");
+      buttons?.item(limit - 100)?.focus();
+    }
+  }, [limit]);
+  const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const matching = items.filter((item) => {
+    if (category !== "all" && item.category !== category) return false;
+    const searchable =
+      `${item.track_id ?? ""} ${item.title} ${item.code} ${item.category.replaceAll("_", " ")} ${tickLabel(item.tick)}`.toLowerCase();
+    return terms.every((term) => searchable.includes(term));
+  });
+  function clear() {
+    setQuery("");
+    setCategory("all");
+    setLimit(100);
+    searchInput.current?.focus();
+  }
+  return (
+    <>
+      <div className="timeline-tools">
+        <label>
+          Find recorded evidence
+          <input
+            ref={searchInput}
+            type="search"
+            placeholder="Contact, event, reason or time…"
+            value={query}
+            onChange={(event) => {
+              setQuery(event.target.value);
+              setLimit(100);
+            }}
+          />
+        </label>
+        <label>
+          Timeline category
           <select
-            aria-label="Timeline category"
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={(event) => {
+              setCategory(event.target.value);
+              setLimit(100);
+            }}
           >
             <option value="all">All meaningful events</option>
             {[
@@ -534,42 +623,61 @@ export function GhostTimeline({
               "asset_impact",
               "score_error",
               "tactic_phase",
-            ].map((c) => (
-              <option key={c} value={c}>
-                {c.replaceAll("_", " ")}
+            ].map((value) => (
+              <option key={value} value={value}>
+                {value.replaceAll("_", " ")}
               </option>
             ))}
           </select>
-        </div>
-        <p className="footnote">
-          {record.replay_metadata?.note}
-          {record.replay_metadata?.horizon_source === "last_recorded_event"
-            ? " Legacy finish time is unknown; the reviewed interval ends at its last recorded event."
-            : ""}
+        </label>
+      </div>
+      <div className="timeline-results-bar">
+        <p role="status">
+          Showing {Math.min(limit, matching.length)} of {matching.length}{" "}
+          matching events · {items.length} recorded
         </p>
-        {!record.timeline.some(
-          (e) => category === "all" || e.category === category,
-        ) && <p role="status">No recorded events in this category.</p>}
-        <div className="timeline-list">
-          {record.timeline
-            .filter((e) => category === "all" || e.category === category)
-            .map((e) => (
-              <button
-                key={e.id}
-                className={`timeline-item ${e.category}`}
-                data-category={e.category}
-                onClick={() => onJump(e)}
-              >
-                <span className="mono">{tickLabel(e.tick)}</span>
-                <span>
-                  <small>{e.category.replaceAll("_", " ")}</small>
-                  {e.title}
-                </span>
-                <ChevronRight size={15} aria-hidden="true" />
-              </button>
-            ))}
-        </div>
-      </section>
+        {(query || category !== "all") && (
+          <button className="button subtle" onClick={clear}>
+            Clear timeline filters
+          </button>
+        )}
+      </div>
+      {!matching.length && (
+        <p className="timeline-empty">
+          {items.length
+            ? "No recorded events match these filters. Clear them or search for another contact or event."
+            : "No events are recorded in this review."}
+        </p>
+      )}
+      <div className="timeline-list" ref={list}>
+        {matching.slice(0, limit).map((item) => (
+          <button
+            key={item.id}
+            className={`timeline-item ${item.category}`}
+            data-category={item.category}
+            aria-label={`Jump to ${item.title} at ${tickLabel(item.tick)}${item.track_id ? ` · ${item.track_id}` : ""}`}
+            onClick={() => onJump(item)}
+          >
+            <span className="mono">{tickLabel(item.tick)}</span>
+            <span>
+              <small>
+                {item.category.replaceAll("_", " ")}
+                {item.track_id ? ` · ${item.track_id}` : ""}
+              </small>
+              {item.title}
+            </span>
+            <ChevronRight size={15} aria-hidden="true" />
+          </button>
+        ))}
+      </div>
+      {matching.length > limit && (
+        <button
+          className="button subtle timeline-load-more"
+          onClick={() => setLimit((current) => current + 100)}
+        >
+          Show {Math.min(100, matching.length - limit)} more recorded events
+        </button>
+      )}
     </>
   );
 }

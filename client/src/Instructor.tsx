@@ -23,6 +23,8 @@ export function statusRank(status: string) {
 export default function Instructor() {
   const { sessions, transport, error: feedError } = useInstructorFeed();
   const [selected, setSelected] = useState("");
+  const [sessionSearch, setSessionSearch] = useState("");
+  const [sessionScope, setSessionScope] = useState("all");
   const [bearing, setBearing] = useState(40);
   const [error, setError] = useState("");
   const [receipt, setReceipt] = useState<{
@@ -209,6 +211,17 @@ export default function Instructor() {
       {label}
     </button>
   );
+  const filteredSessions = sessions.filter((candidate) => {
+    const searchable =
+      `${candidate.callsign ?? candidate.trainee} ${candidate.scenario} ${candidate.id}`.toLowerCase();
+    return (
+      searchable.includes(sessionSearch.trim().toLowerCase()) &&
+      (sessionScope === "all" ||
+        (sessionScope === "live"
+          ? statusRank(candidate.status) < 3
+          : statusRank(candidate.status) === 3))
+    );
+  });
   return (
     <main className="instructor-page command-workspace">
       <header className="page-heading">
@@ -251,6 +264,19 @@ export default function Instructor() {
           </nav>
         </details>
       </header>
+      <div className="command-pulse" role="group" aria-label="Session overview">
+        <div>
+          <strong>
+            {sessions.filter((s) => statusRank(s.status) < 3).length}
+          </strong>
+          <span>active / paused / recoverable</span>
+        </div>
+        <div>
+          <strong>{roster.filter((r) => r.connected && !r.busy).length}</strong>
+          <span>connected and ready</span>
+        </div>
+        <a href="#white-cell">Open White Cell ↗</a>
+      </div>
       <p role="status">
         Live session transport: {transport}.{feedError && ` ${feedError}`}
       </p>
@@ -350,10 +376,35 @@ export default function Instructor() {
             <strong>Sessions</strong>
             <span>{sessions.length} saved</span>
           </div>
+          <div className="session-filters">
+            <label>
+              Find session
+              <input
+                type="search"
+                placeholder="Callsign, scenario or ID"
+                value={sessionSearch}
+                onChange={(e) => setSessionSearch(e.target.value)}
+              />
+            </label>
+            <label>
+              Show
+              <select
+                value={sessionScope}
+                onChange={(e) => setSessionScope(e.target.value)}
+              >
+                <option value="all">All sessions</option>
+                <option value="live">Live and recoverable</option>
+                <option value="history">Historical sessions</option>
+              </select>
+            </label>
+            <p role="status">
+              {filteredSessions.length} of {sessions.length} sessions
+            </p>
+          </div>
           <div className="instructor-sessions">
-            {sessions.length ? (
+            {filteredSessions.length ? (
               // Active sessions first; original server order is kept within each group.
-              [...sessions]
+              [...filteredSessions]
                 .map((s, i) => ({ s, i }))
                 .sort(
                   (a, b) =>
@@ -384,7 +435,11 @@ export default function Instructor() {
                   </button>
                 ))
             ) : (
-              <p>No sessions available. Start a trainee drill.</p>
+              <p>
+                {sessions.length
+                  ? "No matching sessions. Clear the search or change the filter."
+                  : "No sessions available. Start a trainee drill."}
+              </p>
             )}
           </div>
         </section>

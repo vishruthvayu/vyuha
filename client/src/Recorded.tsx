@@ -27,7 +27,9 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
     [actions, setActions] = useState<Action[]>([]),
     [error, setError] = useState(""),
     [result, setResult] = useState<unknown>(null),
-    [saving, setSaving] = useState(false);
+    [saving, setSaving] = useState(false),
+    [loading, setLoading] = useState(false),
+    [importing, setImporting] = useState(false);
   const upload = useRef<HTMLInputElement>(null),
     request = useRef(newId()),
     context = useRef(0),
@@ -63,14 +65,19 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
   useEffect(() => {
     const scope = context.current;
     let stopped = false;
-    if (rid)
+    if (rid) {
+      setLoading(true);
       void api<typeof record>(`/recordings/${rid}`)
         .then((r) => {
           if (!stopped && context.current === scope) setRecord(r);
         })
         .catch((e) => {
           if (!stopped && context.current === scope) setError(e.message);
+        })
+        .finally(() => {
+          if (!stopped && context.current === scope) setLoading(false);
         });
+    } else setLoading(false);
     return () => {
       stopped = true;
     };
@@ -98,7 +105,12 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
   }, [playing, record]);
   async function importFile() {
     const f = upload.current?.files?.[0];
-    if (!f) return;
+    if (!f) {
+      setError("Choose a JSON recording before importing.");
+      return;
+    }
+    setImporting(true);
+    setError("");
     const scope = context.current,
       importId = ++importRequest.current;
     try {
@@ -117,6 +129,8 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
     } catch (e) {
       if (context.current === scope && importRequest.current === importId)
         setError((e as Error).message);
+    } finally {
+      if (importRequest.current === importId) setImporting(false);
     }
   }
   const state = record ? recordedState(record.recording, tick) : null,
@@ -144,7 +158,7 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
     ]);
   }
   return (
-    <main className="instructor-page advanced-page utility-page">
+    <main className="instructor-page advanced-page utility-page recorded-page">
       <PageHeader
         eyebrow="OBSERVATION PRACTICE"
         title="Recorded practice"
@@ -155,36 +169,88 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
           </nav>
         }
       />
-      <p>
-        Recorded samples are held for at most one second, with no invented
-        motion between samples. No tactical score, impact simulation or skill
-        updates. Supplied ground truth is unverified; missing ground truth
-        remains unassessable.
+      <p className="recorded-scope">
+        <strong>Unscored observation practice.</strong> Recorded samples are
+        held for at most one second, with no invented motion between samples. No
+        tactical score, impact simulation or skill updates. Supplied ground
+        truth is unverified; missing ground truth remains unassessable.
       </p>
-      {error && <p role="alert">{error}</p>}
-      <section className="panel advanced-card">
-        <label>
-          Recorded JSON
-          <input type="file" accept=".json,application/json" ref={upload} />
-        </label>
-        <button className="button subtle" onClick={() => void importFile()}>
-          Validate and import JSON
-        </button>
-        <label>
-          Recorded exercise
-          <select value={rid} onChange={(e) => selectRecording(e.target.value)}>
-            <option value="">Select recording</option>
-            {list.map((r) => (
-              <option key={r.id} value={r.id}>
-                {r.title}
-              </option>
-            ))}
-          </select>
-        </label>
-        <a href="/examples/recorded-exercise.json" download>
-          Download schema example
-        </a>
+      {error && (
+        <p role="alert" className="recovery-banner">
+          {error}
+        </p>
+      )}
+      <section
+        className="panel advanced-card recorded-source"
+        aria-label="Choose a recording"
+      >
+        <div className="recorded-source-column">
+          <span className="eyebrow">IMPORT A RECORDING</span>
+          <p>
+            Validate a local JSON file, up to 7 MiB. The source observations
+            remain unchanged.
+          </p>
+          <label>
+            Recorded JSON
+            <input type="file" accept=".json,application/json" ref={upload} />
+          </label>
+          <button
+            className="button subtle"
+            disabled={importing}
+            onClick={() => void importFile()}
+          >
+            Validate and import JSON
+          </button>
+          <a href="/examples/recorded-exercise.json" download>
+            Download schema example
+          </a>
+        </div>
+        <div className="recorded-source-column">
+          <span className="eyebrow">OPEN FROM LIBRARY</span>
+          <p>Use an imported recording to rehearse observation and response.</p>
+          <label>
+            Recorded exercise
+            <select
+              value={rid}
+              onChange={(e) => selectRecording(e.target.value)}
+            >
+              <option value="">Select recording</option>
+              {list.map((r) => (
+                <option key={r.id} value={r.id}>
+                  {r.title}
+                </option>
+              ))}
+            </select>
+          </label>
+          {!list.length && (
+            <p className="authoring-meta">
+              Your recording library is empty. Import a recording to begin.
+            </p>
+          )}
+        </div>
       </section>
+      {importing && (
+        <p role="status" className="authoring-notice">
+          Validating and importing recording…
+        </p>
+      )}
+      {loading && (
+        <p role="status" className="authoring-notice">
+          Loading source observations…
+        </p>
+      )}
+      {!rid && (
+        <div className="recorded-empty">
+          <span className="eyebrow">
+            OBSERVE → DESIGNATE → CLASSIFY → RESPOND
+          </span>
+          <h3>Practise with recorded evidence</h3>
+          <p>
+            Open a recording above to begin. Select a currently observed track,
+            record your decisions, then save an unscored reference review.
+          </p>
+        </div>
+      )}
       {record && state && (
         <section className="panel advanced-card">
           <h2>{record.recording.title}</h2>
@@ -202,136 +268,146 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
             T+{(tick / 30).toFixed(2)}s /{" "}
             {(record.recording.duration_ticks / 30).toFixed(2)}s
           </p>
-          <Radar state={state} selected={track} onSelect={setTrack} large />
-          <label>
-            Observed track
-            <select
-              disabled={saving}
-              value={track}
-              onChange={(e) => setTrack(e.target.value)}
-            >
-              <option value="">Select track</option>
-              {state.tracks.map((t) => (
-                <option key={t.id}>{t.id}</option>
-              ))}
-            </select>
-          </label>
-          <p>
-            {ev
-              .map(
-                (e) =>
-                  `${e.sensor}: ${e.detected ? "observed" : "no return"}${e.iff ? " · " + e.iff : ""}`,
-              )
-              .join(" · ")}
-          </p>
-          {track && !currentTrack && (
-            <p role="status">
-              No current recorded observation for {track}. Wait for a new sample
-              or choose an observed track.
-            </p>
-          )}
-          <button
-            className="button subtle"
-            disabled={saving || result !== null || !currentTrack}
-            onClick={() => decide("designate")}
-          >
-            Designate
-          </button>
-          <label>
-            Type
-            <select
-              disabled={saving}
-              value={kind}
-              onChange={(e) => setKind(e.target.value as Kind)}
-            >
-              {["bird", "quad", "fixed_wing", "fiber_fpv"].map((k) => (
-                <option key={k}>{k}</option>
-              ))}
-            </select>
-          </label>
-          <label>
-            Identity
-            <select
-              disabled={saving}
-              value={category}
-              onChange={(e) => setCategory(e.target.value as Identity)}
-            >
-              {["friendly", "neutral", "hostile"].map((k) => (
-                <option key={k}>{k}</option>
-              ))}
-            </select>
-          </label>
-          <button
-            className="button subtle"
-            disabled={
-              saving ||
-              !currentTrack ||
-              result !== null ||
-              !actions.some((a) => a.track === track && a.k === "designate")
-            }
-            onClick={() => decide("classify")}
-          >
-            Record classification
-          </button>
-          <label>
-            Response
-            <select
-              disabled={saving}
-              value={effector}
-              onChange={(e) => setEffector(e.target.value as Effector)}
-            >
-              {["hold", "rf_jam", "kinetic"].map((k) => (
-                <option key={k}>{k}</option>
-              ))}
-            </select>
-          </label>
-          <button
-            className="button subtle"
-            disabled={
-              saving ||
-              !currentTrack ||
-              result !== null ||
-              !actions.some((a) => a.track === track && a.k === "classify")
-            }
-            onClick={() => decide("engage")}
-          >
-            Record response
-          </button>
-          <p>
-            {actions.length} recorded decisions. Responses do not alter the
-            imported track history.
-          </p>
-          <button
-            className="button primary"
-            disabled={saving || result !== null}
-            onClick={() => {
-              if (pendingSave.current) return;
-              pendingSave.current = true;
-              setSaving(true);
-              setError("");
-              setPlaying(false);
-              const scope = context.current;
-              void api(`/recordings/${rid}/practice`, {
-                request_id: request.current,
-                trainee_id: identity?.trainee_id ?? "CADET-01",
-                actions,
-              })
-                .then((review) => {
-                  if (context.current === scope) setResult(review);
-                })
-                .catch((e) => {
-                  if (context.current === scope) setError(e.message);
-                })
-                .finally(() => {
-                  if (context.current === scope) {
-                    pendingSave.current = false;
-                    setSaving(false);
-                  }
-                });
-            }}
-          >
-            {saving ? "Saving practice review…" : "Save practice review"}
-          </button>
+          <div className="recorded-workbench">
+            <div className="recorded-picture">
+              <Radar state={state} selected={track} onSelect={setTrack} large />
+              <p className="authoring-meta">
+                Only currently observed tracks can receive decisions. Samples
+                expire after one second.
+              </p>
+            </div>
+            <div className="recorded-decisions">
+              <label>
+                Observed track
+                <select
+                  disabled={saving}
+                  value={track}
+                  onChange={(e) => setTrack(e.target.value)}
+                >
+                  <option value="">Select track</option>
+                  {state.tracks.map((t) => (
+                    <option key={t.id}>{t.id}</option>
+                  ))}
+                </select>
+              </label>
+              <p>
+                {ev
+                  .map(
+                    (e) =>
+                      `${e.sensor}: ${e.detected ? "observed" : "no return"}${e.iff ? " · " + e.iff : ""}`,
+                  )
+                  .join(" · ")}
+              </p>
+              {track && !currentTrack && (
+                <p role="status">
+                  No current recorded observation for {track}. Wait for a new
+                  sample or choose an observed track.
+                </p>
+              )}
+              <button
+                className="button subtle"
+                disabled={saving || result !== null || !currentTrack}
+                onClick={() => decide("designate")}
+              >
+                Designate
+              </button>
+              <label>
+                Type
+                <select
+                  disabled={saving}
+                  value={kind}
+                  onChange={(e) => setKind(e.target.value as Kind)}
+                >
+                  {["bird", "quad", "fixed_wing", "fiber_fpv"].map((k) => (
+                    <option key={k}>{k}</option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                Identity
+                <select
+                  disabled={saving}
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value as Identity)}
+                >
+                  {["friendly", "neutral", "hostile"].map((k) => (
+                    <option key={k}>{k}</option>
+                  ))}
+                </select>
+              </label>
+              <button
+                className="button subtle"
+                disabled={
+                  saving ||
+                  !currentTrack ||
+                  result !== null ||
+                  !actions.some((a) => a.track === track && a.k === "designate")
+                }
+                onClick={() => decide("classify")}
+              >
+                Record classification
+              </button>
+              <label>
+                Response
+                <select
+                  disabled={saving}
+                  value={effector}
+                  onChange={(e) => setEffector(e.target.value as Effector)}
+                >
+                  {["hold", "rf_jam", "kinetic"].map((k) => (
+                    <option key={k}>{k}</option>
+                  ))}
+                </select>
+              </label>
+              <button
+                className="button subtle"
+                disabled={
+                  saving ||
+                  !currentTrack ||
+                  result !== null ||
+                  !actions.some((a) => a.track === track && a.k === "classify")
+                }
+                onClick={() => decide("engage")}
+              >
+                Record response
+              </button>
+              <p role="status" className="recorded-decision-count">
+                {actions.length} recorded decisions. Responses do not alter the
+                imported track history.
+              </p>
+              <button
+                className="button primary"
+                disabled={saving || result !== null}
+                onClick={() => {
+                  if (pendingSave.current) return;
+                  pendingSave.current = true;
+                  setSaving(true);
+                  setError("");
+                  setPlaying(false);
+                  const scope = context.current;
+                  void api(`/recordings/${rid}/practice`, {
+                    request_id: request.current,
+                    trainee_id: identity?.trainee_id ?? "CADET-01",
+                    actions,
+                  })
+                    .then((review) => {
+                      if (context.current === scope) setResult(review);
+                    })
+                    .catch((e) => {
+                      if (context.current === scope) setError(e.message);
+                    })
+                    .finally(() => {
+                      if (context.current === scope) {
+                        pendingSave.current = false;
+                        setSaving(false);
+                      }
+                    });
+                }}
+              >
+                {saving ? "Saving practice review…" : "Save practice review"}
+              </button>
+            </div>
+          </div>
         </section>
       )}
       {result !== null && (
@@ -352,7 +428,14 @@ export default function Recorded({ identity }: { identity?: UnitIdentity }) {
           >
             Start new practice
           </button>
-          <pre>{JSON.stringify(result, null, 2)}</pre>
+          <p role="status">
+            Practice saved. This reference review does not create a tactical
+            score or update your training profile.
+          </p>
+          <details className="authoring-provenance">
+            <summary>Inspect decisions and reference evidence</summary>
+            <pre>{JSON.stringify(result, null, 2)}</pre>
+          </details>
           <button
             className="button subtle"
             onClick={() => download("recorded-practice.json", result)}

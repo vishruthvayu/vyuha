@@ -62,11 +62,18 @@ export function ComplianceBoard({
     initialFinding ? "all" : "official",
   );
   const [focused, setFocused] = useState(initialFinding);
+  const [query, setQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
   const sourceRows =
     scope === "official" ? officialItems(manifest) : manifest.items;
-  const rows = focused
-    ? sourceRows.filter((row) => row.id === focused)
-    : sourceRows;
+  const rows = sourceRows.filter(
+    (row) =>
+      (!focused || row.id === focused) &&
+      (statusFilter === "all" || row.status === statusFilter) &&
+      `${row.id} ${row.audit_finding} ${row.implementation} ${row.remaining_limitation}`
+        .toLowerCase()
+        .includes(query.trim().toLowerCase()),
+  );
   return (
     <main className="instructor-page">
       <PageHeader
@@ -113,6 +120,36 @@ export function ComplianceBoard({
           depth remain quality objectives. They are not presented as additional
           verbatim official clauses.
         </p>
+        <div className="evidence-filters">
+          <label>
+            Search requirements and limits
+            <input
+              type="search"
+              value={query}
+              placeholder="Requirement, evidence or limitation"
+              onChange={(e) => setQuery(e.target.value)}
+            />
+          </label>
+          <label>
+            Recorded acceptance status
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+            >
+              <option value="all">All recorded statuses</option>
+              {[...new Set(sourceRows.map((row) => row.status))].map(
+                (status) => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ),
+              )}
+            </select>
+          </label>
+          <p role="status">
+            {rows.length} of {sourceRows.length} findings in this scope
+          </p>
+        </div>
         <label>
           Focus finding
           <select value={focused} onChange={(e) => setFocused(e.target.value)}>
@@ -124,9 +161,11 @@ export function ComplianceBoard({
             ))}
           </select>
         </label>
-        {focused && !rows.length && (
+        {!rows.length && (
           <p role="alert">
-            This finding is unavailable. Select another recorded finding.
+            {focused && !sourceRows.some((row) => row.id === focused)
+              ? "This finding is unavailable. Select another recorded finding."
+              : "No findings match these filters. Clear the search or choose another status or finding."}
           </p>
         )}
         {scope === "official" ? (

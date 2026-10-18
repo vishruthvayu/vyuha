@@ -1,0 +1,122 @@
+{
+  "source_parent": "d1f2ae5be91fbf84fe422616b790f9237d35c2d3",
+  "working_diff_sha256": "c2655f5245b45ece9b2e7eac1643913a2ed3caf0f72e6fcded39ffc98b779bbe",
+  "scope": "Actual server-verified synthetic AAR; read-only browser filtering and replay seeking, no physical or scientific claim",
+  "aar_sha256_before": "63cf80b988c74d55a125a535e491cd597d472c98f5171d5dcf1c924b22cec8d3",
+  "aar_sha256_after": "63cf80b988c74d55a125a535e491cd597d472c98f5171d5dcf1c924b22cec8d3",
+  "non_read_requests": [],
+  "results": [
+    {
+      "width": 360,
+      "contact_filter_matches": 6,
+      "zero_match_and_clear": "PASS",
+      "category_filter": "PASS",
+      "replay_jump_aar_unchanged": true,
+      "document_width": 360,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      }
+    },
+    {
+      "width": 390,
+      "contact_filter_matches": 6,
+      "zero_match_and_clear": "PASS",
+      "category_filter": "PASS",
+      "replay_jump_aar_unchanged": true,
+      "document_width": 390,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      }
+    },
+    {
+      "width": 428,
+      "contact_filter_matches": 6,
+      "zero_match_and_clear": "PASS",
+      "category_filter": "PASS",
+      "replay_jump_aar_unchanged": true,
+      "document_width": 428,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      }
+    },
+    {
+      "width": 768,
+      "contact_filter_matches": 6,
+      "zero_match_and_clear": "PASS",
+      "category_filter": "PASS",
+      "replay_jump_aar_unchanged": true,
+      "document_width": 768,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      }
+    },
+    {
+      "width": 1024,
+      "contact_filter_matches": 6,
+      "zero_match_and_clear": "PASS",
+      "category_filter": "PASS",
+      "replay_jump_aar_unchanged": true,
+      "document_width": 1024,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      }
+    },
+    {
+      "width": 1280,
+      "contact_filter_matches": 6,
+      "zero_match_and_clear": "PASS",
+      "category_filter": "PASS",
+      "replay_jump_aar_unchanged": true,
+      "document_width": 1280,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      }
+    },
+    {
+      "width": 1440,
+      "contact_filter_matches": 6,
+      "zero_match_and_clear": "PASS",
+      "category_filter": "PASS",
+      "replay_jump_aar_unchanged": true,
+      "document_width": 1440,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      }
+    },
+    {
+      "width": 1920,
+      "contact_filter_matches": 6,
+      "zero_match_and_clear": "PASS",
+      "category_filter": "PASS",
+      "replay_jump_aar_unchanged": true,
+      "document_width": 1920,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      }
+    }
+  ]
+}

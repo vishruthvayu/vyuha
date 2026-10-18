@@ -244,9 +244,20 @@ export function UnitAnalytics({
   onOpen: (record: TrainingRecord) => void;
   onSelect: (id: string) => void;
 }) {
+  const [query, setQuery] = useState("");
+  const matches = (value: string) =>
+    value.toLowerCase().includes(query.trim().toLowerCase());
+  const trainees = report.trainees.filter((person) =>
+    matches(`${person.callsign} ${person.trainee_id}`),
+  );
+  const sessions = report.sessions.filter((record) =>
+    matches(
+      `${record.trainee} ${record.scenario.title} ${record.id} ${report.trainees.find((person) => person.trainee_id === record.trainee)?.callsign ?? ""}`,
+    ),
+  );
   return (
     <>
-      <div className="metric-grid">
+      <div className="metric-grid unit-summary-band">
         <article className="metric">
           <span>Registered trainees</span>
           <strong>{report.trainee_count}</strong>
@@ -297,6 +308,21 @@ export function UnitAnalytics({
             : "Join trainees to establish a baseline."}
         </p>
       </section>
+      <div className="unit-evidence-filter">
+        <label>
+          Find trainee or exercise
+          <input
+            type="search"
+            value={query}
+            placeholder="Callsign, exercise or session ID"
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </label>
+        <p role="status">
+          {trainees.length} matching profiles · {sessions.length} matching
+          sessions. Unit summary includes the full cohort.
+        </p>
+      </div>
       <section className="panel score-table">
         <div className="panel-header">
           <strong>Trainee profiles</strong>
@@ -319,7 +345,7 @@ export function UnitAnalytics({
               </tr>
             </thead>
             <tbody>
-              {report.trainees.map((t) => (
+              {trainees.map((t) => (
                 <tr key={t.trainee_id}>
                   <td>
                     <button
@@ -390,7 +416,7 @@ export function UnitAnalytics({
           <strong>Verified session history</strong>
         </div>
         <div className="record-list">
-          {report.sessions.map((r) => (
+          {sessions.map((r) => (
             <button key={r.id} onClick={() => onOpen(r)}>
               <span>
                 {report.trainees.find((t) => t.trainee_id === r.trainee)

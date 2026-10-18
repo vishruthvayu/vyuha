@@ -1,0 +1,64 @@
+{
+  "base_commit": "db0ff23a67692d3db5dce07a031d17ea50a409b3",
+  "tested_runtime_commit": "10a63fefba2201aa9c343d18ca1b0d3b24c0a112",
+  "branch": "feature/vyuha-final-hardening",
+  "runtime_inputs": 326,
+  "runtime_inventory_sha256": "6604c33535bb14aadecefece4cd20f9c4ed143a767b2257633696fe973cf5425",
+  "runtime_worktree_diff": "",
+  "backend": {
+    "passed": 708,
+    "failed": 0,
+    "seconds": 263.13,
+    "warnings": 1,
+    "warning_scope": "Existing pinned Starlette/HTTPX TestClient deprecation"
+  },
+  "frontend": {
+    "passed": 289,
+    "failed": 0,
+    "milliseconds": 18216.200783,
+    "parity": "PASS; included in full frontend suite"
+  },
+  "lint": "PASS",
+  "format": "PASS",
+  "production_build": "PASS",
+  "offline_asset_urls": 36,
+  "offline_cache": "771931f02a59",
+  "clean_clone": "PASS; local clone exact final runtime SHA; Python interpreter reused with pinned dependencies",
+  "docker": "PASS; native/repeated/container assets match; non-root isolated startup/restart smoke",
+  "browser": {
+    "viewport_route_cases": 80,
+    "matrix_source": "7f028a8367f2eb047c90ac781bdf4dc5594b28b7",
+    "matrix_axe_scans": 20,
+    "matrix_violations": 0,
+    "matrix_document_overflow": 0,
+    "final_semantic_scans": 6,
+    "final_semantic_source": "10a63fefba2201aa9c343d18ca1b0d3b24c0a112",
+    "final_semantic_violations": 0,
+    "manual_incomplete_checks_retained": true,
+    "full_screen_reader_audit": false
+  },
+  "synthetic_production_acceptance": "PASS; see ISOLATED-ACCEPTANCE.json",
+  "audit_inherited_status_counts": {
+    "VERIFIED COMPLETE": 93,
+    "PARTIAL": 71,
+    "DEFERRED": 29,
+    "EXTERNALLY BLOCKED": 17,
+    "NOT APPLICABLE": 1
+  },
+  "closed_new_software_defects": [
+    "Malformed command stream Last-Event-ID validation",
+    "Page failure recovery without lost navigation",
+    "Mobile roster, evidence-switch, tab-focus, contrast, target sizing and misleading empty CTA findings"
+  ],
+  "remaining": [
+    "Private original 18/22-session database revalidation unavailable here",
+    "Direct user visual acceptance",
+    "Parallel 3D/guided drill integration and merged-source acceptance",
+    "Physical Windows/native Linux/Android",
+    "Separate-device trusted LAN HTTPS and physical WAN-off",
+    "Scientific/empirical calibration; not inferred from software checks"
+  ],
+  "release_candidate": null,
+  "visual_developer_integrated_sha": null,
+  "combined_source_sha": null
+}
