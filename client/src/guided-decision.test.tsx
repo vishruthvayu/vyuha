@@ -709,12 +709,12 @@ test(
     const radio = document.querySelector<HTMLInputElement>(
       'input[value="quad"]',
     )!;
-    assert.equal(radio.disabled, true);
+    assert.equal(radio.closest("fieldset")?.disabled, true);
     assert.equal(document.querySelectorAll(".guided-stage").length, 5);
     const d = contact({ designated: 140 });
     await view.rerender({ target: d, record: decisionRecord(d) });
     assert.equal(document.querySelector('input[value="quad"]') === radio, true);
-    assert.equal(radio.disabled, false);
+    assert.equal(radio.closest("fieldset")?.disabled, false);
     assert.equal(
       document.querySelectorAll('.guided-stage[inert][aria-hidden="true"]')
         .length,
