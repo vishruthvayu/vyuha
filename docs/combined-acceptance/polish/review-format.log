@@ -1,0 +1,6 @@
+
+> vyuha-trainer@1.1.0-rc.3 format:check
+> prettier --check "src/*.tsx" src/useModalFocus.ts src/useRenderingQuality.ts src/useOfflineStatus.ts src/useWorkspaceNavigation.ts src/useCommandTransport.ts src/useContactMemory.ts
+
+Checking formatting...
+All matched files use Prettier code style!
