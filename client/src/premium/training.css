@@ -455,6 +455,9 @@
   padding: 0 7px;
   font-size: 9.5px;
 }
+.sensor-workspace > .radar-panel .panel-header .status.amber {
+  color: var(--amber-500);
+}
 .sensor-workspace > .radar-panel .radar {
   padding: var(--s-1) var(--s-2) var(--s-2);
 }
