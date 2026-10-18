@@ -452,6 +452,9 @@
   background: var(--cyan-wash);
   border-color: rgb(140 203 214 / 0.45);
 }
+#white-cell .command-overview > .button[aria-pressed="true"] span {
+  color: var(--n-900);
+}
 #white-cell .command-detail {
   margin-top: var(--s-4);
   background: transparent;
