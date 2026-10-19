@@ -116,9 +116,16 @@ export function vrAction(
 ): Omit<Action, "tick"> | undefined {
   const t = targetAt(state, selected, modernSensors(scenario));
   if (controlReason(k === "engage" ? "respond" : k, phase, t)) return;
+  // Preserve browser training semantics: resource/range/ROE warnings do not
+  // erase the trainee's ability to record a warned attempt. The engine decides
+  // blocked/effective outcomes and scores them. Only the same disabled gates
+  // used by GuidedDecision prevent submitting an attempt.
   if (
     k === "engage" &&
-    (!effector || vrResponseReason(state, phase, scenario, selected, effector))
+    (!effector ||
+      effectorStates(phase, t, scenario, state.response, state.tick).find(
+        (x) => x.effector === effector,
+      )?.disabled)
   )
     return;
   return k === "classify"
@@ -132,6 +139,7 @@ export type PendingResponse = {
   track: string;
   effector: Effector;
   until: number;
+  reason?: string;
 };
 export function validConfirmation(
   p: PendingResponse | null,
@@ -140,6 +148,7 @@ export function validConfirmation(
   phase: VRPhase,
   now: number,
   available: boolean,
+  reason?: string,
 ) {
   return (
     !!p &&
@@ -147,6 +156,7 @@ export function validConfirmation(
     p.track === selected &&
     phase === "running" &&
     now < p.until &&
+    p.reason === reason &&
     available
   );
 }
@@ -240,4 +250,10 @@ export class VRSessionLifecycle {
       void s.end().catch(() => {});
     }
   }
+}
+
+export function supportedVRInput(
+  source: Pick<XRInputSource, "targetRayMode" | "hand">,
+) {
+  return source.targetRayMode === "tracked-pointer" && !source.hand;
 }

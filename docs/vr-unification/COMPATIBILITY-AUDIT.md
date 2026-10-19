@@ -28,3 +28,13 @@ The browser worktree and its 72 asset digests, protected tags and source inputs 
 ## Acceptance status
 
 This is the pre-integration audit, not a completion certificate. The final report must attach exact-source tests and browser receipts to every implemented gate. Historical browser and VR results do not validate the new runtime.
+
+## Integration decisions discovered during implementation
+
+- Range, resources, cooldown and ROE use the same `effectorStates` disabled gates and warnings as GuidedDecision. A warned attempt remains recordable; VR must not eliminate mistakes or penalties that the browser can record. The confirmation captures the public warning and cancels on a change. It rechecks time and warning at activation.
+- A contact selection clears the confirmation latch synchronously, including two controller events before React commits. In-flight requests stay locked until their correlated receipt; older/different receipts do not unlock them.
+- No pre-start contacts are passed to the cockpit. Fusion exposure and optional confidence are not attributed to VR decisions when those panels are not displayed; accepted receipts and existing browser Fusion history remain intact.
+- The console uses a display overlay depth policy to remain readable when scenery crosses it. Aircraft still use observed-only projections, native stereo depth and the modern decorative-obstruction marker. No hidden contact is introduced by the overlay.
+- IWER starts at its default 1.6 m local reference origin. The test harness maps controller heights to the product’s fixed 2 m sensor rig; this is harness calibration, not physical ergonomics evidence.
+- The contact selector reuses browser list-only last-report memory. Stale rows are explicitly labelled and disabled; neither rendering, evidence nor action eligibility uses list memory. Four slots and paging bound the console and desktop layout.
+- IWER QA runs on a separate loopback proxy origin. Its SSE forwarding preserves native command streaming; it never modifies production index/assets or ships the emulator in dist.

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { VRSessionLifecycle,checkVRSupport,vrAction,vrContacts,vrEvidence,vrRenderContacts,validConfirmation } from './vr';
+import { VRSessionLifecycle,checkVRSupport,vrAction,vrContacts,vrEvidence,vrRenderContacts,validConfirmation,supportedVRInput,vrResponseReason } from './vr';
 import { observeSensors, SENSOR_VERSION } from './sensors-v2';
 import { ObservationVisibility } from './visibility';
 import { Simulation,replay,score } from './sim';
@@ -48,20 +48,22 @@ test('VR optical loss holds only frozen observation for six ticks, failed channe
  track.observation!.eo.available=false;
  assert.deepEqual(vrRenderContacts(state,scenario,'day',v,'a'),[]);
 });
-test('VR actions preserve phase, designation, classification, resource, cooldown and restriction gates',()=>{
+test('VR mirrors browser disabled gates and retains warned resource/cooldown/restriction attempts',()=>{
  const {state,scenario,track}=fixture();
  const a=(k:Action['k'],e:'hold'|'rf_jam'|'kinetic'='hold')=>vrAction(state,'running',scenario,'T1',k,'quad','hostile',e);
  assert.equal(vrAction(state,'paused',scenario,'T1','designate','quad','hostile'),undefined);
  assert.equal(a('classify'),undefined);assert.equal(a('engage'),undefined);assert.deepEqual(a('designate'),{k:'designate',track:'T1'});
  track.designated=60;assert.equal(a('designate'),undefined);assert.ok(a('classify'));track.classification='quad';assert.ok(a('engage','kinetic'));
  state.response={version:1,kinetic_ammo_remaining:0,kinetic_ready_tick:0,jammer_channels_in_use:1,pending:[],attempts:[]};
- assert.equal(a('engage','kinetic'),undefined);
- scenario.response_model={jammer_channels:1} as Scenario['response_model'];assert.equal(a('engage','rf_jam'),undefined);
- state.response.kinetic_ammo_remaining=1;state.response.kinetic_ready_tick=61;assert.equal(a('engage','kinetic'),undefined);
+ assert.ok(a('engage','kinetic'));assert.ok(vrResponseReason(state,'running',scenario,'T1','kinetic'));
+ scenario.response_model={jammer_channels:1} as Scenario['response_model'];assert.ok(a('engage','rf_jam'));assert.ok(vrResponseReason(state,'running',scenario,'T1','rf_jam'));
+ state.response.kinetic_ammo_remaining=1;state.response.kinetic_ready_tick=61;assert.ok(a('engage','kinetic'));assert.ok(vrResponseReason(state,'running',scenario,'T1','kinetic'));
  state.response.kinetic_ready_tick=0;
- track.observation!.ir.position={x:-80,z:80,altitude:10};assert.equal(a('engage','kinetic'),undefined);
- track.observation!.ir.position={x:800,z:800,altitude:10};assert.equal(a('engage','rf_jam'),undefined);
+ track.observation!.ir.position={x:-80,z:80,altitude:10};assert.ok(a('engage','kinetic'));assert.ok(vrResponseReason(state,'running',scenario,'T1','kinetic'));
+ track.observation!.ir.position={x:800,z:800,altitude:10};assert.ok(a('engage','rf_jam'));assert.ok(vrResponseReason(state,'running',scenario,'T1','rf_jam'));
  track.active=false;assert.equal(a('classify'),undefined);
+ const pending={session:'one',track:'T1',effector:'kinetic' as const,until:9000,reason:undefined};
+ assert.equal(validConfirmation(pending,'one','T1','running',1000,true,'No rounds remain.'),false);
 });
 test('VR second confirmation invalidates contact/session/phase/timeout/availability changes',()=>{
  const p={session:'one',track:'T1',effector:'hold' as const,until:9000};
@@ -117,4 +119,11 @@ test('pending session request is ended if cockpit unmounts; concurrent requests 
 test('session ending during renderer attachment never publishes an active cockpit',async()=>{
  const s=new Session(),status:boolean[]=[];const life=new VRSessionLifecycle(()=>{},a=>status.push(a));
  await life.enter(xr(s),async()=>{await s.end();});assert.deepEqual(status,[false]);assert.equal(life.session,null);
+});
+
+test('immersive input accepts tracked controllers, rejects gaze and hands',()=>{
+ assert.equal(supportedVRInput({targetRayMode:'tracked-pointer',hand:undefined}),true);
+ assert.equal(supportedVRInput({targetRayMode:'gaze',hand:undefined}),false);
+ assert.equal(supportedVRInput({targetRayMode:'screen',hand:undefined}),false);
+ assert.equal(supportedVRInput({targetRayMode:'tracked-pointer',hand:{} as XRHand}),false);
 });

@@ -8,6 +8,8 @@ import {
 } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
+import { useContactMemory } from "./useContactMemory";
+import { RenderFrameMeter } from "./render-contacts";
 import { VRWorld } from "./VRWorld";
 import type { Vision } from "./visibility";
 import type { ActionFeedback } from "./GuidedDecision";
@@ -25,17 +27,19 @@ import {
   checkVRSupport,
   VRSessionLifecycle,
   vrAction,
-  vrContacts,
+  vrObservedState,
+  type VRContact,
   vrEvidence,
+  vrResponseReason,
   vrIdentities,
   vrKinds,
   modernSensors,
+  supportedVRInput,
   validConfirmation,
   type PendingResponse,
   type VRPhase,
   type XRSupport,
 } from "./vr";
-import "./vr.css";
 
 type Button = { id: string; label: string; enabled: boolean; run: () => void };
 type Props = {
@@ -85,17 +89,6 @@ class VRBoundary extends Component<
   }
 }
 // Each label is a real scene surface: it remains visible in immersive mode without DOM-overlay support.
-function NoGraphics({ onSuspend }: { onSuspend: () => void }) {
-  useEffect(() => {
-    onSuspend();
-  }, [onSuspend]);
-  return (
-    <p role="alert">
-      WebGL unavailable. The exercise is paused; close the cockpit to use the
-      tactical view.
-    </p>
-  );
-}
 function Surface({
   text,
   position,
@@ -147,6 +140,7 @@ function Surface({
   return (
     <mesh
       position={position}
+      renderOrder={20}
       name={button?.id ?? "readout"}
       userData={{ vrButton: button }}
       onClick={(e) => {
@@ -157,7 +151,13 @@ function Surface({
       }}
     >
       <planeGeometry args={[width, height]} />
-      <meshBasicMaterial map={texture} toneMapped={false} fog={false} />
+      <meshBasicMaterial
+        map={texture}
+        toneMapped={false}
+        fog={false}
+        depthTest={false}
+        depthWrite={false}
+      />
     </mesh>
   );
 }
@@ -167,6 +167,7 @@ function Runtime({
   onStatus,
   onFault,
   onInput,
+  onMetrics,
 }: {
   ready: (
     renderer: THREE.WebGLRenderer | null,
@@ -176,11 +177,14 @@ function Runtime({
   onStatus: (active: boolean) => void;
   onFault: (message: string) => void;
   onInput: (message: string) => void;
+  onMetrics: (message: string) => void;
 }) {
   const { gl, scene, camera } = useThree();
-  const latest = useRef({ onSuspend, onStatus, onFault, onInput });
-  latest.current = { onSuspend, onStatus, onFault, onInput };
+  const latest = useRef({ onSuspend, onStatus, onFault, onInput, onMetrics });
+  latest.current = { onSuspend, onStatus, onFault, onInput, onMetrics };
   const surfaces = useRef<THREE.Object3D[]>([]);
+  const meter = useRef(new RenderFrameMeter());
+  const rayCost = useRef(0);
   const pointers = useRef<
     { controller: THREE.XRTargetRaySpace; ray: THREE.Line; dot: THREE.Mesh }[]
   >([]);
@@ -207,8 +211,8 @@ function Runtime({
         latest.current.onStatus(active);
         const session = gl.xr.getSession();
         const inputs = () => {
-          const count = Array.from(session?.inputSources ?? []).filter(
-            (s) => s.targetRayMode === "tracked-pointer" && !s.hand,
+          const count = Array.from(session?.inputSources ?? []).filter((s) =>
+            supportedVRInput(s),
           ).length;
           latest.current.onInput(
             active
@@ -264,9 +268,18 @@ function Runtime({
       dot.renderOrder = 11;
       scene.add(dot);
       dot.visible = false;
+      const connected = (event: { data: XRInputSource }) => {
+        controller.userData.supportedRay = supportedVRInput(event.data);
+      };
+      const disconnected = () => {
+        controller.userData.supportedRay = false;
+      };
+      controller.addEventListener("connected", connected);
+      controller.addEventListener("disconnected", disconnected);
       const select = () => {
         if (
           !gl.xr.isPresenting ||
+          !controller.userData.supportedRay ||
           lifecycle.session?.visibilityState !== "visible"
         )
           return;
@@ -278,6 +291,8 @@ function Runtime({
       pointers.current.push({ controller, ray, dot });
       cleanups.push(() => {
         controller.removeEventListener("select", select);
+        controller.removeEventListener("connected", connected);
+        controller.removeEventListener("disconnected", disconnected);
         controller.remove(ray);
         rig.remove(controller);
         scene.remove(dot);
@@ -309,13 +324,36 @@ function Runtime({
       scene.remove(rig);
     };
   }, [gl, scene, camera, rig, ready, raycaster, rotation]);
-  useFrame(() => {
+  useFrame(({ clock }) => {
+    const fps = meter.current.sample(clock.elapsedTime);
+    if (fps !== null)
+      latest.current.onMetrics(
+        JSON.stringify({
+          mode: gl.xr.isPresenting
+            ? "emulated-or-physical-XR"
+            : "desktop-preview",
+          fps,
+          frameIntervals: meter.current.frameIntervals(),
+          drawCalls: gl.info.render.calls,
+          triangles: gl.info.render.triangles,
+          geometries: gl.info.memory.geometries,
+          textures: gl.info.memory.textures,
+          buttonSurfaces: surfaces.current.length,
+          scope:
+            "previous WebGL render / callback intervals, not GPU timings or total process memory",
+        }),
+      );
+    const rayStart = performance.now();
     surfaces.current = [];
     scene.traverse((o) => {
       if (o.userData.vrButton) surfaces.current.push(o);
     });
     for (const { controller, ray, dot } of pointers.current) {
-      if (!gl.xr.isPresenting || !controller.visible) {
+      if (
+        !gl.xr.isPresenting ||
+        !controller.visible ||
+        !controller.userData.supportedRay
+      ) {
         dot.visible = false;
         continue;
       }
@@ -334,6 +372,7 @@ function Runtime({
         );
       }
     }
+    rayCost.current = performance.now() - rayStart;
   });
   return null;
 }
@@ -342,15 +381,18 @@ function Cockpit({
   buttons,
   page,
   setPage,
+  inputStatus,
+  contacts,
 }: {
   props: Props;
   buttons: Button[];
   page: number;
   setPage: (n: number) => void;
+  inputStatus: string;
+  contacts: (VRContact & { available: boolean })[];
 }) {
   const { state, scenario, phase, selected, vision } = props;
-  const contacts = vrContacts(state, modernSensors(scenario)),
-    pages = Math.max(1, Math.ceil(contacts.length / 4)),
+  const pages = Math.max(1, Math.ceil(contacts.length / 4)),
     safePage = Math.min(page, pages - 1);
   return (
     <>
@@ -382,8 +424,8 @@ function Cockpit({
       {contacts.slice(safePage * 4, safePage * 4 + 4).map((t, i) => {
         const b = {
           id: `contact-${t.id}`,
-          label: `${selected === t.id ? "> " : ""}${t.id} | ${t.range} m`,
-          enabled: true,
+          label: `${selected === t.id ? "> " : ""}${t.id} | ${t.range} m${t.available ? "" : " / last report"}`,
+          enabled: t.available,
           run: () => props.onSelect(t.id),
         };
         return (
@@ -444,7 +486,7 @@ function Cockpit({
         height={0.12}
       />
       <Surface
-        text="Point either controller at a button; release trigger to select.\nStay seated. No walking or joystick movement. Exit VR pauses the drill."
+        text={`${inputStatus}\nPoint and release trigger. Stay seated. Exit VR pauses the drill.`}
         position={[0, 0.22, -1.9]}
         width={2.8}
         height={0.2}
@@ -459,6 +501,7 @@ export default function VRCockpit(props: Props) {
     [error, setError] = useState(""),
     [page, setPage] = useState(0),
     [pending, setPending] = useState<PendingResponse | null>(null);
+  const [metrics, setMetrics] = useState("");
   const [inputStatus, setInputStatus] = useState(
     "Desktop preview / mouse and keyboard controls",
   );
@@ -477,6 +520,11 @@ export default function VRCockpit(props: Props) {
     props.onSuspend();
   };
 
+  const selectContact = (id: string) => {
+    pendingRef.current = null;
+    setPending(null);
+    props.onSelect(id);
+  };
   const runtime = useRef<{
     renderer: THREE.WebGLRenderer | null;
     lifecycle: VRSessionLifecycle | null;
@@ -544,7 +592,10 @@ export default function VRCockpit(props: Props) {
   useEffect(() => {
     if (!pending) return;
     const timer = setTimeout(
-      () => setPending(null),
+      () => {
+        pendingRef.current = null;
+        setPending(null);
+      },
       Math.max(0, pending.until - Date.now()),
     );
     return () => clearTimeout(timer);
@@ -617,6 +668,15 @@ export default function VRCockpit(props: Props) {
     props.phase,
     Date.now(),
     !!pending && can("engage", pending.effector),
+    pending
+      ? vrResponseReason(
+          props.state,
+          props.phase,
+          props.scenario,
+          props.selected,
+          pending.effector,
+        )
+      : undefined,
   )
     ? pending
     : null;
@@ -626,6 +686,26 @@ export default function VRCockpit(props: Props) {
       setPending(null);
     }
   }, [pending, armed]);
+  const observedState = useMemo(
+    () => vrObservedState(props.state, modernSensors(props.scenario)),
+    [props.state, props.scenario],
+  );
+  const memory = useContactMemory(
+    observedState,
+    props.sessionKey,
+    props.selected,
+  );
+  // List-only frozen reports. Never feed this memory to VRWorld or vrAction.
+  const contacts = memory.map(({ track, available }) => ({
+    id: track.id,
+    range: Math.round(Math.hypot(track.x, track.z)),
+    designated: track.designated !== null,
+    classification: track.classification,
+    declared: track.declared,
+    available,
+  }));
+  const pages = Math.max(1, Math.ceil(contacts.length / 4));
+  const safePage = Math.min(page, pages - 1);
   const buttons: Button[] = [
     {
       id: "designate",
@@ -658,7 +738,7 @@ export default function VRCockpit(props: Props) {
     },
     ...(["hold", "rf_jam", "kinetic"] as const).map((e) => ({
       id: e,
-      label: `3 / ${e === "hold" ? "Hold fire" : e === "rf_jam" ? "RF jammer" : "Kinetic response"}`,
+      label: `3 / ${e === "hold" ? "Hold fire" : e === "rf_jam" ? "RF jammer" : "Kinetic response"}${vrResponseReason(props.state, props.phase, props.scenario, props.selected, e) ? "\n" + vrResponseReason(props.state, props.phase, props.scenario, props.selected, e) : lock.current ? "\nWaiting for receipt" : ""}`,
       enabled: can("engage", e),
       run: () =>
         props.selected &&
@@ -667,6 +747,13 @@ export default function VRCockpit(props: Props) {
           effector: e,
           track: props.selected,
           until: Date.now() + 8000,
+          reason: vrResponseReason(
+            props.state,
+            props.phase,
+            props.scenario,
+            props.selected,
+            e,
+          ),
         }),
     })),
     {
@@ -676,9 +763,27 @@ export default function VRCockpit(props: Props) {
         : "Select response, then confirm",
       enabled: !!armed && can("engage", armed.effector),
       run: () => {
-        if (armed && pendingRef.current) {
+        const candidate = pendingRef.current;
+        if (
+          candidate &&
+          validConfirmation(
+            candidate,
+            props.sessionKey,
+            props.selected,
+            props.phase,
+            Date.now(),
+            can("engage", candidate.effector),
+            vrResponseReason(
+              props.state,
+              props.phase,
+              props.scenario,
+              props.selected,
+              candidate.effector,
+            ),
+          )
+        ) {
           pendingRef.current = null;
-          send("engage", armed.effector);
+          send("engage", candidate.effector);
           setPending(null);
         }
       },
@@ -694,6 +799,7 @@ export default function VRCockpit(props: Props) {
             : "Resume exercise",
       enabled: !props.busy && props.phase !== "complete",
       run: () => {
+        pendingRef.current = null;
         setPending(null);
         if (props.phase === "ready") props.onStart();
         else props.onPause();
@@ -778,7 +884,12 @@ export default function VRCockpit(props: Props) {
             dpr={1}
             camera={{ position: [0, 0, 0], fov: 65, near: 0.05, far: 20000 }}
             gl={{ antialias: true, powerPreference: "high-performance" }}
-            fallback={<NoGraphics onSuspend={suspend} />}
+            fallback={
+              <p>
+                WebGL is required for this preview. Close the cockpit to use the
+                tactical workspace.
+              </p>
+            }
           >
             <Runtime
               ready={ready}
@@ -786,16 +897,23 @@ export default function VRCockpit(props: Props) {
               onStatus={setActive}
               onFault={setError}
               onInput={setInputStatus}
+              onMetrics={setMetrics}
             />
             <Cockpit
-              props={props}
+              props={{ ...props, onSelect: selectContact }}
               buttons={buttons}
               page={page}
               setPage={setPage}
+              inputStatus={inputStatus}
+              contacts={contacts}
             />
           </Canvas>
         </div>
       </VRBoundary>
+      <details>
+        <summary>Local renderer measurements</summary>
+        <output aria-label="VR renderer measurements">{metrics}</output>
+      </details>
       <details className="vr-desktop-controls" open>
         <summary>Desktop preview controls</summary>
         <p>
@@ -807,18 +925,27 @@ export default function VRCockpit(props: Props) {
             .split("\n")
             .join(" · ")}
         </p>
-        <div className="vr-button-grid">
-          {vrContacts(props.state, modernSensors(props.scenario)).map((t) => (
+        <div className="vr-contact-picker">
+          {contacts.slice(safePage * 4, safePage * 4 + 4).map((t) => (
             <button
               key={t.id}
               className="button subtle"
+              disabled={!t.available}
               aria-pressed={t.id === props.selected}
-              onClick={() => props.onSelect(t.id)}
+              onClick={() => selectContact(t.id)}
             >
               {t.id}
+              {t.available ? "" : " · last report"}
             </button>
           ))}
         </div>
+        <button
+          className="button subtle"
+          disabled={pages === 1}
+          onClick={() => setPage((safePage + 1) % pages)}
+        >
+          Next contacts · {safePage + 1}/{pages}
+        </button>
         <div className="vr-button-grid">
           {buttons.map((b) => (
             <button

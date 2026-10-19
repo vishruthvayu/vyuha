@@ -5,6 +5,7 @@ import "./style.css";
 import "./design-system.css";
 import "./mission-navigation.css";
 import "./crew-officer-polish.css";
+import "./vr.css";
 import "./premium/premium.css";
 import WorkspaceBoundary from "./WorkspaceBoundary";
 import { LoadingWorkspace } from "./UI";

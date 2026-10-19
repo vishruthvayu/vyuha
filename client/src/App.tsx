@@ -1,4 +1,3 @@
-import "./vr.css";
 import { useContactMemory } from "./useContactMemory";
 import { useCommandTransport } from "./useCommandTransport";
 import { reportedContacts } from "./observed-contacts";
@@ -206,7 +205,7 @@ export default function App({
   const [logConfidence, setLogConfidence] = useState(false),
     [confidence, setConfidence] = useState(70);
   const confidenceRef = useRef<number | null>(null);
-  confidenceRef.current = logConfidence ? confidence : null;
+  confidenceRef.current = !vrOpen && logConfidence ? confidence : null;
   const saveDraft = (
     id: string,
     actions: Action[],
@@ -1697,7 +1696,11 @@ export default function App({
                 fallback={<p role="status">Loading local VR cockpit…</p>}
               >
                 <VRCockpit
-                  state={state}
+                  state={
+                    phase === "ready" || phase === "restoring"
+                      ? { ...state, tracks: [] }
+                      : state
+                  }
                   scenario={scenario}
                   phase={phase}
                   selected={selected}
