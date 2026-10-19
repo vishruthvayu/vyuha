@@ -339,6 +339,10 @@ function Runtime({
           geometries: gl.info.memory.geometries,
           textures: gl.info.memory.textures,
           buttonSurfaces: surfaces.current.length,
+          raycastAndCollectionMs: rayCost.current,
+          shaderPrograms: gl.info.programs?.length ?? 0,
+          requestedFramebufferScale: 0.85,
+          foveation: gl.xr.getFoveation() ?? null,
           scope:
             "previous WebGL render / callback intervals, not GPU timings or total process memory",
         }),
