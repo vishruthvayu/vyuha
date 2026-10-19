@@ -189,10 +189,10 @@
     },
     {
       "name": "VR/WebXR",
-      "status": "DEFERRED",
-      "implemented": false,
-      "evidence_scope": "Future work; no submission claim of implementation or operational validation",
-      "source": "docs/STAGE-6-HARDENING.md"
+      "status": "EXPERIMENTAL",
+      "implemented": true,
+      "evidence_scope": "Forward-port implemented; unified software acceptance in progress. Physical headset validation pending.",
+      "source": "docs/vr-unification/COMPATIBILITY-AUDIT.md"
     },
     {
       "name": "Rain model",

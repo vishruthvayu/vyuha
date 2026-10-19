@@ -1,3 +1,4 @@
+import "./vr.css";
 import { useContactMemory } from "./useContactMemory";
 import { useCommandTransport } from "./useCommandTransport";
 import { reportedContacts } from "./observed-contacts";
@@ -11,7 +12,15 @@ import {
 import { SensorBadges } from "./SensorBadges";
 import Navigation from "./Navigation";
 import { workspaceViewFromSearch } from "./routes";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   Activity,
   ArrowDownToLine,
@@ -136,6 +145,8 @@ async function completeReview(record: TrainingRecord): Promise<TrainingRecord> {
 }
 type View = "drill" | "aar" | "unit";
 type Phase = "ready" | "restoring" | "running" | "paused" | "complete";
+const VRCockpit = lazy(() => import("./VRCockpit"));
+
 export default function App({
   identity: unitIdentity,
   reviewOnly = false,
@@ -154,6 +165,7 @@ export default function App({
   const [vision, setVision] = useState<Vision>("thermal");
   const [tactical, setTactical] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
+  const [vrOpen, setVROpen] = useState(false);
   const [feedback, setFeedback] = useState<ActionFeedback | null>(null);
   const feedbackSeq = useRef(0);
   const [guidance, setGuidanceState] = useState(() => {
@@ -1041,6 +1053,21 @@ export default function App({
       action: { ...data, tick: state.tick },
     });
   };
+  const suspendVR = useCallback(() => {
+    if (
+      !workerInitialized.current ||
+      finishLock.current ||
+      liveState.current?.done
+    )
+      return;
+    worker.current?.postMessage({ type: "pause", scope: workerScope.current });
+    livePaused.current = true;
+    setPhase((p) => (p === "running" ? "paused" : p));
+  }, []);
+  useEffect(() => {
+    if (view !== "drill" || phase === "complete" || phase === "restoring")
+      setVROpen(false);
+  }, [view, phase]);
   const togglePause = () => {
     if (!workerInitialized.current) return;
     if (state.paused && serverSessionRef.current) {
@@ -1645,596 +1672,661 @@ export default function App({
                 </p>
               )}
             </div>
-            <div className="training-grid">
-              <section className="sensor-workspace">
-                <div className="panel-header">
-                  <div>
-                    <Monitor size={16} />
-                    <strong>EO / IR observation</strong>
-                  </div>
-                  <details className="evidence-disclosure observation-preferences">
-                    <summary>Observation preferences</summary>
-                    <div className="observation-popover">
-                      <div className="setup-bar">
-                        <label>
-                          Graphics quality
-                          <select
-                            aria-label="Graphics quality"
-                            value={autoQuality ? "auto" : quality}
-                            onChange={(e) => {
-                              setAutoQuality(e.target.value === "auto");
-                              if (e.target.value === "auto") {
-                                setQuality("medium");
-                                setTactical(false);
-                              } else {
-                                setQuality(e.target.value as Quality);
-                                setTactical(e.target.value === "tactical");
-                              }
-                            }}
-                          >
-                            <option value="auto">
-                              Auto · current {quality}
-                            </option>
-                            <option value="high">High</option>
-                            <option value="medium">Medium</option>
-                            <option value="low">Low</option>
-                            <option value="tactical">Tactical 2D</option>
-                          </select>
-                        </label>
-                        <small>
-                          Graphics settings change rendering only; simulation
-                          stays at 30 Hz.
-                        </small>
-                        <label>
-                          Display magnification · {opticalZoom}×
-                          <input
-                            type="range"
-                            aria-label="Display magnification"
-                            min="1"
-                            max="6"
-                            step="1"
-                            value={opticalZoom}
-                            onChange={(event) =>
-                              setOpticalZoom(Number(event.target.value))
-                            }
-                          />
-                        </label>
-                        <small>
-                          Display crop only; sensor ranges and evidence are
-                          unchanged.
-                        </small>
-                        <LocalAudio
-                          state={state}
-                          fog={scenario.fog}
-                          active={phase === "running"}
-                        />
-                      </div>
-                      <div className="setup-bar">
-                        {vision === "thermal" && (
+            <div className="vr-launch">
+              <button
+                className="button subtle"
+                disabled={
+                  busy ||
+                  phase === "restoring" ||
+                  phase === "complete" ||
+                  (mode === "adaptive" && phase === "ready" && !prepared)
+                }
+                onClick={() => {
+                  fusionExposure(null);
+                  setVROpen(true);
+                }}
+              >
+                Open VR observation cockpit
+              </button>
+              <a href="/vr-guide.html" target="_blank" rel="noreferrer">
+                Experimental VR / setup guide
+              </a>
+            </div>
+            {vrOpen ? (
+              <Suspense
+                fallback={<p role="status">Loading local VR cockpit…</p>}
+              >
+                <VRCockpit
+                  state={state}
+                  scenario={scenario}
+                  phase={phase}
+                  selected={selected}
+                  sessionKey={`${scenario.id}:${sessionRef.current || "preview"}`}
+                  feedback={feedback}
+                  quality={quality}
+                  vision={vision}
+                  busy={busy}
+                  startLabel="Start exercise"
+                  onStart={() => void start()}
+                  onPause={togglePause}
+                  onSuspend={suspendVR}
+                  onSelect={choose}
+                  onVision={setVision}
+                  onAction={act}
+                  onClose={() => {
+                    suspendVR();
+                    setVROpen(false);
+                  }}
+                />
+              </Suspense>
+            ) : (
+              <div className="training-grid">
+                <section className="sensor-workspace">
+                  <div className="panel-header">
+                    <div>
+                      <Monitor size={16} />
+                      <strong>EO / IR observation</strong>
+                    </div>
+                    <details className="evidence-disclosure observation-preferences">
+                      <summary>Observation preferences</summary>
+                      <div className="observation-popover">
+                        <div className="setup-bar">
                           <label>
-                            Illustrative thermal palette
+                            Graphics quality
                             <select
-                              aria-label="Thermal palette"
-                              value={palette}
-                              onChange={(e) =>
-                                setPalette(e.target.value as ThermalPalette)
-                              }
+                              aria-label="Graphics quality"
+                              value={autoQuality ? "auto" : quality}
+                              onChange={(e) => {
+                                setAutoQuality(e.target.value === "auto");
+                                if (e.target.value === "auto") {
+                                  setQuality("medium");
+                                  setTactical(false);
+                                } else {
+                                  setQuality(e.target.value as Quality);
+                                  setTactical(e.target.value === "tactical");
+                                }
+                              }}
                             >
-                              {Object.entries(palettes).map(([id, p]) => (
-                                <option key={id} value={id}>
-                                  {p.label}
-                                </option>
-                              ))}
+                              <option value="auto">
+                                Auto · current {quality}
+                              </option>
+                              <option value="high">High</option>
+                              <option value="medium">Medium</option>
+                              <option value="low">Low</option>
+                              <option value="tactical">Tactical 2D</option>
                             </select>
                           </label>
-                        )}
-                        <small>
-                          Illustrative rendering only; sensor mechanics and
-                          scoring are unchanged.
-                        </small>
+                          <small>
+                            Graphics settings change rendering only; simulation
+                            stays at 30 Hz.
+                          </small>
+                          <label>
+                            Display magnification · {opticalZoom}×
+                            <input
+                              type="range"
+                              aria-label="Display magnification"
+                              min="1"
+                              max="6"
+                              step="1"
+                              value={opticalZoom}
+                              onChange={(event) =>
+                                setOpticalZoom(Number(event.target.value))
+                              }
+                            />
+                          </label>
+                          <small>
+                            Display crop only; sensor ranges and evidence are
+                            unchanged.
+                          </small>
+                          <LocalAudio
+                            state={state}
+                            fog={scenario.fog}
+                            active={phase === "running"}
+                          />
+                        </div>
+                        <div className="setup-bar">
+                          {vision === "thermal" && (
+                            <label>
+                              Illustrative thermal palette
+                              <select
+                                aria-label="Thermal palette"
+                                value={palette}
+                                onChange={(e) =>
+                                  setPalette(e.target.value as ThermalPalette)
+                                }
+                              >
+                                {Object.entries(palettes).map(([id, p]) => (
+                                  <option key={id} value={id}>
+                                    {p.label}
+                                  </option>
+                                ))}
+                              </select>
+                            </label>
+                          )}
+                          <small>
+                            Illustrative rendering only; sensor mechanics and
+                            scoring are unchanged.
+                          </small>
+                        </div>
                       </div>
+                    </details>
+                    <div className="segmented">
+                      {(["thermal", "day", "night"] as const).map((v) => (
+                        <button
+                          key={v}
+                          aria-pressed={vision === v}
+                          className={vision === v ? "selected" : ""}
+                          onClick={() => setVision(v)}
+                        >
+                          {v === "thermal"
+                            ? "THERMAL"
+                            : v === "day"
+                              ? "DAY TV"
+                              : scenario.version === 2
+                                ? "IR NIGHT DISPLAY"
+                                : "NIGHT VISION"}
+                        </button>
+                      ))}
                     </div>
-                  </details>
-                  <div className="segmented">
-                    {(["thermal", "day", "night"] as const).map((v) => (
-                      <button
-                        key={v}
-                        aria-pressed={vision === v}
-                        className={vision === v ? "selected" : ""}
-                        onClick={() => setVision(v)}
-                      >
-                        {v === "thermal"
-                          ? "THERMAL"
-                          : v === "day"
-                            ? "DAY TV"
-                            : scenario.version === 2
-                              ? "IR NIGHT DISPLAY"
-                              : "NIGHT VISION"}
-                      </button>
-                    ))}
                   </div>
-                </div>
-                <div
-                  className={`scene-container ${vision} ${tactical ? "tactical-mode" : ""}`}
-                >
-                  {phase === "restoring" ? (
-                    <div className="render-fallback" role="status">
-                      <p>Reconstructing the saved sensor evidence…</p>
-                    </div>
-                  ) : phase === "ready" && mode === "adaptive" && !prepared ? (
-                    <TrainingWelcome
-                      onPrepare={() => void start()}
-                      busy={busy}
-                    />
-                  ) : tactical ? (
-                    <Radar
-                      state={state}
-                      selected={selected}
-                      onSelect={choose}
-                      large
-                    />
-                  ) : (
-                    <Scene
-                      opticalZoom={opticalZoom}
-                      cue={
-                        target
-                          ? {
-                              x: target.x,
-                              z: target.z,
-                              altitude: target.altitude,
-                            }
-                          : null
-                      }
-                      terrainBoxes={scenario.terrain_boxes}
-                      engineVersion={scenario.engine_version}
-                      visibilityKey={`${scenario.id}:${sessionRef.current || "preview"}`}
-                      state={state}
-                      selected={selected}
-                      vision={vision}
-                      onFps={renderFps}
-                      palette={palette}
-                      terrain={scenario.terrain_id ?? "urban_outpost"}
-                      quality={quality}
-                      fog={scenario.fog}
-                      fallback={
-                        <div className="render-fallback">
-                          <p>3D rendering is unavailable on this browser.</p>
+                  <div
+                    className={`scene-container ${vision} ${tactical ? "tactical-mode" : ""}`}
+                  >
+                    {phase === "restoring" ? (
+                      <div className="render-fallback" role="status">
+                        <p>Reconstructing the saved sensor evidence…</p>
+                      </div>
+                    ) : phase === "ready" &&
+                      mode === "adaptive" &&
+                      !prepared ? (
+                      <TrainingWelcome
+                        onPrepare={() => void start()}
+                        busy={busy}
+                      />
+                    ) : tactical ? (
+                      <Radar
+                        state={state}
+                        selected={selected}
+                        onSelect={choose}
+                        large
+                      />
+                    ) : (
+                      <Scene
+                        opticalZoom={opticalZoom}
+                        cue={
+                          target
+                            ? {
+                                x: target.x,
+                                z: target.z,
+                                altitude: target.altitude,
+                              }
+                            : null
+                        }
+                        terrainBoxes={scenario.terrain_boxes}
+                        engineVersion={scenario.engine_version}
+                        visibilityKey={`${scenario.id}:${sessionRef.current || "preview"}`}
+                        state={state}
+                        selected={selected}
+                        vision={vision}
+                        onFps={renderFps}
+                        palette={palette}
+                        terrain={scenario.terrain_id ?? "urban_outpost"}
+                        quality={quality}
+                        fog={scenario.fog}
+                        fallback={
+                          <div className="render-fallback">
+                            <p>3D rendering is unavailable on this browser.</p>
+                            <button
+                              className="button primary"
+                              onClick={() => setTactical(true)}
+                            >
+                              Use tactical view
+                            </button>
+                          </div>
+                        }
+                      />
+                    )}
+                    {!tactical && phase !== "restoring" && (
+                      <>
+                        <div className="view-annotation top-left">
+                          {vision === "thermal"
+                            ? `${palettes[palette].label} / EO-IR`
+                            : vision === "day"
+                              ? "DAY TV / OPTICAL"
+                              : scenario.version === 2
+                                ? "IR NIGHT DISPLAY / ILLUSTRATIVE"
+                                : "NIGHT VISION / SIMULATED"}
+                          <span>
+                            {!selected
+                              ? "OBSERVATION SECTOR"
+                              : opticalPosition
+                                ? `TRACKING ${selected}`
+                                : target
+                                  ? `${selected} · CUED BY ${target.observation?.radar.position ? "RADAR" : "SENSOR REPORT"} · NOT SEEN BY THIS CAMERA`
+                                  : `${selected} · NO CURRENT REPORT · HOLDING BEARING`}
+                          </span>
+                        </div>
+                        {vision === "day" &&
+                          state.tracks.some(
+                            (t) =>
+                              t.active && t.observation?.eo.available === false,
+                          ) && (
+                            <div
+                              className="view-annotation view-unavailable"
+                              role="note"
+                            >
+                              DAY TV HAS NO PICTURE
+                              <span>
+                                Night or sensor fault · use THERMAL or IR
+                              </span>
+                            </div>
+                          )}
+                        <div className="crosshair">
+                          <span />
+                          <span />
+                        </div>
+                        <div className="camera-corners" />
+                        <div className="view-annotation bottom-left">
+                          {scenario.terrain_id === "rural_forward_base"
+                            ? "RURAL FORWARD BASE"
+                            : "URBAN OUTPOST"}
+                          <span>
+                            {selected && (opticalPosition ?? target)
+                              ? `${opticalPosition ? "" : "CUE "}BEARING ${Math.round(((Math.atan2((opticalPosition ?? target)!.x, (opticalPosition ?? target)!.z) * 180) / Math.PI + 360) % 360)}° · ALT ${Math.round((opticalPosition ?? target)!.altitude)} m`
+                              : selected
+                                ? "Holding last bearing"
+                                : "Select a radar contact to focus the camera"}
+                          </span>
+                        </div>
+                        <div className="view-annotation bottom-right">
+                          {state.night ? "NIGHT" : "DAY"}
+                          <span>SIMULATED SENSOR VIEW</span>
+                        </div>
+                      </>
+                    )}
+                    {phase === "ready" &&
+                      !(mode === "adaptive" && !prepared) && (
+                        <div className="ready-overlay">
+                          <PreparationTerrain />
+                          <span className="ready-icon">
+                            <Crosshair size={28} />
+                          </span>
+                          <h2>Watch. Identify. Respond.</h2>
+                          <p>
+                            {mode === "adaptive" && prepared
+                              ? prepared.tracks.length
+                              : mode === "library"
+                                ? (library.find((s) => s.id === libraryId)
+                                    ?.tracks.length ?? 0)
+                                : 8}{" "}
+                            contacts. {scenario.duration} seconds.
+                            <br />
+                            Not every contact is a threat.
+                          </p>
                           <button
                             className="button primary"
-                            onClick={() => setTactical(true)}
+                            disabled={busy}
+                            title={
+                              busy
+                                ? "A request or completion is already in progress."
+                                : undefined
+                            }
+                            onClick={() => void start()}
                           >
-                            Use tactical view
+                            <Play size={15} />
+                            {busy
+                              ? "Preparing…"
+                              : mode === "adaptive"
+                                ? prepared
+                                  ? "Start adaptive drill"
+                                  : "Prepare adaptive drill"
+                                : "Begin exercise"}
                           </button>
+                          <small>
+                            Illustrative landscape · example sensor and effector
+                            values
+                          </small>
                         </div>
-                      }
-                    />
-                  )}
-                  {!tactical && phase !== "restoring" && (
-                    <>
-                      <div className="view-annotation top-left">
-                        {vision === "thermal"
-                          ? `${palettes[palette].label} / EO-IR`
-                          : vision === "day"
-                            ? "DAY TV / OPTICAL"
-                            : scenario.version === 2
-                              ? "IR NIGHT DISPLAY / ILLUSTRATIVE"
-                              : "NIGHT VISION / SIMULATED"}
-                        <span>
-                          {!selected
-                            ? "OBSERVATION SECTOR"
-                            : opticalPosition
-                              ? `TRACKING ${selected}`
-                              : target
-                                ? `${selected} · CUED BY ${target.observation?.radar.position ? "RADAR" : "SENSOR REPORT"} · NOT SEEN BY THIS CAMERA`
-                                : `${selected} · NO CURRENT REPORT · HOLDING BEARING`}
-                        </span>
+                      )}
+                    {phase === "paused" && (
+                      <div className="pause-overlay">
+                        <Pause size={24} />
+                        <h2>Exercise paused</h2>
+                        <p>Use Resume in the exercise controls above.</p>
                       </div>
-                      {vision === "day" &&
-                        state.tracks.some(
-                          (t) =>
-                            t.active && t.observation?.eo.available === false,
-                        ) && (
-                          <div
-                            className="view-annotation view-unavailable"
-                            role="note"
-                          >
-                            DAY TV HAS NO PICTURE
+                    )}
+                  </div>
+                  <section className="panel radar-panel">
+                    <div className="panel-header">
+                      <div>
+                        <Radio size={16} />
+                        <strong>Radar picture</strong>
+                      </div>
+                      <span
+                        className={state.jammed ? "status amber" : "status"}
+                      >
+                        {phase === "restoring"
+                          ? "RESTORING"
+                          : state.radarStatus === "failed"
+                            ? "OFFLINE"
+                            : state.jammed
+                              ? "DEGRADED"
+                              : "NORMAL"}
+                      </span>
+                    </div>
+                    {phase === "restoring" ? (
+                      <p role="status">
+                        Radar reports will appear after reconstruction.
+                      </p>
+                    ) : (
+                      <Radar
+                        state={state}
+                        selected={selected}
+                        onSelect={choose}
+                      />
+                    )}
+                  </section>
+                  <div className="scene-toolbar">
+                    {phase !== "restoring" && <SensorBadges state={state} />}
+                    <div>
+                      {scenario.fog === 0
+                        ? "Clear"
+                        : scenario.fog >= 0.5
+                          ? "Dense fog"
+                          : "Light fog"}{" "}
+                      · {scenario.fog}
+                    </div>
+                    <button
+                      className="text-button"
+                      aria-pressed={tactical}
+                      onClick={() => setTactical(!tactical)}
+                    >
+                      <Layers size={14} />
+                      {tactical ? "Use 3D view" : "2D fallback"}
+                    </button>
+                  </div>
+                </section>
+                <aside className="right-panels">
+                  <section className="panel contacts-panel">
+                    <div className="panel-header">
+                      <div>
+                        <Target size={16} />
+                        <strong>Contact tracks</strong>
+                      </div>
+                      <span className="count-badge">
+                        {phase === "restoring" ? 0 : contactItems.length}
+                      </span>
+                    </div>
+                    {selected && (
+                      <button
+                        className="button subtle decision-jump"
+                        onClick={focusDecision}
+                      >
+                        {selected} · Evidence and decisions{" "}
+                        <ChevronRight size={14} />
+                      </button>
+                    )}
+                    <p className="footnote">
+                      Dashed rows retain a last report, not a current detection.
+                      Decisions require current evidence.
+                    </p>
+                    <div className="contact-list">
+                      {phase !== "restoring" && contactItems.length ? (
+                        contactItems.map(
+                          ({ track: t, available, lastTick }) => (
+                            <button
+                              key={t.id}
+                              className={`contact-item ${selected === t.id ? "selected" : ""} ${available ? "" : "stale"}`}
+                              aria-pressed={selected === t.id}
+                              onPointerDown={() => choose(t.id)}
+                              onClick={() => {
+                                choose(t.id);
+                                if (
+                                  window.matchMedia("(max-width: 800px)")
+                                    .matches
+                                ) {
+                                  focusDecision();
+                                }
+                              }}
+                            >
+                              <span
+                                className={`track-symbol ${t.declared || ""}`}
+                              >
+                                <Crosshair size={16} />
+                              </span>
+                              <div>
+                                <strong>
+                                  {t.id}{" "}
+                                  <span>
+                                    {t.classification
+                                      ? KIND_LABEL[t.classification]
+                                      : "Unknown contact"}
+                                  </span>
+                                </strong>
+                                <small>
+                                  {available ? "" : "Last reported "}
+                                  {Math.round(Math.hypot(t.x, t.z))} m ·{" "}
+                                  {!available
+                                    ? `No current observation · T+${(lastTick / 30).toFixed(1)}s`
+                                    : t.designated === null
+                                      ? "Not designated"
+                                      : t.declared || "Awaiting ID"}
+                                </small>
+                              </div>
+                              <ChevronRight size={15} />
+                            </button>
+                          ),
+                        )
+                      ) : (
+                        <p className="empty-small">
+                          No active contacts.
+                          <br />
+                          New contacts appear when a sensor detects them.
+                        </p>
+                      )}
+                    </div>
+                  </section>
+                </aside>
+                {phase !== "restoring" && (
+                  <DecisionWorkspace
+                    ref={decisionDock}
+                    evidence={
+                      <>
+                        {" "}
+                        <section className="panel rf-panel">
+                          <div className="panel-header">
+                            <div>
+                              <Zap size={16} />
+                              <strong>RF / IFF evidence</strong>
+                            </div>
+                          </div>
+                          <div className="evidence-grid">
                             <span>
-                              Night or sensor fault · use THERMAL or IR
+                              CONTROL LINK
+                              <strong
+                                className={
+                                  rfObservation?.rf_signal ? "lime" : ""
+                                }
+                              >
+                                {!state.rfAvailable
+                                  ? "OFFLINE"
+                                  : target
+                                    ? rfObservation?.rf_signal
+                                      ? "Detected"
+                                      : "Not detected"
+                                    : "—"}
+                              </strong>
+                            </span>
+                            <span>
+                              IFF RESPONSE
+                              <strong
+                                className={
+                                  rfObservation?.iff === "friendly_reply"
+                                    ? "blue"
+                                    : ""
+                                }
+                              >
+                                {!state.rfAvailable
+                                  ? "OFFLINE"
+                                  : target
+                                    ? rfObservation?.iff === "friendly_reply"
+                                      ? "Friendly reply"
+                                      : rfObservation?.iff ===
+                                          "registered_civil"
+                                        ? "Registered civil"
+                                        : "No reply"
+                                    : "—"}
+                              </strong>
                             </span>
                           </div>
-                        )}
-                      <div className="crosshair">
-                        <span />
-                        <span />
-                      </div>
-                      <div className="camera-corners" />
-                      <div className="view-annotation bottom-left">
-                        {scenario.terrain_id === "rural_forward_base"
-                          ? "RURAL FORWARD BASE"
-                          : "URBAN OUTPOST"}
-                        <span>
-                          {selected && (opticalPosition ?? target)
-                            ? `${opticalPosition ? "" : "CUE "}BEARING ${Math.round(((Math.atan2((opticalPosition ?? target)!.x, (opticalPosition ?? target)!.z) * 180) / Math.PI + 360) % 360)}° · ALT ${Math.round((opticalPosition ?? target)!.altitude)} m`
-                            : selected
-                              ? "Holding last bearing"
-                              : "Select a radar contact to focus the camera"}
-                        </span>
-                      </div>
-                      <div className="view-annotation bottom-right">
-                        {state.night ? "NIGHT" : "DAY"}
-                        <span>SIMULATED SENSOR VIEW</span>
-                      </div>
-                    </>
-                  )}
-                  {phase === "ready" && !(mode === "adaptive" && !prepared) && (
-                    <div className="ready-overlay">
-                      <PreparationTerrain />
-                      <span className="ready-icon">
-                        <Crosshair size={28} />
-                      </span>
-                      <h2>Watch. Identify. Respond.</h2>
-                      <p>
-                        {mode === "adaptive" && prepared
-                          ? prepared.tracks.length
-                          : mode === "library"
-                            ? (library.find((s) => s.id === libraryId)?.tracks
-                                .length ?? 0)
-                            : 8}{" "}
-                        contacts. {scenario.duration} seconds.
-                        <br />
-                        Not every contact is a threat.
-                      </p>
-                      <button
-                        className="button primary"
-                        disabled={busy}
-                        title={
-                          busy
-                            ? "A request or completion is already in progress."
-                            : undefined
-                        }
-                        onClick={() => void start()}
-                      >
-                        <Play size={15} />
-                        {busy
-                          ? "Preparing…"
-                          : mode === "adaptive"
-                            ? prepared
-                              ? "Start adaptive drill"
-                              : "Prepare adaptive drill"
-                            : "Begin exercise"}
-                      </button>
-                      <small>
-                        Illustrative landscape · example sensor and effector
-                        values
-                      </small>
-                    </div>
-                  )}
-                  {phase === "paused" && (
-                    <div className="pause-overlay">
-                      <Pause size={24} />
-                      <h2>Exercise paused</h2>
-                      <p>Use Resume in the exercise controls above.</p>
-                    </div>
-                  )}
-                </div>
-                <section className="panel radar-panel">
-                  <div className="panel-header">
-                    <div>
-                      <Radio size={16} />
-                      <strong>Radar picture</strong>
-                    </div>
-                    <span className={state.jammed ? "status amber" : "status"}>
-                      {phase === "restoring"
-                        ? "RESTORING"
-                        : state.radarStatus === "failed"
-                          ? "OFFLINE"
-                          : state.jammed
-                            ? "DEGRADED"
-                            : "NORMAL"}
-                    </span>
-                  </div>
-                  {phase === "restoring" ? (
-                    <p role="status">
-                      Radar reports will appear after reconstruction.
-                    </p>
-                  ) : (
-                    <Radar
-                      state={state}
-                      selected={selected}
-                      onSelect={choose}
-                    />
-                  )}
-                </section>
-                <div className="scene-toolbar">
-                  {phase !== "restoring" && <SensorBadges state={state} />}
-                  <div>
-                    {scenario.fog === 0
-                      ? "Clear"
-                      : scenario.fog >= 0.5
-                        ? "Dense fog"
-                        : "Light fog"}{" "}
-                    · {scenario.fog}
-                  </div>
-                  <button
-                    className="text-button"
-                    aria-pressed={tactical}
-                    onClick={() => setTactical(!tactical)}
-                  >
-                    <Layers size={14} />
-                    {tactical ? "Use 3D view" : "2D fallback"}
-                  </button>
-                </div>
-              </section>
-              <aside className="right-panels">
-                <section className="panel contacts-panel">
-                  <div className="panel-header">
-                    <div>
-                      <Target size={16} />
-                      <strong>Contact tracks</strong>
-                    </div>
-                    <span className="count-badge">
-                      {phase === "restoring" ? 0 : contactItems.length}
-                    </span>
-                  </div>
-                  {selected && (
-                    <button
-                      className="button subtle decision-jump"
-                      onClick={focusDecision}
-                    >
-                      {selected} · Evidence and decisions{" "}
-                      <ChevronRight size={14} />
-                    </button>
-                  )}
-                  <p className="footnote">
-                    Dashed rows retain a last report, not a current detection.
-                    Decisions require current evidence.
-                  </p>
-                  <div className="contact-list">
-                    {phase !== "restoring" && contactItems.length ? (
-                      contactItems.map(({ track: t, available, lastTick }) => (
-                        <button
-                          key={t.id}
-                          className={`contact-item ${selected === t.id ? "selected" : ""} ${available ? "" : "stale"}`}
-                          aria-pressed={selected === t.id}
-                          onPointerDown={() => choose(t.id)}
-                          onClick={() => {
-                            choose(t.id);
-                            if (
-                              window.matchMedia("(max-width: 800px)").matches
-                            ) {
-                              focusDecision();
-                            }
-                          }}
-                        >
-                          <span className={`track-symbol ${t.declared || ""}`}>
-                            <Crosshair size={16} />
-                          </span>
-                          <div>
-                            <strong>
-                              {t.id}{" "}
-                              <span>
-                                {t.classification
-                                  ? KIND_LABEL[t.classification]
-                                  : "Unknown contact"}
-                              </span>
-                            </strong>
-                            <small>
-                              {available ? "" : "Last reported "}
-                              {Math.round(Math.hypot(t.x, t.z))} m ·{" "}
-                              {!available
-                                ? `No current observation · T+${(lastTick / 30).toFixed(1)}s`
-                                : t.designated === null
-                                  ? "Not designated"
-                                  : t.declared || "Awaiting ID"}
-                            </small>
-                          </div>
-                          <ChevronRight size={15} />
-                        </button>
-                      ))
-                    ) : (
-                      <p className="empty-small">
-                        No active contacts.
-                        <br />
-                        New contacts appear when a sensor detects them.
-                      </p>
-                    )}
-                  </div>
-                </section>
-              </aside>
-              {phase !== "restoring" && (
-                <DecisionWorkspace
-                  ref={decisionDock}
-                  evidence={
-                    <>
-                      {" "}
-                      <section className="panel rf-panel">
-                        <div className="panel-header">
-                          <div>
-                            <Zap size={16} />
-                            <strong>RF / IFF evidence</strong>
-                          </div>
-                        </div>
-                        <div className="evidence-grid">
-                          <span>
-                            CONTROL LINK
-                            <strong
-                              className={rfObservation?.rf_signal ? "lime" : ""}
-                            >
-                              {!state.rfAvailable
-                                ? "OFFLINE"
-                                : target
-                                  ? rfObservation?.rf_signal
-                                    ? "Detected"
-                                    : "Not detected"
-                                  : "—"}
-                            </strong>
-                          </span>
-                          <span>
-                            IFF RESPONSE
-                            <strong
-                              className={
-                                rfObservation?.iff === "friendly_reply"
-                                  ? "blue"
-                                  : ""
-                              }
-                            >
-                              {!state.rfAvailable
-                                ? "OFFLINE"
-                                : target
-                                  ? rfObservation?.iff === "friendly_reply"
-                                    ? "Friendly reply"
-                                    : rfObservation?.iff === "registered_civil"
-                                      ? "Registered civil"
-                                      : "No reply"
-                                  : "—"}
-                            </strong>
-                          </span>
-                        </div>
-                        <p>
-                          {!selected
-                            ? "Select a contact to inspect its current RF and IFF evidence."
-                            : !target
-                              ? "No current observation. Selection is retained; wait for reacquisition."
-                              : target && inCivilZone(target)
-                                ? "Restricted zone: kinetic engagement is blocked here."
-                                : !state.rfAvailable
-                                  ? "RF sensor unavailable. Use EO/IR cues; link and IFF evidence are unavailable."
-                                  : target && rfObservation?.rf_signal === false
-                                    ? "No detected RF link. Review the contact before selecting an effector."
-                                    : "Sensor cues support classification; they do not replace your decision."}
-                        </p>
-                      </section>
-                      {(phase === "running" || phase === "paused") &&
-                        scenario.fusion && (
-                          <>
-                            <FusionPanel
-                              observation={target?.observation}
-                              prior={{
-                                kind: target?.classification,
-                                identity: target?.declared,
-                              }}
-                              config={scenario.fusion}
-                              context={{
-                                session_id: sessionRef.current || "local",
-                                scenario_id: scenario.id,
-                                before_order:
-                                  Math.max(
-                                    -1,
-                                    ...events.current.map((a) => a.order ?? -1),
-                                    ...commands.current.map((c) => c.order),
-                                  ) + 1,
-                              }}
-                              onExposure={fusionExposure}
-                            />
-                            {scenario.fusion.mode === "training" && (
-                              <details className="panel evidence-disclosure confidence-options">
-                                <summary>
-                                  Optional classification confidence
-                                </summary>
-                                <label>
-                                  <input
-                                    type="checkbox"
-                                    checked={logConfidence}
-                                    onChange={(e) =>
-                                      setLogConfidence(e.target.checked)
-                                    }
-                                  />
-                                  Optional confidence · classification
-                                </label>
-                                {logConfidence && (
+                          <p>
+                            {!selected
+                              ? "Select a contact to inspect its current RF and IFF evidence."
+                              : !target
+                                ? "No current observation. Selection is retained; wait for reacquisition."
+                                : target && inCivilZone(target)
+                                  ? "Restricted zone: kinetic engagement is blocked here."
+                                  : !state.rfAvailable
+                                    ? "RF sensor unavailable. Use EO/IR cues; link and IFF evidence are unavailable."
+                                    : target &&
+                                        rfObservation?.rf_signal === false
+                                      ? "No detected RF link. Review the contact before selecting an effector."
+                                      : "Sensor cues support classification; they do not replace your decision."}
+                          </p>
+                        </section>
+                        {(phase === "running" || phase === "paused") &&
+                          scenario.fusion && (
+                            <>
+                              <FusionPanel
+                                observation={target?.observation}
+                                prior={{
+                                  kind: target?.classification,
+                                  identity: target?.declared,
+                                }}
+                                config={scenario.fusion}
+                                context={{
+                                  session_id: sessionRef.current || "local",
+                                  scenario_id: scenario.id,
+                                  before_order:
+                                    Math.max(
+                                      -1,
+                                      ...events.current.map(
+                                        (a) => a.order ?? -1,
+                                      ),
+                                      ...commands.current.map((c) => c.order),
+                                    ) + 1,
+                                }}
+                                onExposure={fusionExposure}
+                              />
+                              {scenario.fusion.mode === "training" && (
+                                <details className="panel evidence-disclosure confidence-options">
+                                  <summary>
+                                    Optional classification confidence
+                                  </summary>
                                   <label>
-                                    Confidence in selected type (%)
                                     <input
-                                      type="number"
-                                      min={0}
-                                      max={100}
-                                      value={confidence}
+                                      type="checkbox"
+                                      checked={logConfidence}
                                       onChange={(e) =>
-                                        setConfidence(
-                                          Math.max(
-                                            0,
-                                            Math.min(
-                                              100,
-                                              Number(e.target.value) || 0,
-                                            ),
-                                          ),
-                                        )
+                                        setLogConfidence(e.target.checked)
                                       }
                                     />
+                                    Optional confidence · classification
                                   </label>
-                                )}
-                                <p className="footnote">
-                                  Your selected type receives this probability;
-                                  the remainder is divided equally among the
-                                  other three types. A post-exercise Brier
-                                  diagnostic does not change the score or
-                                  mastery profile.
-                                </p>
-                              </details>
-                            )}
-                          </>
-                        )}
-                      {state.response && (
-                        <details className="panel evidence-disclosure response-resources">
-                          <summary>
-                            Response resources ·{" "}
-                            {state.response.kinetic_ammo_remaining} rounds ·{" "}
-                            {state.response.jammer_channels_in_use}/
-                            {scenario.response_model?.jammer_channels} jammer
-                            channels
-                          </summary>
-                          <p>
-                            Kinetic: {state.response.kinetic_ammo_remaining}{" "}
-                            rounds · ready{" "}
-                            {state.tick >= state.response.kinetic_ready_tick
-                              ? "now"
-                              : `at ${time(state.response.kinetic_ready_tick)}`}
-                          </p>
-                          <p>
-                            Jammer channels:{" "}
-                            {state.response.jammer_channels_in_use}/
-                            {scenario.response_model?.jammer_channels} in use
-                          </p>
-                          {state.response.attempts.slice(-3).map((a) => (
-                            <p key={a.id}>
-                              {a.track} · {a.effector} ·{" "}
-                              {a.status.replaceAll("_", " ")}
-                              {a.status === "pending" && a.due_tick !== null
-                                ? ` · due ${time(a.due_tick)}`
-                                : ""}
+                                  {logConfidence && (
+                                    <label>
+                                      Confidence in selected type (%)
+                                      <input
+                                        type="number"
+                                        min={0}
+                                        max={100}
+                                        value={confidence}
+                                        onChange={(e) =>
+                                          setConfidence(
+                                            Math.max(
+                                              0,
+                                              Math.min(
+                                                100,
+                                                Number(e.target.value) || 0,
+                                              ),
+                                            ),
+                                          )
+                                        }
+                                      />
+                                    </label>
+                                  )}
+                                  <p className="footnote">
+                                    Your selected type receives this
+                                    probability; the remainder is divided
+                                    equally among the other three types. A
+                                    post-exercise Brier diagnostic does not
+                                    change the score or mastery profile.
+                                  </p>
+                                </details>
+                              )}
+                            </>
+                          )}
+                        {state.response && (
+                          <details className="panel evidence-disclosure response-resources">
+                            <summary>
+                              Response resources ·{" "}
+                              {state.response.kinetic_ammo_remaining} rounds ·{" "}
+                              {state.response.jammer_channels_in_use}/
+                              {scenario.response_model?.jammer_channels} jammer
+                              channels
+                            </summary>
+                            <p>
+                              Kinetic: {state.response.kinetic_ammo_remaining}{" "}
+                              rounds · ready{" "}
+                              {state.tick >= state.response.kinetic_ready_tick
+                                ? "now"
+                                : `at ${time(state.response.kinetic_ready_tick)}`}
                             </p>
-                          ))}
-                          <p className="footnote">
-                            Illustrative resources and seeded effects. A
-                            response can be accepted but fail to resolve a
-                            contact.
-                          </p>
-                        </details>
+                            <p>
+                              Jammer channels:{" "}
+                              {state.response.jammer_channels_in_use}/
+                              {scenario.response_model?.jammer_channels} in use
+                            </p>
+                            {state.response.attempts.slice(-3).map((a) => (
+                              <p key={a.id}>
+                                {a.track} · {a.effector} ·{" "}
+                                {a.status.replaceAll("_", " ")}
+                                {a.status === "pending" && a.due_tick !== null
+                                  ? ` · due ${time(a.due_tick)}`
+                                  : ""}
+                              </p>
+                            ))}
+                            <p className="footnote">
+                              Illustrative resources and seeded effects. A
+                              response can be accepted but fail to resolve a
+                              contact.
+                            </p>
+                          </details>
+                        )}
+                      </>
+                    }
+                  >
+                    <GuidedDecision
+                      phase={phase}
+                      selected={selected}
+                      target={target}
+                      record={decisionRecord(
+                        state.tracks.find((t) => t.id === selected),
                       )}
-                    </>
-                  }
-                >
-                  <GuidedDecision
-                    phase={phase}
-                    selected={selected}
-                    target={target}
-                    record={decisionRecord(
-                      state.tracks.find((t) => t.id === selected),
-                    )}
-                    state={state}
-                    scenario={scenario}
-                    vision={vision}
-                    rf={rfObservation}
-                    feedback={feedback}
-                    guidance={guidance}
-                    onGuidance={setGuidance}
-                    onAct={act}
-                    onNext={nextContact}
-                  />
-                </DecisionWorkspace>
-              )}
-            </div>
+                      state={state}
+                      scenario={scenario}
+                      vision={vision}
+                      rf={rfObservation}
+                      feedback={feedback}
+                      guidance={guidance}
+                      onGuidance={setGuidance}
+                      onAct={act}
+                      onNext={nextContact}
+                    />
+                  </DecisionWorkspace>
+                )}
+              </div>
+            )}
             {clockNote && (
               <p className="recovery-banner" role="status">
                 {clockNote}

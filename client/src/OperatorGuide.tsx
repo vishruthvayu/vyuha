@@ -102,6 +102,12 @@ export default function OperatorGuide({ onClose }: { onClose: () => void }) {
         </div>
         <div className="guide-operations">
           <h3>Working with VYUHA</h3>
+          <p>
+            <a href="/vr-guide.html" target="_blank" rel="noreferrer">
+              Optional VR cockpit: preview, controller and trusted HTTPS guide
+            </a>
+            . Experimental; physical headset validation pending.
+          </p>
           {[
             [
               "Instructor operations",
