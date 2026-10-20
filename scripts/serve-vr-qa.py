@@ -33,9 +33,16 @@ addEventListener('DOMContentLoaded',()=>{
  const panel=document.createElement('aside');panel.id='vrqa';panel.style='position:fixed;right:8px;top:8px;z-index:99999;width:290px;background:#101b26;color:white;padding:10px;border:2px solid #68ddff;font:12px system-ui;max-height:95vh;overflow:auto';
  panel.innerHTML='<details open><summary>IWER SOFTWARE QA — NOT A HEADSET</summary><p>Production bundle / test-only emulator</p><div id="qa-buttons"></div><pre id="qa-status" style="white-space:pre-wrap"></pre></details>';document.body.append(panel);
  const button=(label,run)=>{const b=document.createElement('button');b.textContent=label;b.style='margin:3px;padding:5px';b.onclick=async()=>{try{await run();}catch(e){faults.push(String(e.stack??e));}};panel.querySelector('#qa-buttons').append(b);};
- const ray=async(hand,x,y)=>{
+ // Browser click dispatch does not await an async onclick handler. Serialize
+ // test-trigger edges so rapid UI-tool calls cannot overlap the same trigger.
+ // Product input/receipt locks are still tested independently in cockpit/App tests.
+ let rayQueue=Promise.resolve();
+ const ray=(hand,x,y)=>{
+ const run=async()=>{
  if(!session)throw Error('Enter VR first');const c=device.controllers[hand];c.position.set(x,y-.4,0);c.quaternion.set(0,0,0,1);
  const frame=()=>new Promise(r=>session.requestAnimationFrame(r));await frame();await frame();c.updateButtonValue('trigger',1);await frame();await frame();c.updateButtonValue('trigger',0);await frame();
+ };
+ const next=rayQueue.then(run);rayQueue=next.catch(()=>{});return next;
  };
  button('Deny next entry',()=>{deny=true;});button('System exit',()=>session?.end());
  button('Hidden',()=>device.updateVisibilityState('hidden'));button('Blurred',()=>device.updateVisibilityState('visible-blurred'));button('Visible',()=>device.updateVisibilityState('visible'));

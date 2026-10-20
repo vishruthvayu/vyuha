@@ -504,6 +504,7 @@ export default function VRCockpit(props: Props) {
   const [support, setSupport] = useState<XRSupport>("checking"),
     [active, setActive] = useState(false),
     [entering, setEntering] = useState(false),
+    [rendererReady, setRendererReady] = useState(false),
     [error, setError] = useState(""),
     [page, setPage] = useState(0),
     [pending, setPending] = useState<PendingResponse | null>(null);
@@ -543,6 +544,7 @@ export default function VRCockpit(props: Props) {
         lifecycle: VRSessionLifecycle | null,
       ) => {
         runtime.current = { renderer, lifecycle };
+        setRendererReady(Boolean(renderer && lifecycle));
       },
     [],
   );
@@ -893,13 +895,17 @@ export default function VRCockpit(props: Props) {
           <p role="status">
             {active
               ? "Headset session active. All exercise controls are inside VR."
-              : descriptions[support]}
+              : support === "available" && !rendererReady
+                ? "Preparing the local VR renderer…"
+                : descriptions[support]}
           </p>
         </div>
         <div className="vr-entry">
           <button
             className="button primary"
-            disabled={support !== "available" || entering || active}
+            disabled={
+              support !== "available" || !rendererReady || entering || active
+            }
             onClick={() => void enter()}
           >
             {entering ? "Starting VR…" : "Enter VR"}

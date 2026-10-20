@@ -32,6 +32,14 @@ test("actual cockpit requires second confirmation, suppresses duplicate/stale re
   define("window", dom.window);
   define("document", dom.window.document);
   define("navigator", dom.window.navigator);
+  Object.defineProperty(dom.window, "isSecureContext", { value: true });
+  Object.defineProperty(dom.window.navigator, "xr", {
+    value: {
+      isSessionSupported: async () => true,
+      addEventListener() {},
+      removeEventListener() {},
+    },
+  });
   define("IS_REACT_ACT_ENVIRONMENT", true);
   const source = resolve(import.meta.dirname, "VRCockpit.tsx");
   const root = createRoot(document.getElementById("mount")!);
@@ -113,6 +121,13 @@ test("actual cockpit requires second confirmation, suppresses duplicate/stale re
       !document.querySelector<HTMLButtonElement>(`[data-vr-action="${id}"]`)!
         .disabled;
     await render();
+    assert.equal(
+      Array.from(document.querySelectorAll("button")).find(
+        (b) => b.textContent === "Enter VR",
+      )!.disabled,
+      true,
+      "capability support must not enable entry before the real renderer is initialized",
+    );
     await click("hold");
     assert.equal(actions.length, 0);
     assert.equal(enabled("confirm"), true);
