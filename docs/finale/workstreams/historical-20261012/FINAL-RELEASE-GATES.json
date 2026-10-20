@@ -1,0 +1,115 @@
+{
+  "recorded_date": "2026-10-12",
+  "source_tree_sha256": "94d311b647337ea9e1db5cac8cd75fc86b70f46717b5c1e8ad18fffbeb05595e",
+  "stable_approval": false,
+  "final_audit_score": null,
+  "independent_provisional_score": 83.5,
+  "finding_counts": {
+    "PASS": 53,
+    "N/A": 1,
+    "PARTIAL": 39
+  },
+  "finding_blocked_ids": [],
+  "gates": [
+    {
+      "id": "G01",
+      "requirement": "Final backend/frontend/production regression",
+      "status": "PASS",
+      "evidence": "482 backend /137 frontend /zero failures;275.39s/43841.548125ms;production build26 assets/cache72094449dd1b"
+    },
+    {
+      "id": "G02",
+      "requirement": "Full versioned parity and exact historical compatibility",
+      "status": "PASS",
+      "evidence": "Original312, immediate544/32, delayed288/18;18baseline/22current exact;HISTORY-RECEIPT.json"
+    },
+    {
+      "id": "G03",
+      "requirement": "Officer authorization, Crew isolation and transfer integrity",
+      "status": "PASS_SCOPED",
+      "evidence": "32 actual current HTTP protected pairs reject anonymous/forged/logged-out with401; expired and ambient-cookie cases in registry ASGI tests; Crew lifecycle/isolation/transfer regression passed."
+    },
+    {
+      "id": "G04",
+      "requirement": "Real browser AAR/reference/Fusion/Crew/recovery workflows",
+      "status": "PASS_SCOPED",
+      "evidence": "Actual browser Crew revoke/rotate/reconnect/history/AAR/What-if/evidence-only plus prior Fusion/outage checks; whole database unchanged. CYCLE2-BROWSER-ACCEPTANCE.json and dated BROWSER-ACCEPTANCE.json."
+    },
+    {
+      "id": "G05",
+      "requirement": "Bounded performance/longer runtime measurements",
+      "status": "PASS_SCOPED",
+      "evidence": "Fixed8/25/50/100/200 runs,180sworker/render/heap,6HTTP completion clients, exact-output reconstruction profile; not total-memory certification"
+    },
+    {
+      "id": "G06",
+      "requirement": "Exact source/commit/assets/manifest and final clean clone",
+      "status": "PASS_SCOPED",
+      "evidence": "Current source/hash/assets; fresh locked-dependency macOS clone, final delta npm ci/rebuild/native Bash CLI port, another empty-DB walkthrough and exact whole-DB backup/restore. CLEAN-CLONE-CYCLE2-RECEIPT.json."
+    },
+    {
+      "id": "G07",
+      "requirement": "Independent final claim/acceptance decision",
+      "status": "PARTIAL",
+      "evidence": "Independent final source/receipt review PASS_SCOPED;83.5 provisional with exact deductions. Final stable acceptance remains pending G08/G09. FINAL-AUDIT-REASSESSMENT.md/json.",
+      "software_review_status": "PASS_SCOPED"
+    },
+    {
+      "id": "G08",
+      "requirement": "New separate physical device LAN/WAN/HTTPS trust/cold reload",
+      "status": "PENDING_BY_USER",
+      "evidence": "User explicitly retained new physical validation pending; no test claimed passed; historical WAN report remains separate"
+    },
+    {
+      "id": "G09",
+      "requirement": "Current native Windows/Linux startup/install/backup/restore",
+      "status": "PENDING_BY_USER",
+      "evidence": "User retained native validation pending; macOS tested; no native pass invented"
+    },
+    {
+      "id": "G10",
+      "requirement": "Validated-release competition media/rehearsal/submission",
+      "status": "NOT_STARTED_REQUIRES_VALIDATED_RELEASE",
+      "evidence": "User forbids final PPT/video from unvalidated candidate"
+    }
+  ],
+  "optional_future_refinements": [
+    "CH08",
+    "CH10",
+    "CH14",
+    "CH16",
+    "F05",
+    "F07",
+    "P2-01",
+    "P2-02",
+    "SC16",
+    "SC17",
+    "X02",
+    "X07",
+    "X15",
+    "X21",
+    "X24",
+    "X26",
+    "X27",
+    "X29",
+    "X30"
+  ],
+  "external_validation_finding_ids": [
+    "CH12",
+    "CH15",
+    "P1-03",
+    "P2-03",
+    "SC14",
+    "SC19",
+    "SC23",
+    "X08",
+    "X13"
+  ],
+  "submission_finding_ids": [
+    "SC22",
+    "X17",
+    "X19"
+  ],
+  "blocking_scope": "No new stable declaration while required acceptance remains pending; PENDING tests are not failed architectural tests or automatically waived requirements.",
+  "candidate_code_commit": "4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903"
+}

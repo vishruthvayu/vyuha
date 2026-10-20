@@ -1,0 +1,5 @@
+after start                {"heapMB":32.4,"texture":51,"buffer":255,"framebuffer":6,"program":33}
+after cycle 1              {"heapMB":52.3,"texture":57,"buffer":260,"framebuffer":6,"program":79}
+after cycle 12             {"heapMB":58,"texture":57,"buffer":252,"framebuffer":6,"program":82}
+end                        {"heapMB":58.3,"texture":57,"buffer":252,"framebuffer":6,"program":82}
+delta {"heapMB":25.9,"texture":6,"buffer":-3,"framebuffer":0,"program":49}

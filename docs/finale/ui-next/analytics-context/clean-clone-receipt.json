@@ -1,0 +1,36 @@
+{
+  "source_commit": "a87842bd7b99537a540fb7c6adb08f475f8eaed1",
+  "clone_source": "GitHub remote branch",
+  "clone": "/var/tmp/vyuha-analytics-clean-a87842b",
+  "checks": [
+    {
+      "check": "clone",
+      "exit_code": 0
+    },
+    {
+      "check": "install",
+      "exit_code": 0
+    },
+    {
+      "check": "test",
+      "exit_code": 0
+    },
+    {
+      "check": "lint",
+      "exit_code": 0
+    },
+    {
+      "check": "format",
+      "exit_code": 0
+    },
+    {
+      "check": "build",
+      "exit_code": 0
+    }
+  ],
+  "all_commands_passed": true,
+  "frontend_passed": 301,
+  "native_assets_identical": true,
+  "asset_files": 36,
+  "python_scope": "Reused prepared pinned interpreter; parity imports cloned server source; no clean Python install or Docker rebuild claimed"
+}

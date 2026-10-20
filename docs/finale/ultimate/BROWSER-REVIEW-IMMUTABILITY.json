@@ -1,0 +1,120 @@
+{
+  "source_tree_sha256": "931ab608c99bb95b011635136709a1d585251a67e2ddc025d57b77cec4bf23c9",
+  "session": "25044f7e-f20d-405d-9d99-7d6aec7a6841",
+  "what_if": {
+    "original": 0,
+    "hypothetical": 0,
+    "effector": "rf_jammer"
+  },
+  "reference": {
+    "policy": "evidence_only",
+    "original": 0,
+    "hypothetical": 0,
+    "decisions": 15,
+    "commands": 4,
+    "observed_tick": 1540,
+    "projected_tick": 2700
+  },
+  "all_12_evidence_tables_unchanged": true,
+  "before": {
+    "sessions": {
+      "rows": 4,
+      "sha256": "1a5abb69a9adb5326d2108fd6f70e8063be4782bf4f74c2d70f463d5616fe3c9"
+    },
+    "scenarios": {
+      "rows": 4,
+      "sha256": "d7982617bb91996227b5c318922cd6dc9498051682790078b4bef7226fe5acd4"
+    },
+    "chunks": {
+      "rows": 9,
+      "sha256": "00a9c96e899b94beb5adea3995e79f20ad6db8395764a4c92b71845821a90d75"
+    },
+    "instructor_commands": {
+      "rows": 9,
+      "sha256": "f913c143b0adb08775386a17c8d598b816ceb023c21d46e066d6ddd3c4dbc4a2"
+    },
+    "instructor_notes": {
+      "rows": 2,
+      "sha256": "ffddf3e8ecad2688fa8255f035842ce8bb8d00f4dab3409693f257b7e3b44b81"
+    },
+    "fusion_exposures": {
+      "rows": 9,
+      "sha256": "e1a9db6007b2864b7523f65b1a2e47800dc19748fd01c8f99ccf729cfe2e9ede"
+    },
+    "skill_profiles": {
+      "rows": 4,
+      "sha256": "ca3d76cda1678be1fac97cbf962e8a40310863f720ad094579264bbd3adf9b66"
+    },
+    "skill_outcomes": {
+      "rows": 3,
+      "sha256": "a547f78cc6a4262f035197abd5fb181abc1220b5e0c1a08721653a7b1be2f052"
+    },
+    "director_history": {
+      "rows": 3,
+      "sha256": "0ff7436575705425614fc54518121d235ba62b00e0f67643684fc1d5e65955ff"
+    },
+    "session_unit_stats": {
+      "rows": 4,
+      "sha256": "db429f427758e12923839ac67b4017345025864d2782f597a339dd82a187c6ac"
+    },
+    "crew_attribution": {
+      "rows": 3,
+      "sha256": "aa2e42f332dbcfd288fb58df89b70bc07243f11795e7ef98a53eb4e47f84ed22"
+    },
+    "crew_receipts": {
+      "rows": 3,
+      "sha256": "17a5a99aa361578b6d4ba4f6091762bdc8cad63b99243009c5cc6ecc36cb8411"
+    }
+  },
+  "after": {
+    "sessions": {
+      "rows": 4,
+      "sha256": "1a5abb69a9adb5326d2108fd6f70e8063be4782bf4f74c2d70f463d5616fe3c9"
+    },
+    "scenarios": {
+      "rows": 4,
+      "sha256": "d7982617bb91996227b5c318922cd6dc9498051682790078b4bef7226fe5acd4"
+    },
+    "chunks": {
+      "rows": 9,
+      "sha256": "00a9c96e899b94beb5adea3995e79f20ad6db8395764a4c92b71845821a90d75"
+    },
+    "instructor_commands": {
+      "rows": 9,
+      "sha256": "f913c143b0adb08775386a17c8d598b816ceb023c21d46e066d6ddd3c4dbc4a2"
+    },
+    "instructor_notes": {
+      "rows": 2,
+      "sha256": "ffddf3e8ecad2688fa8255f035842ce8bb8d00f4dab3409693f257b7e3b44b81"
+    },
+    "fusion_exposures": {
+      "rows": 9,
+      "sha256": "e1a9db6007b2864b7523f65b1a2e47800dc19748fd01c8f99ccf729cfe2e9ede"
+    },
+    "skill_profiles": {
+      "rows": 4,
+      "sha256": "ca3d76cda1678be1fac97cbf962e8a40310863f720ad094579264bbd3adf9b66"
+    },
+    "skill_outcomes": {
+      "rows": 3,
+      "sha256": "a547f78cc6a4262f035197abd5fb181abc1220b5e0c1a08721653a7b1be2f052"
+    },
+    "director_history": {
+      "rows": 3,
+      "sha256": "0ff7436575705425614fc54518121d235ba62b00e0f67643684fc1d5e65955ff"
+    },
+    "session_unit_stats": {
+      "rows": 4,
+      "sha256": "db429f427758e12923839ac67b4017345025864d2782f597a339dd82a187c6ac"
+    },
+    "crew_attribution": {
+      "rows": 3,
+      "sha256": "aa2e42f332dbcfd288fb58df89b70bc07243f11795e7ef98a53eb4e47f84ed22"
+    },
+    "crew_receipts": {
+      "rows": 3,
+      "sha256": "17a5a99aa361578b6d4ba4f6091762bdc8cad63b99243009c5cc6ecc36cb8411"
+    }
+  },
+  "scope": "Actual browser actions on synthetic loopback QA; no production data mutated."
+}

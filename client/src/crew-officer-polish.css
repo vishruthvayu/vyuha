@@ -1,0 +1,155 @@
+/* Crew role entry and officer access share the existing spatial palette. */
+.crew-join {
+  padding: 24px 0;
+  border-block: 1px solid var(--line);
+  margin-block: 24px;
+}
+.crew-section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.crew-section-heading h2 {
+  margin: 6px 0 12px;
+}
+.crew-join-fields,
+.crew-setup-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 16px;
+  max-width: 1000px;
+}
+.crew-workspace .crew-join-fields label,
+.crew-workspace .crew-setup-fields label {
+  display: flex;
+  margin: 0;
+}
+.crew-join-fields .button {
+  margin: 0;
+  min-height: 44px;
+}
+.crew-setup-fields {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.crew-reconnection-help {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.crew-reconnection-help summary {
+  cursor: pointer;
+  padding-block: 8px;
+  width: fit-content;
+}
+.crew-reconnection-help p {
+  max-width: 80ch;
+}
+.crew-officer-workspace {
+  margin-top: 32px;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+.crew-officer-workspace > summary {
+  cursor: pointer;
+  padding: 16px 0;
+  font-weight: 600;
+}
+.crew-officer-workspace > .officer-session-bar {
+  padding-inline: 0;
+  background: transparent;
+}
+.crew-officer-setup,
+.crew-officer-section {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+  min-width: 0;
+}
+.crew-officer-setup > h2 {
+  margin-top: 8px;
+}
+.crew-roster-summary,
+.crew-role-access {
+  border-left: 2px solid var(--line);
+  padding: 4px 0 4px 16px;
+  margin: 16px 0;
+}
+.crew-roster-summary > h4 {
+  margin-top: 8px;
+}
+.crew-history-count {
+  color: var(--text);
+  font-weight: 600;
+}
+.crew-workspace .table-scroll:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.officer-login.officer-access {
+  width: min(560px, calc(100% - 32px));
+  max-width: 560px;
+  margin: 64px auto 40px !important;
+  padding: 36px !important;
+  background: linear-gradient(155deg, var(--surface-raised), var(--surface));
+  border-top: 2px solid var(--accent);
+}
+.officer-access-card > h1 {
+  font-size: clamp(28px, 3vw, 36px);
+  margin: 12px 0;
+}
+.officer-access-card > p {
+  line-height: 1.65;
+  max-width: 48ch;
+}
+.officer-access-card form {
+  display: grid;
+  gap: 20px;
+  margin-top: 28px;
+}
+.officer-access-card form label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+}
+.officer-access-card form input {
+  width: 100%;
+  min-height: 48px;
+}
+.officer-access-card form .button {
+  width: 100%;
+  min-height: 48px;
+  margin: 0;
+}
+.officer-access-card [role="alert"] {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.officer-login.officer-access-embedded {
+  width: min(100%, 560px);
+  margin: 16px 0 24px !important;
+  padding: 24px !important;
+  border-radius: var(--radius-sm);
+}
+@media (max-width: 680px) {
+  .crew-join-fields,
+  .crew-setup-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .crew-section-heading {
+    display: block;
+  }
+  .crew-section-heading > .footnote {
+    display: block;
+    margin-bottom: 20px;
+  }
+  .crew-join {
+    padding-block: 20px;
+  }
+  .officer-login.officer-access {
+    padding: 24px !important;
+    margin-top: 24px !important;
+  }
+}

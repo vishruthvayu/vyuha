@@ -1,0 +1,44 @@
+{
+  "client/src/App.tsx": {
+    "identical_to_branch": "ef130686d0ccce9d6e4245dec0ca5a97a2a047b5",
+    "sha256": "4e14de4b4b07ccfca840f08322b95370e113038f385c1b0094c16579398974ce"
+  },
+  "client/src/sim.worker.ts": {
+    "identical_to_branch": "ef130686d0ccce9d6e4245dec0ca5a97a2a047b5",
+    "sha256": "adb9929545825dff6f6b0c6461685abe008d267aee9fc1050156c82f15ee6eda"
+  },
+  "client/src/Scene.tsx": {
+    "identical_to_branch": "ef130686d0ccce9d6e4245dec0ca5a97a2a047b5",
+    "sha256": "78c2051ed3242b26bb4b06741b6c209688b06065bae458da21d07fbc21f9de55"
+  },
+  "client/src/GuidedDecision.tsx": {
+    "identical_to_branch": "ef130686d0ccce9d6e4245dec0ca5a97a2a047b5",
+    "sha256": "ff77d814be20ed8a9ea150941b9fef685b2e1126f7ba41adb618f14148b75733"
+  },
+  "client/src/premium/training.css": {
+    "identical_to_branch": "ef130686d0ccce9d6e4245dec0ca5a97a2a047b5",
+    "sha256": "59fedcf1595bafbd6e5a3b5aec120dc56644545a258a8824f143a2601753bdb8"
+  },
+  ".github/workflows/check.yml": {
+    "identical_to_branch": "8fba805e8a3355ac34ea329e232eb0e4ec9dcd20",
+    "sha256": "f6a4d27be72a4f24687485910def6d17fcf9f01d7bb5f8c92c87488545d3016d"
+  },
+  "client/src/main.tsx": {
+    "identical_to_branch": "8fba805e8a3355ac34ea329e232eb0e4ec9dcd20",
+    "sha256": "b2ad56997ade250a65eac757fa3c3d785952c87f27d23c70124f632accaf688e"
+  },
+  "client/src/premium/premium.css": {
+    "identical_to_branch": "8fba805e8a3355ac34ea329e232eb0e4ec9dcd20",
+    "sha256": "df06635d54e85ece4af3ed24b9cd9638534c0ac05cad19a6254d3a2fa812925e"
+  },
+  "server/streams.py": {
+    "identical_to_branch": "8fba805e8a3355ac34ea329e232eb0e4ec9dcd20",
+    "sha256": "c970d5eadb663ecbefe8d27b5717c22ccc8bf3c93b83b737aab032d1c8377ce0"
+  },
+  "preservation": {
+    "original_owner_wip_byte_identical": true,
+    "protected_tag_refs_unchanged": true,
+    "original_integration_head": "db0ff23a67692d3db5dce07a031d17ea50a409b3",
+    "protected_release_branch": "2ca96105044ad6a14952d74db619e20006c26eca"
+  }
+}

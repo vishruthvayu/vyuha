@@ -1,0 +1,95 @@
+{
+  "source_commit": "de30dfa1de7e0d1c59bb257f3020c2f5f074dc36",
+  "scope": "Disposable clean local Git clone; explicit existing pinned Python interpreter with cloned server source. Not a GitHub-authenticated clone, Docker rebuild, hermetic install or physical-device acceptance.",
+  "commands": [
+    {
+      "name": "install",
+      "args": [
+        "npm",
+        "ci"
+      ],
+      "exit_code": 0,
+      "seconds": 3.467
+    },
+    {
+      "name": "test",
+      "args": [
+        "npm",
+        "test"
+      ],
+      "exit_code": 0,
+      "seconds": 17.666
+    },
+    {
+      "name": "lint",
+      "args": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "seconds": 2.948
+    },
+    {
+      "name": "format",
+      "args": [
+        "npm",
+        "run",
+        "format:check"
+      ],
+      "exit_code": 0,
+      "seconds": 1.716
+    },
+    {
+      "name": "build",
+      "args": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "seconds": 9.533
+    }
+  ],
+  "cloned_worktree_clean": true,
+  "asset_hashes": {
+    "assets/Analytics-B4muAEx9.js": "9b5a2175f4422681312db3a85bf560a6bc2d8e8e5a766d65c6bfe2840c4304b8",
+    "assets/App-Ct8fTJCO.js": "4df6a50be40e19c2bea3741857abb976fda63cd79cb82c535d2ead5ca48da2dd",
+    "assets/Benchmark-B1iOtTqG.js": "21e40b266e1405cbcaf89c194656a3b99a36c31fccdaab50cb6a141d9075737e",
+    "assets/Compliance-CvAiJd1b.js": "0abddb953d86951f520d1367ab2abb74b722716f2e3163beea009541905f518d",
+    "assets/Crew-BB-BMut_.js": "317ed11df92e0a3022d60405456a542e5da868dd91e5c6ce9165d9b884dc71eb",
+    "assets/Evaluation-CNwinTvG.js": "e065d69b573aee316b210715ec5f8207d1393933030fe5f11438d1c55c4a5775",
+    "assets/Evidence-BNPOMA2X.js": "97dd5be784740fb24ee440f84e6cf2bc074dfb86e61993e815b861ac17844255",
+    "assets/ExerciseStudio-COC9en_7.js": "ff6a6fa50b31379e162ce6471657b9c27fd107589026bebc705bf300a1945baf",
+    "assets/Instructor-NQm9qI31.js": "75d67e4d9457fc100bc24a2be19e143c22b5bc059a1397ae88c9b59a63712a74",
+    "assets/Radar-DJuWIbVE.js": "487f553075ebc9aabacef4af30537e89ad279fdc514add88e516b9d777468ff8",
+    "assets/RapidID-BOoZKpY8.js": "6113c8372b6f3470d45a54058b915d1e30e7d9600f1b8525b68a72465af2417a",
+    "assets/Recorded-a3aVwViV.js": "69fe20f7abbca1cea904f54c26c7b05b20d0b2c97754a74a5aa28539d006f95b",
+    "assets/Scene-0NmKTirl.js": "02836af35b0d103397a5fe46c49d4df476bea938b7a2987851f968a2fcfd04f1",
+    "assets/Transfer-RSLU-Qn1.js": "ac85c225de213c03df7780a0418228d1e58ba44ddfd077522bcc447280e3a409",
+    "assets/blue-hour-1600-DiW3eLXV.webp": "ee832ecd33f7e7789dcb081a86f7ea190af1161044f6bec440ba272458b079cd",
+    "assets/blue-hour-960-B1ywJL9S.webp": "40f6018013edf60bd257e7791a3bd3267c5c417f0e6081cd2b38698cf2fbad5d",
+    "assets/geist-latin-wght-normal-BgDaEnEv.woff2": "19f9c92546aa300c312235e3125af1b81394d8db9a4bc4a425cd5b641d2d54e1",
+    "assets/geist-mono-latin-wght-normal-XN7g48iV.woff2": "684ad5b531f81d43c1e8c7038262d5db7cdc1f68006e04d6c7769efa8d33c8cc",
+    "assets/import-json-DEPqWbQE.js": "0ed610860015c0f9673df34d95efab8c7ed42d4f5928566480caa77ec126380c",
+    "assets/index-B_zEWZpS.css": "0f1d031f2081191cea3ccc455b8b2943f06b36631c7f1b3bd658b2c483dc8e16",
+    "assets/index-w-cg_9Zk.js": "06008240e2a62e7a8ff46e44fabeed7cd1d19a6cc82bdc40bac2cbe38c0a6227",
+    "assets/instrument-serif-latin-400-italic-DKMiL14s.woff2": "5a51946dfffa82972bc98745359c46761515641fda557c25116459a9f83da4a7",
+    "assets/instrument-serif-latin-400-normal-DnYpCC2O.woff2": "5eb09b5ac0e28b67c2f041c8ba6d244604ca0c0980d65912ab2d47fed84ddc31",
+    "assets/live-stream-DEuFpomF.js": "168d6c19a8e2b529d22da5b0fdd54d1b85d6d4298762f169ab3dceaaec4ecff6",
+    "assets/observations-BnLGOxA3.js": "bd6f4f4a041dfe78d7cbda832a0d0ccccd3bac47ad450302a2b98eac2f092440",
+    "assets/presentation-DEBuChuu.js": "2c2eed4e6e53d81827407fbde5bd42df2b042f38f5e07866efb6a8e0ce657c2e",
+    "assets/quality-CP3Bz-Gv.js": "e92e3b71115f9eb2d589d1309245c147e2545f2f92a17bffeab7513c31dee6bf",
+    "assets/response-v2-BSJ-8O2H.js": "e0a9c70eb590bfffdb8245ef07940ee54c314477cc2ea15cfb535e4c48236560",
+    "assets/sim.worker-CuQPYTBL.js": "c4e19a5df60bd199d823fbd14ef660241e2fce3176f3cf0b91616d6d3de29e09",
+    "examples/recorded-exercise.json": "9e80153eadf52a637130eb9495a77a038f97fa583095e0f628b8f46ff2c7343d",
+    "favicon.svg": "ad80061f8ab202c70b75b8cea093537e31373642c45d9f26c0a84300f6868acf",
+    "index.html": "aa35bd18a0e46957bf7a081f60c83d7c29739b14e80f12d49ae32955707433a8",
+    "licenses/OFL-Geist-and-Geist-Mono.txt": "71609cbb5c78b5870d712eab73a31d76622635c6ed034ab5cee3b9ecbda8685f",
+    "licenses/OFL-Instrument-Serif.txt": "b6106a757902d2d412e09d94dc4a226fe3da80485208a98003969f1b8b6b1d74",
+    "manifest.webmanifest": "3c9a9d404d20793b0dfb430286f94ae5ecd1c559ccc7f21e340206d3fa1d745a",
+    "sw.js": "f222b1b7650aa7c49c2dec46605d9e43209e77db69214cbd5211b69ad2b88799"
+  },
+  "native_assets_identical": true,
+  "frontend_tests": 294
+}

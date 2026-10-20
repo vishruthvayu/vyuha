@@ -1,0 +1,31 @@
+{
+  "source_parent": "c9a33410eb2a04967e4e3849e0c8e3835aa977a1",
+  "working_diff_sha256": "468fb10266e812790d34c81e870214361d6b2e693ae05afc09b19cd98060a9ea",
+  "scope": "Actual Chromium keyboard navigation, isolated synthetic QA; no drill changes or full screen-reader claim",
+  "results": [
+    {
+      "width": 360,
+      "single_match_enter_navigation": "PASS",
+      "arrow_navigation_and_return_to_input": "PASS",
+      "escape_focus_return": "PASS",
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      }
+    },
+    {
+      "width": 1440,
+      "single_match_enter_navigation": "PASS",
+      "arrow_navigation_and_return_to_input": "PASS",
+      "escape_focus_return": "PASS",
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      }
+    }
+  ]
+}

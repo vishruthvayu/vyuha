@@ -1,0 +1,7 @@
+# Explicit opt-in LAN exposure; the default Compose file stays loopback-only.
+services:
+  trainer:
+    ports: !override
+      - "${VYUHA_PORT:-8000}:8000"
+    environment:
+      VYUHA_UNIT_MODE: "1"

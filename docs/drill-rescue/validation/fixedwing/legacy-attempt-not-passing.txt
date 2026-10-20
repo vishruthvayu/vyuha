@@ -1,0 +1,9 @@
+file:///home/naveen/vyuha-drill-rescue/tools/drill-rescue/closeup-shot.mjs:41
+if (!got) throw new Error("No observable close-up captured; this is not a passing visual check.");
+                ^
+
+Error: No observable close-up captured; this is not a passing visual check.
+    at file:///home/naveen/vyuha-drill-rescue/tools/drill-rescue/closeup-shot.mjs:41:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+
+Node.js v26.11.1

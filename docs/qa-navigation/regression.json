@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-04",
+  "branch": "fix/navigation-discoverability",
+  "parent": "20e8642782cd13cf6779e5ebd650c2f55c851b37",
+  "source_tree_sha256": "cd48ae78643b2862b69dd82161aa0d717a50af03e072d524a03017df7177f4c2",
+  "backend": {
+    "passed": 139,
+    "warnings": 1,
+    "receipt": "backend.txt"
+  },
+  "frontend": {
+    "passed": 64,
+    "baseline": 53,
+    "new_navigation_tests": 11,
+    "receipt": "frontend.txt"
+  },
+  "parity": {
+    "checkpoints": 312,
+    "original": 51,
+    "director": 72,
+    "advanced": 135,
+    "rural": 54,
+    "receipt": "frontend.txt"
+  },
+  "build": {
+    "passed": true,
+    "offline_assets": 23,
+    "fingerprint": "1ee85a2f1bdb",
+    "index": "index-CcqsOdFC.js",
+    "receipt": "build.txt",
+    "existing_large_3d_chunk_warning": true
+  },
+  "browser": {
+    "route_mode_checks": 22,
+    "canonical_pages": 11,
+    "local_and_unit_modes": true,
+    "console_errors": 0,
+    "receipt": "browser-walkthrough.json"
+  },
+  "historical_compatibility": {
+    "baseline_completed": 18,
+    "current_completed": 21,
+    "preserved": true,
+    "receipt": "history.json"
+  },
+  "sealed_release_peeled_commit": "14a38ad9f8dd6d895f87fd568f0c5865b727e3a4",
+  "new_release_tag_created": false,
+  "WAN_off_physical_validation": "NOT PERFORMED BEFORE SUBMISSION",
+  "scope": "Navigation validation only; old release manifests and submission assets were not regenerated."
+}

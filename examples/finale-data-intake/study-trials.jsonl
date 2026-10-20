@@ -1,0 +1,12 @@
+{"completion_s": 10, "condition": "control", "context": "fixture-day", "participant_id": "P0", "phase": "baseline", "session_id": "P0-baseline", "task_correct": false, "task_id": "baseline-task"}
+{"completion_s": 10, "condition": "control", "context": "fixture-day", "participant_id": "P0", "phase": "post", "session_id": "P0-post", "task_correct": false, "task_id": "post-task"}
+{"completion_s": 10, "condition": "control", "context": "fixture-day", "participant_id": "P0", "phase": "retention", "session_id": "P0-retention", "task_correct": false, "task_id": "retention-task"}
+{"completion_s": 10, "condition": "control", "context": "fixture-day", "participant_id": "P1", "phase": "baseline", "session_id": "P1-baseline", "task_correct": false, "task_id": "baseline-task"}
+{"completion_s": 10, "condition": "control", "context": "fixture-day", "participant_id": "P1", "phase": "post", "session_id": "P1-post", "task_correct": false, "task_id": "post-task"}
+{"completion_s": 10, "condition": "control", "context": "fixture-day", "participant_id": "P1", "phase": "retention", "session_id": "P1-retention", "task_correct": false, "task_id": "retention-task"}
+{"completion_s": 10, "condition": "adaptive", "context": "fixture-day", "participant_id": "P2", "phase": "baseline", "session_id": "P2-baseline", "task_correct": false, "task_id": "baseline-task"}
+{"completion_s": 10, "condition": "adaptive", "context": "fixture-day", "participant_id": "P2", "phase": "post", "session_id": "P2-post", "task_correct": true, "task_id": "post-task"}
+{"completion_s": 10, "condition": "adaptive", "context": "fixture-day", "participant_id": "P2", "phase": "retention", "session_id": "P2-retention", "task_correct": true, "task_id": "retention-task"}
+{"completion_s": 10, "condition": "adaptive", "context": "fixture-day", "participant_id": "P3", "phase": "baseline", "session_id": "P3-baseline", "task_correct": false, "task_id": "baseline-task"}
+{"completion_s": 10, "condition": "adaptive", "context": "fixture-day", "participant_id": "P3", "phase": "post", "session_id": "P3-post", "task_correct": true, "task_id": "post-task"}
+{"completion_s": 10, "condition": "adaptive", "context": "fixture-day", "participant_id": "P3", "phase": "retention", "session_id": "P3-retention", "task_correct": true, "task_id": "retention-task"}

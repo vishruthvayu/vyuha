@@ -1,0 +1,46 @@
+{
+  "scope": "Actual browser interactions on disposable synthetic-QA DB, plus persisted endpoint/ledger comparison; not new physical-device or human-efficacy evidence.",
+  "tour": {
+    "stops": 6,
+    "start": true,
+    "next": true,
+    "completion": true,
+    "persisted_after_reload": true,
+    "replay_from_operator_guide": true,
+    "skip": true,
+    "normal_app_not_blocked": true,
+    "reading_estimate_seconds": 40,
+    "human_timed_trial": false
+  },
+  "workflow": {
+    "disabled_reasons_visible": true,
+    "next_guidance": true,
+    "server_receipt_observed": true,
+    "recorded_application_observed": true,
+    "completed_session_controls_explained": true
+  },
+  "replay": {
+    "overview": true,
+    "observer": true,
+    "follow": true,
+    "exact_event_boundary_tick": 548,
+    "exact_event_boundary_order": 4,
+    "selected_track": "T7",
+    "missing_or_ended_fallback_unit_test": true,
+    "ghost_pinned_data_unchanged": true
+  },
+  "heatmap": {
+    "unit_scope": true,
+    "trainee_scope": true,
+    "detail_opened": true,
+    "zero_cells_no_estimate": true,
+    "persisted_counts_verified": true
+  },
+  "evidence": {
+    "source_matches": true,
+    "backend": 139,
+    "frontend": 53,
+    "parity": 312,
+    "wan_off": "NOT PERFORMED BEFORE SUBMISSION"
+  }
+}

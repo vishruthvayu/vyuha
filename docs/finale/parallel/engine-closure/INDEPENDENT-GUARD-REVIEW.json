@@ -1,0 +1,31 @@
+{
+  "status": "PASS_SCOPED_SOURCE_AND_PURE_PROBES; FULL_SUITE_AND_WEBGL_ROOT_OWNED",
+  "head": "4c42fc934a6896ae5b9d62eeb84ed74cc2746a76",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "1f476588e75f051357c0b04e3fe95e390e64026fbdfb069f79ce631f5b675fa4",
+  "source_inputs": 298,
+  "inspected_files": {
+    "client/src/Radar.tsx": "89c71be9a7f1ee875afe9eaf88aa81768894d9de6d83f25f6711d7d51d8807b7",
+    "client/src/radar-presentation.ts": "a87fe383ee40335e2fdde82fcc19f4ab85448bb3e177cfb5c4a3566d06fc6c1c",
+    "client/src/radar-presentation.test.tsx": "e9e1b15b99c3a92049eed481fd931f16811c5c8c5ef964a94e414831be2b3901",
+    "client/src/Scene.tsx": "209b23c07839ec6d1fe5fac13310921980d10852965441a8ea8d577046fa6b58",
+    "client/src/ContactRenderer.tsx": "cd53266fe27c25957c94e689bce120982a380cb84c635f7f5047b9065ec829d1",
+    "client/src/render-contacts.ts": "4c35a29b0e38f8a57e964beee92b42872c86134edaa20e82f968ff9b31978ba4",
+    "client/src/render-contacts.test.ts": "07410d939701762f3e01a3b0ba9de781529fa50a44125f10cdf402621c098d7d",
+    "client/src/surface-textures.ts": "41d17ca0d06a88388bd359613a231199aab48c885c982c3ff9fedf9dd20900dc",
+    "docs/finale/parallel/FRONTEND-ENGINE-CONTRACT.md": "79348603b2c879180d6d5c9290638a313de5c40f3b812a4a0d749771f311d56d"
+  },
+  "findings": {
+    "RENDER-FPS-01": "FIXED; independent31checks previouslypassed, currentcounterprobeemits60/60fromepoch600",
+    "RADAR-OBS-01": "FIXED; originalindependentreproducer nowsuppressesmissing-observationtrack",
+    "RENDER-TYPE-01": "FIXTURECORRECTED",
+    "RENDER-ZOOM-01": "INTENTIONALDISPLAYCROP documented"
+  },
+  "remaining_scope": [
+    "rootfullfinalsuites/build",
+    "actualpostfixWebGLmetrics/resourcechurn/visualstates",
+    "friendUIintegration/finalmergedacceptance"
+  ],
+  "no_additional_source_change_requested": true,
+  "numeric_score": null
+}

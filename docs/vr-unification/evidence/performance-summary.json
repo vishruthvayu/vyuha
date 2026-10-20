@@ -1,0 +1,141 @@
+{
+  "runtime_commit": "ad430f742f7476feb464c1c53d08cfb3f95823ba",
+  "source_tree_sha256": "f87104f832e9cb9b03ad18ab3938a23a1a43f1bc51ba95385f540c684c36534a",
+  "hardware": {
+    "machine_name": "MacBook Air",
+    "machine_model": "MacBookAir10,1",
+    "chip_type": "Apple M1",
+    "physical_memory": "8 GB",
+    "number_processors": "proc 8:0:4:4",
+    "macos": "27.0.1"
+  },
+  "benchmark_180s": [
+    {
+      "file": "owner-browser-200-180s.json",
+      "median_fps": 60,
+      "samples": 176,
+      "minimum_fps_sample": 4,
+      "samples_below_50": 31,
+      "samples_below_30": 12,
+      "median_tick_ms": 0.6999999992549419,
+      "p95_tick_ms": 3.199999999254942,
+      "simulation_tick": 5299
+    },
+    {
+      "file": "owner-browser-200-isolated-180s.json",
+      "median_fps": 60,
+      "samples": 177,
+      "minimum_fps_sample": 2,
+      "samples_below_50": 18,
+      "samples_below_30": 11,
+      "median_tick_ms": 0.40000000037252903,
+      "p95_tick_ms": 2.5,
+      "simulation_tick": 5344
+    }
+  ],
+  "frame_windows": [
+    {
+      "label": "Benchmark first30s",
+      "file": "owner-browser-200-first30-frames.json",
+      "seconds": 30.008699999999255,
+      "frames": 1240,
+      "width": 1280,
+      "height": 720,
+      "scale": 1,
+      "p50_ms": 16.69999999999709,
+      "p95_ms": 49.099999999998545,
+      "p99_ms": 183.3000000000029,
+      "max_ms": 883.3000000000029,
+      "over_50_ms": 46,
+      "over_100_ms": 24
+    },
+    {
+      "label": "Benchmark warm30s aroundT+98s; active roster declines",
+      "file": "owner-browser-200-steady30-frames.json",
+      "seconds": 30.00279999999999,
+      "frames": 1800,
+      "width": 1280,
+      "height": 720,
+      "scale": 1,
+      "p50_ms": 16.699999999982538,
+      "p95_ms": 17.60000000000582,
+      "p99_ms": 17.70000000001164,
+      "max_ms": 17.800000000017462,
+      "over_50_ms": 0,
+      "over_100_ms": 0
+    },
+    {
+      "label": "Actual training startup/selection30s,200 retained",
+      "file": "owner-retained-200-startup30.json",
+      "seconds": 30.00649999999963,
+      "frames": 1383,
+      "width": 1280,
+      "height": 720,
+      "scale": 1,
+      "p50_ms": 16.69999999999709,
+      "p95_ms": 33.30000000000291,
+      "p99_ms": 115.59999999999854,
+      "max_ms": 1099.9000000000015,
+      "over_50_ms": 26,
+      "over_100_ms": 15
+    },
+    {
+      "label": "Actual training warm IR close-up30s,200 retained",
+      "file": "owner-retained-200-ir30.json",
+      "seconds": 30.02229999999964,
+      "frames": 1720,
+      "width": 1280,
+      "height": 720,
+      "scale": 1,
+      "p50_ms": 16.69999999999709,
+      "p95_ms": 17.69999999999709,
+      "p99_ms": 34.29999999998836,
+      "max_ms": 99.5,
+      "over_50_ms": 5,
+      "over_100_ms": 0
+    },
+    {
+      "label": "Actual training EO close-up30s, paused,200 retained",
+      "file": "owner-retained-200-eo-paused30.json",
+      "seconds": 30.01379999999999,
+      "frames": 1800,
+      "width": 1127,
+      "height": 904,
+      "scale": 1,
+      "p50_ms": 16.699999999982538,
+      "p95_ms": 17.600000000034925,
+      "p99_ms": 17.70000000001164,
+      "max_ms": 17.800000000046566,
+      "over_50_ms": 0,
+      "over_100_ms": 0
+    }
+  ],
+  "emulated_xr_steady": {
+    "emulator": "IWER 2.6.0",
+    "physical_headset": false,
+    "session": true,
+    "views": 2,
+    "frames": 6196,
+    "controllerInputs": [
+      {
+        "hand": "left",
+        "mode": "tracked-pointer"
+      },
+      {
+        "hand": "right",
+        "mode": "tracked-pointer"
+      }
+    ],
+    "frame_ms": {
+      "samples": 6195,
+      "median": 16.600000000558794,
+      "p95": 18.90000000037253,
+      "max": 65
+    },
+    "faults": []
+  },
+  "status": "MEASURED_WITH_LIMITATIONS",
+  "startup_stalls_resolved": false,
+  "physical_headset": false,
+  "scope": "Callback intervals and WebGL callback FPS; not GPU timings, input-to-display latency, headset certification or total RAM. Main QA server was stopped for isolated benchmark; no test/build/Docker work ran during formal captures."
+}

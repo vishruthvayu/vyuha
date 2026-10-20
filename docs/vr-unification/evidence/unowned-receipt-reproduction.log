@@ -1,0 +1,57 @@
+✔ Actual App completion persists verified evidence without stealing a subsequently selected review (2620.438292ms)
+✔ Actual App retry-complete persists verified evidence without stealing a subsequently selected review (636.824875ms)
+✔ Actual App retry-existing persists verified evidence without stealing a subsequently selected review (498.794833ms)
+✔ Actual App completion notes keeps the score verified and exposes annotation availability immediately (958.635709ms)
+✔ Actual App completion notes-failed keeps the score verified and exposes annotation availability immediately (931.79775ms)
+✔ Actual App presentation-only FPS/camera changes reuse replay snapshot while a seek reconstructs (280.21225ms)
+✔ Actual App restored draft locks evidence until its own initialized replay and ignores stale worker ownership (1040.698541ms)
+✔ Actual App ignores an older accepted acknowledgment while a different classification is pending (1192.978042ms)
+✔ Actual App ignores an older rejected acknowledgment while a different classification is pending (915.154791ms)
+✖ Actual App freezes browser Fusion attribution across a delayed cross-modality acknowledgment (607.332875ms)
+✖ Actual App freezes VR Fusion attribution across a delayed cross-modality acknowledgment (643.914375ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 9
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13934.705334
+
+✖ failing tests:
+
+test at src/review-app-lifetime.test.tsx:883:3
+✖ Actual App freezes browser Fusion attribution across a delayed cross-modality acknowledgment (607.332875ms)
+  AssertionError [ERR_ASSERTION]: unknown IDs and mismatched payloads cannot enter the recorded action stream
+  
+  2 !== 0
+  
+      at <anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:927:16)
+      at async mounted (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:495:5)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at src/review-app-lifetime.test.tsx:883:3
+✖ Actual App freezes VR Fusion attribution across a delayed cross-modality acknowledgment (643.914375ms)
+  AssertionError [ERR_ASSERTION]: unknown IDs and mismatched payloads cannot enter the recorded action stream
+  
+  2 !== 0
+  
+      at <anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:927:16)
+      at async mounted (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:495:5)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

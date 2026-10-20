@@ -1,0 +1,12 @@
+✔ Late success after leaving cannot restore prior role data (1160.511166ms)
+✔ Late success after leaving and reconnecting another role cannot restore prior role data (176.054833ms)
+✔ Late rejection after leaving cannot restore prior role data (107.540209ms)
+✔ Late rejection after leaving and reconnecting another role cannot restore prior role data (96.69875ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4207.092709

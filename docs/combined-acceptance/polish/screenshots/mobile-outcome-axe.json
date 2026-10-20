@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8089/",
+  "width": 390,
+  "height": 844,
+  "scale": 1,
+  "axe": {
+    "name": "axe-core",
+    "version": "4.14.0"
+  },
+  "violations": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "nodes": [
+        {
+          "target": [
+            ".status"
+          ],
+          "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.27 (foreground color: #7f8a85, background color: #29251c, font size: 7.1pt (9.5px), font weight: normal). Expected contrast ratio of 4.5:1",
+          "html": "<span class=\"status amber\">DEGRADED</span>"
+        }
+      ]
+    }
+  ],
+  "passes": 27,
+  "incomplete": [
+    {
+      "id": "aria-prohibited-attr",
+      "nodes": 1
+    },
+    {
+      "id": "color-contrast",
+      "nodes": 34
+    }
+  ]
+}

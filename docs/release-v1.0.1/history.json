@@ -1,0 +1,17 @@
+{
+  "historical_completed": 18,
+  "additional_current_completed": 3,
+  "all_current_completed_readable": 21,
+  "stored_engine_versions": {
+    "vyuha-0.2.0": 17,
+    "vyuha-0.1.0": 4
+  },
+  "exact_stored_cards_preserved": true,
+  "all_verified_aar_ghost_timelines_readable": true,
+  "all_four_skill_profiles_readable": true,
+  "heatmap_included_current_sessions": 21,
+  "historical_immutable_fields_sha256": "cce52299fb319073feb81fc0d3f2420a867ff7393421ca9f69940e9aef051b45",
+  "current_immutable_fields_sha256": "9abdf18414e477e695607dd605da0a51c8a0116fe1acf29097af00f9dfa70593",
+  "production_database_unchanged": true,
+  "scope": "Aggregate only; raw private records remain outside Git/submission. Checked on a disposable backup."
+}

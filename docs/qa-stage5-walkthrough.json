@@ -1,0 +1,664 @@
+{
+  "context": "Synthetic browser QA on isolated local SQLite; no real learner data or efficacy claim.",
+  "scenario": {
+    "authoring": {
+      "created_by": "LOCAL-INSTRUCTOR",
+      "identity_basis": "unverified local instructor label",
+      "request": {
+        "created_by": "LOCAL-INSTRUCTOR",
+        "difficulty": "standard",
+        "duration": 75,
+        "focus": "effector_choice",
+        "mix": [
+          "bird",
+          "friendly_uav",
+          "no_rf_fpv",
+          "hostile_quad",
+          "hostile_quad"
+        ],
+        "name": "Night Mixed Incursion",
+        "night": true,
+        "pack_id": "critical-infrastructure",
+        "restricted": true,
+        "seed": 482913,
+        "sensor_fault": "radar_degraded",
+        "tactic": "DECOY_THEN_STRIKE",
+        "terrain": "urban"
+      },
+      "version": 1
+    },
+    "difficulty_label": "standard",
+    "doctrine": {
+      "allowed_tactics": [
+        "DIRECT",
+        "SATURATION",
+        "DECOY_THEN_STRIKE",
+        "STAGGERED_WAVES",
+        "LOW_APPROACH"
+      ],
+      "defaults": {
+        "fog": 0.1,
+        "mix": [
+          "bird",
+          "friendly_uav",
+          "hostile_quad",
+          "no_rf_fpv",
+          "fixed_wing"
+        ],
+        "night": false
+      },
+      "description": "Shorter effector ranges and a broader restricted kinetic sector.",
+      "example_values": true,
+      "id": "critical-infrastructure",
+      "name": "Critical Infrastructure",
+      "rubric": {
+        "classify": 25,
+        "detect": 25,
+        "engage": 35,
+        "prioritise": 15
+      },
+      "rules": {
+        "asset_risk": 1.2,
+        "effectors": [
+          "hold",
+          "rf_jam",
+          "kinetic"
+        ],
+        "kinetic_range": 110,
+        "restricted": {
+          "enabled": true,
+          "x_lt": -15,
+          "z_gt": 0
+        },
+        "rf_range": 140,
+        "risk_weights": {
+          "bird": 0,
+          "fiber_fpv": 1.8,
+          "fixed_wing": 1.4,
+          "quad": 1
+        }
+      },
+      "terminology": "illustrative training configuration; not official doctrine",
+      "version": 1
+    },
+    "duration": 75,
+    "focus": "effector_choice",
+    "fog": 0.1,
+    "id": "lib_60a1d1c3645614939880d2fb",
+    "jamEnd": 660,
+    "jamStart": 180,
+    "night": true,
+    "prioritisation_version": 1,
+    "red_force": {
+      "phases": [
+        {
+          "contacts": [
+            "T1",
+            "T2"
+          ],
+          "role": "background",
+          "tick": 0
+        },
+        {
+          "contacts": [
+            "T4",
+            "T5"
+          ],
+          "role": "decoy",
+          "tick": 240
+        },
+        {
+          "contacts": [
+            "T3"
+          ],
+          "role": "strike",
+          "tick": 480
+        }
+      ],
+      "tactic": "DECOY_THEN_STRIKE",
+      "tactic_seed": 482913,
+      "version": 1
+    },
+    "seed": 482913,
+    "terrain": "urban",
+    "title": "Night Mixed Incursion",
+    "tracks": [
+      {
+        "altitude": 22,
+        "bearing": 13,
+        "distance": 157,
+        "id": "T1",
+        "identity": "neutral",
+        "kind": "bird",
+        "rf": false,
+        "spawn": 0,
+        "speed": 0.65
+      },
+      {
+        "altitude": 20,
+        "bearing": 249,
+        "distance": 142,
+        "id": "T2",
+        "identity": "friendly",
+        "kind": "quad",
+        "rf": true,
+        "spawn": 0,
+        "speed": 2.5
+      },
+      {
+        "altitude": 10,
+        "bearing": 70,
+        "distance": 161,
+        "id": "T3",
+        "identity": "hostile",
+        "kind": "fiber_fpv",
+        "rf": false,
+        "spawn": 480,
+        "speed": 3.8
+      },
+      {
+        "altitude": 20,
+        "bearing": 41,
+        "distance": 127,
+        "id": "T4",
+        "identity": "hostile",
+        "kind": "quad",
+        "rf": true,
+        "spawn": 240,
+        "speed": 2.5
+      },
+      {
+        "altitude": 20,
+        "bearing": 40,
+        "distance": 152,
+        "id": "T5",
+        "identity": "hostile",
+        "kind": "quad",
+        "rf": true,
+        "spawn": 240,
+        "speed": 2.5
+      }
+    ],
+    "version": 1
+  },
+  "sessions": [
+    {
+      "id": "b97e59c1-ff44-4e01-9335-3501a00775f0",
+      "title": "Night Mixed Incursion",
+      "pack": "critical-infrastructure",
+      "seed": 482913,
+      "observed_tick": 915,
+      "score": 61,
+      "nodes": {
+        "detect": 14.33,
+        "classify": 25.0,
+        "prioritise": 8.0,
+        "engage": 23.33
+      },
+      "leakers": 1,
+      "roe_breaches": 0,
+      "failures": {
+        "DETECTION_LATE": 3,
+        "NO_RF_JAM_INEFFECTIVE": 1,
+        "PRIORITY_INVERSION": 1
+      }
+    },
+    {
+      "id": "7d94b211-60d0-49d5-a1a2-862b39a83572",
+      "title": "Detection \u00b7 Foundational",
+      "pack": "critical-infrastructure",
+      "seed": 990307611,
+      "observed_tick": 2250,
+      "score": 0,
+      "nodes": {
+        "detect": 0.0,
+        "classify": 0.0,
+        "prioritise": 0.0,
+        "engage": 0.0
+      },
+      "leakers": 3,
+      "roe_breaches": 0,
+      "failures": {
+        "THREAT_MISSED": 3
+      }
+    },
+    {
+      "id": "0fcbb5d5-fa02-4af5-b30c-91e037a50e2a",
+      "title": "Night Mixed Incursion",
+      "pack": "critical-infrastructure",
+      "seed": 482913,
+      "observed_tick": 26,
+      "score": 0,
+      "nodes": {
+        "detect": 0.0,
+        "classify": 0.0,
+        "prioritise": 0.0,
+        "engage": 0.0
+      },
+      "leakers": 3,
+      "roe_breaches": 0,
+      "failures": {}
+    }
+  ],
+  "ledger": [
+    {
+      "sequence": 1,
+      "session_id": "b97e59c1-ff44-4e01-9335-3501a00775f0",
+      "trainee": "T_df1a8183514c4164be247e",
+      "processed_at": "2026-10-03T08:05:59.663572+00:00",
+      "kind": "Tactical",
+      "means": {
+        "detection": 0.3333333333333333,
+        "classification_iff": 0.8333333333333334,
+        "effector_choice": 0.6666666666666666,
+        "degraded_sensor_response": 0.3333333333333333
+      },
+      "outcomes": {
+        "classification_iff": {
+          "failures": 0,
+          "successes": 4
+        },
+        "degraded_sensor_response": {
+          "failures": 1,
+          "successes": 0
+        },
+        "detection": {
+          "failures": 3,
+          "successes": 1
+        },
+        "effector_choice": {
+          "failures": 1,
+          "successes": 3
+        }
+      },
+      "director_focus": null,
+      "director_mastery_before": null
+    },
+    {
+      "sequence": 2,
+      "session_id": "7d94b211-60d0-49d5-a1a2-862b39a83572",
+      "trainee": "T_df1a8183514c4164be247e",
+      "processed_at": "2026-10-03T08:12:53.381926+00:00",
+      "kind": "Tactical",
+      "means": {
+        "detection": 0.2222222222222222,
+        "classification_iff": 0.8333333333333334,
+        "effector_choice": 0.6666666666666666,
+        "degraded_sensor_response": 0.3333333333333333
+      },
+      "outcomes": {
+        "classification_iff": {
+          "failures": 0,
+          "successes": 0
+        },
+        "degraded_sensor_response": {
+          "failures": 0,
+          "successes": 0
+        },
+        "detection": {
+          "failures": 3,
+          "successes": 0
+        },
+        "effector_choice": {
+          "failures": 0,
+          "successes": 0
+        }
+      },
+      "director_focus": "detection",
+      "director_mastery_before": 0.3333333333333333
+    },
+    {
+      "sequence": 3,
+      "session_id": "R_bcbc89398e8a4d59baa02c1d751b1984",
+      "trainee": "T_df1a8183514c4164be247e",
+      "processed_at": "2026-10-03T08:13:37.423373+00:00",
+      "kind": "Rapid ID",
+      "means": {
+        "detection": 0.2222222222222222,
+        "classification_iff": 0.8125,
+        "effector_choice": 0.6666666666666666,
+        "degraded_sensor_response": 0.3333333333333333
+      },
+      "outcomes": {
+        "classification_iff": {
+          "failures": 2,
+          "successes": 8
+        },
+        "degraded_sensor_response": {
+          "failures": 0,
+          "successes": 0
+        },
+        "detection": {
+          "failures": 0,
+          "successes": 0
+        },
+        "effector_choice": {
+          "failures": 0,
+          "successes": 0
+        }
+      },
+      "director_focus": null,
+      "director_mastery_before": null
+    },
+    {
+      "sequence": 4,
+      "session_id": "0fcbb5d5-fa02-4af5-b30c-91e037a50e2a",
+      "trainee": "T_df1a8183514c4164be247e",
+      "processed_at": "2026-10-03T08:20:29.150118+00:00",
+      "kind": "Tactical",
+      "means": {
+        "detection": 0.3,
+        "classification_iff": 0.8235294117647058,
+        "effector_choice": 0.7142857142857143,
+        "degraded_sensor_response": 0.3333333333333333
+      },
+      "outcomes": {
+        "classification_iff": {
+          "failures": 0,
+          "successes": 1
+        },
+        "degraded_sensor_response": {
+          "failures": 0,
+          "successes": 0
+        },
+        "detection": {
+          "failures": 0,
+          "successes": 1
+        },
+        "effector_choice": {
+          "failures": 0,
+          "successes": 1
+        }
+      },
+      "director_focus": null,
+      "director_mastery_before": null
+    }
+  ],
+  "rapid_summary": {
+    "accuracy": 0.8,
+    "bird_confusion": 1,
+    "correct": 8,
+    "error_counts": {
+      "bird \u2192 hostile_quad": 1,
+      "friendly_uav \u2192 hostile_quad": 1
+    },
+    "friendly_false_hostile": 1,
+    "median_response_ms": 349.0,
+    "most_common_error": "bird \u2192 hostile_quad",
+    "profile_mapping": "One classification_iff success per correct round; failure per incorrect/timeout round. Other skills receive zero observations.",
+    "rounds": 10,
+    "verified": true
+  },
+  "rapid_response_times_ms": [
+    1035,
+    1060,
+    826,
+    264,
+    1016,
+    284,
+    286,
+    270,
+    278,
+    412
+  ],
+  "tactical_score": {
+    "engine_version": "vyuha-0.3.0",
+    "fratricide": false,
+    "leakers": 1,
+    "passed": false,
+    "prioritisation": {
+      "agreement": 0.5,
+      "choices": [
+        {
+          "available": [
+            {
+              "priority": 0.028257457,
+              "risk": 1.2,
+              "tick": 394,
+              "time_to_impact": 42.466667,
+              "track_id": "T4"
+            },
+            {
+              "priority": 0.022871665,
+              "risk": 1.2,
+              "tick": 394,
+              "time_to_impact": 52.466667,
+              "track_id": "T5"
+            }
+          ],
+          "chosen": {
+            "priority": 0.028257457,
+            "risk": 1.2,
+            "tick": 394,
+            "time_to_impact": 42.466667,
+            "track_id": "T4"
+          },
+          "order": 5,
+          "tick": 394
+        },
+        {
+          "available": [
+            {
+              "priority": 0.079227799,
+              "risk": 2.16,
+              "tick": 870,
+              "time_to_impact": 27.263158,
+              "track_id": "T3"
+            },
+            {
+              "priority": 0.032786885,
+              "risk": 1.2,
+              "tick": 870,
+              "time_to_impact": 36.6,
+              "track_id": "T5"
+            }
+          ],
+          "chosen": {
+            "priority": 0.032786885,
+            "risk": 1.2,
+            "tick": 870,
+            "time_to_impact": 36.6,
+            "track_id": "T5"
+          },
+          "order": 8,
+          "tick": 870
+        },
+        {
+          "available": [
+            {
+              "priority": 0.082875606,
+              "risk": 2.16,
+              "tick": 906,
+              "time_to_impact": 26.063158,
+              "track_id": "T3"
+            }
+          ],
+          "chosen": {
+            "priority": 0.082875606,
+            "risk": 2.16,
+            "tick": 906,
+            "time_to_impact": 26.063158,
+            "track_id": "T3"
+          },
+          "order": 11,
+          "tick": 906
+        }
+      ],
+      "comparisons": [
+        {
+          "chosen": {
+            "priority": 0.028257457,
+            "risk": 1.2,
+            "tick": 394,
+            "time_to_impact": 42.466667,
+            "track_id": "T4"
+          },
+          "expected_first": "T4",
+          "order": 5,
+          "other": {
+            "priority": 0.022871665,
+            "risk": 1.2,
+            "tick": 394,
+            "time_to_impact": 52.466667,
+            "track_id": "T5"
+          },
+          "outcome": "concordant",
+          "tick": 394
+        },
+        {
+          "chosen": {
+            "priority": 0.032786885,
+            "risk": 1.2,
+            "tick": 870,
+            "time_to_impact": 36.6,
+            "track_id": "T5"
+          },
+          "expected_first": "T3",
+          "order": 8,
+          "other": {
+            "priority": 0.079227799,
+            "risk": 2.16,
+            "tick": 870,
+            "time_to_impact": 27.263158,
+            "track_id": "T3"
+          },
+          "outcome": "inverted",
+          "tick": 870
+        }
+      ],
+      "coverage": 1.0,
+      "method": "pairwise Kendall agreement over co-observed hostile choices, multiplied by engagement coverage",
+      "ordering_rule": "First accepted non-Hold engagement per hostile; an ineffective attempt still declares attention. Pairs counted once, at their first co-observed choice.",
+      "points": 8,
+      "points_possible": 15,
+      "priority_rule": "risk_weight \u00d7 asset_risk / max(time_to_impact_seconds, 1/30)",
+      "tau": 0.0,
+      "tie_rule": "Equal priority pairs are excluded; no comparable pairs yields neutral agreement 1, still multiplied by coverage.",
+      "unengaged": [],
+      "version": 1
+    },
+    "roe_breaches": 0,
+    "rows": [
+      {
+        "attempts": [],
+        "classify": 0,
+        "designated": null,
+        "detect": 0,
+        "detected": 1,
+        "engage": 0,
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: bird / neutral.",
+          "Hold fire on this non-hostile contact."
+        ],
+        "id": "T1",
+        "ideal": "hold",
+        "identity": "neutral",
+        "impact": false,
+        "kind": "bird",
+        "prioritise": 0,
+        "total": 0
+      },
+      {
+        "attempts": [
+          "hold"
+        ],
+        "classify": 25,
+        "designated": 16,
+        "detect": 25,
+        "detected": 0,
+        "engage": 0,
+        "feedback": [
+          "Hold fire on this non-hostile contact."
+        ],
+        "id": "T2",
+        "ideal": "hold",
+        "identity": "friendly",
+        "impact": false,
+        "kind": "quad",
+        "prioritise": 15,
+        "total": 65
+      },
+      {
+        "attempts": [
+          "rf_jam"
+        ],
+        "classify": 25,
+        "designated": 887,
+        "detect": 16,
+        "detected": 607,
+        "engage": 0,
+        "feedback": [
+          "Designation took 9.3 seconds after first sensor visibility.",
+          "No RF link: use an allowed kinetic response in this example pack.",
+          "1 unsuitable response; review the sensor evidence.",
+          "This threat reached the protected asset."
+        ],
+        "id": "T3",
+        "ideal": "kinetic",
+        "identity": "hostile",
+        "impact": true,
+        "kind": "fiber_fpv",
+        "prioritise": 8,
+        "total": 49
+      },
+      {
+        "attempts": [
+          "rf_jam"
+        ],
+        "classify": 25,
+        "designated": 377,
+        "detect": 23,
+        "detected": 241,
+        "engage": 35,
+        "feedback": [
+          "Designation took 4.5 seconds after first sensor visibility."
+        ],
+        "id": "T4",
+        "ideal": "rf_jam",
+        "identity": "hostile",
+        "impact": false,
+        "kind": "quad",
+        "prioritise": 8,
+        "total": 91
+      },
+      {
+        "attempts": [
+          "rf_jam"
+        ],
+        "classify": 25,
+        "designated": 853,
+        "detect": 4,
+        "detected": 325,
+        "engage": 35,
+        "feedback": [
+          "Designation took 17.6 seconds after first sensor visibility."
+        ],
+        "id": "T5",
+        "ideal": "rf_jam",
+        "identity": "hostile",
+        "impact": false,
+        "kind": "quad",
+        "prioritise": 8,
+        "total": 72
+      }
+    ],
+    "score": 61,
+    "skills": {
+      "recognition": 80,
+      "response": 40
+    },
+    "summary": "1 threat reached the protected asset. Review response selection.",
+    "threats": 3
+  },
+  "outage": {
+    "origin": "secure loopback",
+    "server_process_stopped": true,
+    "cached_reload": true,
+    "draft_recovery": true,
+    "offline_actions": true,
+    "subsequent_verification": true,
+    "physical_WAN_off": "NOT PERFORMED BEFORE SUBMISSION",
+    "physical_WAN_off_reason": "Required physical/network setup unavailable during final validation window."
+  }
+}

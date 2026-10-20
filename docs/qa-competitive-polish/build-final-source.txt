@@ -1,0 +1,40 @@
+
+> vyuha-trainer@1.0.0 build
+> tsc -b && vite build && node scripts/offline.mjs
+
+vite v6.4.3 building for production...
+transforming...
+✓ 1627 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                           0.66 kB │ gzip:   0.40 kB
+dist/assets/sim.worker-gI5K36jQ.js        8.23 kB
+dist/assets/index-GuE3K69F.css           34.24 kB │ gzip:   8.42 kB
+dist/assets/import-json-DqA3I991.js       0.36 kB │ gzip:   0.25 kB
+dist/assets/observations-DJGegytG.js      1.72 kB │ gzip:   0.75 kB
+dist/assets/Transfer-DiiC9VET.js          3.02 kB │ gzip:   1.46 kB
+dist/assets/Radar-D34OoiV7.js             3.04 kB │ gzip:   1.29 kB
+dist/assets/presentation-DEBuChuu.js      3.39 kB │ gzip:   1.60 kB
+dist/assets/Evaluation-BVzdxKIo.js        3.77 kB │ gzip:   1.52 kB
+dist/assets/Recorded-DaHfO1vj.js          5.32 kB │ gzip:   1.99 kB
+dist/assets/Evidence-KTlxgVCh.js          5.94 kB │ gzip:   1.86 kB
+dist/assets/Benchmark-DZiMEMJ8.js         6.22 kB │ gzip:   2.53 kB
+dist/assets/Analytics-CLdNOpSi.js         8.92 kB │ gzip:   2.99 kB
+dist/assets/RapidID-D71n07Vh.js           9.17 kB │ gzip:   3.44 kB
+dist/assets/Instructor-C5QzrXxY.js        9.67 kB │ gzip:   3.21 kB
+dist/assets/ExerciseStudio-BmuWoHO5.js   10.90 kB │ gzip:   3.62 kB
+dist/assets/App-CDDNqtw5.js              49.87 kB │ gzip:  14.81 kB
+dist/assets/index-DFzlBMEL.js           263.69 kB │ gzip:  81.97 kB
+dist/assets/scenario-Dht4hKNK.js        899.30 kB │ gzip: 243.42 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 8.16s
+Offline cache: 23 local assets (dc761b08aefb)
+npm notice
+npm notice New minor version of npm available! 11.6.2 -> 11.21.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.0
+npm notice To update run: npm install -g npm@11.21.0
+npm notice

@@ -1,0 +1,27 @@
+- main:
+  - heading "Device performance check" [level=1]
+  - link "System evidence":
+    - /url: /system/evidence
+  - paragraph: Twenty-second rendering test. Run each contact count at a fixed graphics tier; export results with general hardware class and RAM, without device IDs. Auto quality can be tested separately. These fixtures spawn contacts together using the existing simulator.
+  - text: CPU / model class
+  - textbox "CPU / model class"
+  - text: RAM (GiB)
+  - textbox "RAM (GiB)"
+  - text: Contacts
+  - combobox "Contacts":
+    - option "8"
+    - option "25"
+    - option "50"
+    - option "100"
+    - option "200" [selected]
+  - text: Graphics tier
+  - combobox "Graphics tier":
+    - option "high"
+    - option "medium" [selected]
+    - option "low"
+    - option "tactical"
+  - checkbox "Enable auto quality"
+  - text: Enable auto quality
+  - button "Run 20-second check"
+  - paragraph: 20.0s · median WebGL FPS 60 · simulation median 0.100 ms · p95 0.300 ms
+  - button "Export measurement JSON"

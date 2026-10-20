@@ -1,0 +1,55 @@
+{
+  "scope": "Read-only review of two uncommitted benchmark helper corrections; not application acceptance or full load results",
+  "base_commit": "0c40bc0176a42640723b67e8c41a4b1d81bb5706",
+  "source_files_sha256": {
+    "scripts/benchmark-unit.py": "694e7fbd9ee28ea939bf965cc68f00b101d4c6ae5ac5776ad724b92c38234504",
+    "scripts/benchmark-advanced.py": "b6d21d861d9072afbc0ec1b84e008080563f1f560ef2941e1adc22fa535c44bf"
+  },
+  "result": "PASS_SCOPED_NO_REPRODUCED_BLOCKER",
+  "findings": [],
+  "credential_isolation": {
+    "explicit_temporary_path": true,
+    "password_source": "secrets.token_urlsafe(32), 32 random input bytes",
+    "only_child_env_overridden": true,
+    "production_auth_not_modified_by_new_code": true,
+    "stored_hash_file_mode": "0600 on this macOS probe",
+    "plaintext_or_token_in_aggregate_output": false,
+    "auth_middleware_or_protected_routes_modified": false,
+    "external_analytics_requires_explicit_env_token": true,
+    "external_target_executed": false
+  },
+  "independent_probe": {
+    "explicit_temp_path_used": true,
+    "ambient_credential_untouched": true,
+    "mode_0600": true,
+    "plaintext_absent": true,
+    "pbkdf2_hash_matches": true,
+    "iterations": 600000,
+    "generated_password_length": 43
+  },
+  "actual_load_workload": "Parent reports successful legacy1client/3sessions and6clients/18sessions, advanced6clients/18sessions with actual unmarked legacy metadata; reviewer did not rerun heavy workload.",
+  "limitations": [
+    "Existing subprocess termination timeout behavior is unchanged.",
+    "Synthetic workload intentionally uses one officer session for privileged measurements; it is not trainee authorization or role-isolation evidence.",
+    "Final regression, source hash, commit and benchmark results must be sealed by parent."
+  ],
+  "numeric_product_score": null,
+  "source_edits": false,
+  "browser_operations": false,
+  "reviewed_source_tree_sha256": "7eb3dad32c506c58470b11bd72c4f95539359946b24e586fc154659b485695f5",
+  "source_inputs": 298,
+  "source_hash_independently_recomputed": true,
+  "fail_fast_followup": {
+    "source_tree_sha256": "7eb3dad32c506c58470b11bd72c4f95539359946b24e586fc154659b485695f5",
+    "source_inputs": 298,
+    "expected_source_matches": true,
+    "missing_token_rejected": true,
+    "http_client_constructions": 0,
+    "probe_seconds": 0.4825,
+    "source_files_sha256": {
+      "scripts/benchmark-unit.py": "694e7fbd9ee28ea939bf965cc68f00b101d4c6ae5ac5776ad724b92c38234504",
+      "scripts/benchmark-advanced.py": "b6d21d861d9072afbc0ec1b84e008080563f1f560ef2941e1adc22fa535c44bf"
+    }
+  },
+  "metadata_review": "Engine version labels are collected from actual returned scenarios under the existing shared lock and sorted for deterministic output; --advanced is not falsely labelled Finale0.4."
+}

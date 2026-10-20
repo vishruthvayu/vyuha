@@ -1,0 +1,49 @@
+FFF...                                                                   [100%]
+=================================== FAILURES ===================================
+_____________ test_preflight_never_masks_an_actual_listener[False] _____________
+
+tmp_path = PosixPath('/private/var/folders/f8/6d_zbw0s3cj661yt6jg15d200000gn/T/pytest-of-seemalanaveenyadav/pytest-102/test_preflight_never_masks_an_0')
+reuse = False
+
+    @pytest.mark.parametrize('reuse',[False,True])
+    def test_preflight_never_masks_an_actual_listener(tmp_path,reuse):
+     with socket.socket() as listener:
+      if reuse:listener.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
+>     listener.bind(('0.0.0.0',0));listener.listen(1)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E     PermissionError: [Errno 1] Operation not permitted
+
+server/tests/test_rc2_startup.py:15: PermissionError
+_____________ test_preflight_never_masks_an_actual_listener[True] ______________
+
+tmp_path = PosixPath('/private/var/folders/f8/6d_zbw0s3cj661yt6jg15d200000gn/T/pytest-of-seemalanaveenyadav/pytest-102/test_preflight_never_masks_an_1')
+reuse = True
+
+    @pytest.mark.parametrize('reuse',[False,True])
+    def test_preflight_never_masks_an_actual_listener(tmp_path,reuse):
+     with socket.socket() as listener:
+      if reuse:listener.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
+>     listener.bind(('0.0.0.0',0));listener.listen(1)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E     PermissionError: [Errno 1] Operation not permitted
+
+server/tests/test_rc2_startup.py:15: PermissionError
+________ test_repeated_immediate_restart_after_active_http_connections _________
+
+tmp_path = PosixPath('/private/var/folders/f8/6d_zbw0s3cj661yt6jg15d200000gn/T/pytest-of-seemalanaveenyadav/pytest-102/test_repeated_immediate_restar0')
+
+    @pytest.mark.skipif(os.name!='posix',reason='POSIX asyncio/Uvicorn reuse contract; nativeWindows remains separate')
+    def test_repeated_immediate_restart_after_active_http_connections(tmp_path):
+     port=0
+     for _ in range(5):
+      with socket.socket() as listener:
+>      listener.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1);listener.bind(('0.0.0.0',port));port=listener.getsockname()[1];listener.listen(1)
+                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E      PermissionError: [Errno 1] Operation not permitted
+
+server/tests/test_rc2_startup.py:24: PermissionError
+=========================== short test summary info ============================
+FAILED server/tests/test_rc2_startup.py::test_preflight_never_masks_an_actual_listener[False]
+FAILED server/tests/test_rc2_startup.py::test_preflight_never_masks_an_actual_listener[True]
+FAILED server/tests/test_rc2_startup.py::test_repeated_immediate_restart_after_active_http_connections
+3 failed, 3 passed in 0.41s

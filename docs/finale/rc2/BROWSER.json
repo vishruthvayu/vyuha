@@ -1,0 +1,167 @@
+{
+  "date": "2026-10-13",
+  "code_commit": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
+  "scope": "Actual macOS Chrome GUI, separate tabs on loopback; not Linux, Windows or phone execution",
+  "composer": [
+    {
+      "page": "Raid Composer",
+      "CSSwidth": 390,
+      "fields": 10,
+      "mouseReachable": [
+        "Terrain",
+        "Conditions",
+        "Fog"
+      ],
+      "keyboardTerrainToConditions": true,
+      "client": 390,
+      "scroll": 390
+    },
+    {
+      "page": "Raid Composer",
+      "CSSwidth": 768,
+      "fields": 10,
+      "mouseReachable": [
+        "Terrain",
+        "Conditions",
+        "Fog"
+      ],
+      "keyboardTerrainToConditions": true,
+      "client": 768,
+      "scroll": 768
+    },
+    {
+      "page": "Raid Composer",
+      "CSSwidth": 1440,
+      "fields": 10,
+      "mouseReachable": [
+        "Terrain",
+        "Conditions",
+        "Fog"
+      ],
+      "keyboardTerrainToConditions": true,
+      "client": 1440,
+      "scroll": 1440
+    },
+    {
+      "page": "Raid Composer",
+      "CSSwidth": 1920,
+      "fields": 10,
+      "mouseReachable": [
+        "Terrain",
+        "Conditions",
+        "Fog"
+      ],
+      "keyboardTerrainToConditions": true,
+      "client": 1920,
+      "scroll": 1920
+    }
+  ],
+  "crew_layouts": [
+    {
+      "clipped": [],
+      "colorScheme": "dark",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "clipped": [],
+      "colorScheme": "dark",
+      "scroll": 768,
+      "width": 768
+    },
+    {
+      "clipped": [],
+      "colorScheme": "dark",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "clipped": [],
+      "colorScheme": "dark",
+      "scroll": 1920,
+      "width": 1920
+    }
+  ],
+  "enabled_button_contrast": [
+    {
+      "background": "rgb(24, 34, 35)",
+      "color": "rgb(213, 222, 221)",
+      "enabled": true,
+      "name": "Leave role",
+      "ratio": 11.859745558034806
+    },
+    {
+      "background": "rgb(36, 48, 49)",
+      "color": "rgb(213, 222, 221)",
+      "enabled": true,
+      "name": "Confirm shared classification",
+      "ratio": 9.935402429129436
+    },
+    {
+      "background": "rgb(24, 34, 35)",
+      "color": "rgb(213, 222, 221)",
+      "enabled": true,
+      "name": "hold",
+      "ratio": 11.859745558034806
+    },
+    {
+      "background": "rgb(24, 34, 35)",
+      "color": "rgb(213, 222, 221)",
+      "enabled": true,
+      "name": "rf_jam",
+      "ratio": 11.859745558034806
+    },
+    {
+      "background": "rgb(24, 34, 35)",
+      "color": "rgb(213, 222, 221)",
+      "enabled": true,
+      "name": "kinetic",
+      "ratio": 11.859745558034806
+    }
+  ],
+  "crew": {
+    "accepted": 3,
+    "attributed": 3,
+    "unattributed": 0,
+    "spotter_designations": 1,
+    "responder_classifications": 1,
+    "responder_responses": 1,
+    "designation_to_classification_logical_seconds": 0.53,
+    "classification_to_response_logical_seconds": 59.17,
+    "timing_scope": "Logical scenario time from automation actions, not network latency or human-performance evidence",
+    "restart": {
+      "ledger": [
+        "Order 1 · WATCH · spotter",
+        "Order 2 · RESPONSE · responder",
+        "Order 3 · RESPONSE · responder"
+      ],
+      "time": "T+67.83s / 180s · active · Paused"
+    },
+    "after_restart_clock_equal": true,
+    "role_reconnect": true,
+    "completion": "Server verified shared 0/100",
+    "officer_reauthentication_after_restart": true,
+    "history_expanded": true
+  },
+  "track_memory": {
+    "actual_legacy_sensor_run": true,
+    "selected_T1_then_T4": true,
+    "T4_selected_last_report_row_visible_when_unobserved": true,
+    "radar_had_no_T4_during_that_frame": true,
+    "selection_survived_resume_reacquisition": true,
+    "paused_actions_disabled": true,
+    "scope": "Bounded actual interaction; pure and mounted tests cover current-evidence action boundary, not universal click-success certification"
+  },
+  "callsign": {
+    "joined": "RC2-CALLSIGN",
+    "verified_aar_label": true,
+    "history_chooser_label": true,
+    "underlying_ids_unchanged": true
+  },
+  "fresh_local": {
+    "default": "CADET-01",
+    "zero_sessions": true,
+    "initial_profile_loaded": true,
+    "crew_unauthenticated_gate_visible": true
+  }
+}

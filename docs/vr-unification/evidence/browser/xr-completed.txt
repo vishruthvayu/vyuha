@@ -1,0 +1,497 @@
+- link "Skip to workspace":
+  - /url: "#workspace-content"
+- banner:
+  - link "VYUHA home":
+    - /url: /
+    - strong: VYUHA
+  - navigation "Primary workspaces":
+    - link "Training":
+      - /url: /
+    - link "Review":
+      - /url: /?view=aar
+      - text: Review
+      - generic: "1"
+    - link "Crew":
+      - /url: /crew
+    - link "Instructor":
+      - /url: /instructor
+    - link "Analytics":
+      - /url: /analytics
+  - button "Find workspace":
+    - generic: Find workspace
+    - generic: ⌘ / Ctrl K
+  - button "Operator guide":
+    - generic: Operator guide
+  - button "Workspaces":
+    - generic: Workspaces
+- main:
+  - text: WORKSPACE
+  - generic: AFTER-ACTION REVIEW
+  - text: VYUHA server connected
+  - generic: LEARN FROM EVERY DECISION
+  - heading "After-action review" [level=1]
+  - paragraph: A replay of your exercise, with a traceable score and reference response.
+  - button "Export session":
+    - text: Export session
+  - generic "Exercise history · 1 saved exercise"
+  - strong: "0"
+  - generic: / 100
+  - generic: REVIEW REQUIRED
+  - heading "Review designation, classification, and response before the next drill." [level=2]
+  - paragraph: UNIFIED-FINAL-QA · QA persistent 8 contacts / urban · Seed 62147
+  - text: Server verified
+  - button "Next drill":
+    - text: Next drill
+  - article:
+    - text: Recognition
+    - strong: 0%
+    - generic: Correct type and identity
+  - article:
+    - text: Response selection
+    - strong: 13%
+    - generic: Reference response, fewer errors
+  - article:
+    - text: Asset impacts
+    - strong: "0"
+    - generic: 0 hostile threats in exercise
+  - article:
+    - text: Safety flags
+    - strong: "0"
+    - generic: Restricted-zone attempts
+  - navigation "Review sections":
+    - link "Verdict":
+      - /url: "#review-verdict"
+    - link "Replay & decisions":
+      - /url: "#review-replay"
+    - link "Timeline":
+      - /url: "#review-timeline"
+    - link "Decision path":
+      - /url: "#review-path"
+    - link "Comparison":
+      - /url: "#review-comparison"
+    - link "Score breakdown":
+      - /url: "#review-score"
+  - heading "Time-machine replay" [level=2]
+  - generic: T+0.00s
+  - button "OVERVIEW" [pressed]
+  - button "OBSERVER"
+  - button "FOLLOW TARGET"
+  - button "Tactical 2D"
+  - paragraph: OVERVIEW · 60 fps · Ground-truth debrief view · External camera; terrain translucent. Camera changes observation only.
+  - note:
+    - text: AAR / INSTRUCTOR REFERENCE TRUTH
+    - generic: Full active geometry · not trainee sensor evidence
+  - button "Play replay":
+  - slider "Replay time": "0"
+  - generic: 03:00
+  - heading "Observed contact history" [level=3]
+  - paragraph: Labels are trainee classifications. Sensor-silent tracks retain their recorded first observation.
+  - button "T1 Unknown contact · active EO/IR":
+    - generic: T1
+    - generic: Unknown contact · active
+    - generic: EO/IR
+  - button "T2 Unknown contact · active EO/IR":
+    - generic: T2
+    - generic: Unknown contact · active
+    - generic: EO/IR
+  - button "T3 Unknown contact · active EO/IR":
+    - generic: T3
+    - generic: Unknown contact · active
+    - generic: EO/IR
+  - button "T4 Unknown contact · active EO/IR":
+    - generic: T4
+    - generic: Unknown contact · active
+    - generic: EO/IR
+  - button "T5 Unknown contact · active EO/IR":
+    - generic: T5
+    - generic: Unknown contact · active
+    - generic: EO/IR
+  - button "T6 Unknown contact · active EO/IR":
+    - generic: T6
+    - generic: Unknown contact · active
+    - generic: EO/IR
+  - button "T7 Unknown contact · active EO/IR":
+    - generic: T7
+    - generic: Unknown contact · active
+    - generic: EO/IR
+  - button "T8 Unknown contact · active EO/IR":
+    - generic: T8
+    - generic: Unknown contact · active
+    - generic: EO/IR
+  - heading "Ghost Expert" [level=2]
+  - generic: RULE-GROUNDED
+  - text: Decision review
+  - combobox "Decision review":
+    - option "T1 · T+14.63s · detection · detection late"
+    - option "T1 · T+23.70s · classification / iff · bird misidentified" [selected]
+    - option "T1 · T+24.27s · engagement · correct hold"
+  - strong: T1 · T+23.70s
+  - generic: INCORRECT
+  - button "Previous decision"
+  - button "Next decision"
+  - button "Jump to selected decision":
+    - text: Jump to selected decision
+  - paragraph: Decision evidence stays pinned while you move the replay cursor.
+  - heading "Available to trainee" [level=3]
+  - term: Radar
+  - definition: ACTIVE · contact observed
+  - term: RF control link
+  - definition: No control link detected
+  - term: IFF
+  - definition: No reply · identity unconfirmed
+  - term: EO / IR observation
+  - definition: bird silhouette
+  - term: Range
+  - definition: 123.6 m
+  - term: Restricted sector
+  - definition: Outside restricted sector
+  - term: First detectable
+  - definition: T+0.00s
+  - paragraph: "Evidence at T+23.70s: immediately before the selected action. IFF no reply does not establish hostility. Quad and FPV share a multirotor silhouette."
+  - heading "Your decision" [level=3]
+  - strong: Quadcopter / hostile
+  - heading "Expected decision" [level=3]
+  - strong: Bird / neutral
+  - generic: Ground-truth rubric reference; identity must first be established
+  - heading "Why" [level=3]
+  - paragraph: Ground truth after review identifies a neutral bird. A bird silhouette is evidence only when the modeled EO/IR observation is available. The IFF panel returned no reply; that alone does not establish hostility.
+  - text: BIRD_MISIDENTIFIED
+  - generic "Ground truth after review"
+  - heading "Consequence" [level=3]
+  - paragraph: The contact remained active at the reviewed end; no later observed consequence is asserted.
+  - text: NO_CONSEQUENCE_YET
+  - heading "Score impact" [level=3]
+  - strong: "Classification: 0 / 25"
+  - paragraph: Final contact node, shared across all attempts. This is not a separate per-action award.
+  - heading "Training skill" [level=3]
+  - paragraph: Classification / IFF
+  - strong: Training focus
+  - generic: SERVER REVIEW
+  - paragraph: "Recommended training focus: classification iff. Counts are distinct contacts with evidenced errors; sensor context does not prove causation."
+  - generic: Detection
+  - strong: "1"
+  - generic: contacts with errors · 17 node points lost
+  - generic: Classification / IFF
+  - strong: "1"
+  - generic: contacts with errors · 25 node points lost
+  - generic: Effector choice
+  - strong: "0"
+  - generic: contacts with errors · 0 node points lost
+  - generic: Degraded sensor response
+  - strong: "0"
+  - generic: contacts with errors · 0 node points lost
+  - button "Review largest loss"
+  - button "Review strongest decision"
+  - paragraph: Lost points are deduplicated per contact/node before hostile-row averaging. Sensor-context tags overlap other skills. This focus is a review recommendation. The next adaptive drill uses the persistent four-skill profile.
+  - strong: Hostile-node averages before penalties
+  - generic: Detection
+  - strong: 0 / 25
+  - generic: Classification
+  - strong: 0 / 25
+  - generic: Timely resolution
+  - strong: 0 / 15
+  - generic: Engagement
+  - strong: 0 / 35
+  - paragraph: "Asset impacts: 0 · Non-hostile safety flag: No"
+  - paragraph: This legacy exercise uses timely resolution for its 15-point node.
+  - heading "Instructor teaching notes" [level=3]
+  - list:
+    - strong: T+99.67s
+    - text: "· Final unified-source QA: controller decisions recovered after a verified process crash. Inspect sensor uncertainty without changing the saved scoring rules."
+  - paragraph: Officer annotations attached to recorded pause commands; separate from score and learning evidence.
+  - strong: Exercise timeline
+  - generic "Recorded interval and scoring horizon"
+  - text: Find recorded evidence
+  - searchbox "Find recorded evidence"
+  - text: Timeline category
+  - combobox "Timeline category":
+    - option "All meaningful events" [selected]
+    - option "trainee action"
+    - option "instructor action"
+    - option "sensor transition"
+    - option "contact detection"
+    - option "contact resolution"
+    - option "asset impact"
+    - option "score error"
+    - option "tactic phase"
+  - status: Showing 20 of 20 matching events · 20 recorded
+  - button "T+0.00s sensor transition Radar normal · RF active · Day":
+    - generic: T+0.00s
+    - generic: sensor transition
+    - text: Radar normal · RF active · Day
+  - button "T+0.00s contact detection · T1 T1 · first working-sensor observation":
+    - generic: T+0.00s
+    - generic: contact detection · T1
+    - text: T1 · first working-sensor observation
+  - button "T+0.00s contact detection · T2 T2 · first working-sensor observation":
+    - generic: T+0.00s
+    - generic: contact detection · T2
+    - text: T2 · first working-sensor observation
+  - button "T+0.00s contact detection · T3 T3 · first working-sensor observation":
+    - generic: T+0.00s
+    - generic: contact detection · T3
+    - text: T3 · first working-sensor observation
+  - button "T+0.00s contact detection · T4 T4 · first working-sensor observation":
+    - generic: T+0.00s
+    - generic: contact detection · T4
+    - text: T4 · first working-sensor observation
+  - button "T+0.00s contact detection · T5 T5 · first working-sensor observation":
+    - generic: T+0.00s
+    - generic: contact detection · T5
+    - text: T5 · first working-sensor observation
+  - button "T+0.00s contact detection · T6 T6 · first working-sensor observation":
+    - generic: T+0.00s
+    - generic: contact detection · T6
+    - text: T6 · first working-sensor observation
+  - button "T+0.00s contact detection · T7 T7 · first working-sensor observation":
+    - generic: T+0.00s
+    - generic: contact detection · T7
+    - text: T7 · first working-sensor observation
+  - button "T+0.00s contact detection · T8 T8 · first working-sensor observation":
+    - generic: T+0.00s
+    - generic: contact detection · T8
+    - text: T8 · first working-sensor observation
+  - button "T+4.00s sensor transition Radar jammed · RF active · Day":
+    - generic: T+4.00s
+    - generic: sensor transition
+    - text: Radar jammed · RF active · Day
+  - button "T+8.00s sensor transition Radar normal · RF active · Day":
+    - generic: T+8.00s
+    - generic: sensor transition
+    - text: Radar normal · RF active · Day
+  - button "T+14.63s trainee action · T1 T1 · designate · designate":
+    - generic: T+14.63s
+    - generic: trainee action · T1
+    - text: T1 · designate · designate
+  - button "T+14.63s score error · T1 T1 · detection late":
+    - generic: T+14.63s
+    - generic: score error · T1
+    - text: T1 · detection late
+  - button "T+23.70s trainee action · T1 T1 · classify · quad":
+    - generic: T+23.70s
+    - generic: trainee action · T1
+    - text: T1 · classify · quad
+  - button "T+23.70s score error · T1 T1 · bird misidentified":
+    - generic: T+23.70s
+    - generic: score error · T1
+    - text: T1 · bird misidentified
+  - button "T+24.27s trainee action · T1 T1 · engage · Hold":
+    - generic: T+24.27s
+    - generic: trainee action · T1
+    - text: T1 · engage · Hold
+  - button "T+99.30s instructor action Instructor · RADAR jammed":
+    - generic: T+99.30s
+    - generic: instructor action
+    - text: Instructor · RADAR jammed
+  - button "T+99.30s sensor transition Radar jammed · RF active · Day":
+    - generic: T+99.30s
+    - generic: sensor transition
+    - text: Radar jammed · RF active · Day
+  - 'button "T+99.67s instructor action Instructor · Pause · Teaching note: Final unified-source QA: controller decisions recovered after a verified process crash. Inspect sensor uncertainty without changing the saved scoring rules."':
+    - generic: T+99.67s
+    - generic: instructor action
+    - text: "Instructor · Pause · Teaching note: Final unified-source QA: controller decisions recovered after a verified process crash. Inspect sensor uncertainty without changing the saved scoring rules."
+  - button "T+99.67s instructor action Instructor · Resume":
+    - generic: T+99.67s
+    - generic: instructor action
+    - text: Instructor · Resume
+  - heading "Decision path and What-if replay" [level=2]
+  - text: Reviewed contact
+  - combobox "Reviewed contact":
+    - option "T1" [selected]
+    - option "T2"
+    - option "T3"
+    - option "T4"
+    - option "T5"
+    - option "T6"
+    - option "T7"
+    - option "T8"
+  - paragraph: Server-verified post-exercise review. Node points are final contact outcomes, shared across attempts. After-review truth is labelled separately from observations.
+  - list "Final contact score path for T1":
+    - button "STEP 1 · Detect 8 / 25 1 authoritative review Inspect recorded evidence":
+      - generic: STEP 1 · Detect
+      - strong: 8 / 25
+      - generic: 1 authoritative review
+      - generic: Inspect recorded evidence
+    - button "STEP 2 · Classify 0 / 25 1 authoritative review Inspect recorded evidence":
+      - generic: STEP 2 · Classify
+      - strong: 0 / 25
+      - generic: 1 authoritative review
+      - generic: Inspect recorded evidence
+    - button "STEP 3 · Timely response 15 / 15 0 authoritative reviews Legacy timely-response node":
+      - generic: STEP 3 · Timely response
+      - strong: 15 / 15
+      - generic: 0 authoritative reviews
+      - generic: Legacy timely-response node
+    - button "STEP 4 · Respond 35 / 35 1 authoritative review Inspect recorded evidence":
+      - generic: STEP 4 · Respond
+      - strong: 35 / 35
+      - generic: 1 authoritative review
+      - generic: Inspect recorded evidence
+  - paragraph: Stages follow rubric order; decision ticks below preserve the actual recorded history. This display does not infer causal links between decisions.
+  - button "All stages" [pressed]
+  - status: 3 reviews shown
+  - generic "T+14.63s · detectionDesignate INCORRECT":
+    - generic: T+14.63s · detection
+    - strong: Designate
+    - generic: INCORRECT
+  - generic "T+23.70s · classification iffQuadcopter / hostile INCORRECT":
+    - generic: T+23.70s · classification iff
+    - strong: Quadcopter / hostile
+    - generic: INCORRECT
+  - generic "T+24.27s · engagementHold CORRECT":
+    - generic: T+24.27s · engagement
+    - strong: Hold
+    - generic: CORRECT
+  - generic "Read the complete linear decision record"
+  - heading "Try a different response" [level=3]
+  - paragraph: The server branches the frozen exercise at the recorded decision. The original score and training profile remain unchanged.
+  - text: Recorded response
+  - combobox "Recorded response":
+    - option "T1 · T+24.27s · hold" [selected]
+  - text: Hypothetical response
+  - combobox "Hypothetical response":
+    - option "Hold" [selected]
+    - option "RF jammer"
+    - option "Kinetic"
+  - button "Run hypothetical branch"
+  - generic: RECORDED BOUNDARIES · EVIDENCE-CONSTRAINED
+  - heading "Evidence-constrained response comparison" [level=2]
+  - paragraph: Each recorded response is compared at its original tick using the evidence then available. This reference is an inspectable training policy, not a certified military expert.
+  - paragraph: 1 / 1 recorded responses match the policy. Descriptive agreement with a conditional evidence policy; not a score or correctness judgement.
+  - article:
+    - generic: Supported reference choices
+    - strong: "1"
+    - generic: Policy evidence label
+  - article:
+    - generic: Conditional choices
+    - strong: "0"
+    - generic: Further evidence required
+  - article:
+    - generic: Uncertain choices
+    - strong: "0"
+    - generic: Uncertainty retained
+  - generic "T1 · T+24.27s · recorded Hold · matches policy"
+  - generic "Scope and limitations"
+  - generic: SEPARATE HYPOTHETICAL POLICY RUN
+  - heading "Autonomous reference replay" [level=2]
+  - paragraph: Generate a separate policy run on this frozen exercise. Canonical mode consults truth after the exercise; evidence-only mode may abstain when type or intent cannot be established.
+  - text: Reference policy
+  - combobox "Reference policy":
+    - option "Canonical rubric truth · after AAR" [selected]
+    - option "Evidence-only · conservative"
+  - button "Run autonomous reference"
+  - strong: Decision-tree score breakdown
+  - region "Original decision-tree score breakdown":
+    - table:
+      - rowgroup:
+        - row "Contact Detect / 25 Classify / 25 Timely response / 15 Engage / 35 Total":
+          - columnheader "Contact"
+          - columnheader "Detect / 25"
+          - columnheader "Classify / 25"
+          - columnheader "Timely response / 15"
+          - columnheader "Engage / 35"
+          - columnheader "Total"
+      - rowgroup:
+        - row "T1 · neutral 8 0 15 35 58":
+          - cell "T1 · neutral"
+          - cell "8"
+          - cell "0"
+          - cell "15"
+          - cell "35"
+          - cell "58"
+        - row "T2 · neutral 0 0 0 0 0":
+          - cell "T2 · neutral"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+        - row "T3 · neutral 0 0 0 0 0":
+          - cell "T3 · neutral"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+        - row "T4 · neutral 0 0 0 0 0":
+          - cell "T4 · neutral"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+        - row "T5 · neutral 0 0 0 0 0":
+          - cell "T5 · neutral"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+        - row "T6 · neutral 0 0 0 0 0":
+          - cell "T6 · neutral"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+        - row "T7 · neutral 0 0 0 0 0":
+          - cell "T7 · neutral"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+        - row "T8 · neutral 0 0 0 0 0":
+          - cell "T8 · neutral"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+  - paragraph: Session score averages hostile contacts, then subtracts 10 per asset impact. Non-hostile engagement fails the session. This legacy exercise uses timely resolution for its 15-point node.
+- complementary:
+  - generic "IWER SOFTWARE QA — NOT A HEADSET"
+  - paragraph: Production bundle / test-only emulator
+  - button "Deny next entry"
+  - button "System exit"
+  - button "Hidden"
+  - button "Blurred"
+  - button "Visible"
+  - button "left contact 1"
+  - button "left contact 2"
+  - button "left next page"
+  - button "left designate"
+  - button "left type"
+  - button "left identity"
+  - button "left classify"
+  - button "left hold"
+  - button "left RF"
+  - button "left kinetic"
+  - button "left confirm"
+  - button "left start/pause"
+  - button "left view"
+  - button "left cancel"
+  - button "left exit"
+  - button "right contact 1"
+  - button "right contact 2"
+  - button "right next page"
+  - button "right designate"
+  - button "right type"
+  - button "right identity"
+  - button "right classify"
+  - button "right hold"
+  - button "right RF"
+  - button "right kinetic"
+  - button "right confirm"
+  - button "right start/pause"
+  - button "right view"
+  - button "right cancel"
+  - button "right exit"
+  - button "Head look left"
+  - button "Head neutral"
+  - button "Lose graphics context" [active]
+  - button "Reset frame sample"
+  - button "Remove right controller"
+  - button "Restore right controller"
+  - generic: "{ \"emulator\": \"IWER 2.6.0\", \"physical_headset\": false, \"session\": false, \"views\": 2, \"frames\": 12440, \"controllerInputs\": [], \"frame_ms\": { \"samples\": 8999, \"median\": 16.699999999953434, \"p95\": 24, \"max\": 262.5999999999767 }, \"faults\": [] }"

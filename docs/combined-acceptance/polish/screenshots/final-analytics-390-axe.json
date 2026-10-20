@@ -1,0 +1,13 @@
+{
+  "url": "http://127.0.0.1:8092/analytics#session-comparison",
+  "width": 390,
+  "height": 844,
+  "scale": 1,
+  "axe": {
+    "name": "axe-core",
+    "version": "4.14.0"
+  },
+  "violations": [],
+  "passes": 25,
+  "incomplete": []
+}

@@ -1,0 +1,46 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { renderToStaticMarkup } from "react-dom/server";
+import { CrewCoordination, type CoordinationMetrics } from "./Crew";
+const metrics: CoordinationMetrics = {
+  accepted_actions: 3,
+  attributed_actions: 3,
+  unattributed_actions: 0,
+  contacts_with_actions: 1,
+  members: [
+    {
+      member_id: "a",
+      callsign: "WATCH",
+      role: "spotter",
+      accepted_actions: 1,
+      designations: 1,
+      classifications: 0,
+      responses: 0,
+    },
+    {
+      member_id: "b",
+      callsign: "RESP",
+      role: "responder",
+      accepted_actions: 2,
+      designations: 0,
+      classifications: 1,
+      responses: 1,
+    },
+  ],
+  median_designation_to_classification_s: 0.5,
+  median_classification_to_response_s: null,
+  timing_basis:
+    "Authoritative logical ticks; pause and outage wall time excluded.",
+  interpretation:
+    "Coordination only; no individual tactical score or skill-profile credit.",
+};
+test("crew review attributes stage counts and distinguishes absent timing from zero", () => {
+  const before = structuredClone(metrics);
+  const html = renderToStaticMarkup(<CrewCoordination metrics={metrics} />);
+  assert.match(html, /WATCH/);
+  assert.match(html, /RESP/);
+  assert.match(html, /0.50s/);
+  assert.match(html, /No paired stages/);
+  assert.match(html, /no individual tactical score or skill-profile credit/);
+  assert.deepEqual(metrics, before);
+});

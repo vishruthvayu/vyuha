@@ -1,0 +1,26 @@
+✖ Leaving a role cannot be undone by late action completion (717.748208ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2763.309041
+
+✖ failing tests:
+
+test at ../../../../../../../../private/tmp/vyuha-rc2-independent-audit/late-role-reproduction.tsx:2:4788
+✖ Leaving a role cannot be undone by late action completion (717.748208ms)
+  AssertionError [ERR_ASSERTION]: Late previous-role action must not restore role pane after leave
+      at <anonymous> (/private/tmp/vyuha-rc2-independent-audit/late-role-reproduction.tsx:147:10)
+      at async run (/private/tmp/vyuha-rc2-independent-audit/late-role-reproduction.tsx:127:5)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

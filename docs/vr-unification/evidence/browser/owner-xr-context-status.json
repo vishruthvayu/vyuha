@@ -1,0 +1,18 @@
+{
+  "emulator": "IWER 2.6.0",
+  "physical_headset": false,
+  "session": false,
+  "views": 2,
+  "frames": 6244,
+  "controllerInputs": [],
+  "frame_ms": {
+    "samples": 6243,
+    "median": 16.600000000558794,
+    "p95": 18.90000000037253,
+    "max": 65
+  },
+  "faults": [
+    "TypeError: Cannot read properties of null (reading '0')\n    at onDeviceFrame (http://127.0.0.1:8106/_vrqa/iwer.js:1:58547)",
+    "TypeError: Cannot read properties of null (reading '0')\n    at onDeviceFrame (http://127.0.0.1:8106/_vrqa/iwer.js:1:58547)"
+  ]
+}

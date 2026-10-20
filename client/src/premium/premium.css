@@ -1,0 +1,19 @@
+/* VYUHA "Quiet Instrument" layer. Imported after the legacy stylesheets so it
+   is the single source of visual truth; route files refine their own pages. */
+@import "./fonts.css";
+@import "./tokens.css";
+@import "./base.css";
+@import "./components.css";
+@import "./shell.css";
+@import "./training.css";
+@import "./preparation.css";
+@import "./review.css";
+@import "./instructor.css";
+@import "./crew.css";
+@import "./analytics.css";
+@import "./studio.css";
+@import "./utility.css";
+
+/* Finale platform refinements are scoped; shared drill tokens stay stable. */
+@import "../platform/fieldwork.css";
+@import "../platform/authoring.css";

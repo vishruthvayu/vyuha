@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "draft": false,
+  "candidate_commit": "b974b6fca32fcc2a58d2c3967d29508a11cea8a2",
+  "release_version": "1.0.0",
+  "physical_wan_acceptance": "NOT PERFORMED BEFORE SUBMISSION",
+  "status_vocabulary": [
+    "IMPLEMENTED",
+    "VALIDATED",
+    "EXPERIMENTAL",
+    "DEFERRED"
+  ],
+  "validation_definition": "Validated only within the explicitly listed software/LAN evidence scope, not operational certification. Final regression and artifact acceptance are recorded in FINAL-VALIDATION.md.",
+  "features": [
+    {
+      "name": "Deterministic browser simulation",
+      "status": "VALIDATED",
+      "implemented": true,
+      "evidence_scope": "30 Hz Worker; Python/TypeScript tactical parity totals 312 checkpoints",
+      "source": "client/src/sim.worker.ts"
+    },
+    {
+      "name": "Server-authoritative reconstruction/scoring",
+      "status": "VALIDATED",
+      "implemented": true,
+      "evidence_scope": "Consistency-checked scenario/actions/commands; plausible fabricated actions remain possible",
+      "source": "server/main.py"
+    },
+    {
+      "name": "Instructor exercise control",
+      "status": "VALIDATED",
+      "implemented": true,
+      "evidence_scope": "Ordered idempotent interventions; process-outage recovery; independent trainee sessions",
+      "source": "docs/INSTRUCTOR-CONTROL.md"
+    },
+    {
+      "name": "Ghost Expert and Time Machine",
+      "status": "VALIDATED",
+      "implemented": true,
+      "evidence_scope": "Rule-grounded AAR and deterministic tactical replay; no LLM",
+      "source": "docs/GHOST-AAR.md"
+    },
+    {
+      "name": "Adaptive Director",
+      "status": "VALIDATED",
+      "implemented": true,
+      "evidence_scope": "Four Beta skills, seeded Thompson sampling, heuristic difficulty and anti-rote templates",
+      "source": "docs/DIRECTOR-V1.md"
+    },
+    {
+      "name": "Unit Mode",
+      "status": "VALIDATED",
+      "implemented": true,
+      "evidence_scope": "Physical Mac officer + Android/Chrome LAN commands and completion/AAR; six simulated clients on loopback. Dedicated physical WAN-off/LAN-on validation: NOT PERFORMED BEFORE SUBMISSION.",
+      "source": "docs/UNIT-MODE.md"
+    },
+    {
+      "name": "Red Force tactics",
+      "status": "VALIDATED",
+      "implemented": true,
+      "evidence_scope": "Five deterministic patterns; low approach changes sensor range without terrain occlusion",
+      "source": "docs/STAGE-5-ADVANCED-TRAINING.md"
+    },
+    {
+      "name": "Rapid ID",
+      "status": "VALIDATED",
+      "implemented": true,
+      "evidence_scope": "Seeded recognition reviews, retry/reload-safe outcomes",
+      "source": "docs/STAGE-5-ADVANCED-TRAINING.md"
+    },
+    {
+      "name": "Illustrative Doctrine Packs",
+      "status": "VALIDATED",
+      "implemented": true,
+      "evidence_scope": "Three versioned packs; replace supported rules rather than claim real operational doctrine",
+      "source": "server/advanced.py"
+    },
+    {
+      "name": "Scenario Studio",
+      "status": "VALIDATED",
+      "implemented": true,
+      "evidence_scope": "Immutable validated authored scenario library; urban/rural schema v2 and fog",
+      "source": "server/exercises.py"
+    },
+    {
+      "name": "Hostile prioritisation scoring",
+      "status": "VALIDATED",
+      "implemented": true,
+      "evidence_scope": "Auditable Kendall-style agreement and engagement coverage in advanced drills",
+      "source": "docs/STAGE-5-ADVANCED-TRAINING.md"
+    },
+    {
+      "name": "Rural terrain and fog",
+      "status": "VALIDATED",
+      "implemented": true,
+      "evidence_scope": "Persisted terrain version, different scene/restricted sector; illustrative detection/optical fog law",
+      "source": "docs/STAGE-6-HARDENING.md"
+    },
+    {
+      "name": "Graphics fallback",
+      "status": "VALIDATED",
+      "implemented": true,
+      "evidence_scope": "High/Medium/Low/Tactical 2D; rendering changes retain 30 Hz simulation fidelity",
+      "source": "client/src/quality.ts"
+    },
+    {
+      "name": "Integrity-checked portable bundles",
+      "status": "VALIDATED",
+      "implemented": true,
+      "evidence_scope": "HMAC-SHA256, atomic validated import, tamper rejection, canonical duplicate skip; no identity attestation",
+      "source": "server/portable.py"
+    },
+    {
+      "name": "SQLite backup/restore",
+      "status": "VALIDATED",
+      "implemented": true,
+      "evidence_scope": "Safe online backup, new-file restore, exact AAR/profile preservation in disposable environment",
+      "source": "server/durability.py"
+    },
+    {
+      "name": "Recovery and input bounds",
+      "status": "VALIDATED",
+      "implemented": true,
+      "evidence_scope": "IndexedDB drafts/queued actions; stream/file/schema limits; browser-origin outage limits apply",
+      "source": "docs/STAGE-6-HARDENING.md"
+    },
+    {
+      "name": "Historical compatibility",
+      "status": "VALIDATED",
+      "implemented": true,
+      "evidence_scope": "18 prior completed sessions retained exact stored cards and reconstructed numerical fields",
+      "source": "docs/qa-stage6/history.json"
+    },
+    {
+      "name": "Local spatial audio",
+      "status": "IMPLEMENTED",
+      "implemented": true,
+      "evidence_scope": "Local non-scoring range/pan cue; enable/mute behavior verified, audible output not independently assessed",
+      "source": "client/src/LocalAudio.tsx"
+    },
+    {
+      "name": "Recorded observation practice",
+      "status": "EXPERIMENTAL",
+      "implemented": true,
+      "evidence_scope": "Bounded normalized JSON, SHA256/schema provenance, supplied optional reference review; no invented tactical score/impacts",
+      "source": "server/recordings.py"
+    },
+    {
+      "name": "Simulated learner evidence",
+      "status": "EXPERIMENTAL",
+      "implemented": true,
+      "evidence_scope": "50 paired profiles per policy, 30 sessions; abstract uncalibrated learning law, no human efficacy",
+      "source": "docs/qa-stage6/experiment-results.json"
+    },
+    {
+      "name": "Human evaluation tooling",
+      "status": "EXPERIMENTAL",
+      "implemented": true,
+      "evidence_scope": "Consent-gated pseudonymous pre15, 3\u20135 drills, post15; no human study performed",
+      "source": "server/evaluation.py"
+    },
+    {
+      "name": "Production authentication and deployment certification",
+      "status": "DEFERRED",
+      "implemented": false,
+      "evidence_scope": "Future work; no submission claim of implementation or operational validation",
+      "source": "docs/STAGE-6-HARDENING.md"
+    },
+    {
+      "name": "Live sensor hardware feeds",
+      "status": "DEFERRED",
+      "implemented": false,
+      "evidence_scope": "Future work; no submission claim of implementation or operational validation",
+      "source": "docs/STAGE-6-HARDENING.md"
+    },
+    {
+      "name": "Multi-role crew training",
+      "status": "DEFERRED",
+      "implemented": false,
+      "evidence_scope": "Future work; no submission claim of implementation or operational validation",
+      "source": "docs/STAGE-6-HARDENING.md"
+    },
+    {
+      "name": "Validated military signatures/models",
+      "status": "DEFERRED",
+      "implemented": false,
+      "evidence_scope": "Future work; no submission claim of implementation or operational validation",
+      "source": "docs/STAGE-6-HARDENING.md"
+    },
+    {
+      "name": "VR/WebXR",
+      "status": "EXPERIMENTAL",
+      "implemented": true,
+      "evidence_scope": "712 backend and 367 frontend tests; real production-browser/IWER acceptance. Physical headset, comfort, headset FPS, trusted device HTTPS and owner release approval pending.",
+      "source": "docs/vr-unification/FINAL-INTEGRATION-REPORT.md"
+    },
+    {
+      "name": "Rain model",
+      "status": "DEFERRED",
+      "implemented": false,
+      "evidence_scope": "Future work; no submission claim of implementation or operational validation",
+      "source": "docs/STAGE-6-HARDENING.md"
+    },
+    {
+      "name": "Formal human efficacy/field study",
+      "status": "DEFERRED",
+      "implemented": false,
+      "evidence_scope": "Future work; no submission claim of implementation or operational validation",
+      "source": "docs/STAGE-6-HARDENING.md"
+    }
+  ],
+  "physical_wan_reason": "Required physical/network setup unavailable during final validation window.",
+  "physical_wan_release_blocking": false,
+  "validated_implementation_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
+  "release_reference": "v1.0.0",
+  "vr_unification": {
+    "runtime_commit": "ad430f742f7476feb464c1c53d08cfb3f95823ba",
+    "source_hash_policy": "vyuha-source-inputs-v2",
+    "source_tree_sha256": "f87104f832e9cb9b03ad18ab3938a23a1a43f1bc51ba95385f540c684c36534a",
+    "scope": "Experimental forward-port; source-current software evidence is separate from historical release fields above.",
+    "report": "docs/vr-unification/FINAL-INTEGRATION-REPORT.md",
+    "physical_headset": "PENDING",
+    "trusted_device_https": "PENDING",
+    "owner_release_approval": "PENDING",
+    "new_release_tag_created": false,
+    "software_acceptance": "PASS_SCOPED: 712 backend, 367 frontend; final receipts in report; physical and owner gates pending",
+    "performance": "MEASURED_WITH_LIMITATIONS: warm samples documented; startup/transition stalls remain; no headset FPS certification"
+  }
+}

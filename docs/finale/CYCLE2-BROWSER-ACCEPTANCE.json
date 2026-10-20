@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-12",
+  "scope": "Actual macOS Codex in-app Chromium; disposable local Unit Mode service; separate browser tabs, not separate physical devices",
+  "code_commit": "4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903",
+  "crew": {
+    "completed_sessions": 2,
+    "local_roster_group_session_count": 2,
+    "accepted_actions": [
+      {
+        "order": 1,
+        "tick": 806,
+        "callsign": "WATCH",
+        "role": "spotter",
+        "decision": "designate",
+        "contact": "T3"
+      },
+      {
+        "order": 2,
+        "tick": 1664,
+        "callsign": "RESPONSE",
+        "role": "responder",
+        "decision": "classify",
+        "contact": "T3"
+      },
+      {
+        "order": 3,
+        "tick": 1673,
+        "callsign": "RESPONSE",
+        "role": "responder",
+        "decision": "engage",
+        "contact": "T3"
+      }
+    ],
+    "handoff_seconds": [
+      28.6,
+      0.3
+    ],
+    "revoke_disconnected_role": true,
+    "rotated_code_reconnected_role": true,
+    "history_reload_persisted": true,
+    "officer_aar_link": "PASS; Server verified and Ghost loaded",
+    "shared_score": 0
+  },
+  "advanced_aar": {
+    "original_score": 0,
+    "what_if_score": 5,
+    "evidence_only_reference_score": 0,
+    "independently_generated_reference_actions": 6,
+    "replayed_instructor_commands": 1,
+    "original_observed_horizon_seconds": 56.03,
+    "reference_projected_horizon_seconds": 180
+  },
+  "read_only": {
+    "before_sha256": "ee053734a09acb06d2cee4c7247e889f843615088884da0dddfcc03f44d480fb",
+    "after_sha256": "ee053734a09acb06d2cee4c7247e889f843615088884da0dddfcc03f44d480fb",
+    "whole_database_unchanged": true,
+    "individual_profiles": 0,
+    "individual_outcomes": 0
+  },
+  "compliance": {
+    "focused_finding": "X18",
+    "specific_record_links": "Verified by current backend/frontend tests and HTTP; actual workflow link and Raid Composer compile operated in browser",
+    "browser_record_download": "JSON download initiated; contents validated by HTTP rather than browser rendering"
+  },
+  "limits": [
+    "Agent-controlled QA timings and scores are not human performance or learning efficacy",
+    "Responsive override requested390px but browser reported1280px; no mobile390px acceptance claimed",
+    "No fresh physical LAN/WAN/HTTPS or native Windows/Linux pass",
+    "Imported pseudonymous groups do not reconstruct local roster trends"
+  ],
+  "source_tree_sha256": "94d311b647337ea9e1db5cac8cd75fc86b70f46717b5c1e8ad18fffbeb05595e",
+  "asset_cache": "72094449dd1b"
+}

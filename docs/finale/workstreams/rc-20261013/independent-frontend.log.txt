@@ -1,0 +1,16 @@
+✔ quiet SSE still sends independent telemetry heartbeats and cleanup stops all activity (2120.148625ms)
+✔ stream failure falls back to ordinary GET receipts while keeping telemetry active (1303.368666ms)
+✔ late command frame from an old session cannot act on the newly selected session (121.237958ms)
+✔ same-phase session switch aborts the old stream and accepts new-session commands immediately (102.257583ms)
+✔ portable roster history distinguishes signed cohorts from unbound legacy exercises (29.271833ms)
+✔ online navigation requests current entry without overwriting coherent installed assets (13.225917ms)
+✔ offline navigation falls back to its own atomically installed entry, including deep links (16.173958ms)
+✔ API and mutations always bypass service-worker caching (4.107834ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7798.702417

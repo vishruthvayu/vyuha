@@ -1,0 +1,21 @@
+{
+  "completed_tactical": 2,
+  "completed_rapid": 1,
+  "recordings": 1,
+  "fresh_import": {
+    "inserted_sessions": 3,
+    "skipped_sessions": 0,
+    "recordings": 1,
+    "profile_basis": "Rebuilt only from validated imported outcome ledger; supplied profile snapshots are informational.",
+    "integrity": "HMAC verified with local shared key; donor identity/authenticity not attested"
+  },
+  "duplicate_import": {
+    "inserted_sessions": 0,
+    "skipped_sessions": 3,
+    "recordings": 1,
+    "profile_basis": "Rebuilt only from validated imported outcome ledger; supplied profile snapshots are informational.",
+    "integrity": "HMAC verified with local shared key; donor identity/authenticity not attested"
+  },
+  "tamper_status": 422,
+  "imported_scorecards_exact": true
+}

@@ -1,0 +1,1503 @@
+Skip to workspace
+VYUHA
+Training
+Review
+2
+Crew
+Instructor
+Analytics
+Find workspace
+⌘ / Ctrl K
+Operator guide
+Workspaces
+WORKSPACE
+AFTER-ACTION REVIEW
+VYUHA server connected
+LEARN FROM EVERY DECISION
+After-action review
+
+A replay of your exercise, with a traceable score and reference response.
+
+Export session
+Exercise history · 2 saved exercises
+0
+/ 100
+REVIEW REQUIRED
+Review designation, classification, and response before the next drill.
+
+SEALED-XR-QA · QA persistent 200 contacts / rural · Seed 62147
+
+Server verified
+Next drill
+RECOGNITION
+0%
+Correct type and identity
+RESPONSE SELECTION
+1%
+Reference response, fewer errors
+ASSET IMPACTS
+0
+0 hostile threats in exercise
+SAFETY FLAGS
+0
+Restricted-zone attempts
+Verdict
+Replay & decisions
+Timeline
+Decision path
+Comparison
+Score breakdown
+Time-machine replay
+T+0.00s
+OVERVIEW
+OBSERVER
+FOLLOW TARGET
+Tactical 2D
+
+OVERVIEW · 60 fps · Ground-truth debrief view · External camera; terrain translucent. Camera changes observation only.
+
+AAR / INSTRUCTOR REFERENCE TRUTH
+Full active geometry · not trainee sensor evidence
+03:00
+Observed contact history
+
+Labels are trainee classifications. Sensor-silent tracks retain their recorded first observation.
+
+T1
+Unknown contact · active
+EO/IR
+T2
+Unknown contact · active
+EO/IR
+T3
+Unknown contact · active
+EO/IR
+T4
+Unknown contact · active
+EO/IR
+T5
+Unknown contact · active
+EO/IR
+T6
+Unknown contact · active
+EO/IR
+T7
+Unknown contact · active
+EO/IR
+T8
+Unknown contact · active
+EO/IR
+T9
+Unknown contact · active
+EO/IR
+T10
+Unknown contact · active
+EO/IR
+T11
+Unknown contact · active
+EO/IR
+T12
+Unknown contact · active
+EO/IR
+T13
+Unknown contact · active
+EO/IR
+T14
+Unknown contact · active
+EO/IR
+T15
+Unknown contact · active
+EO/IR
+T16
+Unknown contact · active
+EO/IR
+T17
+Unknown contact · active
+EO/IR
+T18
+Unknown contact · active
+EO/IR
+T19
+Unknown contact · active
+EO/IR
+T20
+Unknown contact · active
+EO/IR
+T21
+Unknown contact · active
+EO/IR
+T22
+Unknown contact · active
+EO/IR
+T23
+Unknown contact · active
+EO/IR
+T24
+Unknown contact · active
+EO/IR
+T25
+Unknown contact · active
+EO/IR
+T26
+Unknown contact · active
+EO/IR
+T27
+Unknown contact · active
+EO/IR
+T28
+Unknown contact · active
+EO/IR
+T29
+Unknown contact · active
+EO/IR
+T30
+Unknown contact · active
+EO/IR
+T31
+Unknown contact · active
+EO/IR
+T32
+Unknown contact · active
+EO/IR
+T33
+Unknown contact · active
+EO/IR
+T34
+Unknown contact · active
+EO/IR
+T35
+Unknown contact · active
+EO/IR
+T36
+Unknown contact · active
+EO/IR
+T37
+Unknown contact · active
+EO/IR
+T38
+Unknown contact · active
+EO/IR
+T39
+Unknown contact · active
+EO/IR
+T40
+Unknown contact · active
+EO/IR
+T41
+Unknown contact · active
+EO/IR
+T42
+Unknown contact · active
+EO/IR
+T43
+Unknown contact · active
+EO/IR
+T45
+Unknown contact · active
+EO/IR
+T46
+Unknown contact · active
+EO/IR
+T47
+Unknown contact · active
+EO/IR
+T48
+Unknown contact · active
+EO/IR
+T49
+Unknown contact · active
+EO/IR
+T51
+Unknown contact · active
+EO/IR
+T52
+Unknown contact · active
+EO/IR
+T53
+Unknown contact · active
+EO/IR
+T54
+Unknown contact · active
+EO/IR
+T55
+Unknown contact · active
+EO/IR
+T56
+Unknown contact · active
+EO/IR
+T57
+Unknown contact · active
+EO/IR
+T58
+Unknown contact · active
+EO/IR
+T59
+Unknown contact · active
+EO/IR
+T60
+Unknown contact · active
+EO/IR
+T61
+Unknown contact · active
+EO/IR
+T63
+Unknown contact · active
+EO/IR
+T64
+Unknown contact · active
+EO/IR
+T65
+Unknown contact · active
+EO/IR
+T66
+Unknown contact · active
+EO/IR
+T68
+Unknown contact · active
+EO/IR
+T69
+Unknown contact · active
+EO/IR
+T70
+Unknown contact · active
+EO/IR
+T71
+Unknown contact · active
+EO/IR
+T72
+Unknown contact · active
+EO/IR
+T73
+Unknown contact · active
+EO/IR
+T74
+Unknown contact · active
+EO/IR
+T75
+Unknown contact · active
+EO/IR
+T76
+Unknown contact · active
+EO/IR
+T78
+Unknown contact · active
+EO/IR
+T79
+Unknown contact · active
+EO/IR
+T80
+Unknown contact · active
+EO/IR
+T81
+Unknown contact · active
+EO/IR
+T82
+Unknown contact · active
+EO/IR
+T83
+Unknown contact · active
+EO/IR
+T86
+Unknown contact · active
+EO/IR
+T87
+Unknown contact · active
+EO/IR
+T88
+Unknown contact · active
+EO/IR
+T90
+Unknown contact · active
+EO/IR
+T92
+Unknown contact · active
+EO/IR
+T93
+Unknown contact · active
+EO/IR
+T94
+Unknown contact · active
+EO/IR
+T95
+Unknown contact · active
+EO/IR
+T96
+Unknown contact · active
+EO/IR
+T97
+Unknown contact · active
+EO/IR
+T98
+Unknown contact · active
+EO/IR
+T99
+Unknown contact · active
+EO/IR
+T100
+Unknown contact · active
+EO/IR
+T101
+Unknown contact · active
+EO/IR
+T102
+Unknown contact · active
+EO/IR
+T103
+Unknown contact · active
+EO/IR
+T104
+Unknown contact · active
+EO/IR
+T105
+Unknown contact · active
+EO/IR
+T106
+Unknown contact · active
+EO/IR
+T107
+Unknown contact · active
+EO/IR
+T109
+Unknown contact · active
+EO/IR
+T110
+Unknown contact · active
+EO/IR
+T111
+Unknown contact · active
+EO/IR
+T112
+Unknown contact · active
+EO/IR
+T113
+Unknown contact · active
+EO/IR
+T114
+Unknown contact · active
+EO/IR
+T115
+Unknown contact · active
+EO/IR
+T116
+Unknown contact · active
+EO/IR
+T117
+Unknown contact · active
+EO/IR
+T118
+Unknown contact · active
+EO/IR
+T120
+Unknown contact · active
+EO/IR
+T121
+Unknown contact · active
+EO/IR
+T122
+Unknown contact · active
+EO/IR
+T123
+Unknown contact · active
+EO/IR
+T124
+Unknown contact · active
+EO/IR
+T125
+Unknown contact · active
+EO/IR
+T126
+Unknown contact · active
+EO/IR
+T127
+Unknown contact · active
+EO/IR
+T128
+Unknown contact · active
+EO/IR
+T129
+Unknown contact · active
+EO/IR
+T130
+Unknown contact · active
+EO/IR
+T131
+Unknown contact · active
+EO/IR
+T132
+Unknown contact · active
+EO/IR
+T133
+Unknown contact · active
+EO/IR
+T135
+Unknown contact · active
+EO/IR
+T136
+Unknown contact · active
+EO/IR
+T137
+Unknown contact · active
+EO/IR
+T138
+Unknown contact · active
+EO/IR
+T139
+Unknown contact · active
+EO/IR
+T140
+Unknown contact · active
+EO/IR
+T141
+Unknown contact · active
+EO/IR
+T142
+Unknown contact · active
+EO/IR
+T143
+Unknown contact · active
+EO/IR
+T144
+Unknown contact · active
+EO/IR
+T145
+Unknown contact · active
+EO/IR
+T146
+Unknown contact · active
+EO/IR
+T147
+Unknown contact · active
+EO/IR
+T148
+Unknown contact · active
+EO/IR
+T150
+Unknown contact · active
+EO/IR
+T151
+Unknown contact · active
+EO/IR
+T152
+Unknown contact · active
+EO/IR
+T153
+Unknown contact · active
+EO/IR
+T154
+Unknown contact · active
+EO/IR
+T155
+Unknown contact · active
+EO/IR
+T156
+Unknown contact · active
+EO/IR
+T157
+Unknown contact · active
+EO/IR
+T158
+Unknown contact · active
+EO/IR
+T159
+Unknown contact · active
+EO/IR
+T160
+Unknown contact · active
+EO/IR
+T161
+Unknown contact · active
+EO/IR
+T162
+Unknown contact · active
+EO/IR
+T163
+Unknown contact · active
+EO/IR
+T164
+Unknown contact · active
+EO/IR
+T165
+Unknown contact · active
+EO/IR
+T166
+Unknown contact · active
+EO/IR
+T167
+Unknown contact · active
+EO/IR
+T168
+Unknown contact · active
+EO/IR
+T169
+Unknown contact · active
+EO/IR
+T170
+Unknown contact · active
+EO/IR
+T171
+Unknown contact · active
+EO/IR
+T172
+Unknown contact · active
+EO/IR
+T174
+Unknown contact · active
+EO/IR
+T175
+Unknown contact · active
+EO/IR
+T176
+Unknown contact · active
+EO/IR
+T177
+Unknown contact · active
+EO/IR
+T178
+Unknown contact · active
+EO/IR
+T179
+Unknown contact · active
+EO/IR
+T180
+Unknown contact · active
+EO/IR
+T181
+Unknown contact · active
+EO/IR
+T182
+Unknown contact · active
+EO/IR
+T183
+Unknown contact · active
+EO/IR
+T184
+Unknown contact · active
+EO/IR
+T186
+Unknown contact · active
+EO/IR
+T187
+Unknown contact · active
+EO/IR
+T188
+Unknown contact · active
+EO/IR
+T189
+Unknown contact · active
+EO/IR
+T191
+Unknown contact · active
+EO/IR
+T192
+Unknown contact · active
+EO/IR
+T193
+Unknown contact · active
+EO/IR
+T194
+Unknown contact · active
+EO/IR
+T195
+Unknown contact · active
+EO/IR
+T196
+Unknown contact · active
+EO/IR
+T198
+Unknown contact · active
+EO/IR
+T200
+Unknown contact · active
+EO/IR
+Ghost Expert
+RULE-GROUNDED
+Decision review
+T1 · T+23.63s · detection · detection late
+T1 · T+35.87s · classification / iff · bird misidentified
+T1 · T+42.63s · engagement · correct hold
+T1 · T+23.63s
+INCORRECT
+Previous decision
+Next decision
+Jump to selected decision
+
+Decision evidence stays pinned while you move the replay cursor.
+
+AVAILABLE TO TRAINEE
+Radar
+ACTIVE · contact observed
+RF control link
+No control link detected
+IFF
+No reply · identity unconfirmed
+EO / IR observation
+Detection only · no identifying silhouette
+Range
+123.6 m
+Restricted sector
+Outside restricted sector
+First detectable
+T+0.00s
+
+Evidence at T+23.63s: immediately before the selected action. IFF no reply does not establish hostility. Quad and FPV share a multirotor silhouette.
+
+YOUR DECISION
+Designate
+EXPECTED DECISION
+Designate
+Based on available evidence
+WHY
+
+This contact first became detectable at T+0.00s. Designation at T+23.63s took 23.63s. Detection credit tapers after three simulation seconds, not after spawn or paused wall-clock time. The IFF panel returned no reply; that alone does not establish hostility.
+
+DETECTION_LATE
+Ground truth after review
+CONSEQUENCE
+
+The contact remained active at the reviewed end; no later observed consequence is asserted.
+
+NO_CONSEQUENCE_YET
+SCORE IMPACT
+Detection: 0 / 25
+
+Final contact node, shared across all attempts. This is not a separate per-action award.
+
+TRAINING SKILL
+
+Detection
+
+Training focus
+SERVER REVIEW
+
+Recommended training focus: detection. Counts are distinct contacts with evidenced errors; sensor context does not prove causation.
+
+Detection
+1
+contacts with errors · 25 node points lost
+Classification / IFF
+1
+contacts with errors · 25 node points lost
+Effector choice
+0
+contacts with errors · 0 node points lost
+Degraded sensor response
+0
+contacts with errors · 0 node points lost
+Review largest loss
+Review strongest decision
+
+Lost points are deduplicated per contact/node before hostile-row averaging. Sensor-context tags overlap other skills. This focus is a review recommendation. The next adaptive drill uses the persistent four-skill profile.
+
+Hostile-node averages before penalties
+Detection
+0 / 25
+Classification
+0 / 25
+Timely resolution
+0 / 15
+Engagement
+0 / 35
+
+Asset impacts: 0 · Non-hostile safety flag: No
+
+This legacy exercise uses timely resolution for its 15-point node.
+
+Exercise timeline
+Recorded interval and scoring horizon
+Find recorded evidence
+Timeline category
+All meaningful events
+trainee action
+instructor action
+sensor transition
+contact detection
+contact resolution
+asset impact
+score error
+tactic phase
+
+Showing 100 of 212 matching events · 212 recorded
+
+T+0.00s
+SENSOR TRANSITION
+Radar normal · RF active · Night
+T+0.00s
+CONTACT DETECTION · T1
+T1 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T2
+T2 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T3
+T3 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T4
+T4 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T5
+T5 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T6
+T6 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T7
+T7 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T8
+T8 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T9
+T9 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T10
+T10 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T11
+T11 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T12
+T12 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T13
+T13 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T14
+T14 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T15
+T15 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T16
+T16 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T17
+T17 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T18
+T18 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T19
+T19 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T20
+T20 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T21
+T21 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T22
+T22 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T23
+T23 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T24
+T24 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T25
+T25 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T26
+T26 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T27
+T27 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T28
+T28 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T29
+T29 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T30
+T30 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T31
+T31 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T32
+T32 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T33
+T33 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T34
+T34 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T35
+T35 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T36
+T36 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T37
+T37 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T38
+T38 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T39
+T39 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T40
+T40 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T41
+T41 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T42
+T42 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T43
+T43 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T45
+T45 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T46
+T46 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T47
+T47 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T48
+T48 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T49
+T49 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T51
+T51 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T52
+T52 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T53
+T53 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T54
+T54 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T55
+T55 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T56
+T56 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T57
+T57 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T58
+T58 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T59
+T59 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T60
+T60 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T61
+T61 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T63
+T63 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T64
+T64 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T65
+T65 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T66
+T66 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T68
+T68 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T69
+T69 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T70
+T70 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T71
+T71 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T72
+T72 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T73
+T73 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T74
+T74 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T75
+T75 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T76
+T76 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T78
+T78 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T79
+T79 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T80
+T80 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T81
+T81 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T82
+T82 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T83
+T83 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T86
+T86 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T87
+T87 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T88
+T88 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T90
+T90 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T92
+T92 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T93
+T93 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T94
+T94 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T95
+T95 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T96
+T96 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T97
+T97 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T98
+T98 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T99
+T99 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T100
+T100 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T101
+T101 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T102
+T102 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T103
+T103 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T104
+T104 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T105
+T105 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T106
+T106 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T107
+T107 · first working-sensor observation
+T+0.00s
+CONTACT DETECTION · T109
+T109 · first working-sensor observation
+Show 100 more recorded events
+Decision path and What-if replay
+Reviewed contact
+T1
+T2
+T3
+T4
+T5
+T6
+T7
+T8
+T9
+T10
+T11
+T12
+T13
+T14
+T15
+T16
+T17
+T18
+T19
+T20
+T21
+T22
+T23
+T24
+T25
+T26
+T27
+T28
+T29
+T30
+T31
+T32
+T33
+T34
+T35
+T36
+T37
+T38
+T39
+T40
+T41
+T42
+T43
+T44
+T45
+T46
+T47
+T48
+T49
+T50
+T51
+T52
+T53
+T54
+T55
+T56
+T57
+T58
+T59
+T60
+T61
+T62
+T63
+T64
+T65
+T66
+T67
+T68
+T69
+T70
+T71
+T72
+T73
+T74
+T75
+T76
+T77
+T78
+T79
+T80
+T81
+T82
+T83
+T84
+T85
+T86
+T87
+T88
+T89
+T90
+T91
+T92
+T93
+T94
+T95
+T96
+T97
+T98
+T99
+T100
+T101
+T102
+T103
+T104
+T105
+T106
+T107
+T108
+T109
+T110
+T111
+T112
+T113
+T114
+T115
+T116
+T117
+T118
+T119
+T120
+T121
+T122
+T123
+T124
+T125
+T126
+T127
+T128
+T129
+T130
+T131
+T132
+T133
+T134
+T135
+T136
+T137
+T138
+T139
+T140
+T141
+T142
+T143
+T144
+T145
+T146
+T147
+T148
+T149
+T150
+T151
+T152
+T153
+T154
+T155
+T156
+T157
+T158
+T159
+T160
+T161
+T162
+T163
+T164
+T165
+T166
+T167
+T168
+T169
+T170
+T171
+T172
+T173
+T174
+T175
+T176
+T177
+T178
+T179
+T180
+T181
+T182
+T183
+T184
+T185
+T186
+T187
+T188
+T189
+T190
+T191
+T192
+T193
+T194
+T195
+T196
+T197
+T198
+T199
+T200
+
+Server-verified post-exercise review. Node points are final contact outcomes, shared across attempts. After-review truth is labelled separately from observations.
+
+STEP 1 · DETECT
+0 / 25
+1 authoritative review
+Inspect recorded evidence
+STEP 2 · CLASSIFY
+0 / 25
+1 authoritative review
+Inspect recorded evidence
+STEP 3 · TIMELY RESPONSE
+15 / 15
+0 authoritative reviews
+Legacy timely-response node
+STEP 4 · RESPOND
+35 / 35
+1 authoritative review
+Inspect recorded evidence
+
+Stages follow rubric order; decision ticks below preserve the actual recorded history. This display does not infer causal links between decisions.
+
+All stages
+3 reviews shown
+T+23.63s · detectionDesignate INCORRECT
+T+35.87s · classification iffQuadcopter / hostile INCORRECT
+T+42.63s · engagementHold CORRECT
+Read the complete linear decision record
+Try a different response
+
+The server branches the frozen exercise at the recorded decision. The original score and training profile remain unchanged.
+
+Recorded response
+T1 · T+42.63s · hold
+Hypothetical response
+Hold
+RF jammer
+Kinetic
+Run hypothetical branch
+Evidence-constrained response comparison
+
+Reconstructing recorded response boundaries…
+
+SEPARATE HYPOTHETICAL POLICY RUN
+Autonomous reference replay
+
+Generate a separate policy run on this frozen exercise. Canonical mode consults truth after the exercise; evidence-only mode may abstain when type or intent cannot be established.
+
+Reference policy
+Canonical rubric truth · after AAR
+Evidence-only · conservative
+Run autonomous reference
+Decision-tree score breakdown
+CONTACT	DETECT / 25	CLASSIFY / 25	TIMELY RESPONSE / 15	ENGAGE / 35	TOTAL
+T1 · neutral	0	0	15	35	50
+T2 · neutral	0	0	0	0	0
+T3 · neutral	0	0	0	0	0
+T4 · neutral	0	0	0	0	0
+T5 · neutral	0	0	0	0	0
+T6 · neutral	0	0	0	0	0
+T7 · neutral	0	0	0	0	0
+T8 · neutral	0	0	0	0	0
+T9 · neutral	0	0	0	0	0
+T10 · neutral	0	0	0	0	0
+T11 · neutral	0	0	0	0	0
+T12 · neutral	0	0	0	0	0
+T13 · neutral	0	0	0	0	0
+T14 · neutral	0	0	0	0	0
+T15 · neutral	0	0	0	0	0
+T16 · neutral	0	0	0	0	0
+T17 · neutral	0	0	0	0	0
+T18 · neutral	0	0	0	0	0
+T19 · neutral	0	0	0	0	0
+T20 · neutral	0	0	0	0	0
+T21 · neutral	0	0	0	0	0
+T22 · neutral	0	0	0	0	0
+T23 · neutral	0	0	0	0	0
+T24 · neutral	0	0	0	0	0
+T25 · neutral	0	0	0	0	0
+T26 · neutral	0	0	0	0	0
+T27 · neutral	0	0	0	0	0
+T28 · neutral	0	0	0	0	0
+T29 · neutral	0	0	0	0	0
+T30 · neutral	0	0	0	0	0
+T31 · neutral	0	0	0	0	0
+T32 · neutral	0	0	0	0	0
+T33 · neutral	0	0	0	0	0
+T34 · neutral	0	0	0	0	0
+T35 · neutral	0	0	0	0	0
+T36 · neutral	0	0	0	0	0
+T37 · neutral	0	0	0	0	0
+T38 · neutral	0	0	0	0	0
+T39 · neutral	0	0	0	0	0
+T40 · neutral	0	0	0	0	0
+T41 · neutral	0	0	0	0	0
+T42 · neutral	0	0	0	0	0
+T43 · neutral	0	0	0	0	0
+T44 · neutral	0	0	0	0	0
+T45 · neutral	0	0	0	0	0
+T46 · neutral	0	0	0	0	0
+T47 · neutral	0	0	0	0	0
+T48 · neutral	0	0	0	0	0
+T49 · neutral	0	0	0	0	0
+T50 · neutral	0	0	0	0	0
+T51 · neutral	0	0	0	0	0
+T52 · neutral	0	0	0	0	0
+T53 · neutral	0	0	0	0	0
+T54 · neutral	0	0	0	0	0
+T55 · neutral	0	0	0	0	0
+T56 · neutral	0	0	0	0	0
+T57 · neutral	0	0	0	0	0
+T58 · neutral	0	0	0	0	0
+T59 · neutral	0	0	0	0	0
+T60 · neutral	0	0	0	0	0
+T61 · neutral	0	0	0	0	0
+T62 · neutral	0	0	0	0	0
+T63 · neutral	0	0	0	0	0
+T64 · neutral	0	0	0	0	0
+T65 · neutral	0	0	0	0	0
+T66 · neutral	0	0	0	0	0
+T67 · neutral	0	0	0	0	0
+T68 · neutral	0	0	0	0	0
+T69 · neutral	0	0	0	0	0
+T70 · neutral	0	0	0	0	0
+T71 · neutral	0	0	0	0	0
+T72 · neutral	0	0	0	0	0
+T73 · neutral	0	0	0	0	0
+T74 · neutral	0	0	0	0	0
+T75 · neutral	0	0	0	0	0
+T76 · neutral	0	0	0	0	0
+T77 · neutral	0	0	0	0	0
+T78 · neutral	0	0	0	0	0
+T79 · neutral	0	0	0	0	0
+T80 · neutral	0	0	0	0	0
+T81 · neutral	0	0	0	0	0
+T82 · neutral	0	0	0	0	0
+T83 · neutral	0	0	0	0	0
+T84 · neutral	0	0	0	0	0
+T85 · neutral	0	0	0	0	0
+T86 · neutral	0	0	0	0	0
+T87 · neutral	0	0	0	0	0
+T88 · neutral	0	0	0	0	0
+T89 · neutral	0	0	0	0	0
+T90 · neutral	0	0	0	0	0
+T91 · neutral	0	0	0	0	0
+T92 · neutral	0	0	0	0	0
+T93 · neutral	0	0	0	0	0
+T94 · neutral	0	0	0	0	0
+T95 · neutral	0	0	0	0	0
+T96 · neutral	0	0	0	0	0
+T97 · neutral	0	0	0	0	0
+T98 · neutral	0	0	0	0	0
+T99 · neutral	0	0	0	0	0
+T100 · neutral	0	0	0	0	0
+T101 · neutral	0	0	0	0	0
+T102 · neutral	0	0	0	0	0
+T103 · neutral	0	0	0	0	0
+T104 · neutral	0	0	0	0	0
+T105 · neutral	0	0	0	0	0
+T106 · neutral	0	0	0	0	0
+T107 · neutral	0	0	0	0	0
+T108 · neutral	0	0	0	0	0
+T109 · neutral	0	0	0	0	0
+T110 · neutral	0	0	0	0	0
+T111 · neutral	0	0	0	0	0
+T112 · neutral	0	0	0	0	0
+T113 · neutral	0	0	0	0	0
+T114 · neutral	0	0	0	0	0
+T115 · neutral	0	0	0	0	0
+T116 · neutral	0	0	0	0	0
+T117 · neutral	0	0	0	0	0
+T118 · neutral	0	0	0	0	0
+T119 · neutral	0	0	0	0	0
+T120 · neutral	0	0	0	0	0
+T121 · neutral	0	0	0	0	0
+T122 · neutral	0	0	0	0	0
+T123 · neutral	0	0	0	0	0
+T124 · neutral	0	0	0	0	0
+T125 · neutral	0	0	0	0	0
+T126 · neutral	0	0	0	0	0
+T127 · neutral	0	0	0	0	0
+T128 · neutral	0	0	0	0	0
+T129 · neutral	0	0	0	0	0
+T130 · neutral	0	0	0	0	0
+T131 · neutral	0	0	0	0	0
+T132 · neutral	0	0	0	0	0
+T133 · neutral	0	0	0	0	0
+T134 · neutral	0	0	0	0	0
+T135 · neutral	0	0	0	0	0
+T136 · neutral	0	0	0	0	0
+T137 · neutral	0	0	0	0	0
+T138 · neutral	0	0	0	0	0
+T139 · neutral	0	0	0	0	0
+T140 · neutral	0	0	0	0	0
+T141 · neutral	0	0	0	0	0
+T142 · neutral	0	0	0	0	0
+T143 · neutral	0	0	0	0	0
+T144 · neutral	0	0	0	0	0
+T145 · neutral	0	0	0	0	0
+T146 · neutral	0	0	0	0	0
+T147 · neutral	0	0	0	0	0
+T148 · neutral	0	0	0	0	0
+T149 · neutral	0	0	0	0	0
+T150 · neutral	0	0	0	0	0
+T151 · neutral	0	0	0	0	0
+T152 · neutral	0	0	0	0	0
+T153 · neutral	0	0	0	0	0
+T154 · neutral	0	0	0	0	0
+T155 · neutral	0	0	0	0	0
+T156 · neutral	0	0	0	0	0
+T157 · neutral	0	0	0	0	0
+T158 · neutral	0	0	0	0	0
+T159 · neutral	0	0	0	0	0
+T160 · neutral	0	0	0	0	0
+T161 · neutral	0	0	0	0	0
+T162 · neutral	0	0	0	0	0
+T163 · neutral	0	0	0	0	0
+T164 · neutral	0	0	0	0	0
+T165 · neutral	0	0	0	0	0
+T166 · neutral	0	0	0	0	0
+T167 · neutral	0	0	0	0	0
+T168 · neutral	0	0	0	0	0
+T169 · neutral	0	0	0	0	0
+T170 · neutral	0	0	0	0	0
+T171 · neutral	0	0	0	0	0
+T172 · neutral	0	0	0	0	0
+T173 · neutral	0	0	0	0	0
+T174 · neutral	0	0	0	0	0
+T175 · neutral	0	0	0	0	0
+T176 · neutral	0	0	0	0	0
+T177 · neutral	0	0	0	0	0
+T178 · neutral	0	0	0	0	0
+T179 · neutral	0	0	0	0	0
+T180 · neutral	0	0	0	0	0
+T181 · neutral	0	0	0	0	0
+T182 · neutral	0	0	0	0	0
+T183 · neutral	0	0	0	0	0
+T184 · neutral	0	0	0	0	0
+T185 · neutral	0	0	0	0	0
+T186 · neutral	0	0	0	0	0
+T187 · neutral	0	0	0	0	0
+T188 · neutral	0	0	0	0	0
+T189 · neutral	0	0	0	0	0
+T190 · neutral	0	0	0	0	0
+T191 · neutral	0	0	0	0	0
+T192 · neutral	0	0	0	0	0
+T193 · neutral	0	0	0	0	0
+T194 · neutral	0	0	0	0	0
+T195 · neutral	0	0	0	0	0
+T196 · neutral	0	0	0	0	0
+T197 · neutral	0	0	0	0	0
+T198 · neutral	0	0	0	0	0
+T199 · neutral	0	0	0	0	0
+T200 · neutral	0	0	0	0	0
+
+Session score averages hostile contacts, then subtracts 10 per asset impact. Non-hostile engagement fails the session. This legacy exercise uses timely resolution for its 15-point node.
+
+IWER SOFTWARE QA — NOT A HEADSET
+
+Production bundle / test-only emulator
+
+Deny next entrySystem exitHiddenBlurredVisibleleft contact 1left contact 2left next pageleft designateleft typeleft identityleft classifyleft holdleft RFleft kineticleft confirmleft start/pauseleft viewleft cancelleft exitright contact 1right contact 2right next pageright designateright typeright identityright classifyright holdright RFright kineticright confirmright start/pauseright viewright cancelright exitHead look leftHead neutralLose graphics contextReset frame sampleRemove right controllerRestore right controller
+{
+  "emulator": "IWER 2.6.0",
+  "physical_headset": false,
+  "session": false,
+  "views": 2,
+  "frames": 8286,
+  "controllerInputs": [],
+  "frame_ms": {
+    "samples": 2041,
+    "median": 16.600000000558794,
+    "p95": 18.700000000186265,
+    "max": 1603.199999999255
+  },
+  "faults": [
+    "TypeError: Cannot read properties of null (reading '0')\n    at onDeviceFrame (http://127.0.0.1:8106/_vrqa/iwer.js:1:58547)",
+    "TypeError: Cannot read properties of null (reading '0')\n    at onDeviceFrame (http://127.0.0.1:8106/_vrqa/iwer.js:1:58547)"
+  ]
+}

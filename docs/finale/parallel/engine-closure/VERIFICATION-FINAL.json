@@ -1,0 +1,23 @@
+{
+  "status": "PASS_ENGINE_CHECKPOINT_EVIDENCE_CONSISTENCY",
+  "engine_code_commit": "6a0100c954fdd68ddba06ee119f12a5dc94b44f9",
+  "documentation_reference_snapshot": "94e8ee196d2a9938da3be5bf1918838be9311351",
+  "source_tree_sha256": "7eb3dad32c506c58470b11bd72c4f95539359946b24e586fc154659b485695f5",
+  "source_inputs": 298,
+  "reconciled_rows": 211,
+  "original_audit_ids_retained": 93,
+  "unique_source_doc_test_blob_hashes_verified": 220,
+  "counts": {
+    "VERIFIED COMPLETE": 93,
+    "NOT APPLICABLE": 1,
+    "EXTERNALLY BLOCKED": 17,
+    "PARTIAL": 71,
+    "DEFERRED": 29
+  },
+  "zip_members_verified": 109,
+  "zip_sha256": "5b39758f271af35e91cf544fc0d25282f92a4c6566e034f76dfdb3a60a2872d0",
+  "changes_after_last_tested_code": "Documentation/evidence only; runtime inputs identical.",
+  "mandatory_product_acceptance": "OPEN until ready UI integration and appropriate final merged gates",
+  "final_stable_physical_gates": "PENDING",
+  "new_current_weighted_score": null
+}

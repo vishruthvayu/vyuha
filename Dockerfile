@@ -3,6 +3,8 @@ WORKDIR /build
 COPY client/package*.json ./
 RUN npm ci --no-audit --no-fund
 COPY client/ ./
+# client/src/sensors-v2.ts imports ../../server/config/sensors-v2.json
+COPY server/config/ /server/config/
 RUN npm run build
 
 FROM python:3.12-slim

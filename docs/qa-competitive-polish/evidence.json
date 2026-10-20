@@ -1,0 +1,1502 @@
+{
+  "schema_version": 1,
+  "validated_at": "2026-10-04T10:34:10.214072+00:00",
+  "source_tree_sha256": "cd48ae78643b2862b69dd82161aa0d717a50af03e072d524a03017df7177f4c2",
+  "validation_commit": "b88faa92b8455708a98b05723939168e0207d8ee",
+  "baseline_commit": "20e8642782cd13cf6779e5ebd650c2f55c851b37",
+  "release_version": "1.0.1",
+  "release_reference": "v1.0.1",
+  "team": {
+    "name": "WhiteList&0",
+    "id": "185350",
+    "category": "Software",
+    "problem_statement": "SIH26247"
+  },
+  "automated": {
+    "backend_passed": 139,
+    "frontend_passed": 64,
+    "parity": {
+      "original": 51,
+      "director": 72,
+      "advanced": 135,
+      "rural": 54
+    },
+    "build": "passed",
+    "offline_assets": 23
+  },
+  "acceptance": "VYUHA v1.0.1 software source: final regression, build and historical compatibility validated. Final immutable commit/tag and remote verification are recorded in the release receipt. Device/network/performance, deployment, simulated experiment and existing media measurements below are dated historical evidence, not new v1.0.1 measurements. Final video/PPT/submission regeneration awaits user review.",
+  "physical": {
+    "wan_off": "NOT PERFORMED BEFORE SUBMISSION",
+    "weak_laptop": "Historical Stage 6 measurement: Measured on user-identified weakest available team laptop: MacBook Air / Apple M1 / 8 GB / macOS 27.0.1 / Codex in-app Chromium. Fixed Medium, Auto off, median 60 FPS at 8/25/50/100/200 contacts, 20 seconds each. No long-duration certification.",
+    "devices": [
+      "MacBook Air / M1 / 8 GB officer: local/Unit startup, process-loss/reload, and weakest-laptop fixed-Medium 8\u2013200-contact measurements.",
+      "Physical Android/Chrome: user supplied 8\u2013200-contact exports, median 60 FPS, Auto final Medium, reported 6 GiB RAM; CPU/model unspecified."
+    ],
+    "android_performance_artifact": "performance-android.json",
+    "pending_checks": [],
+    "weak_laptop_performance_artifact": "performance-laptop.json",
+    "wan_off_reason": "Required physical/network setup unavailable during final validation window.",
+    "architecture_claim": "Physical multi-device LAN training was validated. Runtime assets and services are hosted locally; dedicated WAN-disconnected physical validation remains pending.",
+    "wan_off_release_blocking": false,
+    "wan_off_classification": "Known validation limitation; not a failed architectural test.",
+    "acceptance_policy": "User explicitly approved proceeding without this physical test. No other Stage 7 requirement is waived.",
+    "provenance": "Historical Stage 4/6 physical evidence, preserved separately from fresh v1.0.1 software QA. No new physical WAN-disconnected test."
+  },
+  "deployment": {
+    "source_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
+    "archive": "source-candidate.tar.gz",
+    "status": "passed",
+    "method": "Export exact Git blobs with documented exclusions, extract to new temp directory; documented scripts/start-local.sh created fresh venv, pip locked requirements, npm ci, build and started new local server. No existing dependency directory reused. Initial setup used Internet.",
+    "build_assets": 22,
+    "cache_fingerprint": "6ccb96b52205",
+    "runtime": "Python3.13 / Node25.2.1 / same Mac as regression; no second OS claim",
+    "clean_database_http_walkthrough": {
+      "verified_score": 83,
+      "new_unit": true,
+      "new_trainee": true,
+      "profile_sessions": 1,
+      "rapid_correct": 10,
+      "next_focus": "degraded_sensor_response",
+      "scope": "Synthetic QA via real HTTP and ordinary Python engine; disposable fresh database. Not a human test, physical LAN test or WAN-off validation."
+    },
+    "excluded": [
+      "local database and raw private history",
+      "bundle keys",
+      "env overrides and local IP configuration",
+      "venv/node_modules/dist/caches",
+      "legacy QA screenshots/record exports",
+      "obsolete prototype PPTX/previews"
+    ],
+    "final_export_rule": "Final tag archive uses same implementation blobs; final docs/evidence additions are checked separately."
+  },
+  "walkthrough": {
+    "scope": "Disposable initially empty database. Software QA operator using ordinary browser controls and HTTP; not human efficacy or new physical-network evidence.",
+    "session_id": "1eb782ed-a0a8-47cd-aad9-2aafcbe13b7e",
+    "trainee": "T_703208fe11eb485ba12313",
+    "director": {
+      "anti_rote": {
+        "fallback": false,
+        "history_window": 5,
+        "rejected_candidates": 0
+      },
+      "debug_samples": {
+        "classification_iff": 0.9437767019129533,
+        "degraded_sensor_response": 0.5212209959704877,
+        "detection": 0.5946955265367871,
+        "effector_choice": 0.22277812899521807
+      },
+      "difficulty": 2,
+      "difficulty_label": "standard",
+      "director_seed": 482913,
+      "fingerprint": "f92162debed06e1413b0f702",
+      "focus_skill": "effector_choice",
+      "mastery_estimate": 0.5,
+      "mode": "individual",
+      "observations": 0,
+      "profile_snapshot": {
+        "classification_iff": {
+          "alpha": 1.0,
+          "beta": 1.0,
+          "last_session_id": null,
+          "mean": 0.5,
+          "observations": 0,
+          "updated_at": null
+        },
+        "degraded_sensor_response": {
+          "alpha": 1.0,
+          "beta": 1.0,
+          "last_session_id": null,
+          "mean": 0.5,
+          "observations": 0,
+          "updated_at": null
+        },
+        "detection": {
+          "alpha": 1.0,
+          "beta": 1.0,
+          "last_session_id": null,
+          "mean": 0.5,
+          "observations": 0,
+          "updated_at": null
+        },
+        "effector_choice": {
+          "alpha": 1.0,
+          "beta": 1.0,
+          "last_session_id": null,
+          "mean": 0.5,
+          "observations": 0,
+          "updated_at": null
+        }
+      },
+      "reason": "Limited history available. This initial assessment establishes a baseline.",
+      "reason_code": "INITIAL_ASSESSMENT",
+      "recent_failures": 0,
+      "recent_successes": 0,
+      "scenario_features": [
+        "Day",
+        "6 mixed contacts",
+        "Fog parameter 0.25",
+        "No-RF FPV included",
+        "Friendly contact included",
+        "Initial target outside jammer range",
+        "Threat pattern: DECOY_THEN_STRIKE",
+        "Illustrative pack: Army Forward Post"
+      ],
+      "scenario_seed": 3331019467,
+      "scenario_template": "effector_choice/range_check",
+      "target_kind": "heuristic, not calibrated",
+      "target_success": 0.7,
+      "trainee_id": "T_703208fe11eb485ba12313"
+    },
+    "verified": true,
+    "observed_end_tick": 557,
+    "score": 0,
+    "commands": [
+      {
+        "label": "sensor_fault",
+        "tick": 8,
+        "order": 0,
+        "seq": 1
+      },
+      {
+        "label": "inject_contact",
+        "tick": 8,
+        "order": 1,
+        "seq": 2
+      }
+    ],
+    "mistake": {
+      "reason": "NO_RF_JAM_INEFFECTIVE",
+      "tick": 548,
+      "order": 4,
+      "actual": "rf_jam",
+      "expected": "kinetic"
+    },
+    "profile_sessions": 1,
+    "heatmap_example": {
+      "row": "DECOY_THEN_STRIKE",
+      "skill": "effector_choice",
+      "successes": 0,
+      "failures": 1,
+      "sessions": 1,
+      "observations": 1,
+      "estimate": 0.3333333333333333
+    },
+    "heatmap_matches_persisted_outcomes": true
+  },
+  "history": {
+    "historical_completed": 18,
+    "additional_current_completed": 3,
+    "all_current_completed_readable": 21,
+    "stored_engine_versions": {
+      "vyuha-0.2.0": 17,
+      "vyuha-0.1.0": 4
+    },
+    "exact_stored_cards_preserved": true,
+    "all_verified_aar_ghost_timelines_readable": true,
+    "all_four_skill_profiles_readable": true,
+    "heatmap_included_current_sessions": 21,
+    "historical_immutable_fields_sha256": "cce52299fb319073feb81fc0d3f2420a867ff7393421ca9f69940e9aef051b45",
+    "current_immutable_fields_sha256": "9abdf18414e477e695607dd605da0a51c8a0116fe1acf29097af00f9dfa70593",
+    "production_database_unchanged": true,
+    "scope": "Aggregate only; raw private records remain outside Git/submission. Checked on a disposable backup."
+  },
+  "browser_demo": {
+    "implementation_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
+    "scope": "Actual CUA browser interactions on disposable loopback demo database; synthetic identities. Not a new physical LAN or WAN-off claim.",
+    "preset": {
+      "name": "DEMO \u2014 NIGHT DECOY STRIKE",
+      "seed": 482913,
+      "library_id": "lib_21279143c197e7ed9b18646c",
+      "ordinary_score": 30,
+      "duration_seconds": 75,
+      "terrain": "rural",
+      "night": true,
+      "fog": 0.2,
+      "red_force": "DECOY_THEN_STRIKE",
+      "friendly": "T2",
+      "neutral": "T1",
+      "rf_hostiles": [
+        "T3",
+        "T5"
+      ],
+      "no_rf_fpv": "T4"
+    },
+    "demonstrated": [
+      "actual Director baseline recommendation",
+      "fixed authored drill distinct from Director generation",
+      "correct friendly hold",
+      "correct RF response",
+      "deliberate noRF jammer mistake",
+      "real instructor command acknowledged",
+      "server-verified completion",
+      "Ghost exact noRF reason and conditional reference",
+      "Time Machine decision jump",
+      "updated four-skill profile",
+      "fresh next Director recommendation",
+      "unit training overview",
+      "paused judge Rapid ID with visible evidence",
+      "Scenario Studio preview and saved library",
+      "experimental unscored recorded practice",
+      "Tactical2D rendering fallback",
+      "evidence page exactWANstatus/reason/source freshness"
+    ],
+    "early_end": "Asset penalties project to75seconds; later impacts are not observed facts. Ghost distinguishes observed end.",
+    "primary_capture": "DEMO-01; radar jam AFTER mistake; next Detection33% foundational",
+    "backup_capture": "REH-03; radar jam BEFORE mistake; next degraded_sensor_response standard",
+    "screenshots": {
+      "director.png": {
+        "path": "docs/release-screenshots/director.png",
+        "sha256": "00bc74298e21bd076bae61421d9d2e93e094af82860b1fa6705f14363408691b"
+      },
+      "tactical.png": {
+        "path": "docs/release-screenshots/tactical.png",
+        "sha256": "7731442a3d1c8b31be0c735c0e7a1b12f4122bf5d557839425eb4cf6d8508838"
+      },
+      "instructor.png": {
+        "path": "docs/release-screenshots/instructor.png",
+        "sha256": "b2c1738436fdbb4f0a016edb0df78295aed51ace93ed9e9fb82671e2f26f8368"
+      },
+      "ghost.png": {
+        "path": "docs/release-screenshots/ghost.png",
+        "sha256": "c1838cbd9f6d436f86dbc6aa01d77cefa5a23aebb965d83f269ce3bd07c8c97f"
+      },
+      "time-machine.png": {
+        "path": "docs/release-screenshots/time-machine.png",
+        "sha256": "42aa8dde85e5d4ee80b1a911d97d959a81ba16d5d027ab61bcefd810a98e4ad6"
+      },
+      "unit.png": {
+        "path": "docs/release-screenshots/unit.png",
+        "sha256": "f899e283e0a227c15829e784a78f1db321bac3b7511ea831d04a0649c6fd24bd"
+      },
+      "rapid-id.png": {
+        "path": "docs/release-screenshots/rapid-id.png",
+        "sha256": "6a7a3a18abe908cdebcdd00bbe77e7796afd6fd2a939314da10e3887e77187d4"
+      },
+      "studio-library.png": {
+        "path": "docs/release-screenshots/studio-library.png",
+        "sha256": "a22217f480ac4cc553584490315e4d777227c6eee8266827f8850ec24997f610"
+      },
+      "system-evidence.png": {
+        "path": "docs/release-screenshots/system-evidence.png",
+        "sha256": "272250e28eadafcff69aff7221b9188b8a6ea5c1e4e7fbb232bac82b792d384f"
+      },
+      "rural.png": {
+        "path": "docs/release-screenshots/rural.png",
+        "sha256": "c2e2e4cfc836bfccf84ca8e75524195a6784f9c4dd5dd63a120a57bb13b1a3e0"
+      },
+      "verified-aar.png": {
+        "path": "docs/release-screenshots/verified-aar.png",
+        "sha256": "6a3a93ceb80cb74fd04b5efd0329df5c239286aa7c3875e64fc877d8102c87cb"
+      },
+      "profile-updated.png": {
+        "path": "docs/release-screenshots/profile-updated.png",
+        "sha256": "cc1b444e97d9a535c205bd50b748e7c396e4700f3b324e0d122836a9c122f4bb"
+      },
+      "director-next.png": {
+        "path": "docs/release-screenshots/director-next.png",
+        "sha256": "5584aaedf1c400db37df1ef80726ecc16cd91c966409b1cb00ffe866dc47d51f"
+      },
+      "recorded.png": {
+        "path": "docs/release-screenshots/recorded.png",
+        "sha256": "bc3962004ef87cd97083686ef718edba3715c142ff70f03160a21d4487ecaa21"
+      }
+    }
+  },
+  "rehearsals": {
+    "implementation_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
+    "scope": "Three agent-led single-operator technical browser rehearsals on disposable QA data. No human team or judge/narration rehearsal claim. Fresh uvicorn process/loopback origin before each; ordinary product UI and scoring. Each includes scripted Q&A review and simulated rendering-failure cue recovered through actual Tactical 2D control.",
+    "live_target_seconds": "60-90; second run approximately 60 seconds (57.817), with delivery pacing reserved in runbook",
+    "runs": [
+      {
+        "callsign": "REH-01",
+        "live_seconds": 62.656,
+        "session": "0cb50acc-8dd9-4ed7-bcc7-81662e1c1b03",
+        "result": "Server verified, score30; Ghost noRF reason; replay jump; profile/next Director",
+        "issues": [
+          "Officer automation initially looked for ACTIVE rather than actual PAUSED; resolved from visible state",
+          "Radar command occurred after mistake; do not imply error under degradation"
+        ],
+        "recovery": "Tactical2D selected in prepared next drill"
+      },
+      {
+        "callsign": "REH-02",
+        "live_seconds": 57.817,
+        "session": "83e98877-ff41-46f3-b346-8cb455449b65",
+        "result": "Server verified, score30; Ghost/replay/next Director",
+        "issues": [
+          "Add approximately3 seconds of explanation to live delivery pacing",
+          "Capture viewport changed with app window; fixed1280x720 before final capture"
+        ],
+        "recovery": "Tactical2D selected while paused, resumed, completed and verified",
+        "radar_jam_tick": 123
+      },
+      {
+        "callsign": "REH-03",
+        "live_seconds": 77.106,
+        "session": "029439b1-03fe-4ae8-9cf3-5d7fef7be0a8",
+        "result": "Server verified, score30; Ghost/replay/next Director",
+        "issues": [
+          "Officer poll had not refreshed to PAUSED on first attempt; fresh state resolved; included in elapsed time"
+        ],
+        "recovery": "Actual Tactical2D selection, resume and verified completion"
+      }
+    ],
+    "scripted_questions_and_answers": [
+      "Why simulate: reproducible decision practice; no measured field transfer or cost savings",
+      "AI: four Beta skills, seeded Thompson focus; Ghost deterministic; 70% heuristic",
+      "Verified: server reconstruction of issued scenario/actions/acknowledged controls; fabricated logs remain possible",
+      "Offline: local assets/services by design; physical multi-device LAN validated; WAN test unperformed",
+      "Efficacy: simulated 50 paired profiles x30 sessions only, not humans",
+      "Security: trusted LAN, no authentication; HMAC integrity is not identity",
+      "Scale: six simulated loopback clients; 20-second device runs only",
+      "Failure: 2D fallback, one-laptop mode, backup recording; no new features"
+    ],
+    "feature_freeze": "No new runtime feature/engine changes after rehearsals began"
+  },
+  "media": {
+    "primary": {
+      "duration_seconds": 170,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "output_cadence_fps": 15,
+      "full_decode": "passed",
+      "audio": "Nonempty AAC48000Hz mono, normalized local synthetic narration",
+      "mean_audio_db": -19.6,
+      "sha256": "60cfeac29c661efc40287ceb1a48095ac3bcb7958cb54ed6a761ba5f3041562e",
+      "bytes": 3997020
+    },
+    "backup": {
+      "duration_seconds": 120,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "output_cadence_fps": 15,
+      "full_decode": "passed",
+      "audio": "Silent chronological backup with captions",
+      "mean_audio_db": null,
+      "sha256": "430c70130dc0a5a036a2888eaaf06c35582d7d1bcd5e578b8cb668c38c426c20",
+      "bytes": 1096320
+    },
+    "capture_scope": "Genuine browser frame-capture sequence; variable capture cadence with held frames, not continuous full-FPS screen capture. Encoding15fps is output cadence, not renderer FPS. Primary edited/captioned; backup chronological REH-03 with intro/final holds and one narrower officer frame fitted without cropping.",
+    "narration": "Locally generated eSpeak-NG synthetic en-us voice; verified20 nonempty chapters fit allocated intervals. Not a human narrator.",
+    "visual_review": "Primary reviewed at5/60/97/150s; backup15/68/110s; captions legible and actual UI visible. Full media decoding passed.",
+    "second_copy": {
+      "status": "CONFIRMED SAVED AND PLAYABLE",
+      "required": true,
+      "device": "Separate physical Android / Chrome device",
+      "confirmation": "User explicitly confirmed: Saved file plays from Downloads",
+      "file": "VYUHA-backup-demo-final.mp4",
+      "sha256": "430c70130dc0a5a036a2888eaaf06c35582d7d1bcd5e578b8cb668c38c426c20",
+      "scope": "User-reported saved-file playback of the served final120second backup; no independent handset hash or WAN-off claim"
+    },
+    "presentation": {
+      "pdf_slides": 6,
+      "template": "Official2026 supplied template, byte-identical to official download",
+      "official_headings_and_pointers": "Retained all six slide sections, branding, footer and title fields; omitted instruction slide7",
+      "geometry_native_tables_font_policy_and_import": "PPTX finalizer passed; reference fonts allowed. No claimed automated template coverage percentage or installed-font certificate.",
+      "manual_review": "All6 PPTX slide renders and6 PDF Poppler renders inspected; fixed cover/logo overlap and Ghost title wrap before final export.",
+      "metadata": {
+        "team": "WhiteList&0",
+        "id": "185350",
+        "category": "Software",
+        "PS": "SIH26247"
+      },
+      "omitted": "College/member names per user instruction",
+      "files": {
+        "VYUHA-SIH26247-Team185350.pdf": {
+          "sha256": "6a38e27ef42a26e87aa6854271048faf06873595e3810c772d409dead18d4858",
+          "bytes": 2408341
+        },
+        "VYUHA-SIH26247-Team185350-v2.pptx": {
+          "sha256": "1dc7f3ff36f1803fb7040babb4db7e2294021d90c75ba61a777fe09c91b88909",
+          "bytes": 817129
+        }
+      }
+    }
+  },
+  "performance": {
+    "scale": {
+      "schema_version": 1,
+      "environment": {
+        "os": "Darwin",
+        "python": "3.12.7"
+      },
+      "method": "2250 simulation steps per contact size, five Ghost/replay/scoring runs, 50 warm component runs. Local CPU only. Memory is tracemalloc peak, not device RAM or RSS. Empty histories for component dashboard. HTTP concurrency measured separately.",
+      "scale": [
+        {
+          "contacts": 8,
+          "tick": {
+            "n": 2250,
+            "median_ms": 0.0203,
+            "p95_ms": 0.0265
+          },
+          "ghost_replay_scoring": {
+            "n": 5,
+            "median_ms": 45.467,
+            "p95_ms": 45.8621
+          },
+          "python_traced_peak_mib": 0.005,
+          "review_payload_bytes": 14210,
+          "score": 0,
+          "render_fps": null,
+          "note": "All contacts spawn together; unchanged movement/sensor/scoring. Empty trainee decisions test worst missed-contact reconstruction. Python traced allocations are not whole-process RSS. Rendering requires browser benchmark."
+        },
+        {
+          "contacts": 25,
+          "tick": {
+            "n": 2250,
+            "median_ms": 0.0613,
+            "p95_ms": 0.0811
+          },
+          "ghost_replay_scoring": {
+            "n": 5,
+            "median_ms": 137.811,
+            "p95_ms": 148.4248
+          },
+          "python_traced_peak_mib": 0.013,
+          "review_payload_bytes": 39886,
+          "score": 0,
+          "render_fps": null,
+          "note": "All contacts spawn together; unchanged movement/sensor/scoring. Empty trainee decisions test worst missed-contact reconstruction. Python traced allocations are not whole-process RSS. Rendering requires browser benchmark."
+        },
+        {
+          "contacts": 50,
+          "tick": {
+            "n": 2250,
+            "median_ms": 0.1213,
+            "p95_ms": 0.1592
+          },
+          "ghost_replay_scoring": {
+            "n": 5,
+            "median_ms": 272.7536,
+            "p95_ms": 273.8562
+          },
+          "python_traced_peak_mib": 0.024,
+          "review_payload_bytes": 78356,
+          "score": 0,
+          "render_fps": null,
+          "note": "All contacts spawn together; unchanged movement/sensor/scoring. Empty trainee decisions test worst missed-contact reconstruction. Python traced allocations are not whole-process RSS. Rendering requires browser benchmark."
+        },
+        {
+          "contacts": 100,
+          "tick": {
+            "n": 2250,
+            "median_ms": 0.2427,
+            "p95_ms": 0.3188
+          },
+          "ghost_replay_scoring": {
+            "n": 5,
+            "median_ms": 534.6385,
+            "p95_ms": 536.7331
+          },
+          "python_traced_peak_mib": 0.05,
+          "review_payload_bytes": 159204,
+          "score": 0,
+          "render_fps": null,
+          "note": "All contacts spawn together; unchanged movement/sensor/scoring. Empty trainee decisions test worst missed-contact reconstruction. Python traced allocations are not whole-process RSS. Rendering requires browser benchmark."
+        },
+        {
+          "contacts": 200,
+          "tick": {
+            "n": 2250,
+            "median_ms": 0.489,
+            "p95_ms": 0.6376
+          },
+          "ghost_replay_scoring": {
+            "n": 5,
+            "median_ms": 1063.7873,
+            "p95_ms": 1356.7337
+          },
+          "python_traced_peak_mib": 0.105,
+          "review_payload_bytes": 321092,
+          "score": 0,
+          "render_fps": null,
+          "note": "All contacts spawn together; unchanged movement/sensor/scoring. Empty trainee decisions test worst missed-contact reconstruction. Python traced allocations are not whole-process RSS. Rendering requires browser benchmark."
+        }
+      ],
+      "components": {
+        "scenario_generation": {
+          "n": 50,
+          "median_ms": 1.8552,
+          "p95_ms": 4.1937
+        },
+        "director_decision": {
+          "n": 50,
+          "median_ms": 0.0199,
+          "p95_ms": 0.0206
+        },
+        "red_force": {
+          "n": 50,
+          "median_ms": 0.2218,
+          "p95_ms": 0.2272
+        },
+        "rapid_15": {
+          "n": 50,
+          "median_ms": 0.1714,
+          "p95_ms": 0.18
+        },
+        "author_compile": {
+          "n": 50,
+          "median_ms": 0.2964,
+          "p95_ms": 0.316
+        },
+        "dashboard": {
+          "n": 50,
+          "median_ms": 0.6259,
+          "p95_ms": 0.7254
+        }
+      }
+    },
+    "unit": {
+      "method": "Six simulated clients on loopback, three rounds each, unchanged expert policy. Medians/p95 include contention; no physical WAN latency.",
+      "advanced": {
+        "database_growth_bytes": 3192840,
+        "replay_payload_bytes": {
+          "median": 47391.0,
+          "max": 68226
+        },
+        "concurrent_clients": 6,
+        "completed_sessions": 18,
+        "server_rss_mib_after_workload": null,
+        "http_ms": {
+          "scenario_generation": {
+            "n": 18,
+            "median": 34.39,
+            "p95": 88.61,
+            "max": 88.61
+          },
+          "event_upload": {
+            "n": 122,
+            "median": 5.67,
+            "p95": 44.47,
+            "max": 146.39
+          },
+          "command_poll": {
+            "n": 122,
+            "median": 2.84,
+            "p95": 7.88,
+            "max": 31.82
+          },
+          "command_issue": {
+            "n": 18,
+            "median": 7.1,
+            "p95": 49.86,
+            "max": 49.86
+          },
+          "command_response": {
+            "n": 18,
+            "median": 3.62,
+            "p95": 41.98,
+            "max": 41.98
+          },
+          "active_list": {
+            "n": 18,
+            "median": 18.81,
+            "p95": 135.94,
+            "max": 135.94
+          },
+          "dashboard": {
+            "n": 18,
+            "median": 113.74,
+            "p95": 393.21,
+            "max": 393.21
+          },
+          "completion": {
+            "n": 18,
+            "median": 83.32,
+            "p95": 176.74,
+            "max": 176.74
+          },
+          "aar": {
+            "n": 18,
+            "median": 57.93,
+            "p95": 134.34,
+            "max": 134.34
+          }
+        }
+      }
+    },
+    "browser": {
+      "method": "Five sequential 20-second tests in Codex in-app Chromium on development Mac, fixed medium tier, actual visible DOM measurements. Worker clock is quantized to 0.1 ms; zero means below timer resolution. No whole-process/browser memory access. At capture time the Mac had not been identified as the weakest team laptop. The user subsequently identified it; a fresh fixed-tier repeat and verified hardware fields are recorded in performance-laptop.json.",
+      "hardware_class": "Development Mac, macOS 27.0.1 arm64; CPU/RAM unavailable to sandbox",
+      "ram_gib": null,
+      "browser": "Codex in-app Chromium",
+      "results": [
+        {
+          "contacts": 8,
+          "graphics": "medium",
+          "seconds": 20,
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0,
+          "p95_sim_tick_ms": 0.1,
+          "memory": null
+        },
+        {
+          "contacts": 25,
+          "graphics": "medium",
+          "seconds": 20,
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0,
+          "p95_sim_tick_ms": 0.1,
+          "memory": null
+        },
+        {
+          "contacts": 50,
+          "graphics": "medium",
+          "seconds": 20,
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0,
+          "p95_sim_tick_ms": 0.1,
+          "memory": null
+        },
+        {
+          "contacts": 100,
+          "graphics": "medium",
+          "seconds": 20,
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0,
+          "p95_sim_tick_ms": 0.2,
+          "memory": null
+        },
+        {
+          "contacts": 200,
+          "graphics": "medium",
+          "seconds": 20,
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0.1,
+          "p95_sim_tick_ms": 0.2,
+          "memory": null
+        }
+      ],
+      "manual_tactical_fallback": "200-contact scene replaced by detected-contact 2D radar; 2D paint FPS not measured",
+      "weakest_laptop": "Subsequently identified and remeasured; see performance-laptop.json"
+    },
+    "android": {
+      "provenance": "Historical Stage 6 device measurement; not repeated for v1.0.1. User-supplied physical Android/Chrome benchmark exports; pasted JSON wrapper normalized, numerical data retained. Hardware label did not identify model/CPU. RAM is user-entered; user-agent may reduce platform detail.",
+      "hardware_model": "unspecified",
+      "results": [
+        {
+          "schema_version": 1,
+          "hardware_class": "Browser ",
+          "ram_gib": "6",
+          "browser": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Mobile Safari/537.36",
+          "contacts": 8,
+          "graphics": "medium",
+          "auto_quality": true,
+          "seconds": 20,
+          "fps_samples": [
+            60,
+            59,
+            60,
+            57,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            61,
+            60,
+            60,
+            59,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0.09999999403953552,
+          "p95_sim_tick_ms": 0.4000000059604645,
+          "logical_cores": 8,
+          "js_heap_bytes": 10000000,
+          "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs in the unchanged 30 Hz worker; no scoring fidelity reductions."
+        },
+        {
+          "schema_version": 1,
+          "hardware_class": "Browser ",
+          "ram_gib": "6",
+          "browser": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Mobile Safari/537.36",
+          "contacts": 25,
+          "graphics": "medium",
+          "auto_quality": true,
+          "seconds": 20,
+          "fps_samples": [
+            59,
+            60,
+            59,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0.20000001788139343,
+          "p95_sim_tick_ms": 0.5,
+          "logical_cores": 8,
+          "js_heap_bytes": 10000000,
+          "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs in the unchanged 30 Hz worker; no scoring fidelity reductions."
+        },
+        {
+          "schema_version": 1,
+          "hardware_class": "Browser ",
+          "ram_gib": "6",
+          "browser": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Mobile Safari/537.36",
+          "contacts": 50,
+          "graphics": "medium",
+          "auto_quality": true,
+          "seconds": 20,
+          "fps_samples": [
+            59,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0.19999998807907104,
+          "p95_sim_tick_ms": 0.5,
+          "logical_cores": 8,
+          "js_heap_bytes": 10000000,
+          "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs in the unchanged 30 Hz worker; no scoring fidelity reductions."
+        },
+        {
+          "schema_version": 1,
+          "hardware_class": "Browser ",
+          "ram_gib": "6",
+          "browser": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Mobile Safari/537.36",
+          "contacts": 100,
+          "graphics": "medium",
+          "auto_quality": true,
+          "seconds": 20,
+          "fps_samples": [
+            59,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0.3999999761581421,
+          "p95_sim_tick_ms": 0.800000011920929,
+          "logical_cores": 8,
+          "js_heap_bytes": 10000000,
+          "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs in the unchanged 30 Hz worker; no scoring fidelity reductions."
+        },
+        {
+          "schema_version": 1,
+          "hardware_class": "Browser ",
+          "ram_gib": "6",
+          "browser": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Mobile Safari/537.36",
+          "contacts": 200,
+          "graphics": "medium",
+          "auto_quality": true,
+          "seconds": 20,
+          "fps_samples": [
+            56,
+            56,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            59,
+            61,
+            60,
+            60,
+            60,
+            60
+          ],
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0.09999999403953552,
+          "p95_sim_tick_ms": 1.0999999940395355,
+          "logical_cores": 8,
+          "js_heap_bytes": 10000000,
+          "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs in the unchanged 30 Hz worker; no scoring fidelity reductions."
+        }
+      ],
+      "memory_note": "Browser-reported JS heap; may be coarse/privacy-rounded. Not total device RAM or process memory.",
+      "weakest_laptop_requirement": "Independent laptop check subsequently completed; see performance-laptop.json"
+    },
+    "weak_laptop": {
+      "schema_version": 1,
+      "source_tree_sha256": "147579ef674ee9dab029def4ce9ac7d5cccdef1c856552dde240bcf5efcd0ff4",
+      "hardware_class": "MacBook Air, Apple M1, 8-core CPU",
+      "ram_gib": 8,
+      "browser": "Codex in-app Chromium",
+      "provenance": "Historical competitive-polish rendering measurement; not repeated for v1.0.1. Actual completed benchmark UI on 2026-10-04; final production rendering source, fixed Medium, Auto off, 20 seconds. Raw frame samples retained. Builds/tests stopped for these repeats. Short runs are not endurance/device certification. Additional 200-contact stress medians: night 60 FPS, Overview 60 FPS, Follow 58 FPS. Initial transition samples and exploratory build-overlap dip are retained in QA performance.json.",
+      "results": [
+        {
+          "schema_version": 1,
+          "vision": "thermal",
+          "thermal_palette": "white",
+          "camera_preset": "trainee",
+          "hardware_class": "MacBook Air Apple M1 8-core",
+          "ram_gib": "8",
+          "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+          "contacts": 8,
+          "graphics": "medium",
+          "auto_quality": false,
+          "seconds": 20,
+          "fps_samples": [
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0,
+          "p95_sim_tick_ms": 0.10000000149011612,
+          "logical_cores": 8,
+          "js_heap_bytes": 20740336,
+          "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs in the unchanged 30 Hz worker; no scoring fidelity reductions."
+        },
+        {
+          "schema_version": 1,
+          "vision": "thermal",
+          "thermal_palette": "amber",
+          "camera_preset": "trainee",
+          "hardware_class": "MacBook Air Apple M1 8-core",
+          "ram_gib": "8",
+          "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+          "contacts": 50,
+          "graphics": "medium",
+          "auto_quality": false,
+          "seconds": 20,
+          "fps_samples": [
+            59,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0,
+          "p95_sim_tick_ms": 0.19999999552965164,
+          "logical_cores": 8,
+          "js_heap_bytes": 30897198,
+          "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs in the unchanged 30 Hz worker; no scoring fidelity reductions."
+        },
+        {
+          "schema_version": 1,
+          "vision": "thermal",
+          "thermal_palette": "black",
+          "camera_preset": "trainee",
+          "hardware_class": "MacBook Air Apple M1 8-core",
+          "ram_gib": "8",
+          "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+          "contacts": 100,
+          "graphics": "medium",
+          "auto_quality": false,
+          "seconds": 20,
+          "fps_samples": [
+            56,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0,
+          "p95_sim_tick_ms": 0.19999999552965164,
+          "logical_cores": 8,
+          "js_heap_bytes": 46498052,
+          "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs in the unchanged 30 Hz worker; no scoring fidelity reductions."
+        },
+        {
+          "schema_version": 1,
+          "vision": "thermal",
+          "thermal_palette": "white",
+          "camera_preset": "trainee",
+          "hardware_class": "MacBook Air Apple M1 8-core",
+          "ram_gib": "8",
+          "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+          "contacts": 200,
+          "graphics": "medium",
+          "auto_quality": false,
+          "seconds": 20,
+          "fps_samples": [
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0.09999999403953552,
+          "p95_sim_tick_ms": 0.10000000149011612,
+          "logical_cores": 8,
+          "js_heap_bytes": 43766376,
+          "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs in the unchanged 30 Hz worker; no scoring fidelity reductions."
+        }
+      ],
+      "baseline": {
+        "historical_v1_median_fps": {
+          "8": 60,
+          "50": 60,
+          "100": 60,
+          "200": 60
+        },
+        "same_machine_v1_repeat_200": {
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0.1,
+          "p95_sim_tick_ms": 0.3
+        }
+      },
+      "analysis": "Final 8/50/100/200 live-view medians: 60 FPS. Night and Overview stress: 60 FPS. Follow stress at 200 contacts: 58 FPS (3.3% below 60); acceptable modest rendering cost for a new replay view, with unchanged simulation authority. Individual warm-up/transition samples were lower (night 17, Overview 28); raw samples retained. Exploratory 200 run under overlapping builds dipped to 56 FPS; isolated repeat recovered to 60. Timer-rounded zeros are below resolution, not cost-free computation."
+    }
+  },
+  "experiment": {
+    "label": "SIMULATED TRAINING EXPERIMENT \u2014 NOT HUMAN EFFICACY EVIDENCE",
+    "method": "Paired seeds, identical initial hidden probabilities, assessment uniforms and focused learning law. Production Thompson selector/template adapter/Red Force versus uniform random focus/template; identical Beta-based difficulty rule. One abstract Bernoulli assessment per canonical skill/session. Hidden competence is separate from Beta estimates. No tactical physics, human learners or empirical learning-rate calibration.",
+    "summary": {
+      "director": {
+        "learners": 50,
+        "reached_threshold": 8,
+        "median_sessions_among_reached": 21.5,
+        "mean_cumulative_failures": 44,
+        "mean_final_hidden_performance": 0.7343334013125282,
+        "mean_weakest_skill_gain": 0.3023969480968076,
+        "mean_immediate_repeats": 0
+      },
+      "random": {
+        "learners": 50,
+        "reached_threshold": 5,
+        "median_sessions_among_reached": 28,
+        "mean_cumulative_failures": 44.9,
+        "mean_final_hidden_performance": 0.7314997071379368,
+        "mean_weakest_skill_gain": 0.2748240621791998,
+        "mean_immediate_repeats": 2.38
+      }
+    }
+  },
+  "remaining": [
+    "Dedicated physical WAN-off/LAN-on validation was not completed before submission. Multi-device LAN operation, local asset serving, process-outage recovery and queued-event resynchronization were validated separately.",
+    "No human efficacy study conducted. Consent-gated pre/post tooling is available.",
+    "Trusted LAN prototype. No production authentication; do not expose publicly.",
+    "All threat/sensor/learning/audio values illustrative, not operational validation.",
+    "Plain LAN HTTP cold reload with local server absent is browser-security constrained.",
+    "Rain, crew roles, hardware feeds and production identity remain deferred.",
+    "HMAC integrity is neither donor authentication nor non-repudiation. Recorded practice has no tactical scoring or invented impacts.",
+    "Competitive candidate replay Follow stress median 58 FPS at 200 contacts; lower initial view-transition samples retained. Short 20-second checks are not endurance certification."
+  ],
+  "validated_implementation_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
+  "manifest_preseal_parent_commit": "5db0d66e884c0ddee92d6344a951a016fea102a8",
+  "commit_scope": "Regression validated implementation commit0f17830; final documentation/media commits preserve that exact source_tree_sha256. Resolve immutable v1.0.0 for the full release commit; delivered RELEASE-RECEIPT.json verifies remote identity.",
+  "validation_reference": "Exact source_tree_sha256; final candidate commit independently checked after the commit is created.",
+  "competitive_polish": {
+    "performance": {
+      "schema_version": 1,
+      "source_tree_sha256": "147579ef674ee9dab029def4ce9ac7d5cccdef1c856552dde240bcf5efcd0ff4",
+      "hardware_class": "MacBook Air, Apple M1, 8-core CPU",
+      "ram_gib": 8,
+      "browser": "Codex in-app Chromium",
+      "provenance": "Actual completed benchmark UI on 2026-10-04; final production rendering source, fixed Medium, Auto off, 20 seconds. Raw frame samples retained. Builds/tests stopped for these repeats. Short runs are not endurance/device certification.",
+      "results": [
+        {
+          "schema_version": 1,
+          "vision": "thermal",
+          "thermal_palette": "white",
+          "camera_preset": "trainee",
+          "hardware_class": "MacBook Air Apple M1 8-core",
+          "ram_gib": "8",
+          "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+          "contacts": 8,
+          "graphics": "medium",
+          "auto_quality": false,
+          "seconds": 20,
+          "fps_samples": [
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0,
+          "p95_sim_tick_ms": 0.10000000149011612,
+          "logical_cores": 8,
+          "js_heap_bytes": 20740336,
+          "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs in the unchanged 30 Hz worker; no scoring fidelity reductions."
+        },
+        {
+          "schema_version": 1,
+          "vision": "thermal",
+          "thermal_palette": "amber",
+          "camera_preset": "trainee",
+          "hardware_class": "MacBook Air Apple M1 8-core",
+          "ram_gib": "8",
+          "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+          "contacts": 50,
+          "graphics": "medium",
+          "auto_quality": false,
+          "seconds": 20,
+          "fps_samples": [
+            59,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0,
+          "p95_sim_tick_ms": 0.19999999552965164,
+          "logical_cores": 8,
+          "js_heap_bytes": 30897198,
+          "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs in the unchanged 30 Hz worker; no scoring fidelity reductions."
+        },
+        {
+          "schema_version": 1,
+          "vision": "thermal",
+          "thermal_palette": "black",
+          "camera_preset": "trainee",
+          "hardware_class": "MacBook Air Apple M1 8-core",
+          "ram_gib": "8",
+          "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+          "contacts": 100,
+          "graphics": "medium",
+          "auto_quality": false,
+          "seconds": 20,
+          "fps_samples": [
+            56,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0,
+          "p95_sim_tick_ms": 0.19999999552965164,
+          "logical_cores": 8,
+          "js_heap_bytes": 46498052,
+          "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs in the unchanged 30 Hz worker; no scoring fidelity reductions."
+        },
+        {
+          "schema_version": 1,
+          "vision": "thermal",
+          "thermal_palette": "white",
+          "camera_preset": "trainee",
+          "hardware_class": "MacBook Air Apple M1 8-core",
+          "ram_gib": "8",
+          "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+          "contacts": 200,
+          "graphics": "medium",
+          "auto_quality": false,
+          "seconds": 20,
+          "fps_samples": [
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0.09999999403953552,
+          "p95_sim_tick_ms": 0.10000000149011612,
+          "logical_cores": 8,
+          "js_heap_bytes": 43766376,
+          "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs in the unchanged 30 Hz worker; no scoring fidelity reductions."
+        },
+        {
+          "schema_version": 1,
+          "vision": "night",
+          "thermal_palette": "white",
+          "camera_preset": "trainee",
+          "hardware_class": "MacBook Air Apple M1 8-core",
+          "ram_gib": "8",
+          "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+          "contacts": 200,
+          "graphics": "medium",
+          "auto_quality": false,
+          "seconds": 20,
+          "fps_samples": [
+            17,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0.09999999403953552,
+          "p95_sim_tick_ms": 0.19999999552965164,
+          "logical_cores": 8,
+          "js_heap_bytes": 46841191,
+          "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs in the unchanged 30 Hz worker; no scoring fidelity reductions."
+        },
+        {
+          "schema_version": 1,
+          "vision": "thermal",
+          "thermal_palette": "amber",
+          "camera_preset": "overview",
+          "hardware_class": "MacBook Air Apple M1 8-core",
+          "ram_gib": "8",
+          "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+          "contacts": 200,
+          "graphics": "medium",
+          "auto_quality": false,
+          "seconds": 20,
+          "fps_samples": [
+            28,
+            56,
+            59,
+            58,
+            59,
+            60,
+            60,
+            60,
+            60,
+            60,
+            58,
+            60,
+            60,
+            60,
+            60,
+            59,
+            60,
+            60,
+            60,
+            60
+          ],
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0.10000000149011612,
+          "p95_sim_tick_ms": 0.20000000298023224,
+          "logical_cores": 8,
+          "js_heap_bytes": 59351486,
+          "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs in the unchanged 30 Hz worker; no scoring fidelity reductions."
+        },
+        {
+          "schema_version": 1,
+          "vision": "thermal",
+          "thermal_palette": "amber",
+          "camera_preset": "follow",
+          "hardware_class": "MacBook Air Apple M1 8-core",
+          "ram_gib": "8",
+          "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+          "contacts": 200,
+          "graphics": "medium",
+          "auto_quality": false,
+          "seconds": 20,
+          "fps_samples": [
+            55,
+            58,
+            59,
+            54,
+            55,
+            60,
+            58,
+            54,
+            55,
+            51,
+            59,
+            59,
+            59,
+            49,
+            59,
+            60,
+            54,
+            60,
+            60
+          ],
+          "median_render_fps": 58,
+          "median_sim_tick_ms": 0.10000000149011612,
+          "p95_sim_tick_ms": 0.6000000014901161,
+          "logical_cores": 8,
+          "js_heap_bytes": 69508708,
+          "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs in the unchanged 30 Hz worker; no scoring fidelity reductions."
+        }
+      ],
+      "baseline": {
+        "historical_v1_median_fps": {
+          "8": 60,
+          "50": 60,
+          "100": 60,
+          "200": 60
+        },
+        "same_machine_v1_repeat_200": {
+          "median_render_fps": 60,
+          "median_sim_tick_ms": 0.1,
+          "p95_sim_tick_ms": 0.3
+        }
+      },
+      "analysis": "Final 8/50/100/200 live-view medians: 60 FPS. Night and Overview stress: 60 FPS. Follow stress at 200 contacts: 58 FPS (3.3% below 60); acceptable modest rendering cost for a new replay view, with unchanged simulation authority. Individual warm-up/transition samples were lower (night 17, Overview 28); raw samples retained. Exploratory 200 run under overlapping builds dipped to 56 FPS; isolated repeat recovered to 60. Timer-rounded zeros are below resolution, not cost-free computation."
+    },
+    "heatmap_http": {
+      "scope": "Loopback HTTP API on one actual completed synthetic-QA session, seven rows/28 cells. Browser also verified data, disclosure and filter. Not a large-history UI benchmark.",
+      "requests": 10,
+      "median_ms": 16.604875003395136,
+      "max_ms": 287.40574999392265,
+      "included_sessions": 1
+    },
+    "tour_stops": 6,
+    "tour_seconds": "approximately 40; reading estimate only",
+    "claim_audit": "docs/qa-competitive-polish/CLAIM-AUDIT.md",
+    "final_validation": "docs/qa-competitive-polish/FINAL-VALIDATION.md",
+    "sealed_assets_unchanged": true,
+    "optional_release_created": false,
+    "final_video_pdf_regenerated": false
+  },
+  "historical_release_checks": {
+    "status": "ALL MANDATORY PRE-SEAL CHECKS PASSED",
+    "implementation_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
+    "mandatory": {
+      "final_regression": "PASSED 134 backend /44 frontend /312 parity /build22assets",
+      "history": "PASSED all18 historical cards, Ghost/AAR/timeline/profile preservation",
+      "clean_database_walkthrough": "PASSED realHTTP synthetic QA plus actual browser demo",
+      "release_branch": "CREATED release/v1.0.0",
+      "claim_audit": "COMPLETED; scopes and official template/metadata checked",
+      "evidence_manifest": "GENERATED with explicit permanent WANexception and exactsourcehash",
+      "primary_video": "PASSED170s H264/AAC, full decode; synthetic narration",
+      "backup_video": "PASSED120s H264, full decode; captions and held realbrowser frames",
+      "official_pdf": "PASSED sixpages incltitle; allpage visual review; Software/185350/WhiteList&0",
+      "rehearsals": "COMPLETED three single-operator technical browser rehearsals62.656/57.817/77.106s; scriptedQ&A and actual2Dfallback. No human team rehearsal claim.",
+      "source_extract_start": "PASSED documented freshdeps install/build/start, freshDBHTTPwalkthrough",
+      "second_recording_copy": "CONFIRMED separate Android saved file plays from Downloads",
+      "immutable_tag_and_remote": "v1.0.0 seal; exact target and private remote verification recorded in external RELEASE-RECEIPT.json after tagging",
+      "submission_package": "Final source/tag export and checksum/ZIP verification recorded in external RELEASE-RECEIPT.json"
+    },
+    "wan_exception": {
+      "test": "physical WAN disconnected + LAN retained + separate physical trainee device",
+      "status": "NOT PERFORMED BEFORE SUBMISSION",
+      "reason": "Required physical/network setup unavailable during final validation window.",
+      "release_blocking": false,
+      "classification": "Known validation limitation, not a failed architectural test.",
+      "scope": "No other mandatory acceptance is waived"
+    },
+    "remaining_mandatory": [],
+    "portal_submission": "Prepared only; not uploaded",
+    "seal_receipt": "RELEASE-RECEIPT.json in final submission package records the exact immutable commit/tag and remote refs; avoid circular self-hash in tracked docs"
+  },
+  "release_checks": {
+    "status": "ALL SOFTWARE PRE-SEAL CHECKS PASSED",
+    "scope": "Software release only; no media, PDF, submission ZIP or portal upload performed in this finalization task.",
+    "mandatory": {
+      "final_regression": "PASSED 139 backend /64 frontend /312 parity /build23assets",
+      "history": "PASSED18/18 baseline and21/21 current; disposable backup; stored cards and Ghost/AAR/profile evidence preserved",
+      "final_navigation_walkthrough": "PASSED visible UI links in local/Unit modes; desktop/tablet/mobile; Back/Forward/refresh; no console errors"
+    },
+    "wan_exception": {
+      "test": "physical WAN disconnected + LAN retained + separate physical trainee device",
+      "status": "NOT PERFORMED BEFORE SUBMISSION",
+      "reason": "Required physical/network setup unavailable during final validation window.",
+      "release_blocking": false,
+      "classification": "Known validation limitation, not a failed architectural test.",
+      "scope": "No other mandatory acceptance is waived"
+    },
+    "seal_receipt": "outputs/release-v1.0.1/FINAL-RELEASE-RECEIPT.md and release-receipt.json outside the source checkout avoid circular commit references.",
+    "remaining_mandatory": []
+  },
+  "historical_evidence_provenance": {
+    "previous_manifest_git_commit": "20e8642782cd13cf6779e5ebd650c2f55c851b37",
+    "previous_manifest_git_path": "docs/qa-competitive-polish/evidence.json",
+    "previous_manifest_sha256": "0d91b9bac6e20afbbe8a2aa1dadd98d39785b953c1320069d7fd237a91eebb8e",
+    "previous_validated_at": "2026-10-04T05:57:44.494073+00:00",
+    "sections": [
+      "physical",
+      "deployment",
+      "walkthrough",
+      "browser_demo",
+      "rehearsals",
+      "media",
+      "performance",
+      "experiment",
+      "competitive_polish",
+      "historical_release_checks"
+    ],
+    "rule": "These sections retain prior-stage measurements and original source IDs. No claim they were generated from v1.0.1. Only automated regression, history and final navigation evidence are refreshed for this release."
+  },
+  "navigation": {
+    "status": "NAVIGATION AUDIT COMPLETE \u2014 ALL INTENDED USER-FACING PAGES DISCOVERABLE",
+    "canonical_routes": 11,
+    "classification": {
+      "NAVIGATED": 9,
+      "SECONDARY_REACHABLE": 2,
+      "INTENTIONALLY_HIDDEN": 0
+    },
+    "receipt": "docs/release-v1.0.1/browser-walkthrough.json"
+  }
+}

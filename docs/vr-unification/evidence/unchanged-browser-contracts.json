@@ -1,0 +1,14 @@
+{
+  "baseline": "259c50acdc5373a7971e9885b1232645edf23466",
+  "runtime_commit": "ad430f742f7476feb464c1c53d08cfb3f95823ba",
+  "byte_identical_files": {
+    "client/src/sim.ts": "1cd50128f61d925abb0156c9870378168780b6c61c4cab9b1a7466d834afdf98",
+    "client/src/sim.worker.ts": "adb9929545825dff6f6b0c6461685abe008d267aee9fc1050156c82f15ee6eda",
+    "client/src/Scene.tsx": "5a92fe38e0043bca5c0366d34b24655615f1c276221ccd1d74a773572f6d635a",
+    "client/src/ContactRenderer.tsx": "9718776e51694bb2901661268110664f8bf00e613acaa36e4feb03f91acae1e3",
+    "client/src/InspectionPass.tsx": "f43c2e4db08acff329ac265d9434de0ce2bb698756d58eb848d9f73361422a33",
+    "client/src/Benchmark.tsx": "a06c80e33bc0512f520c96fecf0e7c19a723e40557e213fd3d5dbb027a716ed2",
+    "client/src/response-v2.ts": "d4720aa09c0298654b7c11da5b0bf28dae52922ef8bc692db967f67952dace21"
+  },
+  "scope": "Server implementation has no differences from browser baseline; only new VR startup tests were added under server/."
+}

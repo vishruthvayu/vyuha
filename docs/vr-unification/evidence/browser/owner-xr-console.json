@@ -1,0 +1,20 @@
+[
+  {
+    "level": "error",
+    "message": "TypeError: Cannot read properties of null (reading '0')\n    at onDeviceFrame (http://127.0.0.1:8106/_vrqa/iwer.js:1:58547)",
+    "timestamp": "2026-10-20T09:18:04.785Z",
+    "url": "http://127.0.0.1:8106/_vrqa/iwer.js"
+  },
+  {
+    "level": "error",
+    "message": "TypeError: Cannot read properties of null (reading '0')\n    at onDeviceFrame (http://127.0.0.1:8106/_vrqa/iwer.js:1:58547)",
+    "timestamp": "2026-10-20T09:18:04.788Z",
+    "url": "http://127.0.0.1:8106/_vrqa/iwer.js"
+  },
+  {
+    "level": "warn",
+    "message": "THREE.WebGLRenderer: WEBGL_lose_context extension not supported.",
+    "timestamp": "2026-10-20T09:18:13.663Z",
+    "url": "http://127.0.0.1:8106/assets/obstruction-DKIwTW5v.js"
+  }
+]

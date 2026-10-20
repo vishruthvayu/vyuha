@@ -1,0 +1,15 @@
+{
+  "completed_at_utc": "2026-10-18T17:30:28Z",
+  "renderer_bytes_match_measured_revision": true,
+  "backend_diff_from_base": false,
+  "ui_source_sha256": {
+    "client/src/GuidedDecision.tsx": "52496feac901039dcbcf76149def5c8490a13253df9b19bedc9fb8338cfe3f21",
+    "client/src/premium/training.css": "77238d42f80e01148aa84b492babddebad585973b0bb2eabc95fa5305b5224df"
+  },
+  "checks": [
+    "finite resources + delayed outcomes + server verification at 390/1024/1440",
+    "eight viewport live action flows + axe + server verification",
+    "zero optical/control geometry drift in recorded states",
+    "renderer code unchanged from three-repeat GPU/CPU measurements"
+  ]
+}

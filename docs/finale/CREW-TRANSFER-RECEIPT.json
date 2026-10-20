@@ -1,0 +1,39 @@
+{
+  "status": "FOCUSED SHARED CREW AND FUSION TRANSFER VALIDATED",
+  "validated_date": "2026-10-11",
+  "suite": "server/tests/test_portable_crew.py",
+  "tests_passed": 12,
+  "tests_failed": 0,
+  "elapsed_seconds": 36.6,
+  "scope": "Real API role-capability operations, disposable SQLite databases, software-controlled logical clock and actual JavaScript JSON number conversion on macOS. No physical multi-device/Windows/Linux/WAN evidence inferred.",
+  "checks": [
+    "Shared crew source profile/export do not backfill individual Beta or outcomes",
+    "Pseudonymous roster and complete role/action-order attribution preserved",
+    "No original crew label, member callsigns, role codes/hashes or live permissions exported",
+    "JS roundtrip, source duplicate, clean receiving database, exact shared score/AAR/events, duplicate/no-write and forwarded payload equality",
+    "Imported archive has no individual profile/outcome ledger; old role codes do not create access and runtime inputs are blocked",
+    "Fusion transports strict exposure requests only; recipient independently regenerates identical advice/association/confidence receipts at accepted boundaries",
+    "Individual Fusion transfer preserves existing score and exact Beta profile; exposures do not update learning evidence",
+    "Nine signed metadata changes rejected atomically: code field, role mismatch, missing attribution, outcome credit, profile credit, exposure ID/boundary/duplication and forged stored receipt",
+    "New archive/session/receipt writes rolled back when a later canonical session conflicts"
+  ],
+  "boundaries_fixed_by_root": [
+    "Profile lazy-backfill and export contamination",
+    "Database commit failure restores authoritative cache",
+    "Archived results have no runtime input permissions",
+    "Synthetic crew owners cannot start ordinary individual sessions",
+    "Crew action ceiling checked after exact retry lookup"
+  ],
+  "limitations": [
+    "Focused tests during candidate integration; final release source hash and all-suite regression are separate",
+    "Association/viewing remain client self-report; no human efficacy or calibrated confidence claim",
+    "Shared members receive no individual competence credit",
+    "One existing FastAPI/Starlette httpx deprecation warning"
+  ],
+  "files": [
+    "server/portable_crew.py",
+    "server/portable_fusion.py",
+    "server/tests/test_portable_crew.py",
+    "server/portable.py optional crew/Fusion metadata extension"
+  ]
+}

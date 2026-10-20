@@ -1,0 +1,8 @@
+{
+  "method": "Online backup of imported-history DB, add a participant after snapshot, restore to new file, start real disposable server and fetch cards/profiles.",
+  "integrity": "ok",
+  "outcomes_preserved": 3,
+  "post_backup_participant_absent": true,
+  "tactical_scorecards_exact": 2,
+  "profile_Beta_exact": true
+}

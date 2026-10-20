@@ -1,0 +1,16 @@
+{
+  "source_commit": "628c1ce6353787a1562947160991d1b647c28394",
+  "tables_unchanged": {
+    "sessions": "3cfc73593bd84c6ab1a05f7ea175c52128f21dd8139f811ebbec1246b9ff40e8",
+    "chunks": "f2e23ad18c46496b414653fcbfd38de8197fae5acaae1beaf631f36f978c1b81",
+    "instructor_commands": "9732762b84a6bcad138edb771def6ec571618227e59d73ce3b67fe3054b8d111",
+    "instructor_notes": "3da879060a585af58f83a08b225e52ea18a573c6cd29d3cb77d6cf13f5ee8851",
+    "skill_outcomes": "af56356ca53a22766bd0e380884758d12a65f630df4655402c656a3e671dced2",
+    "skill_profiles": "8322a359c8a2cb0666687b2fa72d1909956891a23937e827bd663db86d2139c8",
+    "fusion_exposures": "023797bfb787d01e3087ba4840814d59beef02a1ba55e56917c6c06206a6f5d0"
+  },
+  "original_score": 0,
+  "what_if_score": 11,
+  "evidence_only_reference_score": 5,
+  "method": "Actual browser-triggered What-If and evidence-only run; before/after full synthetic evidence/profile tables identical."
+}

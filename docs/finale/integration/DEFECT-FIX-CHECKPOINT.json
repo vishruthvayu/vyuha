@@ -1,0 +1,46 @@
+{
+  "stage": "INTEGRATION_DEFECT_FIXES_VERIFIED_CHECKPOINT",
+  "source_tree_sha256": "5d04710319717979305db7c95b049810c0f7ed0113764eabddb3a08bcf1e63c1",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_inputs": 323,
+  "changes": [
+    "Server-owned Crew designation eligibility with fail-closed UI and unchanged action revalidation",
+    "Officer-only bounded crew discovery and code rotation recovery without plaintext persistence",
+    "Production font licence copying and local offline precache",
+    "Actionable empty Analytics cell text contrast",
+    "SSR-safe/dynamic reduced-motion preference forwarded to renderer",
+    "Popover anchoring/unclipping/scrolling at compact widths",
+    "Natural-height RF/IFF/Fusion panels in keyboard-scrollable evidence rail",
+    "Display-only optical magnification1\u20136 integrated without sensor/scoring changes"
+  ],
+  "verified_checks": {
+    "frontend": {
+      "passed": 287,
+      "failed": 0,
+      "milliseconds": 46328.714917
+    },
+    "targeted_backend": {
+      "passed": 38,
+      "failed": 0,
+      "seconds": 22.78
+    },
+    "lint": "PASS",
+    "format": "PASS",
+    "production_build": {
+      "status": "PASS",
+      "assets": 36,
+      "cache": "8c3b686dd556"
+    }
+  },
+  "full_backend": "RUNNING; not yet final evidence",
+  "browser": "Actual restored persisted actions,EO/thermal/night,zoom/audio controls,clipping rechecks;four widths100%scale1,DPR1;nooverflow;trainingaxeviolations0,incompletesretained",
+  "remaining_acceptance": [
+    "Full backend completion",
+    "Instructor/Crew/AAR/Analytics/Studio/Recorded/Transfer browser workflows",
+    "Integrated performance and matching clean clone",
+    "Updated211rowinventory and independent final follow-ups",
+    "Exact source/evidence/remote/RC sealing"
+  ],
+  "stable_approval": false,
+  "release_candidate_created": false
+}

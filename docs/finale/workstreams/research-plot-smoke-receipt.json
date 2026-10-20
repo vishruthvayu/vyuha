@@ -1,0 +1,14 @@
+{
+  "evidence_status": "SYNTHETIC_INTERFACE_EVALUATED",
+  "artifacts": [
+    "/private/tmp/vyuha-mission-research-plots/synthetic-reliability.png",
+    "/private/tmp/vyuha-mission-research-plots/synthetic-reliability.csv"
+  ],
+  "real_and_synthetic_pooled": false,
+  "matplotlib_version": "3.10.8",
+  "model_writes": false,
+  "scope": "Actual optional Matplotlib rendering of a SYNTHETIC contract fixture; no empirical calibration or learning evidence",
+  "visually_inspected": true,
+  "output_paths_are_ephemeral": true,
+  "source_sha256": "f8b368da33471c06d391670e6ee439814002a0182fe7e553c675be602c11f922"
+}

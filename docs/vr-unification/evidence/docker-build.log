@@ -1,0 +1,159 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 728B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/node:22-slim
+#3 DONE 0.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 125B done
+#4 DONE 0.0s
+
+#5 [client 1/7] FROM docker.io/library/node:22-slim@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392
+#5 resolve docker.io/library/node:22-slim@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392 0.0s done
+#5 DONE 0.0s
+
+#6 [stage-1 1/7] FROM docker.io/library/python:3.12-slim@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1
+#6 resolve docker.io/library/python:3.12-slim@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1 0.0s done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 164.71kB 0.1s done
+#7 DONE 0.1s
+
+#8 [client 2/7] WORKDIR /build
+#8 CACHED
+
+#9 [client 3/7] COPY client/package*.json ./
+#9 CACHED
+
+#10 [client 4/7] RUN npm ci --no-audit --no-fund
+#10 CACHED
+
+#11 [client 5/7] COPY client/ ./
+#11 DONE 0.2s
+
+#12 [client 6/7] COPY server/config/ /server/config/
+#12 DONE 0.0s
+
+#13 [client 7/7] RUN npm run build
+#13 0.971 
+#13 0.971 > vyuha-trainer@1.1.0-rc.3 build
+#13 0.971 > tsc -b && vite build && node scripts/offline.mjs
+#13 0.971 
+#13 39.58 vite v6.4.3 building for production...
+#13 39.77 transforming...
+#13 56.25 ✓ 1753 modules transformed.
+#13 57.17 rendering chunks...
+#13 57.95 computing gzip size...
+#13 58.04 dist/index.html                                                   0.66 kB │ gzip:   0.40 kB
+#13 58.04 dist/assets/concrete-floor-normal-Bkyi_Xy6.webp                   4.25 kB
+#13 58.04 dist/assets/corrugated-albedo-CVwdQmVr.webp                       7.60 kB
+#13 58.04 dist/assets/corrugated-normal-B1avRvho.webp                       7.65 kB
+#13 58.04 dist/assets/painted-metal-orm-C_JAdf8Q.webp                       9.11 kB
+#13 58.04 dist/assets/concrete-floor-albedo-BnSPsPDf.webp                   9.18 kB
+#13 58.04 dist/assets/concrete-wall-orm-jD1N_kRa.webp                       9.86 kB
+#13 58.04 dist/assets/plaster-normal-D_gLpnpN.webp                         10.17 kB
+#13 58.04 dist/assets/concrete-wall-albedo-DPykxv2W.webp                   12.85 kB
+#13 58.04 dist/assets/sky-night-BwAjAQkQ.webp                              13.35 kB
+#13 58.04 dist/assets/concrete-floor-orm-BfdEzn8y.webp                     14.52 kB
+#13 58.04 dist/assets/painted-metal-normal-SbgwzMnD.webp                   14.80 kB
+#13 58.04 dist/assets/painted-metal-albedo-GP9giPsB.webp                   16.16 kB
+#13 58.04 dist/assets/corrugated-orm-BvJ8HDqZ.webp                         18.14 kB
+#13 58.04 dist/assets/instrument-serif-latin-400-normal-DnYpCC2O.woff2     21.03 kB
+#13 58.04 dist/assets/instrument-serif-latin-400-italic-DKMiL14s.woff2     22.13 kB
+#13 58.04 dist/assets/geist-mono-latin-wght-normal-XN7g48iV.woff2          23.13 kB
+#13 58.04 dist/assets/blue-hour-960-B1ywJL9S.webp                          26.45 kB
+#13 58.04 dist/assets/geist-latin-wght-normal-BgDaEnEv.woff2               29.40 kB
+#13 58.04 dist/assets/sim.worker-CSSfpJ9A.js                               30.42 kB
+#13 58.04 dist/assets/crate-C933X1D5.glb                                   38.36 kB
+#13 58.04 dist/assets/barrel-CHAo9B7Z.glb                                  39.28 kB
+#13 58.04 dist/assets/ground-laterite-albedo-Clcbg-r6.webp                 41.69 kB
+#13 58.04 dist/assets/jersey-barrier-BuYaoBwA.glb                          42.36 kB
+#13 58.04 dist/assets/utility-box-DCal0sQC.glb                             43.32 kB
+#13 58.04 dist/assets/ground-grass-albedo-CgE9z6FE.webp                    47.12 kB
+#13 58.04 dist/assets/boulder-b-DPHJlhML.glb                               52.13 kB
+#13 58.04 dist/assets/asphalt-orm-Bb1FPLo0.webp                            60.42 kB
+#13 58.04 dist/assets/ground-gravel-albedo-CiSCKMqx.webp                   65.13 kB
+#13 58.04 dist/assets/boulder-a-DjxhI_fe.glb                               65.29 kB
+#13 58.04 dist/assets/blue-hour-1600-DiW3eLXV.webp                         67.29 kB
+#13 58.04 dist/assets/asphalt-albedo-CopSvMBq.webp                         84.41 kB
+#13 58.04 dist/assets/asphalt-normal-ChhaPvuC.webp                         88.12 kB
+#13 58.04 dist/assets/ground-dry-orm-CqVIPRYp.webp                         98.93 kB
+#13 58.04 dist/assets/sky-day-cAAz87b7.webp                               100.28 kB
+#13 58.04 dist/assets/ground-gravel-normal-R0Vgf7EW.webp                  115.80 kB
+#13 58.04 dist/assets/ground-laterite-normal--ju6xJb3.webp                131.15 kB
+#13 58.04 dist/assets/covered-car-DapXKOpX.glb                            142.30 kB
+#13 58.04 dist/assets/ground-dry-albedo-C1a3AO5I.webp                     215.47 kB
+#13 58.04 dist/assets/ground-dry-normal-C0OkiSMX.webp                     232.53 kB
+#13 58.04 dist/assets/ground-macro-albedo-BF6IrQeg.webp                   278.89 kB
+#13 58.04 dist/assets/vegetation-atlas-CkUBdN-5.webp                      571.93 kB
+#13 58.04 dist/assets/index-BexKsfkX.css                                  223.18 kB │ gzip:  40.53 kB
+#13 58.05 dist/assets/import-json-DEPqWbQE.js                               0.40 kB │ gzip:   0.27 kB
+#13 58.05 dist/assets/visibility-CFPvGPvL.js                                1.50 kB │ gzip:   0.77 kB
+#13 58.05 dist/assets/live-stream-DvV0Anq9.js                               1.78 kB │ gzip:   1.00 kB
+#13 58.05 dist/assets/observations-BpoFlUue.js                              2.52 kB │ gzip:   0.95 kB
+#13 58.05 dist/assets/presentation-Ct-AeMlE.js                              2.92 kB │ gzip:   1.43 kB
+#13 58.05 dist/assets/Evaluation-B4Ral_7z.js                                3.91 kB │ gzip:   1.59 kB
+#13 58.05 dist/assets/Radar-uk_rk-1Q.js                                     5.08 kB │ gzip:   2.15 kB
+#13 58.05 dist/assets/Transfer-CUgo9q-N.js                                  7.09 kB │ gzip:   2.69 kB
+#13 58.05 dist/assets/Recorded-C45lpBCU.js                                  8.42 kB │ gzip:   2.97 kB
+#13 58.05 dist/assets/Evidence-D3axDbXT.js                                  9.08 kB │ gzip:   2.74 kB
+#13 58.05 dist/assets/RapidID-ybN3H5d0.js                                   9.08 kB │ gzip:   3.48 kB
+#13 58.05 dist/assets/Compliance-D-2qdsYv.js                                9.59 kB │ gzip:   3.14 kB
+#13 58.05 dist/assets/Benchmark-DnSa-f4m.js                                10.13 kB │ gzip:   4.03 kB
+#13 58.05 dist/assets/Scene-CPlrVEfd.js                                    12.72 kB │ gzip:   5.41 kB
+#13 58.05 dist/assets/response-v2-CKu7QcVd.js                              13.15 kB │ gzip:   4.89 kB
+#13 58.05 dist/assets/ExerciseStudio-BweKZsNC.js                           19.85 kB │ gzip:   6.18 kB
+#13 58.05 dist/assets/Analytics-DtQgEmbd.js                                19.86 kB │ gzip:   6.24 kB
+#13 58.05 dist/assets/VRCockpit-AdGfLVFm.js                                21.03 kB │ gzip:   8.30 kB
+#13 58.05 dist/assets/Instructor-CXxArVzK.js                               22.04 kB │ gzip:   7.17 kB
+#13 58.05 dist/assets/quality-plwESpOz.js                                  24.76 kB │ gzip:   8.32 kB
+#13 58.05 dist/assets/Crew-BJyKUub3.js                                     25.22 kB │ gzip:   7.77 kB
+#13 58.05 dist/assets/App-Bj0HRtWr.js                                     110.12 kB │ gzip:  34.34 kB
+#13 58.05 dist/assets/index-JVNLzhAV.js                                   302.24 kB │ gzip:  93.69 kB
+#13 58.05 dist/assets/obstruction-DKIwTW5v.js                           1,047.15 kB │ gzip: 297.57 kB
+#13 58.05 
+#13 58.05 (!) Some chunks are larger than 500 kB after minification. Consider:
+#13 58.05 - Using dynamic import() to code-split the application
+#13 58.05 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+#13 58.05 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+#13 58.05 ✓ built in 18.38s
+#13 58.27 Offline cache: 75 local assets (a5b090c90c52)
+#13 DONE 58.4s
+
+#14 [stage-1 2/7] WORKDIR /app
+#14 CACHED
+
+#15 [stage-1 3/7] COPY server/requirements.lock.txt ./requirements.txt
+#15 CACHED
+
+#16 [stage-1 4/7] RUN pip install --no-cache-dir -r requirements.txt
+#16 CACHED
+
+#17 [stage-1 5/7] COPY server/ ./server/
+#17 CACHED
+
+#18 [stage-1 6/7] COPY --from=client /build/dist ./client/dist/
+#18 DONE 0.1s
+
+#19 [stage-1 7/7] RUN useradd --create-home trainer && mkdir /app/data && chown trainer:trainer /app/data
+#19 DONE 0.4s
+
+#20 exporting to image
+#20 exporting layers
+#20 exporting layers 0.5s done
+#20 exporting manifest sha256:96fa1256edc09771a5fa8fe66c5f655c17cadc3350c473bf6ac0e66cf4a45d49 0.0s done
+#20 exporting config sha256:9d17d3c3b28aa54f6475bda0641b1110861032416ce32fd4b486998f433acc4b 0.0s done
+#20 exporting attestation manifest sha256:e7ae282c7281e072981217486d6fa650bc80a91e96bce4780463740ba3949fa1 0.0s done
+#20 exporting manifest list sha256:4fc95a83cf486635673b6707caae8d88ee3cc85f41b057f4cf03e4c6aaf5d19d 0.0s done
+#20 naming to docker.io/library/vyuha:vr-owner-ad430f7
+#20 naming to docker.io/library/vyuha:vr-owner-ad430f7 done
+#20 unpacking to docker.io/library/vyuha:vr-owner-ad430f7
+#20 unpacking to docker.io/library/vyuha:vr-owner-ad430f7 0.2s done
+#20 DONE 0.9s

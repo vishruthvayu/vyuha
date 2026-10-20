@@ -1,0 +1,87 @@
+{
+ "source": "Poly Haven (CC0) scans rendered in Blender",
+ "atlas": "vegetation-atlas.webp",
+ "bytes": 571926,
+ "cells": {
+  "tree-jacaranda-side-a": {
+   "uv": [
+    0.0,
+    0.5,
+    0.25,
+    1.0
+   ],
+   "width_m": 25.394,
+   "height_m": 25.394
+  },
+  "tree-jacaranda-side-b": {
+   "uv": [
+    0.25,
+    0.5,
+    0.5,
+    1.0
+   ],
+   "width_m": 25.394,
+   "height_m": 25.394
+  },
+  "tree-island-side-a": {
+   "uv": [
+    0.5,
+    0.5,
+    0.75,
+    1.0
+   ],
+   "width_m": 4.376,
+   "height_m": 4.376
+  },
+  "tree-island-side-b": {
+   "uv": [
+    0.75,
+    0.5,
+    1.0,
+    1.0
+   ],
+   "width_m": 4.376,
+   "height_m": 4.376
+  },
+  "tree-jacaranda-top": {
+   "uv": [
+    0.0,
+    0.0,
+    0.25,
+    0.5
+   ],
+   "width_m": 25.394,
+   "height_m": 25.394
+  },
+  "tree-island-top": {
+   "uv": [
+    0.25,
+    0.0,
+    0.5,
+    0.5
+   ],
+   "width_m": 4.376,
+   "height_m": 4.376
+  },
+  "shrub-rooibos-side": {
+   "uv": [
+    0.5,
+    0.0,
+    0.75,
+    0.5
+   ],
+   "width_m": 1.185,
+   "height_m": 1.185
+  },
+  "shrub-broad-side": {
+   "uv": [
+    0.75,
+    0.0,
+    1.0,
+    0.5
+   ],
+   "width_m": 0.292,
+   "height_m": 0.292
+  }
+ }
+}

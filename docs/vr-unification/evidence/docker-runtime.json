@@ -1,0 +1,15 @@
+{
+  "runtime_commit": "ad430f742f7476feb464c1c53d08cfb3f95823ba",
+  "image_id": "sha256:4fc95a83cf486635673b6707caae8d88ee3cc85f41b057f4cf03e4c6aaf5d19d",
+  "architecture": "arm64",
+  "health": {
+    "status": "ok",
+    "engine_version": "vyuha-0.2.0",
+    "storage": "sqlite",
+    "mode": "local-demo",
+    "unit_id": "local"
+  },
+  "all_built_files_verified": 75,
+  "host_binding": "127.0.0.1:8102 only",
+  "physical_platform_acceptance": false
+}

@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-13",
+  "code_commit": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
+  "source_sha256": "5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0",
+  "software_acceptance": "PASS_SCOPED",
+  "stable_approval": false,
+  "score": null,
+  "score_status": "RC2 weighted score not assigned; historical RC1 provisional84 retained separately",
+  "finding_counts": {
+    "PASS": 62,
+    "N/A": 1,
+    "PARTIAL": 30
+  },
+  "tests": {
+    "backend": {
+      "passed": 617,
+      "failed": 0,
+      "seconds": 1087.53,
+      "warnings": 1
+    },
+    "frontend": {
+      "passed": 172,
+      "failed": 0,
+      "milliseconds": 137555.552417,
+      "skipped": 0
+    },
+    "production_build": "PASS",
+    "offline_assets": 27,
+    "offline_cache": "b2b7e099df64",
+    "historical_baseline": 18,
+    "historical_current": 22,
+    "unchanged_legacy_hashes": true,
+    "lint": "PASS",
+    "format_all_mutable_TSX_and_hooks": "PASS"
+  },
+  "external_pending": [
+    "G08",
+    "G09"
+  ],
+  "independent_final_pin_check": "PASS_SCOPED_RC2",
+  "receipt": "evidence.json",
+  "software_frozen_RC": "v1.1.0-rc.2",
+  "historical_rc1_provisional_score": 84
+}

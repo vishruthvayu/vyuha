@@ -1,0 +1,186 @@
+- link "Skip to workspace":
+  - /url: "#workspace-content"
+- banner:
+  - link "VYUHA home":
+    - /url: /
+    - strong: VYUHA
+  - navigation "Primary workspaces":
+    - link "Training":
+      - /url: /
+    - link "Review":
+      - /url: /?view=aar
+      - text: Review
+      - generic: "2"
+    - link "Crew":
+      - /url: /crew
+    - link "Instructor":
+      - /url: /instructor
+    - link "Analytics":
+      - /url: /analytics
+  - button "Find workspace":
+    - generic: Find workspace
+    - generic: ⌘ / Ctrl K
+  - button "Operator guide":
+    - generic: Operator guide
+  - button "Workspaces":
+    - generic: Workspaces
+- main:
+  - status: SERVER OFFLINE · Session continues locally · Events queued · Instructor control unavailable · Internet not required
+  - generic: COUNTER-DRONE TRAINING
+  - heading "Training ground" [level=1]
+  - paragraph: Read the sensors. Identify the contact. Choose your response.
+  - generic: Callsign CONTEXT-QA
+  - text: EXERCISE / PAUSED
+  - generic: Paused
+  - strong: QA browser Fusion continuity
+  - generic: Urban outpost · Day · Mixed contacts
+  - generic: CALLSIGN
+  - text: CONTEXT-QA
+  - generic: SCENARIO SEED
+  - text: "62147"
+  - generic: EXERCISE TIME
+  - text: 00:41
+  - generic: / 03:00
+  - generic: RENDER
+  - text: 60 fps
+  - button "Resume" [active]:
+    - text: Resume
+  - button "End exercise"
+  - button "Open VR observation cockpit"
+  - link "Experimental VR / setup guide":
+    - /url: /vr-guide.html
+  - strong: EO / IR observation
+  - generic "Observation preferences"
+  - button "THERMAL"
+  - button "DAY TV" [pressed]
+  - button "IR NIGHT DISPLAY"
+  - generic: EO CLOSE-UP · 54 PX ACROSS TARGET · 127 M
+  - text: DAY TV / OPTICAL
+  - generic: TRACKING T2
+  - text: URBAN OUTPOST
+  - generic: BEARING 149° · ALT 18 m
+  - text: DAY
+  - generic: SIMULATED SENSOR VIEW
+  - heading "Exercise paused" [level=2]
+  - paragraph: Use Resume in the exercise controls above.
+  - strong: Radar picture
+  - generic: NORMAL
+  - group "Radar showing detected contacts around the protected asset":
+    - generic: "N"
+    - generic: E
+    - generic: S
+    - generic: W
+    - generic: RESTRICTED
+    - generic: BASE
+    - img "Schematic radar sweep"
+    - button "Select radar contact T1":
+      - generic: T1
+    - button "Select radar contact T2" [pressed]:
+      - generic: T2
+    - button "Select radar contact T3":
+      - generic: T3
+    - button "Select radar contact T4":
+      - generic: T4
+    - button "Select radar contact T5":
+      - generic: T5
+    - button "Select radar contact T6":
+      - generic: T6
+    - button "Select radar contact T7":
+      - generic: T7
+    - button "Select radar contact T8":
+      - generic: T8
+  - generic: ILLUSTRATIVE RANGE
+  - generic: 3000 m
+  - generic "Sensor availability":
+    - generic: RADAR
+    - generic: NORMAL
+    - generic: RF
+    - generic: NORMAL
+  - generic: Light fog · 0.25
+  - button "2D fallback":
+    - text: 2D fallback
+  - complementary:
+    - strong: Contact tracks
+    - generic: "8"
+    - button "T1 Bird 122 m · neutral":
+      - strong:
+        - text: T1
+        - generic: Bird
+      - generic: 122 m · neutral
+    - button "T2 Quadcopter 126 m · neutral" [pressed]:
+      - strong:
+        - text: T2
+        - generic: Quadcopter
+      - generic: 126 m · neutral
+    - button "T3 Unknown contact 124 m · Not designated":
+      - strong:
+        - text: T3
+        - generic: Unknown contact
+      - generic: 124 m · Not designated
+    - button "T4 Unknown contact 128 m · Not designated":
+      - strong:
+        - text: T4
+        - generic: Unknown contact
+      - generic: 128 m · Not designated
+    - button "T5 Unknown contact 126 m · Not designated":
+      - strong:
+        - text: T5
+        - generic: Unknown contact
+      - generic: 126 m · Not designated
+    - button "T6 Unknown contact 130 m · Not designated":
+      - strong:
+        - text: T6
+        - generic: Unknown contact
+      - generic: 130 m · Not designated
+    - button "T7 Unknown contact 128 m · Not designated":
+      - strong:
+        - text: T7
+        - generic: Unknown contact
+      - generic: 128 m · Not designated
+    - button "T8 Unknown contact 132 m · Not designated":
+      - strong:
+        - text: T8
+        - generic: Unknown contact
+      - generic: 132 m · Not designated
+  - region "Decisions for the selected contact":
+    - list "Decision steps":
+      - generic: Select
+      - generic: Designate
+      - generic: Classify
+      - generic: Respond
+      - generic: "5"
+      - generic: Outcome
+    - strong: T2
+    - generic: 126 m observed · Quadcopter · neutral
+    - button "Guidance" [pressed]:
+      - text: Guidance
+    - group "Outcome T2":
+      - paragraph: "Holding: monitoring continues"
+    - status: "Hold / monitor on T2: accepted at 00:41"
+  - complementary "Evidence for the selected contact":
+    - strong: RF / IFF evidence
+    - text: CONTROL LINK
+    - strong: Detected
+    - text: IFF RESPONSE
+    - strong: No reply
+    - paragraph: Sensor cues support classification; they do not replace your decision.
+    - complementary "Fusion training assistant":
+      - heading "Fusion Assistant Training heuristic" [level=3]
+      - paragraph:
+        - strong: Verify identity before selecting a response
+        - text: ". Identity: Unresolved."
+      - paragraph: Type hypothesis weights · uncertainty 83%
+      - list:
+        - listitem: RF-controlled quad — 48%
+        - listitem: No-RF FPV — 34%
+        - listitem: Fixed-wing — 12%
+        - listitem: Bird — 6%
+      - generic "Why this suggestion?"
+      - paragraph: Illustrative normalized weights, not calibrated probabilities. No RF or IFF reply does not establish hostile intent. The operator makes the decision.
+    - generic "Optional classification confidence"
+    - generic "Response resources · 8 rounds · 0/2 jammer channels"
+  - text: EXERCISE LOG
+  - generic: 00:41 T2 · Response hold
+  - generic: 00:40 T2 · Classified quad / neutral
+- complementary:
+  - generic "IWER SOFTWARE QA — NOT A HEADSET"

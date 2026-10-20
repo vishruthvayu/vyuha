@@ -1,0 +1,40 @@
+{
+  "url": "http://127.0.0.1:8086/instructor",
+  "width": 1440,
+  "height": 900,
+  "scale": 1,
+  "axe": {
+    "name": "axe-core",
+    "version": "4.14.0"
+  },
+  "violations": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "nodes": [
+        {
+          "target": [
+            ".subtle > span"
+          ],
+          "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.42 (foreground color: #7f8a85, background color: #1b2426, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1",
+          "html": "<span>COMBINED QA Recovery v2 · 1 contacts in this picture</span>"
+        }
+      ]
+    }
+  ],
+  "passes": 31,
+  "incomplete": [
+    {
+      "id": "color-contrast",
+      "nodes": 3
+    }
+  ],
+  "geometry": {
+    "height": 900,
+    "scale": 1,
+    "scrollWidth": 1440,
+    "width": 1440
+  }
+}

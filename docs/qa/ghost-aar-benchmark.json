@@ -1,0 +1,15 @@
+{
+  "session_id": "bd42c670-09f0-42fc-b669-f73654985a60",
+  "runs": 20,
+  "method": "Uncached in-process AAR endpoint; review includes replay, extraction and Pydantic validation. Excludes HTTP round-trip.",
+  "aar_generation_median_ms": 79.488,
+  "aar_generation_max_ms": 88.891,
+  "review_generation_median_ms": 78.73,
+  "review_generation_max_ms": 88.158,
+  "aar_payload_bytes": 44352,
+  "timeline_items": 52,
+  "decision_reviews": 17,
+  "tracks": 15,
+  "actions": 6,
+  "commands": 5
+}

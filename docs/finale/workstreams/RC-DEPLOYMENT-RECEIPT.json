@@ -1,0 +1,209 @@
+{
+  "validated_at": "2026-10-13T05:32:26.715982+00:00",
+  "canonical_commit": "e07a3845cc465f430b572ece7fbded687c1e3729",
+  "clone_commit": "e07a3845cc465f430b572ece7fbded687c1e3729",
+  "canonical_source_sha256": "02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a",
+  "clone_source_sha256": "02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a",
+  "scope": "macOS local software acceptance only; no native Windows/Linux, phone, physical LAN/WAN or browser trust-store certification.",
+  "clone_python": "Python 3.13.2",
+  "backup_restore": {
+    "rows": [
+      {
+        "label": "receiver",
+        "integrity": "ok",
+        "logical_sqlite_sha256": "7e1efec614702fa93f887ffa303bed5ef8ff23194eee5f66f7804fd56ccb025c",
+        "counts": {
+          "sessions": 24,
+          "trainees": 22,
+          "instructor_notes": 1
+        }
+      },
+      {
+        "label": "backup",
+        "integrity": "ok",
+        "logical_sqlite_sha256": "7e1efec614702fa93f887ffa303bed5ef8ff23194eee5f66f7804fd56ccb025c",
+        "counts": {
+          "sessions": 24,
+          "trainees": 22,
+          "instructor_notes": 1
+        }
+      },
+      {
+        "label": "restored",
+        "integrity": "ok",
+        "logical_sqlite_sha256": "7e1efec614702fa93f887ffa303bed5ef8ff23194eee5f66f7804fd56ccb025c",
+        "counts": {
+          "sessions": 24,
+          "trainees": 22,
+          "instructor_notes": 1
+        }
+      }
+    ],
+    "logical_equal": true,
+    "implementation": "Clone Python3.13 scripts/backup-data.py; restore to a new file; read-only source comparison. Raw private databases retained only in temporary QA storage, excluded from Git/packages."
+  },
+  "tls": {
+    "trusted_private_ca_requests": [
+      {
+        "url": "https://localhost:8040/api/v1/health",
+        "status": 200,
+        "bytes": 103,
+        "body_sha256": "1d162b2a63a4677db72d780ba850ddc0a68b0ae5d644d1a51acc0b7615cb65d6",
+        "certificate_and_hostname_verified": true
+      },
+      {
+        "url": "https://localhost:8040/",
+        "status": 200,
+        "bytes": 659,
+        "body_sha256": "d4234414a93b81c5ec0dadf0366e72686f259a3c9a5cb042fda2894a8d784843",
+        "certificate_and_hostname_verified": true
+      },
+      {
+        "url": "https://127.0.0.1:8040/api/v1/health",
+        "status": 200,
+        "bytes": 103,
+        "body_sha256": "1d162b2a63a4677db72d780ba850ddc0a68b0ae5d644d1a51acc0b7615cb65d6",
+        "certificate_and_hostname_verified": true
+      },
+      {
+        "url": "https://127.0.0.1:8040/",
+        "status": 200,
+        "bytes": 659,
+        "body_sha256": "d4234414a93b81c5ec0dadf0366e72686f259a3c9a5cb042fda2894a8d784843",
+        "certificate_and_hostname_verified": true
+      }
+    ],
+    "default_untrusted_ca": {
+      "rejected": true,
+      "reason": "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)"
+    },
+    "verification_disabled": false,
+    "system_trust_store_modified": false,
+    "scope": "Actual local HTTPS health and HTML serving on macOS; generated private CA explicitly trusted by this test process. No browser/mobile CA-install or cross-platform trust proof."
+  },
+  "locks": {
+    "client/package.json": {
+      "canonical_sha256": "a240eb99aeae5f490a0dd32afb718acc2f0df75a20086040913e351c7ec24f1e",
+      "clone_sha256": "a240eb99aeae5f490a0dd32afb718acc2f0df75a20086040913e351c7ec24f1e"
+    },
+    "client/package-lock.json": {
+      "canonical_sha256": "4f92329597fbdf8748310751fea3cfab05571cafa652f710d020f56ed8a69bf1",
+      "clone_sha256": "4f92329597fbdf8748310751fea3cfab05571cafa652f710d020f56ed8a69bf1"
+    },
+    "server/requirements.lock.txt": {
+      "canonical_sha256": "6e7ed6e13780351b512afcc88fa0ca6fa6644f6e99655af4b8953369ea8c5ee1",
+      "clone_sha256": "6e7ed6e13780351b512afcc88fa0ca6fa6644f6e99655af4b8953369ea8c5ee1"
+    }
+  },
+  "dist": {
+    "all_files_byte_equal": true,
+    "file_count": 27,
+    "cache_version": "d4234414a93b",
+    "asset_sha256": {
+      "assets/Analytics-Bz-3Nf6X.js": "fc9675a61e615eee4d4f6d1f702a6ab80be16ee7127026a507ea5380b178fb58",
+      "assets/App-BnBb0HG5.js": "f1e59c02992467dd61a05c64658fa2b9c459ede53ba6be006aa76fae34a4e061",
+      "assets/Benchmark-CnOpbM5f.js": "d8f6f864e61269b4f9d62b97a706b99a2dfb64bb477a1ef2b624fbc349f51062",
+      "assets/Compliance-BATV5smA.js": "63e497f3d9290c416759b48c4e35a80cfb028c57807b3fd4896b995a83268455",
+      "assets/Crew-Ncw1eoof.js": "ae292b18dfac180af5611f48962fda95ad632781e5ec62726b1138b3b6da8896",
+      "assets/Evaluation-DRyhPwWe.js": "00f0ab0d4c005b07ff5692c53793464dfe3f02675459cd612dbf20e9d99ba77a",
+      "assets/Evidence-D51YXBmq.js": "511b046dee6ad601d75d6cc6bfe2a9620632c796d196525b81d61eed71186be3",
+      "assets/ExerciseStudio-CU2RqvSn.js": "1cae0a4c2aa7c1e875b6c9925f0bb7b96b21c1bcd4f24ff9585c63efd599c5c7",
+      "assets/Instructor-DzPSX5jE.js": "947807bedd2d48f0927d7ea15987cc1f3dea3553946a14b2870bbedcc981aae9",
+      "assets/Radar-D9goOnhu.js": "0fa6d0cb6f6f07568c178e6a41ecd49295540447d5f7903c0ab62cecc7c49a0e",
+      "assets/RapidID-C_RiWFv6.js": "7281031c5905a4ec57c93b4272c085a2677984f6dc9406df0f4026c57ed46b26",
+      "assets/Recorded-B96MxY7r.js": "00e1bcd367ea104a86e04a2e4ab812ab5f0bc6736b410d88a1691eee6e593e65",
+      "assets/Transfer-B_FoZlHt.js": "2adf011344f15575718c7b53b6ccc6705c0a5dcbc5c63a04fb04fbb637626818",
+      "assets/import-json-DEPqWbQE.js": "0ed610860015c0f9673df34d95efab8c7ed42d4f5928566480caa77ec126380c",
+      "assets/index-Bj8qK4Pj.css": "ffa9a7a1250f421d82d97658398e5fc38733388b07e3112cae8482834d756f80",
+      "assets/index-D3uiTWW3.js": "2458a9285c27e51043d67844a9b5dcb6ba3d2cc5d82682c80a4a97f9563e9541",
+      "assets/live-stream-aAoLRzx7.js": "552cad37e4c1f80328528bb5d5821e148662077164c85f948e8c36247b4aaf1f",
+      "assets/observations-InpqRgc-.js": "73a0d4e09a9d45fabd6793f73e9869e62e8e5a3edc40bdbaccbe4c635def4969",
+      "assets/presentation-DEBuChuu.js": "2c2eed4e6e53d81827407fbde5bd42df2b042f38f5e07866efb6a8e0ce657c2e",
+      "assets/response-v2-BXqvvt7X.js": "5bc128615f0d647f593f7fcfdfaa37d4a38cc7c75703e4f9f2898dd836d67ac7",
+      "assets/scenario-CmbldnyF.js": "454407624f916ae900fed71a6acbe9da92f2867086d5321936287684e3c23582",
+      "assets/sim.worker-DVjxYNQs.js": "9fe03570123e1186206e263e91dbee2b4ae582f1a703aca241474eab4a2c7c6c",
+      "examples/recorded-exercise.json": "9e80153eadf52a637130eb9495a77a038f97fa583095e0f628b8f46ff2c7343d",
+      "favicon.svg": "ad80061f8ab202c70b75b8cea093537e31373642c45d9f26c0a84300f6868acf",
+      "index.html": "d4234414a93b81c5ec0dadf0366e72686f259a3c9a5cb042fda2894a8d784843",
+      "manifest.webmanifest": "3c9a9d404d20793b0dfb430286f94ae5ecd1c559ccc7f21e340206d3fa1d745a",
+      "sw.js": "96890b7dc4d5ce3e5ee98324389427eb16bcc1cb0ee22c66741db8590f0ac0de"
+    },
+    "build_seconds": 38.41,
+    "large_chunk_warning_retained": true
+  },
+  "locked_clone_install": {
+    "command": "npm ci --cache /tmp/vyuha-mission-cleanclone-npm-cache",
+    "exit_code": 0,
+    "packages_added": 348,
+    "elapsed_seconds_reported_by_npm": 33,
+    "warnings": [
+      "whatwg-encoding@3.1.1 deprecated",
+      "eslint@9.39.5 maintenance/deprecation notice"
+    ],
+    "scope": "Final current lock install on the existing clean GitHub clone, followed by TypeScript/Vite/offline build. This receipt does not assert an independently refreshed vulnerability audit."
+  },
+  "historical_compatibility": {
+    "historical_completed": 18,
+    "additional_current_completed": 4,
+    "all_current_completed_readable": 22,
+    "stored_engine_versions": {
+      "vyuha-0.2.0": 18,
+      "vyuha-0.1.0": 4
+    },
+    "exact_stored_cards_preserved": true,
+    "all_verified_aar_ghost_timelines_readable": true,
+    "all_four_skill_profiles_readable": true,
+    "heatmap_included_current_sessions": 22,
+    "historical_immutable_fields_sha256": "cce52299fb319073feb81fc0d3f2420a867ff7393421ca9f69940e9aef051b45",
+    "current_immutable_fields_sha256": "f9dc8cd8d96e059d03f8759eb9fb80a440d94241f0e6aea302fbc0bee718ea44",
+    "production_database_unchanged": true,
+    "scope": "Aggregate only; private records stay in a temporary backup outside Git. Protected analytics use an ephemeral officer credential."
+  },
+  "commands": [
+    {
+      "cwd": "/Users/seemalanaveenyadav/Desktop/SIH/vyuha/outputs/vyuha",
+      "command": ".venv/bin/python scripts/check-finale-history.py --output /tmp/vyuha-rc-deployment-receipts/history.json",
+      "log": "history.log"
+    },
+    {
+      "cwd": "/tmp/vyuha-mission-cleanclone-d509353",
+      "command": ".venv/bin/python scripts/backup-data.py backup /tmp/vyuha-rc-deployment-receipts/receiver-backup.db --source /tmp/vyuha-mission-browser-receiver-qa/session.db",
+      "log": "backup.log"
+    },
+    {
+      "cwd": "/tmp/vyuha-mission-cleanclone-d509353",
+      "command": ".venv/bin/python scripts/backup-data.py restore /tmp/vyuha-rc-deployment-receipts/receiver-restored.db --source /tmp/vyuha-rc-deployment-receipts/receiver-backup.db",
+      "log": "restore.log"
+    },
+    {
+      "cwd": "/tmp/vyuha-mission-cleanclone-d509353/client",
+      "command": "npm ci --cache /tmp/vyuha-mission-cleanclone-npm-cache",
+      "log": "npm-ci.log"
+    },
+    {
+      "cwd": "/tmp/vyuha-mission-cleanclone-d509353/client",
+      "command": "npm run build",
+      "log": "build.log"
+    },
+    {
+      "cwd": "/Users/seemalanaveenyadav/Desktop/SIH/vyuha/outputs/vyuha",
+      "command": "/tmp/vyuha-mission-cleanclone-d509353/.venv/bin/python /tmp/vyuha-rc-deployment-receipts/verify.py",
+      "log": "verify.log"
+    }
+  ],
+  "initial_network_sandbox_probe": {
+    "status": "BLOCKED_BY_EXECUTION_ENVIRONMENT",
+    "error": "EPERM before local network permission",
+    "log": "verify-prepermission.log",
+    "after_permission": "Actual trusted and untrusted TLS checks passed as recorded above; no source changes or insecure TLS bypass."
+  },
+  "completed_at": "2026-10-13T05:33:13.422899+00:00",
+  "git_deliverable_raw_logs": [
+    "workstreams/rc-20261013/deployment-history.log.txt",
+    "workstreams/rc-20261013/deployment-backup.log.txt",
+    "workstreams/rc-20261013/deployment-restore.log.txt",
+    "workstreams/rc-20261013/deployment-npm-ci.log.txt",
+    "workstreams/rc-20261013/deployment-build.log.txt",
+    "workstreams/rc-20261013/deployment-verify.log.txt"
+  ]
+}

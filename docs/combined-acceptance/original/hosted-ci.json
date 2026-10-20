@@ -1,0 +1,130 @@
+{
+  "id": 39134924169,
+  "sha": "e07fb6a07916ad4f0fa48e88a484534b040decfa",
+  "status": "completed",
+  "conclusion": "success",
+  "url": "https://github.com/vishruthvayu/vyuha-sih26247/actions/runs/39134924169",
+  "jobs": {
+    "jobs": [
+      {
+        "id": 117697383799,
+        "name": "verify",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39134924169,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run python -m venv .venv",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Run .venv/bin/python -m pip install -r server/requirements.lock.txt",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Install frontend dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Build production frontend and offline assets",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Verify backend and production startup",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Verify frontend and Python parity",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Lint frontend",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Check frontend formatting",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12
+          },
+          {
+            "name": "Build production Docker image",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 24
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 25
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 26
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 27
+          }
+        ]
+      }
+    ]
+  },
+  "backend_summary": "2026-10-18T14:20:03.3160966Z 708 passed, 1 warning in 423.54s (0:07:03)",
+  "frontend_summary": [
+    "2026-10-18T14:21:55.8914974Z # tests 343",
+    "2026-10-18T14:21:55.8934494Z # pass 343",
+    "2026-10-18T14:21:55.8935327Z # fail 0",
+    "2026-10-18T14:21:55.8936694Z # skipped 0"
+  ]
+}

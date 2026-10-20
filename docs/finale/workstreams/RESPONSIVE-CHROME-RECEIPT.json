@@ -1,0 +1,104 @@
+[
+  {
+    "page": "Ghost/Fusion AAR",
+    "name": "phone",
+    "client": 390,
+    "heading": "After-action review",
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "page": "Ghost/Fusion AAR",
+    "name": "tablet",
+    "client": 768,
+    "heading": "After-action review",
+    "scroll": 768,
+    "width": 768
+  },
+  {
+    "page": "Ghost/Fusion AAR",
+    "name": "desktop",
+    "client": 1280,
+    "heading": "After-action review",
+    "scroll": 1280,
+    "width": 1280
+  },
+  {
+    "page": "Analytics",
+    "name": "phone",
+    "client": 390,
+    "heading": "Training analytics",
+    "scroll": 390,
+    "unintendedClippedControls": [],
+    "width": 390
+  },
+  {
+    "page": "Analytics",
+    "name": "tablet",
+    "client": 768,
+    "heading": "Training analytics",
+    "scroll": 768,
+    "unintendedClippedControls": [],
+    "width": 768
+  },
+  {
+    "page": "Analytics",
+    "name": "desktop",
+    "client": 1280,
+    "heading": "Training analytics",
+    "scroll": 1280,
+    "unintendedClippedControls": [],
+    "width": 1280
+  },
+  {
+    "page": "Crew management/history",
+    "name": "phone",
+    "client": 390,
+    "heading": "Shared Crew Mode",
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "page": "Crew management/history",
+    "name": "tablet",
+    "client": 768,
+    "heading": "Shared Crew Mode",
+    "scroll": 768,
+    "width": 768
+  },
+  {
+    "page": "Crew management/history",
+    "name": "desktop",
+    "client": 1280,
+    "heading": "Shared Crew Mode",
+    "scroll": 1280,
+    "width": 1280
+  },
+  {
+    "page": "White Cell live picture",
+    "name": "phone",
+    "client": 390,
+    "controls": [],
+    "observed": true,
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "page": "White Cell live picture",
+    "name": "tablet",
+    "client": 768,
+    "controls": [],
+    "observed": true,
+    "scroll": 768,
+    "width": 768
+  },
+  {
+    "page": "White Cell live picture",
+    "name": "desktop",
+    "client": 1280,
+    "controls": [],
+    "observed": true,
+    "scroll": 1280,
+    "width": 1280
+  }
+]

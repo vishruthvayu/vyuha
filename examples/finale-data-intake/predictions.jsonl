@@ -1,0 +1,4 @@
+{"probabilities": {"background": 0.2, "drone": 0.8}, "sample_id": "s4"}
+{"probabilities": {"background": 0.8, "drone": 0.2}, "sample_id": "s5"}
+{"probabilities": {"background": 0.2, "drone": 0.8}, "sample_id": "s6"}
+{"probabilities": {"background": 0.8, "drone": 0.2}, "sample_id": "s7"}

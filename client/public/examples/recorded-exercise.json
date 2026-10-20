@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "title": "Recorded crossing example",
+  "duration_ticks": 300,
+  "tracks": [
+    {
+      "track_id": "T1",
+      "samples": [
+        {
+          "tick": 0,
+          "x": -40.0,
+          "z": 100,
+          "altitude": 20,
+          "radar": true,
+          "thermal": true,
+          "rf_signal": true,
+          "iff": "friendly_reply"
+        },
+        {
+          "tick": 30,
+          "x": -37.0,
+          "z": 100,
+          "altitude": 20,
+          "radar": true,
+          "thermal": true,
+          "rf_signal": true,
+          "iff": "friendly_reply"
+        },
+        {
+          "tick": 60,
+          "x": -34.0,
+          "z": 100,
+          "altitude": 20,
+          "radar": true,
+          "thermal": true,
+          "rf_signal": true,
+          "iff": "friendly_reply"
+        },
+        {
+          "tick": 90,
+          "x": -31.0,
+          "z": 100,
+          "altitude": 20,
+          "radar": true,
+          "thermal": true,
+          "rf_signal": true,
+          "iff": "friendly_reply"
+        },
+        {
+          "tick": 120,
+          "x": -28.0,
+          "z": 100,
+          "altitude": 20,
+          "radar": true,
+          "thermal": true,
+          "rf_signal": true,
+          "iff": "friendly_reply"
+        },
+        {
+          "tick": 150,
+          "x": -25.0,
+          "z": 100,
+          "altitude": 20,
+          "radar": true,
+          "thermal": true,
+          "rf_signal": true,
+          "iff": "friendly_reply"
+        },
+        {
+          "tick": 180,
+          "x": -22.0,
+          "z": 100,
+          "altitude": 20,
+          "radar": true,
+          "thermal": true,
+          "rf_signal": true,
+          "iff": "friendly_reply"
+        },
+        {
+          "tick": 210,
+          "x": -19.0,
+          "z": 100,
+          "altitude": 20,
+          "radar": true,
+          "thermal": true,
+          "rf_signal": true,
+          "iff": "friendly_reply"
+        },
+        {
+          "tick": 240,
+          "x": -16.0,
+          "z": 100,
+          "altitude": 20,
+          "radar": true,
+          "thermal": true,
+          "rf_signal": true,
+          "iff": "friendly_reply"
+        },
+        {
+          "tick": 270,
+          "x": -13.0,
+          "z": 100,
+          "altitude": 20,
+          "radar": true,
+          "thermal": true,
+          "rf_signal": true,
+          "iff": "friendly_reply"
+        },
+        {
+          "tick": 300,
+          "x": -10.0,
+          "z": 100,
+          "altitude": 20,
+          "radar": true,
+          "thermal": true,
+          "rf_signal": true,
+          "iff": "friendly_reply"
+        }
+      ],
+      "ground_truth": {
+        "kind": "quad",
+        "identity": "friendly",
+        "rf_link": true
+      }
+    }
+  ]
+}

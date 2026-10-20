@@ -1,0 +1,4383 @@
+{
+  "trainee": "QA-DIRECTOR-WALK",
+  "scope": "API-created verified prior-history fixture; subsequent sessions driven through trainee and instructor UI, without database edits. Validation seeds 2 and 30 explicitly selected for reproducible focus checks.",
+  "sessions": [
+    {
+      "id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+      "trainee": "QA-DIRECTOR-WALK",
+      "verified": true,
+      "executionTick": 2250,
+      "endTick": 2250,
+      "events": [
+        {
+          "k": "designate",
+          "tick": 0,
+          "track": "T1"
+        },
+        {
+          "identity": "neutral",
+          "k": "classify",
+          "kind": "bird",
+          "tick": 0,
+          "track": "T1"
+        },
+        {
+          "effector": "hold",
+          "k": "engage",
+          "tick": 0,
+          "track": "T1"
+        },
+        {
+          "k": "designate",
+          "tick": 0,
+          "track": "T2"
+        },
+        {
+          "identity": "friendly",
+          "k": "classify",
+          "kind": "quad",
+          "tick": 0,
+          "track": "T2"
+        },
+        {
+          "effector": "hold",
+          "k": "engage",
+          "tick": 0,
+          "track": "T2"
+        },
+        {
+          "k": "designate",
+          "tick": 60,
+          "track": "T3"
+        },
+        {
+          "identity": "hostile",
+          "k": "classify",
+          "kind": "quad",
+          "tick": 60,
+          "track": "T3"
+        },
+        {
+          "effector": "rf_jam",
+          "k": "engage",
+          "tick": 60,
+          "track": "T3"
+        },
+        {
+          "k": "designate",
+          "tick": 332,
+          "track": "T4"
+        },
+        {
+          "identity": "hostile",
+          "k": "classify",
+          "kind": "fixed_wing",
+          "tick": 332,
+          "track": "T4"
+        },
+        {
+          "effector": "kinetic",
+          "k": "engage",
+          "tick": 491,
+          "track": "T4"
+        },
+        {
+          "k": "designate",
+          "tick": 632,
+          "track": "T5"
+        },
+        {
+          "identity": "hostile",
+          "k": "classify",
+          "kind": "fiber_fpv",
+          "tick": 632,
+          "track": "T5"
+        },
+        {
+          "k": "designate",
+          "tick": 1081,
+          "track": "T6"
+        },
+        {
+          "identity": "hostile",
+          "k": "classify",
+          "kind": "quad",
+          "tick": 1081,
+          "track": "T6"
+        },
+        {
+          "effector": "rf_jam",
+          "k": "engage",
+          "tick": 1081,
+          "track": "T6"
+        },
+        {
+          "k": "designate",
+          "tick": 1110,
+          "track": "T7"
+        },
+        {
+          "identity": "hostile",
+          "k": "classify",
+          "kind": "quad",
+          "tick": 1110,
+          "track": "T7"
+        },
+        {
+          "effector": "rf_jam",
+          "k": "engage",
+          "tick": 1110,
+          "track": "T7"
+        },
+        {
+          "k": "designate",
+          "tick": 1146,
+          "track": "T8"
+        },
+        {
+          "identity": "hostile",
+          "k": "classify",
+          "kind": "quad",
+          "tick": 1146,
+          "track": "T8"
+        },
+        {
+          "effector": "rf_jam",
+          "k": "engage",
+          "tick": 1146,
+          "track": "T8"
+        },
+        {
+          "effector": "kinetic",
+          "k": "engage",
+          "tick": 1445,
+          "track": "T5"
+        }
+      ],
+      "commands": [],
+      "scorecard": {
+        "engine_version": "vyuha-0.2.0",
+        "fratricide": false,
+        "leakers": 0,
+        "passed": true,
+        "roe_breaches": 0,
+        "rows": [
+          {
+            "attempts": [
+              "hold"
+            ],
+            "classify": 25,
+            "designated": 0,
+            "detect": 25,
+            "detected": 0,
+            "engage": 35,
+            "feedback": [],
+            "id": "T1",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 15,
+            "total": 100
+          },
+          {
+            "attempts": [
+              "hold"
+            ],
+            "classify": 25,
+            "designated": 0,
+            "detect": 25,
+            "detected": 0,
+            "engage": 35,
+            "feedback": [],
+            "id": "T2",
+            "ideal": "hold",
+            "identity": "friendly",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 15,
+            "total": 100
+          },
+          {
+            "attempts": [
+              "rf_jam"
+            ],
+            "classify": 25,
+            "designated": 60,
+            "detect": 25,
+            "detected": 60,
+            "engage": 35,
+            "feedback": [],
+            "id": "T3",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 15,
+            "total": 100
+          },
+          {
+            "attempts": [
+              "kinetic"
+            ],
+            "classify": 25,
+            "designated": 332,
+            "detect": 25,
+            "detected": 332,
+            "engage": 35,
+            "feedback": [],
+            "id": "T4",
+            "ideal": "kinetic",
+            "identity": "hostile",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 15,
+            "total": 100
+          },
+          {
+            "attempts": [
+              "kinetic"
+            ],
+            "classify": 25,
+            "designated": 632,
+            "detect": 25,
+            "detected": 632,
+            "engage": 35,
+            "feedback": [],
+            "id": "T5",
+            "ideal": "kinetic",
+            "identity": "hostile",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 15,
+            "total": 100
+          },
+          {
+            "attempts": [
+              "rf_jam"
+            ],
+            "classify": 25,
+            "designated": 1081,
+            "detect": 25,
+            "detected": 1081,
+            "engage": 35,
+            "feedback": [],
+            "id": "T6",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 15,
+            "total": 100
+          },
+          {
+            "attempts": [
+              "rf_jam"
+            ],
+            "classify": 25,
+            "designated": 1110,
+            "detect": 25,
+            "detected": 1110,
+            "engage": 35,
+            "feedback": [],
+            "id": "T7",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 15,
+            "total": 100
+          },
+          {
+            "attempts": [
+              "rf_jam"
+            ],
+            "classify": 25,
+            "designated": 1146,
+            "detect": 25,
+            "detected": 1146,
+            "engage": 35,
+            "feedback": [],
+            "id": "T8",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 15,
+            "total": 100
+          }
+        ],
+        "score": 100,
+        "skills": {
+          "recognition": 100,
+          "response": 100
+        },
+        "summary": "Good control. Repeat with a new scenario seed.",
+        "threats": 6
+      },
+      "decision_reviews": [
+        {
+          "decision_id": "dec_0000",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T1",
+          "tick": 0,
+          "order": 0,
+          "decision_kind": "detection",
+          "evidence": {
+            "tick": 0,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 155.0,
+            "restricted": false,
+            "first_detectable_tick": 0,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "bird",
+            "identity": "neutral",
+            "rf_link": false,
+            "spawn_tick": 0
+          },
+          "trainee_action": {
+            "tick": 0,
+            "order": null,
+            "k": "designate",
+            "track": "T1",
+            "kind": null,
+            "identity": null,
+            "effector": null
+          },
+          "expected_action": {
+            "type": "designate",
+            "kind": null,
+            "identity": null,
+            "effector": null,
+            "basis": "available_evidence"
+          },
+          "verdict": "correct",
+          "reason_code": "DETECTION_ON_TIME",
+          "explanation": "This contact first became detectable at T+0.00s. Designation at T+0.00s took 0.00s, within the rubric's three-second full-credit window. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "remained_active",
+            "tick": null,
+            "reason_code": "NO_CONSEQUENCE_YET",
+            "immediate": "not_applicable",
+            "text": "The contact remained active at the reviewed end; no later observed consequence is asserted."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "detect",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0001",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T1",
+          "tick": 0,
+          "order": 1,
+          "decision_kind": "classification_iff",
+          "evidence": {
+            "tick": 0,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 155.0,
+            "restricted": false,
+            "first_detectable_tick": 0,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "bird",
+            "identity": "neutral",
+            "rf_link": false,
+            "spawn_tick": 0
+          },
+          "trainee_action": {
+            "tick": 0,
+            "order": null,
+            "k": "classify",
+            "track": "T1",
+            "kind": "bird",
+            "identity": "neutral",
+            "effector": null
+          },
+          "expected_action": {
+            "type": "classify",
+            "kind": "bird",
+            "identity": "neutral",
+            "effector": null,
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_CLASSIFICATION",
+          "explanation": "The recorded type and identity match the reconstructed reference. Classification uses the final per-contact rubric; a correct label does not prove every identity cue was available. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "remained_active",
+            "tick": null,
+            "reason_code": "NO_CONSEQUENCE_YET",
+            "immediate": "not_applicable",
+            "text": "The contact remained active at the reviewed end; no later observed consequence is asserted."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "classify",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0002",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T1",
+          "tick": 0,
+          "order": 2,
+          "decision_kind": "engagement",
+          "evidence": {
+            "tick": 0,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 155.0,
+            "restricted": false,
+            "first_detectable_tick": 0,
+            "prior_classification": "bird",
+            "prior_identity": "neutral",
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "bird",
+            "identity": "neutral",
+            "rf_link": false,
+            "spawn_tick": 0
+          },
+          "trainee_action": {
+            "tick": 0,
+            "order": null,
+            "k": "engage",
+            "track": "T1",
+            "kind": null,
+            "identity": null,
+            "effector": "hold"
+          },
+          "expected_action": {
+            "type": "engage",
+            "kind": null,
+            "identity": null,
+            "effector": "hold",
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_HOLD",
+          "explanation": "Hold matches the permitted reference at this tick. Non-hostiles require Hold; an unavailable range or a restricted kinetic sector also requires waiting or a permitted alternative. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "hold",
+            "tick": null,
+            "reason_code": "NO_CONSEQUENCE_YET",
+            "immediate": "held",
+            "text": "Hold was recorded; no later observed consequence is asserted."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "engage",
+            "points_awarded": 35,
+            "points_possible": 35,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0003",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T2",
+          "tick": 0,
+          "order": 3,
+          "decision_kind": "detection",
+          "evidence": {
+            "tick": 0,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "friendly_reply"
+            },
+            "visual": {
+              "available": true,
+              "silhouette": "multirotor"
+            },
+            "range_m": 120.0,
+            "restricted": true,
+            "first_detectable_tick": 0,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "friendly",
+            "rf_link": true,
+            "spawn_tick": 0
+          },
+          "trainee_action": {
+            "tick": 0,
+            "order": null,
+            "k": "designate",
+            "track": "T2",
+            "kind": null,
+            "identity": null,
+            "effector": null
+          },
+          "expected_action": {
+            "type": "designate",
+            "kind": null,
+            "identity": null,
+            "effector": null,
+            "basis": "available_evidence"
+          },
+          "verdict": "correct",
+          "reason_code": "DETECTION_ON_TIME",
+          "explanation": "This contact first became detectable at T+0.00s. Designation at T+0.00s took 0.00s, within the rubric's three-second full-credit window.",
+          "consequence": {
+            "kind": "remained_active",
+            "tick": null,
+            "reason_code": "NO_CONSEQUENCE_YET",
+            "immediate": "not_applicable",
+            "text": "The contact remained active at the reviewed end; no later observed consequence is asserted."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "detect",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0004",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T2",
+          "tick": 0,
+          "order": 4,
+          "decision_kind": "classification_iff",
+          "evidence": {
+            "tick": 0,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "friendly_reply"
+            },
+            "visual": {
+              "available": true,
+              "silhouette": "multirotor"
+            },
+            "range_m": 120.0,
+            "restricted": true,
+            "first_detectable_tick": 0,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "friendly",
+            "rf_link": true,
+            "spawn_tick": 0
+          },
+          "trainee_action": {
+            "tick": 0,
+            "order": null,
+            "k": "classify",
+            "track": "T2",
+            "kind": "quad",
+            "identity": "friendly",
+            "effector": null
+          },
+          "expected_action": {
+            "type": "classify",
+            "kind": "quad",
+            "identity": "friendly",
+            "effector": null,
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_CLASSIFICATION",
+          "explanation": "The recorded type and identity match the reconstructed reference. Classification uses the final per-contact rubric; a correct label does not prove every identity cue was available.",
+          "consequence": {
+            "kind": "remained_active",
+            "tick": null,
+            "reason_code": "NO_CONSEQUENCE_YET",
+            "immediate": "not_applicable",
+            "text": "The contact remained active at the reviewed end; no later observed consequence is asserted."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "classify",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0005",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T2",
+          "tick": 0,
+          "order": 5,
+          "decision_kind": "engagement",
+          "evidence": {
+            "tick": 0,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "friendly_reply"
+            },
+            "visual": {
+              "available": true,
+              "silhouette": "multirotor"
+            },
+            "range_m": 120.0,
+            "restricted": true,
+            "first_detectable_tick": 0,
+            "prior_classification": "quad",
+            "prior_identity": "friendly",
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "friendly",
+            "rf_link": true,
+            "spawn_tick": 0
+          },
+          "trainee_action": {
+            "tick": 0,
+            "order": null,
+            "k": "engage",
+            "track": "T2",
+            "kind": null,
+            "identity": null,
+            "effector": "hold"
+          },
+          "expected_action": {
+            "type": "engage",
+            "kind": null,
+            "identity": null,
+            "effector": "hold",
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_HOLD",
+          "explanation": "Hold matches the permitted reference at this tick. Non-hostiles require Hold; an unavailable range or a restricted kinetic sector also requires waiting or a permitted alternative.",
+          "consequence": {
+            "kind": "hold",
+            "tick": null,
+            "reason_code": "NO_CONSEQUENCE_YET",
+            "immediate": "held",
+            "text": "Hold was recorded; no later observed consequence is asserted."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "engage",
+            "points_awarded": 35,
+            "points_possible": 35,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0006",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T3",
+          "tick": 60,
+          "order": 6,
+          "decision_kind": "detection",
+          "evidence": {
+            "tick": 60,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 140.0,
+            "restricted": false,
+            "first_detectable_tick": 60,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "hostile",
+            "rf_link": true,
+            "spawn_tick": 60
+          },
+          "trainee_action": {
+            "tick": 60,
+            "order": null,
+            "k": "designate",
+            "track": "T3",
+            "kind": null,
+            "identity": null,
+            "effector": null
+          },
+          "expected_action": {
+            "type": "designate",
+            "kind": null,
+            "identity": null,
+            "effector": null,
+            "basis": "available_evidence"
+          },
+          "verdict": "correct",
+          "reason_code": "DETECTION_ON_TIME",
+          "explanation": "This contact first became detectable at T+2.00s. Designation at T+2.00s took 0.00s, within the rubric's three-second full-credit window. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 60,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+2.00s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "detect",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0007",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T3",
+          "tick": 60,
+          "order": 7,
+          "decision_kind": "classification_iff",
+          "evidence": {
+            "tick": 60,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 140.0,
+            "restricted": false,
+            "first_detectable_tick": 60,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "hostile",
+            "rf_link": true,
+            "spawn_tick": 60
+          },
+          "trainee_action": {
+            "tick": 60,
+            "order": null,
+            "k": "classify",
+            "track": "T3",
+            "kind": "quad",
+            "identity": "hostile",
+            "effector": null
+          },
+          "expected_action": {
+            "type": "classify",
+            "kind": "quad",
+            "identity": "hostile",
+            "effector": null,
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_CLASSIFICATION",
+          "explanation": "The recorded type and identity match the reconstructed reference. Classification uses the final per-contact rubric; a correct label does not prove every identity cue was available. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 60,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+2.00s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "classify",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0008",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T3",
+          "tick": 60,
+          "order": 8,
+          "decision_kind": "engagement",
+          "evidence": {
+            "tick": 60,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 140.0,
+            "restricted": false,
+            "first_detectable_tick": 60,
+            "prior_classification": "quad",
+            "prior_identity": "hostile",
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "hostile",
+            "rf_link": true,
+            "spawn_tick": 60
+          },
+          "trainee_action": {
+            "tick": 60,
+            "order": null,
+            "k": "engage",
+            "track": "T3",
+            "kind": null,
+            "identity": null,
+            "effector": "rf_jam"
+          },
+          "expected_action": {
+            "type": "engage",
+            "kind": null,
+            "identity": null,
+            "effector": "rf_jam",
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_RF_JAM",
+          "explanation": "The reconstructed RF-linked hostile was within the 180 m jammer range. RF jammer matches the existing illustrative response rule. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded. The expected response is a ground-truth rubric reference, conditional on establishing identity.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 60,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "resolved",
+            "text": "The contact was resolved at T+2.00s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "engage",
+            "points_awarded": 35,
+            "points_possible": 35,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0009",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T4",
+          "tick": 332,
+          "order": 9,
+          "decision_kind": "detection",
+          "evidence": {
+            "tick": 332,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 174.813,
+            "restricted": false,
+            "first_detectable_tick": 332,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "fixed_wing",
+            "identity": "hostile",
+            "rf_link": false,
+            "spawn_tick": 330
+          },
+          "trainee_action": {
+            "tick": 332,
+            "order": null,
+            "k": "designate",
+            "track": "T4",
+            "kind": null,
+            "identity": null,
+            "effector": null
+          },
+          "expected_action": {
+            "type": "designate",
+            "kind": null,
+            "identity": null,
+            "effector": null,
+            "basis": "available_evidence"
+          },
+          "verdict": "correct",
+          "reason_code": "DETECTION_ON_TIME",
+          "explanation": "This contact first became detectable at T+11.07s. Designation at T+11.07s took 0.00s, within the rubric's three-second full-credit window. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 491,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+16.37s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "detect",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0010",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T4",
+          "tick": 332,
+          "order": 10,
+          "decision_kind": "classification_iff",
+          "evidence": {
+            "tick": 332,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 174.813,
+            "restricted": false,
+            "first_detectable_tick": 332,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "fixed_wing",
+            "identity": "hostile",
+            "rf_link": false,
+            "spawn_tick": 330
+          },
+          "trainee_action": {
+            "tick": 332,
+            "order": null,
+            "k": "classify",
+            "track": "T4",
+            "kind": "fixed_wing",
+            "identity": "hostile",
+            "effector": null
+          },
+          "expected_action": {
+            "type": "classify",
+            "kind": "fixed_wing",
+            "identity": "hostile",
+            "effector": null,
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_CLASSIFICATION",
+          "explanation": "The recorded type and identity match the reconstructed reference. Classification uses the final per-contact rubric; a correct label does not prove every identity cue was available. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 491,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+16.37s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "classify",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0011",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T4",
+          "tick": 491,
+          "order": 11,
+          "decision_kind": "engagement",
+          "evidence": {
+            "tick": 491,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 159.973,
+            "restricted": false,
+            "first_detectable_tick": 332,
+            "prior_classification": "fixed_wing",
+            "prior_identity": "hostile",
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "fixed_wing",
+            "identity": "hostile",
+            "rf_link": false,
+            "spawn_tick": 330
+          },
+          "trainee_action": {
+            "tick": 491,
+            "order": null,
+            "k": "engage",
+            "track": "T4",
+            "kind": null,
+            "identity": null,
+            "effector": "kinetic"
+          },
+          "expected_action": {
+            "type": "engage",
+            "kind": null,
+            "identity": null,
+            "effector": "kinetic",
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_KINETIC",
+          "explanation": "The reconstructed no-RF hostile was within the 160 m kinetic range and outside the restricted sector. Kinetic matches the existing illustrative response rule. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded. The expected response is a ground-truth rubric reference, conditional on establishing identity.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 491,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "resolved",
+            "text": "The contact was resolved at T+16.37s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "engage",
+            "points_awarded": 35,
+            "points_possible": 35,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0012",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T5",
+          "tick": 632,
+          "order": 12,
+          "decision_kind": "detection",
+          "evidence": {
+            "tick": 632,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 147.747,
+            "restricted": true,
+            "first_detectable_tick": 632,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "rf_link": false,
+            "spawn_tick": 630
+          },
+          "trainee_action": {
+            "tick": 632,
+            "order": null,
+            "k": "designate",
+            "track": "T5",
+            "kind": null,
+            "identity": null,
+            "effector": null
+          },
+          "expected_action": {
+            "type": "designate",
+            "kind": null,
+            "identity": null,
+            "effector": null,
+            "basis": "available_evidence"
+          },
+          "verdict": "correct",
+          "reason_code": "DETECTION_ON_TIME",
+          "explanation": "This contact first became detectable at T+21.07s. Designation at T+21.07s took 0.00s, within the rubric's three-second full-credit window. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 1445,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+48.17s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "detect",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0013",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T5",
+          "tick": 632,
+          "order": 13,
+          "decision_kind": "classification_iff",
+          "evidence": {
+            "tick": 632,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 147.747,
+            "restricted": true,
+            "first_detectable_tick": 632,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "rf_link": false,
+            "spawn_tick": 630
+          },
+          "trainee_action": {
+            "tick": 632,
+            "order": null,
+            "k": "classify",
+            "track": "T5",
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "effector": null
+          },
+          "expected_action": {
+            "type": "classify",
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "effector": null,
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_CLASSIFICATION",
+          "explanation": "The recorded type and identity match the reconstructed reference. Classification uses the final per-contact rubric; a correct label does not prove every identity cue was available. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 1445,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+48.17s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "classify",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0014",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T6",
+          "tick": 1081,
+          "order": 14,
+          "decision_kind": "detection",
+          "evidence": {
+            "tick": 1081,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 154.893,
+            "restricted": false,
+            "first_detectable_tick": 1081,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "hostile",
+            "rf_link": true,
+            "spawn_tick": 1080
+          },
+          "trainee_action": {
+            "tick": 1081,
+            "order": null,
+            "k": "designate",
+            "track": "T6",
+            "kind": null,
+            "identity": null,
+            "effector": null
+          },
+          "expected_action": {
+            "type": "designate",
+            "kind": null,
+            "identity": null,
+            "effector": null,
+            "basis": "available_evidence"
+          },
+          "verdict": "correct",
+          "reason_code": "DETECTION_ON_TIME",
+          "explanation": "This contact first became detectable at T+36.03s. Designation at T+36.03s took 0.00s, within the rubric's three-second full-credit window. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 1081,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+36.03s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "detect",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0015",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T6",
+          "tick": 1081,
+          "order": 15,
+          "decision_kind": "classification_iff",
+          "evidence": {
+            "tick": 1081,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 154.893,
+            "restricted": false,
+            "first_detectable_tick": 1081,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "hostile",
+            "rf_link": true,
+            "spawn_tick": 1080
+          },
+          "trainee_action": {
+            "tick": 1081,
+            "order": null,
+            "k": "classify",
+            "track": "T6",
+            "kind": "quad",
+            "identity": "hostile",
+            "effector": null
+          },
+          "expected_action": {
+            "type": "classify",
+            "kind": "quad",
+            "identity": "hostile",
+            "effector": null,
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_CLASSIFICATION",
+          "explanation": "The recorded type and identity match the reconstructed reference. Classification uses the final per-contact rubric; a correct label does not prove every identity cue was available. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 1081,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+36.03s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "classify",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0016",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T6",
+          "tick": 1081,
+          "order": 16,
+          "decision_kind": "engagement",
+          "evidence": {
+            "tick": 1081,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 154.893,
+            "restricted": false,
+            "first_detectable_tick": 1081,
+            "prior_classification": "quad",
+            "prior_identity": "hostile",
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "hostile",
+            "rf_link": true,
+            "spawn_tick": 1080
+          },
+          "trainee_action": {
+            "tick": 1081,
+            "order": null,
+            "k": "engage",
+            "track": "T6",
+            "kind": null,
+            "identity": null,
+            "effector": "rf_jam"
+          },
+          "expected_action": {
+            "type": "engage",
+            "kind": null,
+            "identity": null,
+            "effector": "rf_jam",
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_RF_JAM",
+          "explanation": "The reconstructed RF-linked hostile was within the 180 m jammer range. RF jammer matches the existing illustrative response rule. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded. The expected response is a ground-truth rubric reference, conditional on establishing identity.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 1081,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "resolved",
+            "text": "The contact was resolved at T+36.03s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "engage",
+            "points_awarded": 35,
+            "points_possible": 35,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0017",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T7",
+          "tick": 1110,
+          "order": 17,
+          "decision_kind": "detection",
+          "evidence": {
+            "tick": 1110,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 160.0,
+            "restricted": false,
+            "first_detectable_tick": 1110,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "hostile",
+            "rf_link": true,
+            "spawn_tick": 1110
+          },
+          "trainee_action": {
+            "tick": 1110,
+            "order": null,
+            "k": "designate",
+            "track": "T7",
+            "kind": null,
+            "identity": null,
+            "effector": null
+          },
+          "expected_action": {
+            "type": "designate",
+            "kind": null,
+            "identity": null,
+            "effector": null,
+            "basis": "available_evidence"
+          },
+          "verdict": "correct",
+          "reason_code": "DETECTION_ON_TIME",
+          "explanation": "This contact first became detectable at T+37.00s. Designation at T+37.00s took 0.00s, within the rubric's three-second full-credit window. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 1110,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+37.00s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "detect",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0018",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T7",
+          "tick": 1110,
+          "order": 18,
+          "decision_kind": "classification_iff",
+          "evidence": {
+            "tick": 1110,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 160.0,
+            "restricted": false,
+            "first_detectable_tick": 1110,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "hostile",
+            "rf_link": true,
+            "spawn_tick": 1110
+          },
+          "trainee_action": {
+            "tick": 1110,
+            "order": null,
+            "k": "classify",
+            "track": "T7",
+            "kind": "quad",
+            "identity": "hostile",
+            "effector": null
+          },
+          "expected_action": {
+            "type": "classify",
+            "kind": "quad",
+            "identity": "hostile",
+            "effector": null,
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_CLASSIFICATION",
+          "explanation": "The recorded type and identity match the reconstructed reference. Classification uses the final per-contact rubric; a correct label does not prove every identity cue was available. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 1110,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+37.00s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "classify",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0019",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T7",
+          "tick": 1110,
+          "order": 19,
+          "decision_kind": "engagement",
+          "evidence": {
+            "tick": 1110,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 160.0,
+            "restricted": false,
+            "first_detectable_tick": 1110,
+            "prior_classification": "quad",
+            "prior_identity": "hostile",
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "hostile",
+            "rf_link": true,
+            "spawn_tick": 1110
+          },
+          "trainee_action": {
+            "tick": 1110,
+            "order": null,
+            "k": "engage",
+            "track": "T7",
+            "kind": null,
+            "identity": null,
+            "effector": "rf_jam"
+          },
+          "expected_action": {
+            "type": "engage",
+            "kind": null,
+            "identity": null,
+            "effector": "rf_jam",
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_RF_JAM",
+          "explanation": "The reconstructed RF-linked hostile was within the 180 m jammer range. RF jammer matches the existing illustrative response rule. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded. The expected response is a ground-truth rubric reference, conditional on establishing identity.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 1110,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "resolved",
+            "text": "The contact was resolved at T+37.00s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "engage",
+            "points_awarded": 35,
+            "points_possible": 35,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0020",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T8",
+          "tick": 1146,
+          "order": 20,
+          "decision_kind": "detection",
+          "evidence": {
+            "tick": 1146,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 164.36,
+            "restricted": false,
+            "first_detectable_tick": 1146,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "hostile",
+            "rf_link": true,
+            "spawn_tick": 1140
+          },
+          "trainee_action": {
+            "tick": 1146,
+            "order": null,
+            "k": "designate",
+            "track": "T8",
+            "kind": null,
+            "identity": null,
+            "effector": null
+          },
+          "expected_action": {
+            "type": "designate",
+            "kind": null,
+            "identity": null,
+            "effector": null,
+            "basis": "available_evidence"
+          },
+          "verdict": "correct",
+          "reason_code": "DETECTION_ON_TIME",
+          "explanation": "This contact first became detectable at T+38.20s. Designation at T+38.20s took 0.00s, within the rubric's three-second full-credit window. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 1146,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+38.20s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "detect",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0021",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T8",
+          "tick": 1146,
+          "order": 21,
+          "decision_kind": "classification_iff",
+          "evidence": {
+            "tick": 1146,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 164.36,
+            "restricted": false,
+            "first_detectable_tick": 1146,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "hostile",
+            "rf_link": true,
+            "spawn_tick": 1140
+          },
+          "trainee_action": {
+            "tick": 1146,
+            "order": null,
+            "k": "classify",
+            "track": "T8",
+            "kind": "quad",
+            "identity": "hostile",
+            "effector": null
+          },
+          "expected_action": {
+            "type": "classify",
+            "kind": "quad",
+            "identity": "hostile",
+            "effector": null,
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_CLASSIFICATION",
+          "explanation": "The recorded type and identity match the reconstructed reference. Classification uses the final per-contact rubric; a correct label does not prove every identity cue was available. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 1146,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+38.20s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "classify",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0022",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T8",
+          "tick": 1146,
+          "order": 22,
+          "decision_kind": "engagement",
+          "evidence": {
+            "tick": 1146,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 164.36,
+            "restricted": false,
+            "first_detectable_tick": 1146,
+            "prior_classification": "quad",
+            "prior_identity": "hostile",
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "hostile",
+            "rf_link": true,
+            "spawn_tick": 1140
+          },
+          "trainee_action": {
+            "tick": 1146,
+            "order": null,
+            "k": "engage",
+            "track": "T8",
+            "kind": null,
+            "identity": null,
+            "effector": "rf_jam"
+          },
+          "expected_action": {
+            "type": "engage",
+            "kind": null,
+            "identity": null,
+            "effector": "rf_jam",
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_RF_JAM",
+          "explanation": "The reconstructed RF-linked hostile was within the 180 m jammer range. RF jammer matches the existing illustrative response rule. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded. The expected response is a ground-truth rubric reference, conditional on establishing identity.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 1146,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "resolved",
+            "text": "The contact was resolved at T+38.20s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "engage",
+            "points_awarded": 35,
+            "points_possible": 35,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0023",
+          "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+          "track_id": "T5",
+          "tick": 1445,
+          "order": 23,
+          "decision_kind": "engagement",
+          "evidence": {
+            "tick": 1445,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": true,
+              "silhouette": "multirotor"
+            },
+            "range_m": 44.767,
+            "restricted": false,
+            "first_detectable_tick": 632,
+            "prior_classification": "fiber_fpv",
+            "prior_identity": "hostile",
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "rf_link": false,
+            "spawn_tick": 630
+          },
+          "trainee_action": {
+            "tick": 1445,
+            "order": null,
+            "k": "engage",
+            "track": "T5",
+            "kind": null,
+            "identity": null,
+            "effector": "kinetic"
+          },
+          "expected_action": {
+            "type": "engage",
+            "kind": null,
+            "identity": null,
+            "effector": "kinetic",
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_KINETIC",
+          "explanation": "The reconstructed no-RF hostile was within the 160 m kinetic range and outside the restricted sector. Kinetic matches the existing illustrative response rule. The IFF panel returned no reply; that alone does not establish hostility. The expected response is a ground-truth rubric reference, conditional on establishing identity.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 1445,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "resolved",
+            "text": "The contact was resolved at T+48.17s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "engage",
+            "points_awarded": 35,
+            "points_possible": 35,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        }
+      ],
+      "replay_metadata": {
+        "hz": 30,
+        "observed_end_tick": 2250,
+        "scoring_end_tick": 2250,
+        "horizon_source": "completion",
+        "early_end": false,
+        "version": "ghost-aar-v2.1",
+        "note": "Review covers the recorded exercise. Paused wall-clock time is excluded."
+      },
+      "scenario": {
+        "id": "sc_483000_night_recognition",
+        "seed": 483000,
+        "title": "Night watch",
+        "focus": "recognition",
+        "night": true,
+        "fog": 0.2,
+        "jamStart": 660,
+        "jamEnd": 900,
+        "tracks": [
+          {
+            "altitude": 22,
+            "bearing": 70,
+            "distance": 155,
+            "id": "T1",
+            "identity": "neutral",
+            "kind": "bird",
+            "rf": false,
+            "spawn": 0,
+            "speed": 0.65
+          },
+          {
+            "altitude": 18,
+            "bearing": 283,
+            "distance": 120,
+            "id": "T2",
+            "identity": "friendly",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 0,
+            "speed": 1.1
+          },
+          {
+            "altitude": 26,
+            "bearing": 33,
+            "distance": 140,
+            "id": "T3",
+            "identity": "hostile",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 60,
+            "speed": 2.1
+          },
+          {
+            "altitude": 35,
+            "bearing": 118,
+            "distance": 175,
+            "id": "T4",
+            "identity": "hostile",
+            "kind": "fixed_wing",
+            "rf": false,
+            "spawn": 330,
+            "speed": 2.8
+          },
+          {
+            "altitude": 10,
+            "bearing": 318,
+            "distance": 148,
+            "id": "T5",
+            "identity": "hostile",
+            "kind": "fiber_fpv",
+            "rf": false,
+            "spawn": 630,
+            "speed": 3.8
+          },
+          {
+            "altitude": 20,
+            "bearing": 13,
+            "distance": 155,
+            "id": "T6",
+            "identity": "hostile",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 1080,
+            "speed": 3.2
+          },
+          {
+            "altitude": 25,
+            "bearing": 24,
+            "distance": 160,
+            "id": "T7",
+            "identity": "hostile",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 1110,
+            "speed": 3.2
+          },
+          {
+            "altitude": 15,
+            "bearing": 36,
+            "distance": 165,
+            "id": "T8",
+            "identity": "hostile",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 1140,
+            "speed": 3.2
+          }
+        ]
+      },
+      "director_decision": null
+    },
+    {
+      "id": "339aa070-5686-483c-9fd6-e5985247d3b9",
+      "trainee": "QA-DIRECTOR-WALK",
+      "verified": true,
+      "executionTick": 52,
+      "endTick": 2250,
+      "events": [
+        {
+          "k": "designate",
+          "order": 1,
+          "tick": 23,
+          "track": "T9"
+        },
+        {
+          "identity": "hostile",
+          "k": "classify",
+          "kind": "fiber_fpv",
+          "order": 2,
+          "tick": 35,
+          "track": "T9"
+        },
+        {
+          "effector": "rf_jam",
+          "k": "engage",
+          "order": 3,
+          "tick": 44,
+          "track": "T9"
+        }
+      ],
+      "commands": [
+        {
+          "command_id": "12ea6b10-7af8-4dd5-b2b3-9e06a53a7410",
+          "payload": {
+            "bearing": 40,
+            "kind": "fiber_fpv"
+          },
+          "type": "inject_contact",
+          "session_id": "339aa070-5686-483c-9fd6-e5985247d3b9",
+          "seq": 1,
+          "issued_at": "2026-10-03T06:11:11.154285+00:00",
+          "tick": 6,
+          "order": 0
+        }
+      ],
+      "scorecard": {
+        "engine_version": "vyuha-0.2.0",
+        "fratricide": false,
+        "leakers": 4,
+        "passed": false,
+        "roe_breaches": 0,
+        "rows": [
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 1,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T1",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / friendly.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T2",
+            "ideal": "hold",
+            "identity": "friendly",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 60,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / hostile.",
+              "RF-link present: RF jamming is the example-pack response.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T3",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 330,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / hostile.",
+              "No RF link: use an allowed kinetic response in this example pack.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T4",
+            "ideal": "kinetic",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 632,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / hostile.",
+              "No RF link: use an allowed kinetic response in this example pack.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T5",
+            "ideal": "kinetic",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 1080,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / hostile.",
+              "RF-link present: RF jamming is the example-pack response."
+            ],
+            "id": "T6",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 1111,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / hostile.",
+              "RF-link present: RF jamming is the example-pack response."
+            ],
+            "id": "T7",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 1141,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / hostile.",
+              "RF-link present: RF jamming is the example-pack response."
+            ],
+            "id": "T8",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [
+              "rf_jam"
+            ],
+            "classify": 25,
+            "designated": 23,
+            "detect": 25,
+            "detected": 6,
+            "engage": 0,
+            "feedback": [
+              "No RF link: use an allowed kinetic response in this example pack.",
+              "1 unsuitable response; review the sensor evidence.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T9",
+            "ideal": "kinetic",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 50
+          }
+        ],
+        "score": 0,
+        "skills": {
+          "recognition": 11,
+          "response": 0
+        },
+        "summary": "4 threats reached the protected asset. Review response selection.",
+        "threats": 7
+      },
+      "decision_reviews": [
+        {
+          "decision_id": "dec_0000",
+          "session_id": "339aa070-5686-483c-9fd6-e5985247d3b9",
+          "track_id": "T9",
+          "tick": 23,
+          "order": 1,
+          "decision_kind": "detection",
+          "evidence": {
+            "tick": 23,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": true,
+              "silhouette": "multirotor"
+            },
+            "range_m": 133.847,
+            "restricted": false,
+            "first_detectable_tick": 6,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "rf_link": false,
+            "spawn_tick": 6
+          },
+          "trainee_action": {
+            "tick": 23,
+            "order": 1,
+            "k": "designate",
+            "track": "T9",
+            "kind": null,
+            "identity": null,
+            "effector": null
+          },
+          "expected_action": {
+            "type": "designate",
+            "kind": null,
+            "identity": null,
+            "effector": null,
+            "basis": "available_evidence"
+          },
+          "verdict": "correct",
+          "reason_code": "DETECTION_ON_TIME",
+          "explanation": "This contact first became detectable at T+0.20s. Designation at T+0.77s took 0.57s, within the rubric's three-second full-credit window. The IFF panel returned no reply; that alone does not establish hostility.",
+          "consequence": {
+            "kind": "remained_active",
+            "tick": null,
+            "reason_code": "NO_CONSEQUENCE_YET",
+            "immediate": "not_applicable",
+            "text": "The contact remained active at the reviewed end; no later observed consequence is asserted."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "detect",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0001",
+          "session_id": "339aa070-5686-483c-9fd6-e5985247d3b9",
+          "track_id": "T9",
+          "tick": 35,
+          "order": 2,
+          "decision_kind": "classification_iff",
+          "evidence": {
+            "tick": 35,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": true,
+              "silhouette": "multirotor"
+            },
+            "range_m": 132.327,
+            "restricted": false,
+            "first_detectable_tick": 6,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "rf_link": false,
+            "spawn_tick": 6
+          },
+          "trainee_action": {
+            "tick": 35,
+            "order": 2,
+            "k": "classify",
+            "track": "T9",
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "effector": null
+          },
+          "expected_action": {
+            "type": "classify",
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "effector": null,
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_CLASSIFICATION",
+          "explanation": "The recorded type and identity match the reconstructed reference. Classification uses the final per-contact rubric; a correct label does not prove every identity cue was available. The IFF panel returned no reply; that alone does not establish hostility.",
+          "consequence": {
+            "kind": "remained_active",
+            "tick": null,
+            "reason_code": "NO_CONSEQUENCE_YET",
+            "immediate": "not_applicable",
+            "text": "The contact remained active at the reviewed end; no later observed consequence is asserted."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "classify",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0002",
+          "session_id": "339aa070-5686-483c-9fd6-e5985247d3b9",
+          "track_id": "T9",
+          "tick": 44,
+          "order": 3,
+          "decision_kind": "engagement",
+          "evidence": {
+            "tick": 44,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": true,
+              "silhouette": "multirotor"
+            },
+            "range_m": 131.187,
+            "restricted": false,
+            "first_detectable_tick": 6,
+            "prior_classification": "fiber_fpv",
+            "prior_identity": "hostile",
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "rf_link": false,
+            "spawn_tick": 6
+          },
+          "trainee_action": {
+            "tick": 44,
+            "order": 3,
+            "k": "engage",
+            "track": "T9",
+            "kind": null,
+            "identity": null,
+            "effector": "rf_jam"
+          },
+          "expected_action": {
+            "type": "engage",
+            "kind": null,
+            "identity": null,
+            "effector": "kinetic",
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "incorrect",
+          "reason_code": "NO_RF_JAM_INEFFECTIVE",
+          "explanation": "The reconstructed target had no RF control link. RF jamming could not disrupt it. The ground-truth reference is kinetic when within range and outside the restricted sector. The IFF panel returned no reply; that alone does not establish hostility. The expected response is a ground-truth rubric reference, conditional on establishing identity.",
+          "consequence": {
+            "kind": "remained_active",
+            "tick": null,
+            "reason_code": "NO_CONSEQUENCE_YET",
+            "immediate": "remained_active",
+            "text": "The contact remained active at the reviewed end; no later observed consequence is asserted."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "engage",
+            "points_awarded": 0,
+            "points_possible": 35,
+            "session_penalty": 10,
+            "penalty_basis": "scoring_projection",
+            "session_failure": false
+          },
+          "skill_tags": [
+            "effector_choice"
+          ],
+          "context_commands": []
+        }
+      ],
+      "replay_metadata": {
+        "hz": 30,
+        "observed_end_tick": 52,
+        "scoring_end_tick": 2250,
+        "horizon_source": "completion",
+        "early_end": true,
+        "version": "ghost-aar-v2.1",
+        "note": "Review and timeline stop at the observed exercise end. Final node scores retain the existing 75-second scoring projection."
+      },
+      "scenario": {
+        "id": "sc_482913_night_recognition",
+        "seed": 482913,
+        "title": "Night watch",
+        "focus": "recognition",
+        "night": true,
+        "fog": 0.2,
+        "jamStart": 660,
+        "jamEnd": 900,
+        "tracks": [
+          {
+            "altitude": 22,
+            "bearing": 63,
+            "distance": 155,
+            "id": "T1",
+            "identity": "neutral",
+            "kind": "bird",
+            "rf": false,
+            "spawn": 0,
+            "speed": 0.65
+          },
+          {
+            "altitude": 18,
+            "bearing": 276,
+            "distance": 120,
+            "id": "T2",
+            "identity": "friendly",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 0,
+            "speed": 1.1
+          },
+          {
+            "altitude": 26,
+            "bearing": 26,
+            "distance": 140,
+            "id": "T3",
+            "identity": "hostile",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 60,
+            "speed": 2.1
+          },
+          {
+            "altitude": 35,
+            "bearing": 111,
+            "distance": 175,
+            "id": "T4",
+            "identity": "hostile",
+            "kind": "fixed_wing",
+            "rf": false,
+            "spawn": 330,
+            "speed": 2.8
+          },
+          {
+            "altitude": 10,
+            "bearing": 311,
+            "distance": 148,
+            "id": "T5",
+            "identity": "hostile",
+            "kind": "fiber_fpv",
+            "rf": false,
+            "spawn": 630,
+            "speed": 3.8
+          },
+          {
+            "altitude": 20,
+            "bearing": 6,
+            "distance": 155,
+            "id": "T6",
+            "identity": "hostile",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 1080,
+            "speed": 3.2
+          },
+          {
+            "altitude": 25,
+            "bearing": 17,
+            "distance": 160,
+            "id": "T7",
+            "identity": "hostile",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 1110,
+            "speed": 3.2
+          },
+          {
+            "altitude": 15,
+            "bearing": 29,
+            "distance": 165,
+            "id": "T8",
+            "identity": "hostile",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 1140,
+            "speed": 3.2
+          }
+        ]
+      },
+      "director_decision": null
+    },
+    {
+      "id": "afde8e0e-3fb0-49fb-aff6-0ca44c30cea5",
+      "trainee": "QA-DIRECTOR-WALK",
+      "verified": true,
+      "executionTick": 447,
+      "endTick": 2250,
+      "events": [
+        {
+          "k": "designate",
+          "order": 0,
+          "tick": 71,
+          "track": "T3"
+        },
+        {
+          "identity": "hostile",
+          "k": "classify",
+          "kind": "quad",
+          "order": 1,
+          "tick": 79,
+          "track": "T3"
+        },
+        {
+          "effector": "rf_jam",
+          "k": "engage",
+          "order": 2,
+          "tick": 88,
+          "track": "T3"
+        },
+        {
+          "k": "designate",
+          "order": 3,
+          "tick": 421,
+          "track": "T5"
+        },
+        {
+          "identity": "hostile",
+          "k": "classify",
+          "kind": "fiber_fpv",
+          "order": 4,
+          "tick": 430,
+          "track": "T5"
+        },
+        {
+          "effector": "kinetic",
+          "k": "engage",
+          "order": 5,
+          "tick": 439,
+          "track": "T5"
+        }
+      ],
+      "commands": [],
+      "scorecard": {
+        "engine_version": "vyuha-0.2.0",
+        "fratricide": false,
+        "leakers": 3,
+        "passed": false,
+        "roe_breaches": 0,
+        "rows": [
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T1",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / friendly.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T2",
+            "ideal": "hold",
+            "identity": "friendly",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [
+              "rf_jam"
+            ],
+            "classify": 25,
+            "designated": 71,
+            "detect": 25,
+            "detected": 60,
+            "engage": 35,
+            "feedback": [],
+            "id": "T3",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 15,
+            "total": 100
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 301,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / hostile.",
+              "No RF link: use an allowed kinetic response in this example pack.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T4",
+            "ideal": "kinetic",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [
+              "kinetic"
+            ],
+            "classify": 25,
+            "designated": 421,
+            "detect": 13,
+            "detected": 90,
+            "engage": 35,
+            "feedback": [
+              "Designation took 11.0 seconds after first sensor visibility."
+            ],
+            "id": "T5",
+            "ideal": "kinetic",
+            "identity": "hostile",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 15,
+            "total": 88
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 1050,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / hostile.",
+              "No RF link: use an allowed kinetic response in this example pack.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T6",
+            "ideal": "kinetic",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 1081,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / hostile.",
+              "RF-link present: RF jamming is the example-pack response.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T7",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 1110,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / hostile.",
+              "RF-link present: RF jamming is the example-pack response."
+            ],
+            "id": "T8",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          }
+        ],
+        "score": 1,
+        "skills": {
+          "recognition": 25,
+          "response": 25
+        },
+        "summary": "3 threats reached the protected asset. Review response selection.",
+        "threats": 6
+      },
+      "decision_reviews": [
+        {
+          "decision_id": "dec_0000",
+          "session_id": "afde8e0e-3fb0-49fb-aff6-0ca44c30cea5",
+          "track_id": "T3",
+          "tick": 71,
+          "order": 0,
+          "decision_kind": "detection",
+          "evidence": {
+            "tick": 71,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 129.114,
+            "restricted": false,
+            "first_detectable_tick": 60,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "hostile",
+            "rf_link": true,
+            "spawn_tick": 60
+          },
+          "trainee_action": {
+            "tick": 71,
+            "order": 0,
+            "k": "designate",
+            "track": "T3",
+            "kind": null,
+            "identity": null,
+            "effector": null
+          },
+          "expected_action": {
+            "type": "designate",
+            "kind": null,
+            "identity": null,
+            "effector": null,
+            "basis": "available_evidence"
+          },
+          "verdict": "correct",
+          "reason_code": "DETECTION_ON_TIME",
+          "explanation": "This contact first became detectable at T+2.00s. Designation at T+2.37s took 0.37s, within the rubric's three-second full-credit window. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 88,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+2.93s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "detect",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0001",
+          "session_id": "afde8e0e-3fb0-49fb-aff6-0ca44c30cea5",
+          "track_id": "T3",
+          "tick": 79,
+          "order": 1,
+          "decision_kind": "classification_iff",
+          "evidence": {
+            "tick": 79,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": true,
+              "silhouette": "multirotor"
+            },
+            "range_m": 128.47,
+            "restricted": false,
+            "first_detectable_tick": 60,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "hostile",
+            "rf_link": true,
+            "spawn_tick": 60
+          },
+          "trainee_action": {
+            "tick": 79,
+            "order": 1,
+            "k": "classify",
+            "track": "T3",
+            "kind": "quad",
+            "identity": "hostile",
+            "effector": null
+          },
+          "expected_action": {
+            "type": "classify",
+            "kind": "quad",
+            "identity": "hostile",
+            "effector": null,
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_CLASSIFICATION",
+          "explanation": "The recorded type and identity match the reconstructed reference. Classification uses the final per-contact rubric; a correct label does not prove every identity cue was available. The IFF panel returned no reply; that alone does not establish hostility.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 88,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+2.93s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "classify",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0002",
+          "session_id": "afde8e0e-3fb0-49fb-aff6-0ca44c30cea5",
+          "track_id": "T3",
+          "tick": 88,
+          "order": 2,
+          "decision_kind": "engagement",
+          "evidence": {
+            "tick": 88,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": true,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 127.746,
+            "restricted": false,
+            "first_detectable_tick": 60,
+            "prior_classification": "quad",
+            "prior_identity": "hostile",
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "quad",
+            "identity": "hostile",
+            "rf_link": true,
+            "spawn_tick": 60
+          },
+          "trainee_action": {
+            "tick": 88,
+            "order": 2,
+            "k": "engage",
+            "track": "T3",
+            "kind": null,
+            "identity": null,
+            "effector": "rf_jam"
+          },
+          "expected_action": {
+            "type": "engage",
+            "kind": null,
+            "identity": null,
+            "effector": "rf_jam",
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_RF_JAM",
+          "explanation": "The reconstructed RF-linked hostile was within the 180 m jammer range. RF jammer matches the existing illustrative response rule. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded. The expected response is a ground-truth rubric reference, conditional on establishing identity.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 88,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "resolved",
+            "text": "The contact was resolved at T+2.93s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "engage",
+            "points_awarded": 35,
+            "points_possible": 35,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0003",
+          "session_id": "afde8e0e-3fb0-49fb-aff6-0ca44c30cea5",
+          "track_id": "T5",
+          "tick": 421,
+          "order": 3,
+          "decision_kind": "detection",
+          "evidence": {
+            "tick": 421,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 86.784,
+            "restricted": false,
+            "first_detectable_tick": 90,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "rf_link": false,
+            "spawn_tick": 90
+          },
+          "trainee_action": {
+            "tick": 421,
+            "order": 3,
+            "k": "designate",
+            "track": "T5",
+            "kind": null,
+            "identity": null,
+            "effector": null
+          },
+          "expected_action": {
+            "type": "designate",
+            "kind": null,
+            "identity": null,
+            "effector": null,
+            "basis": "available_evidence"
+          },
+          "verdict": "incorrect",
+          "reason_code": "DETECTION_LATE",
+          "explanation": "This contact first became detectable at T+3.00s. Designation at T+14.03s took 11.03s. Detection credit tapers after three simulation seconds, not after spawn or paused wall-clock time. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 439,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+14.63s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "detect",
+            "points_awarded": 13,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [
+            "detection"
+          ],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0004",
+          "session_id": "afde8e0e-3fb0-49fb-aff6-0ca44c30cea5",
+          "track_id": "T5",
+          "tick": 430,
+          "order": 4,
+          "decision_kind": "classification_iff",
+          "evidence": {
+            "tick": 430,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 85.473,
+            "restricted": false,
+            "first_detectable_tick": 90,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "rf_link": false,
+            "spawn_tick": 90
+          },
+          "trainee_action": {
+            "tick": 430,
+            "order": 4,
+            "k": "classify",
+            "track": "T5",
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "effector": null
+          },
+          "expected_action": {
+            "type": "classify",
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "effector": null,
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_CLASSIFICATION",
+          "explanation": "The recorded type and identity match the reconstructed reference. Classification uses the final per-contact rubric; a correct label does not prove every identity cue was available. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 439,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+14.63s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "classify",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0005",
+          "session_id": "afde8e0e-3fb0-49fb-aff6-0ca44c30cea5",
+          "track_id": "T5",
+          "tick": 439,
+          "order": 5,
+          "decision_kind": "engagement",
+          "evidence": {
+            "tick": 439,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 84.162,
+            "restricted": false,
+            "first_detectable_tick": 90,
+            "prior_classification": "fiber_fpv",
+            "prior_identity": "hostile",
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "rf_link": false,
+            "spawn_tick": 90
+          },
+          "trainee_action": {
+            "tick": 439,
+            "order": 5,
+            "k": "engage",
+            "track": "T5",
+            "kind": null,
+            "identity": null,
+            "effector": "kinetic"
+          },
+          "expected_action": {
+            "type": "engage",
+            "kind": null,
+            "identity": null,
+            "effector": "kinetic",
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_KINETIC",
+          "explanation": "The reconstructed no-RF hostile was within the 160 m kinetic range and outside the restricted sector. Kinetic matches the existing illustrative response rule. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded. The expected response is a ground-truth rubric reference, conditional on establishing identity.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 439,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "resolved",
+            "text": "The contact was resolved at T+14.63s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "engage",
+            "points_awarded": 35,
+            "points_possible": 35,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": []
+        },
+        {
+          "decision_id": "dec_0006",
+          "session_id": "afde8e0e-3fb0-49fb-aff6-0ca44c30cea5",
+          "track_id": "T4",
+          "tick": 447,
+          "order": null,
+          "decision_kind": "detection",
+          "evidence": {
+            "tick": 301,
+            "radar": {
+              "available": true,
+              "state": "normal",
+              "detected": true
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": false,
+              "silhouette": null
+            },
+            "range_m": 162.893,
+            "restricted": false,
+            "first_detectable_tick": 301,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "fixed_wing",
+            "identity": "hostile",
+            "rf_link": false,
+            "spawn_tick": 300
+          },
+          "trainee_action": null,
+          "expected_action": {
+            "type": "designate",
+            "kind": null,
+            "identity": null,
+            "effector": null,
+            "basis": "available_evidence"
+          },
+          "verdict": "incorrect",
+          "reason_code": "THREAT_MISSED",
+          "explanation": "This threat became detectable at T+10.03s. No designation was recorded by the reviewed end at T+14.90s. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+          "consequence": {
+            "kind": "remained_active",
+            "tick": null,
+            "reason_code": "NO_CONSEQUENCE_YET",
+            "immediate": "not_applicable",
+            "text": "The contact remained active at the reviewed end; no later observed consequence is asserted."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "detect",
+            "points_awarded": 0,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [
+            "detection"
+          ],
+          "context_commands": []
+        }
+      ],
+      "replay_metadata": {
+        "hz": 30,
+        "observed_end_tick": 447,
+        "scoring_end_tick": 2250,
+        "horizon_source": "completion",
+        "early_end": true,
+        "version": "ghost-aar-v2.1",
+        "note": "Review and timeline stop at the observed exercise end. Final node scores retain the existing 75-second scoring projection."
+      },
+      "scenario": {
+        "id": "dir_9e45756db626dd904b5967ce",
+        "seed": 4018851090,
+        "title": "Effector Choice \u00b7 Challenging",
+        "focus": "effector_choice",
+        "night": true,
+        "fog": 0.5,
+        "jamStart": 2250,
+        "jamEnd": 2250,
+        "tracks": [
+          {
+            "altitude": 22,
+            "bearing": 63,
+            "distance": 155,
+            "id": "T1",
+            "identity": "neutral",
+            "kind": "bird",
+            "rf": false,
+            "spawn": 0,
+            "speed": 0.65
+          },
+          {
+            "altitude": 18,
+            "bearing": 276,
+            "distance": 120,
+            "id": "T2",
+            "identity": "friendly",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 0,
+            "speed": 1.1
+          },
+          {
+            "altitude": 26,
+            "bearing": 40,
+            "distance": 130,
+            "id": "T3",
+            "identity": "hostile",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 60,
+            "speed": 2.415
+          },
+          {
+            "altitude": 35,
+            "bearing": 111,
+            "distance": 163,
+            "id": "T4",
+            "identity": "hostile",
+            "kind": "fixed_wing",
+            "rf": false,
+            "spawn": 300,
+            "speed": 3.2199999999999998
+          },
+          {
+            "altitude": 10,
+            "bearing": 70,
+            "distance": 135,
+            "id": "T5",
+            "identity": "hostile",
+            "kind": "fiber_fpv",
+            "rf": false,
+            "spawn": 90,
+            "speed": 4.369999999999999
+          },
+          {
+            "altitude": 20,
+            "bearing": 6,
+            "distance": 143,
+            "id": "T6",
+            "identity": "hostile",
+            "kind": "fiber_fpv",
+            "rf": false,
+            "spawn": 1050,
+            "speed": 3.6799999999999997
+          },
+          {
+            "altitude": 25,
+            "bearing": 17,
+            "distance": 148,
+            "id": "T7",
+            "identity": "hostile",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 1080,
+            "speed": 3.6799999999999997
+          },
+          {
+            "altitude": 15,
+            "bearing": 29,
+            "distance": 153,
+            "id": "T8",
+            "identity": "hostile",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 1110,
+            "speed": 3.6799999999999997
+          }
+        ]
+      },
+      "director_decision": {
+        "anti_rote": {
+          "fallback": false,
+          "history_window": 5,
+          "rejected_candidates": 0
+        },
+        "debug_samples": {
+          "classification_iff": 0.8131488988434034,
+          "degraded_sensor_response": 0.8346472579038134,
+          "detection": 0.9971360473120902,
+          "effector_choice": 0.8064507391304213
+        },
+        "difficulty": 3,
+        "difficulty_label": "challenging",
+        "director_seed": 2,
+        "fingerprint": "c1b0c1488ff5d73a46f62481a9f6abf8c8765c0dd9c8bda514cd66309ddc1ec6",
+        "focus_skill": "effector_choice",
+        "mastery_estimate": 0.8181818181818182,
+        "mode": "individual",
+        "observations": 9,
+        "profile_snapshot": {
+          "classification_iff": {
+            "alpha": 10.0,
+            "beta": 1.0,
+            "last_session_id": "339aa070-5686-483c-9fd6-e5985247d3b9",
+            "mean": 0.9090909090909091,
+            "observations": 9,
+            "updated_at": "2026-10-03T06:11:13.234596+00:00"
+          },
+          "degraded_sensor_response": {
+            "alpha": 1.0,
+            "beta": 1.0,
+            "last_session_id": "339aa070-5686-483c-9fd6-e5985247d3b9",
+            "mean": 0.5,
+            "observations": 0,
+            "updated_at": "2026-10-03T06:11:13.234596+00:00"
+          },
+          "detection": {
+            "alpha": 10.0,
+            "beta": 1.0,
+            "last_session_id": "339aa070-5686-483c-9fd6-e5985247d3b9",
+            "mean": 0.9090909090909091,
+            "observations": 9,
+            "updated_at": "2026-10-03T06:11:13.234596+00:00"
+          },
+          "effector_choice": {
+            "alpha": 9.0,
+            "beta": 2.0,
+            "last_session_id": "339aa070-5686-483c-9fd6-e5985247d3b9",
+            "mean": 0.8181818181818182,
+            "observations": 9,
+            "updated_at": "2026-10-03T06:11:13.234596+00:00"
+          }
+        },
+        "reason": "The seeded Thompson draw selected this skill from the persistent four-skill profile. Its last five processed sessions contain 8 successful and 1 failed contact observations. The displayed mastery is the Beta mean, not the selection draw.",
+        "reason_code": "LOWEST_SAMPLED_MASTERY",
+        "recent_failures": 1,
+        "recent_successes": 8,
+        "scenario_features": [
+          "Night",
+          "8 mixed contacts",
+          "Fog parameter 0.5",
+          "No-RF FPV included",
+          "Friendly contact included"
+        ],
+        "scenario_seed": 4018851090,
+        "scenario_template": "effector_choice/link_contrast",
+        "target_kind": "heuristic, not calibrated",
+        "target_success": 0.7,
+        "trainee_id": "QA-DIRECTOR-WALK"
+      }
+    },
+    {
+      "id": "1409b5c5-f45c-4590-8485-ef13804942d9",
+      "trainee": "QA-DIRECTOR-WALK",
+      "verified": true,
+      "executionTick": 51,
+      "endTick": 2250,
+      "events": [
+        {
+          "k": "designate",
+          "order": 2,
+          "tick": 24,
+          "track": "T9"
+        },
+        {
+          "identity": "hostile",
+          "k": "classify",
+          "kind": "fiber_fpv",
+          "order": 3,
+          "tick": 32,
+          "track": "T9"
+        },
+        {
+          "effector": "kinetic",
+          "k": "engage",
+          "order": 4,
+          "tick": 41,
+          "track": "T9"
+        }
+      ],
+      "commands": [
+        {
+          "command_id": "419ef18c-e005-46bb-b6d5-adf6cd7fe55a",
+          "payload": {
+            "bearing": 40,
+            "kind": "fiber_fpv"
+          },
+          "type": "inject_contact",
+          "session_id": "1409b5c5-f45c-4590-8485-ef13804942d9",
+          "seq": 1,
+          "issued_at": "2026-10-03T06:15:16.022285+00:00",
+          "tick": 7,
+          "order": 0
+        },
+        {
+          "command_id": "7ab8b377-5555-4805-afc0-fc363c888818",
+          "payload": {
+            "mode": "jammed",
+            "sensor": "radar"
+          },
+          "type": "sensor_fault",
+          "session_id": "1409b5c5-f45c-4590-8485-ef13804942d9",
+          "seq": 2,
+          "issued_at": "2026-10-03T06:15:16.262304+00:00",
+          "tick": 7,
+          "order": 1
+        }
+      ],
+      "scorecard": {
+        "engine_version": "vyuha-0.2.0",
+        "fratricide": false,
+        "leakers": 4,
+        "passed": false,
+        "roe_breaches": 0,
+        "rows": [
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T1",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / friendly.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T2",
+            "ideal": "hold",
+            "identity": "friendly",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 60,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / hostile.",
+              "RF-link present: RF jamming is the example-pack response.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T3",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 347,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / hostile.",
+              "No RF link: use an allowed kinetic response in this example pack.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T4",
+            "ideal": "kinetic",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 90,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / hostile.",
+              "No RF link: use an allowed kinetic response in this example pack.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T5",
+            "ideal": "kinetic",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 1080,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / hostile.",
+              "No RF link: use an allowed kinetic response in this example pack.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T6",
+            "ideal": "kinetic",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 1113,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / hostile.",
+              "RF-link present: RF jamming is the example-pack response."
+            ],
+            "id": "T7",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 1143,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / hostile.",
+              "RF-link present: RF jamming is the example-pack response."
+            ],
+            "id": "T8",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [
+              "kinetic"
+            ],
+            "classify": 25,
+            "designated": 24,
+            "detect": 25,
+            "detected": 7,
+            "engage": 35,
+            "feedback": [],
+            "id": "T9",
+            "ideal": "kinetic",
+            "identity": "hostile",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 15,
+            "total": 100
+          }
+        ],
+        "score": 0,
+        "skills": {
+          "recognition": 11,
+          "response": 11
+        },
+        "summary": "4 threats reached the protected asset. Review response selection.",
+        "threats": 7
+      },
+      "decision_reviews": [
+        {
+          "decision_id": "dec_0000",
+          "session_id": "1409b5c5-f45c-4590-8485-ef13804942d9",
+          "track_id": "T9",
+          "tick": 24,
+          "order": 2,
+          "decision_kind": "detection",
+          "evidence": {
+            "tick": 24,
+            "radar": {
+              "available": true,
+              "state": "jammed",
+              "detected": false
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": true,
+              "silhouette": "multirotor"
+            },
+            "range_m": 137.847,
+            "restricted": false,
+            "first_detectable_tick": 7,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "rf_link": false,
+            "spawn_tick": 7
+          },
+          "trainee_action": {
+            "tick": 24,
+            "order": 2,
+            "k": "designate",
+            "track": "T9",
+            "kind": null,
+            "identity": null,
+            "effector": null
+          },
+          "expected_action": {
+            "type": "designate",
+            "kind": null,
+            "identity": null,
+            "effector": null,
+            "basis": "available_evidence"
+          },
+          "verdict": "correct",
+          "reason_code": "DETECTION_ON_TIME",
+          "explanation": "This contact first became detectable at T+0.23s. Designation at T+0.80s took 0.57s, within the rubric's three-second full-credit window. The IFF panel returned no reply; that alone does not establish hostility.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 41,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+1.37s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "detect",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": [
+            2
+          ]
+        },
+        {
+          "decision_id": "dec_0001",
+          "session_id": "1409b5c5-f45c-4590-8485-ef13804942d9",
+          "track_id": "T9",
+          "tick": 32,
+          "order": 3,
+          "decision_kind": "classification_iff",
+          "evidence": {
+            "tick": 32,
+            "radar": {
+              "available": true,
+              "state": "jammed",
+              "detected": false
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": true,
+              "silhouette": "multirotor"
+            },
+            "range_m": 136.833,
+            "restricted": false,
+            "first_detectable_tick": 7,
+            "prior_classification": null,
+            "prior_identity": null,
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "rf_link": false,
+            "spawn_tick": 7
+          },
+          "trainee_action": {
+            "tick": 32,
+            "order": 3,
+            "k": "classify",
+            "track": "T9",
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "effector": null
+          },
+          "expected_action": {
+            "type": "classify",
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "effector": null,
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_CLASSIFICATION",
+          "explanation": "The recorded type and identity match the reconstructed reference. Classification uses the final per-contact rubric; a correct label does not prove every identity cue was available. The IFF panel returned no reply; that alone does not establish hostility.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 41,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "not_applicable",
+            "text": "The contact was resolved at T+1.37s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "classify",
+            "points_awarded": 25,
+            "points_possible": 25,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": [
+            2
+          ]
+        },
+        {
+          "decision_id": "dec_0002",
+          "session_id": "1409b5c5-f45c-4590-8485-ef13804942d9",
+          "track_id": "T9",
+          "tick": 41,
+          "order": 4,
+          "decision_kind": "engagement",
+          "evidence": {
+            "tick": 41,
+            "radar": {
+              "available": true,
+              "state": "jammed",
+              "detected": false
+            },
+            "rf": {
+              "available": true,
+              "signal": false,
+              "iff": "no_reply"
+            },
+            "visual": {
+              "available": true,
+              "silhouette": "multirotor"
+            },
+            "range_m": 135.693,
+            "restricted": false,
+            "first_detectable_tick": 7,
+            "prior_classification": "fiber_fpv",
+            "prior_identity": "hostile",
+            "night": true
+          },
+          "ground_truth": {
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "rf_link": false,
+            "spawn_tick": 7
+          },
+          "trainee_action": {
+            "tick": 41,
+            "order": 4,
+            "k": "engage",
+            "track": "T9",
+            "kind": null,
+            "identity": null,
+            "effector": "kinetic"
+          },
+          "expected_action": {
+            "type": "engage",
+            "kind": null,
+            "identity": null,
+            "effector": "kinetic",
+            "basis": "ground_truth_reference"
+          },
+          "verdict": "correct",
+          "reason_code": "CORRECT_KINETIC",
+          "explanation": "The reconstructed no-RF hostile was within the 160 m kinetic range and outside the restricted sector. Kinetic matches the existing illustrative response rule. The IFF panel returned no reply; that alone does not establish hostility. The expected response is a ground-truth rubric reference, conditional on establishing identity.",
+          "consequence": {
+            "kind": "resolved",
+            "tick": 41,
+            "reason_code": "THREAT_RESOLVED",
+            "immediate": "resolved",
+            "text": "The contact was resolved at T+1.37s."
+          },
+          "score_effect": {
+            "scope": "final_contact_node",
+            "node": "engage",
+            "points_awarded": 35,
+            "points_possible": 35,
+            "session_penalty": 0,
+            "penalty_basis": "none",
+            "session_failure": false
+          },
+          "skill_tags": [],
+          "context_commands": [
+            2
+          ]
+        }
+      ],
+      "replay_metadata": {
+        "hz": 30,
+        "observed_end_tick": 51,
+        "scoring_end_tick": 2250,
+        "horizon_source": "completion",
+        "early_end": true,
+        "version": "ghost-aar-v2.1",
+        "note": "Review and timeline stop at the observed exercise end. Final node scores retain the existing 75-second scoring projection."
+      },
+      "scenario": {
+        "id": "dir_9b709c5512e40156ece3ae0c",
+        "seed": 3788461615,
+        "title": "Effector Choice \u00b7 Challenging",
+        "focus": "effector_choice",
+        "night": true,
+        "fog": 0.5,
+        "jamStart": 2250,
+        "jamEnd": 2250,
+        "tracks": [
+          {
+            "altitude": 22,
+            "bearing": 84,
+            "distance": 155,
+            "id": "T1",
+            "identity": "neutral",
+            "kind": "bird",
+            "rf": false,
+            "spawn": 0,
+            "speed": 0.65
+          },
+          {
+            "altitude": 18,
+            "bearing": 297,
+            "distance": 120,
+            "id": "T2",
+            "identity": "friendly",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 0,
+            "speed": 1.1
+          },
+          {
+            "altitude": 26,
+            "bearing": 40,
+            "distance": 130,
+            "id": "T3",
+            "identity": "hostile",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 60,
+            "speed": 2.415
+          },
+          {
+            "altitude": 35,
+            "bearing": 325,
+            "distance": 150,
+            "id": "T4",
+            "identity": "hostile",
+            "kind": "fixed_wing",
+            "rf": false,
+            "spawn": 330,
+            "speed": 3.2199999999999998
+          },
+          {
+            "altitude": 10,
+            "bearing": 70,
+            "distance": 135,
+            "id": "T5",
+            "identity": "hostile",
+            "kind": "fiber_fpv",
+            "rf": false,
+            "spawn": 90,
+            "speed": 4.369999999999999
+          },
+          {
+            "altitude": 20,
+            "bearing": 27,
+            "distance": 143,
+            "id": "T6",
+            "identity": "hostile",
+            "kind": "fiber_fpv",
+            "rf": false,
+            "spawn": 1080,
+            "speed": 3.6799999999999997
+          },
+          {
+            "altitude": 25,
+            "bearing": 38,
+            "distance": 148,
+            "id": "T7",
+            "identity": "hostile",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 1110,
+            "speed": 3.6799999999999997
+          },
+          {
+            "altitude": 15,
+            "bearing": 50,
+            "distance": 153,
+            "id": "T8",
+            "identity": "hostile",
+            "kind": "quad",
+            "rf": true,
+            "spawn": 1140,
+            "speed": 3.6799999999999997
+          }
+        ]
+      },
+      "director_decision": {
+        "anti_rote": {
+          "fallback": false,
+          "history_window": 5,
+          "rejected_candidates": 1
+        },
+        "debug_samples": {
+          "classification_iff": 0.9473269476457409,
+          "degraded_sensor_response": 0.9463438717273912,
+          "detection": 0.9472229278016824,
+          "effector_choice": 0.8722287982429482
+        },
+        "difficulty": 3,
+        "difficulty_label": "challenging",
+        "director_seed": 30,
+        "fingerprint": "1fb554e5bd6604ff8a6d1e1f2febf1adc4d0788a8342f857ff2d32b98fa97160",
+        "focus_skill": "effector_choice",
+        "mastery_estimate": 0.8461538461538461,
+        "mode": "individual",
+        "observations": 11,
+        "profile_snapshot": {
+          "classification_iff": {
+            "alpha": 12.0,
+            "beta": 1.0,
+            "last_session_id": "afde8e0e-3fb0-49fb-aff6-0ca44c30cea5",
+            "mean": 0.9230769230769231,
+            "observations": 11,
+            "updated_at": "2026-10-03T06:13:07.349500+00:00"
+          },
+          "degraded_sensor_response": {
+            "alpha": 1.0,
+            "beta": 1.0,
+            "last_session_id": "afde8e0e-3fb0-49fb-aff6-0ca44c30cea5",
+            "mean": 0.5,
+            "observations": 0,
+            "updated_at": "2026-10-03T06:13:07.349500+00:00"
+          },
+          "detection": {
+            "alpha": 11.0,
+            "beta": 3.0,
+            "last_session_id": "afde8e0e-3fb0-49fb-aff6-0ca44c30cea5",
+            "mean": 0.7857142857142857,
+            "observations": 12,
+            "updated_at": "2026-10-03T06:13:07.349500+00:00"
+          },
+          "effector_choice": {
+            "alpha": 11.0,
+            "beta": 2.0,
+            "last_session_id": "afde8e0e-3fb0-49fb-aff6-0ca44c30cea5",
+            "mean": 0.8461538461538461,
+            "observations": 11,
+            "updated_at": "2026-10-03T06:13:07.349500+00:00"
+          }
+        },
+        "reason": "The seeded Thompson draw selected this skill from the persistent four-skill profile. Its last five processed sessions contain 10 successful and 1 failed contact observations. The displayed mastery is the Beta mean, not the selection draw.",
+        "reason_code": "LOWEST_SAMPLED_MASTERY",
+        "recent_failures": 1,
+        "recent_successes": 10,
+        "scenario_features": [
+          "Night",
+          "8 mixed contacts",
+          "Fog parameter 0.5",
+          "No-RF FPV included",
+          "Friendly contact included",
+          "Restricted-sector approach"
+        ],
+        "scenario_seed": 3788461615,
+        "scenario_template": "effector_choice/restricted_approach",
+        "target_kind": "heuristic, not calibrated",
+        "target_success": 0.7,
+        "trainee_id": "QA-DIRECTOR-WALK"
+      }
+    }
+  ],
+  "persistence_after_server_restart": "Exact full profile equality passed after uvicorn restart."
+}

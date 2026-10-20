@@ -1,0 +1,15 @@
+{
+  "commit": "126aab44a83fec76b782d5a6acbec9b8dc454bce",
+  "image": "vyuha:combined-126aab4",
+  "image_id": "sha256:046ec8771658c435457b04d482939ff5c7ca71656c9a8842668e28fc2501d47c",
+  "health": {
+    "status": "ok",
+    "engine_version": "vyuha-0.2.0",
+    "storage": "sqlite",
+    "mode": "local-demo",
+    "unit_id": "local"
+  },
+  "root_status": 200,
+  "anonymous_instructor": 401,
+  "scope": "Docker Desktop Linux/arm64 on macOS Apple M1; not native Linux platform acceptance."
+}

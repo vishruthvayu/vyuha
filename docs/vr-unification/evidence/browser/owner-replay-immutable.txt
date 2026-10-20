@@ -1,0 +1,19 @@
+Browser tab: 12, Title: "VYUHA · Counter-drone trainer", URL: "http://127.0.0.1:8096/?view=aar&session=a203d2ee-23db-49cb-87ad-ea5d1c4ed7fc".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+~				97 pop up button (collapsed, settable) Reviewed contact, Value: T6, Secondary Actions: Expand
+~				623 pop up button (collapsed, settable) Recorded response, Value: T6 · T+28.07s · hold, Secondary Actions: Expand
+~				627 pop up button (collapsed, settable) Hypothetical response, Value: RF jammer, Secondary Actions: Expand
+~				632 button Run hypothetical branch
++				658 text COUNTERFACTUAL · ORIGINAL UNCHANGED
++				659 heading Hypothetical simulated result, Value: 3
++					660 text Hypothetical simulated result
++				661 container
++					662 text ORIGINAL VERIFIED OUTCOME 0 /100 Recorded history preserved
++				663 container
++					664 text HYPOTHETICAL BRANCH 0 /100 Simulated difference  0
++				665 container
++					666 text Asset impacts:  4  → 4 . Subsequent actions invalidated by this branch:  0 .
++				667 container
++					668 text Evidence-constrained training policy: hold  ( supported ). Current modeled registration beacon is civil; verify identity .
++				669 text Hypothetical simulated branch. Original history, score and skills are unchanged. Subsequent recorded actions are attempted only when still valid. Reference is an inspectable training policy, not a certified human military expert.
+The focused UI element is 0 AXWebArea VYUHA · Counter-drone trainer, URL: 127.0.0.1:8096/?view=aar&session=a203d2ee-23db-49cb-87ad-ea5d1c4ed7fc

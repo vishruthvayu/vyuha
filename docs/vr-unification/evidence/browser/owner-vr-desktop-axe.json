@@ -1,0 +1,18 @@
+{
+  "url": "http://127.0.0.1:8104/",
+  "width": 1280,
+  "height": 720,
+  "scale": 1,
+  "axe": {
+    "name": "axe-core",
+    "version": "4.14.0"
+  },
+  "violations": [],
+  "passes": 23,
+  "incomplete": [
+    {
+      "id": "color-contrast",
+      "nodes": 31
+    }
+  ]
+}

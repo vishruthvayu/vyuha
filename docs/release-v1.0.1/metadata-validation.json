@@ -1,0 +1,26 @@
+{
+  "runtime_checks": [
+    {
+      "mode": "local-demo",
+      "health": "passed",
+      "evidence_http": 200,
+      "source_matches": true,
+      "backend": 139,
+      "frontend": 64,
+      "parity": 312,
+      "WAN": "NOT PERFORMED BEFORE SUBMISSION"
+    },
+    {
+      "mode": "unit",
+      "health": "passed",
+      "evidence_http": 200,
+      "source_matches": true,
+      "backend": 139,
+      "frontend": 64,
+      "parity": 312,
+      "WAN": "NOT PERFORMED BEFORE SUBMISSION"
+    }
+  ],
+  "historical_measurements_preserved": true,
+  "no_new_media_or_physical_measurements": true
+}

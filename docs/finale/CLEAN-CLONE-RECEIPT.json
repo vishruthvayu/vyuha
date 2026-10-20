@@ -1,0 +1,218 @@
+{
+  "recorded_date": "2026-10-12",
+  "commit": "3ec720d26ef8e556aa392d5adac2218ebde7353a",
+  "source_tree_sha256": "3bec6d5e328b412e59a2ba09a0bc90768abac0f25d41b944c9d8a67f4183a4d6",
+  "scope": "Fresh local Git clone on macOS; newly created Python3.12 venv; actual locked registry installation, npm ci with isolated cache and independently rebuilt production assets. No copied dist or linked Python environment. Temporary QA databases only.",
+  "python_lock_install": "PASS",
+  "npm_ci": {
+    "status": "PASS",
+    "packages_added": 95,
+    "packages_audited": 96,
+    "vulnerabilities": 0
+  },
+  "production_build": {
+    "status": "PASS",
+    "assets": 26,
+    "cache": "167d3e89736c",
+    "matches_canonical": true
+  },
+  "native_entrypoint": "bash scripts/start-unit.sh",
+  "unit_mode_started": true,
+  "initial_sessions": 0,
+  "initial_trainees": 0,
+  "walkthrough": {
+    "scope": "Synthetic QA via real HTTP and ordinary Python engine; disposable fresh database. Not a human test, physical LAN test or WAN-off validation.",
+    "initial_sessions": 0,
+    "initial_trainees": 0,
+    "new_unit": "demo-release",
+    "new_trainee": "T_150d2048befa4268a76b39",
+    "adaptive_focus": "effector_choice",
+    "session_id": "cdef807d-dfb9-46a8-9d84-1c79a2143f89",
+    "instructor_command": "radar jam acknowledged at tick 30",
+    "verified_score": 83,
+    "ghost": "NO_RF_JAM_INEFFECTIVE present",
+    "time_machine_basis": "Full ordered actions/command timeline returned by verified AAR; UI replay checked separately",
+    "profile_sessions": 1,
+    "next_director": {
+      "mode": "individual",
+      "trainee_id": "T_150d2048befa4268a76b39",
+      "director_seed": 482914,
+      "focus_skill": "degraded_sensor_response",
+      "mastery_estimate": 0.6666666666666666,
+      "observations": 4,
+      "difficulty": 2,
+      "difficulty_label": "standard",
+      "target_success": 0.7,
+      "target_kind": "heuristic, not calibrated",
+      "reason_code": "LOWEST_SAMPLED_MASTERY",
+      "reason": "The seeded Thompson draw selected this skill from the persistent four-skill profile. Its last five processed sessions contain 3 successful and 1 failed contact observations. The displayed mastery is the Beta mean, not the selection draw.",
+      "recent_successes": 3,
+      "recent_failures": 1,
+      "scenario_template": "degraded_sensor_response/night_gap",
+      "scenario_seed": 990307611,
+      "scenario_features": [
+        "Night",
+        "6 mixed contacts",
+        "Fog parameter 0.25",
+        "No-RF FPV included",
+        "Friendly contact included",
+        "Radar gap T+2\u201320s; RF/IFF remains available",
+        "Threat pattern: SATURATION",
+        "Illustrative pack: Army Forward Post"
+      ],
+      "fingerprint": "5de75fafce9b1194cec1db2c",
+      "anti_rote": {
+        "rejected_candidates": 0,
+        "fallback": false,
+        "history_window": 5
+      },
+      "debug_samples": {
+        "detection": 0.9978723866034273,
+        "classification_iff": 0.9058637459571846,
+        "effector_choice": 0.8550245369698102,
+        "degraded_sensor_response": 0.6884767660523864
+      },
+      "profile_snapshot": {
+        "detection": {
+          "alpha": 7.0,
+          "beta": 1.0,
+          "observations": 6,
+          "mean": 0.875,
+          "updated_at": "2026-10-12T10:00:38.108347+00:00",
+          "last_session_id": "cdef807d-dfb9-46a8-9d84-1c79a2143f89"
+        },
+        "classification_iff": {
+          "alpha": 7.0,
+          "beta": 1.0,
+          "observations": 6,
+          "mean": 0.875,
+          "updated_at": "2026-10-12T10:00:38.108347+00:00",
+          "last_session_id": "cdef807d-dfb9-46a8-9d84-1c79a2143f89"
+        },
+        "effector_choice": {
+          "alpha": 6.0,
+          "beta": 2.0,
+          "observations": 6,
+          "mean": 0.75,
+          "updated_at": "2026-10-12T10:00:38.108347+00:00",
+          "last_session_id": "cdef807d-dfb9-46a8-9d84-1c79a2143f89"
+        },
+        "degraded_sensor_response": {
+          "alpha": 4.0,
+          "beta": 2.0,
+          "observations": 4,
+          "mean": 0.6666666666666666,
+          "updated_at": "2026-10-12T10:00:38.108347+00:00",
+          "last_session_id": "cdef807d-dfb9-46a8-9d84-1c79a2143f89"
+        }
+      }
+    },
+    "rapid": {
+      "rounds": 10,
+      "correct": 10,
+      "timing": "Synthetic 500 ms per answer, not human performance"
+    },
+    "analytics_points": 2,
+    "unit_completed_tactical": 1,
+    "elapsed_seconds": 0.491
+  },
+  "director_v2": {
+    "scope": "Synthetic truth-known HTTP decisions using unchanged engine in disposable clean clone; not human efficacy or physical LAN/WAN acceptance",
+    "session_id": "0d876681-7305-44cf-bac3-43ef494d5957",
+    "accepted_decisions": 3,
+    "engine": "vyuha-0.4.0",
+    "server_verified": true,
+    "score": 0,
+    "director_v2_metadata_preserved": true,
+    "api_latencies": [
+      {
+        "path": "/auth/login",
+        "milliseconds": 288.81
+      },
+      {
+        "path": "/director-v2/prepare",
+        "milliseconds": 40.18
+      },
+      {
+        "path": "/sessions",
+        "milliseconds": 3.4
+      },
+      {
+        "path": "/sessions/0d876681-7305-44cf-bac3-43ef494d5957/events",
+        "milliseconds": 4.46
+      },
+      {
+        "path": "/sessions/0d876681-7305-44cf-bac3-43ef494d5957/complete",
+        "milliseconds": 486.56
+      },
+      {
+        "path": "/sessions/0d876681-7305-44cf-bac3-43ef494d5957/aar",
+        "milliseconds": 479.17
+      }
+    ]
+  },
+  "unit_director_v2": {
+    "scope": "Synthetic truth-known HTTP decisions using unchanged engine in disposable clean clone; not human efficacy or physical LAN/WAN acceptance",
+    "session_id": "064e0cbb-93e7-4ac0-9e9e-8158ddbb3f04",
+    "accepted_decisions": 3,
+    "engine": "vyuha-0.4.0",
+    "server_verified": true,
+    "score": 5,
+    "director_v2_metadata_preserved": true,
+    "api_latencies": [
+      {
+        "path": "/auth/login",
+        "milliseconds": 308.04
+      },
+      {
+        "path": "/units/join",
+        "milliseconds": 5.64
+      },
+      {
+        "path": "/director-v2/prepare",
+        "milliseconds": 24.73
+      },
+      {
+        "path": "/sessions",
+        "milliseconds": 4.32
+      },
+      {
+        "path": "/sessions/064e0cbb-93e7-4ac0-9e9e-8158ddbb3f04/events",
+        "milliseconds": 11.85
+      },
+      {
+        "path": "/sessions/064e0cbb-93e7-4ac0-9e9e-8158ddbb3f04/complete",
+        "milliseconds": 810.94
+      },
+      {
+        "path": "/sessions/064e0cbb-93e7-4ac0-9e9e-8158ddbb3f04/aar",
+        "milliseconds": 754.49
+      }
+    ]
+  },
+  "macos_backup_restore": {
+    "status": "PASS",
+    "all_rows_exact": true,
+    "existing_database_overwrite": false
+  },
+  "officer_review": {
+    "status": "PASS",
+    "actual_unit_history_button": true,
+    "authenticated_no_join_prompt": true,
+    "no_next_drill": true,
+    "canonical_unit_link": true,
+    "signout_unmounts_review": true,
+    "ordinary_trainee_link_retains_gateway": true,
+    "whole_database_before_after_exact": true,
+    "registered_trainees_unchanged": 2,
+    "database_dump_sha256": "cbe35798a7137623a633f16ec328256b7ffd1a171954fb8d10d3fcd362ce3845",
+    "unknown_review_remains_aar": true,
+    "scope": "No server or personal-profile writes; source guards and independent review also verify draft restoration is skipped. Review cache may be written locally; no claim of forensic browser-storage audit."
+  },
+  "limitations": [
+    "Internet was used for dependency setup; runtime assets/services are local",
+    "macOS only; native Windows/Linux retained pending",
+    "Browser clients use this laptop; fresh physical LAN/WAN/HTTPS trust validation retained pending",
+    "Synthetic QA decisions are not human efficacy or calibrated performance evidence"
+  ]
+}

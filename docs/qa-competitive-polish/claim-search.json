@@ -1,0 +1,365 @@
+{
+  "scope": "Final production client source and added analytics endpoint. Existing historical documents/artifacts remain unchanged.",
+  "matches": [
+    {
+      "file": "client/src/Recorded.tsx",
+      "line": 5,
+      "text": "import {Radar} from './Radar';"
+    },
+    {
+      "file": "client/src/Recorded.tsx",
+      "line": 19,
+      "text": " {record&&state&&<section className=\"panel advanced-card\"><h2>{record.recording.title}</h2><p>Source: recorded \u00b7 schema 1 \u00b7 hash {record.import_hash.slice(0,16)}</p><button className=\"button primary\" onClick={()=>setPlaying(p=>!p)}>{playing?'Pause playback':'Play recording'}</button><p>T+{(tick/30).toFixed(2)}s / {(record.recording.duration_ticks/30).toFixed(2)}s</p><Radar state={state} selected={"
+    },
+    {
+      "file": "client/src/Instructor.tsx",
+      "line": 30,
+      "text": "   <div>{session?<><section className=\"panel instructor-summary\"><div className=\"panel-header\"><strong>{session.callsign??session.trainee} \u00b7 {session.scenario}</strong><span className=\"status\">{session.status}</span></div><p className=\"mono\">Session {session.id}</p>{session.telemetry?<div className=\"metric-grid\"><article className=\"metric\"><span>Elapsed simulation time</span><strong>{(session.tele"
+    },
+    {
+      "file": "client/src/Instructor.tsx",
+      "line": 31,
+      "text": "    <section className=\"panel instructor-controls\"><div className=\"command-receipt\" role=\"status\"><strong>{lifecycle.state}</strong> {latestCommand&&commandLabel(latestCommand)}<small>{lifecycle.detail}</small></div>{reason&&<p className=\"control-reason\">{reason}</p>}<h2>Exercise</h2><div className=\"control-buttons\">{button('Pause exercise',{type:'pause',payload:{}})}{button('Resume exercise',{typ"
+    },
+    {
+      "file": "client/src/Evaluation.tsx",
+      "line": 10,
+      "text": " return <main className=\"instructor-page advanced-page\"><header className=\"page-heading\"><h1>Informal evaluation</h1><a href=\"/\">Training home</a></header><p>Support for a small voluntary pilot. No human study is conducted automatically. Use pseudonymous participant IDs and record only training measures. This protocol does not establish training efficacy or military validation.</p>{error&&<p role="
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 7,
+      "text": "import {Radar} from './Radar';"
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 28,
+      "text": " const [vision,setVision]=useState<Vision>('thermal');const [tactical,setTactical]=useState(false);const [selected,setSelected]=useState<string|null>(null);const [kind,setKind]=useState<Kind>('quad');const [identity,setIdentity]=useState<Identity>('hostile');"
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 32,
+      "text": " const [offline,setOffline]=useState('preparing');const [recovery,setRecovery]=useState<Draft|null>(null);const [online,setOnline]=useState(false);const [busy,setBusy]=useState(false);const [notice,setNotice]=useState('');const [trainee,setTrainee]=useState(unitIdentity?.trainee_id??'CADET-01');const [mode,setMode]=useState<'scripted'|'adaptive'|'library'>(new URLSearchParams(window.location.searc"
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 48,
+      "text": " useEffect(()=>{const update=()=>setOffline(document.documentElement.dataset.offlineStatus||'preparing');update();window.addEventListener('vyuha-offline-status',update);return()=>window.removeEventListener('vyuha-offline-status',update);},[]);"
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 62,
+      "text": "  if(m.type==='snapshot'&&m.state){if(liveState.current&&liveState.current.night!==m.state.night)setVision(m.state.night?'thermal':'day');setState(m.state);liveState.current=m.state;livePaused.current=m.paused??m.state.paused;if(sessionRef.current&&!finishLock.current)setPhase(livePaused.current?'paused':'running');if(sessionRef.current&&!finishLock.current&&m.state.tick%60===0){const id=sessionRe"
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 76,
+      "text": " const begin=(spec:Scenario,id:string)=>{eventBatches.current=[];setSync('synced');setAssignment(null);scenarioRef.current=spec;traineeRef.current=trainee;sessionRef.current=id;events.current=[];commands.current=[];liveState.current=null;finishLock.current=false;setScenario(spec);setState(new Simulation(spec).snapshot());setSelected(null);setCurrent(null);setPhase('running');setView('drill');setVi"
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 94,
+      "text": "  <main><header className=\"topbar\"><div className=\"breadcrumb\">WORKSPACE <ChevronRight size={13}/> <span>{view==='drill'?'TRAINING GROUND':view==='aar'?'AFTER-ACTION REVIEW':'UNIT TRAINING OVERVIEW'}</span></div><div className={`connection ${online?'online':''}`}>{online?<Wifi size={15}/>:<WifiOff size={15}/>} {online?'VYUHA server connected':'VYUHA server offline'}</div></header>"
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 105,
+      "text": "    <div className=\"setup-bar\">{vision==='thermal'&&<label>Illustrative thermal palette<select aria-label=\"Thermal palette\" value={palette} onChange={e=>setPalette(e.target.value as ThermalPalette)}>{Object.entries(palettes).map(([id,p])=><option key={id} value={id}>{p.label}</option>)}</select></label>}<small>Illustrative rendering only; sensor mechanics and scoring are unchanged.</small></div><d"
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 107,
+      "text": "       {tactical?<Radar state={state} selected={selected} onSelect={choose} large/>:<Scene state={state} selected={selected} vision={vision} onFps={renderFps} palette={palette} terrain={scenario.terrain_id??'urban_outpost'} quality={quality} fog={scenario.fog} fallback={<div className=\"render-fallback\"><p>3D rendering is unavailable on this browser.</p><button className=\"button primary\" onClick={("
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 108,
+      "text": "       {!tactical&&<><div className=\"view-annotation top-left\">{vision==='thermal'?`${palettes[palette].label} / EO-IR`:vision==='day'?'DAY TV / OPTICAL':'NIGHT VISION / SIMULATED'}<span>{selected?`TRACKING ${selected}`:'OBSERVATION SECTOR'}</span></div><div className=\"crosshair\"><span/><span/></div><div className=\"camera-corners\"/><div className=\"view-annotation bottom-left\">{scenario.terrain_id="
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 112,
+      "text": "      <div className=\"next-guidance\" role=\"status\"><b>NEXT</b> {nextStep(phase,target)}</div><div className=\"action-panel\"><div className=\"action-heading\"><span className=\"step-number\">{target?.designated===null||!target?'1':!target?.classification?'2':'3'}</span><div><strong>{!target?'Select a contact':target.designated===null?'Designate contact':!target.classification?'Classify the contact':'Cho"
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 116,
+      "text": "     </section><aside className=\"right-panels\"><section className=\"panel radar-panel\"><div className=\"panel-header\"><div><Radio size={16}/><strong>Radar picture</strong></div><span className={state.jammed?'status amber':'status'}>{state.radarStatus==='failed'?'OFFLINE':state.jammed?'DEGRADED':'NORMAL'}</span></div><Radar state={state} selected={selected} onSelect={choose}/></section>"
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 118,
+      "text": "      <section className=\"panel rf-panel\"><div className=\"panel-header\"><div><Zap size={16}/><strong>RF / IFF evidence</strong></div></div><div className=\"evidence-grid\"><span>CONTROL LINK<strong className={rfObservation?.rf_signal?'lime':''}>{!state.rfAvailable?'OFFLINE':target?rfObservation?.rf_signal?'Detected':'Not detected':'\u2014'}</strong></span><span>IFF RESPONSE<strong className={rfObservatio"
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 121,
+      "text": "    <p className=\"footnote\">Training prototype \u00b7 Illustrative signatures, ranges and responses \u00b7 Detection timing begins at first working-sensor observation. {offline==='ready'?'Offline cache ready.':offline==='development'?'Development preview.':offline==='preparing'?'Preparing offline cache\u2026':offline==='unsupported'?'LAN HTTP: assets are served by this officer laptop. Cached reload requires trus"
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 126,
+      "text": "     <div className=\"aar-grid\"><section className=\"panel replay-panel\"><div className=\"panel-header\"><div><RotateCcw size={16}/><strong>Time-machine replay</strong></div><span className=\"mono\">T+{(replayTick/HZ).toFixed(2)}s</span></div><div className=\"replay-camera-controls segmented\">{(['overview','observer','follow'] as const).map(p=><button key={p} disabled={p==='follow'&&!replayState.tracks.s"
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 131,
+      "text": "   </div>:<div className=\"page\"><div className=\"page-heading\"><div><div className=\"eyebrow\">LOCAL UNIT / EXERCISE HISTORY</div><h1>Unit training overview</h1><p>Observed results from completed sessions. Training measures do not establish operational readiness.</p></div><button className=\"button subtle\" onClick={()=>void refresh()}><RotateCcw size={15}/> Refresh</button></div><UnitDashboard unitId="
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 133,
+      "text": "  {help&&<div className=\"modal-backdrop\" onClick={()=>setHelp(false)}><section className=\"guide-modal\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"guide-title\" onClick={e=>e.stopPropagation()}><button className=\"modal-close\" aria-label=\"Close operator guide\" onClick={()=>setHelp(false)}><X size={20}/></button><div className=\"eyebrow\">OPERATOR GUIDE</div><h2 id=\"guide-title\">Your first 75-seco"
+    },
+    {
+      "file": "client/src/main.tsx",
+      "line": 17,
+      "text": "function offlineStatus(value:string){document.documentElement.dataset.offlineStatus=value;window.dispatchEvent(new Event('vyuha-offline-status'));}"
+    },
+    {
+      "file": "client/src/main.tsx",
+      "line": 19,
+      "text": " const register=async()=>{if(!window.isSecureContext||!('serviceWorker' in navigator)){offlineStatus('unsupported');return;}offlineStatus('preparing');try{await navigator.serviceWorker.register('/sw.js');await navigator.serviceWorker.ready;offlineStatus('ready');}catch(error){console.warn('Offline cache unavailable',error);offlineStatus('failed');}};"
+    },
+    {
+      "file": "client/src/Transfer.tsx",
+      "line": 7,
+      "text": " async function importBundle(){setBusy(true);setStatus('Verifying integrity and reconstructing bounded history\u2026');setError('');try{const f=file.current?.files?.[0];if(!f)throw new Error('Choose a JSON bundle');if(f.size>8*1024*1024)throw new Error('Bundle exceeds 8 MiB limit');const r=await api<{inserted_sessions:number;skipped_sessions:number}>('/bundle/import',parseJSONImport(await f.text(),8*10"
+    },
+    {
+      "file": "client/src/Transfer.tsx",
+      "line": 8,
+      "text": " return <main className=\"instructor-page advanced-page\"><header className=\"page-heading\"><h1>Portable transfer</h1><a href=\"/instructor\">Instructor</a></header><p>Trusted LAN prototype. No production authentication. Do not expose to public networks. HMAC-SHA256 checks bundle integrity with a local shared secret; it does not attest identity, authenticity or non-repudiation.</p><section className=\"p"
+    },
+    {
+      "file": "client/src/Ghost.tsx",
+      "line": 12,
+      "text": "export function EvidenceView({review:r}:{review:DecisionReview}){const e=r.evidence;return <section className=\"ghost-section\" data-evidence-scope=\"available\"><h3>Available to trainee</h3><dl className=\"ghost-evidence\"><div><dt>Radar</dt><dd>{e.radar.state==='failed'?'OFFLINE':e.radar.state==='jammed'?'DEGRADED':'ACTIVE'} \u00b7 {e.radar.detected?'contact observed':'no current detection'}</dd></div><div"
+    },
+    {
+      "file": "client/src/Ghost.tsx",
+      "line": 17,
+      "text": " {!record.verified?<div className=\"ghost-content\"><h3>Verification pending</h3><p>Authoritative decision review becomes available after the original local server verifies this exercise. No expert expectations are generated from device-only display state.</p></div>:!record.decision_reviews?<div className=\"ghost-content\"><h3>Review unavailable on this device</h3><p>Connect to the original server to "
+    },
+    {
+      "file": "client/src/Ghost.tsx",
+      "line": 40,
+      "text": "export function ReplayTracks({state,onSelect}:{state:Snapshot;onSelect:(id:string)=>void}){return <div className=\"replay-tracks\"><h3>Observed contact history</h3><p className=\"footnote\">Labels are trainee classifications. Sensor-silent tracks retain their recorded first observation.</p>{state.tracks.filter(t=>t.detected!==null).map(t=><button key={t.id} aria-label={`Replay track ${t.id}`} onClick="
+    },
+    {
+      "file": "client/src/Unit.tsx",
+      "line": 23,
+      "text": " <section className=\"panel training-profile\"><div className=\"panel-header\"><strong>Unit training mastery estimates</strong></div><p>Mean of registered trainee Beta means, including baseline priors. Not operational readiness.</p><div className=\"ghost-skill-grid\">{Object.entries(report.skill_means).map(([s,n])=><div key={s}><span>{skillLabel[s as GhostSkill]}</span><strong>{n===null?'No evidence':`$"
+    },
+    {
+      "file": "client/src/Radar.tsx",
+      "line": 2,
+      "text": "export function Radar({state,selected,onSelect,large=false}:{state:Snapshot;selected:string|null;onSelect:(id:string)=>void;large?:boolean}){const zone=state.tracks.find(t=>t.rules)?.rules?.restricted??{enabled:true,x_lt:-30,z_gt:20};return <div className={`radar ${large?'radar-large':''}`}><svg viewBox=\"0 0 420 420\" role=\"img\" aria-label=\"Radar showing detected contacts around the protected asset"
+    },
+    {
+      "file": "client/src/Radar.tsx",
+      "line": 4,
+      "text": " {[48,96,144,192].map(r=><circle key={r} cx=\"210\" cy=\"210\" r={r} className=\"radar-ring\"/>)}{Array.from({length:12},(_,i)=>{const a=i*Math.PI/6;return <line key={i} x1=\"210\" y1=\"210\" x2={210+Math.sin(a)*192} y2={210-Math.cos(a)*192} className=\"radar-line\"/>;})}"
+    },
+    {
+      "file": "client/src/Radar.tsx",
+      "line": 6,
+      "text": " <defs><clipPath id=\"radarSector\"><circle cx=\"210\" cy=\"210\" r=\"192\"/></clipPath></defs>{zone.enabled&&<g clipPath=\"url(#radarSector)\"><rect x=\"18\" y=\"18\" width={Math.max(0,192+zone.x_lt*.9)} height={Math.max(0,192-zone.z_gt*.9)} fill=\"#d9a762\" opacity=\".12\"/><text x=\"85\" y=\"165\" className=\"radar-small\">RESTRICTED</text></g>}<circle cx=\"210\" cy=\"210\" r=\"7\" fill=\"#cdf46d\"/><path d=\"m210 197 5 6h-10Z"
+    },
+    {
+      "file": "client/src/Radar.tsx",
+      "line": 8,
+      "text": " {state.radarStatus!=='failed'&&state.tracks.filter(t=>t.active&&t.radar).map(t=>{const x=210+t.x*.9,y=210-t.z*.9;return <g key={t.id} role=\"button\" tabIndex={0} aria-label={`Select radar contact ${t.id}`} onClick={()=>onSelect(t.id)} onKeyDown={e=>{if(e.key==='Enter'||e.key===' ')onSelect(t.id);}} style={{cursor:'pointer'}}><circle cx={x} cy={y} r=\"17\" fill=\"transparent\"/>{selected===t.id&&<circl"
+    },
+    {
+      "file": "client/src/Radar.tsx",
+      "line": 9,
+      "text": " {(state.jammed||state.radarStatus==='failed')&&<><circle cx=\"210\" cy=\"210\" r=\"130\" fill=\"#8c492c\" opacity=\".12\"/><text x=\"210\" y=\"170\" textAnchor=\"middle\" fill=\"#f4ab7a\">{state.radarStatus==='failed'?'RADAR OFFLINE':'RADAR DEGRADED'}</text><text x=\"210\" y=\"188\" textAnchor=\"middle\" className=\"radar-small\">Use EO / IR observations</text></>}"
+    },
+    {
+      "file": "client/src/Radar.tsx",
+      "line": 10,
+      "text": " </svg><div className=\"radar-caption\"><span>ILLUSTRATIVE RANGE</span><span>200 m</span></div></div>;}"
+    },
+    {
+      "file": "client/src/presentation.ts",
+      "line": 15,
+      "text": "export function nextStep(phase:string,target?:Track){return phase==='ready'?'Prepare or start a drill.':phase==='paused'?'Resume the exercise to make decisions.':phase==='complete'?'Review Ghost and your recorded decisions.':!target?'Select a radar contact.':!target.active?'Select an active contact.':target.designated===null?`Review available evidence and designate ${target.id}.`:!target.classific"
+    },
+    {
+      "file": "client/src/presentation.ts",
+      "line": 17,
+      "text": "export function commandLabel(c:InstructorIntent){return c.type==='sensor_fault'?`${c.payload.sensor.toUpperCase()} ${c.payload.mode==='jammed'?'degraded':'offline'}`:c.type==='sensor_restore'?`Restore ${c.payload.sensor.toUpperCase()}`:c.type==='inject_contact'?`Inject ${c.payload.kind==='fiber_fpv'?'no-RF FPV':'hostile quad'}`:c.type==='inject_swarm'?'Inject six-contact swarm':c.type==='environme"
+    },
+    {
+      "file": "client/src/presentation.ts",
+      "line": 31,
+      "text": "export function sensorLabels(s:Pick<Snapshot,'radarStatus'|'rfAvailable'>){return {radar:s.radarStatus==='failed'?'OFFLINE':s.radarStatus==='jammed'?'DEGRADED':'NORMAL',rf:s.rfAvailable?'NORMAL':'OFFLINE'};}"
+    },
+    {
+      "file": "client/src/types.ts",
+      "line": 14,
+      "text": "export type Track = TrackSpec & {x:number;z:number;active:boolean;detected:number|null;designated:number|null;classification:Kind|null;declared:Identity|null;resolved:boolean;impact:boolean;radar:boolean;thermal:boolean;attempts:Effector[]};"
+    },
+    {
+      "file": "client/src/types.ts",
+      "line": 25,
+      "text": " | {type:'sensor_fault';payload:{sensor:'radar';mode:'jammed'|'failed'}|{sensor:'rf';mode:'failed'}}"
+    },
+    {
+      "file": "client/src/types.ts",
+      "line": 26,
+      "text": " | {type:'sensor_restore';payload:{sensor:'radar'|'rf'}}"
+    },
+    {
+      "file": "client/src/types.ts",
+      "line": 34,
+      "text": "export type AvailableEvidence={tick:number;radar:{available:boolean;state:Snapshot['radarStatus'];detected:boolean};rf:{available:boolean;signal:boolean|null;iff:'friendly_reply'|'no_reply'|'unavailable'};visual:{available:boolean;silhouette:'bird'|'fixed_wing'|'multirotor'|null};range_m:number|null;restricted:boolean|null;first_detectable_tick:number|null;prior_classification:string|null;prior_id"
+    },
+    {
+      "file": "client/src/CapabilityTour.tsx",
+      "line": 4,
+      "text": " {title:'Training Ground',text:'Combine radar, RF, IFF and visual evidence before classifying and responding. NEXT shows the current decision step.',href:'/',target:'.sensor-workspace'},"
+    },
+    {
+      "file": "client/src/Benchmark.tsx",
+      "line": 5,
+      "text": "import {Radar} from './Radar';"
+    },
+    {
+      "file": "client/src/Benchmark.tsx",
+      "line": 12,
+      "text": "export default function Benchmark(){const [count,setCount]=useState(8),[tier,setTier]=useState<Quality>('medium'),[auto,setAuto]=useState(false),[state,setState]=useState<Snapshot>(()=>new Simulation(scaleScenario(8)).snapshot()),[running,setRunning]=useState(false),[samples,setSamples]=useState<number[]>([]),[ticks,setTicks]=useState<number[]>([]),[hardware,setHardware]=useState(''),[ram,setRam]="
+    },
+    {
+      "file": "client/src/Benchmark.tsx",
+      "line": 20,
+      "text": " return <main className=\"instructor-page advanced-page\"><header className=\"page-heading\"><h1>Device performance check</h1><a href=\"/system/evidence\">System evidence</a></header><p>Twenty-second rendering test. Run each contact count at a fixed graphics tier; export results with general hardware class and RAM, without device IDs. Auto quality can be tested separately. These fixtures spawn contacts "
+    },
+    {
+      "file": "client/src/Analytics.tsx",
+      "line": 21,
+      "text": " {history&&<><section className=\"panel advanced-card\"><h2>Trainee skill trend</h2><Trend history={history}/></section><section className=\"panel advanced-card\"><h2>Session A vs Session B</h2><div className=\"studio-fields\">{[['A',a,setA],['B',b,setB]].map(([label,id,set])=><label key={label as string}>Session {label as string}<select value={id as string} onChange={e=>(set as (id:string)=>void)(e.tar"
+    },
+    {
+      "file": "client/src/ExerciseStudio.tsx",
+      "line": 30,
+      "text": " <label>Time<select value={form.night?'night':'day'} onChange={e=>update('night',e.target.value==='night')}><option value=\"day\">Day</option><option value=\"night\">Night</option></select></label><label>Sensor fault<select value={form.sensor_fault} onChange={e=>update('sensor_fault',e.target.value)}><option value=\"none\">None</option><option value=\"radar_degraded\">Radar degradation window</option><opt"
+    },
+    {
+      "file": "client/src/ExerciseStudio.tsx",
+      "line": 35,
+      "text": " {preview&&<div className=\"scenario-preview\"><h3>Validated instructor preview</h3><p>{preview.title} \u00b7 {preview.terrain_id}@{preview.terrain_version} \u00b7 fog {preview.fog} \u00b7 {preview.tracks.length} contacts \u00b7 {preview.red_force?.tactic} \u00b7 {preview.doctrine?.id}@{preview.doctrine?.version}</p><table><thead><tr><th>Phase time</th><th>Role</th><th>Contacts</th></tr></thead><tbody>{preview.red_force?.ph"
+    },
+    {
+      "file": "client/src/RapidID.tsx",
+      "line": 16,
+      "text": " return <svg viewBox=\"0 0 240 100\" role=\"img\" aria-label={`${shape??'unavailable'} thermal silhouette`} className=\"rapid-silhouette\"><rect width=\"240\" height=\"100\" fill=\"#151d2a\"/>{shape==='bird'?<path d=\"M22 40 Q70 10 120 57 Q170 10 218 40 Q158 24 120 68 Q80 25 22 40\" fill=\"#edf3ec\"/>:shape==='fixed_wing'?<path d=\"M116 10 H124 L130 40 L220 60 V69 L130 54 L126 85 L156 92 H84 L114 85 L110 54 L20 69"
+    },
+    {
+      "file": "client/src/RapidID.tsx",
+      "line": 49,
+      "text": " {round&&<section className=\"panel advanced-card rapid-card\"><div className=\"page-heading\"><h2>Round {round.index+1} / {session!.round_count}</h2><strong role=\"timer\">{((5000-elapsed)/1000).toFixed(1)} seconds</strong></div><Silhouette shape={round.evidence.visual.available?round.evidence.visual.silhouette:null}/><p>{round.briefing}</p><dl className=\"ghost-evidence\"><div><dt>Radar</dt><dd>{round.e"
+    },
+    {
+      "file": "client/src/observations.ts",
+      "line": 2,
+      "text": "export type Observation={schema_version:1;source:'simulated'|'recorded';tick:number;track_id:string;sensor:'radar'|'thermal'|'rf';available:boolean;detected:boolean;position:{x:number;z:number;altitude:number};sample_tick?:number;rf_signal?:boolean|null;iff?:'friendly_reply'|'no_reply'|'unavailable'};"
+    },
+    {
+      "file": "client/src/observations.ts",
+      "line": 3,
+      "text": "export type RecordedSample={tick:number;x:number;z:number;altitude:number;radar:boolean;thermal:boolean;rf_signal:boolean|null;iff:'friendly_reply'|'no_reply'|'unavailable'};"
+    },
+    {
+      "file": "client/src/observations.ts",
+      "line": 5,
+      "text": "export function simulatedObservations(s:Snapshot):Observation[]{return s.tracks.filter(t=>t.active).flatMap(t=>{const base={schema_version:1 as const,source:'simulated' as const,tick:s.tick,track_id:t.id,position:{x:t.x,z:t.z,altitude:t.altitude}};return [{...base,sensor:'radar' as const,available:s.radarStatus!=='failed',detected:t.radar},{...base,sensor:'thermal' as const,available:true,detected"
+    },
+    {
+      "file": "client/src/observations.ts",
+      "line": 6,
+      "text": "export function recordedObservations(r:Recording,tick:number):Observation[]{if(tick<0||tick>r.duration_ticks)throw new Error('Tick outside recording');return r.tracks.flatMap(t=>{const s=t.samples.filter(p=>p.tick<=tick).at(-1);if(!s||tick-s.tick>30)return [];const base={schema_version:1 as const,source:'recorded' as const,tick,track_id:t.track_id,sample_tick:s.tick,position:{x:s.x,z:s.z,altitude:"
+    },
+    {
+      "file": "client/src/observations.ts",
+      "line": 7,
+      "text": "export function recordedState(r:Recording,tick:number):Snapshot{const observations=recordedObservations(r,tick);const tracks=r.tracks.flatMap(t=>{const radar=observations.find(o=>o.track_id===t.track_id&&o.sensor==='radar'),thermal=observations.find(o=>o.track_id===t.track_id&&o.sensor==='thermal');if(!radar||!thermal||!radar.detected&&!thermal.detected)return [];return [{id:t.track_id,kind:'quad'"
+    },
+    {
+      "file": "client/src/Scene.tsx",
+      "line": 7,
+      "text": "export type Vision='thermal'|'day'|'night';"
+    },
+    {
+      "file": "client/src/Scene.tsx",
+      "line": 11,
+      "text": " const hot=vision==='thermal';const color=hot?palettes[palette].hot:selected?'#cdf46d':vision==='night'?'#b9ff9b':'#bbc6ce';"
+    },
+    {
+      "file": "client/src/Scene.tsx",
+      "line": 16,
+      "text": "function World({state,vision,selected,onFps,terrain='urban_outpost',quality='medium',fog=.2,palette='white',cameraPreset}:{state:Snapshot;vision:Vision;selected:string|null;onFps:(n:number)=>void;terrain?:string;quality?:Quality;fog?:number;palette?:ThermalPalette;cameraPreset?:CameraPreset}){const hot=vision==='thermal';const night=vision!=='day';const bg=hot?palettes[palette].background:night?'#"
+    },
+    {
+      "file": "client/src/Scene.tsx",
+      "line": 24,
+      "text": " {state.tracks.filter(t=>t.active&&(vision==='thermal'?t.thermal||t.detected!==null:true)).map(t=><Aircraft key={t.id} track={t} vision={vision} selected={t.id===selected} palette={palette}/>)}"
+    },
+    {
+      "file": "client/src/sim.ts",
+      "line": 15,
+      "text": " constructor(scenario:Scenario) {this.scenario=scenario;this.state={tick:0,tracks:scenario.tracks.map(t=>({...t,...(scenario.doctrine?{rules:scenario.doctrine.rules}:{}),...position(t as Track,0),active:false,detected:null,designated:null,classification:null,declared:null,resolved:false,impact:false,radar:false,thermal:false,attempts:[]})),jammed:false,radarStatus:'normal',rfAvailable:true,night:s"
+    },
+    {
+      "file": "client/src/sim.ts",
+      "line": 17,
+      "text": " s.tracks.forEach((t,i)=>{t.active=s.tick>=t.spawn&&!t.resolved&&!t.impact;if(!t.active){t.radar=false;t.thermal=false;return;}Object.assign(t,position(t,s.tick));const d=distance(t);"
+    },
+    {
+      "file": "client/src/sim.ts",
+      "line": 19,
+      "text": " const radarFactor=s.radarStatus==='failed'?0:s.jammed?(this.radarOverride==='jammed'?.2:0):1;t.radar=radarFactor>0&&d<(t.radar_range??190)&&sample(spec.seed,s.tick,i,0)<pRadar*radarFactor;t.thermal=d<(t.thermal_range??145)&&sample(spec.seed,s.tick,i,1)<pThermal;"
+    },
+    {
+      "file": "client/src/sim.ts",
+      "line": 20,
+      "text": " if(t.detected===null&&(t.radar||t.thermal))t.detected=s.tick;"
+    },
+    {
+      "file": "client/src/sim.ts",
+      "line": 44,
+      "text": "    for(let i=0;i<count;i++){const n=this.state.tracks.length;const spec:TrackSpec={id:`T${n+1}`,kind,identity:'hostile',rf:kind==='quad',spawn:tick,bearing:(c.payload.bearing+i*5+360)%360,distance:130+Math.floor(sample(this.scenario.seed,c.seq,i,7)*12),speed:kind==='quad'?2.6:3.8,altitude:kind==='quad'?20+i%3*3:10};this.state.tracks.push({...spec,...(this.scenario.doctrine?{rules:this.scenario.do"
+    },
+    {
+      "file": "client/src/sim.ts",
+      "line": 46,
+      "text": "   case 'sensor_fault':if(c.payload.sensor==='radar')this.radarOverride=c.payload.mode;else this.rfOverride=false;break;"
+    },
+    {
+      "file": "client/src/sim.ts",
+      "line": 47,
+      "text": "   case 'sensor_restore':if(c.payload.sensor==='radar')this.radarOverride='normal';else this.rfOverride=true;break;"
+    },
+    {
+      "file": "client/src/Evidence.tsx",
+      "line": 5,
+      "text": "export default function Evidence(){const [data,setData]=useState<EvidenceData|null>(null),[error,setError]=useState('');useEffect(()=>{void api<EvidenceData>('/system/evidence').then(setData).catch(e=>setError(e.message));},[]);return <main id=\"system-evidence\" className=\"instructor-page advanced-page\"><header className=\"page-heading\"><h1>VYUHA system evidence</h1><nav className=\"advanced-nav\"><a "
+    },
+    {
+      "file": "client/src/unit-state.ts",
+      "line": 10,
+      "text": "export function syncMessage(connected:boolean,sync:'synced'|'syncing'|'queued',running:boolean){return !connected?`SERVER OFFLINE \u00b7 ${running?'Session continues locally \u00b7 ':''}Events queued \u00b7 Instructor control unavailable`:sync==='syncing'?'SERVER CONNECTED \u00b7 Syncing events\u2026':sync==='queued'?'SERVER CONNECTED \u00b7 Events queued for verification':'SERVER CONNECTED \u00b7 Sync up to date';}"
+    },
+    {
+      "file": "client/src/Director.tsx",
+      "line": 3,
+      "text": "export function ProfilePanel({profile}:{profile:TrainingProfile|null}){return <section className=\"panel training-profile\"><div className=\"panel-header\"><strong>Training profile</strong><span className=\"status\">SERVER EVIDENCE</span></div>{!profile?<p>Connect to the original local server to load the four-skill profile.</p>:<><p>VYUHA training mastery estimates \u00b7 {profile.sessions} processed session"
+    },
+    {
+      "file": "server/heatmap.py",
+      "line": 43,
+      "text": " return dict(schema_version=1,unit_id=uid,trainee_id=trainee,skills=SKILLS,rows=[dict(family=f,sessions=counts[f],cells=cells[f]) for f in FAMILIES],included_sessions=sum(counts.values()),excluded_sessions=excluded,note='Within-family pooled Beta(1,1) estimates from persisted skill outcomes, not mean trainee mastery. Zero observations have no displayed estimate. Legacy sessions without tactic meta"
+    }
+  ]
+}

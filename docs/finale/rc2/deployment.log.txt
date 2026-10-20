@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-13",
+  "code_commit": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
+  "source_tree_sha256": "5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0",
+  "clean_clone": {
+    "head": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
+    "source_equal": true,
+    "all27_assets_byte_equal": true,
+    "locked_npm_ci": "PASS",
+    "working_tree_clean": true,
+    "locks": {
+      "client/package.json": "93e3af2fa17ba6a59b8dac7b7aeb6746efbf803f4a8eadd869d0ecb8eabcf9ac",
+      "client/package-lock.json": "af0ef67eb4b0c0dd8fa058f2ab5e114525def32c36fd157e8f6621f5e90ed310",
+      "server/requirements.lock.txt": "6e7ed6e13780351b512afcc88fa0ca6fa6644f6e99655af4b8953369ea8c5ee1"
+    },
+    "Python": "Python 3.13.2"
+  },
+  "backup_restore": {
+    "scope": "Fresh synthetic QA database, canonical implementation; online backup and restore to new files, no production database overwritten",
+    "integrity": "ok",
+    "backup_and_restore_all_tables_logically_equal": true,
+    "live_completed_cards_attribution_chunks_outcomes_preserved": true,
+    "live_volatile_telemetry_not_claimed_equal": true,
+    "logical_dump_sha256": "7d38695fdc1b576c70b7e30e1676e2c6d69a6a2878aa0deaa020cf40374ab528"
+  },
+  "crew_learning_isolation": {
+    "completed_shared_sessions": 3,
+    "individual_skill_outcomes": 0
+  },
+  "tls": {
+    "scope": "Actual current macOS HTTPS process; explicit private CA and hostname verification, no browser trust-store change, not native Linux/Windows/phone acceptance",
+    "requests": [
+      {
+        "host": "localhost",
+        "route": "/api/v1/health",
+        "status": 200,
+        "bytes": 103,
+        "body_sha256": "1d162b2a63a4677db72d780ba850ddc0a68b0ae5d644d1a51acc0b7615cb65d6",
+        "certificate_and_hostname_verified": true
+      },
+      {
+        "host": "localhost",
+        "route": "/",
+        "status": 200,
+        "bytes": 659,
+        "body_sha256": "b2b7e099df64d65596046a12ec70cc08d8a853879bdf92984949b00550049dd4",
+        "certificate_and_hostname_verified": true
+      },
+      {
+        "host": "127.0.0.1",
+        "route": "/api/v1/health",
+        "status": 200,
+        "bytes": 103,
+        "body_sha256": "1d162b2a63a4677db72d780ba850ddc0a68b0ae5d644d1a51acc0b7615cb65d6",
+        "certificate_and_hostname_verified": true
+      },
+      {
+        "host": "127.0.0.1",
+        "route": "/",
+        "status": 200,
+        "bytes": 659,
+        "body_sha256": "b2b7e099df64d65596046a12ec70cc08d8a853879bdf92984949b00550049dd4",
+        "certificate_and_hostname_verified": true
+      }
+    ],
+    "default_untrusted_ca_rejected": true,
+    "verification_disabled": false
+  },
+  "fresh_local_requests": {
+    "profile_200": true,
+    "unnecessary_history_request": false,
+    "unauthenticated_catalogue_request": false,
+    "HTTP_401_count": 0,
+    "HTTP_404_count": 0,
+    "scope": "Actual Chrome fresh local landing and Crew navigation; expected auth session 200/configured:false"
+  }
+}

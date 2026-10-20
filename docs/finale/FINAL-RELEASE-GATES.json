@@ -1,0 +1,193 @@
+{
+  "schema_version": 2,
+  "recorded_date": "2026-10-15",
+  "scope": "ENGINE_BRANCH_VERIFIED; FINAL_MERGED_ACCEPTANCE_OPEN",
+  "inspected_head": "6a0100c954fdd68ddba06ee119f12a5dc94b44f9",
+  "branch": "feature/vyuha-engine-closure",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "7eb3dad32c506c58470b11bd72c4f95539359946b24e586fc154659b485695f5",
+  "source_hash_note": "Exact engine runtime/build/deployment inputs match all298 final regression hashes. Final merged candidate must receive a new source manifest.",
+  "candidate_code_commit": null,
+  "proposed_release_candidate": "v1.1.0-rc.3",
+  "release_candidate_created": false,
+  "stable_approval": false,
+  "software_RC_gate_status": "OPEN",
+  "final_audit_score": null,
+  "historical_external_rc2_score": 89,
+  "historical_internal_rc1_provisional_score": 84,
+  "latest_combined_checkpoint": {
+    "status": "PASS_ENGINE_BRANCH_SCOPED; FRONTEND_INTEGRATION_PENDING",
+    "validated_at_utc": "2026-10-15T18:25:05.663102+00:00",
+    "code_commit": "6a0100c954fdd68ddba06ee119f12a5dc94b44f9",
+    "branch": "feature/vyuha-engine-closure",
+    "source_hash_policy": "vyuha-source-inputs-v2",
+    "source_tree_sha256": "7eb3dad32c506c58470b11bd72c4f95539359946b24e586fc154659b485695f5",
+    "source_inputs": 298,
+    "backend": {
+      "passed": 697,
+      "failed": 0,
+      "seconds": 443.57
+    },
+    "frontend": {
+      "passed": 268,
+      "failed": 0,
+      "milliseconds": 48315.981125
+    },
+    "parity": "All frontend parity groups, including Finale544, sensor1920, response288, motion/Director/original/historical groups passed; counts overlap test totals.",
+    "lint": "PASS",
+    "format": "PASS",
+    "production_build": {
+      "status": "PASS",
+      "assets": 28,
+      "cache": "d5bc57078750"
+    },
+    "history18": {
+      "historical_completed": 18,
+      "additional_current_completed": 7,
+      "all_current_completed_readable": 25,
+      "stored_engine_versions": {
+        "vyuha-0.2.0": 19,
+        "vyuha-0.4.0": 2,
+        "vyuha-0.1.0": 4
+      },
+      "exact_stored_cards_preserved": true,
+      "all_verified_aar_ghost_timelines_readable": true,
+      "all_four_skill_profiles_readable": true,
+      "heatmap_included_current_sessions": 25,
+      "heatmap_included_rapid_sessions": 1,
+      "heatmap_included_total_sessions": 26,
+      "shared_completed_sessions_excluded_from_individual_heatmap": 0,
+      "historical_immutable_fields_sha256": "cce52299fb319073feb81fc0d3f2420a867ff7393421ca9f69940e9aef051b45",
+      "current_immutable_fields_sha256": "fec9cce75ffe64332740c60fa3793e4a4997ea16ea0d489354ab17f1d4449f3e",
+      "production_database_unchanged": true,
+      "scope": "Aggregate only; private records stay in a temporary backup outside Git. Protected analytics use an ephemeral officer credential."
+    },
+    "history22": {
+      "historical_completed": 22,
+      "additional_current_completed": 3,
+      "all_current_completed_readable": 25,
+      "stored_engine_versions": {
+        "vyuha-0.2.0": 19,
+        "vyuha-0.4.0": 2,
+        "vyuha-0.1.0": 4
+      },
+      "exact_stored_cards_preserved": true,
+      "all_verified_aar_ghost_timelines_readable": true,
+      "all_four_skill_profiles_readable": true,
+      "heatmap_included_current_sessions": 25,
+      "heatmap_included_rapid_sessions": 1,
+      "heatmap_included_total_sessions": 26,
+      "shared_completed_sessions_excluded_from_individual_heatmap": 0,
+      "historical_immutable_fields_sha256": "f9dc8cd8d96e059d03f8759eb9fb80a440d94241f0e6aea302fbc0bee718ea44",
+      "current_immutable_fields_sha256": "fec9cce75ffe64332740c60fa3793e4a4997ea16ea0d489354ab17f1d4449f3e",
+      "production_database_unchanged": true,
+      "scope": "Aggregate only; private records stay in a temporary backup outside Git. Protected analytics use an ephemeral officer credential."
+    },
+    "live_acceptance": "LIVE-ACCEPTANCE-FINAL.json",
+    "renderer_long_run": {
+      "contacts": 200,
+      "seconds": 180,
+      "graphics": "medium",
+      "auto_quality": false,
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0.5,
+      "p95_sim_tick_ms": 1
+    },
+    "raw_log_sha256": {
+      "backend.log": "dd26190a61ffa9375b1aee261fd0f77ae9d16a14141a86536da3220a765012e8",
+      "frontend.log": "3d90cbcd3676e7a5ee4a9008148d417d4cbb3df75705a8d30dd5603b4d8d35f8",
+      "lint.log": "3d184e062e21a463c8c5792bc31ae1a5f7ec671a8e0384ba70a5333f526fe1fd",
+      "format.log": "f74e8531c0a81a8a2e1f68f998d36056af29e757632c068e77a1937d8c83fb6c",
+      "build.log": "cf0feac9a6d15076b8443285d9c1bbee60c933475815db8712bef5b03ab3e995"
+    },
+    "software_RC_gate": "OPEN: friend UI still in progress; no reviewed integration commit",
+    "stable_approval": false,
+    "new_RC_created": false,
+    "physical_exact_candidate": "PENDING",
+    "new_weighted_score": null
+  },
+  "checkpoint_not_final_source_validation": false,
+  "gates": [
+    {
+      "id": "G01",
+      "requirement": "Complete backend/frontend, lint/format and production build after final source edits",
+      "status": "PASS_ENGINE_BRANCH; INTEGRATION_PENDING",
+      "evidence": "697 backend443.57s /268 frontend48315.981125ms,zero failures;all included parity,lint,format,build28/cache d5bc57078750 at6a/source7eb3. Full rerun after friend integration."
+    },
+    {
+      "id": "G02",
+      "requirement": "All Python/TypeScript parity, original18/stored22 historical scorecards and profile isolation",
+      "status": "PASS_ENGINE_BRANCH; INTEGRATION_PENDING",
+      "evidence": "All included parity groups pass;18baseline and22stored cards exact;25ordinary cards/AAR/Ghost and4profiles readable;25training+1RapidID heatmap. Recheck after integration."
+    },
+    {
+      "id": "G03",
+      "requirement": "Authorization/security, Crew lifecycle/history, immutable replay, populated Transfer/restore",
+      "status": "PASS_ENGINE_BRANCH; INTEGRATION_PENDING",
+      "evidence": "140 actual401 requests over35protected method/route pairs;4explicit private-CA hostname HTTPS successes/default rejection.7session Transfer:12Fusion,2notes,3Crew archives,dedup,tamper422atomic,forwarding,all-table restore/no capability import. Crew isolation/security and replay immutability in697 suite. Final integrated workflows remain."
+    },
+    {
+      "id": "G04",
+      "requirement": "Actual browser meaningful-state workflows and responsive/accessibility acceptance",
+      "status": "PASS_ENGINE_WORKFLOWS; UI_INTEGRATION_PENDING",
+      "evidence": "Actual renderer day/thermal/night,radar-fail/restore,selection,camera/replay/tactical,verified completion; fresh actual browser process outage queued3decisions/3Fusion and verified Ghost. Pre-helper application/build bytes unchanged. Friend owns outer routes,100%responsive/accessibility and optional renderer-control embedding; final integrated meaningful-state review required."
+    },
+    {
+      "id": "G05",
+      "requirement": "Bounded current performance/reconstruction/lifecycle/recovery evidence",
+      "status": "PASS_BOUNDED_ENGINE; INTEGRATION_PENDING",
+      "evidence": "FixedMedium autoOFF20s8/25/50/100/200 all60FPSmedian;180s200 at60FPS,.5msmedian/1ms p95 simulation;actual DPR disclosed. Three direct+HTTP reconstruction samples/count;200medians9.052/8.520s,not subsecond.39legacy/reference load sessions,receipt latency not APPLIED. Six occupied-specific-address cases plus restart tests and real outage recovery. Browser first paint unmeasured. Repeat relevant merged-source performance."
+    },
+    {
+      "id": "G06",
+      "requirement": "Matching clean clone, local assets, locks, source policy-v2 manifest and exact remote pin",
+      "status": "PASS_ENGINE_CLONE; INTEGRATION_PENDING",
+      "evidence": "Fresh GitHub clone/fresh Python+npm environments,normal remote fast-forward to6a/source7eb3,trackedclean,28production files byte-identical,lockfiles,pipcheck. Setup network disclosed. Engine evidence separately source-pinned; product evidence.json remains historical RC2. Final merged clean clone/remote/seal required."
+    },
+    {
+      "id": "G07",
+      "requirement": "Independent integrated engineering and actual rendered UI review;209-row closure",
+      "status": "PASS_SCOPED_REVIEWS; INTEGRATED_REVIEW_PENDING",
+      "evidence": "Independent radar/render guards,actual labelled renderer screenshots,specific-address startup and temporary-credential/load-helper follow-up reviews;reproduced blockers fixed.211-row reconciliation preserves all207/209 and93 identities. No fresh whole-product weighted grade. Independent final integrated engineering and rendered UI review remain."
+    },
+    {
+      "id": "G08",
+      "requirement": "Exact-candidate physical Android, separate-device LAN, trusted HTTPS/cached reload, WAN-off",
+      "status": "PENDING_PHYSICAL",
+      "evidence": "Exact-final-candidate Android,separate-device LAN,trusted HTTPS/cached reload and actual WAN-off remain pending. Prior Mac/Android LAN and user-reported historical WAN-off retain date/version scope; loopback or viewport tests are not device validation."
+    },
+    {
+      "id": "G09",
+      "requirement": "Exact-candidate native Linux/Windows install/start/restart/backup/restore",
+      "status": "PENDING_PHYSICAL",
+      "evidence": "Native RC1 Arch Linux acceptance is historical. Exact-final-candidate Linux retest and Windows native execution/install/start/restart/backup/restore remain pending."
+    }
+  ],
+  "blocking_scope": "G01\u2013G07 require final merged-source acceptance before an immutable RC. Current engine scoped passes below must be retained. G08/G09 remain final stable gates; explicitly deferred scientific features are not invented software failures.",
+  "open_runnable_software_acceptance_items": [
+    "G01",
+    "G02",
+    "G03",
+    "G04",
+    "G05",
+    "G06",
+    "G07"
+  ],
+  "historical_receipts": "rc2/pre-ultimate-acceptance/",
+  "protected_refs": [
+    "release/v1.0.1",
+    "v1.0.1",
+    "v1.1.0-rc.1",
+    "v1.1.0-rc.2"
+  ],
+  "candidate_code_commit_note": "Engine code is committed and remotely verified; candidate commit remains unset until frontend readiness and final integration acceptance. No new tag.",
+  "software_acceptance_still_open": true,
+  "engine_code_commit": "6a0100c954fdd68ddba06ee119f12a5dc94b44f9",
+  "frontend_readiness": {
+    "branch": "feature/vyuha-premium-ui",
+    "observed_pushed_commit": "8aff5410bb070af7ff74c441c7524d54ede749d0",
+    "owner_report": "STILL IN PROGRESS",
+    "merged": false,
+    "readiness_note": "User reported still in progress at previous5189335; latest remote tip advanced without ready/tested authorization. No merge."
+  }
+}

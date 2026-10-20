@@ -1,0 +1,29 @@
+{
+  "scope": "Actual loopback HTTP receiving installation on a fresh locked-dependency GitHub clone, after a separate empty-database legacy walkthrough. Exact browser-saved signed JSON input. No physical Windows/Linux/phone or human test.",
+  "recovery_retry": {
+    "inserted_sessions": 0,
+    "skipped_sessions": 24,
+    "recordings": 0,
+    "profile_basis": "Rebuilt only from validated imported outcome ledger; supplied profile snapshots are informational.",
+    "integrity": "HMAC verified with local shared key; donor identity/authenticity not attested"
+  },
+  "duplicate": {
+    "inserted_sessions": 0,
+    "skipped_sessions": 24,
+    "recordings": 0,
+    "profile_basis": "Rebuilt only from validated imported outcome ledger; supplied profile snapshots are informational.",
+    "integrity": "HMAC verified with local shared key; donor identity/authenticity not attested"
+  },
+  "initial_receiver_sessions": 1,
+  "receiver_sessions_after_timed_out_initial_import": 25,
+  "initial_success_response_lost": true,
+  "browser_export_file_sha256": "5618324fbeaf7c6534dd687f681d117c9fe55a8aa3927ca32008329bd0fb3f68",
+  "verified_original_cards_preserved": 24,
+  "teaching_annotations_preserved": 1,
+  "Fusion_receipts_preserved": 3,
+  "Director_v2_metadata_records": 3,
+  "imported_crew_history_sessions": 1,
+  "imported_live_crews": 0,
+  "imported_role_capabilities": 0,
+  "exact_forwarded_payload": true
+}

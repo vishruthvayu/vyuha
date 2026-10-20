@@ -1,0 +1,25 @@
+{
+  "runtime_commit": "126aab44a83fec76b782d5a6acbec9b8dc454bce",
+  "polish_parent": "805de4b73d28a3f9d693420ee76f6919ba10560c",
+  "base": "e07fb6a07916ad4f0fa48e88a484534b040decfa",
+  "protected_refs": {
+    "release/v1.0.1": "2ca96105044ad6a14952d74db619e20006c26eca",
+    "v1.0.1": "4696b0583238d07eb9fcfcec128a437caf28e17b",
+    "v1.1.0-rc.1": "bb5150986b76a402cec99223eee95578e845bd42",
+    "v1.1.0-rc.2": "60c1be9a720d508775bba353a9f3fe370cd8d24a"
+  },
+  "unchanged_from_combined_base": {
+    "server": true,
+    "scripts": true,
+    "examples": true,
+    "client/src/App.tsx": true,
+    "client/src/sim.worker.ts": true,
+    ".github/workflows/check.yml": true,
+    "client/src/main.tsx": true,
+    "client/src/premium/premium.css": true
+  },
+  "owner_original_wip_preserved": true,
+  "owner_original_head": "db0ff23a67692d3db5dce07a031d17ea50a409b3",
+  "renderer_hashes_match_polish_measurements": true,
+  "latest_code_changes_from_polish": "Three-line degraded-status color and short-height media breakpoint only"
+}

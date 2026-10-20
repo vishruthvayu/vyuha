@@ -1,0 +1,135 @@
+{
+  "tested_runtime_commit": "a87842bd7b99537a540fb7c6adb08f475f8eaed1",
+  "branch": "feature/vyuha-final-hardening",
+  "base": "db0ff23a67692d3db5dce07a031d17ea50a409b3",
+  "status": "REVIEWABLE_CHECKPOINT; HUMAN VISUAL AND COMBINED DRILL ACCEPTANCE OPEN",
+  "runtime_inventory_sha256": "d3010762b62eaa53c9c1b7808f039d4ee30cf20b49cb67617e468cafc9509d7f",
+  "frontend": {
+    "passed": 301,
+    "failed": 0,
+    "parity": "included",
+    "lint": "PASS",
+    "format": "PASS",
+    "build": "PASS",
+    "offline_asset_urls": 36
+  },
+  "backend": {
+    "fresh_run_in_this_continuation": true,
+    "passed": 708,
+    "failed": 0,
+    "duration_seconds": 259.37,
+    "warnings": 1,
+    "warning": "Existing Starlette HTTPX TestClient deprecation",
+    "all_tracked_server_bytes_equal_tested_inventory": true,
+    "scope": "No server bytes changed during or after this run; final unit-picker follow-up changes frontend only",
+    "log": "analytics-context/backend-tests.txt"
+  },
+  "browser": {
+    "source_commit": "a87842bd7b99537a540fb7c6adb08f475f8eaed1",
+    "fixture_widths": [
+      360,
+      390,
+      428,
+      768,
+      1024,
+      1280,
+      1440,
+      1920
+    ],
+    "real_api_widths": [
+      360,
+      390,
+      428,
+      768,
+      1024,
+      1280,
+      1440,
+      1920
+    ],
+    "fixture_axe_scans": 8,
+    "real_api_axe_scans": 8,
+    "axe_violations": 0,
+    "non_read_requests": 0,
+    "evidence_unchanged": true,
+    "synthetic_sessions": 5,
+    "no_document_overflow": true,
+    "phone_comparison_requires_horizontal_scroll": false,
+    "manual_checks_incomplete": true,
+    "full_screen_reader_audit": false
+  },
+  "prior_browser_evidence": {
+    "scope": "Retained previous-source route/search/AAR captures; not newly repeated across all routes",
+    "shell_matrix_cases": 80,
+    "shell_axe_scans": 20,
+    "timeline_widths": [
+      360,
+      390,
+      428,
+      768,
+      1024,
+      1280,
+      1440,
+      1920
+    ],
+    "timeline_source_commit": "de30dfa1de7e0d1c59bb257f3020c2f5f074dc36"
+  },
+  "protected_drill_files_changed": [],
+  "not_merged": "feature/vyuha-drill-experience-rescue",
+  "observed_drill_tip": "6c4518c5dcff14582c368fc3d487ad42b3e0324a",
+  "release_candidate": null,
+  "audit": {
+    "rows": 211,
+    "inherited_status_counts": {
+      "VERIFIED COMPLETE": 93,
+      "PARTIAL": 71,
+      "DEFERRED": 29,
+      "EXTERNALLY BLOCKED": 17,
+      "NOT APPLICABLE": 1
+    },
+    "new_scoped_findings": "Analytics missing-record context, browser navigation and phone comparison verified; no unrelated audit promotions"
+  },
+  "remaining": [
+    "Direct user visual walkthrough",
+    "Drill developer ready-SHA and integration by main Codex",
+    "Full merged-source acceptance",
+    "Private 18/22-session history databases unavailable",
+    "Physical platform/LAN HTTPS/WAN-off and scientific validation"
+  ],
+  "clean_clone": {
+    "source_commit": "a87842bd7b99537a540fb7c6adb08f475f8eaed1",
+    "clone_source": "GitHub remote branch",
+    "clone": "/var/tmp/vyuha-analytics-clean-a87842b",
+    "checks": [
+      {
+        "check": "clone",
+        "exit_code": 0
+      },
+      {
+        "check": "install",
+        "exit_code": 0
+      },
+      {
+        "check": "test",
+        "exit_code": 0
+      },
+      {
+        "check": "lint",
+        "exit_code": 0
+      },
+      {
+        "check": "format",
+        "exit_code": 0
+      },
+      {
+        "check": "build",
+        "exit_code": 0
+      }
+    ],
+    "all_commands_passed": true,
+    "frontend_passed": 301,
+    "native_assets_identical": true,
+    "asset_files": 36,
+    "python_scope": "Reused prepared pinned interpreter; parity imports cloned server source; no clean Python install or Docker rebuild claimed",
+    "receipt": "analytics-context/clean-clone-receipt.json"
+  }
+}

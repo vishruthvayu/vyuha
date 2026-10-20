@@ -1,0 +1,149 @@
+- link "Skip to workspace":
+  - /url: "#workspace-content"
+- banner:
+  - link "VYUHA home":
+    - /url: /
+    - strong: VYUHA
+  - navigation "Primary workspaces":
+    - link "Training":
+      - /url: /
+    - link "Review":
+      - /url: /?view=aar
+    - link "Crew":
+      - /url: /crew
+    - link "Instructor":
+      - /url: /instructor
+    - link "Analytics":
+      - /url: /analytics
+  - button "Find workspace":
+    - generic: Find workspace
+    - generic: ⌘ / Ctrl K
+  - button "Operator guide":
+    - generic: Operator guide
+  - button "Workspaces":
+    - generic: Workspaces
+- banner:
+  - text: Workspace
+  - generic: / Shared crew
+- main:
+  - generic: TWO-ROLE TRAINING
+  - heading "Shared Crew Mode" [level=1]
+  - paragraph: Spotter designates. Responder classifies and selects a simulated response. Both work in one authoritative server exercise; attribution and the shared result stay together.
+  - region "Connected role":
+    - generic: TRAINEE ACCESS
+    - heading "Connected role" [level=2]
+    - form "Connect assigned crew role":
+      - text: Crew ID
+      - textbox "Crew ID" [disabled]: crew_9a9652b45e7e4bcdbd0b
+      - text: Role code
+      - textbox "Role code" [disabled]: <redacted>
+      - button "Leave role"
+    - generic "Reconnecting or replacing a role code"
+  - region "Responder station":
+    - generic: SHARED EXERCISE · RESPONDER
+    - heading "RESPONSE · Unified final two-role QA" [level=2]
+    - paragraph: Classify designated contacts and choose a simulated response from the evidence.
+    - generic: Completed
+    - paragraph: T+39.67s / 180s · completed · Completed
+    - figure "Observed Designated Classified Rings every 250 m":
+      - img "Shared observed crew picture · 8 reported contacts · outer ring 1000 m":
+        - generic: 500 m
+        - generic: 1000 m
+        - generic: T1
+        - generic: T2
+        - generic: T3
+        - generic: T4
+        - generic: T5
+        - generic: T6
+        - generic: T7
+        - generic: T8
+      - generic: Observed
+      - generic: Designated
+      - generic: Classified
+      - generic: Rings every 250 m
+    - generic "Shared clock and evidence scope"
+    - status: Exercise complete. Review the shared result and accepted decisions.
+    - text: Observed contact
+    - combobox "Observed contact":
+      - option "Select contact"
+      - option "T1 · bird · 122m" [selected]
+      - option "T2 · unknown · 123m"
+      - option "T3 · unknown · 124m"
+      - option "T4 · unknown · 125m"
+      - option "T5 · unknown · 126m"
+      - option "T6 · unknown · 127m"
+      - option "T7 · unknown · 128m"
+      - option "T8 · unknown · 129m"
+    - group "Current observation of T1":
+      - term: Radar
+      - definition: confirmed
+      - term: EO
+      - definition: identify
+      - term: IR
+      - definition: recognise
+      - term: RF
+      - definition: not detected
+      - term: IFF
+      - definition: no_reply
+      - term: Designation
+      - definition: recorded
+      - paragraph: No IFF reply does not prove hostility.
+    - group "Shared classification":
+      - generic: Shared classification
+      - text: Contact type
+      - combobox "Contact type":
+        - option "bird" [selected]
+        - option "quad"
+        - option "fixed_wing"
+        - option "fiber_fpv"
+      - text: Identity
+      - combobox "Identity":
+        - option "hostile"
+        - option "friendly"
+        - option "neutral" [selected]
+      - button "Confirm shared classification" [disabled]
+    - group "Simulated response":
+      - generic: Simulated response
+      - button "Hold fire" [disabled]
+      - button "RF jammer" [disabled]
+      - button "Kinetic response" [disabled]
+    - region "Recorded coordination · 3 accepted decisions":
+      - heading "Recorded coordination · 3 accepted decisions" [level=3]:
+        - text: Recorded coordination
+        - generic: · 3 accepted decisions
+      - region "Accepted crew decisions, oldest first":
+        - list:
+          - generic: Order 1
+          - generic: WATCH · spotter
+          - generic: Order 2
+          - generic: RESPONSE · responder · you
+          - generic: Order 3
+          - generic: RESPONSE · responder · you
+    - heading "Shared coordination review" [level=3]
+    - paragraph: "3 accepted decisions · 3 attributed · 1 contacts. Unattributed: 0."
+    - region "Shared coordination by member and role":
+      - table:
+        - rowgroup:
+          - row "Member / role Designations Classifications Responses":
+            - columnheader "Member / role"
+            - columnheader "Designations"
+            - columnheader "Classifications"
+            - columnheader "Responses"
+        - rowgroup:
+          - row "RESPONSE · responder 0 1 1":
+            - rowheader "RESPONSE · responder"
+            - cell "0"
+            - cell "1"
+            - cell "1"
+          - row "WATCH · spotter 1 0 0":
+            - rowheader "WATCH · spotter"
+            - cell "1"
+            - cell "0"
+            - cell "0"
+    - paragraph: "Median designation → classification: 8.13s. Classification → response: 0.27s."
+    - paragraph: Authoritative logical ticks; pause and outage wall time excluded. First accepted stage per contact.
+    - paragraph: Coordination counts and timing only. No independent individual tactical score, skill-profile credit or operational competence inference.
+    - 'heading "Server-verified shared result: 0/100" [level=3]'
+    - link "Open officer AAR (sign-in required)":
+      - /url: /?session=eee7a81e-8551-4993-86be-4513c3b5d833&review=officer
+  - generic "Officer workspace · setup, role access and shared history"

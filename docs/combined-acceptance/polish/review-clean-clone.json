@@ -1,0 +1,14 @@
+{
+  "commit": "126aab44a83fec76b782d5a6acbec9b8dc454bce",
+  "clean_clone_commit": "126aab44a83fec76b782d5a6acbec9b8dc454bce",
+  "source_tree_sha256": "665de9611cdd96f9316b2889326f7711efa56033bd16b6b6fcffca93d72da13d",
+  "production_assets": 72,
+  "all_asset_sha256_identical": true,
+  "frontend_pass": 347,
+  "fail": 0,
+  "skipped": 0,
+  "cancelled": 0,
+  "command": "VYUHA_TEST_PYTHON=<prepared Python3.12 interpreter> ./node_modules/.bin/tsx --test --test-concurrency=2 src/*.test.ts src/*.test.tsx",
+  "dependency_install": "npm ci --cache /private/tmp/vyuha-npm-cache --no-audit --no-fund",
+  "scope": "Independent GitHub clone fetched normally; own npm installation. Parity imports cloned Python source using the prepared locked-dependency interpreter. No private production data copied."
+}

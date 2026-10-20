@@ -1,0 +1,692 @@
+{
+  "time_utc": "2026-10-16T10:30:23.144252+00:00",
+  "source_base": "b0d594c2a84e7df025913a81a353c33625e091ec",
+  "scope": "Synthetic QA data; default browser zoom, device scale1; source working tree under active edits; no physical or full screen-reader acceptance.",
+  "results": [
+    {
+      "route": "analytics",
+      "width": 360,
+      "height": 900,
+      "dimensions": {
+        "viewport": 360,
+        "document": 360,
+        "height": 900
+      },
+      "axe": {
+        "violations": [],
+        "incomplete": 2
+      }
+    },
+    {
+      "route": "instructor",
+      "width": 360,
+      "height": 900,
+      "dimensions": {
+        "viewport": 360,
+        "document": 360,
+        "height": 2318
+      },
+      "axe": {
+        "violations": [],
+        "incomplete": 2
+      }
+    },
+    {
+      "route": "studio",
+      "width": 360,
+      "height": 900,
+      "dimensions": {
+        "viewport": 360,
+        "document": 360,
+        "height": 2914
+      },
+      "axe": {
+        "violations": [],
+        "incomplete": 0
+      }
+    },
+    {
+      "route": "transfer",
+      "width": 360,
+      "height": 900,
+      "dimensions": {
+        "viewport": 360,
+        "document": 360,
+        "height": 1911
+      },
+      "axe": {
+        "violations": [],
+        "incomplete": 0
+      }
+    },
+    {
+      "route": "ghost",
+      "width": 360,
+      "height": 900,
+      "dimensions": {
+        "viewport": 360,
+        "document": 360,
+        "height": 10075
+      },
+      "axe": {
+        "violations": [],
+        "incomplete": 1
+      },
+      "readiness": "Run hypothetical branch button attached; server-verified review loaded"
+    },
+    {
+      "route": "evidence",
+      "width": 360,
+      "height": 900,
+      "dimensions": {
+        "viewport": 360,
+        "document": 360,
+        "height": 1024
+      },
+      "axe": {
+        "violations": [],
+        "incomplete": 0
+      }
+    },
+    {
+      "route": "compliance",
+      "width": 360,
+      "height": 900,
+      "dimensions": {
+        "viewport": 360,
+        "document": 360,
+        "height": 7206
+      },
+      "axe": {
+        "violations": [],
+        "incomplete": 1
+      }
+    },
+    {
+      "route": "analytics",
+      "width": 390,
+      "height": 900,
+      "dimensions": {
+        "viewport": 390,
+        "document": 390,
+        "height": 2347
+      }
+    },
+    {
+      "route": "instructor",
+      "width": 390,
+      "height": 900,
+      "dimensions": {
+        "viewport": 390,
+        "document": 390,
+        "height": 2219
+      }
+    },
+    {
+      "route": "studio",
+      "width": 390,
+      "height": 900,
+      "dimensions": {
+        "viewport": 390,
+        "document": 390,
+        "height": 2914
+      }
+    },
+    {
+      "route": "transfer",
+      "width": 390,
+      "height": 900,
+      "dimensions": {
+        "viewport": 390,
+        "document": 390,
+        "height": 1840
+      }
+    },
+    {
+      "route": "ghost",
+      "width": 390,
+      "height": 900,
+      "dimensions": {
+        "viewport": 390,
+        "document": 390,
+        "height": 9810
+      },
+      "readiness": "Run hypothetical branch button attached; server-verified review loaded"
+    },
+    {
+      "route": "evidence",
+      "width": 390,
+      "height": 900,
+      "dimensions": {
+        "viewport": 390,
+        "document": 390,
+        "height": 986
+      }
+    },
+    {
+      "route": "compliance",
+      "width": 390,
+      "height": 900,
+      "dimensions": {
+        "viewport": 390,
+        "document": 390,
+        "height": 6902
+      }
+    },
+    {
+      "route": "analytics",
+      "width": 428,
+      "height": 900,
+      "dimensions": {
+        "viewport": 428,
+        "document": 428,
+        "height": 2320
+      }
+    },
+    {
+      "route": "instructor",
+      "width": 428,
+      "height": 900,
+      "dimensions": {
+        "viewport": 428,
+        "document": 428,
+        "height": 2152
+      }
+    },
+    {
+      "route": "studio",
+      "width": 428,
+      "height": 900,
+      "dimensions": {
+        "viewport": 428,
+        "document": 428,
+        "height": 2853
+      }
+    },
+    {
+      "route": "transfer",
+      "width": 428,
+      "height": 900,
+      "dimensions": {
+        "viewport": 428,
+        "document": 428,
+        "height": 1742
+      }
+    },
+    {
+      "route": "ghost",
+      "width": 428,
+      "height": 900,
+      "dimensions": {
+        "viewport": 428,
+        "document": 428,
+        "height": 9534
+      },
+      "readiness": "Run hypothetical branch button attached; server-verified review loaded"
+    },
+    {
+      "route": "evidence",
+      "width": 428,
+      "height": 900,
+      "dimensions": {
+        "viewport": 428,
+        "document": 428,
+        "height": 5418
+      }
+    },
+    {
+      "route": "compliance",
+      "width": 428,
+      "height": 900,
+      "dimensions": {
+        "viewport": 428,
+        "document": 428,
+        "height": 6611
+      }
+    },
+    {
+      "route": "analytics",
+      "width": 768,
+      "height": 900,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "height": 1901
+      }
+    },
+    {
+      "route": "instructor",
+      "width": 768,
+      "height": 900,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "height": 1695
+      }
+    },
+    {
+      "route": "studio",
+      "width": 768,
+      "height": 900,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "height": 2155
+      }
+    },
+    {
+      "route": "transfer",
+      "width": 768,
+      "height": 900,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "height": 1627
+      }
+    },
+    {
+      "route": "ghost",
+      "width": 768,
+      "height": 900,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "height": 6969
+      },
+      "readiness": "Run hypothetical branch button attached; server-verified review loaded"
+    },
+    {
+      "route": "evidence",
+      "width": 768,
+      "height": 900,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "height": 4191
+      }
+    },
+    {
+      "route": "compliance",
+      "width": 768,
+      "height": 900,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "height": 4304
+      }
+    },
+    {
+      "route": "analytics",
+      "width": 1024,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1024,
+        "document": 1024,
+        "height": 1895
+      }
+    },
+    {
+      "route": "instructor",
+      "width": 1024,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1024,
+        "document": 1024,
+        "height": 1685
+      }
+    },
+    {
+      "route": "studio",
+      "width": 1024,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1024,
+        "document": 1024,
+        "height": 2078
+      }
+    },
+    {
+      "route": "transfer",
+      "width": 1024,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1024,
+        "document": 1024,
+        "height": 1115
+      }
+    },
+    {
+      "route": "ghost",
+      "width": 1024,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1024,
+        "document": 1024,
+        "height": 6267
+      },
+      "readiness": "Run hypothetical branch button attached; server-verified review loaded"
+    },
+    {
+      "route": "evidence",
+      "width": 1024,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1024,
+        "document": 1024,
+        "height": 3902
+      }
+    },
+    {
+      "route": "compliance",
+      "width": 1024,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1024,
+        "document": 1024,
+        "height": 4129
+      }
+    },
+    {
+      "route": "analytics",
+      "width": 1280,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1280,
+        "document": 1280,
+        "height": 1905
+      }
+    },
+    {
+      "route": "instructor",
+      "width": 1280,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1280,
+        "document": 1280,
+        "height": 1692
+      }
+    },
+    {
+      "route": "studio",
+      "width": 1280,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1280,
+        "document": 1280,
+        "height": 1852
+      }
+    },
+    {
+      "route": "transfer",
+      "width": 1280,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1280,
+        "document": 1280,
+        "height": 1122
+      }
+    },
+    {
+      "route": "ghost",
+      "width": 1280,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1280,
+        "document": 1280,
+        "height": 5274
+      },
+      "readiness": "Run hypothetical branch button attached; server-verified review loaded"
+    },
+    {
+      "route": "evidence",
+      "width": 1280,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1280,
+        "document": 1280,
+        "height": 3760
+      }
+    },
+    {
+      "route": "compliance",
+      "width": 1280,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1280,
+        "document": 1280,
+        "height": 3637
+      }
+    },
+    {
+      "route": "analytics",
+      "width": 1440,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "height": 1892
+      },
+      "axe": {
+        "violations": [],
+        "incomplete": 2
+      }
+    },
+    {
+      "route": "instructor",
+      "width": 1440,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "height": 1675
+      },
+      "axe": {
+        "violations": [],
+        "incomplete": 2
+      }
+    },
+    {
+      "route": "studio",
+      "width": 1440,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "height": 1856
+      },
+      "axe": {
+        "violations": [],
+        "incomplete": 0
+      }
+    },
+    {
+      "route": "transfer",
+      "width": 1440,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "height": 900
+      },
+      "axe": {
+        "violations": [],
+        "incomplete": 0
+      }
+    },
+    {
+      "route": "ghost",
+      "width": 1440,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "height": 5265
+      },
+      "axe": {
+        "violations": [],
+        "incomplete": 1
+      },
+      "readiness": "Run hypothetical branch button attached; server-verified review loaded"
+    },
+    {
+      "route": "evidence",
+      "width": 1440,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "height": 900
+      },
+      "axe": {
+        "violations": [],
+        "incomplete": 0
+      }
+    },
+    {
+      "route": "compliance",
+      "width": 1440,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "height": 3510
+      },
+      "axe": {
+        "violations": [],
+        "incomplete": 1
+      }
+    },
+    {
+      "route": "analytics",
+      "width": 1920,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1920,
+        "document": 1920,
+        "height": 934
+      }
+    },
+    {
+      "route": "instructor",
+      "width": 1920,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1920,
+        "document": 1920,
+        "height": 1658
+      }
+    },
+    {
+      "route": "studio",
+      "width": 1920,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1920,
+        "document": 1920,
+        "height": 1859
+      }
+    },
+    {
+      "route": "transfer",
+      "width": 1920,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1920,
+        "document": 1920,
+        "height": 1096
+      }
+    },
+    {
+      "route": "ghost",
+      "width": 1920,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1920,
+        "document": 1920,
+        "height": 5271
+      },
+      "readiness": "Run hypothetical branch button attached; server-verified review loaded"
+    },
+    {
+      "route": "evidence",
+      "width": 1920,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1920,
+        "document": 1920,
+        "height": 3592
+      }
+    },
+    {
+      "route": "compliance",
+      "width": 1920,
+      "height": 900,
+      "dimensions": {
+        "viewport": 1920,
+        "document": 1920,
+        "height": 3343
+      }
+    }
+  ],
+  "analytics_focus360": [
+    {
+      "text": "Overview",
+      "left": 16,
+      "right": 178,
+      "width": 162,
+      "focusVisible": true,
+      "outline": "rgb(236, 231, 220) none 0px",
+      "shadow": "rgb(11, 13, 14) 0px 0px 0px 2px inset, rgb(140, 203, 214) 0px 0px 0px 4px"
+    },
+    {
+      "text": "Scenario \u00d7 skill",
+      "left": 182,
+      "right": 344,
+      "width": 162,
+      "focusVisible": true,
+      "outline": "rgb(169, 176, 168) none 0px",
+      "shadow": "rgb(11, 13, 14) 0px 0px 0px 2px inset, rgb(140, 203, 214) 0px 0px 0px 4px"
+    },
+    {
+      "text": "Session comparison",
+      "left": 16,
+      "right": 178,
+      "width": 162,
+      "focusVisible": true,
+      "outline": "rgb(169, 176, 168) none 0px",
+      "shadow": "rgb(11, 13, 14) 0px 0px 0px 2px inset, rgb(140, 203, 214) 0px 0px 0px 4px"
+    },
+    {
+      "text": "Director history",
+      "left": 182,
+      "right": 344,
+      "width": 162,
+      "focusVisible": true,
+      "outline": "rgb(169, 176, 168) none 0px",
+      "shadow": "rgb(11, 13, 14) 0px 0px 0px 2px inset, rgb(140, 203, 214) 0px 0px 0px 4px"
+    },
+    {
+      "text": "Unit trend",
+      "left": 16,
+      "right": 344,
+      "width": 328,
+      "focusVisible": true,
+      "outline": "rgb(169, 176, 168) none 0px",
+      "shadow": "rgb(11, 13, 14) 0px 0px 0px 2px inset, rgb(140, 203, 214) 0px 0px 0px 4px"
+    }
+  ],
+  "instructor_roster360": {
+    "height": 217,
+    "scrollHeight": 217,
+    "rect": {
+      "x": 17,
+      "y": 980.625,
+      "width": 326,
+      "height": 216.921875,
+      "top": 980.625,
+      "right": 343,
+      "bottom": 1197.546875,
+      "left": 17
+    }
+  }
+}

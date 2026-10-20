@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>VYUHA direction study</title>
+<style>
+@font-face{font-family:Geist;src:url(geist-latin-wght-normal.woff2) format('woff2');font-weight:100 900}
+@font-face{font-family:GeistMono;src:url(geist-mono-latin-wght-normal.woff2) format('woff2');font-weight:100 900}
+@font-face{font-family:Instrument;src:url(instrument-serif-latin-400-normal.woff2) format('woff2')}
+*{box-sizing:border-box;margin:0}
+body{width:1440px;height:900px;overflow:hidden;font-family:Geist;font-size:13px;-webkit-font-smoothing:antialiased}
+.label{position:fixed;right:10px;bottom:8px;font:500 10px GeistMono;letter-spacing:.08em;opacity:.55;z-index:99}
+.mono{font-family:GeistMono}
+.view{background:url(frame.png) center/cover;position:relative}
+.ann{position:absolute;font:500 10px GeistMono;letter-spacing:.12em;text-transform:uppercase}
+.contact-glyph{position:absolute;left:50%;top:48%;width:56px;height:56px;margin:-28px;border:1px solid;border-radius:2px}
+/* ---------------- A: cinematic HUD ---------------- */
+[data-d=A]{background:#05070a;color:#f3eee4}
+[data-d=A] .view{position:fixed;inset:0}
+[data-d=A] .glass{position:absolute;background:#0b0f14b8;backdrop-filter:blur(16px);border:1px solid #ffffff24;border-radius:14px;box-shadow:0 0 0 1px #00e1ff10,0 20px 60px #0008}
+[data-d=A] .nav{top:16px;left:16px;right:16px;height:52px;display:flex;align-items:center;gap:28px;padding:0 18px;border-radius:999px}
+[data-d=A] .nav b{font:600 15px Geist;letter-spacing:.3em}[data-d=A] .nav span{opacity:.7}[data-d=A] .nav .on{opacity:1;color:#e9c98f}
+[data-d=A] .scen{top:88px;left:16px;width:300px;padding:18px}
+[data-d=A] .scen h2{font:400 40px Instrument;line-height:1}
+[data-d=A] .insp{top:88px;right:16px;width:340px;bottom:120px;padding:18px}
+[data-d=A] .dock{left:340px;right:372px;bottom:16px;height:88px;display:flex;gap:10px;padding:12px}
+[data-d=A] .dock div{flex:1;border:1px solid #ffffff2a;border-radius:10px;padding:12px;font-weight:600}
+[data-d=A] .dock .p{background:#e9c98f;color:#1a140a;border:0}
+[data-d=A] .radar{left:16px;bottom:16px;width:300px;height:220px;display:grid;place-items:center}
+[data-d=A] .ring{width:170px;height:170px;border-radius:50%;border:1px solid #6fe3ff55;box-shadow:inset 0 0 40px #00d0ff22}
+[data-d=A] .contact-glyph{border-color:#ff6b57;box-shadow:0 0 18px #ff6b5788}
+/* ---------------- B: instrument-grade minimal ---------------- */
+[data-d=B]{background:#0b0d0e;color:#ece8df}
+[data-d=B] .bar{height:52px;border-bottom:1px solid #22282b;display:flex;align-items:center;gap:22px;padding:0 20px}
+[data-d=B] .bar .mark{font:600 13px Geist;letter-spacing:.32em;color:#ece8df}
+[data-d=B] .bar .crumb{color:#8d958f}[data-d=B] .bar .crumb b{color:#ece8df;font-weight:500}
+[data-d=B] .bar .clock{margin-left:auto;font:500 15px GeistMono;color:#ece8df}
+[data-d=B] .bar .phase{font:500 11px GeistMono;color:#9bc6a6;border:1px solid #2d3a31;border-radius:999px;padding:3px 9px}
+[data-d=B] .bar .btn{border:1px solid #2a3135;border-radius:8px;padding:7px 12px;color:#cfd3cc}
+[data-d=B] .main{display:grid;grid-template-columns:1fr 376px;height:848px}
+[data-d=B] .view{margin:12px 0 12px 12px;border-radius:12px;overflow:hidden}
+[data-d=B] .ann{color:#e7e2d6;text-shadow:0 1px 2px #000}
+[data-d=B] .rail{display:flex;flex-direction:column;padding:12px;gap:12px}
+[data-d=B] .card{background:#111517;border:1px solid #1f2528;border-radius:12px;padding:14px}
+[data-d=B] h4{font:500 11px GeistMono;letter-spacing:.1em;color:#8d958f;text-transform:uppercase;margin-bottom:10px;display:flex;justify-content:space-between}
+[data-d=B] .row{display:grid;grid-template-columns:14px 34px 1fr auto;gap:8px;align-items:center;padding:8px 6px;border-radius:7px;color:#cfd3cc}
+[data-d=B] .row.sel{background:#1a2022;box-shadow:inset 2px 0 0 #8fd0de;color:#ece8df}
+[data-d=B] .row.stale{opacity:.55}
+[data-d=B] .sym{width:10px;height:10px;transform:rotate(45deg);border:1.5px solid #c9c3b6}
+[data-d=B] .sym.h{border-color:#f08d73;background:#f08d7333}
+[data-d=B] .kv{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}[data-d=B] .kv small{display:block;color:#8d958f;font:500 10px GeistMono;letter-spacing:.08em}
+[data-d=B] .steps{display:flex;gap:6px;margin-bottom:12px}[data-d=B] .steps span{flex:1;height:3px;border-radius:2px;background:#273034}[data-d=B] .steps .on{background:#d9c08f}
+[data-d=B] .actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+[data-d=B] .act{border:1px solid #2a3135;border-radius:9px;padding:10px;font-weight:550}[data-d=B] .act small{display:block;color:#8d958f;font-weight:400;margin-top:3px}
+[data-d=B] .primary{background:#d9c08f;color:#17140e;border-radius:9px;padding:11px;font-weight:600;text-align:center;margin-bottom:8px}
+[data-d=B] .contact-glyph{border-color:#8fd0de}
+[data-d=B] .radar{height:150px;display:grid;place-items:center}[data-d=B] .ring{width:126px;height:126px;border-radius:50%;border:1px solid #2c3437;background:radial-gradient(circle,#13191b 0,#0e1213 70%)}
+/* ---------------- C: editorial field journal ---------------- */
+[data-d=C]{background:#14110d;color:#efe6d4}
+[data-d=C] .top{display:flex;justify-content:space-between;align-items:baseline;padding:30px 56px 18px}
+[data-d=C] .top h1{font:400 64px Instrument;line-height:.95;letter-spacing:-.01em}[data-d=C] .top h1 i{color:#c9a96a}
+[data-d=C] .top p{max-width:340px;color:#b8ad98;font-size:14px;line-height:1.6}
+[data-d=C] .grid{display:grid;grid-template-columns:1fr 360px;gap:36px;padding:0 56px}
+[data-d=C] .view{height:520px;border-radius:2px;outline:1px solid #3a3226;outline-offset:8px}
+[data-d=C] .ann{color:#efe6d4}
+[data-d=C] .side h3{font:400 30px Instrument;margin-bottom:10px}
+[data-d=C] .side p{color:#b8ad98;font-size:14px;line-height:1.7;margin-bottom:14px}
+[data-d=C] .fig{font:500 10px GeistMono;letter-spacing:.14em;color:#8f8470;text-transform:uppercase;margin:10px 0}
+[data-d=C] .choices{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid #3a3226;margin:26px 56px 0}
+[data-d=C] .choices div{padding:18px 0;font:400 26px Instrument;border-right:1px solid #3a3226;padding-left:18px}[data-d=C] .choices small{display:block;font:400 12px Geist;color:#8f8470}
+[data-d=C] .contact-glyph{border-color:#e7c48a}
+</style></head>
+<body>
+<div class="label" id="lbl"></div>
+<script>
+const d = new URLSearchParams(location.search).get('d') || 'B';
+document.body.dataset.d = d;
+document.getElementById('lbl').textContent = 'DIRECTION ' + d + ' · LAYOUT STUDY · REAL RENDERER FRAME · NOT LIVE DATA';
+const view = `<div class="view"><div class="ann" style="left:18px;top:16px">White hot · EO/IR<br><span style="opacity:.7">Tracking T2</span></div><div class="ann" style="right:18px;top:16px;text-align:right">Night · light fog 0.2</div><div class="ann" style="left:18px;bottom:16px">Bearing 283° · alt 18 m</div><div class="contact-glyph"></div></div>`;
+const A = `${view}<div class="glass nav"><b>VYUHA</b><span class="on">Training</span><span>Review</span><span>Crew</span><span>Instructor</span><span>Analytics</span><span style="margin-left:auto" class="mono">00:30 / 01:15</span></div>
+<div class="glass scen"><div class="mono" style="opacity:.6;letter-spacing:.14em;font-size:10px">SCENARIO · SEED 482913</div><h2>Night Watch</h2><p style="opacity:.7;margin-top:6px">Urban outpost · mixed contacts</p></div>
+<div class="glass insp"><div style="display:flex;justify-content:space-between"><b style="font-size:18px">Contact T2</b><span style="color:#ff6b57" class="mono">POTENTIAL THREAT</span></div><p style="opacity:.7;margin:8px 0 16px">134 m · not designated</p><div class="mono" style="opacity:.6">RF LINK · DETECTED<br>IFF · FRIENDLY REPLY<br>EO · RECOGNISE · IR · DETECT</div></div>
+<div class="glass radar"><div class="ring"></div></div>
+<div class="glass dock"><div class="p">Designate T2</div><div>Classify</div><div>Hold fire</div><div>RF jammer</div><div>Kinetic</div></div>`;
+const B = `<div class="bar"><span class="mark">VYUHA</span><span class="crumb">Training · <b>Night Watch</b></span><span class="phase">● RUNNING</span><span class="clock">00:30 <span style="color:#6f7771">/ 01:15</span></span><span class="btn">Pause</span><span class="btn">End</span></div>
+<div class="main">${view}<div class="rail">
+<div class="card radar"><div class="ring"></div></div>
+<div class="card"><h4>Contacts <span>3</span></h4>
+<div class="row sel"><span class="sym"></span><b>T2</b><span>Unknown · 134 m</span><span class="mono" style="color:#8d958f">—</span></div>
+<div class="row stale"><span class="sym"></span><b>T1</b><span>Last report 169 m</span><span class="mono" style="color:#8d958f">10.7s</span></div>
+<div class="row"><span class="sym h"></span><b>T3</b><span>Hostile · quad · 210 m</span><span class="mono" style="color:#f08d73">ID</span></div></div>
+<div class="card"><h4>T2 evidence <span>current</span></h4><div class="kv"><div><small>RF LINK</small>Detected</div><div><small>IFF</small>Friendly reply</div><div><small>EO</small>Recognise</div><div><small>IR</small>Detect</div></div></div>
+<div class="card" style="margin-top:auto"><div class="steps"><span class="on"></span><span></span><span></span></div><div class="primary">Designate T2</div><div class="actions"><div class="act">Hold<small>Monitor</small></div><div class="act">RF jam<small>RF links only</small></div><div class="act">Kinetic<small>Range & ROE</small></div></div></div>
+</div></div>`;
+const C = `<div class="top"><h1>Night <i>Watch</i></h1><p>Urban outpost under a light fog. Eight contacts in seventy-five seconds; not every contact is a threat.</p></div>
+<div class="grid">${view}<div class="side"><div class="fig">Contact · T2 · 134 m</div><h3>An unknown contact, close in.</h3><p>The control link is detected and the IFF transponder replies friendly. Optical recognition is available; thermal detects only.</p><div class="fig">Next decision</div><p>Designate T2 to begin identification.</p></div></div>
+<div class="choices"><div>Designate<small>Begin identification</small></div><div>Hold fire<small>Monitor contact</small></div><div>Respond<small>RF jammer · kinetic</small></div></div>`;
+document.body.insertAdjacentHTML('beforeend', {A,B,C}[d]);
+</script></body></html>

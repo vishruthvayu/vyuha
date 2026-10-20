@@ -1,0 +1,1031 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-20T09:13:43.230461+00:00",
+  "code_commit": "ad430f742f7476feb464c1c53d08cfb3f95823ba",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "f87104f832e9cb9b03ad18ab3938a23a1a43f1bc51ba95385f540c684c36534a",
+  "worktree_diff_sha256": "6aad37be798e71103231d5f7c70183e51dce7ee15ddf4cb372d9dbf8f835ba5b",
+  "git_status": [
+    " M docs/feature-manifest.json",
+    "?? docs/vr-unification/FINAL-INTEGRATION-REPORT.md",
+    "?? docs/vr-unification/evidence/"
+  ],
+  "method": "Actual HTTPS requests to isolated loopback donor and fresh receiver; explicit private CA context. Source read-only SQLite online backup; no system trust change.",
+  "limitations": [
+    "No physical LAN/Windows/Linux/Android acceptance.",
+    "CA is trusted only in this harness SSL context; browser/device CA acceptance remains pending.",
+    "Shared key authenticates archive integrity, not donor identity or supplied ground truth."
+  ],
+  "https": {
+    "verified_requests": [
+      {
+        "host": "127.0.0.1",
+        "path": "/api/v1/health",
+        "status": 200,
+        "hostname_and_CA_verified": true
+      },
+      {
+        "host": "127.0.0.1",
+        "path": "/",
+        "status": 200,
+        "hostname_and_CA_verified": true
+      },
+      {
+        "host": "localhost",
+        "path": "/api/v1/health",
+        "status": 200,
+        "hostname_and_CA_verified": true
+      },
+      {
+        "host": "localhost",
+        "path": "/",
+        "status": 200,
+        "hostname_and_CA_verified": true
+      }
+    ],
+    "default_trust_rejected_private_CA": true,
+    "system_trust_changed": false
+  },
+  "authorization": {
+    "registered_sensitive_route_pairs": 36,
+    "negative_requests": 144,
+    "all_statuses": 401,
+    "credential_modes": [
+      "anonymous",
+      "forged",
+      "revoked",
+      "ambient_cookie"
+    ],
+    "donor_database_unchanged": true,
+    "cases": [
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{unit_id}/dashboard",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{unit_id}/dashboard",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{unit_id}/dashboard",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{unit_id}/dashboard",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/instructor/sessions",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/instructor/sessions",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/instructor/sessions",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/instructor/sessions",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/instructor/sessions/{session_id}",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/instructor/sessions/{session_id}",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/instructor/sessions/{session_id}",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/instructor/sessions/{session_id}",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/instructor/sessions/{session_id}/commands",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/instructor/sessions/{session_id}/commands",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/instructor/sessions/{session_id}/commands",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/instructor/sessions/{session_id}/commands",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/trainees",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/trainees",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/trainees",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/trainees",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/units/{uid}/exercises",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/units/{uid}/exercises",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/units/{uid}/exercises",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/units/{uid}/exercises",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/exercises",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/exercises",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/exercises",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/exercises",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/exercises/{gid}",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/exercises/{gid}",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/exercises/{gid}",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/exercises/{gid}",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/units/{uid}/doctrine",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/units/{uid}/doctrine",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/units/{uid}/doctrine",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/units/{uid}/doctrine",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/scenario-library/preview",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/scenario-library/preview",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/scenario-library/preview",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/scenario-library/preview",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/scenario-library",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/scenario-library",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/scenario-library",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/scenario-library",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/trainees/{tid}/analytics",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/trainees/{tid}/analytics",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/trainees/{tid}/analytics",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/trainees/{tid}/analytics",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/analytics",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/analytics",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/analytics",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/analytics",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/skill-heatmap",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/skill-heatmap",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/skill-heatmap",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/units/{uid}/skill-heatmap",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/units/{uid}/bundle/export",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/units/{uid}/bundle/export",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/units/{uid}/bundle/export",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/units/{uid}/bundle/export",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/bundle/import",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/bundle/import",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/bundle/import",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/bundle/import",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/recordings",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/recordings",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/recordings",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/recordings",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/evaluations",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/evaluations",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/evaluations",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/evaluations",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/evaluations/{eid}",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/evaluations/{eid}",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/evaluations/{eid}",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/evaluations/{eid}",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/evaluations/{eid}/post",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/evaluations/{eid}/post",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/evaluations/{eid}/post",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/evaluations/{eid}/post",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/raids/preview",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/raids/preview",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/raids/preview",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/raids/preview",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/raids",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/raids",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/raids",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/raids",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/white-cell",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/white-cell",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/white-cell",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/white-cell",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/white-cell/{session_id}",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/white-cell/{session_id}",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/white-cell/{session_id}",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/white-cell/{session_id}",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/crews/history",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/crews/history",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/crews/history",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/crews/history",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/crews/manage",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/crews/manage",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/crews/manage",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/crews/manage",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/crews/{cid}/members",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/crews/{cid}/members",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/crews/{cid}/members",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/crews/{cid}/members",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews/{cid}/members/{mid}/rotate",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews/{cid}/members/{mid}/rotate",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews/{cid}/members/{mid}/rotate",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews/{cid}/members/{mid}/rotate",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews/{cid}/members/{mid}/revoke",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews/{cid}/members/{mid}/revoke",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews/{cid}/members/{mid}/revoke",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews/{cid}/members/{mid}/revoke",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/crews/catalogue",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/crews/catalogue",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/crews/catalogue",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/crews/catalogue",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews/{cid}/control",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews/{cid}/control",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews/{cid}/control",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews/{cid}/control",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews/{cid}/complete",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews/{cid}/complete",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews/{cid}/complete",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/crews/{cid}/complete",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/instructor/sessions/{sid}/teaching-notes",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/instructor/sessions/{sid}/teaching-notes",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/instructor/sessions/{sid}/teaching-notes",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/instructor/sessions/{sid}/teaching-notes",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/instructor/sessions/{sid}/teaching-pauses",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/instructor/sessions/{sid}/teaching-pauses",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/instructor/sessions/{sid}/teaching-pauses",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/instructor/sessions/{sid}/teaching-pauses",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/instructor/stream",
+        "credential_mode": "anonymous",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/instructor/stream",
+        "credential_mode": "forged",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/instructor/stream",
+        "credential_mode": "revoked",
+        "status": 401
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/instructor/stream",
+        "credential_mode": "ambient_cookie",
+        "status": 401
+      }
+    ]
+  },
+  "transfer": {
+    "actual_https": true,
+    "browser_number_roundtrip": true,
+    "sessions": 11,
+    "scores_sha256": "cc19c85e07f45e77a6bd80071fc8c02d192e31113880b16afe3c4935e7ea74e5",
+    "profiles_sha256": "479d268f2efa410c7da20a5ce098bc18df6501451b20d72a9dbaf76342b0b666",
+    "fusion_receipts": 24,
+    "teaching_notes": 2,
+    "shared_archives": 3,
+    "original_actions_commands_horizons_equal": true,
+    "forward_payload_exact": true,
+    "duplicate_import": {
+      "inserted_sessions": 0,
+      "skipped_sessions": 11,
+      "recordings": 1,
+      "profile_basis": "Rebuilt only from validated imported outcome ledger; supplied profile snapshots are informational.",
+      "integrity": "HMAC verified with local shared key; donor identity/authenticity not attested"
+    },
+    "tampered_score_status": 422,
+    "tamper_atomic": true,
+    "no_live_crew_capabilities_imported": true,
+    "no_shared_individual_skill_outcomes": true,
+    "donor_logical_database_unchanged": true
+  },
+  "backup_restore": {
+    "online_backup_all_tables_exact": true,
+    "new_file_restore_all_tables_exact": true,
+    "integrity": "ok",
+    "overwrite_refused": true,
+    "receiver": {
+      "integrity": "ok",
+      "all_tables_sha256": "9d9c48c1fb6f53b15607822f8864faa5313ac4c0a520215fb2f519b201431764",
+      "counts": {
+        "chunks": 11,
+        "connected_clients": 0,
+        "crew_archive": 3,
+        "crew_attribution": 0,
+        "crew_members": 0,
+        "crew_receipts": 0,
+        "crews": 0,
+        "director_history": 5,
+        "evaluations": 0,
+        "exercise_assignments": 0,
+        "exercise_groups": 0,
+        "fusion_exposures": 24,
+        "instructor_commands": 14,
+        "instructor_notes": 2,
+        "join_requests": 0,
+        "rapid_answers": 0,
+        "rapid_sessions": 0,
+        "recorded_practice": 0,
+        "recordings": 1,
+        "scenario_library": 0,
+        "scenarios": 7,
+        "session_unit_stats": 11,
+        "sessions": 11,
+        "skill_outcomes": 8,
+        "skill_profiles": 12,
+        "trainees": 6,
+        "transfer_origin": 1,
+        "unit_preferences": 0,
+        "units": 2
+      }
+    },
+    "restored": {
+      "integrity": "ok",
+      "all_tables_sha256": "9d9c48c1fb6f53b15607822f8864faa5313ac4c0a520215fb2f519b201431764",
+      "counts": {
+        "chunks": 11,
+        "connected_clients": 0,
+        "crew_archive": 3,
+        "crew_attribution": 0,
+        "crew_members": 0,
+        "crew_receipts": 0,
+        "crews": 0,
+        "director_history": 5,
+        "evaluations": 0,
+        "exercise_assignments": 0,
+        "exercise_groups": 0,
+        "fusion_exposures": 24,
+        "instructor_commands": 14,
+        "instructor_notes": 2,
+        "join_requests": 0,
+        "rapid_answers": 0,
+        "rapid_sessions": 0,
+        "recorded_practice": 0,
+        "recordings": 1,
+        "scenario_library": 0,
+        "scenarios": 7,
+        "session_unit_stats": 11,
+        "sessions": 11,
+        "skill_outcomes": 8,
+        "skill_profiles": 12,
+        "trainees": 6,
+        "transfer_origin": 1,
+        "unit_preferences": 0,
+        "units": 2
+      }
+    }
+  },
+  "status": "PASS_SCOPED",
+  "source_unchanged_during_measurement": true,
+  "finished_at_utc": "2026-10-20T09:15:37.457729+00:00",
+  "source_tree_sha256_after": "f87104f832e9cb9b03ad18ab3938a23a1a43f1bc51ba95385f540c684c36534a"
+}

@@ -1,0 +1,63 @@
+{
+  "validated_at": "2026-10-04T10:34:10.214072+00:00",
+  "release_branch": "release/v1.0.1",
+  "validated_implementation_commit": "b88faa92b8455708a98b05723939168e0207d8ee",
+  "implementation_source_tree_sha256": "cd48ae78643b2862b69dd82161aa0d717a50af03e072d524a03017df7177f4c2",
+  "backend_passed": 139,
+  "frontend_passed": 64,
+  "parity": {
+    "counts": {
+      "original": 51,
+      "director": 72,
+      "advanced": 135,
+      "rural": 54
+    },
+    "total": 312,
+    "method": "All five cross-language parity tests executed by npm test. Counts derived from current test seed/tick arrays, freshly generated advanced/rural fixture checkpoint arrays and current Director template registry.",
+    "frontend_receipt": "frontend.txt",
+    "fixtures": {
+      "original_seeds": 3,
+      "original_snapshots_per_seed": 7,
+      "command_snapshots_per_seed": 10,
+      "director_templates": 12,
+      "director_ticks_per_template": 6,
+      "advanced_cases": 15,
+      "rural_cases": 6
+    }
+  },
+  "build": "passed",
+  "offline_assets": 23,
+  "cache_fingerprint": "1ee85a2f1bdb",
+  "history": {
+    "historical_completed": 18,
+    "additional_current_completed": 3,
+    "all_current_completed_readable": 21,
+    "stored_engine_versions": {
+      "vyuha-0.2.0": 17,
+      "vyuha-0.1.0": 4
+    },
+    "exact_stored_cards_preserved": true,
+    "all_verified_aar_ghost_timelines_readable": true,
+    "all_four_skill_profiles_readable": true,
+    "heatmap_included_current_sessions": 21,
+    "historical_immutable_fields_sha256": "cce52299fb319073feb81fc0d3f2420a867ff7393421ca9f69940e9aef051b45",
+    "current_immutable_fields_sha256": "9abdf18414e477e695607dd605da0a51c8a0116fe1acf29097af00f9dfa70593",
+    "production_database_unchanged": true,
+    "scope": "Aggregate only; raw private records remain outside Git/submission. Checked on a disposable backup."
+  },
+  "navigation_status": {
+    "status": "NAVIGATION AUDIT COMPLETE \u2014 ALL INTENDED USER-FACING PAGES DISCOVERABLE",
+    "canonical_routes": 11,
+    "classification": {
+      "NAVIGATED": 9,
+      "SECONDARY_REACHABLE": 2,
+      "INTENTIONALLY_HIDDEN": 0
+    },
+    "receipt": "docs/release-v1.0.1/browser-walkthrough.json"
+  },
+  "code_changed_since_navigation_candidate": [],
+  "protected_tactical_files_unchanged_since_competitive_polish": true,
+  "sealed_v1_assets_unchanged": true,
+  "source_hash_matches_runtime_manifest": true,
+  "final_tag_and_remote_verification": "Recorded after sealing in external outputs/release-v1.0.1/release-receipt.json"
+}

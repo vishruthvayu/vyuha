@@ -1,0 +1,144 @@
+{
+  "source_commit": "10a63fefba2201aa9c343d18ca1b0d3b24c0a112",
+  "scope": "Synthetic local HTTP processes and Chromium; no physical LAN, human, scientific or full screen-reader acceptance.",
+  "server_startup_to_health_seconds": 0.495,
+  "walkthrough": {
+    "scope": "Synthetic QA via real HTTP and ordinary Python engine; disposable fresh database. Not a human test, physical LAN test or WAN-off validation.",
+    "initial_sessions": 0,
+    "initial_trainees": 0,
+    "new_unit": "demo-release",
+    "new_trainee": "T_9fcfa601d74d4692b2db9c",
+    "adaptive_focus": "effector_choice",
+    "session_id": "a23c4934-75fe-4834-9b06-7432f805ce18",
+    "instructor_command": "radar jam acknowledged at tick 30",
+    "verified_score": 83,
+    "ghost": "NO_RF_JAM_INEFFECTIVE present",
+    "time_machine_basis": "Full ordered actions/command timeline returned by verified AAR; UI replay checked separately",
+    "profile_sessions": 1,
+    "next_director": {
+      "mode": "individual",
+      "trainee_id": "T_9fcfa601d74d4692b2db9c",
+      "director_seed": 482914,
+      "focus_skill": "degraded_sensor_response",
+      "mastery_estimate": 0.6666666666666666,
+      "observations": 4,
+      "difficulty": 2,
+      "difficulty_label": "standard",
+      "target_success": 0.7,
+      "target_kind": "heuristic, not calibrated",
+      "reason_code": "LOWEST_SAMPLED_MASTERY",
+      "reason": "The seeded Thompson draw selected this skill from the persistent four-skill profile. Its last five processed sessions contain 3 successful and 1 failed contact observations. The displayed mastery is the Beta mean, not the selection draw.",
+      "recent_successes": 3,
+      "recent_failures": 1,
+      "scenario_template": "degraded_sensor_response/night_gap",
+      "scenario_seed": 990307611,
+      "scenario_features": [
+        "Night",
+        "6 mixed contacts",
+        "Fog parameter 0.25",
+        "No-RF FPV included",
+        "Friendly contact included",
+        "Radar gap T+2\u201320s; RF/IFF remains available",
+        "Threat pattern: SATURATION",
+        "Illustrative pack: Army Forward Post"
+      ],
+      "fingerprint": "5de75fafce9b1194cec1db2c",
+      "anti_rote": {
+        "rejected_candidates": 0,
+        "fallback": false,
+        "history_window": 5
+      },
+      "debug_samples": {
+        "detection": 0.9978723866034273,
+        "classification_iff": 0.9058637459571846,
+        "effector_choice": 0.8550245369698102,
+        "degraded_sensor_response": 0.6884767660523864
+      },
+      "profile_snapshot": {
+        "detection": {
+          "alpha": 7.0,
+          "beta": 1.0,
+          "observations": 6,
+          "mean": 0.875,
+          "updated_at": "2026-10-16T10:47:11.465115+00:00",
+          "last_session_id": "a23c4934-75fe-4834-9b06-7432f805ce18"
+        },
+        "classification_iff": {
+          "alpha": 7.0,
+          "beta": 1.0,
+          "observations": 6,
+          "mean": 0.875,
+          "updated_at": "2026-10-16T10:47:11.465115+00:00",
+          "last_session_id": "a23c4934-75fe-4834-9b06-7432f805ce18"
+        },
+        "effector_choice": {
+          "alpha": 6.0,
+          "beta": 2.0,
+          "observations": 6,
+          "mean": 0.75,
+          "updated_at": "2026-10-16T10:47:11.465115+00:00",
+          "last_session_id": "a23c4934-75fe-4834-9b06-7432f805ce18"
+        },
+        "degraded_sensor_response": {
+          "alpha": 4.0,
+          "beta": 2.0,
+          "observations": 4,
+          "mean": 0.6666666666666666,
+          "updated_at": "2026-10-16T10:47:11.465115+00:00",
+          "last_session_id": "a23c4934-75fe-4834-9b06-7432f805ce18"
+        }
+      }
+    },
+    "rapid": {
+      "rounds": 10,
+      "correct": 10,
+      "timing": "Synthetic 500 ms per answer, not human performance"
+    },
+    "analytics_points": 2,
+    "unit_completed_tactical": 1,
+    "elapsed_seconds": 0.169
+  },
+  "what_if_original_aar_and_profile_unchanged": true,
+  "unauthenticated_officer_denied": true,
+  "oversized_command_cursor_rejected": true,
+  "crew_http": {
+    "role_sequence": [
+      "spotter",
+      "responder",
+      "responder"
+    ],
+    "accepted_decisions": 3,
+    "cross_crew_denied": true,
+    "wrong_role_denied": true,
+    "old_code_revoked_on_rotation": true,
+    "rotation_preserved_attribution": true,
+    "shared_aar_verified": true,
+    "unrelated_individual_profile_unchanged": true
+  },
+  "signed_transfer": {
+    "first": {
+      "inserted_sessions": 2,
+      "skipped_sessions": 0,
+      "recordings": 0,
+      "profile_basis": "Rebuilt only from validated imported outcome ledger; supplied profile snapshots are informational.",
+      "integrity": "HMAC verified with local shared key; donor identity/authenticity not attested"
+    },
+    "duplicate": {
+      "inserted_sessions": 0,
+      "skipped_sessions": 2,
+      "recordings": 0,
+      "profile_basis": "Rebuilt only from validated imported outcome ledger; supplied profile snapshots are informational.",
+      "integrity": "HMAC verified with local shared key; donor identity/authenticity not attested"
+    },
+    "tampered_status": 422
+  },
+  "restart_and_restore": {
+    "aar_sha256": "e8ff773f18d8fa9f80928cef3674b766e2beadf69af40b4c3586d76886ac8f99",
+    "original_equals_restored": true,
+    "old_officer_session_rejected": true,
+    "integrity_check": "ok"
+  },
+  "production_offline_shell_reload": true,
+  "production_browser_signed_import": true,
+  "passed": true
+}

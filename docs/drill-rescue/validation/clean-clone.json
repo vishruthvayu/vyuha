@@ -1,0 +1,11 @@
+{
+  "source": "5d40a24165dff5ace27c6131318da599ad828b0d",
+  "production_files": 72,
+  "byte_identical": true,
+  "dependency_install": "npm ci from lockfile; GitHub checkout used local Git object cache with --reference --dissociate; separate node_modules and dist",
+  "python_parity": "existing pinned virtualenv; not a new Python install",
+  "frontend_tests": 328,
+  "lint": "PASS",
+  "format": "PASS",
+  "build": "PASS"
+}

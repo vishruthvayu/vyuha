@@ -1,0 +1,4 @@
+npm notice run vyuha-trainer@1.1.0-rc.3 npx
+npm notice run 'prettier' --check client/src/world/*.ts client/src/world/*.tsx client/src/GuidedDecision.tsx client/src/camera-view.ts
+Checking formatting...
+All matched files use Prettier code style!

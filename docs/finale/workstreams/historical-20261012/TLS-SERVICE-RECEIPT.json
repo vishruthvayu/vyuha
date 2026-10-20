@@ -1,0 +1,39 @@
+{
+  "recorded_date": "2026-10-12",
+  "checks": [
+    {
+      "host": "localhost",
+      "path": "/api/v1/health",
+      "status": 200
+    },
+    {
+      "host": "localhost",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "host": "localhost",
+      "path": "/instructor",
+      "status": 200
+    },
+    {
+      "host": "127.0.0.1",
+      "path": "/api/v1/health",
+      "status": 200
+    },
+    {
+      "host": "127.0.0.1",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "host": "127.0.0.1",
+      "path": "/instructor",
+      "status": 200
+    }
+  ],
+  "untrusted_ca_rejected": true,
+  "tls_verification_disabled": false,
+  "system_trust_modified": false,
+  "scope": "Actual uvicorn HTTPS on macOS with dedicated test CA and explicit verified SAN; no browser or physical device trust installed"
+}

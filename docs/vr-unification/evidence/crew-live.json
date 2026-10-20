@@ -1,0 +1,233 @@
+{
+  "recorded_at_utc": "2026-10-20T02:38:38.323630+00:00",
+  "crew": "crew_9a9652b45e7e4bcdbd0b",
+  "accepted_actions": 3,
+  "attributed_roles": [
+    "spotter",
+    "responder",
+    "responder"
+  ],
+  "individual_learning_unchanged": true,
+  "shared_score": {
+    "score": 0,
+    "passed": false,
+    "fratricide": false,
+    "roe_breaches": 0,
+    "leakers": 0,
+    "threats": 0,
+    "rows": [
+      {
+        "id": "T1",
+        "kind": "bird",
+        "identity": "neutral",
+        "detect": 14,
+        "classify": 25,
+        "prioritise": 15,
+        "engage": 35,
+        "total": 89,
+        "detected": 0,
+        "designated": 312,
+        "ideal": "hold",
+        "feedback": [
+          "Response process/outcome: 1 suitable executable attempts; 0 delayed effects resolved.",
+          "Designation took 10.4 seconds after first sensor visibility."
+        ],
+        "impact": false,
+        "attempts": [
+          "hold"
+        ]
+      },
+      {
+        "id": "T2",
+        "kind": "quad",
+        "identity": "neutral",
+        "detect": 0,
+        "classify": 0,
+        "prioritise": 0,
+        "engage": 0,
+        "total": 0,
+        "detected": 0,
+        "designated": null,
+        "ideal": "hold",
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: quad / neutral.",
+          "Hold fire on this non-hostile contact."
+        ],
+        "impact": false,
+        "attempts": []
+      },
+      {
+        "id": "T3",
+        "kind": "quad",
+        "identity": "neutral",
+        "detect": 0,
+        "classify": 0,
+        "prioritise": 0,
+        "engage": 0,
+        "total": 0,
+        "detected": 0,
+        "designated": null,
+        "ideal": "hold",
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: quad / neutral.",
+          "Hold fire on this non-hostile contact."
+        ],
+        "impact": false,
+        "attempts": []
+      },
+      {
+        "id": "T4",
+        "kind": "fixed_wing",
+        "identity": "neutral",
+        "detect": 0,
+        "classify": 0,
+        "prioritise": 0,
+        "engage": 0,
+        "total": 0,
+        "detected": 0,
+        "designated": null,
+        "ideal": "hold",
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: fixed wing / neutral.",
+          "Hold fire on this non-hostile contact."
+        ],
+        "impact": false,
+        "attempts": []
+      },
+      {
+        "id": "T5",
+        "kind": "fiber_fpv",
+        "identity": "neutral",
+        "detect": 0,
+        "classify": 0,
+        "prioritise": 0,
+        "engage": 0,
+        "total": 0,
+        "detected": 0,
+        "designated": null,
+        "ideal": "hold",
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: fiber fpv / neutral.",
+          "Hold fire on this non-hostile contact."
+        ],
+        "impact": false,
+        "attempts": []
+      },
+      {
+        "id": "T6",
+        "kind": "quad",
+        "identity": "neutral",
+        "detect": 0,
+        "classify": 0,
+        "prioritise": 0,
+        "engage": 0,
+        "total": 0,
+        "detected": 0,
+        "designated": null,
+        "ideal": "hold",
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: quad / neutral.",
+          "Hold fire on this non-hostile contact."
+        ],
+        "impact": false,
+        "attempts": []
+      },
+      {
+        "id": "T7",
+        "kind": "quad",
+        "identity": "neutral",
+        "detect": 0,
+        "classify": 0,
+        "prioritise": 0,
+        "engage": 0,
+        "total": 0,
+        "detected": 0,
+        "designated": null,
+        "ideal": "hold",
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: quad / neutral.",
+          "Hold fire on this non-hostile contact."
+        ],
+        "impact": false,
+        "attempts": []
+      },
+      {
+        "id": "T8",
+        "kind": "quad",
+        "identity": "neutral",
+        "detect": 0,
+        "classify": 0,
+        "prioritise": 0,
+        "engage": 0,
+        "total": 0,
+        "detected": 0,
+        "designated": null,
+        "ideal": "hold",
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: quad / neutral.",
+          "Hold fire on this non-hostile contact."
+        ],
+        "impact": false,
+        "attempts": []
+      }
+    ],
+    "skills": {
+      "recognition": 13,
+      "response": 13
+    },
+    "summary": "Review designation, classification, and response before the next drill.",
+    "engine_version": "vyuha-0.4.0",
+    "response_model": {
+      "version": 1,
+      "kinetic_ammo_remaining": 8,
+      "kinetic_ready_tick": 0,
+      "jammer_channels_in_use": 0,
+      "pending": [],
+      "attempts": [
+        {
+          "id": "R1",
+          "track": "T1",
+          "effector": "hold",
+          "tick": 564,
+          "order": 3,
+          "due_tick": null,
+          "status": "hold",
+          "result_tick": 564
+        }
+      ],
+      "basis": "Illustrative seeded delayed effects; engagement points credit executable suitable process separately from stochastic resolution. Non-hostile destructive attempts fail safety regardless of result.",
+      "process_valid_attempts": 1,
+      "resolved_effects": 0,
+      "no_effect_results": 0,
+      "reference_attempts": [
+        {
+          "id": "R1",
+          "track": "T1",
+          "effector": "hold",
+          "tick": 564,
+          "order": 3,
+          "due_tick": null,
+          "status": "hold",
+          "result_tick": 564,
+          "process_valid": true,
+          "launch_eligible": true
+        }
+      ]
+    }
+  },
+  "negative_http_statuses": {
+    "unauthenticated_state": 401,
+    "spotter_response_forbidden": 403,
+    "responder_designation_forbidden": 403,
+    "unauthenticated_complete": 401
+  },
+  "history_available": true,
+  "method": "Spotter/Responder actions through separate real browser tabs; role negatives and completion through actual local HTTP server."
+}

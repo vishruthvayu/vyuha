@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-13",
+  "code_commit": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
+  "source_tree_sha256": "5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0",
+  "clean_clone": {
+    "head": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
+    "source_equal": true,
+    "all27_assets_byte_equal": true,
+    "locked_npm_ci": "PASS",
+    "working_tree_clean": true,
+    "locks": {
+      "client/package.json": "93e3af2fa17ba6a59b8dac7b7aeb6746efbf803f4a8eadd869d0ecb8eabcf9ac",
+      "client/package-lock.json": "af0ef67eb4b0c0dd8fa058f2ab5e114525def32c36fd157e8f6621f5e90ed310",
+      "server/requirements.lock.txt": "6e7ed6e13780351b512afcc88fa0ca6fa6644f6e99655af4b8953369ea8c5ee1"
+    },
+    "Python": "Python 3.13.2"
+  },
+  "production_assets": {
+    "file_count": 27,
+    "cache_version": "b2b7e099df64",
+    "asset_sha256": {
+      "assets/Analytics-CRdZm9qX.js": "9ea736c93ca0cab6781497adc7978bdf8737157a03ed365cf3f0acfb2cc01c63",
+      "assets/App-BeP9lfyZ.js": "65c73dc4bb5685aa628185f349b83d8a4367b7e15fc466f6f592080958b407f9",
+      "assets/Benchmark-IlndNg91.js": "e9ce95a1eca8dd3e0b9e9ee36e65a77fe3ac89a5555b9c471a70cbc212e43354",
+      "assets/Compliance-DyGo90TU.js": "13377faf7d9d66033b62a6215fa4cf5189a99205112f02bc0c7d11d2eb5191cb",
+      "assets/Crew-BSWkScgw.js": "1e7d7ba34610f68b7ca0447b590b5e02f61188d17d6b2d13610f101325491c42",
+      "assets/Evaluation-DOqJ0Y3O.js": "b23683521f3087ab179ffa2335644d006017641677e137533afb435c7814c783",
+      "assets/Evidence-iB0bN0RG.js": "963c6d32bbd4daa7f02d17ebff369b61f6d5f0283f56bf0c64e93f07395a2507",
+      "assets/ExerciseStudio-D_OGX--v.js": "b82daa3055b54cd1ba3eeaa180b5c290879b9476b32e9de5315ff79ffb7fd4c4",
+      "assets/Instructor-BPKm1fnU.js": "461a6f840ed7a5ab9c5684565bed43db867dc2d914110edf30a086be378f1f96",
+      "assets/Radar-KdWxA1aX.js": "fec63063a23e055b2e99b64e3de2d0c37326f47190576b7644e0ba23ba2f1e3f",
+      "assets/RapidID-CfiJrsp5.js": "5079cb3ae6f520ed1e50e0439788ffaaa9c8e57ca4d139066b99a633d81f2232",
+      "assets/Recorded-CJntjCfw.js": "4f25e11d91f37aee31840889ed390f745c1b5e1496371c7a074a1a7237fbb452",
+      "assets/Transfer-DAzYpatJ.js": "b2a93cd970e6639558388ec3281ac773ac011868a31f123a74360929ad6025bb",
+      "assets/import-json-DEPqWbQE.js": "0ed610860015c0f9673df34d95efab8c7ed42d4f5928566480caa77ec126380c",
+      "assets/index-BeZPEheG.js": "54f56656c9db203d0143700f333b363389e78ccbc4e8df17d702c239c34b4e16",
+      "assets/index-CkKdnHg3.css": "edbf2036b63d1d4cb13e0f7941afc495e21b56d442a622cc49b6eb8310caef26",
+      "assets/live-stream-DD8ASLd3.js": "ccd33ffb9a94a3a6842df55a9f07cd3c5f666922c059552a0057950210e83c1e",
+      "assets/observations-xCvc0hza.js": "b792ec1c8e0ae0b73124717db68dbeb76ad3469ffd2569b7c1dc89bf8c698a47",
+      "assets/presentation-DEBuChuu.js": "2c2eed4e6e53d81827407fbde5bd42df2b042f38f5e07866efb6a8e0ce657c2e",
+      "assets/response-v2-BXqvvt7X.js": "5bc128615f0d647f593f7fcfdfaa37d4a38cc7c75703e4f9f2898dd836d67ac7",
+      "assets/scenario-CsdQCPq9.js": "2e5c87efbc36b2e514169b74e4a9b25cdbffcc0e92ef4febfea7b80710d64893",
+      "assets/sim.worker-DVjxYNQs.js": "9fe03570123e1186206e263e91dbee2b4ae582f1a703aca241474eab4a2c7c6c",
+      "examples/recorded-exercise.json": "9e80153eadf52a637130eb9495a77a038f97fa583095e0f628b8f46ff2c7343d",
+      "favicon.svg": "ad80061f8ab202c70b75b8cea093537e31373642c45d9f26c0a84300f6868acf",
+      "index.html": "b2b7e099df64d65596046a12ec70cc08d8a853879bdf92984949b00550049dd4",
+      "manifest.webmanifest": "3c9a9d404d20793b0dfb430286f94ae5ecd1c559ccc7f21e340206d3fa1d745a",
+      "sw.js": "49cf4cb8dd54d5e7cb930415ecb17992dcd6a54253b2a5a0528c54af9d7ecb6e"
+    }
+  },
+  "backup_restore": {
+    "scope": "Fresh synthetic QA database, canonical implementation; online backup and restore to new files, no production database overwritten",
+    "integrity": "ok",
+    "backup_and_restore_all_tables_logically_equal": true,
+    "live_completed_cards_attribution_chunks_outcomes_preserved": true,
+    "live_volatile_telemetry_not_claimed_equal": true,
+    "logical_dump_sha256": "7d38695fdc1b576c70b7e30e1676e2c6d69a6a2878aa0deaa020cf40374ab528"
+  },
+  "crew_learning_isolation": {
+    "completed_shared_sessions": 3,
+    "individual_skill_outcomes": 0
+  },
+  "tls": {
+    "scope": "Actual current macOS HTTPS process; explicit private CA and hostname verification, no browser trust-store change, not native Linux/Windows/phone acceptance",
+    "requests": [
+      {
+        "host": "localhost",
+        "route": "/api/v1/health",
+        "status": 200,
+        "bytes": 103,
+        "body_sha256": "1d162b2a63a4677db72d780ba850ddc0a68b0ae5d644d1a51acc0b7615cb65d6",
+        "certificate_and_hostname_verified": true
+      },
+      {
+        "host": "localhost",
+        "route": "/",
+        "status": 200,
+        "bytes": 659,
+        "body_sha256": "b2b7e099df64d65596046a12ec70cc08d8a853879bdf92984949b00550049dd4",
+        "certificate_and_hostname_verified": true
+      },
+      {
+        "host": "127.0.0.1",
+        "route": "/api/v1/health",
+        "status": 200,
+        "bytes": 103,
+        "body_sha256": "1d162b2a63a4677db72d780ba850ddc0a68b0ae5d644d1a51acc0b7615cb65d6",
+        "certificate_and_hostname_verified": true
+      },
+      {
+        "host": "127.0.0.1",
+        "route": "/",
+        "status": 200,
+        "bytes": 659,
+        "body_sha256": "b2b7e099df64d65596046a12ec70cc08d8a853879bdf92984949b00550049dd4",
+        "certificate_and_hostname_verified": true
+      }
+    ],
+    "default_untrusted_ca_rejected": true,
+    "verification_disabled": false
+  },
+  "fresh_local_requests": {
+    "profile_200": true,
+    "unnecessary_history_request": false,
+    "unauthenticated_catalogue_request": false,
+    "HTTP_401_count": 0,
+    "HTTP_404_count": 0,
+    "scope": "Actual Chrome fresh local landing and Crew navigation; expected auth session 200/configured:false"
+  }
+}

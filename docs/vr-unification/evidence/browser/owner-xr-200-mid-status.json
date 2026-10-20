@@ -1,0 +1,24 @@
+{
+  "emulator": "IWER 2.6.0",
+  "physical_headset": false,
+  "session": true,
+  "views": 2,
+  "frames": 2239,
+  "controllerInputs": [
+    {
+      "hand": "left",
+      "mode": "tracked-pointer"
+    },
+    {
+      "hand": "right",
+      "mode": "tracked-pointer"
+    }
+  ],
+  "frame_ms": {
+    "samples": 2238,
+    "median": 16.600000000558794,
+    "p95": 19,
+    "max": 43.200000000186265
+  },
+  "faults": []
+}

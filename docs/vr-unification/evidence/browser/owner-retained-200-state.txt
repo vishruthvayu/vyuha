@@ -1,0 +1,1064 @@
+Skip to workspace
+VYUHA
+Training
+Review
+2
+Crew
+Instructor
+Analytics
+⌘ / Ctrl K
+guide
+Workspaces
+WORKSPACE
+AFTER-ACTION REVIEW
+VYUHA server connected
+LEARN FROM EVERY DECISION
+After-action review
+
+A replay of your exercise, with a traceable score and reference response.
+
+Export session
+Exercise history · 2 saved exercises
+0
+/ 100
+REVIEW REQUIRED
+Review designation, classification, and response before the next drill.
+
+PORTABLE-QA · QA persistent 200 contacts / rural · Seed 62147
+
+Device score · verification pending
+Retry verification
+Next drill
+RECOGNITION
+0%
+Correct type and identity
+RESPONSE SELECTION
+0%
+Reference response, fewer errors
+ASSET IMPACTS
+0
+0 hostile threats in exercise
+SAFETY FLAGS
+0
+Restricted-zone attempts
+Verdict
+Replay & decisions
+Timeline
+Decision path
+Comparison
+Score breakdown
+Time-machine replay
+T+0.00s
+OVERVIEW
+OBSERVER
+FOLLOW TARGET
+Tactical 2D
+
+OVERVIEW · — fps · Ground-truth debrief view · External camera; terrain translucent. Camera changes observation only.
+
+AAR / INSTRUCTOR REFERENCE TRUTH
+Full active geometry · not trainee sensor evidence
+03:00
+Observed contact history
+
+Labels are trainee classifications. Sensor-silent tracks retain their recorded first observation.
+
+T1
+Unknown contact · active
+EO/IR
+T2
+Unknown contact · active
+EO/IR
+T3
+Unknown contact · active
+EO/IR
+T4
+Unknown contact · active
+EO/IR
+T5
+Unknown contact · active
+EO/IR
+T6
+Unknown contact · active
+EO/IR
+T7
+Unknown contact · active
+EO/IR
+T8
+Unknown contact · active
+EO/IR
+T9
+Unknown contact · active
+EO/IR
+T10
+Unknown contact · active
+EO/IR
+T11
+Unknown contact · active
+EO/IR
+T12
+Unknown contact · active
+EO/IR
+T13
+Unknown contact · active
+EO/IR
+T14
+Unknown contact · active
+EO/IR
+T15
+Unknown contact · active
+EO/IR
+T16
+Unknown contact · active
+EO/IR
+T17
+Unknown contact · active
+EO/IR
+T18
+Unknown contact · active
+EO/IR
+T19
+Unknown contact · active
+EO/IR
+T20
+Unknown contact · active
+EO/IR
+T21
+Unknown contact · active
+EO/IR
+T22
+Unknown contact · active
+EO/IR
+T23
+Unknown contact · active
+EO/IR
+T24
+Unknown contact · active
+EO/IR
+T25
+Unknown contact · active
+EO/IR
+T26
+Unknown contact · active
+EO/IR
+T27
+Unknown contact · active
+EO/IR
+T28
+Unknown contact · active
+EO/IR
+T29
+Unknown contact · active
+EO/IR
+T30
+Unknown contact · active
+EO/IR
+T31
+Unknown contact · active
+EO/IR
+T32
+Unknown contact · active
+EO/IR
+T33
+Unknown contact · active
+EO/IR
+T34
+Unknown contact · active
+EO/IR
+T35
+Unknown contact · active
+EO/IR
+T36
+Unknown contact · active
+EO/IR
+T37
+Unknown contact · active
+EO/IR
+T38
+Unknown contact · active
+EO/IR
+T39
+Unknown contact · active
+EO/IR
+T40
+Unknown contact · active
+EO/IR
+T41
+Unknown contact · active
+EO/IR
+T42
+Unknown contact · active
+EO/IR
+T43
+Unknown contact · active
+EO/IR
+T45
+Unknown contact · active
+EO/IR
+T46
+Unknown contact · active
+EO/IR
+T47
+Unknown contact · active
+EO/IR
+T48
+Unknown contact · active
+EO/IR
+T49
+Unknown contact · active
+EO/IR
+T51
+Unknown contact · active
+EO/IR
+T52
+Unknown contact · active
+EO/IR
+T53
+Unknown contact · active
+EO/IR
+T54
+Unknown contact · active
+EO/IR
+T55
+Unknown contact · active
+EO/IR
+T56
+Unknown contact · active
+EO/IR
+T57
+Unknown contact · active
+EO/IR
+T58
+Unknown contact · active
+EO/IR
+T59
+Unknown contact · active
+EO/IR
+T60
+Unknown contact · active
+EO/IR
+T61
+Unknown contact · active
+EO/IR
+T63
+Unknown contact · active
+EO/IR
+T64
+Unknown contact · active
+EO/IR
+T65
+Unknown contact · active
+EO/IR
+T66
+Unknown contact · active
+EO/IR
+T68
+Unknown contact · active
+EO/IR
+T69
+Unknown contact · active
+EO/IR
+T70
+Unknown contact · active
+EO/IR
+T71
+Unknown contact · active
+EO/IR
+T72
+Unknown contact · active
+EO/IR
+T73
+Unknown contact · active
+EO/IR
+T74
+Unknown contact · active
+EO/IR
+T75
+Unknown contact · active
+EO/IR
+T76
+Unknown contact · active
+EO/IR
+T78
+Unknown contact · active
+EO/IR
+T79
+Unknown contact · active
+EO/IR
+T80
+Unknown contact · active
+EO/IR
+T81
+Unknown contact · active
+EO/IR
+T82
+Unknown contact · active
+EO/IR
+T83
+Unknown contact · active
+EO/IR
+T86
+Unknown contact · active
+EO/IR
+T87
+Unknown contact · active
+EO/IR
+T88
+Unknown contact · active
+EO/IR
+T90
+Unknown contact · active
+EO/IR
+T92
+Unknown contact · active
+EO/IR
+T93
+Unknown contact · active
+EO/IR
+T94
+Unknown contact · active
+EO/IR
+T95
+Unknown contact · active
+EO/IR
+T96
+Unknown contact · active
+EO/IR
+T97
+Unknown contact · active
+EO/IR
+T98
+Unknown contact · active
+EO/IR
+T99
+Unknown contact · active
+EO/IR
+T100
+Unknown contact · active
+EO/IR
+T101
+Unknown contact · active
+EO/IR
+T102
+Unknown contact · active
+EO/IR
+T103
+Unknown contact · active
+EO/IR
+T104
+Unknown contact · active
+EO/IR
+T105
+Unknown contact · active
+EO/IR
+T106
+Unknown contact · active
+EO/IR
+T107
+Unknown contact · active
+EO/IR
+T109
+Unknown contact · active
+EO/IR
+T110
+Unknown contact · active
+EO/IR
+T111
+Unknown contact · active
+EO/IR
+T112
+Unknown contact · active
+EO/IR
+T113
+Unknown contact · active
+EO/IR
+T114
+Unknown contact · active
+EO/IR
+T115
+Unknown contact · active
+EO/IR
+T116
+Unknown contact · active
+EO/IR
+T117
+Unknown contact · active
+EO/IR
+T118
+Unknown contact · active
+EO/IR
+T120
+Unknown contact · active
+EO/IR
+T121
+Unknown contact · active
+EO/IR
+T122
+Unknown contact · active
+EO/IR
+T123
+Unknown contact · active
+EO/IR
+T124
+Unknown contact · active
+EO/IR
+T125
+Unknown contact · active
+EO/IR
+T126
+Unknown contact · active
+EO/IR
+T127
+Unknown contact · active
+EO/IR
+T128
+Unknown contact · active
+EO/IR
+T129
+Unknown contact · active
+EO/IR
+T130
+Unknown contact · active
+EO/IR
+T131
+Unknown contact · active
+EO/IR
+T132
+Unknown contact · active
+EO/IR
+T133
+Unknown contact · active
+EO/IR
+T135
+Unknown contact · active
+EO/IR
+T136
+Unknown contact · active
+EO/IR
+T137
+Unknown contact · active
+EO/IR
+T138
+Unknown contact · active
+EO/IR
+T139
+Unknown contact · active
+EO/IR
+T140
+Unknown contact · active
+EO/IR
+T141
+Unknown contact · active
+EO/IR
+T142
+Unknown contact · active
+EO/IR
+T143
+Unknown contact · active
+EO/IR
+T144
+Unknown contact · active
+EO/IR
+T145
+Unknown contact · active
+EO/IR
+T146
+Unknown contact · active
+EO/IR
+T147
+Unknown contact · active
+EO/IR
+T148
+Unknown contact · active
+EO/IR
+T150
+Unknown contact · active
+EO/IR
+T151
+Unknown contact · active
+EO/IR
+T152
+Unknown contact · active
+EO/IR
+T153
+Unknown contact · active
+EO/IR
+T154
+Unknown contact · active
+EO/IR
+T155
+Unknown contact · active
+EO/IR
+T156
+Unknown contact · active
+EO/IR
+T157
+Unknown contact · active
+EO/IR
+T158
+Unknown contact · active
+EO/IR
+T159
+Unknown contact · active
+EO/IR
+T160
+Unknown contact · active
+EO/IR
+T161
+Unknown contact · active
+EO/IR
+T162
+Unknown contact · active
+EO/IR
+T163
+Unknown contact · active
+EO/IR
+T164
+Unknown contact · active
+EO/IR
+T165
+Unknown contact · active
+EO/IR
+T166
+Unknown contact · active
+EO/IR
+T167
+Unknown contact · active
+EO/IR
+T168
+Unknown contact · active
+EO/IR
+T169
+Unknown contact · active
+EO/IR
+T170
+Unknown contact · active
+EO/IR
+T171
+Unknown contact · active
+EO/IR
+T172
+Unknown contact · active
+EO/IR
+T174
+Unknown contact · active
+EO/IR
+T175
+Unknown contact · active
+EO/IR
+T176
+Unknown contact · active
+EO/IR
+T177
+Unknown contact · active
+EO/IR
+T178
+Unknown contact · active
+EO/IR
+T179
+Unknown contact · active
+EO/IR
+T180
+Unknown contact · active
+EO/IR
+T181
+Unknown contact · active
+EO/IR
+T182
+Unknown contact · active
+EO/IR
+T183
+Unknown contact · active
+EO/IR
+T184
+Unknown contact · active
+EO/IR
+T186
+Unknown contact · active
+EO/IR
+T187
+Unknown contact · active
+EO/IR
+T188
+Unknown contact · active
+EO/IR
+T189
+Unknown contact · active
+EO/IR
+T191
+Unknown contact · active
+EO/IR
+T192
+Unknown contact · active
+EO/IR
+T193
+Unknown contact · active
+EO/IR
+T194
+Unknown contact · active
+EO/IR
+T195
+Unknown contact · active
+EO/IR
+T196
+Unknown contact · active
+EO/IR
+T198
+Unknown contact · active
+EO/IR
+T200
+Unknown contact · active
+EO/IR
+Ghost Expert
+VERIFICATION PENDING
+Verification pending
+
+Authoritative decision review becomes available after the original local server verifies this exercise. No expert expectations are generated from device-only display state.
+
+Decision path and What-if replay
+Reviewed contact
+T1
+T2
+T3
+T4
+T5
+T6
+T7
+T8
+T9
+T10
+T11
+T12
+T13
+T14
+T15
+T16
+T17
+T18
+T19
+T20
+T21
+T22
+T23
+T24
+T25
+T26
+T27
+T28
+T29
+T30
+T31
+T32
+T33
+T34
+T35
+T36
+T37
+T38
+T39
+T40
+T41
+T42
+T43
+T44
+T45
+T46
+T47
+T48
+T49
+T50
+T51
+T52
+T53
+T54
+T55
+T56
+T57
+T58
+T59
+T60
+T61
+T62
+T63
+T64
+T65
+T66
+T67
+T68
+T69
+T70
+T71
+T72
+T73
+T74
+T75
+T76
+T77
+T78
+T79
+T80
+T81
+T82
+T83
+T84
+T85
+T86
+T87
+T88
+T89
+T90
+T91
+T92
+T93
+T94
+T95
+T96
+T97
+T98
+T99
+T100
+T101
+T102
+T103
+T104
+T105
+T106
+T107
+T108
+T109
+T110
+T111
+T112
+T113
+T114
+T115
+T116
+T117
+T118
+T119
+T120
+T121
+T122
+T123
+T124
+T125
+T126
+T127
+T128
+T129
+T130
+T131
+T132
+T133
+T134
+T135
+T136
+T137
+T138
+T139
+T140
+T141
+T142
+T143
+T144
+T145
+T146
+T147
+T148
+T149
+T150
+T151
+T152
+T153
+T154
+T155
+T156
+T157
+T158
+T159
+T160
+T161
+T162
+T163
+T164
+T165
+T166
+T167
+T168
+T169
+T170
+T171
+T172
+T173
+T174
+T175
+T176
+T177
+T178
+T179
+T180
+T181
+T182
+T183
+T184
+T185
+T186
+T187
+T188
+T189
+T190
+T191
+T192
+T193
+T194
+T195
+T196
+T197
+T198
+T199
+T200
+
+Device result; authoritative review requires server verification. Node points are final contact outcomes, shared across attempts. After-review truth is labelled separately from observations.
+
+STEP 1 · DETECT
+0 / 25
+0 authoritative reviews
+Inspect recorded evidence
+STEP 2 · CLASSIFY
+0 / 25
+0 authoritative reviews
+Inspect recorded evidence
+STEP 3 · TIMELY RESPONSE
+0 / 15
+0 authoritative reviews
+Legacy timely-response node
+STEP 4 · RESPOND
+0 / 35
+0 authoritative reviews
+Inspect recorded evidence
+
+Stages follow rubric order; decision ticks below preserve the actual recorded history. This display does not infer causal links between decisions.
+
+All stages
+0 reviews shown
+
+No authoritative decision review is recorded for this selection. A score alone does not establish what was observed.
+
+Read the complete linear decision record
+Try a different response
+
+The server branches the frozen exercise at the recorded decision. The original score and training profile remain unchanged.
+
+Server verification is required for What-if.
+
+Evidence-constrained response comparison
+
+Server verification of this completed session is required.
+
+Decision-tree score breakdown
+CONTACT	DETECT / 25	CLASSIFY / 25	TIMELY RESPONSE / 15	ENGAGE / 35	TOTAL
+T1 · neutral	0	0	0	0	0
+T2 · neutral	0	0	0	0	0
+T3 · neutral	0	0	0	0	0
+T4 · neutral	0	0	0	0	0
+T5 · neutral	0	0	0	0	0
+T6 · neutral	0	0	0	0	0
+T7 · neutral	0	0	0	0	0
+T8 · neutral	0	0	0	0	0
+T9 · neutral	0	0	0	0	0
+T10 · neutral	0	0	0	0	0
+T11 · neutral	0	0	0	0	0
+T12 · neutral	0	0	0	0	0
+T13 · neutral	0	0	0	0	0
+T14 · neutral	0	0	0	0	0
+T15 · neutral	0	0	0	0	0
+T16 · neutral	0	0	0	0	0
+T17 · neutral	0	0	0	0	0
+T18 · neutral	0	0	0	0	0
+T19 · neutral	0	0	0	0	0
+T20 · neutral	0	0	0	0	0
+T21 · neutral	0	0	0	0	0
+T22 · neutral	0	0	0	0	0
+T23 · neutral	0	0	0	0	0
+T24 · neutral	0	0	0	0	0
+T25 · neutral	0	0	0	0	0
+T26 · neutral	0	0	0	0	0
+T27 · neutral	0	0	0	0	0
+T28 · neutral	0	0	0	0	0
+T29 · neutral	0	0	0	0	0
+T30 · neutral	0	0	0	0	0
+T31 · neutral	0	0	0	0	0
+T32 · neutral	0	0	0	0	0
+T33 · neutral	0	0	0	0	0
+T34 · neutral	0	0	0	0	0
+T35 · neutral	0	0	0	0	0
+T36 · neutral	0	0	0	0	0
+T37 · neutral	0	0	0	0	0
+T38 · neutral	0	0	0	0	0
+T39 · neutral	0	0	0	0	0
+T40 · neutral	0	0	0	0	0
+T41 · neutral	0	0	0	0	0
+T42 · neutral	0	0	0	0	0
+T43 · neutral	0	0	0	0	0
+T44 · neutral	0	0	0	0	0
+T45 · neutral	0	0	0	0	0
+T46 · neutral	0	0	0	0	0
+T47 · neutral	0	0	0	0	0
+T48 · neutral	0	0	0	0	0
+T49 · neutral	0	0	0	0	0
+T50 · neutral	0	0	0	0	0
+T51 · neutral	0	0	0	0	0
+T52 · neutral	0	0	0	0	0
+T53 · neutral	0	0	0	0	0
+T54 · neutral	0	0	0	0	0
+T55 · neutral	0	0	0	0	0
+T56 · neutral	0	0	0	0	0
+T57 · neutral	0	0	0	0	0
+T58 · neutral	0	0	0	0	0
+T59 · neutral	0	0	0	0	0
+T60 · neutral	0	0	0	0	0
+T61 · neutral	0	0	0	0	0
+T62 · neutral	0	0	0	0	0
+T63 · neutral	0	0	0	0	0
+T64 · neutral	0	0	0	0	0
+T65 · neutral	0	0	0	0	0
+T66 · neutral	0	0	0	0	0
+T67 · neutral	0	0	0	0	0
+T68 · neutral	0	0	0	0	0
+T69 · neutral	0	0	0	0	0
+T70 · neutral	0	0	0	0	0
+T71 · neutral	0	0	0	0	0
+T72 · neutral	0	0	0	0	0
+T73 · neutral	0	0	0	0	0
+T74 · neutral	0	0	0	0	0
+T75 · neutral	0	0	0	0	0
+T76 · neutral	0	0	0	0	0
+T77 · neutral	0	0	0	0	0
+T78 · neutral	0	0	0	0	0
+T79 · neutral	0	0	0	0	0
+T80 · neutral	0	0	0	0	0
+T81 · neutral	0	0	0	0	0
+T82 · neutral	0	0	0	0	0
+T83 · neutral	0	0	0	0	0
+T84 · neutral	0	0	0	0	0
+T85 · neutral	0	0	0	0	0
+T86 · neutral	0	0	0	0	0
+T87 · neutral	0	0	0	0	0
+T88 · neutral	0	0	0	0	0
+T89 · neutral	0	0	0	0	0
+T90 · neutral	0	0	0	0	0
+T91 · neutral	0	0	0	0	0
+T92 · neutral	0	0	0	0	0
+T93 · neutral	0	0	0	0	0
+T94 · neutral	0	0	0	0	0
+T95 · neutral	0	0	0	0	0
+T96 · neutral	0	0	0	0	0
+T97 · neutral	0	0	0	0	0
+T98 · neutral	0	0	0	0	0
+T99 · neutral	0	0	0	0	0
+T100 · neutral	0	0	0	0	0
+T101 · neutral	0	0	0	0	0
+T102 · neutral	0	0	0	0	0
+T103 · neutral	0	0	0	0	0
+T104 · neutral	0	0	0	0	0
+T105 · neutral	0	0	0	0	0
+T106 · neutral	0	0	0	0	0
+T107 · neutral	0	0	0	0	0
+T108 · neutral	0	0	0	0	0
+T109 · neutral	0	0	0	0	0
+T110 · neutral	0	0	0	0	0
+T111 · neutral	0	0	0	0	0
+T112 · neutral	0	0	0	0	0
+T113 · neutral	0	0	0	0	0
+T114 · neutral	0	0	0	0	0
+T115 · neutral	0	0	0	0	0
+T116 · neutral	0	0	0	0	0
+T117 · neutral	0	0	0	0	0
+T118 · neutral	0	0	0	0	0
+T119 · neutral	0	0	0	0	0
+T120 · neutral	0	0	0	0	0
+T121 · neutral	0	0	0	0	0
+T122 · neutral	0	0	0	0	0
+T123 · neutral	0	0	0	0	0
+T124 · neutral	0	0	0	0	0
+T125 · neutral	0	0	0	0	0
+T126 · neutral	0	0	0	0	0
+T127 · neutral	0	0	0	0	0
+T128 · neutral	0	0	0	0	0
+T129 · neutral	0	0	0	0	0
+T130 · neutral	0	0	0	0	0
+T131 · neutral	0	0	0	0	0
+T132 · neutral	0	0	0	0	0
+T133 · neutral	0	0	0	0	0
+T134 · neutral	0	0	0	0	0
+T135 · neutral	0	0	0	0	0
+T136 · neutral	0	0	0	0	0
+T137 · neutral	0	0	0	0	0
+T138 · neutral	0	0	0	0	0
+T139 · neutral	0	0	0	0	0
+T140 · neutral	0	0	0	0	0
+T141 · neutral	0	0	0	0	0
+T142 · neutral	0	0	0	0	0
+T143 · neutral	0	0	0	0	0
+T144 · neutral	0	0	0	0	0
+T145 · neutral	0	0	0	0	0
+T146 · neutral	0	0	0	0	0
+T147 · neutral	0	0	0	0	0
+T148 · neutral	0	0	0	0	0
+T149 · neutral	0	0	0	0	0
+T150 · neutral	0	0	0	0	0
+T151 · neutral	0	0	0	0	0
+T152 · neutral	0	0	0	0	0
+T153 · neutral	0	0	0	0	0
+T154 · neutral	0	0	0	0	0
+T155 · neutral	0	0	0	0	0
+T156 · neutral	0	0	0	0	0
+T157 · neutral	0	0	0	0	0
+T158 · neutral	0	0	0	0	0
+T159 · neutral	0	0	0	0	0
+T160 · neutral	0	0	0	0	0
+T161 · neutral	0	0	0	0	0
+T162 · neutral	0	0	0	0	0
+T163 · neutral	0	0	0	0	0
+T164 · neutral	0	0	0	0	0
+T165 · neutral	0	0	0	0	0
+T166 · neutral	0	0	0	0	0
+T167 · neutral	0	0	0	0	0
+T168 · neutral	0	0	0	0	0
+T169 · neutral	0	0	0	0	0
+T170 · neutral	0	0	0	0	0
+T171 · neutral	0	0	0	0	0
+T172 · neutral	0	0	0	0	0
+T173 · neutral	0	0	0	0	0
+T174 · neutral	0	0	0	0	0
+T175 · neutral	0	0	0	0	0
+T176 · neutral	0	0	0	0	0
+T177 · neutral	0	0	0	0	0
+T178 · neutral	0	0	0	0	0
+T179 · neutral	0	0	0	0	0
+T180 · neutral	0	0	0	0	0
+T181 · neutral	0	0	0	0	0
+T182 · neutral	0	0	0	0	0
+T183 · neutral	0	0	0	0	0
+T184 · neutral	0	0	0	0	0
+T185 · neutral	0	0	0	0	0
+T186 · neutral	0	0	0	0	0
+T187 · neutral	0	0	0	0	0
+T188 · neutral	0	0	0	0	0
+T189 · neutral	0	0	0	0	0
+T190 · neutral	0	0	0	0	0
+T191 · neutral	0	0	0	0	0
+T192 · neutral	0	0	0	0	0
+T193 · neutral	0	0	0	0	0
+T194 · neutral	0	0	0	0	0
+T195 · neutral	0	0	0	0	0
+T196 · neutral	0	0	0	0	0
+T197 · neutral	0	0	0	0	0
+T198 · neutral	0	0	0	0	0
+T199 · neutral	0	0	0	0	0
+T200 · neutral	0	0	0	0	0
+
+Session score averages hostile contacts, then subtracts 10 per asset impact. Non-hostile engagement fails the session. This legacy exercise uses timely resolution for its 15-point node.
+
+Saving exercise…
+QA accessibility

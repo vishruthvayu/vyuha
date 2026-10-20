@@ -1,0 +1,53 @@
+{
+  "v1_commit": "14a38ad9f8dd6d895f87fd568f0c5865b727e3a4",
+  "v1_tag": "v1.0.0",
+  "assets_verified": [
+    {
+      "name": "VYUHA-submission-185350-v1.0.0.zip",
+      "sha256": "d547766d1fb58cd8aef272e33abb791b5709a070168e02946ad550e32f9abec5",
+      "copies_checked": 1
+    },
+    {
+      "name": "VYUHA-source-v1.0.0.tar.gz",
+      "sha256": "9d434b53b27666e560e5a6be13a1a441f4174f120cb0c64aa64edb5e9b7ca8b9",
+      "copies_checked": 1
+    },
+    {
+      "name": "VYUHA-SIH26247-Team185350.pdf",
+      "sha256": "6a38e27ef42a26e87aa6854271048faf06873595e3810c772d409dead18d4858",
+      "copies_checked": 1
+    },
+    {
+      "name": "VYUHA-SIH26247-Team185350-v2.pptx",
+      "sha256": "1dc7f3ff36f1803fb7040babb4db7e2294021d90c75ba61a777fe09c91b88909",
+      "copies_checked": 1
+    },
+    {
+      "name": "VYUHA-primary-demo-final.mp4",
+      "sha256": "60cfeac29c661efc40287ceb1a48095ac3bcb7958cb54ed6a761ba5f3041562e",
+      "copies_checked": 1
+    },
+    {
+      "name": "VYUHA-backup-demo-final.mp4",
+      "sha256": "430c70130dc0a5a036a2888eaaf06c35582d7d1bcd5e578b8cb668c38c426c20",
+      "copies_checked": 1
+    },
+    {
+      "name": "RELEASE-RECEIPT.json",
+      "sha256": "1454838c1dae0560258e371e504ded8de49a8b7403f9adb7343e1152a06aae71",
+      "copies_checked": 1
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "sha256": "ceb41c2f9b1d53b7c3e61a7cbd6d746a2f2c532d6864e992fae07a81e48d4489",
+      "copies_checked": 1
+    },
+    {
+      "name": "PACKAGE-SHA256.txt",
+      "sha256": "ae94173fa3ba3ee1f4f48892a0767884a99cbc743c1b839964f825ede9d4b6dc",
+      "copies_checked": 1
+    }
+  ],
+  "all_nine_unchanged": true,
+  "old_artifacts_modified": false
+}

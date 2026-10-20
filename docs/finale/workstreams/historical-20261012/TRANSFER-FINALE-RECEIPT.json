@@ -1,0 +1,51 @@
+{
+  "status": "FOCUSED FINALE TRANSFER VALIDATED",
+  "validated_date": "2026-10-11",
+  "scope": "Real API operations in disposable databases plus actual Node JavaScript JSON.parse/JSON.stringify on macOS; synthetic action reconstruction, not human efficacy or physical deployment evidence",
+  "suite": "server/tests/test_portable_finale.py",
+  "tests_passed": 30,
+  "tests_failed": 0,
+  "runs": [
+    {
+      "selection": "non-Director cases collected before Director append",
+      "passed": 24,
+      "elapsed_seconds": 979.26
+    },
+    {
+      "selection": "-k director",
+      "passed": 6,
+      "deselected": 24,
+      "elapsed_seconds": 133.39
+    }
+  ],
+  "checks": [
+    "Actual 180-second exported history reencoded with ordinary JavaScript",
+    "Accepted action after tick2250, frozen5400-tick horizon, exact score/actions/AAR on clean recipient",
+    "Actual SQLite REAL integral values converted to JavaScript integers",
+    "Duplicate import without ledger duplication and forwarded payload equality",
+    "Mixed v0.3 and v0.4 histories reconstructed without engine relabelling",
+    "Wrong key, unsigned tamper, duplicate canonical IDs, malformed JSON and unknown payload schema rejected without writes",
+    "Signed wrong score, engine/sensor markers, incomplete/unknown sensor config, unknown/altered motion, incompatible threat/effector config, fingerprint/hash/geometry and horizon/unknown fields rejected without writes",
+    "Atomic rollback of a preceding valid new session when later existing canonical session conflicts",
+    "Director opaque installation-scoped owner binding retained through pseudonymous browser/source/recipient/forwarding roundtrip",
+    "Director missing/changed binding, unknown metadata, raw selection snapshot session identifier and owner mismatch rejected without writes"
+  ],
+  "unchanged_security": [
+    "HMAC verification is mandatory",
+    "Historical original direct-digest signatures preserved",
+    "Schema and reconstruction gates retained",
+    "Supplied score and outcome evidence reconstructed before write"
+  ],
+  "limits": [
+    "Focused candidate integration tests; final all-suite receipt and source hash are separate",
+    "Physical Windows launch, physical Linux launch and separate-device HTTPS trust not performed on this Mac",
+    "Historical WAN-off is a user-reported pass with incomplete device/version/date metadata; no new Finale WAN-off evidence inferred",
+    "One existing FastAPI/Starlette httpx deprecation warning; no validation test failures"
+  ],
+  "owned_changes": [
+    "server/tests/test_portable_finale.py",
+    "scripts/setup-officer.ps1",
+    "docs/finale/DEPLOYMENT-GUIDE.md",
+    "docs/finale/TRANSFER-VALIDATION.md"
+  ]
+}

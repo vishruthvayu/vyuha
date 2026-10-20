@@ -1,0 +1,19 @@
+# v1.0.1 final source and claim audit
+
+No application source, dependency, simulation, scoring, Director, Ghost, replay, worker, Red Force, Unit Mode, recognition, authoring, analytics or database file changed from the navigation candidate `b88faa92b8455708a98b05723939168e0207d8ee`. All fifteen protected tactical/contract files also match the competitive-polish parent byte for byte. The 139 backend /64 frontend tests and five cross-language parity suites cover the preserved behavior. Navigation registry/coverage remains intact.
+
+The runtime manifest in `docs/qa-competitive-polish/evidence.json` is refreshed because the API already serves that location. Fresh release evidence comprises the executed automated tests/build, safe history compatibility and final UI navigation walkthrough. Historical performance, physical/network, deployment, simulated experiment, media and rehearsal evidence retain their old source identities under an explicit historical provenance record; these measurements were not repeated or regenerated for v1.0.1. The earlier manifest is recoverable verbatim at its recorded Git commit. No candidate measurements are relabelled as new measurements.
+
+The source-tree hash covers application/runtime/test/script inputs according to the existing evidence implementation; documentation metadata is bound separately by the final immutable Git commit and seal receipt. The pre-seal tests ran on the release branch at the navigation implementation commit; the subsequent commit changes only documentation/evidence. The affected runtime-manifest endpoint and visible evidence page are checked again before sealing.
+
+Determinism/parity applies to the implemented illustrative model; it does not establish calibrated signatures, measured weapon effectiveness, military validation or operational readiness. Director is seeded Thompson selection over persistent Beta training estimates with heuristic difficulty, not a newly trained AI. Ghost reconstructs authoritative observations/actions and distinguishes projected penalties from observed events. Recorded practice is bounded and unscored; HMAC integrity does not authenticate the donor or provide non-repudiation. Rapid ID/evaluation tooling is not human efficacy evidence.
+
+Physical multi-device LAN training was validated. Runtime assets and services are hosted locally; dedicated WAN-disconnected physical validation remains pending.
+
+Physical WAN disconnected + LAN retained + separate physical trainee device: **NOT PERFORMED BEFORE SUBMISSION**. Reason: **Required physical/network setup unavailable during final validation window.** Known validation limitation, not a failed architectural test. This exception does not waive other release requirements.
+
+Dedicated physical WAN-off/LAN-on validation was not completed before submission. Multi-device LAN operation, local asset serving, process-outage recovery and queued-event resynchronization were validated separately.
+
+Material limitations remain: trusted-LAN prototype without production authentication; no human efficacy study or operational certification; illustrative threat/sensor/effector/audio/learning values; short rendering measurements rather than endurance certification; plain LAN HTTP cold reload with the original server absent is browser-security constrained; rain, crew roles, hardware feeds, calibrated models and production identity remain deferred. Docker image build was not validated on this laptop. This release task does not claim new clean-clone/platform/physical validation or regenerate old PDF/PPT/video/archive artifacts.
+
+After the immutable v1.0.1 tag is verified, freeze application behavior. Only a critical release/demo/submission blocker may justify a new code commit, full regression and an explicit decision about another patch release. Never move v1.0.1 or v1.0.0.

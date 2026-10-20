@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-12",
+  "scope": "Actual production browser on disposable macOS service; exact target-session row, frozen scenario, accepted chunks/commands, personal skill profile/outcome, Fusion receipts and session statistics compared before/after",
+  "session_id": "6197565f-63d3-43e8-a7e5-f67f2ef24b04",
+  "original_score": 0,
+  "evidence_only_score": 0,
+  "evidence_only_own_decisions": 12,
+  "what_if_kinetic_score": 5,
+  "reference_keyboard_end_tick": 1800,
+  "changing_alternative_clears_old_result": true,
+  "target_evidence_sha256_before_and_after": "cd7542cf313b48e7168149d35d6cfeca08eb5d8b39de676f43d6068622aff1c9",
+  "original_history_profiles_receipts_unchanged": true,
+  "limits": [
+    "Conservative reference may abstain; no operational correctness or human learning result",
+    "Whole-service dump includes unrelated live telemetry. A failed initial global-hash check exposed completed Crew telemetry mutation, which was fixed and covered by a whole-dump readonly regression",
+    "Keyboard check covers this labelled range control; not comprehensive assistive-technology certification"
+  ]
+}

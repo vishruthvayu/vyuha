@@ -1,0 +1,4542 @@
+{
+  "runtime_commit": "ad430f742f7476feb464c1c53d08cfb3f95823ba",
+  "synthetic_data_only": true,
+  "read_only_verified_storage": true,
+  "sessions": [
+    {
+      "session": "1d823417-5fbb-4da1-adde-ecd4b824faed",
+      "status": "completed",
+      "accepted_events": 6,
+      "fusion_action_orders": [
+        0,
+        1,
+        2
+      ],
+      "instructor_commands": 0,
+      "execution_tick": 1490,
+      "end_tick": 2700,
+      "scorecard": {
+        "engine_version": "vyuha-0.4.0",
+        "fratricide": false,
+        "leakers": 4,
+        "passed": false,
+        "prioritisation": {
+          "agreement": 1,
+          "choices": [],
+          "comparisons": [],
+          "coverage": 0.0,
+          "method": "pairwise Kendall agreement over co-observed hostile choices, multiplied by engagement coverage",
+          "ordering_rule": "First accepted non-Hold engagement per hostile; an ineffective attempt still declares attention. Pairs counted once, at their first co-observed choice.",
+          "points": 0,
+          "points_possible": 15,
+          "priority_rule": "risk_weight \u00d7 asset_risk / max(time_to_impact_seconds, 1/30)",
+          "tau": null,
+          "tie_rule": "Equal priority pairs are excluded; no comparable pairs yields neutral agreement 1, still multiplied by coverage.",
+          "unengaged": [
+            "T1",
+            "T2",
+            "T3",
+            "T4"
+          ],
+          "version": 1
+        },
+        "roe_breaches": 0,
+        "rows": [
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 60,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / hostile.",
+              "RF-link present: RF jamming is the example-pack response.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T1",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 63,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / hostile.",
+              "RF-link present: RF jamming is the example-pack response.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T2",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 1410,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / hostile.",
+              "RF-link present: RF jamming is the example-pack response.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T3",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 1413,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / hostile.",
+              "No RF link: use an allowed kinetic response in this example pack.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T4",
+            "ideal": "kinetic",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 540,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T5",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [
+              "hold"
+            ],
+            "classify": 25,
+            "designated": 372,
+            "detect": 23,
+            "detected": 240,
+            "engage": 35,
+            "feedback": [
+              "Designation took 4.4 seconds after first sensor visibility."
+            ],
+            "id": "T6",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 15,
+            "total": 98
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 450,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T7",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [
+              "hold"
+            ],
+            "classify": 0,
+            "designated": 1442,
+            "detect": 0,
+            "detected": 420,
+            "engage": 35,
+            "feedback": [
+              "Designation took 34.1 seconds after first sensor visibility.",
+              "Reference classification: quad / friendly."
+            ],
+            "id": "T8",
+            "ideal": "hold",
+            "identity": "friendly",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 15,
+            "total": 50
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 600,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / friendly.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T9",
+            "ideal": "hold",
+            "identity": "friendly",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          }
+        ],
+        "score": 0,
+        "skills": {
+          "recognition": 11,
+          "response": 22
+        },
+        "summary": "4 threats reached the protected asset. Review response selection.",
+        "threats": 4
+      }
+    },
+    {
+      "session": "a203d2ee-23db-49cb-87ad-ea5d1c4ed7fc",
+      "status": "completed",
+      "accepted_events": 6,
+      "fusion_action_orders": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "instructor_commands": 0,
+      "execution_tick": 918,
+      "end_tick": 2700,
+      "scorecard": {
+        "engine_version": "vyuha-0.4.0",
+        "fratricide": false,
+        "leakers": 4,
+        "passed": false,
+        "prioritisation": {
+          "agreement": 1,
+          "choices": [],
+          "comparisons": [],
+          "coverage": 0.0,
+          "method": "pairwise Kendall agreement over co-observed hostile choices, multiplied by engagement coverage",
+          "ordering_rule": "First accepted non-Hold engagement per hostile; an ineffective attempt still declares attention. Pairs counted once, at their first co-observed choice.",
+          "points": 0,
+          "points_possible": 15,
+          "priority_rule": "risk_weight \u00d7 asset_risk / max(time_to_impact_seconds, 1/30)",
+          "tau": null,
+          "tie_rule": "Equal priority pairs are excluded; no comparable pairs yields neutral agreement 1, still multiplied by coverage.",
+          "unengaged": [
+            "T1",
+            "T2",
+            "T3",
+            "T4"
+          ],
+          "version": 1
+        },
+        "roe_breaches": 0,
+        "rows": [
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 60,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / hostile.",
+              "RF-link present: RF jamming is the example-pack response.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T1",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 63,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / hostile.",
+              "RF-link present: RF jamming is the example-pack response.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T2",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 1410,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / hostile.",
+              "RF-link present: RF jamming is the example-pack response.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T3",
+            "ideal": "rf_jam",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 1413,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / hostile.",
+              "No RF link: use an allowed kinetic response in this example pack.",
+              "This threat reached the protected asset."
+            ],
+            "id": "T4",
+            "ideal": "kinetic",
+            "identity": "hostile",
+            "impact": true,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 540,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T5",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [
+              "hold"
+            ],
+            "classify": 25,
+            "designated": 469,
+            "detect": 18,
+            "detected": 240,
+            "engage": 35,
+            "feedback": [
+              "Designation took 7.6 seconds after first sensor visibility."
+            ],
+            "id": "T6",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 15,
+            "total": 93
+          },
+          {
+            "attempts": [
+              "hold"
+            ],
+            "classify": 12,
+            "designated": 873,
+            "detect": 9,
+            "detected": 450,
+            "engage": 35,
+            "feedback": [
+              "Designation took 14.1 seconds after first sensor visibility.",
+              "Reference classification: bird / neutral."
+            ],
+            "id": "T7",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 15,
+            "total": 71
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 420,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / friendly.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T8",
+            "ideal": "hold",
+            "identity": "friendly",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 600,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / friendly.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T9",
+            "ideal": "hold",
+            "identity": "friendly",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          }
+        ],
+        "score": 0,
+        "skills": {
+          "recognition": 16,
+          "response": 22
+        },
+        "summary": "4 threats reached the protected asset. Review response selection.",
+        "threats": 4
+      }
+    },
+    {
+      "session": "e30a911c-7a2c-467e-8fae-9c3f58787638",
+      "status": "completed",
+      "accepted_events": 3,
+      "fusion_action_orders": [],
+      "instructor_commands": 2,
+      "execution_tick": 5400,
+      "end_tick": 5400,
+      "scorecard": {
+        "engine_version": "vyuha-0.4.0",
+        "fratricide": false,
+        "leakers": 0,
+        "passed": false,
+        "response_model": {
+          "attempts": [
+            {
+              "due_tick": null,
+              "effector": "hold",
+              "id": "R1",
+              "order": 2,
+              "result_tick": 1279,
+              "status": "hold",
+              "tick": 1279,
+              "track": "T1"
+            }
+          ],
+          "basis": "Illustrative seeded delayed effects; engagement points credit executable suitable process separately from stochastic resolution. Non-hostile destructive attempts fail safety regardless of result.",
+          "jammer_channels_in_use": 0,
+          "kinetic_ammo_remaining": 8,
+          "kinetic_ready_tick": 0,
+          "no_effect_results": 0,
+          "pending": [],
+          "process_valid_attempts": 1,
+          "reference_attempts": [
+            {
+              "due_tick": null,
+              "effector": "hold",
+              "id": "R1",
+              "launch_eligible": true,
+              "order": 2,
+              "process_valid": true,
+              "result_tick": 1279,
+              "status": "hold",
+              "tick": 1279,
+              "track": "T1"
+            }
+          ],
+          "resolved_effects": 0,
+          "version": 1
+        },
+        "roe_breaches": 0,
+        "rows": [
+          {
+            "attempts": [
+              "hold"
+            ],
+            "classify": 0,
+            "designated": 709,
+            "detect": 0,
+            "detected": 0,
+            "engage": 35,
+            "feedback": [
+              "Response process/outcome: 1 suitable executable attempts; 0 delayed effects resolved.",
+              "Designation took 23.6 seconds after first sensor visibility.",
+              "Reference classification: bird / neutral."
+            ],
+            "id": "T1",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 15,
+            "total": 50
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T2",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T3",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T4",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T5",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T6",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T7",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T8",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T9",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T10",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T11",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T12",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T13",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T14",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T15",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T16",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T17",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T18",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T19",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T20",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T21",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T22",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T23",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T24",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T25",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T26",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T27",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T28",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T29",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T30",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T31",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T32",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T33",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T34",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T35",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T36",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T37",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T38",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T39",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T40",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T41",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T42",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T43",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T44",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T45",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T46",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T47",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T48",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T49",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T50",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T51",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T52",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T53",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T54",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T55",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T56",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T57",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T58",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T59",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T60",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T61",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T62",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T63",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T64",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T65",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T66",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T67",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T68",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T69",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T70",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T71",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T72",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T73",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T74",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T75",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T76",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T77",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T78",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T79",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T80",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T81",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T82",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T83",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T84",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T85",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T86",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T87",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T88",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T89",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T90",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T91",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T92",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T93",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T94",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T95",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T96",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T97",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T98",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T99",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T100",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T101",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T102",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T103",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T104",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T105",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T106",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T107",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T108",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T109",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T110",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T111",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T112",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T113",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T114",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T115",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T116",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T117",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T118",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T119",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T120",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T121",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T122",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T123",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T124",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T125",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T126",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T127",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T128",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T129",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T130",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T131",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T132",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T133",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T134",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T135",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T136",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T137",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T138",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T139",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T140",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T141",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T142",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T143",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T144",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T145",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T146",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T147",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T148",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T149",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T150",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T151",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T152",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T153",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T154",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T155",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T156",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T157",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T158",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T159",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T160",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T161",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T162",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T163",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T164",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T165",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T166",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T167",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T168",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T169",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T170",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T171",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T172",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 6,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T173",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T174",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T175",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T176",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T177",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T178",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T179",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T180",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T181",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T182",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T183",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T184",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T185",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T186",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T187",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T188",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T189",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T190",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T191",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T192",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: bird / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T193",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "bird",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T194",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T195",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fixed wing / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T196",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fixed_wing",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: fiber fpv / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T197",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "fiber_fpv",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T198",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 3,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T199",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          },
+          {
+            "attempts": [],
+            "classify": 0,
+            "designated": null,
+            "detect": 0,
+            "detected": 0,
+            "engage": 0,
+            "feedback": [
+              "Designate the contact after a sensor first reveals it.",
+              "Reference classification: quad / neutral.",
+              "Hold fire on this non-hostile contact."
+            ],
+            "id": "T200",
+            "ideal": "hold",
+            "identity": "neutral",
+            "impact": false,
+            "kind": "quad",
+            "prioritise": 0,
+            "total": 0
+          }
+        ],
+        "score": 0,
+        "skills": {
+          "recognition": 0,
+          "response": 1
+        },
+        "summary": "Review designation, classification, and response before the next drill.",
+        "threats": 0
+      }
+    }
+  ]
+}

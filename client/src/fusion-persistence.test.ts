@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {mergeServerRecord} from './storage';
+import {makeScenario} from './scenario';
+import {replay,score} from './sim';
+import type {Record as TrainingRecord} from './types';
+const scenario=makeScenario();
+const local:TrainingRecord={id:'pending-fusion',trainee:'QA',scenario,events:[],eventBatches:[[]],endTick:2250,scorecard:score(replay(scenario,[],2250)),created_at:'2026-10-12T00:00:00Z',verified:false,fusionExposures:[{tick:30,before_order:0,track:'T1',exposure_id:'synthetic-retained-receipt',association:'unspecified'}]};
+test('authoritative AAR refresh preserves pending Fusion requests without retaining device score',()=>{const before=structuredClone(local);const remote={...local,verified:true,scorecard:{...local.scorecard,score:55},fusionExposures:undefined,eventBatches:undefined};const merged=mergeServerRecord(local,remote);assert.equal(merged.verified,true);assert.equal(merged.scorecard.score,55);assert.deepEqual(merged.fusionExposures,local.fusionExposures);assert.deepEqual(merged.eventBatches,local.eventBatches);assert.deepEqual(local,before);});
+test('pending Fusion requests never cross session or frozen scenario boundaries',()=>{for(const remote of [{...local,id:'other',fusionExposures:undefined},{...local,scenario:{...scenario,id:'different-scenario'},fusionExposures:undefined}]){assert.equal(mergeServerRecord(local,remote),remote);assert.equal(mergeServerRecord(undefined,remote),remote);assert.equal(mergeServerRecord(local,remote).fusionExposures,undefined);}});

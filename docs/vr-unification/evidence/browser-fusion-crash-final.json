@@ -1,0 +1,43 @@
+{
+  "history": [
+    {
+      "utc": "2026-10-20T02:21:28.292631+00:00",
+      "event": "controller-ready"
+    },
+    {
+      "utc": "2026-10-20T02:21:31.346495+00:00",
+      "event": "started",
+      "exit_code": null
+    },
+    {
+      "utc": "2026-10-20T02:22:21.203295+00:00",
+      "event": "crash",
+      "was_alive": true,
+      "exit_code": -9
+    },
+    {
+      "utc": "2026-10-20T02:22:46.641284+00:00",
+      "event": "started",
+      "exit_code": null
+    },
+    {
+      "utc": "2026-10-20T02:36:32.305076+00:00",
+      "event": "crash",
+      "was_alive": true,
+      "exit_code": -9
+    },
+    {
+      "utc": "2026-10-20T02:37:14.526583+00:00",
+      "event": "started",
+      "exit_code": null
+    },
+    {
+      "utc": "2026-10-20T09:07:33.310605+00:00",
+      "event": "crash",
+      "was_alive": true,
+      "exit_code": -9
+    }
+  ],
+  "pid": 9122,
+  "running": false
+}

@@ -1,0 +1,20 @@
+{
+  "source_tree_sha256": "147579ef674ee9dab029def4ce9ac7d5cccdef1c856552dde240bcf5efcd0ff4",
+  "backend_passed": 139,
+  "frontend_passed": 53,
+  "parity": {
+    "original": 51,
+    "director": 72,
+    "advanced": 135,
+    "rural": 54
+  },
+  "production_build": "passed",
+  "offline_assets": 23,
+  "cache_fingerprint": "dc761b08aefb",
+  "historical_sessions": 18,
+  "manual_walkthrough": "passed",
+  "performance": "acceptable; Follow 200 median 58, all other final medians 60",
+  "physical_wan_off": "NOT PERFORMED BEFORE SUBMISSION",
+  "no_other_acceptance_waived": true,
+  "optional_release_created": false
+}

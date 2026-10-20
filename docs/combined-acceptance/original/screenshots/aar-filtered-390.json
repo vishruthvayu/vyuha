@@ -1,0 +1,75 @@
+{
+  "url": "http://127.0.0.1:8086/?view=aar&session=24d77092-dab3-48aa-a23c-d94d1b67f1bd",
+  "width": 390,
+  "height": 844,
+  "scale": 1,
+  "axe": {
+    "name": "axe-core",
+    "version": "4.14.0"
+  },
+  "violations": [
+    {
+      "id": "label-content-name-mismatch",
+      "impact": "serious",
+      "description": "Ensure that elements labelled through their content must have their visible text as part of their accessible name",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "nodes": [
+        {
+          "target": [
+            "button[aria-label=\"Replay track T1\"]"
+          ],
+          "summary": "Fix any of the following:\n  Text inside the element is not included in the accessible name",
+          "html": "<button aria-label=\"Replay track T1\"><b>T1</b><span>Unknown contact · asset impact</span><small>Last observation</small></button>"
+        },
+        {
+          "target": [
+            "button[aria-label=\"Replay track T2\"]"
+          ],
+          "summary": "Fix any of the following:\n  Text inside the element is not included in the accessible name",
+          "html": "<button aria-label=\"Replay track T2\"><b>T2</b><span>Unknown contact · asset impact</span><small>Last observation</small></button>"
+        },
+        {
+          "target": [
+            "button[aria-label=\"Replay track T3\"]"
+          ],
+          "summary": "Fix any of the following:\n  Text inside the element is not included in the accessible name",
+          "html": "<button aria-label=\"Replay track T3\"><b>T3</b><span>Unknown contact · asset impact</span><small>Last observation</small></button>"
+        },
+        {
+          "target": [
+            "button[aria-label=\"Replay track T4\"]"
+          ],
+          "summary": "Fix any of the following:\n  Text inside the element is not included in the accessible name",
+          "html": "<button aria-label=\"Replay track T4\"><b>T4</b><span>Unknown contact · active</span><small>Radar EO/IR</small></button>"
+        },
+        {
+          "target": [
+            "button[aria-label=\"Replay track T5\"]"
+          ],
+          "summary": "Fix any of the following:\n  Text inside the element is not included in the accessible name",
+          "html": "<button aria-label=\"Replay track T5\"><b>T5</b><span>Unknown contact · active</span><small>Radar EO/IR</small></button>"
+        },
+        {
+          "target": [
+            "button[aria-label=\"Replay track T6\"]"
+          ],
+          "summary": "Fix any of the following:\n  Text inside the element is not included in the accessible name",
+          "html": "<button aria-label=\"Replay track T6\"><b>T6</b><span>Unknown contact · active</span><small>Radar EO/IR</small></button>"
+        }
+      ]
+    }
+  ],
+  "passes": 36,
+  "incomplete": [
+    {
+      "id": "color-contrast",
+      "nodes": 34
+    }
+  ],
+  "geometry": {
+    "height": 844,
+    "scale": 1,
+    "scrollWidth": 390,
+    "width": 390
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-13",
+  "code_commit": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
+  "source_tree_sha256": "5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0",
+  "current_receipt": "rc2/BROWSER.json",
+  "responsive_receipt": "rc2/RESPONSIVE.json",
+  "observation_race_receipt": "rc2/OBSERVATION-RACE.json",
+  "prior_RC1_advanced_workflows": "rc2/historical-rc1/BROWSER-ACCEPTANCE.json",
+  "scope": "Current actual macOS Chrome remediation workflows; dated earlier advanced AAR/outage receipts remain supporting regression provenance. No native/phone PASS inferred."
+}

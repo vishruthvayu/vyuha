@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "provenance": "User identified this physical laptop as the weakest currently available team laptop. General hardware fields read with macOS system_profiler (serial/device IDs excluded). Actual visible browser measurements repeated on 2026-10-03 at fixed Medium, Auto disabled, 20 seconds per count. DOM worker timings are rounded to 0.001 ms; zero is below browser timer resolution. No full browser/process memory measurement; these short runs are not long-duration certification.",
+  "hardware_class": "MacBook Air, Apple M1, 8-core CPU",
+  "model_class": "MacBookAir10,1",
+  "ram_gib": 8,
+  "hardware_source": "Filtered system_profiler SPHardwareDataType",
+  "os": "macOS 27.0.1 arm64",
+  "browser": "Codex in-app Chromium",
+  "results": [
+    {
+      "contacts": 8,
+      "graphics": "medium",
+      "auto_quality": false,
+      "seconds": 20,
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0,
+      "p95_sim_tick_ms": 0.1,
+      "memory": null,
+      "observation_source": "Actual completed benchmark UI; export download observation timed out so raw FPS samples are not claimed for this repeat."
+    },
+    {
+      "contacts": 25,
+      "graphics": "medium",
+      "auto_quality": false,
+      "seconds": 20,
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0,
+      "p95_sim_tick_ms": 0.1,
+      "memory": null,
+      "observation_source": "Actual completed benchmark UI; export download observation timed out so raw FPS samples are not claimed for this repeat."
+    },
+    {
+      "contacts": 50,
+      "graphics": "medium",
+      "auto_quality": false,
+      "seconds": 20,
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0,
+      "p95_sim_tick_ms": 0.1,
+      "memory": null,
+      "observation_source": "Actual completed benchmark UI; export download observation timed out so raw FPS samples are not claimed for this repeat."
+    },
+    {
+      "contacts": 100,
+      "graphics": "medium",
+      "auto_quality": false,
+      "seconds": 20,
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0,
+      "p95_sim_tick_ms": 0.2,
+      "memory": null,
+      "observation_source": "Actual completed benchmark UI; export download observation timed out so raw FPS samples are not claimed for this repeat."
+    },
+    {
+      "contacts": 200,
+      "graphics": "medium",
+      "auto_quality": false,
+      "seconds": 20,
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0.1,
+      "p95_sim_tick_ms": 0.3,
+      "memory": null,
+      "observation_source": "Actual completed benchmark UI; export download observation timed out so raw FPS samples are not claimed for this repeat."
+    }
+  ],
+  "manual_tactical_fallback": "200-contact scene switched successfully to detected-contact 2D radar; 2D paint FPS not measured."
+}

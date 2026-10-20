@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-13",
+  "code_commit": "e07a3845cc465f430b572ece7fbded687c1e3729",
+  "scope": "Actual Chrome GUI export/import and clean receiver. Separate supporting HTTP export and SQLite comparison. Disposable loopback installations on one Mac; not physical LAN/WAN or human validation.",
+  "browser_file_sha256": "5618324fbeaf7c6534dd687f681d117c9fe55a8aa3927ca32008329bd0fb3f68",
+  "initial_receiver_sessions": 0,
+  "GUI_inserted": 24,
+  "GUI_duplicate_inserted": 0,
+  "GUI_duplicate_skipped": 24,
+  "GUI_tampered_rejected": true,
+  "GUI_imported_crew_timeline": {
+    "sessions": 1,
+    "accepted_attributed_actions": 3,
+    "designation_to_classification_seconds": 10.63,
+    "classification_to_response_seconds": 0.93,
+    "pseudonymous_source_cohort": true,
+    "completed_officer_AAR_server_verified": true
+  },
+  "supporting_data_checks": {
+    "unchanged_forwarded_payload": true,
+    "all_24_original_scorecards_equal": true,
+    "counts": {
+      "sessions": 24,
+      "crews": 0,
+      "crew_members": 0,
+      "crew_archive": 1,
+      "instructor_notes": 1,
+      "fusion_exposures": 3
+    },
+    "shared_crew_individual_outcomes": 0,
+    "Director_v2_metadata_records": 3,
+    "Fusion_receipts": 3,
+    "teaching_notes": 1
+  },
+  "limits": [
+    "Integrity is shared-key HMAC, not donor identity or human training authenticity.",
+    "Raw export/private test DB not included in release archive.",
+    "File-picker automation overhead is not server import latency."
+  ]
+}

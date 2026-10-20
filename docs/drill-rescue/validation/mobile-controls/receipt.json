@@ -1,0 +1,68 @@
+{
+  "checks": [
+    {
+      "width": 360,
+      "within": true,
+      "uncovered": true,
+      "documentOverflow": false,
+      "toolbarHeight": 75.046875,
+      "fallbackAndRecovery": "PASS"
+    },
+    {
+      "width": 390,
+      "within": true,
+      "uncovered": true,
+      "documentOverflow": false,
+      "toolbarHeight": 75.046875,
+      "fallbackAndRecovery": "PASS"
+    },
+    {
+      "width": 428,
+      "within": true,
+      "uncovered": true,
+      "documentOverflow": false,
+      "toolbarHeight": 75.046875,
+      "fallbackAndRecovery": "PASS"
+    },
+    {
+      "width": 768,
+      "within": true,
+      "uncovered": true,
+      "documentOverflow": false,
+      "toolbarHeight": 44,
+      "fallbackAndRecovery": "PASS"
+    },
+    {
+      "width": 1024,
+      "within": true,
+      "uncovered": true,
+      "documentOverflow": false,
+      "toolbarHeight": 44,
+      "fallbackAndRecovery": "PASS"
+    },
+    {
+      "width": 1280,
+      "within": true,
+      "uncovered": true,
+      "documentOverflow": false,
+      "toolbarHeight": 44,
+      "fallbackAndRecovery": "PASS"
+    },
+    {
+      "width": 1440,
+      "within": true,
+      "uncovered": true,
+      "documentOverflow": false,
+      "toolbarHeight": 44,
+      "fallbackAndRecovery": "PASS"
+    },
+    {
+      "width": 1920,
+      "within": true,
+      "uncovered": true,
+      "documentOverflow": false,
+      "toolbarHeight": 44,
+      "fallbackAndRecovery": "PASS"
+    }
+  ]
+}

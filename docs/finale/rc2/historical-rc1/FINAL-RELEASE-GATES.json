@@ -1,0 +1,132 @@
+{
+  "recorded_date": "2026-10-13",
+  "source_tree_sha256": "02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a",
+  "candidate_code_commit": "e07a3845cc465f430b572ece7fbded687c1e3729",
+  "stable_approval": false,
+  "software_RC_gate_status": "PASS_SCOPED",
+  "final_audit_score": null,
+  "independent_provisional_score": 84,
+  "finding_counts": {
+    "PASS": 62,
+    "N/A": 1,
+    "PARTIAL": 30
+  },
+  "finding_blocked_ids": [],
+  "gates": [
+    {
+      "id": "G01",
+      "requirement": "Full final backend/frontend/lint/format/production build",
+      "status": "PASS",
+      "evidence": "609/160zero failures,27assets/cache d4234414a93b; source e07"
+    },
+    {
+      "id": "G02",
+      "requirement": "Versioned parity and exact historical compatibility",
+      "status": "PASS",
+      "evidence": "Original312; immediate544/32; delayed288/18; sensors1920; motion7452; Fusion64;12Director templates;18/22cards unchanged"
+    },
+    {
+      "id": "G03",
+      "requirement": "Officer authorization, Crew isolation, transfer",
+      "status": "PASS_SCOPED",
+      "evidence": "35actualHTTPnegative route pairs401; fullsecurity suite; GUI24insert/24skip/tamperreject; exact forwarding, no Crew individual ledger"
+    },
+    {
+      "id": "G04",
+      "requirement": "Actual browser advanced/recovery/responsive workflows",
+      "status": "PASS_SCOPED",
+      "evidence": "Teachingnotes/SSE/ACK/quietheartbeat/Crewtimeline/AAR/What-if/referenceimmutable/outage3actions3Fusion;12measuredpage-width combinations"
+    },
+    {
+      "id": "G05",
+      "requirement": "Bounded performance and concurrency",
+      "status": "PASS_SCOPED",
+      "evidence": "Exact dashboard repeated-read .560ms;20syntheticHTTP/SSEclients, interleaved reads, barrier timing scope; dated fixedMedium/180s/reconstruction"
+    },
+    {
+      "id": "G06",
+      "requirement": "Source/build/locks/manifest/macOS clone/HTTPS/backup",
+      "status": "PASS_SCOPED",
+      "evidence": "Current source equalclone; all27files and3locks equal; Python3.13backuprestore;4privateCAverifiedHTTPSrequests"
+    },
+    {
+      "id": "G07",
+      "requirement": "Independent software claim/audit review",
+      "status": "PASS_SCOPED",
+      "evidence": "Independent84provisional,22backend/8frontend focused; final stable approval withheld"
+    },
+    {
+      "id": "G08",
+      "requirement": "Fresh separate-device Finale LAN/WAN/HTTPS trust/cold reload",
+      "status": "PENDING_BY_USER",
+      "evidence": "No newphysicalPASS inferred from loopback/cache/processchecks"
+    },
+    {
+      "id": "G09",
+      "requirement": "Native Windows/Linux install/start/backup/restore",
+      "status": "PENDING_BY_USER",
+      "evidence": "Mac Bash and supported-path fixtures pass; actualnativeexecution deferred"
+    }
+  ],
+  "external_validation_finding_ids": [
+    "SC14",
+    "SC19",
+    "SC23",
+    "P1-03",
+    "P2-03",
+    "CH12",
+    "CH15",
+    "X08",
+    "X13"
+  ],
+  "scientific_finding_ids": [
+    "SC16",
+    "SC17",
+    "CH08",
+    "F05",
+    "F07",
+    "X24",
+    "X26"
+  ],
+  "outside_software_mission_provenance_ids": [
+    "SC22",
+    "P2-01",
+    "X02",
+    "X17",
+    "X19"
+  ],
+  "remaining_partial_ids": [
+    "SC14",
+    "SC16",
+    "SC17",
+    "SC19",
+    "SC22",
+    "SC23",
+    "P1-03",
+    "P2-01",
+    "P2-03",
+    "CH08",
+    "CH12",
+    "CH15",
+    "F05",
+    "F07",
+    "X02",
+    "X07",
+    "X08",
+    "X09",
+    "X11",
+    "X12",
+    "X13",
+    "X17",
+    "X19",
+    "X20",
+    "X24",
+    "X26",
+    "X27",
+    "X29",
+    "X30",
+    "X31"
+  ],
+  "blocking_scope": "G08/G09block final stable approval, not the software-only RC freeze. Missing empirical calibration and human efficacy remain claim limitations. Media is outside current mission, not G10.",
+  "open_runnable_software_acceptance_items": []
+}

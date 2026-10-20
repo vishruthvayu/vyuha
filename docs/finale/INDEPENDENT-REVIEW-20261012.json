@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-12",
+  "scope": "Independent current working-tree review; no edits/commit",
+  "score": 82,
+  "status": "PROVISIONAL; NO STABLE APPROVAL",
+  "allocation": {
+    "PS coverage": [
+      45.5,
+      50
+    ],
+    "realism_AI": [
+      18,
+      25
+    ],
+    "engineering_demo": [
+      18.5,
+      25
+    ]
+  },
+  "independent_backend": {
+    "passed": 72,
+    "failed": 0,
+    "seconds": 31.76
+  },
+  "independent_frontend": {
+    "passed": 6,
+    "failed": 0,
+    "milliseconds": 685.086625
+  },
+  "root_reported_final": {
+    "backend_passed": 453,
+    "frontend_passed": 132,
+    "build": "PASS",
+    "offline_assets": 26,
+    "cache": "776beb4652c2"
+  },
+  "audit_rows_read": 93,
+  "row_status_changes": 0,
+  "native_windows_linux": "PENDING BY USER INSTRUCTION",
+  "physical_finale_acceptance": "PENDING",
+  "manifest_freshness_at_review": "MISMATCH; root finalizing pinning",
+  "report": "INDEPENDENT-REVIEW.md"
+}

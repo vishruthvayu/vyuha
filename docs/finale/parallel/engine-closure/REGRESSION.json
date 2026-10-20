@@ -1,0 +1,39 @@
+{
+  "scope": "Engine branch milestone; not final integrated candidate acceptance",
+  "parent_commit": "4c42fc934a6896ae5b9d62eeb84ed74cc2746a76",
+  "source_tree_sha256": "1f476588e75f051357c0b04e3fe95e390e64026fbdfb069f79ce631f5b675fa4",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "backend": {
+    "passed": 690,
+    "failed": 0,
+    "seconds": 575.84
+  },
+  "frontend": {
+    "passed": 268,
+    "failed": 0,
+    "milliseconds": 84881.209416
+  },
+  "parity": "All full frontend parity groups passed, including Finale544 and sensor1920 checkpoints; see frontend.log.",
+  "lint": "PASS",
+  "format": "PASS",
+  "production_build": {
+    "status": "PASS",
+    "assets": 28,
+    "cache": "d5bc57078750"
+  },
+  "independent_review": "No further reproduced renderer blocker; scoped visual/source review, no whole-product grade.",
+  "remaining": [
+    "Clean clone at committed engine milestone",
+    "Post-change fixed-Medium benchmark",
+    "Final frontend-owner integration and complete integrated-source acceptance",
+    "Exact-candidate physical acceptance before stable release"
+  ],
+  "raw_logs": {
+    "backend.log": "4e62362c8af5327460f114bb9f4083a3da4d952a5e03b523ba36b45efcda34f0",
+    "frontend.log": "293d465b4c0d30d9206507ee8e53052a090e7e5e4c9447c1f7d44dce48aa1512",
+    "lint.log": "3d184e062e21a463c8c5792bc31ae1a5f7ec671a8e0384ba70a5333f526fe1fd",
+    "format.log": "f74e8531c0a81a8a2e1f68f998d36056af29e757632c068e77a1937d8c83fb6c",
+    "build-renderer.log": "ef18136dfe7a231b8ec7ab6ca9417a6f15536a09448a4ba820cf9cccd672f59a",
+    "renderer-radar-focused.log": "0391a390b20e26cac48dd6c06c7c6b54ab586bfe254b1507b087a0966581fbf0"
+  }
+}

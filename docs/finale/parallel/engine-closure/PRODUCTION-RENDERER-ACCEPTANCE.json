@@ -1,0 +1,56 @@
+{
+  "status": "PASS_SCOPED",
+  "source_tree_sha256": "1f476588e75f051357c0b04e3fe95e390e64026fbdfb069f79ce631f5b675fa4",
+  "scope": "Actual production build on loopback synthetic QA database; no separate physical device.",
+  "session": {
+    "id": "79ed4cc4-2baa-48ed-adff-621731b91998",
+    "status": "completed",
+    "execution_tick": 2256,
+    "end_tick": 2700
+  },
+  "scorecard_sha256": "6e5e5c916651965946b4212ad733b47a1757c23e1c45ca86094d31253bf71ef4",
+  "browser_verified_and_ghost": true,
+  "commands": [
+    {
+      "seq": 1,
+      "body": {
+        "command_id": "fba14756-ab62-492f-b92a-2e54d2d4a989",
+        "payload": {
+          "mode": "failed",
+          "sensor": "radar"
+        },
+        "type": "sensor_fault"
+      },
+      "tick": 1887,
+      "timeline_order": 3
+    },
+    {
+      "seq": 2,
+      "body": {
+        "command_id": "90bebf1b-7c77-4c2b-9550-6f49d3ef2a9c",
+        "payload": {
+          "sensor": "radar"
+        },
+        "type": "sensor_restore"
+      },
+      "tick": 2140,
+      "timeline_order": 4
+    }
+  ],
+  "fusion_receipts": 3,
+  "checks": [
+    "EO/thermal/night switch at frozen observation tick",
+    "Keyboard radar T1 selection maps to exact contact",
+    "Designation/classification/Hold accepted",
+    "Instructor fail radar removes plots, clutter and sweep; restore applied",
+    "Completed early; history uses2256/30=75.2seconds while scoring projects90seconds",
+    "Server verified and Ghost available",
+    "Replay accessible seek to22.67seconds, Observer/Follow cameras and Tactical2D fallback",
+    "No captured browser errors or warnings"
+  ],
+  "limitations": [
+    "Nearby radar plots can overlap spatially; track-list and keyboard activation provide exact selection.",
+    "Production distant unresolved detections are deliberately not detailed airframes. Procedural mesh detail reviewed separately in explicitly labelled synthetic reference fixture.",
+    "No physical sensor calibration, efficacy study or final friend UI acceptance."
+  ]
+}

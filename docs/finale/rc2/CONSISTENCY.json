@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-13",
+  "source_tree_sha256": "5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0",
+  "code_validation_commit": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
+  "all_manifest_receipts_exist": true,
+  "receipt_count": 22,
+  "all93_counts": {
+    "PASS": 62,
+    "N/A": 1,
+    "PARTIAL": 30
+  },
+  "all_matrix_statuses_match": true,
+  "frozen5_file_sha256": {
+    "server/engine_v1_0_1.py": "092229c1ee922543d5621eccf17fde4bbb1de666d64a34446fd893b1849bf0db",
+    "server/review_v1_0_1.py": "088fc768c379b19171963e4061a53a271193173396280f68b31ad55fb3d06526",
+    "server/prioritisation_v1_0_1.py": "fa0425a02d2babdcb916d1f8232742e7374a6edef797f0c60b2f271d66fc868f",
+    "client/src/sim_v1_0_1.ts": "b4ad04b921c0652ec1c1a283c01beb543e1cff1f8a171896a9b8acf509679014",
+    "client/src/prioritisation_v1_0_1.ts": "a32f0dd9e07f2b6d96c1300cb027a2cb817aaaaf05054f20ea629b29ce800ff5"
+  },
+  "protected_refs": {
+    "release/v1.0.1": "2ca96105044ad6a14952d74db619e20006c26eca",
+    "v1.0.1^{}": "2ca96105044ad6a14952d74db619e20006c26eca",
+    "release/v1.1.0-rc.1": "a2183e1a5746c8a04fa25ff81af952faa76b27aa",
+    "v1.1.0-rc.1^{}": "a2183e1a5746c8a04fa25ff81af952faa76b27aa"
+  },
+  "assets": 27,
+  "cache": "b2b7e099df64",
+  "all27_assets_clone_equal": true,
+  "all3locks": {
+    "client/package.json": "93e3af2fa17ba6a59b8dac7b7aeb6746efbf803f4a8eadd869d0ecb8eabcf9ac",
+    "client/package-lock.json": "af0ef67eb4b0c0dd8fa058f2ab5e114525def32c36fd157e8f6621f5e90ed310",
+    "server/requirements.lock.txt": "6e7ed6e13780351b512afcc88fa0ca6fa6644f6e99655af4b8953369ea8c5ee1"
+  },
+  "scoped_secret_scan": "PASS",
+  "final_weighted_score": null,
+  "stable_approval": false
+}

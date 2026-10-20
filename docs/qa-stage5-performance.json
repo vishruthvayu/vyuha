@@ -1,0 +1,114 @@
+{
+  "method": "Local warm process, 50 sequential microbenchmarks. HTTP concurrency uses fresh disposable SQLite, three rounds/client, same six-client barrier workload. No human learner, WAN latency, CPU or low-end certification claims.",
+  "microbenchmarks": {
+    "red_force_generation": {
+      "n": 50,
+      "median_ms": 0.2285,
+      "max_ms": 0.477
+    },
+    "rapid_15_round_generation": {
+      "n": 50,
+      "median_ms": 0.1719,
+      "max_ms": 0.2586
+    },
+    "authored_validation_and_compilation": {
+      "n": 50,
+      "median_ms": 0.2807,
+      "max_ms": 0.4325
+    },
+    "prioritisation_calculation_six_choices": {
+      "n": 50,
+      "median_ms": 0.0174,
+      "max_ms": 0.0871
+    }
+  },
+  "legacy_six_client": {
+    "concurrent_clients": 6,
+    "completed_sessions": 18,
+    "server_rss_mib_after_workload": null,
+    "http_ms": {
+      "event_upload": {
+        "n": 128,
+        "median": 4.85,
+        "max": 122.3
+      },
+      "command_poll": {
+        "n": 128,
+        "median": 2.57,
+        "max": 70.33
+      },
+      "command_issue": {
+        "n": 18,
+        "median": 6.29,
+        "max": 176.42
+      },
+      "command_response": {
+        "n": 18,
+        "median": 3.7,
+        "max": 29.93
+      },
+      "active_list": {
+        "n": 18,
+        "median": 10.33,
+        "max": 56.81
+      },
+      "dashboard": {
+        "n": 18,
+        "median": 74.29,
+        "max": 238.46
+      },
+      "completion": {
+        "n": 18,
+        "median": 69.96,
+        "max": 190.68
+      }
+    }
+  },
+  "advanced_six_client": {
+    "concurrent_clients": 6,
+    "completed_sessions": 18,
+    "server_rss_mib_after_workload": null,
+    "http_ms": {
+      "event_upload": {
+        "n": 122,
+        "median": 4.97,
+        "max": 156.7
+      },
+      "command_poll": {
+        "n": 122,
+        "median": 2.87,
+        "max": 102.66
+      },
+      "command_issue": {
+        "n": 18,
+        "median": 6.66,
+        "max": 145.52
+      },
+      "command_response": {
+        "n": 18,
+        "median": 2.81,
+        "max": 16.83
+      },
+      "active_list": {
+        "n": 18,
+        "median": 12.92,
+        "max": 136.63
+      },
+      "dashboard": {
+        "n": 18,
+        "median": 105.83,
+        "max": 317.14
+      },
+      "completion": {
+        "n": 18,
+        "median": 117.17,
+        "max": 264.33
+      }
+    }
+  },
+  "unit_analytics_http": {
+    "n": 30,
+    "median_ms": 2.2972,
+    "max_ms": 5.6402
+  }
+}

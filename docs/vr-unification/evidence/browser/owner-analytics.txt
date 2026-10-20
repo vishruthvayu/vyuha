@@ -1,0 +1,3 @@
+Browser tab: 14, Title: "VYUHA · Counter-drone trainer", URL: "http://127.0.0.1:8096/analytics".
+There has been no change in the accessibility tree.
+The focused UI element is 1 AXWebArea VYUHA · Counter-drone trainer, URL: 127.0.0.1:8096/analytics

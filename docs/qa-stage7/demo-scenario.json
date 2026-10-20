@@ -1,0 +1,188 @@
+{
+  "version": 1,
+  "id": "lib_21279143c197e7ed9b18646c",
+  "seed": 482913,
+  "title": "DEMO \u2014 NIGHT DECOY STRIKE",
+  "duration": 75,
+  "night": true,
+  "fog": 0.2,
+  "jamStart": 2250,
+  "jamEnd": 2250,
+  "focus": "effector_choice",
+  "tracks": [
+    {
+      "id": "T1",
+      "kind": "bird",
+      "identity": "neutral",
+      "rf": false,
+      "spawn": 0,
+      "bearing": 13,
+      "distance": 157,
+      "speed": 0.65,
+      "altitude": 22
+    },
+    {
+      "id": "T2",
+      "kind": "quad",
+      "identity": "friendly",
+      "rf": true,
+      "spawn": 0,
+      "bearing": 249,
+      "distance": 142,
+      "speed": 2.5,
+      "altitude": 20
+    },
+    {
+      "id": "T3",
+      "kind": "quad",
+      "identity": "hostile",
+      "rf": true,
+      "spawn": 240,
+      "bearing": 35,
+      "distance": 161,
+      "speed": 2.5,
+      "altitude": 20
+    },
+    {
+      "id": "T4",
+      "kind": "fiber_fpv",
+      "identity": "hostile",
+      "rf": false,
+      "spawn": 480,
+      "bearing": 76,
+      "distance": 127,
+      "speed": 3.8,
+      "altitude": 10
+    },
+    {
+      "id": "T5",
+      "kind": "quad",
+      "identity": "hostile",
+      "rf": true,
+      "spawn": 240,
+      "bearing": 40,
+      "distance": 152,
+      "speed": 2.5,
+      "altitude": 20
+    }
+  ],
+  "terrain": "rural",
+  "difficulty_label": "standard",
+  "red_force": {
+    "version": 1,
+    "tactic": "DECOY_THEN_STRIKE",
+    "tactic_seed": 482913,
+    "phases": [
+      {
+        "tick": 0,
+        "role": "background",
+        "contacts": [
+          "T1",
+          "T2"
+        ]
+      },
+      {
+        "tick": 240,
+        "role": "decoy",
+        "contacts": [
+          "T3",
+          "T5"
+        ]
+      },
+      {
+        "tick": 480,
+        "role": "strike",
+        "contacts": [
+          "T4"
+        ]
+      }
+    ]
+  },
+  "doctrine": {
+    "id": "army-forward-post",
+    "version": 1,
+    "name": "Army Forward Post",
+    "description": "Mixed hostile approaches, no-RF FPV and sensor degradation.",
+    "example_values": true,
+    "defaults": {
+      "fog": 0.2,
+      "night": true,
+      "mix": [
+        "bird",
+        "friendly_uav",
+        "hostile_quad",
+        "no_rf_fpv",
+        "fixed_wing",
+        "hostile_quad"
+      ]
+    },
+    "rules": {
+      "rf_range": 180,
+      "kinetic_range": 160,
+      "restricted": {
+        "enabled": true,
+        "x_lt": -70,
+        "z_gt": 0
+      },
+      "effectors": [
+        "hold",
+        "rf_jam",
+        "kinetic"
+      ],
+      "risk_weights": {
+        "quad": 1,
+        "fixed_wing": 1.2,
+        "fiber_fpv": 1.5,
+        "bird": 0
+      },
+      "asset_risk": 1,
+      "distance_precision": 9,
+      "hold_any_range": true
+    },
+    "allowed_tactics": [
+      "DIRECT",
+      "SATURATION",
+      "DECOY_THEN_STRIKE",
+      "STAGGERED_WAVES",
+      "LOW_APPROACH"
+    ],
+    "rubric": {
+      "detect": 25,
+      "classify": 25,
+      "prioritise": 15,
+      "engage": 35
+    },
+    "terminology": "illustrative training configuration; not official doctrine"
+  },
+  "prioritisation_version": 1,
+  "terrain_id": "rural_forward_base",
+  "terrain_version": 1,
+  "authoring": {
+    "version": 2,
+    "created_by": "DEMO-INSTRUCTOR",
+    "identity_basis": "unverified local instructor label",
+    "request": {
+      "schema_version": 2,
+      "name": "DEMO \u2014 NIGHT DECOY STRIKE",
+      "created_by": "DEMO-INSTRUCTOR",
+      "pack_id": "army-forward-post",
+      "seed": 482913,
+      "focus": "effector_choice",
+      "terrain": "rural",
+      "fog": 0.2,
+      "night": true,
+      "tactic": "DECOY_THEN_STRIKE",
+      "mix": [
+        "bird",
+        "friendly_uav",
+        "hostile_quad",
+        "no_rf_fpv",
+        "hostile_quad"
+      ],
+      "sensor_fault": "none",
+      "restricted": true,
+      "duration": 75,
+      "difficulty": "standard"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "runs": 50,
+  "source_session": "afde8e0e-3fb0-49fb-aff6-0ca44c30cea5",
+  "method": "Disposable local SQLite. Profile update includes aggregation, transaction and commit after authoritative AAR generation. Director decision is pure seeded selection on fixed profile/history. Scenario generation is the production endpoint including profile/history reads, selection, adaptation and scenario storage. Excludes prior AAR reconstruction, HTTP round-trip and browser rendering.",
+  "profile_update_median_ms": 0.423,
+  "director_decision_median_ms": 0.031,
+  "scenario_generation_median_ms": 1.41,
+  "profile_update_max_ms": 0.966,
+  "director_decision_max_ms": 0.054,
+  "scenario_generation_max_ms": 3.407
+}

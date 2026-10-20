@@ -1,0 +1,12 @@
+{
+  "scope": "Actual current loopback HTTP and ordinary server clock/sensors; no monkeypatch or engine change. Not physicalLinux/LAN/humanproof.",
+  "crew": "crew_e8272e106757407a96dc",
+  "contact": "T1",
+  "offered_at_tick": 131,
+  "lost_at_tick": 138,
+  "status": 422,
+  "detail": "No current sensor observation for this contact. Refresh the shared picture and wait for reacquisition before designating; no decision was recorded.",
+  "accepted_actions_before": 0,
+  "accepted_actions_after": 0,
+  "same_nonce_not_silently_retried": true
+}

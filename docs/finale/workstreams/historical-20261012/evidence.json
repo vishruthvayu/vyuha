@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-12",
+  "acceptance": "CANDIDATE \u2014 CYCLE2 SOFTWARE REGRESSION PASSED; FINAL RELEASE ACCEPTANCE PENDING",
+  "branch": "feature/vyuha-finale-edition",
+  "baseline_commit": "2ca96105044ad6a14952d74db619e20006c26eca",
+  "source_tree_sha256": "94d311b647337ea9e1db5cac8cd75fc86b70f46717b5c1e8ad18fffbeb05595e",
+  "historical_wan": {
+    "status": "PASSED \u2014 TEAM CONFIRMED (historical, 2026-10-04)",
+    "reported_scope": "Windows officer laptop + phone browser + common local router. Internet unavailable on both; phone joined/completed a drill; consistent score and officer-visible result. Exact build not supplied; new finale build remains unvalidated physically."
+  },
+  "remaining": [
+    "Fresh physical Finale LAN/WAN/HTTPS trust and cold reload, and native Windows/Linux execution remain pending by user instruction.",
+    "Final stable acceptance and tag after mandatory gates pass.",
+    "Validated-release deck, video, rehearsal and submission.",
+    "Research calibration, human studies and the 39 remaining partial findings are distinguished in the prioritized matrix."
+  ],
+  "tests": {
+    "backend": {
+      "passed": 482,
+      "failed": 0,
+      "seconds": 275.39
+    },
+    "frontend": {
+      "passed": 137,
+      "failed": 0,
+      "milliseconds": 43841.548125
+    },
+    "production_build": "PASS",
+    "offline_assets": 26,
+    "offline_cache": "72094449dd1b",
+    "historical_baseline": 18,
+    "historical_current": 22,
+    "unchanged_legacy_hashes": true
+  },
+  "parity": {
+    "original": 312,
+    "finale_immediate": {
+      "scenarios": 32,
+      "checkpoints": 544
+    },
+    "finale_delayed": {
+      "scenarios": 18,
+      "checkpoints": 288
+    },
+    "sensor_component": 1920,
+    "motion_component": 7452,
+    "fusion_advice": 64
+  },
+  "independent_audit": {
+    "status": "PROVISIONAL; NO STABLE APPROVAL",
+    "score": 83.5,
+    "final_score": null,
+    "scoped_pass": 53,
+    "partial": 39,
+    "not_applicable": 1,
+    "prior_provisional_score": 82,
+    "software_acceptance": "PASS_SCOPED; final stable release decision withheld"
+  },
+  "native_platform_validation": {
+    "status": "PENDING",
+    "reason": "User requested native Windows/Linux validation remain pending on2026-10-12"
+  },
+  "receipts": [
+    "TEST-RESULTS.md",
+    "BROWSER-ACCEPTANCE.json",
+    "TLS-SERVICE-RECEIPT.json",
+    "CREW-TRANSFER-RECEIPT.json",
+    "TRANSFER-FINALE-RECEIPT.json",
+    "INDEPENDENT-CANDIDATE-RECEIPT.json",
+    "BENCHMARK-20261012.json",
+    "CLEAN-CLONE-RECEIPT.json",
+    "MOBILE-AAR-20261012.png",
+    "EXPERT-RUN-VALIDATION.md",
+    "RUNTIME-LOAD-RECEIPT.json",
+    "PROCESS-OUTAGE-RECEIPT.json",
+    "LARGE-AAR-20261012.png",
+    "OUTAGE-DEVICE-AAR-20261012.png",
+    "OUTAGE-VERIFIED-AAR-20261012.png",
+    "AUTHORIZATION-ROUTE-RECEIPT.json",
+    "RECONSTRUCTION-PROFILE-RECEIPT.json",
+    "ENDURANCE-BROWSER-20261012.json",
+    "HISTORY-RECEIPT.json",
+    "REFERENCE-IMMUTABILITY-RECEIPT.json",
+    "INDEPENDENT-REVIEW-20261012.md",
+    "INDEPENDENT-REVIEW-20261012.json",
+    "FINAL-RELEASE-GATES.json",
+    "CLEAN-CLONE-038dd12-HISTORICAL.json",
+    "OFFICER-REVIEW-INDEPENDENT.md",
+    "OFFICER-AAR-CLEAN-CLONE-20261012.png",
+    "CREW-COORDINATION-20261012.png",
+    "SCOPED-SECRET-SCAN.json",
+    "EVIDENCE-FRESHNESS-RECEIPT.json",
+    "FINAL-SOFTWARE-ACCEPTANCE.md",
+    "FINAL-SOFTWARE-ACCEPTANCE.json",
+    "EVIDENCE-CURRENT-20261012.png",
+    "CLEAN-CLONE-CYCLE2-RECEIPT.json",
+    "AUTHORIZATION-CYCLE2-RECEIPT.json",
+    "RAID-VARIATION-CYCLE2.json",
+    "RECONSTRUCTION-CYCLE2-RECEIPT.json",
+    "CREW-HISTORY-CYCLE2.png",
+    "PARTIAL-FINDING-CLASSIFICATION-20261012.json",
+    "WINDOWS-PHONE-ACCEPTANCE-RUNBOOK.md",
+    "PHYSICAL-TEST-RESULTS.md",
+    "CYCLE2-BROWSER-ACCEPTANCE.json",
+    "SIH-PRESENTATION-SOURCE-HANDOFF.md",
+    "FINAL-AUDIT-REASSESSMENT.md",
+    "FINAL-AUDIT-REASSESSMENT.json",
+    "EVIDENCE-CYCLE2.png",
+    "COMPLIANCE-CYCLE2.png"
+  ],
+  "candidate_commit": "4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903",
+  "performance": {
+    "hardware": "MacBook Air / Apple M1 /8GB",
+    "graphics": "fixed Medium, auto OFF",
+    "contacts": [
+      8,
+      25,
+      50,
+      100,
+      200
+    ],
+    "median_render_fps": [
+      60,
+      60,
+      60,
+      60,
+      60
+    ],
+    "scope": "Five20s synthetic Sensor Truth stress fixtures in actual desktop Chromium; not physical Android or endurance/concurrency acceptance"
+  },
+  "reconstruction": {
+    "contacts": 200,
+    "direct_unprofiled_median_seconds": 11.025263,
+    "whole_review_card_equal_before_after": true,
+    "scope": "Three direct full-review samples; earlier27.381s was one HTTP completion, not a paired HTTP benchmark"
+  },
+  "longer_browser_run": {
+    "seconds": 180,
+    "contacts": 200,
+    "median_render_fps": 60,
+    "logical_ticks": 5376,
+    "median_tick_ms": 4.4,
+    "p95_tick_ms": 10.3,
+    "heap_scope": "Main-page JS heap samples only; not Worker/GPU/total-process memory or certification"
+  },
+  "new_physical_validation": {
+    "status": "PENDING_BY_USER",
+    "reason": "User retained fresh Finale physical validation pending on2026-10-12; no new pass or architectural failure inferred"
+  },
+  "final_software_acceptance": "PASS_SCOPED: full regression, history, real browser, clean locked-dependency macOS clone and backup/restore; not a stable release approval",
+  "reconstruction_cycle2": {
+    "before_direct_200_median": 9.670718125009444,
+    "after_direct_200_median": 7.141738959006034,
+    "before_http_200_median": 9.753083957999479,
+    "after_http_200_median": 7.3824508329853415,
+    "repeats": 3,
+    "full_review_and_card_equal_all5sizes": true
+  }
+}

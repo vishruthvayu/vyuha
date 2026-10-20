@@ -1,0 +1,14 @@
+{
+  "session": "ec87656b-6922-4cbe-8580-0133a2e8c073",
+  "counts": {
+    "chunks": 0,
+    "fusion_exposures": 0
+  },
+  "after": {
+    "chunks": 1,
+    "fusion_exposures": 3
+  },
+  "actions": 3,
+  "server_completed": true,
+  "scope": "Actual browser using explicit 2D display, real process outage/restart, three locally accepted actions and three retained Fusion receipts recovered."
+}

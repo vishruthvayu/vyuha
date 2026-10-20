@@ -1,0 +1,172 @@
+/* Exercise studio as an authoring bench: the Raid Composer is the primary
+   card (configuration grid → preview/compile → result), legacy authoring stays
+   behind disclosures, and the library assigns a frozen exercise to trainees. */
+
+#raid-composer.composer-workbench {
+  padding: var(--s-6);
+}
+#raid-composer > h2 {
+  margin: 0 0 var(--s-2);
+  font-size: var(--t-20);
+  letter-spacing: var(--track-tight);
+}
+#raid-composer > p:not([role]) {
+  margin: 0;
+  max-width: 80ch;
+  color: var(--n-900);
+  font-size: var(--t-14);
+}
+.raid-controls.setup-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr));
+  align-items: end;
+  gap: var(--s-4);
+  margin: var(--s-5) 0 var(--s-5);
+  padding: var(--s-4) 0 0;
+  border: 0;
+  border-top: 1px solid var(--ink-hairline-strong);
+  border-radius: 0;
+  background: none;
+}
+.raid-controls > legend {
+  padding: 0 var(--s-3) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--t-11);
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--n-800);
+}
+.raid-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  min-width: 0;
+  font-size: var(--t-13);
+  color: var(--n-900);
+}
+.raid-controls :is(input:not([type="checkbox"]), select) {
+  inline-size: 100%;
+  min-height: 40px;
+  font-size: var(--t-14);
+}
+.raid-controls label:has(> input[type="checkbox"]) > input {
+  margin: 0;
+  flex: none;
+}
+.raid-controls label:has(> input[type="checkbox"]) {
+  grid-column: span 2;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 40px;
+  padding: 0 var(--s-3);
+  border: 1px solid var(--n-500);
+  border-radius: var(--r-sm);
+  color: var(--n-1000);
+  cursor: pointer;
+}
+#raid-composer > .button {
+  margin: 0 var(--s-2) 0 0;
+  min-height: 40px;
+}
+#raid-composer > p[role="alert"] {
+  margin: 0 0 var(--s-3);
+  color: var(--coral-600);
+}
+#raid-composer > .composer-stale {
+  margin: var(--s-4) 0 0;
+  border-left: 2px solid var(--amber-500);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  background: var(--amber-wash);
+  color: var(--amber-500);
+  font-size: var(--t-13);
+}
+.composer-preview {
+  display: grid;
+  gap: var(--s-2);
+  margin-top: var(--s-5);
+  padding: var(--s-5);
+  background: var(--n-100);
+  border: 1px solid var(--ink-hairline-strong);
+  border-left: 2px solid var(--gold-500);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+}
+.composer-preview > h3 {
+  margin: 0 0 var(--s-1);
+  font-size: var(--t-15);
+}
+.composer-preview > p {
+  margin: 0;
+  font-size: var(--t-14);
+  color: var(--n-900);
+}
+.composer-preview > p:first-of-type {
+  font-family: var(--font-mono);
+  font-size: var(--t-13);
+  color: var(--n-1000);
+}
+.composer-preview > p:nth-of-type(2) {
+  font-family: var(--font-mono);
+  font-size: var(--t-12);
+  color: var(--n-800);
+  overflow-wrap: anywhere;
+}
+.composer-preview > .button {
+  justify-self: start;
+  margin: var(--s-1) 0;
+}
+.composer-preview > .footnote {
+  margin-top: var(--s-1);
+  font-size: var(--t-12);
+  color: var(--n-800);
+}
+
+/* Scenario library and assignment */
+#scenario-library.command-detail.panel {
+  padding: var(--s-6);
+}
+#scenario-library > h2 {
+  margin: 0 0 var(--s-4);
+  font-size: var(--t-20);
+  letter-spacing: var(--track-tight);
+}
+#scenario-library > label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 640px;
+  margin: 0;
+}
+#scenario-library > p:not([role]):not(.footnote) {
+  margin: var(--s-3) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--t-12);
+  color: var(--n-900);
+  overflow-wrap: anywhere;
+}
+#scenario-library > h3 {
+  margin: var(--s-6) 0 var(--s-2);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--ink-hairline);
+  font-size: var(--t-15);
+}
+#scenario-library > .footnote {
+  margin: 0 0 var(--s-3);
+  color: var(--n-800);
+}
+#scenario-library > .button.primary {
+  margin: var(--s-2) 0 0;
+  min-height: 44px;
+}
+
+@media (max-width: 720px) {
+  #raid-composer.composer-workbench,
+  #scenario-library.command-detail.panel {
+    padding: var(--s-5) var(--s-4);
+  }
+  .raid-controls label:has(> input[type="checkbox"]) {
+    grid-column: 1 / -1;
+  }
+}

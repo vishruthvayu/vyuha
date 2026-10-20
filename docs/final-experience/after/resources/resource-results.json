@@ -1,0 +1,554 @@
+{
+  "cases": [
+    {
+      "width": 390,
+      "samples": [
+        {
+          "stage": "ready",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 390.34375,
+              "w": 364,
+              "h": 280.796875
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1373.125,
+              "w": 366,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1542.125,
+              "w": 336,
+              "h": 540
+            },
+            ".guided-respond": {
+              "x": 29,
+              "y": 1542.125,
+              "w": 336,
+              "h": 540
+            }
+          },
+          "text": "SELECT\nDESIGNATE\nCLASSIFY\n4\nRESPOND\n5\nOUTCOME\nT3\n1295 m observed \u00b7 Quadcopter \u00b7 hostile\nGuidance\n\nPick the response your classification supports. Check reach, the restricted zone and resources before committing.\n\nClassified\nQuadcopter \u00b7 Hostile\nChange\n\nHold / monitor\nKeep the contact under observation. No effector is used.\nAny range\nRF jammer\nDisrupts a radio control link. Has no effect on aircraft without one.\n1295 m observed \u00b7 reach 1500 m\n1/1 channels free\nEffect decided after ~10 s\nKinetic\nEngages the contact directly. Not permitted in the restricted zone.\n1295 m observed \u00b7 reach 1000 m \u00b7 beyond reach\n8 rounds\nBeyond reach at the last observed position.\n\nEffects are simulated and not guaranteed. The engine decides the result.\n\nClassification of T3 as Quadcopter \u00b7 hostile: accepted at 00:02"
+        },
+        {
+          "stage": "pending",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 390.34375,
+              "w": 364,
+              "h": 280.796875
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1373.125,
+              "w": 366,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1542.125,
+              "w": 336,
+              "h": 540
+            },
+            ".guided-respond": {
+              "x": 29,
+              "y": 1542.125,
+              "w": 336,
+              "h": 540
+            }
+          },
+          "text": "SELECT\nDESIGNATE\nCLASSIFY\nRESPOND\n5\nOUTCOME\nT3\n1295 m observed \u00b7 Quadcopter \u00b7 hostile\nGuidance\n\nEffects take time and can fail. Keep watching this contact, then move to the next one.\n\nRF jammer under way \u00b7 effect decided at 00:12\n\nRespond again\nNext contact\n\nRF jammer on T3: accepted at 00:02"
+        },
+        {
+          "stage": "busy",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 390.34375,
+              "w": 364,
+              "h": 280.796875
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1373.125,
+              "w": 366,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1542.125,
+              "w": 336,
+              "h": 540
+            },
+            ".guided-respond": {
+              "x": 29,
+              "y": 1542.125,
+              "w": 336,
+              "h": 540
+            }
+          },
+          "text": "SELECT\nDESIGNATE\nCLASSIFY\n4\nRESPOND\n5\nOUTCOME\nT3\n1295 m observed \u00b7 Quadcopter \u00b7 hostile\nGuidance\n\nPick the response your classification supports. Check reach, the restricted zone and resources before committing.\n\nClassified\nQuadcopter \u00b7 Hostile\nChange\nBack to outcome\n\nHold / monitor\nKeep the contact under observation. No effector is used.\nAny range\nRF jammer\nDisrupts a radio control link. Has no effect on aircraft without one.\n1295 m observed \u00b7 reach 1500 m\n0/1 channels free\nEffect decided after ~10 s\nAll jammer channels are busy.\nKinetic\nEngages the contact directly. Not permitted in the restricted zone.\n1295 m observed \u00b7 reach 1000 m \u00b7 beyond reach\n8 rounds\nBeyond reach at the last observed position.\n\nEffects are simulated and not guaranteed. The engine decides the result.\n\nRF jammer on T3: accepted at 00:02"
+        },
+        {
+          "stage": "reload",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 390.34375,
+              "w": 364,
+              "h": 280.796875
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1373.125,
+              "w": 366,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1542.125,
+              "w": 336,
+              "h": 540
+            },
+            ".guided-respond": {
+              "x": 29,
+              "y": 1542.125,
+              "w": 336,
+              "h": 540
+            }
+          },
+          "text": "SELECT\nDESIGNATE\nCLASSIFY\n4\nRESPOND\n5\nOUTCOME\nT3\n1295 m observed \u00b7 Quadcopter \u00b7 hostile\nGuidance\n\nPick the response your classification supports. Check reach, the restricted zone and resources before committing.\n\nClassified\nQuadcopter \u00b7 Hostile\nChange\nBack to outcome\n\nHold / monitor\nKeep the contact under observation. No effector is used.\nAny range\nRF jammer\nDisrupts a radio control link. Has no effect on aircraft without one.\n1295 m observed \u00b7 reach 1500 m\n0/1 channels free\nEffect decided after ~10 s\nAll jammer channels are busy.\nKinetic\nEngages the contact directly. Not permitted in the restricted zone.\n1295 m observed \u00b7 reach 1000 m \u00b7 beyond reach\n7 rounds\nReloading until 00:08.\n\nEffects are simulated and not guaranteed. The engine decides the result.\n\nKinetic on T3: accepted at 00:03"
+        },
+        {
+          "stage": "finished",
+          "rects": {
+            ".scene-container": {
+              "x": 13,
+              "y": 390.34375,
+              "w": 364,
+              "h": 280.796875
+            },
+            ".decision-workspace": {
+              "x": 12,
+              "y": 1373.125,
+              "w": 366,
+              "h": 764.5
+            },
+            ".guided-body": {
+              "x": 29,
+              "y": 1542.125,
+              "w": 336,
+              "h": 540
+            },
+            ".guided-respond": {
+              "x": 29,
+              "y": 1542.125,
+              "w": 336,
+              "h": 540
+            }
+          },
+          "text": "SELECT\nDESIGNATE\nCLASSIFY\nRESPOND\n5\nOUTCOME\nT3\nno current report \u00b7 Quadcopter \u00b7 hostile\nGuidance\n\nEffects take time and can fail. Keep watching this contact, then move to the next one.\n\nKinetic had no observable effect (00:04)\n\nNext contact\n\nKinetic on T3: accepted at 00:03"
+        }
+      ],
+      "delta_px": {
+        ".scene-container": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".decision-workspace": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".guided-body": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".guided-respond": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        }
+      },
+      "server_verified": true,
+      "review_url": "http://127.0.0.1:18104/?view=aar&session=7acc8720-01fb-44da-bfc4-958bdbf659ba"
+    },
+    {
+      "width": 1024,
+      "samples": [
+        {
+          "stage": "ready",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 648,
+              "h": 420
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 705.890625,
+              "w": 650,
+              "h": 540.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 850.890625,
+              "w": 620,
+              "h": 340
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 850.890625,
+              "w": 620,
+              "h": 340
+            }
+          },
+          "text": "SELECT\nDESIGNATE\nCLASSIFY\n4\nRESPOND\n5\nOUTCOME\nT3\n1295 m observed \u00b7 Quadcopter \u00b7 hostile\nGuidance\n\nPick the response your classification supports. Check reach, the restricted zone and resources before committing.\n\nClassified\nQuadcopter \u00b7 Hostile\nChange\n\nHold / monitor\nKeep the contact under observation. No effector is used.\nAny range\nRF jammer\nDisrupts a radio control link. Has no effect on aircraft without one.\n1295 m observed \u00b7 reach 1500 m\n1/1 channels free\nEffect decided after ~10 s\nKinetic\nEngages the contact directly. Not permitted in the restricted zone.\n1295 m observed \u00b7 reach 1000 m \u00b7 beyond reach\n8 rounds\nBeyond reach at the last observed position.\n\nEffects are simulated and not guaranteed. The engine decides the result.\n\nClassification of T3 as Quadcopter \u00b7 hostile: accepted at 00:02"
+        },
+        {
+          "stage": "pending",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 648,
+              "h": 420
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 705.890625,
+              "w": 650,
+              "h": 540.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 850.890625,
+              "w": 620,
+              "h": 340
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 850.890625,
+              "w": 620,
+              "h": 340
+            }
+          },
+          "text": "SELECT\nDESIGNATE\nCLASSIFY\nRESPOND\n5\nOUTCOME\nT3\n1295 m observed \u00b7 Quadcopter \u00b7 hostile\nGuidance\n\nEffects take time and can fail. Keep watching this contact, then move to the next one.\n\nRF jammer under way \u00b7 effect decided at 00:12\n\nRespond again\nNext contact\n\nRF jammer on T3: accepted at 00:02"
+        },
+        {
+          "stage": "busy",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 648,
+              "h": 420
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 705.890625,
+              "w": 650,
+              "h": 540.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 850.890625,
+              "w": 620,
+              "h": 340
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 850.890625,
+              "w": 620,
+              "h": 340
+            }
+          },
+          "text": "SELECT\nDESIGNATE\nCLASSIFY\n4\nRESPOND\n5\nOUTCOME\nT3\n1295 m observed \u00b7 Quadcopter \u00b7 hostile\nGuidance\n\nPick the response your classification supports. Check reach, the restricted zone and resources before committing.\n\nClassified\nQuadcopter \u00b7 Hostile\nChange\nBack to outcome\n\nHold / monitor\nKeep the contact under observation. No effector is used.\nAny range\nRF jammer\nDisrupts a radio control link. Has no effect on aircraft without one.\n1295 m observed \u00b7 reach 1500 m\n0/1 channels free\nEffect decided after ~10 s\nAll jammer channels are busy.\nKinetic\nEngages the contact directly. Not permitted in the restricted zone.\n1295 m observed \u00b7 reach 1000 m \u00b7 beyond reach\n8 rounds\nBeyond reach at the last observed position.\n\nEffects are simulated and not guaranteed. The engine decides the result.\n\nRF jammer on T3: accepted at 00:02"
+        },
+        {
+          "stage": "reload",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 648,
+              "h": 420
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 705.890625,
+              "w": 650,
+              "h": 540.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 850.890625,
+              "w": 620,
+              "h": 340
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 850.890625,
+              "w": 620,
+              "h": 340
+            }
+          },
+          "text": "SELECT\nDESIGNATE\nCLASSIFY\n4\nRESPOND\n5\nOUTCOME\nT3\n1295 m observed \u00b7 Quadcopter \u00b7 hostile\nGuidance\n\nPick the response your classification supports. Check reach, the restricted zone and resources before committing.\n\nClassified\nQuadcopter \u00b7 Hostile\nChange\nBack to outcome\n\nHold / monitor\nKeep the contact under observation. No effector is used.\nAny range\nRF jammer\nDisrupts a radio control link. Has no effect on aircraft without one.\n1295 m observed \u00b7 reach 1500 m\n0/1 channels free\nEffect decided after ~10 s\nAll jammer channels are busy.\nKinetic\nEngages the contact directly. Not permitted in the restricted zone.\n1295 m observed \u00b7 reach 1000 m \u00b7 beyond reach\n7 rounds\nReloading until 00:08.\n\nEffects are simulated and not guaranteed. The engine decides the result.\n\nKinetic on T3: accepted at 00:03"
+        },
+        {
+          "stage": "finished",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 648,
+              "h": 420
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 705.890625,
+              "w": 650,
+              "h": 540.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 850.890625,
+              "w": 620,
+              "h": 340
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 850.890625,
+              "w": 620,
+              "h": 340
+            }
+          },
+          "text": "SELECT\nDESIGNATE\nCLASSIFY\nRESPOND\n5\nOUTCOME\nT3\nno current report \u00b7 Quadcopter \u00b7 hostile\nGuidance\n\nEffects take time and can fail. Keep watching this contact, then move to the next one.\n\nKinetic had no observable effect (00:04)\n\nNext contact\n\nKinetic on T3: accepted at 00:03"
+        }
+      ],
+      "delta_px": {
+        ".scene-container": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".decision-workspace": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".guided-body": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".guided-respond": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        }
+      },
+      "server_verified": true,
+      "review_url": "http://127.0.0.1:18104/?view=aar&session=fa8c4898-748b-4766-8490-16f843fa42f0"
+    },
+    {
+      "width": 1440,
+      "samples": [
+        {
+          "stage": "ready",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 269.609375
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 555.5,
+              "w": 1036,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1006,
+              "h": 216
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1006,
+              "h": 216
+            }
+          },
+          "text": "SELECT\nDESIGNATE\nCLASSIFY\n4\nRESPOND\n5\nOUTCOME\nT3\n1295 m observed \u00b7 Quadcopter \u00b7 hostile\nGuidance\n\nPick the response your classification supports. Check reach, the restricted zone and resources before committing.\n\nClassified\nQuadcopter \u00b7 Hostile\nChange\n\nHold / monitor\nKeep the contact under observation. No effector is used.\nAny range\nRF jammer\nDisrupts a radio control link. Has no effect on aircraft without one.\n1295 m observed \u00b7 reach 1500 m\n1/1 channels free\nEffect decided after ~10 s\nKinetic\nEngages the contact directly. Not permitted in the restricted zone.\n1295 m observed \u00b7 reach 1000 m \u00b7 beyond reach\n8 rounds\nBeyond reach at the last observed position.\n\nEffects are simulated and not guaranteed. The engine decides the result.\n\nClassification of T3 as Quadcopter \u00b7 hostile: accepted at 00:01"
+        },
+        {
+          "stage": "pending",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 269.609375
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 555.5,
+              "w": 1036,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1006,
+              "h": 216
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1006,
+              "h": 216
+            }
+          },
+          "text": "SELECT\nDESIGNATE\nCLASSIFY\nRESPOND\n5\nOUTCOME\nT3\n1295 m observed \u00b7 Quadcopter \u00b7 hostile\nGuidance\n\nEffects take time and can fail. Keep watching this contact, then move to the next one.\n\nRF jammer under way \u00b7 effect decided at 00:12\n\nRespond again\nNext contact\n\nRF jammer on T3: accepted at 00:02"
+        },
+        {
+          "stage": "busy",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 269.609375
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 555.5,
+              "w": 1036,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1006,
+              "h": 216
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1006,
+              "h": 216
+            }
+          },
+          "text": "SELECT\nDESIGNATE\nCLASSIFY\n4\nRESPOND\n5\nOUTCOME\nT3\n1295 m observed \u00b7 Quadcopter \u00b7 hostile\nGuidance\n\nPick the response your classification supports. Check reach, the restricted zone and resources before committing.\n\nClassified\nQuadcopter \u00b7 Hostile\nChange\nBack to outcome\n\nHold / monitor\nKeep the contact under observation. No effector is used.\nAny range\nRF jammer\nDisrupts a radio control link. Has no effect on aircraft without one.\n1295 m observed \u00b7 reach 1500 m\n0/1 channels free\nEffect decided after ~10 s\nAll jammer channels are busy.\nKinetic\nEngages the contact directly. Not permitted in the restricted zone.\n1295 m observed \u00b7 reach 1000 m \u00b7 beyond reach\n8 rounds\nBeyond reach at the last observed position.\n\nEffects are simulated and not guaranteed. The engine decides the result.\n\nRF jammer on T3: accepted at 00:02"
+        },
+        {
+          "stage": "reload",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 269.609375
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 555.5,
+              "w": 1036,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1006,
+              "h": 216
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1006,
+              "h": 216
+            }
+          },
+          "text": "SELECT\nDESIGNATE\nCLASSIFY\n4\nRESPOND\n5\nOUTCOME\nT3\n1295 m observed \u00b7 Quadcopter \u00b7 hostile\nGuidance\n\nPick the response your classification supports. Check reach, the restricted zone and resources before committing.\n\nClassified\nQuadcopter \u00b7 Hostile\nChange\nBack to outcome\n\nHold / monitor\nKeep the contact under observation. No effector is used.\nAny range\nRF jammer\nDisrupts a radio control link. Has no effect on aircraft without one.\n1295 m observed \u00b7 reach 1500 m\n0/1 channels free\nEffect decided after ~10 s\nAll jammer channels are busy.\nKinetic\nEngages the contact directly. Not permitted in the restricted zone.\n1295 m observed \u00b7 reach 1000 m \u00b7 beyond reach\n7 rounds\nReloading until 00:08.\n\nEffects are simulated and not guaranteed. The engine decides the result.\n\nKinetic on T3: accepted at 00:03"
+        },
+        {
+          "stage": "finished",
+          "rects": {
+            ".scene-container": {
+              "x": 17,
+              "y": 228.890625,
+              "w": 1034,
+              "h": 269.609375
+            },
+            ".decision-workspace": {
+              "x": 16,
+              "y": 555.5,
+              "w": 1036,
+              "h": 380.5
+            },
+            ".guided-body": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1006,
+              "h": 216
+            },
+            ".guided-respond": {
+              "x": 33,
+              "y": 664.5,
+              "w": 1006,
+              "h": 216
+            }
+          },
+          "text": "SELECT\nDESIGNATE\nCLASSIFY\nRESPOND\n5\nOUTCOME\nT3\nno current report \u00b7 Quadcopter \u00b7 hostile\nGuidance\n\nEffects take time and can fail. Keep watching this contact, then move to the next one.\n\nKinetic had no observable effect (00:04)\n\nNext contact\n\nKinetic on T3: accepted at 00:03"
+        }
+      ],
+      "delta_px": {
+        ".scene-container": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".decision-workspace": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0.0
+        },
+        ".guided-body": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        },
+        ".guided-respond": {
+          "x": 0,
+          "y": 0.0,
+          "w": 0,
+          "h": 0
+        }
+      },
+      "server_verified": true,
+      "review_url": "http://127.0.0.1:18104/?view=aar&session=99760ada-c8f1-4b5d-a7cd-fabba7db84b6"
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,147 @@
+Browser tab: 13, Title: "VYUHA · Counter-drone trainer", URL: "http://127.0.0.1:8106/".
+0 AXWebArea VYUHA · Counter-drone trainer, URL: 127.0.0.1:8106/
+	1 container root
+		68 link Description: Skip to workspace, Value: 127.0.0.1:8106/#workspace-content
+		69 container
+			70 link Description: VYUHA home, Value: 127.0.0.1:8106/
+			71 container Primary workspaces
+				72 link Description: Training, Help: Training ground, Value: 127.0.0.1:8106/
+				73 link Description: Review, Value: 127.0.0.1:8106/?view=aar
+				74 link Description: Crew, Help: Shared crew, Value: 127.0.0.1:8106/crew
+				75 link Description: Instructor, Help: Instructor console, Value: 127.0.0.1:8106/instructor
+				76 link Description: Analytics, Help: Training analytics, Value: 127.0.0.1:8106/analytics
+			77 button Find workspace, Help: Find workspace (Control or Command K)
+			78 button Operator guide
+				79 text Operator 
+				80 text guide
+			81 button (collapsed) Description: Workspaces, Secondary Actions: Expand
+		82 container
+			83 text SERVER CONNECTED · Sync up to date · Internet not required
+			84 text COUNTER-DRONE TRAINING
+			85 heading Training ground, Value: 1
+				86 text Training ground
+			87 text Read the sensors. Identify the contact. Choose your response.
+			88 text Callsign  SEALED-XR-QA
+			89 image
+			90 text EXERCISE /  RUNNING LIVE QA persistent 200 contacts / rural Rural forward base · Night · Mixed contacts CALLSIGN SEALED-XR-QA SCENARIO SEED 62147 EXERCISE TIME 02:26 /  03:00 RENDER 60 fps
+			274 button Pause
+				287 image
+				276 text Pause
+			277 button End exercise
+			117 button Open VR observation cockpit
+			118 link Description: Experimental VR / setup guide, Value: 127.0.0.1:8106/vr-guide.html
+			288 container VR observation cockpit
+				289 text IMMERSIVE TRAINING / SOFTWARE PREVIEW
+				290 heading VR observation post, Value: 2
+					291 text VR observation post
+				292 text Headset session active. All exercise controls are inside VR.
+				293 button (disabled) Enter VR
+				294 button Close cockpit
+				295 text A stationary seated cockpit. Point a controller and release its trigger to select. On a laptop, click the cockpit or use the controls below. Experimental integration; physical headset validation pending. Controller target rays only; hand-only input is unsupported.
+				296 text 2 controller ray(s) available. Hands are unsupported.
+				297 button (collapsed) Local renderer measurements, Secondary Actions: Expand
+					298 text Local renderer measurements
+				299 container
+					300 button (expanded) Desktop preview controls, Secondary Actions: Collapse
+						301 text Desktop preview controls
+					302 text T1 | 111 m reported · Radar: confirmed · EO: unavailable / IR: recognise · RF: no link detected / IFF: no_reply · Declared: Quadcopter / hostile
+					303 checkbox T1, Value: 1
+					304 checkbox T2, Value: 0
+					305 checkbox T3, Value: 0
+					306 checkbox T4, Value: 0
+					307 button Next contacts · 1/50
+						308 text Next contacts · 
+						309 text 1
+						310 text /
+						311 text 50
+					312 button (disabled) 1 / Designate contact
+					313 button Type: Quadcopter / cycle
+					314 button Identity: hostile / cycle
+					315 button 2 / Confirm classification
+					316 button 3 / Hold fire
+					317 button 3 / RF jammer
+					318 button 3 / Kinetic response
+					319 button (disabled) Select response, then confirm
+					320 button Pause exercise
+					321 button View: IR thermal / cycle
+					322 button (disabled) Cancel pending response
+					323 button Exit headset / pause
+			285 image
+			286 text EXERCISE LOG 00:42 INSTRUCTOR  ·  sensor_restore 00:42 INSTRUCTOR  ·  sensor_fault
+	324 container
+		325 button (expanded) IWER SOFTWARE QA — NOT A HEADSET, Secondary Actions: Collapse
+			326 text IWER SOFTWARE QA — NOT A HEADSET
+		327 text Production bundle / test-only emulator
+		328 container qa-buttons
+			329 button Deny next entry
+			330 button System exit
+			331 button Hidden
+			332 button Blurred
+			333 button Visible
+			334 button left contact 1
+			335 button left contact 2
+			336 button left next page
+			337 button left designate
+			338 button left type
+			339 button left identity
+			340 button left classify
+			341 button left hold
+			342 button left RF
+			343 button left kinetic
+			344 button left confirm
+			345 button left start/pause
+			346 button left view
+			347 button left cancel
+			348 button left exit
+			349 button right contact 1
+			350 button right contact 2
+			351 button right next page
+			352 button right designate
+			353 button right type
+			354 button right identity
+			355 button right classify
+			356 button right hold
+			357 button right RF
+			358 button right kinetic
+			359 button right confirm
+			360 button right start/pause
+			361 button right view
+			362 button right cancel
+			363 button right exit
+			364 button Head look left
+			365 button Head neutral
+			366 button Lose graphics context
+			367 button Reset frame sample
+			368 button Remove right controller
+			369 button Restore right controller
+		370 text {
+  "emulator": "IWER 2.6.0",
+  "physical_headset": false,
+  "session": true,
+  "views": 2,
+  "frames": 6248,
+  "controllerInputs": [
+    {
+      "hand": "left",
+      "mode": "tracked-pointer"
+    },
+    {
+      "hand": "right",
+      "mode": "tracked-pointer"
+    }
+  ],
+  "frame_ms": {
+    "samples": 3,
+    "median": 11.800000000745058,
+    "p95": 24.199999999254942,
+    "max": 24.199999999254942
+  },
+  "faults": [
+    "TypeError: Cannot read properties of null (reading '0')\n    at onDeviceFrame (http://127.0.0.1:8106/_vrqa/iwer.js:1:58547)",
+    "TypeError: Cannot read properties of null (reading '0')\n    at onDeviceFrame (http://127.0.0.1:8106/_vrqa/iwer.js:1:58547)"
+  ]
+}
+	371 image
+		372 text WebGL is required for this preview. Close the cockpit to use the tactical workspace.
+
+The focused UI element is 345 button left start/pause

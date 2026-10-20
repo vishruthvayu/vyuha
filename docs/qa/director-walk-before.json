@@ -1,0 +1,67 @@
+{
+  "trainee": "QA-DIRECTOR-WALK",
+  "sessions": 1,
+  "skills": {
+    "detection": {
+      "alpha": 9.0,
+      "beta": 1.0,
+      "observations": 8,
+      "mean": 0.9,
+      "updated_at": "2026-10-03T06:10:13.621750+00:00",
+      "last_session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875"
+    },
+    "classification_iff": {
+      "alpha": 9.0,
+      "beta": 1.0,
+      "observations": 8,
+      "mean": 0.9,
+      "updated_at": "2026-10-03T06:10:13.621750+00:00",
+      "last_session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875"
+    },
+    "effector_choice": {
+      "alpha": 9.0,
+      "beta": 1.0,
+      "observations": 8,
+      "mean": 0.9,
+      "updated_at": "2026-10-03T06:10:13.621750+00:00",
+      "last_session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875"
+    },
+    "degraded_sensor_response": {
+      "alpha": 1.0,
+      "beta": 1.0,
+      "observations": 0,
+      "mean": 0.5,
+      "updated_at": "2026-10-03T06:10:13.621750+00:00",
+      "last_session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875"
+    }
+  },
+  "outcomes": [
+    {
+      "session_id": "0a8b442b-30e9-4261-bd92-99ddc7777875",
+      "skills": {
+        "classification_iff": {
+          "failures": 0,
+          "successes": 8
+        },
+        "degraded_sensor_response": {
+          "failures": 0,
+          "successes": 0
+        },
+        "detection": {
+          "failures": 0,
+          "successes": 8
+        },
+        "effector_choice": {
+          "failures": 0,
+          "successes": 8
+        }
+      },
+      "processed_at": "2026-10-03T06:10:13.621750+00:00",
+      "version": "director-v1"
+    }
+  ],
+  "unprocessed_sessions": [],
+  "prior_alpha": 1.0,
+  "prior_beta": 1.0,
+  "version": "director-v1"
+}

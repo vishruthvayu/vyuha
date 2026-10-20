@@ -1,0 +1,11 @@
+# Owned-interface startup closure
+
+Independent review of `ad04797` reproduced a remaining specific-address problem: a service bound to the owned LAN IPv4 could coexist with a reusable wildcard listener and still receive connections to that LAN address. This was a real startup defect, not a physical-platform limitation. The localhost-only follow-up did not close it. Root's before-regression reproduced both reuse cases failing; the independent socket/connect probe confirmed the routing impact.
+
+`preflight.py` now probes localhost, all locally enumerated owned IPv4 interfaces on POSIX, then wildcard, with duplicates removed. The existing local interface parser supplies ownership without DNS guesses or broadcast fields. Startup enumeration includes owned non-private and link-local addresses; default printed trainee URL filtering remains unchanged. The probes preserve POSIX SO_REUSEADDR / Windows SO_EXCLUSIVEADDRUSE and never enable SO_REUSEPORT. Interface enumeration can be unavailable; localhost/wildcard probes remain, and diagnostics do not promise an exhaustive OS listener inventory. No native Windows/Linux execution is inferred.
+
+Targeted startup/portability/TLS checks passed **33 /zero failures in9.67s**, including real occupied owned-address cases and five immediate HTTP restart cycles for each of wildcard, localhost and owned LAN. An independent reviewer reran all six occupied-listener combinations and ten targeted tests, with zero failures. The parser regression checks that ownership comes only from the interface's local-address field and that normal candidate URLs do not expand to non-private/link-local fixtures.
+
+Frozen runtime source hash: `2439f20d14b884b3834095834b3c07c76476db817bba13cbd613126984f12983` (298 policy-v2 inputs). Full regression is being rerun against this source; neither the prior690/268 renderer run nor693/268 localhost-only run is relabelled as the final source result. Existing procedural graphics and production bundle inputs are unchanged by the startup fix. Current independent review found no further reproduced blocker in this scope.
+
+Parallel UI ownership and all protected releases remain unchanged. The frontend branch is explicitly still in progress and must not be integrated or frozen as a candidate yet.

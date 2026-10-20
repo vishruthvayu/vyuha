@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-13",
+  "code_commit": "e07a3845cc465f430b572ece7fbded687c1e3729",
+  "source_sha256": "02cf2c87a2fc59d459e5e696aa3141c83092a1e224c81663b78db1cef1ba982a",
+  "software_acceptance": "PASS_SCOPED",
+  "stable_approval": false,
+  "score": 84,
+  "score_status": "INDEPENDENT PROVISIONAL",
+  "finding_counts": {
+    "PASS": 62,
+    "N/A": 1,
+    "PARTIAL": 30
+  },
+  "tests": {
+    "backend": {
+      "passed": 609,
+      "failed": 0,
+      "seconds": 413.34,
+      "warnings": 1
+    },
+    "frontend": {
+      "passed": 160,
+      "failed": 0,
+      "milliseconds": 37504.43675,
+      "skipped": 0
+    },
+    "production_build": "PASS",
+    "offline_assets": 27,
+    "offline_cache": "d4234414a93b",
+    "historical_baseline": 18,
+    "historical_current": 22,
+    "unchanged_legacy_hashes": true,
+    "lint": "PASS",
+    "format_all_mutable_TSX_and_hooks": "PASS"
+  },
+  "external_pending": [
+    "G08",
+    "G09"
+  ],
+  "independent_final_pin_check": "PASS_SCOPED_X10",
+  "receipt": "evidence.json",
+  "software_frozen_RC": "v1.1.0-rc.1"
+}

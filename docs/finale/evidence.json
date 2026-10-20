@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-13",
+  "acceptance": "SOFTWARE-VALIDATED RC2; NATIVE LINUX RETEST, WINDOWS AND FRESH PHYSICAL ACCEPTANCE PENDING",
+  "branch": "feature/vyuha-finale-edition",
+  "release_candidate": "v1.1.0-rc.2",
+  "baseline_commit": "2ca96105044ad6a14952d74db619e20006c26eca",
+  "candidate_commit": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
+  "code_validation_commit": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
+  "commit_scope": "Exact final implementation tested at 0c6aed1. Final immutable RC2 ref includes documentation-only receipts; resolve tag for receipt commit. Runtime source and build bytes remain identical.",
+  "source_tree_sha256": "5720d526fd56cc17a004577e9828d9baa666d1435fe78b80902c9a3d496eede0",
+  "source_hash_scope": "server,client/src,client/public,client/scripts,scripts,examples and3dependency manifests; supplementary Git commit pins tooling configs/docs not included by source_hash.",
+  "historical_wan": {
+    "status": "PASSED \u2014 TEAM CONFIRMED (historical, 2026-10-04)",
+    "reported_scope": "Windows officer laptop + phone browser + common local router. Internet unavailable on both; phone joined/completed a drill; consistent score and officer-visible result. Exact build not supplied; new finale build remains unvalidated physically."
+  },
+  "remaining": [
+    "Native Arch Linux RC1 execution passed with genuine defects; native Linux RC2 re-test is PENDING. Native Windows execution remains PENDING. No current Windows or phone PASS is inferred.",
+    "Fresh separate-device Finale LAN/WAN/HTTPS trust/cold reload remains PENDING_BY_USER; old physical results are dated provenance, not current acceptance.",
+    "No real sensor measurements or human study supplied; synthetic models, plots and evaluation interfaces do not establish empirical efficacy.",
+    "Trusted-LAN callsign/UUID is not authenticated secure-exam learner identity. Whole Worker/GPU/process memory and operational endurance breadth are not certified.",
+    "Original media rubric rows retain provenance; no PPT, video, Canva or submission work is assigned by this engineering mission."
+  ],
+  "tests": {
+    "backend": {
+      "passed": 617,
+      "failed": 0,
+      "seconds": 1087.53,
+      "warnings": 1
+    },
+    "frontend": {
+      "passed": 172,
+      "failed": 0,
+      "milliseconds": 137555.552417,
+      "skipped": 0
+    },
+    "production_build": "PASS",
+    "offline_assets": 27,
+    "offline_cache": "b2b7e099df64",
+    "historical_baseline": 18,
+    "historical_current": 22,
+    "unchanged_legacy_hashes": true,
+    "lint": "PASS",
+    "format_all_mutable_TSX_and_hooks": "PASS"
+  },
+  "parity": {
+    "original": 312,
+    "finale_immediate": {
+      "scenarios": 32,
+      "checkpoints": 544
+    },
+    "finale_delayed": {
+      "scenarios": 18,
+      "checkpoints": 288
+    },
+    "sensor_component": 1920,
+    "motion_component": 7452,
+    "fusion_advice": 64
+  },
+  "independent_audit": {
+    "status": "HISTORICAL RC1 PROVISIONAL SCORE; RC2 REMEDIATION AND FINAL PIN REVIEW PASS_SCOPED WITHOUT WEIGHTED RESCORE",
+    "score": 84,
+    "final_score": null,
+    "allocation": {
+      "PS": 46,
+      "realism_AI": 18,
+      "engineering_demo": 20
+    },
+    "scoped_pass": 62,
+    "partial": 30,
+    "not_applicable": 1,
+    "blocked": 0,
+    "closure_percent_excluding_NA": 67.3913043478261,
+    "report": "rc2/historical-rc1/FINAL-AUDIT-REASSESSMENT.json",
+    "prior_provisional_score": 83.5,
+    "final_consistency_addendum": "rc2/INDEPENDENT-FINAL.json",
+    "reviewed_release": "v1.1.0-rc.1",
+    "weighted_rc2_score": null,
+    "rc2_review": "rc2/INDEPENDENT-INITIAL.json"
+  },
+  "native_platform_validation": {
+    "status": "ARCH_LINUX_RC1_PASS_WITH_DEFECTS; RC2_LINUX_RETEST_PENDING; WINDOWS_PENDING",
+    "tested_RC1_commit": "a2183e1a5746c8a04fa25ff81af952faa76b27aa",
+    "tested_RC1_version": "v1.1.0-rc.1",
+    "archive_sha256": "d7edd4e8c30097fc1ce714114c50e4a6b128cc945b75b4576024a4b4f0c728ba",
+    "scope": "One native Arch Linux machine, Chrome151 scripted headless with hardware WebGL, localhost no-network namespace. No separate physical trainee, human usability study or browser CA-trust proof.",
+    "current_RC2_native_Linux": "PENDING",
+    "current_native_Windows": "PENDING",
+    "report": "rc2/LINUX-FINDINGS.md"
+  },
+  "new_physical_validation": {
+    "status": "PENDING_BY_USER",
+    "reason": "User deferred fresh Finale separate-device LAN/WAN/HTTPS trust/cold reload."
+  },
+  "receipts": [
+    "TEST-RESULTS.md",
+    "FINAL-SOFTWARE-ACCEPTANCE.json",
+    "FINAL-SOFTWARE-ACCEPTANCE.md",
+    "FINAL-RELEASE-GATES.json",
+    "AUDIT-CLOSURE-MATRIX.md",
+    "audit-backlog.json",
+    "PHYSICAL-TEST-RESULTS.md",
+    "WINDOWS-PHONE-ACCEPTANCE-RUNBOOK.md",
+    "RC-FREEZE.md",
+    "rc2/LINUX-FINDINGS.md",
+    "rc2/RETEST.md",
+    "rc2/BROWSER.json",
+    "rc2/AUTHORIZATION.json",
+    "rc2/HISTORY.json",
+    "rc2/DEPLOYMENT.json",
+    "rc2/OBSERVATION-RACE.json",
+    "rc2/RESPONSIVE.json",
+    "rc2/INDEPENDENT-INITIAL.json",
+    "rc2/REGRESSION.json",
+    "rc2/INDEPENDENT-FINAL.json",
+    "rc2/CONSISTENCY.json",
+    "rc2/SECRET-SCAN.json"
+  ],
+  "final_software_acceptance": "PASS_SCOPED; stable approval false",
+  "stable_approval": false,
+  "production_assets": {
+    "file_count": 27,
+    "cache_version": "b2b7e099df64",
+    "asset_sha256": {
+      "assets/Analytics-CRdZm9qX.js": "9ea736c93ca0cab6781497adc7978bdf8737157a03ed365cf3f0acfb2cc01c63",
+      "assets/App-BeP9lfyZ.js": "65c73dc4bb5685aa628185f349b83d8a4367b7e15fc466f6f592080958b407f9",
+      "assets/Benchmark-IlndNg91.js": "e9ce95a1eca8dd3e0b9e9ee36e65a77fe3ac89a5555b9c471a70cbc212e43354",
+      "assets/Compliance-DyGo90TU.js": "13377faf7d9d66033b62a6215fa4cf5189a99205112f02bc0c7d11d2eb5191cb",
+      "assets/Crew-BSWkScgw.js": "1e7d7ba34610f68b7ca0447b590b5e02f61188d17d6b2d13610f101325491c42",
+      "assets/Evaluation-DOqJ0Y3O.js": "b23683521f3087ab179ffa2335644d006017641677e137533afb435c7814c783",
+      "assets/Evidence-iB0bN0RG.js": "963c6d32bbd4daa7f02d17ebff369b61f6d5f0283f56bf0c64e93f07395a2507",
+      "assets/ExerciseStudio-D_OGX--v.js": "b82daa3055b54cd1ba3eeaa180b5c290879b9476b32e9de5315ff79ffb7fd4c4",
+      "assets/Instructor-BPKm1fnU.js": "461a6f840ed7a5ab9c5684565bed43db867dc2d914110edf30a086be378f1f96",
+      "assets/Radar-KdWxA1aX.js": "fec63063a23e055b2e99b64e3de2d0c37326f47190576b7644e0ba23ba2f1e3f",
+      "assets/RapidID-CfiJrsp5.js": "5079cb3ae6f520ed1e50e0439788ffaaa9c8e57ca4d139066b99a633d81f2232",
+      "assets/Recorded-CJntjCfw.js": "4f25e11d91f37aee31840889ed390f745c1b5e1496371c7a074a1a7237fbb452",
+      "assets/Transfer-DAzYpatJ.js": "b2a93cd970e6639558388ec3281ac773ac011868a31f123a74360929ad6025bb",
+      "assets/import-json-DEPqWbQE.js": "0ed610860015c0f9673df34d95efab8c7ed42d4f5928566480caa77ec126380c",
+      "assets/index-BeZPEheG.js": "54f56656c9db203d0143700f333b363389e78ccbc4e8df17d702c239c34b4e16",
+      "assets/index-CkKdnHg3.css": "edbf2036b63d1d4cb13e0f7941afc495e21b56d442a622cc49b6eb8310caef26",
+      "assets/live-stream-DD8ASLd3.js": "ccd33ffb9a94a3a6842df55a9f07cd3c5f666922c059552a0057950210e83c1e",
+      "assets/observations-xCvc0hza.js": "b792ec1c8e0ae0b73124717db68dbeb76ad3469ffd2569b7c1dc89bf8c698a47",
+      "assets/presentation-DEBuChuu.js": "2c2eed4e6e53d81827407fbde5bd42df2b042f38f5e07866efb6a8e0ce657c2e",
+      "assets/response-v2-BXqvvt7X.js": "5bc128615f0d647f593f7fcfdfaa37d4a38cc7c75703e4f9f2898dd836d67ac7",
+      "assets/scenario-CsdQCPq9.js": "2e5c87efbc36b2e514169b74e4a9b25cdbffcc0e92ef4febfea7b80710d64893",
+      "assets/sim.worker-DVjxYNQs.js": "9fe03570123e1186206e263e91dbee2b4ae582f1a703aca241474eab4a2c7c6c",
+      "examples/recorded-exercise.json": "9e80153eadf52a637130eb9495a77a038f97fa583095e0f628b8f46ff2c7343d",
+      "favicon.svg": "ad80061f8ab202c70b75b8cea093537e31373642c45d9f26c0a84300f6868acf",
+      "index.html": "b2b7e099df64d65596046a12ec70cc08d8a853879bdf92984949b00550049dd4",
+      "manifest.webmanifest": "3c9a9d404d20793b0dfb430286f94ae5ecd1c559ccc7f21e340206d3fa1d745a",
+      "sw.js": "49cf4cb8dd54d5e7cb930415ecb17992dcd6a54253b2a5a0528c54af9d7ecb6e"
+    },
+    "all_files_byte_equal": true,
+    "build_seconds": 29.2,
+    "large_chunk_warning_retained": true
+  },
+  "clean_clone": {
+    "head": "0c6aed15ce98b9fb53dda1f90bb85f0f131e13f1",
+    "source_equal": true,
+    "all27_assets_byte_equal": true,
+    "locked_npm_ci": "PASS",
+    "working_tree_clean": true,
+    "locks": {
+      "client/package.json": "93e3af2fa17ba6a59b8dac7b7aeb6746efbf803f4a8eadd869d0ecb8eabcf9ac",
+      "client/package-lock.json": "af0ef67eb4b0c0dd8fa058f2ab5e114525def32c36fd157e8f6621f5e90ed310",
+      "server/requirements.lock.txt": "6e7ed6e13780351b512afcc88fa0ca6fa6644f6e99655af4b8953369ea8c5ee1"
+    },
+    "Python": "Python 3.13.2",
+    "backup_restore": "PASS_SCOPED; canonical current synthetic DB online backup/new-file restore; see rc2/DEPLOYMENT.json"
+  },
+  "performance": {
+    "hardware": "MacBook Air / Apple M1 /8GB",
+    "graphics": "fixed Medium, auto OFF",
+    "contacts": [
+      8,
+      25,
+      50,
+      100,
+      200
+    ],
+    "median_render_fps": [
+      60,
+      60,
+      60,
+      60,
+      60
+    ],
+    "scope": "Five20s synthetic Sensor Truth stress fixtures in actual desktop Chromium; not physical Android or endurance/concurrency acceptance"
+  },
+  "longer_browser_run": {
+    "seconds": 180,
+    "contacts": 200,
+    "median_render_fps": 60,
+    "logical_ticks": 5376,
+    "median_tick_ms": 4.4,
+    "p95_tick_ms": 10.3,
+    "heap_scope": "Main-page JS heap samples only; not Worker/GPU/total-process memory or certification"
+  },
+  "reconstruction_cycle2": {
+    "before_direct_200_median": 9.670718125009444,
+    "after_direct_200_median": 7.141738959006034,
+    "before_http_200_median": 9.753083957999479,
+    "after_http_200_median": 7.3824508329853415,
+    "repeats": 3,
+    "full_review_and_card_equal_all5sizes": true
+  },
+  "measurement_provenance": "Performance/reconstruction values copied from explicitly dated October12 receipts; no new repetition or larger certification inferred. October13load/cache/GUI receipts separate.",
+  "software_RC_gate_status": "PASS_SCOPED",
+  "open_reproducible_software_defects": []
+}

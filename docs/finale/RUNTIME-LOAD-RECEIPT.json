@@ -1,0 +1,45 @@
+{
+  "recorded_date": "2026-10-12",
+  "hardware": "MacBook Air / Apple M1 /8GB",
+  "scope": "Actual HTTP requests to actual uvicorn process on macOS, disposable synthetic sessions; six software clients, not six physical devices",
+  "concurrent_clients": [
+    {
+      "client": 0,
+      "completion_ms": 5166.36,
+      "score": 0
+    },
+    {
+      "client": 1,
+      "completion_ms": 5181.07,
+      "score": 0
+    },
+    {
+      "client": 2,
+      "completion_ms": 5213.34,
+      "score": 0
+    },
+    {
+      "client": 3,
+      "completion_ms": 4932.55,
+      "score": 0
+    },
+    {
+      "client": 4,
+      "completion_ms": 5093.61,
+      "score": 0
+    },
+    {
+      "client": 5,
+      "completion_ms": 4745.48,
+      "score": 0
+    }
+  ],
+  "concurrent_total_seconds": 5.231,
+  "max_contacts": 200,
+  "max_contact_completion_ms": 27381.25,
+  "limitations": [
+    "No decisions deliberately recorded; completion reconstruction throughput only",
+    "Not multi-device, native Windows/Linux or endurance acceptance",
+    "200-contact custom roster197 neutral birds/3 hostiles; not200 simultaneous hostile targets"
+  ]
+}

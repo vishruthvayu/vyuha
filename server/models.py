@@ -1,12 +1,13 @@
-from typing import Literal
+from typing import Annotated, Literal
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class Action(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
-    tick: int = Field(ge=0, le=2250)
+    tick: int = Field(ge=0, le=5400)
+    order: int | None = Field(default=None, ge=0, le=100000)
     k: Literal["designate", "classify", "engage"]
-    track: str = Field(pattern=r"^T[1-8]$")
+    track: str = Field(pattern=r"^T[1-9][0-9]{0,2}$")
     kind: Literal["bird", "quad", "fixed_wing", "fiber_fpv"] | None = None
     identity: Literal["hostile", "friendly", "neutral"] | None = None
     effector: Literal["rf_jam", "kinetic", "hold"] | None = None
@@ -25,6 +26,9 @@ class Action(BaseModel):
 
 
 class Generate(BaseModel):
+    advanced: bool = False
+    pack_id: str | None = None
+    tactic: Literal["DIRECT","SATURATION","DECOY_THEN_STRIKE","STAGGERED_WAVES","LOW_APPROACH"] | None = None
     seed: int = Field(default=482913, ge=0, le=4294967295)
     night: bool = True
     mode: Literal["scripted", "adaptive"] = "scripted"
@@ -43,4 +47,95 @@ class EventBatch(BaseModel):
 
 
 class Complete(BaseModel):
-    end_tick: int = Field(default=2250, ge=2250, le=2250)
+    execution_tick: int | None = Field(default=None, ge=0, le=5400)
+    end_tick: int = Field(default=2250, ge=1800, le=5400)
+
+
+class StrictModel(BaseModel):
+    model_config = ConfigDict(extra="forbid", strict=True)
+
+
+class EmptyPayload(StrictModel):
+    pass
+
+
+class ContactPayload(StrictModel):
+    kind: Literal["quad", "fiber_fpv"]
+    bearing: int = Field(default=40, ge=0, lt=360)
+
+
+class SwarmPayload(StrictModel):
+    count: Literal[6] = 6
+    bearing: int = Field(default=40, ge=0, lt=360)
+
+
+class FaultPayload(StrictModel):
+    sensor: Literal["radar", "rf", "eo", "ir"]
+    mode: Literal["jammed", "failed"]
+
+    @model_validator(mode="after")
+    def rf_cannot_jam(self):
+        if self.sensor != "radar" and self.mode != "failed":
+            raise ValueError("RF/EO/IR support failure or restoration")
+        return self
+
+
+class RestorePayload(StrictModel):
+    sensor: Literal["radar", "rf", "eo", "ir"]
+
+
+class EnvironmentPayload(StrictModel):
+    night: bool
+
+
+class CommandBase(StrictModel):
+    command_id: str = Field(min_length=1, max_length=64, pattern=r"^[A-Za-z0-9_-]+$")
+
+
+class PauseCommand(CommandBase):
+    type: Literal["pause", "resume"]
+    payload: EmptyPayload = Field(default_factory=EmptyPayload)
+
+
+class ContactCommand(CommandBase):
+    type: Literal["inject_contact"]
+    payload: ContactPayload
+
+
+class SwarmCommand(CommandBase):
+    type: Literal["inject_swarm"]
+    payload: SwarmPayload
+
+
+class FaultCommand(CommandBase):
+    type: Literal["sensor_fault"]
+    payload: FaultPayload
+
+
+class RestoreCommand(CommandBase):
+    type: Literal["sensor_restore"]
+    payload: RestorePayload
+
+
+class EnvironmentCommand(CommandBase):
+    type: Literal["environment"]
+    payload: EnvironmentPayload
+
+
+InstructorCommand = Annotated[PauseCommand | ContactCommand | SwarmCommand | FaultCommand | RestoreCommand | EnvironmentCommand, Field(discriminator="type")]
+
+
+class CommandAck(StrictModel):
+    seq: int = Field(ge=1, le=100)
+    tick: int = Field(ge=0, le=5400)
+    order: int = Field(ge=0, le=100000)
+
+
+class ControlState(StrictModel):
+    tick: int = Field(ge=0, le=5400)
+    paused: bool
+    active_contacts: int = Field(ge=0, le=264)
+    radar_status: Literal["normal", "jammed", "failed"]
+    rf_available: bool
+    night: bool
+    applied: list[CommandAck] = Field(default_factory=list, max_length=100)

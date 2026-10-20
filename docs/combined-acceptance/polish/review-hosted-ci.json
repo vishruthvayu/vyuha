@@ -1,0 +1,78 @@
+{
+  "commit": "126aab44a83fec76b782d5a6acbec9b8dc454bce",
+  "url": "https://github.com/vishruthvayu/vyuha-sih26247/actions/runs/39158677787",
+  "status": "success",
+  "backend": "708 passed, 1 warning in 397.77s (0:06:37)",
+  "frontend_pass": 347,
+  "frontend_fail": 0,
+  "steps": [
+    {
+      "name": "Set up job",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/checkout@v4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/setup-node@v4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/setup-python@v5",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run python -m venv .venv",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run .venv/bin/python -m pip install -r server/requirements.lock.txt",
+      "conclusion": "success"
+    },
+    {
+      "name": "Install frontend dependencies",
+      "conclusion": "success"
+    },
+    {
+      "name": "Build production frontend and offline assets",
+      "conclusion": "success"
+    },
+    {
+      "name": "Verify backend and production startup",
+      "conclusion": "success"
+    },
+    {
+      "name": "Verify frontend and Python parity",
+      "conclusion": "success"
+    },
+    {
+      "name": "Lint frontend",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check frontend formatting",
+      "conclusion": "success"
+    },
+    {
+      "name": "Build production Docker image",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/setup-python@v5",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/setup-node@v4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/checkout@v4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Complete job",
+      "conclusion": "success"
+    }
+  ]
+}

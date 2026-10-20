@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-12",
+  "scope": "Current actual Unit Mode HTTP evidence route; prior release manifest remains historical",
+  "candidate_code_commit": "4f1f5d3835dcd1cc6f84d0e6c070c1b45c9d6903",
+  "source_tree_sha256": "94d311b647337ea9e1db5cac8cd75fc86b70f46717b5c1e8ad18fffbeb05595e",
+  "source_matches": true,
+  "backend": 482,
+  "frontend": 137,
+  "offline_assets": 26,
+  "offline_cache": "72094449dd1b",
+  "independent_provisional_score": 83.5,
+  "final_score": null,
+  "stable_approval": false,
+  "all_manifest_paths_exist": true
+}

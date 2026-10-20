@@ -1,0 +1,47 @@
+{
+  "recorded_date": "2026-10-14",
+  "status": "VALIDATED_INTEGRATION_CHECKPOINT_FINAL_ACCEPTANCE_OPEN",
+  "branch": "feature/vyuha-ultimate-experience",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "3f2acb207d544557b1a2f2e5d66cfb390fdb20ac53f94723fc033a3f6e0661b4",
+  "backend": {
+    "passed": 681,
+    "failed": 0,
+    "duration_seconds": 866.7,
+    "warnings": [
+      "Known Starlette TestClient/httpx deprecation"
+    ]
+  },
+  "frontend": {
+    "passed": 234,
+    "failed": 0,
+    "skipped": 0,
+    "duration_ms": 185241.715,
+    "client_inputs_unchanged": true
+  },
+  "lint": "PASS",
+  "format": "PASS",
+  "build": {
+    "status": "PASS",
+    "local_assets": 28,
+    "cache": "11103b1cb858"
+  },
+  "independent": {
+    "parity_history_review": 100,
+    "control_navigation": 13,
+    "backend_security_and_evidence": 120,
+    "baseline_scorecards_preserved": 18,
+    "stored_scorecards_preserved": 22,
+    "counts_overlap_full_suites": true
+  },
+  "remaining_software": [
+    "Current all-route meaningful-state recaptures and final visual critique",
+    "Current rendering/reconstruction performance",
+    "Matching clean-clone reproduction",
+    "Exact final evidence/manifest and immutable RC seal"
+  ],
+  "physical_exact_candidate": "PENDING",
+  "stable_approval": false,
+  "new_weighted_audit_score": null,
+  "historical_external_RC2_score": 89
+}

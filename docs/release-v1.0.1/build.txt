@@ -1,0 +1,35 @@
+
+> vyuha-trainer@1.0.0 build
+> tsc -b && vite build && node scripts/offline.mjs
+
+vite v6.4.3 building for production...
+transforming...
+✓ 1631 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                           0.66 kB │ gzip:   0.40 kB
+dist/assets/sim.worker-gI5K36jQ.js        8.23 kB
+dist/assets/index-DgT2H3Ge.css           36.92 kB │ gzip:   8.94 kB
+dist/assets/import-json-DqA3I991.js       0.36 kB │ gzip:   0.25 kB
+dist/assets/observations-DJGegytG.js      1.72 kB │ gzip:   0.75 kB
+dist/assets/Transfer-10Av87Wv.js          3.01 kB │ gzip:   1.46 kB
+dist/assets/Radar-CEphgddI.js             3.04 kB │ gzip:   1.29 kB
+dist/assets/presentation-DEBuChuu.js      3.39 kB │ gzip:   1.60 kB
+dist/assets/Evaluation-CI_dN1Kz.js        3.77 kB │ gzip:   1.52 kB
+dist/assets/Recorded-BMYHHHOr.js          5.32 kB │ gzip:   1.98 kB
+dist/assets/Evidence-lrsp9HNY.js          5.94 kB │ gzip:   1.86 kB
+dist/assets/Benchmark-UB3b3DuG.js         6.22 kB │ gzip:   2.53 kB
+dist/assets/Analytics-CndBUlNY.js         8.92 kB │ gzip:   2.99 kB
+dist/assets/RapidID-DKve3KCh.js           9.17 kB │ gzip:   3.44 kB
+dist/assets/Instructor-BMKftlpe.js        9.67 kB │ gzip:   3.21 kB
+dist/assets/ExerciseStudio-DsfpGGLR.js   10.90 kB │ gzip:   3.62 kB
+dist/assets/App-D_a8tUbA.js              44.56 kB │ gzip:  13.69 kB
+dist/assets/index-CcqsOdFC.js           278.98 kB │ gzip:  86.30 kB
+dist/assets/scenario-BxD4mYjf.js        899.30 kB │ gzip: 243.42 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.92s
+Offline cache: 23 local assets (1ee85a2f1bdb)
