@@ -28,6 +28,8 @@ import {
   VRSessionLifecycle,
   vrAction,
   vrObservedState,
+  vrContacts,
+  vrVisionLabel,
   type VRContact,
   vrEvidence,
   vrResponseReason,
@@ -469,7 +471,7 @@ function Cockpit({
         />
       ))}
       <Surface
-        text={`RADAR ${state.radarStatus.toUpperCase()}\nRF / IFF ${state.rfAvailable ? "AVAILABLE" : "OFFLINE"}\n${vision.toUpperCase()} VIEW\n${props.feedback?.action.track === selected ? props.feedback.status : "Training model / observed evidence"}`}
+        text={`RADAR ${state.radarStatus.toUpperCase()}\nRF SENSOR ${state.rfAvailable ? "AVAILABLE" : "OFFLINE"}\n${vrVisionLabel(vision, scenario).toUpperCase()} VIEW\n${props.feedback?.action.track === selected ? props.feedback.status : "Training model / observed evidence"}`}
         position={[0.98, 1.68, -1.9]}
         width={0.88}
         height={0.36}
@@ -509,8 +511,8 @@ export default function VRCockpit(props: Props) {
   const [inputStatus, setInputStatus] = useState(
     "Desktop preview / mouse and keyboard controls",
   );
-  const [kind, setKind] = useState<Kind>("quad"),
-    [identity, setIdentity] = useState<Identity>("neutral");
+  const [kind, setKind] = useState<Kind | null>(null),
+    [identity, setIdentity] = useState<Identity | null>(null);
   const lock = useRef<{
     baseline: number;
     action: Omit<Action, "tick">;
@@ -562,8 +564,11 @@ export default function VRCockpit(props: Props) {
   }, []);
   useEffect(() => {
     setPending(null);
-    setKind("quad");
-    setIdentity("neutral");
+    const own = vrContacts(props.state, modernSensors(props.scenario)).find(
+      (t) => t.id === props.selected,
+    );
+    setKind(own?.classification ?? null);
+    setIdentity(own?.declared ?? null);
   }, [props.selected, props.sessionKey]);
   useEffect(() => {
     setPending(null);
@@ -631,6 +636,9 @@ export default function VRCockpit(props: Props) {
         ),
       );
   };
+  // App owns in-flight requests across cockpit unmount/re-entry. The local
+  // latch also blocks repeated input events before React publishes feedback.
+  const awaitingReceipt = props.feedback?.status === "submitted";
   const send = (
     k: "designate" | "classify" | "engage",
     effector?: Effector,
@@ -645,7 +653,7 @@ export default function VRCockpit(props: Props) {
       identity,
       effector,
     );
-    if (action && !lock.current) {
+    if (action && !lock.current && !awaitingReceipt) {
       lock.current = { baseline: props.feedback?.seq ?? 0, action };
       setPending(null);
       pendingRef.current = null;
@@ -655,6 +663,7 @@ export default function VRCockpit(props: Props) {
   };
   const can = (k: "designate" | "classify" | "engage", effector?: Effector) =>
     !lock.current &&
+    !awaitingReceipt &&
     !!vrAction(
       props.state,
       props.phase,
@@ -719,20 +728,52 @@ export default function VRCockpit(props: Props) {
     },
     {
       id: "kind",
-      label: `Type: ${KIND_LABEL[kind]} / cycle`,
-      enabled: can("classify"),
-      run: () => setKind(vrKinds[(vrKinds.indexOf(kind) + 1) % vrKinds.length]),
+      label: `Type: ${kind ? KIND_LABEL[kind] : "choose"} / cycle`,
+      enabled:
+        !lock.current &&
+        !awaitingReceipt &&
+        !!vrAction(
+          props.state,
+          props.phase,
+          props.scenario,
+          props.selected,
+          "classify",
+          "quad",
+          "neutral",
+        ),
+      run: () => {
+        pendingRef.current = null;
+        setPending(null);
+        setKind(
+          vrKinds[((kind ? vrKinds.indexOf(kind) : -1) + 1) % vrKinds.length],
+        );
+      },
     },
     {
       id: "identity",
-      label: `Identity: ${identity} / cycle`,
-      enabled: can("classify"),
-      run: () =>
+      label: `Identity: ${identity ?? "choose"} / cycle`,
+      enabled:
+        !lock.current &&
+        !awaitingReceipt &&
+        !!vrAction(
+          props.state,
+          props.phase,
+          props.scenario,
+          props.selected,
+          "classify",
+          "quad",
+          "neutral",
+        ),
+      run: () => {
+        pendingRef.current = null;
+        setPending(null);
         setIdentity(
           vrIdentities[
-            (vrIdentities.indexOf(identity) + 1) % vrIdentities.length
+            ((identity ? vrIdentities.indexOf(identity) : -1) + 1) %
+              vrIdentities.length
           ],
-        ),
+        );
+      },
     },
     {
       id: "classify",
@@ -811,7 +852,7 @@ export default function VRCockpit(props: Props) {
     },
     {
       id: "vision",
-      label: `View: ${props.vision} / cycle`,
+      label: `View: ${vrVisionLabel(props.vision, props.scenario)} / cycle`,
       enabled: true,
       run: () =>
         props.onVision(

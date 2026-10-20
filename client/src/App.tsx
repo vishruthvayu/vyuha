@@ -1,3 +1,4 @@
+import { ActionEvidenceLedger } from "./action-evidence";
 import { useContactMemory } from "./useContactMemory";
 import { useCommandTransport } from "./useCommandTransport";
 import { reportedContacts } from "./observed-contacts";
@@ -204,6 +205,7 @@ export default function App({
   }, []);
   const [logConfidence, setLogConfidence] = useState(false),
     [confidence, setConfidence] = useState(70);
+  const pendingActionEvidence = useRef(new ActionEvidenceLedger());
   const confidenceRef = useRef<number | null>(null);
   confidenceRef.current = !vrOpen && logConfidence ? confidence : null;
   const saveDraft = (
@@ -752,6 +754,14 @@ export default function App({
             .catch(() => {});
         }
       }
+      const capturedEvidence =
+        (m.type === "accepted" || m.type === "rejected") && m.action
+          ? pendingActionEvidence.current.take(
+              m.scope ?? "",
+              m.request_id,
+              m.action,
+            )
+          : undefined;
       if ((m.type === "accepted" || m.type === "rejected") && m.action) {
         const done = m.action;
         setFeedback((f) =>
@@ -777,7 +787,7 @@ export default function App({
         );
       }
       if (m.type === "accepted" && m.action) {
-        const advice = latestAdvice.current;
+        const advice = capturedEvidence?.advice;
         if (
           advice &&
           advice.evidence.track_id === m.action.track &&
@@ -787,13 +797,13 @@ export default function App({
           const distribution =
             m.action.k === "classify" &&
             m.action.kind &&
-            confidenceRef.current !== null
+            capturedEvidence?.confidence != null
               ? (Object.fromEntries(
                   ["bird", "quad", "fixed_wing", "fiber_fpv"].map((k) => [
                     k,
                     k === m.action!.kind
-                      ? confidenceRef.current! / 100
-                      : (1 - confidenceRef.current! / 100) / 3,
+                      ? capturedEvidence!.confidence! / 100
+                      : (1 - capturedEvidence!.confidence! / 100) / 3,
                   ]),
                 ) as { [K in Kind]: number })
               : undefined;
@@ -988,6 +998,7 @@ export default function App({
     scenarioRef.current = spec;
     traineeRef.current = trainee;
     sessionRef.current = id;
+    pendingActionEvidence.current.clear();
     workerScope.current = newId();
     workerInitialized.current = false;
     restorationPending.current = false;
@@ -1040,6 +1051,13 @@ export default function App({
   const act = (data: Omit<Action, "tick">) => {
     if (!running || !workerInitialized.current) return;
     const requestId = ++feedbackSeq.current;
+    pendingActionEvidence.current.capture(
+      workerScope.current,
+      requestId,
+      data,
+      vrOpen ? null : latestAdvice.current,
+      vrOpen ? null : confidenceRef.current,
+    );
     setFeedback({
       seq: requestId,
       action: data,
@@ -1114,6 +1132,7 @@ export default function App({
     scenarioRef.current = d.scenario;
     traineeRef.current = d.trainee;
     sessionRef.current = d.id;
+    pendingActionEvidence.current.clear();
     workerScope.current = newId();
     workerInitialized.current = false;
     restorationPending.current = true;
@@ -1357,6 +1376,7 @@ export default function App({
   }, [routeSearch]);
   const nextDrill = () => {
     worker.current?.postMessage({ type: "pause", scope: workerScope.current });
+    pendingActionEvidence.current.clear();
     workerScope.current = "";
     workerInitialized.current = false;
     restorationPending.current = false;

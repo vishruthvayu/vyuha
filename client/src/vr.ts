@@ -110,12 +110,13 @@ export function vrAction(
   scenario: Scenario,
   selected: string | null,
   k: "designate" | "classify" | "engage",
-  kind: Kind,
-  identity: Identity,
+  kind: Kind | null,
+  identity: Identity | null,
   effector?: Effector,
 ): Omit<Action, "tick"> | undefined {
   const t = targetAt(state, selected, modernSensors(scenario));
   if (controlReason(k === "engage" ? "respond" : k, phase, t)) return;
+  if (k === "classify" && (!kind || !identity)) return;
   // Preserve browser training semantics: resource/range/ROE warnings do not
   // erase the trainee's ability to record a warned attempt. The engine decides
   // blocked/effective outcomes and scores them. Only the same disabled gates
@@ -129,7 +130,7 @@ export function vrAction(
   )
     return;
   return k === "classify"
-    ? { k, track: t!.id, kind, identity }
+    ? { k, track: t!.id, kind: kind!, identity: identity! }
     : k === "engage"
       ? { k, track: t!.id, effector }
       : { k, track: t!.id };
@@ -256,4 +257,14 @@ export function supportedVRInput(
   source: Pick<XRInputSource, "targetRayMode" | "hand">,
 ) {
   return source.targetRayMode === "tracked-pointer" && !source.hand;
+}
+
+export function vrVisionLabel(vision: Vision, scenario: Scenario) {
+  return vision === "day"
+    ? "EO day"
+    : vision === "thermal"
+      ? "IR thermal"
+      : modernSensors(scenario)
+        ? "IR night display"
+        : "Legacy night display";
 }

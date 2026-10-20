@@ -17,6 +17,8 @@ import type { Record as TrainingRecord, Snapshot, Scenario } from "./types";
 
 // Execute the actual App orchestration. Only the WebGL renderer is replaced with
 // a headless presentation fixture; API/storage/navigation/engine code stays real.
+// Cross-modality receipt tests also control the displayed Fusion receipt source
+// and replace only the immersive surface with buttons calling the actual App callbacks.
 let App: React.ComponentType;
 let compiledDirectory: string;
 before(async () => {
@@ -31,7 +33,22 @@ before(async () => {
     renderer,
     `import React from 'react'; export function Scene(props) { globalThis.__qaSceneSnapshots.push(props.state); return React.createElement('button',{onClick:()=>props.onFps(53),'data-headless-renderer':true},'Headless renderer FPS callback'); }`,
   );
-  const source = await readFile(join(sourceDirectory, "App.tsx"), "utf8");
+  const fusion = join(compiledDirectory, "fusion-fixture.mjs");
+  await writeFile(
+    fusion,
+    `import React,{useEffect} from 'react';export function FusionPanel(props){useEffect(()=>{props.onExposure?.(globalThis.__qaAdvice);},[]);return React.createElement('p',null,'Controlled displayed Fusion receipt');}`,
+  );
+  const cockpit = join(compiledDirectory, "cockpit-fixture.mjs");
+  await writeFile(
+    cockpit,
+    `import React from 'react';export default function Cockpit(p){return React.createElement('section',null,React.createElement('button',{onClick:()=>p.onAction({k:'designate',track:'T2'})},'Submit VR designation'),React.createElement('button',{onClick:p.onClose},'Close mock cockpit'));}`,
+  );
+  const source = (
+    await readFile(join(sourceDirectory, "App.tsx"), "utf8")
+  ).replace(
+    /import\("\.\/VRCockpit"\)/g,
+    `import(${JSON.stringify(pathToFileURL(cockpit).href)})`,
+  );
   const emitted = ts
     .transpileModule(source, {
       fileName: "App.tsx",
@@ -46,6 +63,7 @@ before(async () => {
       (_match, _quote, specifier: string) => {
         let dependency = resolve(sourceDirectory, specifier);
         if (specifier === "./LazyScene") dependency = renderer;
+        else if (specifier === "./FusionPanel") dependency = fusion;
         else
           dependency = [dependency + ".ts", dependency + ".tsx"].find(
             existsSync,
@@ -168,10 +186,13 @@ const ghost = {
 function memoryDatabase(
   records: Map<string, TrainingRecord>,
   initialDraft?: Draft,
+  providedDrafts?: Map<string, unknown>,
 ) {
-  const drafts = new Map<string, unknown>(
-    initialDraft ? [[initialDraft.id, initialDraft]] : [],
-  );
+  const drafts =
+    providedDrafts ??
+    new Map<string, unknown>(
+      initialDraft ? [[initialDraft.id, initialDraft]] : [],
+    );
   const database = {
     close() {},
     transaction(name: string) {
@@ -217,12 +238,15 @@ type Mode =
   | "notes"
   | "notes-failed"
   | "memo"
-  | "restoration";
+  | "restoration"
+  | "modality-evidence";
 async function mounted(
   mode: Mode,
   body: (context: {
     document: Document;
     saved: Map<string, TrainingRecord>;
+    drafts: Map<string, unknown>;
+    setAdvice: (id: string) => void;
     waitForPending: () => Promise<void>;
     release: () => void;
     selectB: () => Promise<void>;
@@ -256,6 +280,14 @@ async function mounted(
     ["B", record("B", true)],
   ]);
   const sceneSnapshots: Snapshot[] = [];
+  const savedDrafts = new Map<string, unknown>(
+    mode === "restoration" ? [[restoredDraft.id, restoredDraft]] : [],
+  );
+  const advice = (id: string) => ({
+    exposure_id: id,
+    evidence: { track_id: "T2", tick: 0 },
+    context: { before_order: 0 },
+  });
   const dom = new JSDOM('<!doctype html><body><div id="root"></div></body>', {
     url: `http://qa.local/${mode.startsWith("retry") || mode === "memo" ? "?view=aar&session=A" : "?mode=scripted"}`,
     pretendToBeVisual: true,
@@ -343,7 +375,20 @@ async function mounted(
     if (url.endsWith("/sessions") && url !== "/sessions")
       return json({ sessions: [...savedRecords.values()] });
     if (url === "/scenario-library") return json({ scenarios: [] });
-    if (url === "/scenarios/generate") return json(scenario);
+    if (url === "/scenarios/generate")
+      return json(
+        mode === "modality-evidence"
+          ? {
+              ...scenario,
+              fusion: {
+                version: "fusion-1",
+                mode: "training",
+                exercise: "normal",
+                bias_seed: 0,
+              },
+            }
+          : scenario,
+      );
     if (url === "/sessions") return json({ id: "A" });
     if (url === "/sessions/A/complete") {
       if (mode === "completion" || mode === "retry-complete") {
@@ -413,6 +458,7 @@ async function mounted(
     indexedDB: memoryDatabase(
       savedRecords,
       mode === "restoration" ? restoredDraft : undefined,
+      savedDrafts,
     ),
     Worker: HeadlessWorker,
     ResizeObserver: class {
@@ -423,6 +469,7 @@ async function mounted(
     fetch: fetcher,
     IS_REACT_ACT_ENVIRONMENT: true,
     __qaSceneSnapshots: sceneSnapshots,
+    __qaAdvice: advice("advice-at-dispatch"),
   };
   const descriptors = new Map(
     Object.keys(values).map((key) => [
@@ -448,6 +495,11 @@ async function mounted(
     await body({
       document: dom.window.document,
       saved: savedRecords,
+      drafts: savedDrafts,
+      setAdvice: (id) => {
+        (globalThis as unknown as { __qaAdvice: unknown }).__qaAdvice =
+          advice(id);
+      },
       sceneSnapshots,
       workerMessages,
       emitWorker: (data) => workers.at(-1)?.onmessage?.({ data }),
@@ -825,4 +877,59 @@ for (const olderStatus of ["accepted", "rejected"] as const) {
       assert.match(status(), /Bird.*friendly.*accepted at 00:33/);
       assert.doesNotMatch(status(), /submitted|not accepted/);
     }));
+}
+
+for (const origin of ["browser", "VR"] as const) {
+  test(`Actual App freezes ${origin} Fusion attribution across a delayed cross-modality acknowledgment`, () =>
+    mounted(
+      "modality-evidence",
+      async ({ document, drafts, workerMessages, emitWorker, setAdvice }) => {
+        await click(document, "Begin exercise");
+        const row = [
+          ...document.querySelectorAll<HTMLButtonElement>(".contact-item"),
+        ].find((b) => b.textContent?.includes("T2"));
+        assert.ok(row);
+        await act(async () =>
+          row.dispatchEvent(
+            new document.defaultView!.Event("pointerdown", { bubbles: true }),
+          ),
+        );
+        if (origin === "browser") await click(document, "Designate T2");
+        await click(document, "Open VR observation cockpit");
+        // Let the lazy surface mount; only presentation is stubbed, App.act is real.
+        await act(async () => {
+          await new Promise((r) => setTimeout(r, 20));
+        });
+        if (origin === "VR") {
+          await click(document, "Submit VR designation");
+          setAdvice("advice-displayed-after-VR-submission");
+          await click(document, "Close mock cockpit");
+        }
+        const request = [...workerMessages]
+          .reverse()
+          .find((m) => m.type === "action")!;
+        assert.ok(request?.request_id);
+        const init = [...workerMessages]
+          .reverse()
+          .find((m) => m.type === "init")!;
+        await act(async () => {
+          emitWorker({
+            type: "accepted",
+            scope: init.scope,
+            scenario_id: request.scenario?.id ?? scenario.id,
+            request_id: request.request_id,
+            action: { ...request.action!, tick: 0, order: 0 },
+          });
+          await new Promise((r) => setTimeout(r, 20));
+        });
+        const draft = drafts.get("A") as Draft;
+        assert.ok(draft, "Accepted action saved in the original shared draft");
+        assert.equal(draft.events.length, 1);
+        assert.deepEqual(
+          draft.fusionExposures?.map((e) => e.exposure_id) ?? [],
+          origin === "browser" ? ["advice-at-dispatch"] : [],
+          "Only advice displayed at dispatch may be associated; VR did not display the browser panel",
+        );
+      },
+    ));
 }

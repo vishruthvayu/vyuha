@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { VRSessionLifecycle,checkVRSupport,vrAction,vrContacts,vrEvidence,vrRenderContacts,validConfirmation,supportedVRInput,vrResponseReason } from './vr';
+import { VRSessionLifecycle,checkVRSupport,vrAction,vrContacts,vrEvidence,vrRenderContacts,validConfirmation,supportedVRInput,vrResponseReason,vrVisionLabel } from './vr';
 import { observeSensors, SENSOR_VERSION } from './sensors-v2';
 import { ObservationVisibility } from './visibility';
 import { Simulation,replay,score } from './sim';
@@ -126,4 +126,13 @@ test('immersive input accepts tracked controllers, rejects gaze and hands',()=>{
  assert.equal(supportedVRInput({targetRayMode:'gaze',hand:undefined}),false);
  assert.equal(supportedVRInput({targetRayMode:'screen',hand:undefined}),false);
  assert.equal(supportedVRInput({targetRayMode:'tracked-pointer',hand:{} as XRHand}),false);
+});
+
+test('VR requires explicit type/identity choices and distinguishes styled IR night from separate NV hardware',()=>{
+ const {state,scenario,track}=fixture();track.designated=1;
+ assert.equal(vrAction(state,'running',scenario,'T1','classify',null,null),undefined);
+ assert.equal(vrAction(state,'running',scenario,'T1','classify','quad',null),undefined);
+ assert.equal(vrAction(state,'running',scenario,'T1','classify',null,'neutral'),undefined);
+ assert.ok(vrAction(state,'running',scenario,'T1','classify','quad','neutral'));
+ assert.equal(vrVisionLabel('night',scenario),'IR night display');assert.equal(vrVisionLabel('day',scenario),'EO day');
 });

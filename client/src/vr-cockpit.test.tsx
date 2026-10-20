@@ -97,9 +97,10 @@ test("actual cockpit requires second confirmation, suppresses duplicate/stale re
       },
       onClose() {},
     };
+    let mountKey = 0;
     const render = () =>
       act(async () => {
-        root.render(<Component {...props} />);
+        root.render(<Component key={mountKey} {...props} />);
       });
     const click = async (id: string) => {
       const button = document.querySelector<HTMLButtonElement>(
@@ -188,6 +189,100 @@ test("actual cockpit requires second confirmation, suppresses duplicate/stale re
       1,
       "confirmation checks expiry at activation, even without a new snapshot",
     );
+    props = {
+      ...props,
+      sessionKey: "fresh",
+      selected: "T-FRESH",
+      state: {
+        ...state,
+        tracks: [{ ...t, id: "T-FRESH", classification: null, declared: null }],
+      },
+    };
+    await render();
+    assert.equal(enabled("classify"), false, "no inherited default answer");
+    assert.match(
+      document.querySelector('[data-vr-action="kind"]')!.textContent!,
+      /choose/,
+    );
+    await click("kind");
+    assert.equal(enabled("classify"), false, "identity also required");
+    await click("identity");
+    assert.equal(enabled("classify"), true);
+    await click("classify");
+    assert.equal(enabled("classify"), false, "duplicate submission is latched");
+    assert.deepEqual(actions[1], {
+      k: "classify",
+      track: "T-FRESH",
+      kind: "quad",
+      identity: "hostile",
+    });
+    // Switching contact while its acknowledgment is delayed clears choices,
+    // but cannot unlock the still-owned request.
+    props = {
+      ...props,
+      selected: "T-NEXT",
+      feedback: { seq: 3, action: actions[1], status: "submitted" },
+      state: {
+        ...state,
+        tracks: [{ ...t, id: "T-NEXT", classification: null, declared: null }],
+      },
+    };
+    await render();
+    assert.equal(enabled("kind"), false);
+    assert.equal(enabled("classify"), false);
+    // Closing/reopening VR loses local component state, never App ownership.
+    mountKey++;
+    await render();
+    assert.equal(enabled("kind"), false);
+    assert.equal(enabled("hold"), false);
+    props = {
+      ...props,
+      feedback: { seq: 3, action: actions[1], status: "accepted" },
+    };
+    await render();
+    assert.equal(enabled("kind"), true);
+    assert.equal(
+      enabled("classify"),
+      false,
+      "new contact needs explicit answers",
+    );
+    await click("kind");
+    await click("identity");
+    props = { ...props, state: { ...props.state, tick: props.state.tick + 1 } };
+    await render();
+    assert.equal(
+      enabled("classify"),
+      true,
+      "ordinary snapshots preserve unsent choices",
+    );
+    props = { ...props, sessionKey: "another-exercise" };
+    await render();
+    assert.equal(
+      enabled("classify"),
+      false,
+      "same contact ID in a new session has no defaults",
+    );
+    // Re-entry restores only the trainee's own persisted declaration.
+    props = {
+      ...props,
+      state: {
+        ...state,
+        tracks: [
+          { ...t, id: "T-NEXT", classification: "bird", declared: "friendly" },
+        ],
+      },
+    };
+    mountKey++;
+    await render();
+    assert.match(
+      document.querySelector('[data-vr-action="kind"]')!.textContent!,
+      /Bird/,
+    );
+    assert.match(
+      document.querySelector('[data-vr-action="identity"]')!.textContent!,
+      /friendly/,
+    );
+    assert.equal(enabled("classify"), true);
   } finally {
     await act(async () => root.unmount());
     dom.window.close();
