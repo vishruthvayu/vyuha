@@ -1,0 +1,3 @@
+Browser tab: 14, Title: "VYUHA · Counter-drone trainer", URL: "http://127.0.0.1:8096/crew".
+There has been no change in the accessibility tree.
+The focused UI element is 119 button (expanded) Unified final two-role QA · 2026-10-20T02:38:38.302405+00:00 · shared 0/100, Secondary Actions: Collapse

@@ -1,0 +1,34 @@
+/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+{
+  "historical_completed": 22,
+  "additional_current_completed": 3,
+  "all_current_completed_readable": 25,
+  "stored_engine_versions": {
+    "vyuha-0.2.0": 19,
+    "vyuha-0.4.0": 2,
+    "vyuha-0.1.0": 4
+  },
+  "exact_stored_cards_preserved": true,
+  "all_verified_aar_ghost_timelines_readable": true,
+  "all_four_skill_profiles_readable": true,
+  "heatmap_included_current_sessions": 25,
+  "heatmap_included_rapid_sessions": 1,
+  "heatmap_included_total_sessions": 26,
+  "shared_completed_sessions_excluded_from_individual_heatmap": 0,
+  "historical_immutable_fields_sha256": "f9dc8cd8d96e059d03f8759eb9fb80a440d94241f0e6aea302fbc0bee718ea44",
+  "current_immutable_fields_sha256": "fec9cce75ffe64332740c60fa3793e4a4997ea16ea0d489354ab17f1d4449f3e",
+  "production_database_unchanged": true,
+  "scope": "Aggregate only; private records stay in a temporary backup outside Git. Protected analytics use an ephemeral officer credential.",
+  "source_tree_sha256": "f87104f832e9cb9b03ad18ab3938a23a1a43f1bc51ba95385f540c684c36534a",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "original22_recovery": {
+    "method": "Unique original18 plus four later immutable rows matching pre-existing original22 aggregate digest; no card rewritten.",
+    "combinations_evaluated": 35,
+    "unique_matches": 1,
+    "baseline18_exact": true,
+    "original22_exact": true,
+    "baseline18_sha256": "cce52299fb319073feb81fc0d3f2420a867ff7393421ca9f69940e9aef051b45",
+    "original22_sha256": "f9dc8cd8d96e059d03f8759eb9fb80a440d94241f0e6aea302fbc0bee718ea44"
+  }
+}

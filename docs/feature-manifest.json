@@ -191,8 +191,8 @@
       "name": "VR/WebXR",
       "status": "EXPERIMENTAL",
       "implemented": true,
-      "evidence_scope": "Forward-port implemented; unified software acceptance in progress. Physical headset validation pending.",
-      "source": "docs/vr-unification/COMPATIBILITY-AUDIT.md"
+      "evidence_scope": "712 backend and 367 frontend tests; real production-browser/IWER acceptance. Physical headset, comfort, headset FPS, trusted device HTTPS and owner release approval pending.",
+      "source": "docs/vr-unification/FINAL-INTEGRATION-REPORT.md"
     },
     {
       "name": "Rain model",
@@ -212,5 +212,18 @@
   "physical_wan_reason": "Required physical/network setup unavailable during final validation window.",
   "physical_wan_release_blocking": false,
   "validated_implementation_commit": "0f17830c7fd821f105091400d6ac146e17fbf145",
-  "release_reference": "v1.0.0"
+  "release_reference": "v1.0.0",
+  "vr_unification": {
+    "runtime_commit": "ad430f742f7476feb464c1c53d08cfb3f95823ba",
+    "source_hash_policy": "vyuha-source-inputs-v2",
+    "source_tree_sha256": "f87104f832e9cb9b03ad18ab3938a23a1a43f1bc51ba95385f540c684c36534a",
+    "scope": "Experimental forward-port; source-current software evidence is separate from historical release fields above.",
+    "report": "docs/vr-unification/FINAL-INTEGRATION-REPORT.md",
+    "physical_headset": "PENDING",
+    "trusted_device_https": "PENDING",
+    "owner_release_approval": "PENDING",
+    "new_release_tag_created": false,
+    "software_acceptance": "PASS_SCOPED: 712 backend, 367 frontend; final receipts in report; physical and owner gates pending",
+    "performance": "MEASURED_WITH_LIMITATIONS: warm samples documented; startup/transition stalls remain; no headset FPS certification"
+  }
 }

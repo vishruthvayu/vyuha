@@ -1,0 +1,223 @@
+- link "Skip to workspace":
+  - /url: "#workspace-content"
+- banner:
+  - link "VYUHA home":
+    - /url: /
+    - strong: VYUHA
+  - navigation "Primary workspaces":
+    - link "Training":
+      - /url: /
+    - link "Review":
+      - /url: /?view=aar
+    - link "Crew":
+      - /url: /crew
+    - link "Instructor":
+      - /url: /instructor
+    - link "Analytics":
+      - /url: /analytics
+  - button "Find workspace":
+    - generic: Find workspace
+    - generic: ⌘ / Ctrl K
+  - button "Operator guide":
+    - generic: Operator guide
+  - button "Workspaces":
+    - generic: Workspaces
+- banner:
+  - text: Unit
+  - generic: / Instructor console
+- generic: Officer session · expires after eight hours or server restart
+- button "Sign out"
+- main:
+  - generic: VYUHA · TRAINING CONTROLS
+  - heading "Instructor console" [level=1]
+  - paragraph: Controls act on the selected trainee's independent server session.
+  - generic "Related workspaces"
+  - group "Session overview":
+    - strong: "1"
+    - generic: active / paused / recoverable
+    - strong: "0"
+    - generic: connected and ready
+    - link "Open White Cell ↗":
+      - /url: "#white-cell"
+  - status: "Live session transport: stream."
+  - generic "Assign an exercise to connected trainees"
+  - strong: Sessions
+  - generic: 4 saved
+  - text: Find session
+  - searchbox "Find session"
+  - text: Show
+  - combobox "Show":
+    - option "All sessions" [selected]
+    - option "Live and recoverable"
+    - option "Historical sessions"
+  - status: 4 of 4 sessions
+  - button "UNIFIED-FINAL-QA · QA persistent 8 contacts / urban 270b928c-1a92-42f9-b637-61d6f2530a4a PAUSED" [pressed]:
+    - strong: UNIFIED-FINAL-QA · QA persistent 8 contacts / urban
+    - generic: 270b928c-1a92-42f9-b637-61d6f2530a4a
+    - generic: PAUSED
+  - button "VR-IWER-QA · QA persistent 8 contacts / urban 6064ea8f-9b44-44cd-bde2-9ab414c6b1b8 COMPLETED":
+    - strong: VR-IWER-QA · QA persistent 8 contacts / urban
+    - generic: 6064ea8f-9b44-44cd-bde2-9ab414c6b1b8
+    - generic: COMPLETED
+  - button "VR-IWER-QA · Night watch 0b1961c5-3cb6-4a98-ba8f-fd6111922714 COMPLETED":
+    - strong: VR-IWER-QA · Night watch
+    - generic: 0b1961c5-3cb6-4a98-ba8f-fd6111922714
+    - generic: COMPLETED
+  - button "VR-DESKTOP-QA · Procedural effector choice 3c735206-2ef3-4a1f-9417-5f1ecf804623 COMPLETED":
+    - strong: VR-DESKTOP-QA · Procedural effector choice
+    - generic: 3c735206-2ef3-4a1f-9417-5f1ecf804623
+    - generic: COMPLETED
+  - strong: UNIFIED-FINAL-QA · QA persistent 8 contacts / urban
+  - generic: PAUSED
+  - generic "Session identity and telemetry source"
+  - article:
+    - text: Elapsed simulation time
+    - strong: 99.7s
+  - article:
+    - text: Active contacts
+    - strong: "8"
+  - article:
+    - text: Radar
+    - strong: DEGRADED
+  - article:
+    - text: RF / conditions
+    - strong: NORMAL
+    - generic: Day
+  - paragraph: "Last trainee update: 7:54:25 AM. Telemetry is reported by the trainee; verified scoring runs at completion."
+  - status:
+    - strong: APPLIED
+    - text: Pause exercise
+    - generic: T+99.67s · order 4
+  - heading "Exercise" [level=2]
+  - button "Pause exercise"
+  - button "Resume exercise"
+  - generic "Teaching pause and after-action note"
+  - heading "Teaching pause" [level=2]
+  - text: Explanation for after-action review
+  - textbox "Teaching explanation"
+  - button "Pause with teaching note" [disabled]
+  - status: Teaching note saved with pause command. Application follows the trainee acknowledgment.
+  - paragraph: Notes remain attached to this session and do not change its score. Review free text before sharing an archive.
+  - generic "Inject threats and change sensor conditions"
+  - heading "Threat injection" [level=2]
+  - text: Injection bearing (degrees)
+  - spinbutton "Injection bearing": "40"
+  - button "Inject hostile quad"
+  - button "Inject no-RF FPV"
+  - button "Inject 6-drone swarm"
+  - heading "Sensors" [level=2]
+  - button "Jam radar"
+  - button "Fail radar"
+  - button "Restore radar"
+  - button "Fail RF"
+  - button "Restore RF"
+  - heading "Environment" [level=2]
+  - button "Set day"
+  - button "Set night"
+  - paragraph: Illustrative training models. Recoverable sessions are disconnected or have not sent an update for six seconds.
+  - generic "Command history · 2 issued" [active]
+  - strong: Command history
+  - paragraph:
+    - generic: "#1 · RADAR degraded"
+    - text: · UNIFIED-FINAL-QA
+    - generic: Session 270b928c-1a92-42f9-b637-61d6f2530a4a
+    - generic: Issued 7:54:05 AM · APPLIED · T+99.30s · order 3
+  - paragraph:
+    - generic: "#2 · Pause exercise"
+    - text: · UNIFIED-FINAL-QA
+    - generic: Session 270b928c-1a92-42f9-b637-61d6f2530a4a
+    - generic: Issued 7:54:06 AM · APPLIED · T+99.67s · order 4
+  - region "White Cell live exercise picture":
+    - strong: White Cell · Instructor situation picture
+    - button "Refresh picture"
+    - paragraph: Server reconstruction of accepted trainee actions and applied instructor commands. Choose a trainee; use that session’s instructor controls for interventions.
+    - group "White Cell evidence mode":
+      - button "Observed evidence" [pressed]
+      - button "Instructor reference truth"
+    - button "UNIFIED-FINAL-QA · PAUSED QA persistent 8 contacts / urban · 8 contacts in this picture" [pressed]:
+      - strong: UNIFIED-FINAL-QA · PAUSED
+      - generic: QA persistent 8 contacts / urban · 8 contacts in this picture
+    - heading "UNIFIED-FINAL-QA · QA persistent 8 contacts / urban" [level=3]
+    - paragraph: Current reconstructed sensor evidence — excludes presentation hold. T+99.67 s · vyuha-0.4.0
+    - img "Reconstructed observed map, sensor-reported positions":
+      - generic: N · 4000 m scope
+      - generic "Protected asset"
+      - 'generic "T1 · RADAR / EO / IR · trainee: quad"'
+      - generic: T1
+      - generic "T2 · RADAR / EO / IR"
+      - generic: T2
+      - generic "T3 · RADAR / EO / IR"
+      - generic: T3
+      - generic "T4 · RADAR / EO / IR"
+      - generic: T4
+      - generic "T5 · RADAR / EO / IR"
+      - generic: T5
+      - generic "T6 · RADAR / EO / IR"
+      - generic: T6
+      - generic "T7 · RADAR / EO / IR"
+      - generic: T7
+      - generic "T8 · RADAR / EO / IR"
+      - generic: T8
+    - heading "Accepted decision progress" [level=4]
+    - term: first detected
+    - definition: 8 / 8
+    - term: designated
+    - definition: 1 / 8
+    - term: classified
+    - definition: 1 / 8
+    - term: responded
+    - definition: 1 / 8
+    - term: resolved
+    - definition: 0 / 8
+    - term: impacts
+    - definition: 0 / 8
+    - paragraph: "RADAR: JAMMED · RF: AVAILABLE · DAY"
+    - region "White Cell contact evidence":
+      - table "Current observed contacts; labels are trainee declarations":
+        - caption: Current observed contacts; labels are trainee declarations
+        - rowgroup:
+          - row "Contact Observed channels / trainee classification Reported position":
+            - columnheader "Contact"
+            - columnheader "Observed channels / trainee classification"
+            - columnheader "Reported position"
+        - rowgroup:
+          - 'row "T1 T1 · RADAR / EO / IR · trainee: quad 0 m X / 116 m Z"':
+            - cell "T1"
+            - 'cell "T1 · RADAR / EO / IR · trainee: quad"'
+            - cell "0 m X / 116 m Z"
+          - row "T2 T2 · RADAR / EO / IR 74 m X / -91 m Z":
+            - cell "T2"
+            - cell "T2 · RADAR / EO / IR"
+            - cell "74 m X / -91 m Z"
+          - row "T3 T3 · RADAR / EO / IR -118 m X / 8 m Z":
+            - cell "T3"
+            - cell "T3 · RADAR / EO / IR"
+            - cell "-118 m X / 8 m Z"
+          - row "T4 T4 · RADAR / EO / IR 97 m X / 69 m Z":
+            - cell "T4"
+            - cell "T4 · RADAR / EO / IR"
+            - cell "97 m X / 69 m Z"
+          - row "T5 T5 · RADAR / EO / IR -17 m X / -119 m Z":
+            - cell "T5"
+            - cell "T5 · RADAR / EO / IR"
+            - cell "-17 m X / -119 m Z"
+          - row "T6 T6 · RADAR / EO / IR -63 m X / 104 m Z":
+            - cell "T6"
+            - cell "T6 · RADAR / EO / IR"
+            - cell "-63 m X / 104 m Z"
+          - row "T7 T7 · RADAR / EO / IR 119 m X / -25 m Z":
+            - cell "T7"
+            - cell "T7 · RADAR / EO / IR"
+            - cell "119 m X / -25 m Z"
+          - row "T8 T8 · RADAR / EO / IR -109 m X / -57 m Z":
+            - cell "T8"
+            - cell "T8 · RADAR / EO / IR"
+            - cell "-109 m X / -57 m Z"
+    - generic "Instructor reference alerts · 1"
+    - paragraph: Reconstructed frozen scenario, accepted trainee actions and applied instructor commands through reported horizon. Horizon is client control state; this is not independently verified elapsed wall time. Reference alerts may concern facts the trainee cannot see.
+    - link "Open this session review":
+      - /url: /?session=270b928c-1a92-42f9-b637-61d6f2530a4a&review=officer
+    - paragraph: Officer access required. Current sensor observations exclude the camera’s short presentation hold. Client-reported telemetry is advisory. White Cell does not change completed histories, scores or skill profiles.
+  - strong: Group exercise results
+  - paragraph: No group exercises assigned yet.
+  - paragraph: Each row has independent logs and authoritative scoring. Node values are hostile-contact averages.

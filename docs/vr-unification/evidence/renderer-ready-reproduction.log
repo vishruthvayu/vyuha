@@ -1,0 +1,29 @@
+WARNING: Multiple instances of Three.js being imported.
+✖ actual cockpit requires second confirmation, suppresses duplicate/stale receipts and clears changed contexts (642.235792ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2916.549
+
+✖ failing tests:
+
+test at src/vr-cockpit.test.tsx:17:1
+✖ actual cockpit requires second confirmation, suppresses duplicate/stale receipts and clears changed contexts (642.235792ms)
+  AssertionError [ERR_ASSERTION]: capability support must not enable entry before the real renderer is initialized
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/vr-cockpit.test.tsx:122:12)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

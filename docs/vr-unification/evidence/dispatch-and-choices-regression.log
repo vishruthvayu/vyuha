@@ -1,0 +1,38 @@
+✔ dispatch freezes advice and confidence without mutating the ordinary action (6.719875ms)
+✔ VR records no browser advice or confidence when an acknowledgment is delayed until return (0.402792ms)
+✔ wrong scope, absent ID or changed payload cannot consume another action evidence (2.332875ms)
+✔ out-of-order replies preserve each request snapshot and reset clears prior session ownership (0.972208ms)
+✔ Actual App completion persists verified evidence without stealing a subsequently selected review (1675.042916ms)
+✔ Actual App retry-complete persists verified evidence without stealing a subsequently selected review (247.022375ms)
+✔ Actual App retry-existing persists verified evidence without stealing a subsequently selected review (101.196583ms)
+✔ Actual App completion notes keeps the score verified and exposes annotation availability immediately (412.328917ms)
+✔ Actual App completion notes-failed keeps the score verified and exposes annotation availability immediately (504.615042ms)
+✔ Actual App presentation-only FPS/camera changes reuse replay snapshot while a seek reconstructs (78.612542ms)
+✔ Actual App restored draft locks evidence until its own initialized replay and ignores stale worker ownership (602.447584ms)
+✔ Actual App ignores an older accepted acknowledgment while a different classification is pending (544.771917ms)
+✔ Actual App ignores an older rejected acknowledgment while a different classification is pending (670.98225ms)
+✔ Actual App freezes browser Fusion attribution across a delayed cross-modality acknowledgment (179.354583ms)
+✔ Actual App freezes VR Fusion attribution across a delayed cross-modality acknowledgment (413.989875ms)
+WARNING: Multiple instances of Three.js being imported.
+✔ actual cockpit requires second confirmation, suppresses duplicate/stale receipts and clears changed contexts (1344.577417ms)
+✔ VR projects only current observed position and generic shape under adversarial hidden truth (13.002084ms)
+✔ VR missing v2 observations and bearing-only evidence never fall back to true geometry (2.501958ms)
+✔ VR optical loss holds only frozen observation for six ticks, failed channels clear immediately (0.965333ms)
+✔ VR mirrors browser disabled gates and retains warned resource/cooldown/restriction attempts (2.673125ms)
+✔ VR second confirmation invalidates contact/session/phase/timeout/availability changes (0.618958ms)
+✔ VR ordinary payloads retain identical worker-style replay and scoring (1439.878125ms)
+✔ capability checks distinguish insecure, absent, rejected and supported WebXR (0.626834ms)
+✔ XR lifecycle pauses on visibility loss and exit, supports clean re-entry (1.517459ms)
+✔ XR denial and renderer attachment failure do not leave an active session (2.163625ms)
+✔ pending session request is ended if cockpit unmounts; concurrent requests are suppressed (1.040792ms)
+✔ session ending during renderer attachment never publishes an active cockpit (0.6555ms)
+✔ immersive input accepts tracked controllers, rejects gaze and hands (0.375833ms)
+✔ VR requires explicit type/identity choices and distinguishes styled IR night from separate NV hardware (3.599625ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9338.946666

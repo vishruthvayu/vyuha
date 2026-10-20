@@ -1,0 +1,931 @@
+{
+  "schema_version": 3,
+  "requested_seconds": 180,
+  "simulation_tick": 5299,
+  "simulation_tick_samples": 5280,
+  "heap_samples": [
+    {
+      "seconds": 0,
+      "used_js_heap_bytes": 31395939
+    },
+    {
+      "seconds": 1,
+      "used_js_heap_bytes": 44411131
+    },
+    {
+      "seconds": 2,
+      "used_js_heap_bytes": 48191519
+    },
+    {
+      "seconds": 3,
+      "used_js_heap_bytes": 49797031
+    },
+    {
+      "seconds": 4,
+      "used_js_heap_bytes": 40922003
+    },
+    {
+      "seconds": 5,
+      "used_js_heap_bytes": 65741511
+    },
+    {
+      "seconds": 6,
+      "used_js_heap_bytes": 70592435
+    },
+    {
+      "seconds": 7,
+      "used_js_heap_bytes": 47251222
+    },
+    {
+      "seconds": 8,
+      "used_js_heap_bytes": 34816202
+    },
+    {
+      "seconds": 9,
+      "used_js_heap_bytes": 55305934
+    },
+    {
+      "seconds": 10,
+      "used_js_heap_bytes": 57516818
+    },
+    {
+      "seconds": 11,
+      "used_js_heap_bytes": 44733678
+    },
+    {
+      "seconds": 12,
+      "used_js_heap_bytes": 53631030
+    },
+    {
+      "seconds": 13,
+      "used_js_heap_bytes": 67664854
+    },
+    {
+      "seconds": 14,
+      "used_js_heap_bytes": 34984582
+    },
+    {
+      "seconds": 15,
+      "used_js_heap_bytes": 50837006
+    },
+    {
+      "seconds": 16,
+      "used_js_heap_bytes": 52897818
+    },
+    {
+      "seconds": 17,
+      "used_js_heap_bytes": 43199266
+    },
+    {
+      "seconds": 18,
+      "used_js_heap_bytes": 45625302
+    },
+    {
+      "seconds": 19,
+      "used_js_heap_bytes": 65342746
+    },
+    {
+      "seconds": 20,
+      "used_js_heap_bytes": 58979290
+    },
+    {
+      "seconds": 21,
+      "used_js_heap_bytes": 76925702
+    },
+    {
+      "seconds": 22,
+      "used_js_heap_bytes": 70670870
+    },
+    {
+      "seconds": 23,
+      "used_js_heap_bytes": 64589370
+    },
+    {
+      "seconds": 24,
+      "used_js_heap_bytes": 61243530
+    },
+    {
+      "seconds": 25,
+      "used_js_heap_bytes": 81364050
+    },
+    {
+      "seconds": 26,
+      "used_js_heap_bytes": 66511426
+    },
+    {
+      "seconds": 27,
+      "used_js_heap_bytes": 49086886
+    },
+    {
+      "seconds": 28,
+      "used_js_heap_bytes": 43004214
+    },
+    {
+      "seconds": 29,
+      "used_js_heap_bytes": 55016818
+    },
+    {
+      "seconds": 30,
+      "used_js_heap_bytes": 39315418
+    },
+    {
+      "seconds": 31,
+      "used_js_heap_bytes": 52347794
+    },
+    {
+      "seconds": 32,
+      "used_js_heap_bytes": 55271742
+    },
+    {
+      "seconds": 33,
+      "used_js_heap_bytes": 58337530
+    },
+    {
+      "seconds": 34,
+      "used_js_heap_bytes": 71615858
+    },
+    {
+      "seconds": 35,
+      "used_js_heap_bytes": 74938126
+    },
+    {
+      "seconds": 36,
+      "used_js_heap_bytes": 77431914
+    },
+    {
+      "seconds": 37,
+      "used_js_heap_bytes": 81320474
+    },
+    {
+      "seconds": 38,
+      "used_js_heap_bytes": 58121010
+    },
+    {
+      "seconds": 39,
+      "used_js_heap_bytes": 63414082
+    },
+    {
+      "seconds": 40,
+      "used_js_heap_bytes": 66032486
+    },
+    {
+      "seconds": 41,
+      "used_js_heap_bytes": 48990682
+    },
+    {
+      "seconds": 42,
+      "used_js_heap_bytes": 71560374
+    },
+    {
+      "seconds": 43,
+      "used_js_heap_bytes": 75658258
+    },
+    {
+      "seconds": 44,
+      "used_js_heap_bytes": 54699538
+    },
+    {
+      "seconds": 45,
+      "used_js_heap_bytes": 61595662
+    },
+    {
+      "seconds": 46,
+      "used_js_heap_bytes": 84495374
+    },
+    {
+      "seconds": 47,
+      "used_js_heap_bytes": 74258994
+    },
+    {
+      "seconds": 48,
+      "used_js_heap_bytes": 69772934
+    },
+    {
+      "seconds": 49,
+      "used_js_heap_bytes": 93025074
+    },
+    {
+      "seconds": 50,
+      "used_js_heap_bytes": 38338130
+    },
+    {
+      "seconds": 51,
+      "used_js_heap_bytes": 51488650
+    },
+    {
+      "seconds": 52,
+      "used_js_heap_bytes": 53118430
+    },
+    {
+      "seconds": 53,
+      "used_js_heap_bytes": 67271680
+    },
+    {
+      "seconds": 54,
+      "used_js_heap_bytes": 49969500
+    },
+    {
+      "seconds": 55,
+      "used_js_heap_bytes": 60765032
+    },
+    {
+      "seconds": 56,
+      "used_js_heap_bytes": 56528412
+    },
+    {
+      "seconds": 57,
+      "used_js_heap_bytes": 67195428
+    },
+    {
+      "seconds": 58,
+      "used_js_heap_bytes": 61624768
+    },
+    {
+      "seconds": 59,
+      "used_js_heap_bytes": 57250600
+    },
+    {
+      "seconds": 60,
+      "used_js_heap_bytes": 67727020
+    },
+    {
+      "seconds": 61,
+      "used_js_heap_bytes": 91912432
+    },
+    {
+      "seconds": 62,
+      "used_js_heap_bytes": 38153150
+    },
+    {
+      "seconds": 63,
+      "used_js_heap_bytes": 31490710
+    },
+    {
+      "seconds": 64,
+      "used_js_heap_bytes": 55111214
+    },
+    {
+      "seconds": 65,
+      "used_js_heap_bytes": 49850998
+    },
+    {
+      "seconds": 66,
+      "used_js_heap_bytes": 30661697
+    },
+    {
+      "seconds": 67,
+      "used_js_heap_bytes": 34100349
+    },
+    {
+      "seconds": 68,
+      "used_js_heap_bytes": 32292989
+    },
+    {
+      "seconds": 69,
+      "used_js_heap_bytes": 40544421
+    },
+    {
+      "seconds": 70,
+      "used_js_heap_bytes": 50277201
+    },
+    {
+      "seconds": 71,
+      "used_js_heap_bytes": 52375585
+    },
+    {
+      "seconds": 72,
+      "used_js_heap_bytes": 63330733
+    },
+    {
+      "seconds": 73,
+      "used_js_heap_bytes": 56995597
+    },
+    {
+      "seconds": 74,
+      "used_js_heap_bytes": 73336897
+    },
+    {
+      "seconds": 75,
+      "used_js_heap_bytes": 39432145
+    },
+    {
+      "seconds": 76,
+      "used_js_heap_bytes": 48457061
+    },
+    {
+      "seconds": 77,
+      "used_js_heap_bytes": 37656069
+    },
+    {
+      "seconds": 78,
+      "used_js_heap_bytes": 41005553
+    },
+    {
+      "seconds": 79,
+      "used_js_heap_bytes": 55390909
+    },
+    {
+      "seconds": 80,
+      "used_js_heap_bytes": 68888229
+    },
+    {
+      "seconds": 81,
+      "used_js_heap_bytes": 62827937
+    },
+    {
+      "seconds": 82,
+      "used_js_heap_bytes": 51923849
+    },
+    {
+      "seconds": 83,
+      "used_js_heap_bytes": 66301345
+    },
+    {
+      "seconds": 84,
+      "used_js_heap_bytes": 61264361
+    },
+    {
+      "seconds": 85,
+      "used_js_heap_bytes": 67163717
+    },
+    {
+      "seconds": 86,
+      "used_js_heap_bytes": 66686537
+    },
+    {
+      "seconds": 87,
+      "used_js_heap_bytes": 64832621
+    },
+    {
+      "seconds": 88,
+      "used_js_heap_bytes": 46567933
+    },
+    {
+      "seconds": 89,
+      "used_js_heap_bytes": 36740441
+    },
+    {
+      "seconds": 90,
+      "used_js_heap_bytes": 42612789
+    },
+    {
+      "seconds": 91,
+      "used_js_heap_bytes": 64074813
+    },
+    {
+      "seconds": 92,
+      "used_js_heap_bytes": 58411981
+    },
+    {
+      "seconds": 93,
+      "used_js_heap_bytes": 57336449
+    },
+    {
+      "seconds": 94,
+      "used_js_heap_bytes": 52230285
+    },
+    {
+      "seconds": 95,
+      "used_js_heap_bytes": 49530009
+    },
+    {
+      "seconds": 96,
+      "used_js_heap_bytes": 47268893
+    },
+    {
+      "seconds": 97,
+      "used_js_heap_bytes": 53662909
+    },
+    {
+      "seconds": 98,
+      "used_js_heap_bytes": 63418077
+    },
+    {
+      "seconds": 99,
+      "used_js_heap_bytes": 60057585
+    },
+    {
+      "seconds": 100,
+      "used_js_heap_bytes": 61734449
+    },
+    {
+      "seconds": 101,
+      "used_js_heap_bytes": 82409353
+    },
+    {
+      "seconds": 102,
+      "used_js_heap_bytes": 71995917
+    },
+    {
+      "seconds": 103,
+      "used_js_heap_bytes": 33356381
+    },
+    {
+      "seconds": 104,
+      "used_js_heap_bytes": 36366329
+    },
+    {
+      "seconds": 105,
+      "used_js_heap_bytes": 50407017
+    },
+    {
+      "seconds": 106,
+      "used_js_heap_bytes": 54105813
+    },
+    {
+      "seconds": 107,
+      "used_js_heap_bytes": 39515272
+    },
+    {
+      "seconds": 108,
+      "used_js_heap_bytes": 57131704
+    },
+    {
+      "seconds": 109,
+      "used_js_heap_bytes": 66437580
+    },
+    {
+      "seconds": 110,
+      "used_js_heap_bytes": 62873024
+    },
+    {
+      "seconds": 111,
+      "used_js_heap_bytes": 56617896
+    },
+    {
+      "seconds": 112,
+      "used_js_heap_bytes": 66206872
+    },
+    {
+      "seconds": 113,
+      "used_js_heap_bytes": 71786932
+    },
+    {
+      "seconds": 114,
+      "used_js_heap_bytes": 52801192
+    },
+    {
+      "seconds": 115,
+      "used_js_heap_bytes": 60095744
+    },
+    {
+      "seconds": 116,
+      "used_js_heap_bytes": 68932084
+    },
+    {
+      "seconds": 117,
+      "used_js_heap_bytes": 72376020
+    },
+    {
+      "seconds": 118,
+      "used_js_heap_bytes": 74269928
+    },
+    {
+      "seconds": 119,
+      "used_js_heap_bytes": 74154472
+    },
+    {
+      "seconds": 120,
+      "used_js_heap_bytes": 42442381
+    },
+    {
+      "seconds": 121,
+      "used_js_heap_bytes": 44015725
+    },
+    {
+      "seconds": 122,
+      "used_js_heap_bytes": 45430277
+    },
+    {
+      "seconds": 123,
+      "used_js_heap_bytes": 46460593
+    },
+    {
+      "seconds": 124,
+      "used_js_heap_bytes": 48931565
+    },
+    {
+      "seconds": 125,
+      "used_js_heap_bytes": 50190241
+    },
+    {
+      "seconds": 126,
+      "used_js_heap_bytes": 50240401
+    },
+    {
+      "seconds": 127,
+      "used_js_heap_bytes": 51738137
+    },
+    {
+      "seconds": 128,
+      "used_js_heap_bytes": 55091989
+    },
+    {
+      "seconds": 129,
+      "used_js_heap_bytes": 54001809
+    },
+    {
+      "seconds": 130,
+      "used_js_heap_bytes": 55732637
+    },
+    {
+      "seconds": 131,
+      "used_js_heap_bytes": 57230173
+    },
+    {
+      "seconds": 132,
+      "used_js_heap_bytes": 59759793
+    },
+    {
+      "seconds": 133,
+      "used_js_heap_bytes": 59693209
+    },
+    {
+      "seconds": 134,
+      "used_js_heap_bytes": 62633193
+    },
+    {
+      "seconds": 135,
+      "used_js_heap_bytes": 34600461
+    },
+    {
+      "seconds": 136,
+      "used_js_heap_bytes": 31371169
+    },
+    {
+      "seconds": 137,
+      "used_js_heap_bytes": 51632801
+    },
+    {
+      "seconds": 138,
+      "used_js_heap_bytes": 56041553
+    },
+    {
+      "seconds": 139,
+      "used_js_heap_bytes": 52380645
+    },
+    {
+      "seconds": 140,
+      "used_js_heap_bytes": 56061945
+    },
+    {
+      "seconds": 141,
+      "used_js_heap_bytes": 54760757
+    },
+    {
+      "seconds": 142,
+      "used_js_heap_bytes": 57853829
+    },
+    {
+      "seconds": 143,
+      "used_js_heap_bytes": 59608481
+    },
+    {
+      "seconds": 144,
+      "used_js_heap_bytes": 62331425
+    },
+    {
+      "seconds": 145,
+      "used_js_heap_bytes": 64085405
+    },
+    {
+      "seconds": 146,
+      "used_js_heap_bytes": 68805725
+    },
+    {
+      "seconds": 147,
+      "used_js_heap_bytes": 75781389
+    },
+    {
+      "seconds": 148,
+      "used_js_heap_bytes": 79404249
+    },
+    {
+      "seconds": 149,
+      "used_js_heap_bytes": 80011341
+    },
+    {
+      "seconds": 150,
+      "used_js_heap_bytes": 84361865
+    },
+    {
+      "seconds": 151,
+      "used_js_heap_bytes": 65257337
+    },
+    {
+      "seconds": 152,
+      "used_js_heap_bytes": 48277137
+    },
+    {
+      "seconds": 153,
+      "used_js_heap_bytes": 51755841
+    },
+    {
+      "seconds": 154,
+      "used_js_heap_bytes": 52570813
+    },
+    {
+      "seconds": 155,
+      "used_js_heap_bytes": 53799445
+    },
+    {
+      "seconds": 156,
+      "used_js_heap_bytes": 58865021
+    },
+    {
+      "seconds": 157,
+      "used_js_heap_bytes": 63322353
+    },
+    {
+      "seconds": 158,
+      "used_js_heap_bytes": 52480673
+    },
+    {
+      "seconds": 159,
+      "used_js_heap_bytes": 49155773
+    },
+    {
+      "seconds": 160,
+      "used_js_heap_bytes": 54973045
+    },
+    {
+      "seconds": 161,
+      "used_js_heap_bytes": 61584705
+    },
+    {
+      "seconds": 162,
+      "used_js_heap_bytes": 65311429
+    },
+    {
+      "seconds": 163,
+      "used_js_heap_bytes": 69593305
+    },
+    {
+      "seconds": 164,
+      "used_js_heap_bytes": 75978049
+    },
+    {
+      "seconds": 165,
+      "used_js_heap_bytes": 82683437
+    },
+    {
+      "seconds": 166,
+      "used_js_heap_bytes": 65796603
+    },
+    {
+      "seconds": 167,
+      "used_js_heap_bytes": 32182041
+    },
+    {
+      "seconds": 168,
+      "used_js_heap_bytes": 34727357
+    },
+    {
+      "seconds": 169,
+      "used_js_heap_bytes": 42805061
+    },
+    {
+      "seconds": 170,
+      "used_js_heap_bytes": 49869057
+    },
+    {
+      "seconds": 171,
+      "used_js_heap_bytes": 55562305
+    },
+    {
+      "seconds": 172,
+      "used_js_heap_bytes": 61033201
+    },
+    {
+      "seconds": 173,
+      "used_js_heap_bytes": 43483401
+    },
+    {
+      "seconds": 174,
+      "used_js_heap_bytes": 49028149
+    },
+    {
+      "seconds": 175,
+      "used_js_heap_bytes": 56744221
+    },
+    {
+      "seconds": 176,
+      "used_js_heap_bytes": 63790629
+    },
+    {
+      "seconds": 177,
+      "used_js_heap_bytes": 69448897
+    },
+    {
+      "seconds": 178,
+      "used_js_heap_bytes": 79073193
+    },
+    {
+      "seconds": 179,
+      "used_js_heap_bytes": 59789605
+    },
+    {
+      "seconds": 180,
+      "used_js_heap_bytes": 69310961
+    }
+  ],
+  "heap_scope": "Browser-reported main-page JS heap only; may be coarse or unavailable; excludes Worker, GPU and total process memory",
+  "engine_version": "vyuha-0.4.0",
+  "workload": "synthetic simultaneous-contact stress fixture; not a solvable Raid Composer exercise",
+  "vision": "thermal",
+  "world": "rural_forward_base",
+  "night": true,
+  "thermal_palette": "white",
+  "camera_preset": "trainee",
+  "hardware_class": "Apple MacBook Air M1",
+  "ram_gib": "8",
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+  "contacts": 200,
+  "graphics": "medium",
+  "auto_quality": false,
+  "seconds": 180,
+  "fps_samples": [
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    58,
+    60,
+    59,
+    60,
+    60,
+    60,
+    60,
+    59,
+    60,
+    60,
+    41,
+    52,
+    60,
+    23,
+    30,
+    9,
+    61,
+    60,
+    59,
+    60,
+    60,
+    60,
+    60,
+    51,
+    60,
+    60,
+    59,
+    43,
+    48,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    57,
+    60,
+    60,
+    28,
+    59,
+    38,
+    50,
+    60,
+    59,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    28,
+    58,
+    60,
+    11,
+    58,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    56,
+    56,
+    38,
+    18,
+    55,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    45,
+    44,
+    8,
+    40,
+    57,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    33,
+    58,
+    44,
+    54,
+    34,
+    26,
+    4,
+    11,
+    60,
+    59,
+    60,
+    60,
+    60,
+    59,
+    60,
+    60,
+    60,
+    56,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    58,
+    60,
+    60,
+    60,
+    60,
+    61,
+    53,
+    60,
+    52,
+    36,
+    60,
+    35,
+    17,
+    47,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    48,
+    61,
+    49,
+    55,
+    51,
+    60,
+    38,
+    23,
+    41,
+    58,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    59,
+    55,
+    60,
+    60,
+    57,
+    60,
+    60,
+    59,
+    60,
+    60,
+    60,
+    60,
+    60
+  ],
+  "median_render_fps": 60,
+  "median_sim_tick_ms": 0.6999999992549419,
+  "p95_sim_tick_ms": 3.199999999254942,
+  "logical_cores": 8,
+  "js_heap_bytes": 69310961,
+  "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs at 30 Hz with bounded stall handling; no scoring fidelity reductions."
+}

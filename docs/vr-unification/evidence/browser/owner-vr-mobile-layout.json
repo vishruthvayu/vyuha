@@ -1,0 +1,81 @@
+{
+  "buttons": [
+    {
+      "label": "1 / Designate contact",
+      "right": 365,
+      "whiteSpace": "pre-line",
+      "width": 340
+    },
+    {
+      "label": "Type: Quadcopter / cycle",
+      "right": 365,
+      "whiteSpace": "pre-line",
+      "width": 340
+    },
+    {
+      "label": "Identity: hostile / cycle",
+      "right": 365,
+      "whiteSpace": "pre-line",
+      "width": 340
+    },
+    {
+      "label": "2 / Confirm classification",
+      "right": 365,
+      "whiteSpace": "pre-line",
+      "width": 340
+    },
+    {
+      "label": "3 / Hold fire\nExercise is paused. Resume to make decisions.",
+      "right": 365,
+      "whiteSpace": "pre-line",
+      "width": 340
+    },
+    {
+      "label": "3 / RF jammer\nExercise is paused. Resume to make decisions.",
+      "right": 365,
+      "whiteSpace": "pre-line",
+      "width": 340
+    },
+    {
+      "label": "3 / Kinetic response\nExercise is paused. Resume to make decisions.",
+      "right": 365,
+      "whiteSpace": "pre-line",
+      "width": 340
+    },
+    {
+      "label": "Select response, then confirm",
+      "right": 365,
+      "whiteSpace": "pre-line",
+      "width": 340
+    },
+    {
+      "label": "Resume exercise",
+      "right": 365,
+      "whiteSpace": "pre-line",
+      "width": 340
+    },
+    {
+      "label": "View: EO day / cycle",
+      "right": 365,
+      "whiteSpace": "pre-line",
+      "width": 340
+    },
+    {
+      "label": "Cancel pending response",
+      "right": 365,
+      "whiteSpace": "pre-line",
+      "width": 340
+    },
+    {
+      "label": "Exit headset / pause",
+      "right": 365,
+      "whiteSpace": "pre-line",
+      "width": 340
+    }
+  ],
+  "canvases": 1,
+  "documentWidth": 390,
+  "height": 844,
+  "scale": 1,
+  "width": 390
+}

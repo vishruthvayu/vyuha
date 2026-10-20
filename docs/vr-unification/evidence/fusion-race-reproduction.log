@@ -1,0 +1,56 @@
+✖ Actual App freezes browser Fusion attribution across a delayed cross-modality acknowledgment (2141.077292ms)
+✖ Actual App freezes VR Fusion attribution across a delayed cross-modality acknowledgment (844.587584ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6910.260416
+
+✖ failing tests:
+
+test at src/review-app-lifetime.test.tsx:883:3
+✖ Actual App freezes browser Fusion attribution across a delayed cross-modality acknowledgment (2141.077292ms)
+  AssertionError [ERR_ASSERTION]: Only advice displayed at dispatch may be associated; VR did not display the browser panel
+  + actual - expected
+  
+  + []
+  - [
+  -   'advice-at-dispatch'
+  - ]
+  
+      at <anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:928:16)
+      at async mounted (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:495:5)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 'advice-at-dispatch' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at src/review-app-lifetime.test.tsx:883:3
+✖ Actual App freezes VR Fusion attribution across a delayed cross-modality acknowledgment (844.587584ms)
+  AssertionError [ERR_ASSERTION]: Only advice displayed at dispatch may be associated; VR did not display the browser panel
+  + actual - expected
+  
+  + [
+  +   'advice-displayed-after-VR-submission'
+  + ]
+  - []
+  
+      at <anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:928:16)
+      at async mounted (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:495:5)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 'advice-displayed-after-VR-submission' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

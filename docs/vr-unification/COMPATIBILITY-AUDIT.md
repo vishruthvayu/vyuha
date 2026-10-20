@@ -38,3 +38,9 @@ This is the pre-integration audit, not a completion certificate. The final repor
 - IWER starts at its default 1.6 m local reference origin. The test harness maps controller heights to the product’s fixed 2 m sensor rig; this is harness calibration, not physical ergonomics evidence.
 - The contact selector reuses browser list-only last-report memory. Stale rows are explicitly labelled and disabled; neither rendering, evidence nor action eligibility uses list memory. Four slots and paging bound the console and desktop layout.
 - IWER QA runs on a separate loopback proxy origin. Its SSE forwarding preserves native command streaming; it never modifies production index/assets or ships the emulator in dist.
+
+## Closure after final integration — 20 October 2026
+
+Final runtime `ad430f742f7476feb464c1c53d08cfb3f95823ba` closes the software adaptations above: current observation DTOs, XR-only layers, dedicated controller surfaces, explicit declarations, request-owned accepted actions, scoped Fusion capture, modal/visibility/context lifecycle, shared draft/AAR and strict startup wrapper. The preceding table is the original risk assessment; its “pending” browser notes are historical. Current evidence and the scoped gate table are in [FINAL-INTEGRATION-REPORT.md](FINAL-INTEGRATION-REPORT.md) and [BROWSER-ACCEPTANCE.md](BROWSER-ACCEPTANCE.md).
+
+The final-source full regression is712 backend/367 frontend, plus35 clean-clone startup checks, cross-language parity and original18/stored22 unchanged cards. Final loopback HTTPS transfer reconstructs11 complete portable histories,24 Fusion receipts and two notes, with144 negative authorization cases. No independent audit score is inferred from these totals. Physical headset/device/network acceptance and owner release approval remain PENDING. No new RC or stable tag is created.

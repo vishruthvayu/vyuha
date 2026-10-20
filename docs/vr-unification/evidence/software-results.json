@@ -1,0 +1,49 @@
+{
+  "runtime_commit": "ad430f742f7476feb464c1c53d08cfb3f95823ba",
+  "source_tree_sha256": "f87104f832e9cb9b03ad18ab3938a23a1a43f1bc51ba95385f540c684c36534a",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "backend": {
+    "tests": 712,
+    "failures": 0,
+    "seconds": 586.64,
+    "command": ".venv/bin/python -m pytest server/tests -q"
+  },
+  "frontend": {
+    "tests": 367,
+    "failures": 0,
+    "seconds": 57.20232175,
+    "command": "npm test --prefix client"
+  },
+  "clean_clone_frontend": 367,
+  "clean_clone_startup": 35,
+  "historical_baseline": 18,
+  "historical_stored": 22,
+  "all_original_scorecards_unchanged": true,
+  "parity_checkpoints": {
+    "finale": 544,
+    "response": 288,
+    "sensor": 1920,
+    "advanced": 135,
+    "rural": 54,
+    "director_templates": 12,
+    "raid_motion_families": 8
+  },
+  "production_files": 75,
+  "docker": "ARM64 on Apple M1; 75 file digests verified",
+  "physical_gates": "PENDING",
+  "new_release_candidate_created": false,
+  "scope": "Final runtime code unchanged since listed tests. Documentation/evidence committed afterward.",
+  "https_transfer": {
+    "sessions": 11,
+    "fusion_receipts": 24,
+    "teaching_notes": 2,
+    "negative_authorization_requests": 144,
+    "duplicate_tamper_restore": "PASS",
+    "scope": "Actual loopback TLS with private test CA; not separate-device trust acceptance"
+  },
+  "live_current_source_sessions": {
+    "browser_and_preview": "1d823417-5fbb-4da1-adde-ecd4b824faed",
+    "browser_fusion_crash_recovery": "a203d2ee-23db-49cb-87ad-ea5d1c4ed7fc",
+    "emulated_xr_200_natural_completion": "e30a911c-7a2c-467e-8fae-9c3f58787638"
+  }
+}

@@ -1,0 +1,27 @@
+Browser tab: 13, Title: "VYUHA · Counter-drone trainer", URL: "http://127.0.0.1:8106/".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+~		288 text {
+  "emulator": "IWER 2.6.0",
+  "physical_headset": false,
+  "session": true,
+  "views": 2,
+  "frames": 4327,
+  "controllerInputs": [
+    {
+      "hand": "left",
+      "mode": "tracked-pointer"
+    },
+    {
+      "hand": "right",
+      "mode": "tracked-pointer"
+    }
+  ],
+  "frame_ms": {
+    "samples": 4326,
+    "median": 16.700000000186265,
+    "p95": 22.59999999962747,
+    "max": 692
+  },
+  "faults": []
+}
+The focused UI element is 246 button left start/pause

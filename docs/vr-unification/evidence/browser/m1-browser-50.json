@@ -1,0 +1,135 @@
+{
+  "schema_version": 3,
+  "requested_seconds": 20,
+  "simulation_tick": 600,
+  "simulation_tick_samples": 600,
+  "heap_samples": [
+    {
+      "seconds": 0,
+      "used_js_heap_bytes": 40732573
+    },
+    {
+      "seconds": 1,
+      "used_js_heap_bytes": 48700105
+    },
+    {
+      "seconds": 2,
+      "used_js_heap_bytes": 45579261
+    },
+    {
+      "seconds": 3,
+      "used_js_heap_bytes": 46124333
+    },
+    {
+      "seconds": 4,
+      "used_js_heap_bytes": 40658475
+    },
+    {
+      "seconds": 5,
+      "used_js_heap_bytes": 35401263
+    },
+    {
+      "seconds": 6,
+      "used_js_heap_bytes": 33526339
+    },
+    {
+      "seconds": 7,
+      "used_js_heap_bytes": 31321815
+    },
+    {
+      "seconds": 8,
+      "used_js_heap_bytes": 35515387
+    },
+    {
+      "seconds": 9,
+      "used_js_heap_bytes": 46703815
+    },
+    {
+      "seconds": 10,
+      "used_js_heap_bytes": 39536915
+    },
+    {
+      "seconds": 11,
+      "used_js_heap_bytes": 31882587
+    },
+    {
+      "seconds": 12,
+      "used_js_heap_bytes": 32593719
+    },
+    {
+      "seconds": 13,
+      "used_js_heap_bytes": 54936523
+    },
+    {
+      "seconds": 14,
+      "used_js_heap_bytes": 30989519
+    },
+    {
+      "seconds": 15,
+      "used_js_heap_bytes": 37194715
+    },
+    {
+      "seconds": 16,
+      "used_js_heap_bytes": 42171623
+    },
+    {
+      "seconds": 17,
+      "used_js_heap_bytes": 51119915
+    },
+    {
+      "seconds": 18,
+      "used_js_heap_bytes": 46400327
+    },
+    {
+      "seconds": 19,
+      "used_js_heap_bytes": 53136603
+    },
+    {
+      "seconds": 20,
+      "used_js_heap_bytes": 42981915
+    }
+  ],
+  "heap_scope": "Browser-reported main-page JS heap only; may be coarse or unavailable; excludes Worker, GPU and total process memory",
+  "engine_version": "vyuha-0.4.0",
+  "workload": "synthetic simultaneous-contact stress fixture; not a solvable Raid Composer exercise",
+  "vision": "thermal",
+  "world": "rural_forward_base",
+  "night": true,
+  "thermal_palette": "white",
+  "camera_preset": "trainee",
+  "hardware_class": "Apple MacBook Air M1",
+  "ram_gib": "8",
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+  "contacts": 50,
+  "graphics": "medium",
+  "auto_quality": false,
+  "seconds": 20,
+  "fps_samples": [
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60
+  ],
+  "median_render_fps": 60,
+  "median_sim_tick_ms": 0.20000000018626451,
+  "p95_sim_tick_ms": 0.5,
+  "logical_cores": 8,
+  "js_heap_bytes": 42981915,
+  "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs at 30 Hz with bounded stall handling; no scoring fidelity reductions."
+}

@@ -1,0 +1,95 @@
+{
+  "runtime_commit": "ad430f742f7476feb464c1c53d08cfb3f95823ba",
+  "method": "Read-only backup of seven historical synthetic portable sessions plus exact unchanged rows from two final-source live browser sessions. Disposable copy only; no original scorecards rewritten.",
+  "current_source_records": [
+    {
+      "session": "1d823417-5fbb-4da1-adde-ecd4b824faed",
+      "events": 6,
+      "fusion_orders": [
+        0,
+        1,
+        2
+      ],
+      "copied_row_sha256": {
+        "trainees": "638c104eff6e814e4d12e0df1be01641f5b168ddb0276c689659a7ed9371a2fd",
+        "scenarios": "17d5dbdac5680529a7ef715ae93cef7e0ed01da2712076d894b8cb124762aa9a",
+        "scenario_library": "40770cd7a652669ff3b79d7d656bf8b691ba5c51040a49a348e6bf72ecbd87f4",
+        "sessions": "51e4ed40221d7475324b30eafc673653cfbf527d41f725987415155c0b72ca01",
+        "chunks": "df5e81614e13fa615f23869167419b36070bbdcfb5c747cf7742a50c34feca32",
+        "instructor_commands": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "instructor_notes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fusion_exposures": "13afd491139f69bc37b44ee05926ae38a8a7ea9310b1556083bebdd3e32ad481",
+        "skill_profiles": "3d0555f93abb5eace1654d64a468a66a3362c8a59146eb7c2d385d737ae9cc0a",
+        "skill_outcomes": "4cfcd1da02e2fdf8c2ee97c049d0841d788bc3a6341e91df96a737a8b82b6547",
+        "session_unit_stats": "e7e032de6fd7e87dc0609ae42dcbe79c32bb99b6923e7b5394cdf83c1b19183a"
+      }
+    },
+    {
+      "session": "a203d2ee-23db-49cb-87ad-ea5d1c4ed7fc",
+      "events": 6,
+      "fusion_orders": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "copied_row_sha256": {
+        "trainees": "ebcf6c3edbca7a9d1b6bd031727726dcaa3c648a0b62dab1b44b2f36840f5ca7",
+        "scenarios": "17d5dbdac5680529a7ef715ae93cef7e0ed01da2712076d894b8cb124762aa9a",
+        "scenario_library": "40770cd7a652669ff3b79d7d656bf8b691ba5c51040a49a348e6bf72ecbd87f4",
+        "sessions": "4796f7abe72b69f3b6efbac0db8ce85dac75c2089c30cc7a8a3bc7b023dc2c6b",
+        "chunks": "87e854ff56ba0cf7c57c37a77b391e81833bf8add5a448053c3667c2209b2c95",
+        "instructor_commands": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "instructor_notes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fusion_exposures": "5e399de3bf05664714c7bd51e44222494b66fd73368221306e20e4ae56f1cce4",
+        "skill_profiles": "3766bf26dcebc51a4ec4a85a6f94eb3ff320eb56493dab1b53cdcd74434ad304",
+        "skill_outcomes": "e157f127f548b0d81174d527e2108a95003f63762e697e8d8cb702824726540d",
+        "session_unit_stats": "f4d391f308eed9ed7e1164f6788ee1adac385ca288fdd5bff8ed34117ced3bbc"
+      }
+    }
+  ],
+  "portable_sessions": 11,
+  "fixture_correction": "Initial fixture omitted two earlier portable sessions for the same trainees while retaining their full accumulated profiles. Forward export correctly recomputed profiles from available history; comparison failed. This corrected fixture copies their complete histories unchanged. No application validator or profile was changed.",
+  "additional_unchanged_histories": [
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/scenarios",
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/scenario_library",
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/sessions",
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/chunks",
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/instructor_commands",
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/instructor_notes",
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/fusion_exposures",
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/skill_outcomes",
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/session_unit_stats",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/scenarios",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/scenario_library",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/sessions",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/chunks",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/instructor_commands",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/instructor_notes",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/fusion_exposures",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/skill_outcomes",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/session_unit_stats"
+  ],
+  "additional_row_sha256": {
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/scenarios": "e28218a4c329e7d4e3a5181715985229e923db9485a17438ee0385782511b3eb",
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/scenario_library": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/sessions": "c5819931ce90ce332ac36f6b66b29b62b9d8a597dd9f0f9bb5576ae9421b9d41",
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/chunks": "a552a45c586129ffc48198847edfe965c2d4e1db7b423cc3f2fed37abbb17eb8",
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/instructor_commands": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/instructor_notes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/fusion_exposures": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/skill_outcomes": "90712cd60d365773820ec56f3af9b2da6774d6bcf2bb534465b7b76a33ce294a",
+    "3c735206-2ef3-4a1f-9417-5f1ecf804623/session_unit_stats": "1d9922f7beb51d5e48a954996a32d595d2ea1eda9dc843843656b204c3803b76",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/scenarios": "17d5dbdac5680529a7ef715ae93cef7e0ed01da2712076d894b8cb124762aa9a",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/scenario_library": "40770cd7a652669ff3b79d7d656bf8b691ba5c51040a49a348e6bf72ecbd87f4",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/sessions": "89959c7d705df046a39ae548f53568f06e723ae7f33d1f0e8530bfa1762c0188",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/chunks": "b8c899d730112cd7ca7b36d301a1c11afef60309dbc3f54ff1fa243a876e66ac",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/instructor_commands": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/instructor_notes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/fusion_exposures": "0074a2f8fd7acb52102a25d14ecfd5a4e91b4eec620c78449ad2916900e4219b",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/skill_outcomes": "7342ee85da18453fe42ba2fd927fa0cac108acebfd2ad8b3182677ce462d8366",
+    "4e41814f-0f44-4d40-b623-6032375ce5fa/session_unit_stats": "7343259c245f1a679da9a803927057d09b9ee4c58b3c4c44ab12288008b2ae3a"
+  }
+}

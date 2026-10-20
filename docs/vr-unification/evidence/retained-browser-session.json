@@ -1,0 +1,17 @@
+{
+  "runtime_commit": "ad430f742f7476feb464c1c53d08cfb3f95823ba",
+  "session": "fa64a6ac-370b-4f94-98ce-3bf6df920bf3",
+  "status": "completed",
+  "execution_tick": 5400,
+  "end_tick": 5400,
+  "scenario_contacts": 200,
+  "accepted_actions": 0,
+  "instructor_commands": [
+    {
+      "seq": 1,
+      "tick": 5115,
+      "timeline_order": 0
+    }
+  ],
+  "scope": "Synthetic retained-200 browser performance exercise, no trainee decisions. Normal server verification completed; not a learning outcome or portable archive fixture."
+}

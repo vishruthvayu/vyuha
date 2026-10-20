@@ -1,0 +1,82 @@
+- link "Skip to workspace":
+  - /url: "#workspace-content"
+- banner:
+  - link "VYUHA home":
+    - /url: /
+    - strong: VYUHA
+  - navigation "Primary workspaces":
+    - link "Training":
+      - /url: /
+    - link "Review":
+      - /url: /?view=aar
+    - link "Crew":
+      - /url: /crew
+    - link "Instructor":
+      - /url: /instructor
+    - link "Analytics":
+      - /url: /analytics
+  - button "Find workspace":
+    - generic: Find workspace
+    - generic: ⌘ / Ctrl K
+  - button "Operator guide":
+    - generic: Operator guide
+  - button "Workspaces":
+    - generic: Workspaces
+- main:
+  - status: SERVER CONNECTED · Sync up to date · Internet not required
+  - generic: COUNTER-DRONE TRAINING
+  - heading "Training ground" [level=1]
+  - paragraph: Read the sensors. Identify the contact. Choose your response.
+  - generic: Callsign CONTEXT-QA
+  - text: EXERCISE / PAUSED
+  - generic: Paused
+  - strong: QA persistent 8 contacts / urban
+  - generic: Urban outpost · Day · Mixed contacts
+  - generic: CALLSIGN
+  - text: CONTEXT-QA
+  - generic: SCENARIO SEED
+  - text: "62147"
+  - generic: EXERCISE TIME
+  - text: 00:11
+  - generic: / 03:00
+  - generic: RENDER
+  - text: 60 fps
+  - button "Resume":
+    - text: Resume
+  - button "End exercise"
+  - button "Open VR observation cockpit"
+  - link "Experimental VR / setup guide":
+    - /url: /vr-guide.html
+  - region "VR observation cockpit":
+    - generic: IMMERSIVE TRAINING / SOFTWARE PREVIEW
+    - heading "VR observation post" [level=2]
+    - status: Headset session active. All exercise controls are inside VR.
+    - button "Enter VR" [disabled]
+    - button "Close cockpit"
+    - paragraph: A stationary seated cockpit. Point a controller and release its trigger to select. On a laptop, click the cockpit or use the controls below. Experimental integration; physical headset validation pending. Controller target rays only; hand-only input is unsupported.
+    - status: 2 controller ray(s) available. Hands are unsupported.
+    - generic "Local renderer measurements"
+    - generic "Desktop preview controls"
+    - paragraph: "T1 | 125 m reported · Radar: confirmed · EO: identify / IR: recognise · RF: no link detected / IFF: no_reply · Declared: Quadcopter / hostile"
+    - button "T1" [pressed]
+    - button "T2"
+    - button "T3"
+    - button "T4"
+    - button "Next contacts · 1/2"
+    - button "1 / Designate contact" [disabled]
+    - 'button "Type: Quadcopter / cycle" [disabled]'
+    - 'button "Identity: hostile / cycle" [disabled]'
+    - button "2 / Confirm classification" [disabled]
+    - button "3 / Hold fire Exercise is paused. Resume to make decisions." [disabled]
+    - button "3 / RF jammer Exercise is paused. Resume to make decisions." [disabled]
+    - button "3 / Kinetic response Exercise is paused. Resume to make decisions." [disabled]
+    - button "Select response, then confirm" [disabled]
+    - button "Resume exercise"
+    - 'button "View: EO day / cycle"'
+    - button "Cancel pending response" [disabled]
+    - button "Exit headset / pause"
+  - text: EXERCISE LOG
+  - generic: 00:11 T1 · Classified quad / hostile
+  - generic: 00:10 T1 · Contact designated
+- complementary:
+  - generic "IWER SOFTWARE QA — NOT A HEADSET"

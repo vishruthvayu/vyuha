@@ -1,0 +1,83 @@
+Start tour
+Skip to workspace
+VYUHA
+Training
+Review
+2
+Crew
+Instructor
+Analytics
+Find workspace
+⌘ / Ctrl K
+Operator guide
+Workspaces
+
+SERVER CONNECTED · Sync up to date · Internet not required
+
+COUNTER-DRONE TRAINING
+Training ground
+
+Read the sensors. Identify the contact. Choose your response.
+
+Callsign VR-DESKTOP-QA
+EXERCISE / READY
+READY
+Unified portable modality QA
+Rural forward base · Day · Mixed contacts
+CALLSIGN
+VR-DESKTOP-QA
+SCENARIO SEED
+62
+EXERCISE TIME
+00:00 / 01:30
+RENDER
+60 fps
+Prepare and start in the exercise preview below
+Drill settings
+Callsign
+Drill
+Original Night Watch · legacy
+Scripted / Library
+Adaptive / Skill practice
+Conditions
+Night · light fog
+Day · light fog
+New seed
+Skill evidence & history
+Scripted exercise
+Scenario library
+Unified portable modality QA · Illustrative finale local pack · DIRECT
+QA browser Fusion continuity · Synthetic stress fixture
+QA persistent 200 contacts / rural · Synthetic stress fixture
+QA persistent 200 contacts / urban · Synthetic stress fixture
+QA persistent 50 contacts / rural · Synthetic stress fixture
+QA persistent 50 contacts / urban · Synthetic stress fixture
+QA persistent 8 contacts / rural · Synthetic stress fixture
+QA persistent 8 contacts / urban · Synthetic stress fixture
+
+Threat pattern: DIRECT · Illustrative finale local pack@1 · Illustrative training configuration
+
+Open VR observation cockpit
+Experimental VR / setup guide
+EO / IR observation
+Observation preferences
+THERMAL
+DAY TV
+IR NIGHT DISPLAY
+WHITE HOT / EO-IR
+OBSERVATION SECTOR
+Watch. Identify. Respond.
+
+9 contacts. 90 seconds.
+Not every contact is a threat.
+
+Begin exercise
+Illustrative landscape · example sensor and effector values
+RADAR
+NORMAL
+RF
+NORMAL
+Light fog · 0.15
+2D fallback
+
+Training prototype · Illustrative signatures, ranges and responses · Detection timing begins at first working-sensor observation. Offline cache ready.

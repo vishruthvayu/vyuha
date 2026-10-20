@@ -1,0 +1,14 @@
+{
+  "all_original_tables_unchanged": true,
+  "tables": {
+    "sessions": "637aec4387ad1c29ec6a4fafd5e972ce94b521fb2614a6fb213647756e90c66b",
+    "chunks": "32b2769bfa8719dce5406f3b167d101e11ee4594c9d871b286c5e42eb2f0c4ad",
+    "instructor_commands": "ddefe475d7b0ef559e2102f3a5c06a5c08847b5088a750d5c471194465fd70b7",
+    "instructor_notes": "641a2fb0d698249e5924d293ffbfc6c44413c476883e958e67a771a16da5e93a",
+    "skill_profiles": "fcc5aa1266a2b4fc177db7502966a5862aa3c6187bccd944eff05986227a47db",
+    "skill_outcomes": "34a854fc65d76975f62a83e781b33dd64d39d416bebc8402a31e3551fcbc1a72",
+    "fusion_exposures": "9c88b20e53e6f0e51567ffdf432327b8ce1e91b8d1d097b0a3b7a1bd446d438f",
+    "crew_attribution": "0c63a73420c29752d772cc6582c6521d1c26def8c476edad49fcf4a905304e54"
+  },
+  "method": "Read-only SQLite hashes before/after real-browser What-If and evidence-only reference requests"
+}

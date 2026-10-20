@@ -1,0 +1,652 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-10-20T09:42:45.382088+00:00",
+  "runtime_commit": "ad430f742f7476feb464c1c53d08cfb3f95823ba",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "f87104f832e9cb9b03ad18ab3938a23a1a43f1bc51ba95385f540c684c36534a",
+  "functional_software_acceptance": "PASS_SCOPED",
+  "performance": "MEASURED_WITH_LIMITATIONS: startup/transition stalls remain",
+  "owner_approval": "PENDING",
+  "physical_headset_and_final_candidate_platform_network_acceptance": "PENDING",
+  "release_candidate_created": false,
+  "stable_tag_created": false,
+  "browser_baseline_merged_or_modified": false,
+  "backend_tests": 712,
+  "frontend_tests": 367,
+  "clean_clone_startup_tests": 35,
+  "historical_cards": {
+    "baseline": 18,
+    "stored": 22,
+    "unchanged": true
+  },
+  "production_files_verified": 75,
+  "https_transfer": {
+    "sessions": 11,
+    "fusion_receipts": 24,
+    "teaching_notes": 2,
+    "negative_authorization_requests": 144
+  },
+  "envelope_note": "This manifest excludes itself. The final Git evidence commit seals this file and all listed hashes; runtime input hash excludes docs, data, generated assets and caches. Exact tested runtime and later documentation commit are intentionally distinguished.",
+  "files": [
+    {
+      "path": "docs/feature-manifest.json",
+      "bytes": 9345,
+      "sha256": "020cfeb36c8010cc5c920825ab7b1c1bec165cc07c17bc4e93a52cb753d16abe"
+    },
+    {
+      "path": "docs/vr-unification/BROWSER-ACCEPTANCE.md",
+      "bytes": 6402,
+      "sha256": "9a4117e662aa350033b7e826d182b06b000e620ac5773b5b71f3b70a2cfb2961"
+    },
+    {
+      "path": "docs/vr-unification/COMPATIBILITY-AUDIT.md",
+      "bytes": 8142,
+      "sha256": "004648a01b3b7d9a476339b4ef4ecb8e97de48550a5fa43c9baafffcfc27afc0"
+    },
+    {
+      "path": "docs/vr-unification/DEMO-AND-PPT-ADDENDUM.md",
+      "bytes": 4598,
+      "sha256": "63196763642559d21534fba739823025381eb4e62c421b2c24313674a42b88fb"
+    },
+    {
+      "path": "docs/vr-unification/FINAL-INTEGRATION-REPORT.md",
+      "bytes": 16344,
+      "sha256": "3bd7d83e147fe82b2e34eb36ac8d1f63b3350e9838afd4820474f0499e3939f9"
+    },
+    {
+      "path": "docs/vr-unification/PERFORMANCE.md",
+      "bytes": 7403,
+      "sha256": "866cc2aff843cc932143b70d84c7247268c4c3fb35959b7c389d7ca0781c768a"
+    },
+    {
+      "path": "docs/vr-unification/evidence/PROVENANCE.json",
+      "bytes": 1123,
+      "sha256": "5627d610ea3825c799ec8cc34fa48212e581c1cf51a058bfd97c1b78dc5689ba"
+    },
+    {
+      "path": "docs/vr-unification/evidence/active-xr-crash.json",
+      "bytes": 397,
+      "sha256": "3025d599dadcfbb0e38daf2141f11cf0e233cbded0e1f7c6af8c23ef025f4261"
+    },
+    {
+      "path": "docs/vr-unification/evidence/backend.log",
+      "bytes": 1395,
+      "sha256": "59230aeab4c649ca845ee083809ac3f28011745e3621aa7dcb8cd04d25b47030"
+    },
+    {
+      "path": "docs/vr-unification/evidence/benchmark-server-stopped.json",
+      "bytes": 1133,
+      "sha256": "8902fc3d8e446268d03947c0f55fb62d02096c5fb23f198d6b011486ed7ea67a"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/analytics.png",
+      "bytes": 56413,
+      "sha256": "23af0a4c1874f3431ae08311985c3697cdab648d69ffb8170294cb1b6d175e79"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/analytics.txt",
+      "bytes": 6827,
+      "sha256": "86f18be57f76deb6e9cd9a86cec155f4a863bb25a3973a9d68337e49fcb5dd5f"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/browser-fusion-offline.png",
+      "bytes": 81829,
+      "sha256": "fce2c5a7fcd51b8838e22f667c8370e9b4d06afbdefaae1a12e32b3569975d5d"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/browser-fusion-offline.txt",
+      "bytes": 6058,
+      "sha256": "aace285e40901136a76baa3a52b7de9f950675750b57c88321502c647da62f4f"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/browser-recovered-response.png",
+      "bytes": 74548,
+      "sha256": "160cb75f11ff4112e288aefd2ef2a58b476de69af26cb845590a87d48e1dddf5"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/context-loss-console.json",
+      "bytes": 269,
+      "sha256": "f841f37453620ad4e01fd2c7b827e9da4617f8ff653b892950c1c363f8879317"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/context-loss-paused.png",
+      "bytes": 100439,
+      "sha256": "361f07af0cf34e33e39b7f707004218271a036cbc4a765858fb24f0e5acdb8aa"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/context-loss-state.txt",
+      "bytes": 4889,
+      "sha256": "68181e217b218145dc98e810586debf5a471e6d69b41ea9c20bb47be7eb94a0b"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/context-recovered-verified.png",
+      "bytes": 60218,
+      "sha256": "f0e6544c64b6028294cc1766a6783b87011a70e22cba3fdf20af8dc11b2ea6ac"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/context-reentry.png",
+      "bytes": 91904,
+      "sha256": "aef2ba31c8ff7522c30858776e992eb1b66ca76a1cc82032a626e70e27708e68"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/context-reentry.txt",
+      "bytes": 3221,
+      "sha256": "829beecbe47e99ab5322596b61d600c78c3706ee0d80613cc10f6837971a5082"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/crew-responder-completed.png",
+      "bytes": 53574,
+      "sha256": "440aedb85ff55df9769580dc41ce9236a25b66117c4bd37e6c914b373be8b556"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/crew-role-history.txt",
+      "bytes": 5658,
+      "sha256": "778864eb08ddc1858a668deae7975cea5ec17d38c12223a33596fe9279e921b8"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/fusion-reference-review.png",
+      "bytes": 80403,
+      "sha256": "b1e8411e01ecab34b621c5e572297970d31a4a8ad1f4fa928c3129a814282ae6"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/fusion-reference-review.txt",
+      "bytes": 21473,
+      "sha256": "7efd8a52629cce6f5b1680f9cbc187dc6cc8d6c43c4e2ee378c155b41937134c"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/instructor-applied.png",
+      "bytes": 76196,
+      "sha256": "9dc66e86f9c443160478a74bca55e16816938579aa6a9830572519dd92522b49"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/instructor-applied.txt",
+      "bytes": 9386,
+      "sha256": "7baea2d75e171cdb51b31a38e95416bdafe51b0190db5685f93a7ea8b011836f"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/m1-browser-50.json",
+      "bytes": 2843,
+      "sha256": "349b8933c25b870132b9d267138a5ca5b1c9ff530c28ac3e63160c00088e57b3"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/m1-browser-8.json",
+      "bytes": 2858,
+      "sha256": "cb1fe5e1708c24f5f68689e0882459de3f412ece50e6d81a871f5f00e61350de"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-analytics.png",
+      "bytes": 56593,
+      "sha256": "28b1b31220a458e5a9ccb2c0543ac43c8fded787923369549fcff235ba8d82ac"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-analytics.txt",
+      "bytes": 249,
+      "sha256": "433c0f7e5bd675cf58ae9a39512859552f74a51e277303b3a76d2118d25bacad"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-browser-200-180s.json",
+      "bytes": 15547,
+      "sha256": "07a72b9647756c4ac814f505137b3022d3d9d38a264e24bc326e828ed451d188"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-browser-200-first30-frames.json",
+      "bytes": 30476,
+      "sha256": "bfeda95d846133618069041e98c5b36de3f1acf3dd9018f121f7331090446ad5"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-browser-200-isolated-180s.json",
+      "bytes": 15541,
+      "sha256": "1370a5c69b468e5e246aaf1ad9e5724cf9caae167887e17fd411cdcf60f9a358"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-browser-200-steady30-frames.json",
+      "bytes": 43129,
+      "sha256": "1b610d6f9355696ed9cd834b0a29a05792727dd2706f71c05621c266731d3d92"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-crew-history.png",
+      "bytes": 224399,
+      "sha256": "9993e250ae1b4bf7ad0b8fcbb879438ec7536ef9930ec76b0616ef0915ca783a"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-crew-history.txt",
+      "bytes": 299,
+      "sha256": "4dfa7c678300ff3ea54f29ff14045eb1fdd5196a0e2bbec1a839d7f9da539eaf"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-cross-modality-verified.png",
+      "bytes": 59233,
+      "sha256": "d39eb7a1f76463d13f1627c80ce940945ecc179c18ec20a8873daa4ad475f96d"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-cross-modality-verified.txt",
+      "bytes": 18889,
+      "sha256": "fcda1f277453ee22366d59d8121217c2563790c5552c0556c5d904cc294fde7f"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-instructor-applied.png",
+      "bytes": 79435,
+      "sha256": "4bd4262519851fb52c13ea5c4f92d8216449b4fbc9814b7ef9f990801221c44e"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-instructor-applied.txt",
+      "bytes": 251,
+      "sha256": "062f9121a5cfb98bc5a2b8938c06f4b0e65df13d4c1b9f35b6d7aaef9243feba"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-outage-queued.png",
+      "bytes": 138624,
+      "sha256": "e68326ad1018f68a77e25cd98797c57d79bacdb6062d6ebb5a31a5ffd1304c55"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-outage-verified.png",
+      "bytes": 578535,
+      "sha256": "d441326adfcb989c7db1c98664daf44f573d6646d0ecd9d4d134f869fc924090"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-outage-verified.txt",
+      "bytes": 16377,
+      "sha256": "48cc7931717bc76cd7798c9ebe7f39e2eebd2bbf4cf63f9ae17d8a7d61fdcd21"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-replay-immutable.png",
+      "bytes": 691013,
+      "sha256": "59480fac3e4e5ea0b34b10d738bd60326895a8ce357d505e0bbdf1e9f9267017"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-replay-immutable.txt",
+      "bytes": 1679,
+      "sha256": "4e9c670df591b53f5553c4fa9f97db493ce46edacb4e6ec55bbf54d55d0d36a3"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-retained-200-completion-pending.png",
+      "bytes": 75395,
+      "sha256": "a042fd44c439dea5771c1b8b465ab3fb128c2d4b4954dff3c05ec83471946aba"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-retained-200-eo-paused.png",
+      "bytes": 99727,
+      "sha256": "6846d2c56e8d30c7e82de88d13509358562582c0f1c745a2d915b4d39c7a59d8"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-retained-200-eo-paused30.json",
+      "bytes": 43293,
+      "sha256": "85ce76c02bba2d2774ab599f8ae5028966a2b9707be36d10ce8208f3859f7b15"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-retained-200-ir.png",
+      "bytes": 93070,
+      "sha256": "a9b76c90f5b048869db552fd71625fdae6ce541503cdc5d385eb739260036a17"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-retained-200-ir30.json",
+      "bytes": 40823,
+      "sha256": "84e6a12f3bea4f369d908d8a13fa30ce515a8474eb6f6e97e828e181fbd7e94d"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-retained-200-server-verified.png",
+      "bytes": 71853,
+      "sha256": "8c4a97b7185d83977017ffc98fb5f1a6087902024e5bd71ab0801c6be7f71096"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-retained-200-server-verified.txt",
+      "bytes": 24647,
+      "sha256": "1359caa847aba40668119b40d85811fe4d720001b6d366612855525a3dfbfb17"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-retained-200-startup30.json",
+      "bytes": 34049,
+      "sha256": "e461bf6c0e206307f6a53f6d3e908b4fd0505165960bd9f942f8088f0e83011c"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-retained-200-state.txt",
+      "bytes": 15590,
+      "sha256": "a7b32dc6e9a1da3f06a1f81d9a910f1aeafeb7bee3b77e6057bab1e9fafff037"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-review-ready.png",
+      "bytes": 73446,
+      "sha256": "be26a3b30162d989e2809a9ed9da89995dc97fcab579bea89a35937ca1a81572"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-review-ready.txt",
+      "bytes": 1908,
+      "sha256": "167d5189e5dc4d5ff74890a6dbe808bfe0a0d23e3fd5f0308dba6b51014ae8ad"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-vr-desktop-axe.json",
+      "bytes": 268,
+      "sha256": "669ac0997861e724d7bdabb9f359f801929206e75b4bfe0e54f8f5fd8979436f"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-vr-desktop-fixed-axe.json",
+      "bytes": 268,
+      "sha256": "fe83683e82c0a8c74b73c1b1d73b7dee7ff195d3d0c9321da6b749dad424bccd"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-vr-desktop-layout.json",
+      "bytes": 92,
+      "sha256": "bab6ffd2439dfe3a604b422c1d8c4a35fd28c41487d8731f68c124f7d2da9144"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-vr-mobile-axe.json",
+      "bytes": 267,
+      "sha256": "dcff9d3b784cfbc07d5621ed7a79c716ecbd7f3e8a2c3c59dae0c7a76f8f7fdf"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-vr-mobile-layout.json",
+      "bytes": 1735,
+      "sha256": "a4fd96578572fda746d25463309a7affbf6641c06d6b3e372ef4271849fc7e66"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-vr-mobile.png",
+      "bytes": 125281,
+      "sha256": "66ff85d312457219183898f0767c32699781d388c589d8b1cacfcf72f96a81da"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-vr-tablet-axe.json",
+      "bytes": 268,
+      "sha256": "5c184503aa66472cec56e6962ee0cf24d6ea5c1b97a634e1f1eb934469b93ed5"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-vr-tablet-layout.json",
+      "bytes": 91,
+      "sha256": "f125722b26d8e71895f326b9946b12556702ea1037974f506651b5b31b70761d"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-xr-200-late-status.json",
+      "bytes": 394,
+      "sha256": "c11fb851f4a7751f1c0635628037f22c3446b63907aca6b0f46e7d8f8f37b4ba"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-xr-200-late.json",
+      "bytes": 449,
+      "sha256": "9a37a89f27f955b5a651c3de8e03ea3aeb607a6c4aa728e018dbf9358d4cc965"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-xr-200-mid-status.json",
+      "bytes": 410,
+      "sha256": "7942575e32bbfea46ef28d4a84c6ace9074e89efb7643f2360fc2738dbb3b593"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-xr-200-mid.json",
+      "bytes": 432,
+      "sha256": "2f716413e7840f2bc1ff74076d9e3f022425cac4e4d280de2762f30f2d1872c0"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-xr-200-start-status.json",
+      "bytes": 422,
+      "sha256": "654faf73004ecb39d8196f2ed5b8c5b299d270d7674cf06250420c27f3d1af6e"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-xr-200-start.json",
+      "bytes": 431,
+      "sha256": "540d39adcf00898f522b4c81e003e2728206bdffadf7e8c678f783b9076f31e8"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-xr-200-steady-final.json",
+      "bytes": 409,
+      "sha256": "79712f45b8b5ec42d5bd425c65e44b2cfeffb3a98029afbee51b9f3dd29cf8c3"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-xr-browser-recovery.txt",
+      "bytes": 1611,
+      "sha256": "e6cde4b00308290130ecd5a4771ccb06e51e4cfcb3ef2927df1501c121813f83"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-xr-console.json",
+      "bytes": 760,
+      "sha256": "a5c57356bd0823e02f425df7a470adab6a3bbaf4f994d7f6a478bee043fab562"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-xr-context-loss.txt",
+      "bytes": 199,
+      "sha256": "b4dd9b13c9bd54dbeb21d7dff0e98a5fdd52bb14e89eff93320fbfb41b6e8d8f"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-xr-context-status.json",
+      "bytes": 537,
+      "sha256": "26d15cac10030629da1af9e3f2fa59cd66e6ebf2fd0b7af202e77a4beb56678d"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-xr-controls.png",
+      "bytes": 101102,
+      "sha256": "69ff7b24eaa0d0e9856accd64e3ade5ff946ed007e4ae7038e715583e053ccf9"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-xr-controls.txt",
+      "bytes": 739,
+      "sha256": "01270dd97efa00805c9f82d9dd4731ae69cca40ef5bf97b1bbaa82c8383e70ae"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-xr-reentry.txt",
+      "bytes": 5871,
+      "sha256": "51a3ee3cd30c8317da6c6d07bda1c0f0fd4ca2c3ea37fe3949f011292290611e"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-xr-server-verified.png",
+      "bytes": 95304,
+      "sha256": "d651825fed94098a236f45e56abf24adf7a1b32fd1d11aa1321e4590e65c4a45"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-xr-server-verified.txt",
+      "bytes": 26835,
+      "sha256": "4f16c83a3eeb8d0bd7572e08d15e8eb4c7156f34061f5b43fa7b886d646aeeb8"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/owner-xr-stereo-head-tracking.png",
+      "bytes": 93398,
+      "sha256": "f87ac30d507447af4865f23c553538dce4c841658fc5deac3e6448e750d588b9"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/whatif-immutability-ui.txt",
+      "bytes": 21473,
+      "sha256": "7efd8a52629cce6f5b1680f9cbc187dc6cc8d6c43c4e2ee378c155b41937134c"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/xr-completed.txt",
+      "bytes": 19812,
+      "sha256": "d31a5bd9fdd0605be69a44b58f1e616f35732817cc119bb3fb6d0038568da085"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/xr-console.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/xr-context-loss.png",
+      "bytes": 97582,
+      "sha256": "b2a520628c0f8a69eaa60627022fd6f093ee98b61c8afe317e25e19d861553f2"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/xr-offline-queued.png",
+      "bytes": 117699,
+      "sha256": "e815535a742c25fd9592e23f18be8cd656398a73e0354b61de75e7c8d5c674ea"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/xr-offline-state.txt",
+      "bytes": 4647,
+      "sha256": "d2cd25fc2bdd7bcbc4409c105a6ca9987ce692787b2f01e69e67ccc8148ae424"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/xr-server-verified.png",
+      "bytes": 94280,
+      "sha256": "44355a33e7e0966d15efd76b413a899ff412167922f871b69253d36d89487451"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/xr-status.json",
+      "bytes": 274,
+      "sha256": "caa5b800a49ff3c5f945b298696de812a4c99af868fd83d4ab15d3b8eab0fd5c"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser/xr-stereo-head-tracking.png",
+      "bytes": 89170,
+      "sha256": "33de0605850e2dd98f8872e7f27e4ae655db00df524998a487d6a52d2108f865"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser-fusion-crash-final.json",
+      "bytes": 887,
+      "sha256": "8e538878c62a7738983914a96a563a1ca05b6d3319761505aba50eea7f51ab61"
+    },
+    {
+      "path": "docs/vr-unification/evidence/browser-fusion-crash.json",
+      "bytes": 642,
+      "sha256": "d30c9eb63ec9e6eaecb91efe0e701311b5a63b0fed889e7f4b8de42f1f6ce89c"
+    },
+    {
+      "path": "docs/vr-unification/evidence/build.log",
+      "bytes": 6090,
+      "sha256": "ac2a1c81d6189aa0643f53cde63f55419ec78c47580153cb89b4dc72e44d4681"
+    },
+    {
+      "path": "docs/vr-unification/evidence/clean-clone.json",
+      "bytes": 8399,
+      "sha256": "62d43e36c9a9a12b847a18027e70216214294c179956382c0b6eb238ef95733d"
+    },
+    {
+      "path": "docs/vr-unification/evidence/clean-frontend.log",
+      "bytes": 37415,
+      "sha256": "b3ba7357c92d2fb82313e2e7baf9f77fdb073ae123851fc09413388c16815a34"
+    },
+    {
+      "path": "docs/vr-unification/evidence/clean-install.log",
+      "bytes": 286,
+      "sha256": "6006a393a6804b09ea62a7532af5930cb5b7078440eb725d83672dcb596f6723"
+    },
+    {
+      "path": "docs/vr-unification/evidence/clean-python-install.log",
+      "bytes": 5316,
+      "sha256": "9933310a5ac2d0708bf9bd91108d2f6370933e940c068dbb3e2cc41020c77e12"
+    },
+    {
+      "path": "docs/vr-unification/evidence/clean-startup.log",
+      "bytes": 100,
+      "sha256": "d78534563c3e877c222700bbbd22d4812c2fce9016ee7b2f2e696d50e7e248c9"
+    },
+    {
+      "path": "docs/vr-unification/evidence/crew-history-recheck.json",
+      "bytes": 6601,
+      "sha256": "0d2d46b0959b0b5487941983fbc84947ea147babf001514f2a19f3aa752859c1"
+    },
+    {
+      "path": "docs/vr-unification/evidence/crew-live.json",
+      "bytes": 6345,
+      "sha256": "e4128e844a5868647669f47ce7799138008e196cb9d4ebb989e4613bb550299d"
+    },
+    {
+      "path": "docs/vr-unification/evidence/dispatch-and-choices-regression.log",
+      "bytes": 3308,
+      "sha256": "8e0f17bee1e74272bb808e7e33a63806d648b3f17b5f48cb24a01c1c99fd4894"
+    },
+    {
+      "path": "docs/vr-unification/evidence/docker-build.log",
+      "bytes": 9507,
+      "sha256": "643e8d62f0ca1be7697be14ea38f8cfe80fe9a34230c0b092a6865c8b621e940"
+    },
+    {
+      "path": "docs/vr-unification/evidence/docker-runtime.json",
+      "bytes": 448,
+      "sha256": "018fbd77ae5f046fd76c0099c3fd1cb80c3d28fc7d3c684a2a19f7739feda9e8"
+    },
+    {
+      "path": "docs/vr-unification/evidence/format.log",
+      "bytes": 292,
+      "sha256": "f74e8531c0a81a8a2e1f68f998d36056af29e757632c068e77a1937d8c83fb6c"
+    },
+    {
+      "path": "docs/vr-unification/evidence/frontend.log",
+      "bytes": 37343,
+      "sha256": "679a795e863ff3cada0997c87435689ac759112aee77a24f50d524541566d13d"
+    },
+    {
+      "path": "docs/vr-unification/evidence/fusion-race-reproduction.log",
+      "bytes": 2400,
+      "sha256": "bd98d8f5461dbc9d5c5990371f1a5d3ca2c03f566133a84da08511029a3df8dd"
+    },
+    {
+      "path": "docs/vr-unification/evidence/hardware.json",
+      "bytes": 189,
+      "sha256": "1765180e07d959cdd435491b3e4c60064041f6b79eade9479998e9f0b04e277b"
+    },
+    {
+      "path": "docs/vr-unification/evidence/historical18.json",
+      "bytes": 936,
+      "sha256": "c2c8240a7d6325e40f9515a1125bfef4e79292b06eec2c64e896870fc8242367"
+    },
+    {
+      "path": "docs/vr-unification/evidence/historical22.json",
+      "bytes": 1550,
+      "sha256": "8955ebe30188710907c798c7dbcd23ac95c321ea2279b58637003a321ea4dbac"
+    },
+    {
+      "path": "docs/vr-unification/evidence/history.log",
+      "bytes": 1885,
+      "sha256": "117c1aaa841d0296e0bedab8ec291ae6bd754df448cda7af324a12861ef73509"
+    },
+    {
+      "path": "docs/vr-unification/evidence/https-transfer-restore.json",
+      "bytes": 27428,
+      "sha256": "f48f5a0603b0183dc41fa6fea75cdadc1efdd5e0ff48daf35bf7df876eb5842b"
+    },
+    {
+      "path": "docs/vr-unification/evidence/lint.log",
+      "bytes": 79,
+      "sha256": "3d184e062e21a463c8c5792bc31ae1a5f7ec671a8e0384ba70a5333f526fe1fd"
+    },
+    {
+      "path": "docs/vr-unification/evidence/live-session-results.json",
+      "bytes": 140360,
+      "sha256": "c93785e4be4bee35105b20c067407b7578a4406ab3c0c0b39fd8969ba91c761b"
+    },
+    {
+      "path": "docs/vr-unification/evidence/performance-summary.json",
+      "bytes": 4030,
+      "sha256": "d30ae8e36e790f99b15f9ab6390af24ef36087631b41b9e5291ea4ddcaaaf511"
+    },
+    {
+      "path": "docs/vr-unification/evidence/portable-fixture-provenance.json",
+      "bytes": 6559,
+      "sha256": "acc804d8af0a441973699386f8a042d674b165b04c0f4a509998ae29dc9476c8"
+    },
+    {
+      "path": "docs/vr-unification/evidence/protected-state.json",
+      "bytes": 1189,
+      "sha256": "5258fbd8cc5a662b5d5782970a5197947c953019da8c5ffca733ada290bb949c"
+    },
+    {
+      "path": "docs/vr-unification/evidence/renderer-ready-reproduction.log",
+      "bytes": 1086,
+      "sha256": "9623023f2c107196bbc550fb954a0d9d7d837d69fe76de483170438d43e1ee7a"
+    },
+    {
+      "path": "docs/vr-unification/evidence/replay-immutability.json",
+      "bytes": 889,
+      "sha256": "06270cd5e82a835b8fa78b87c5d41208646ba996bef81d12e86c4528721be40f"
+    },
+    {
+      "path": "docs/vr-unification/evidence/retained-browser-session.json",
+      "bytes": 529,
+      "sha256": "d86b2ca8501509c1ebf822e8e85608438f72825d0ec0c4e2164b7a159c15a3a9"
+    },
+    {
+      "path": "docs/vr-unification/evidence/software-results.json",
+      "bytes": 1635,
+      "sha256": "6748e2e0f30cc8158741517b4f574a020a5442b0fa9e8e61a23a83b57f1eb217"
+    },
+    {
+      "path": "docs/vr-unification/evidence/source-inputs.json",
+      "bytes": 58139,
+      "sha256": "6c410c1484959dbc558a0556f6ab9f2f6ecdd7be2bb191896370cb739ba79f31"
+    },
+    {
+      "path": "docs/vr-unification/evidence/unchanged-browser-contracts.json",
+      "bytes": 988,
+      "sha256": "a3cf564ccb8d0b301a16fa454263607316efbbaa87d38157caf7a6a365dd76f3"
+    },
+    {
+      "path": "docs/vr-unification/evidence/unowned-receipt-reproduction.log",
+      "bytes": 3239,
+      "sha256": "7f1e274688082e01fa30ff0583baadb3a20f9e56362c3a7794dc8bf3b9ffbe8b"
+    }
+  ]
+}

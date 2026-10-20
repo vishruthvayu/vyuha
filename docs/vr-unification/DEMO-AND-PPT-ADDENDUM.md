@@ -23,3 +23,21 @@ Use the unified branch in its isolated worktree, complete normal officer setup a
 For software emulation only, run `scripts/serve-vr-qa.py` against a local production server on port 8096 and open its loopback-only port 8097. Operate visible IWER controls. This harness is not part of production assets and must not be exposed on the unit LAN. Capture without its controls only if the permanent caption still identifies emulation.
 
 Final source/run commands, real captures and acceptance receipts: `FINAL-INTEGRATION-REPORT.md` in this folder. Do not merge back, create an RC or stable tag without owner approval.
+
+## Sealed software addendum — 20 October 2026
+
+Validated runtime: `ad430f742f7476feb464c1c53d08cfb3f95823ba`. The final integration report and evidence manifest identify current captures separately from earlier checkpoints. This optional addendum is ready for the existing presentation/demo; it does not replace the protected browser recording.
+
+Suggested slide text:
+
+> **One training system, optional experimental WebXR**
+>
+> Observed-only 3D, explicit trainee choices and controller-ray interaction. Browser and cockpit share accepted decisions, session recovery and server-verified Ghost AAR. Software emulator checks passed; physical headset comfort, FPS and trusted device HTTPS remain pending.
+
+Suggested three-shot sequence, using current synthetic QA evidence:
+
+1. `evidence/browser/owner-xr-stereo-head-tracking.png` — “WebXR software emulation · two-eye/controller checks · not headset footage”.
+2. `evidence/browser/owner-instructor-applied.png` — “Instructor commands applied to the same server session”.
+3. `evidence/browser/owner-xr-server-verified.png` — “Shared accepted action history · server-verified AAR”.
+
+For a clean cinematic capture, repeat that sequence with the test controls hidden and retain the emulation caption. Never present the synthetic0/100 QA result as a successful tactical demonstration or a learning-efficacy result. Physical wearing/comfort remains unverified. The native desktop preview is also available without IWER.

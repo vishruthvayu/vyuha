@@ -1,0 +1,15 @@
+{
+  "emulator": "IWER 2.6.0",
+  "physical_headset": false,
+  "session": false,
+  "views": 2,
+  "frames": 12440,
+  "controllerInputs": [],
+  "frame_ms": {
+    "samples": 8999,
+    "median": 16.699999999953434,
+    "p95": 24,
+    "max": 262.5999999999767
+  },
+  "faults": []
+}

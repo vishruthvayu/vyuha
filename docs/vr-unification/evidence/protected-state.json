@@ -1,0 +1,23 @@
+{
+  "runtime_commit": "ad430f742f7476feb464c1c53d08cfb3f95823ba",
+  "protected_refs": {
+    "integration/vyuha-combined-acceptance": "259c50acdc5373a7971e9885b1232645edf23466",
+    "origin/feature/vr-observation-cockpit": "ee46f0de21c81a6d2cd20e5fb6a644d3c08c282c",
+    "release/v1.0.1": "2ca96105044ad6a14952d74db619e20006c26eca",
+    "v1.0.1": "4696b0583238d07eb9fcfcec128a437caf28e17b",
+    "v1.1.0-rc.1": "bb5150986b76a402cec99223eee95578e845bd42",
+    "v1.1.0-rc.2": "60c1be9a720d508775bba353a9f3fe370cd8d24a"
+  },
+  "remote_refs": [
+    "259c50acdc5373a7971e9885b1232645edf23466\trefs/heads/integration/vyuha-combined-acceptance",
+    "2ca96105044ad6a14952d74db619e20006c26eca\trefs/heads/release/v1.0.1",
+    "4696b0583238d07eb9fcfcec128a437caf28e17b\trefs/tags/v1.0.1",
+    "bb5150986b76a402cec99223eee95578e845bd42\trefs/tags/v1.1.0-rc.1",
+    "60c1be9a720d508775bba353a9f3fe370cd8d24a\trefs/tags/v1.1.0-rc.2"
+  ],
+  "browser_dist_files_unchanged": 72,
+  "browser_worktree_unchanged": true,
+  "owner_patch_equal_recovery_copy": true,
+  "owner_patch_sha256": "57083d9bfabf9aa17743418dfd613f6842e786772c84d1803f565f0e361f258c",
+  "no_reset_force_push_tag_or_release_created": true
+}

@@ -1,0 +1,125 @@
+- link "Skip to workspace":
+  - /url: "#workspace-content"
+- banner:
+  - link "VYUHA home":
+    - /url: /
+    - strong: VYUHA
+  - navigation "Primary workspaces":
+    - link "Training":
+      - /url: /
+    - link "Review":
+      - /url: /?view=aar
+    - link "Crew":
+      - /url: /crew
+    - link "Instructor":
+      - /url: /instructor
+    - link "Analytics":
+      - /url: /analytics
+  - button "Find workspace":
+    - generic: Find workspace
+    - generic: ⌘ / Ctrl K
+  - button "Operator guide":
+    - generic: Operator guide
+  - button "Workspaces":
+    - generic: Workspaces
+- main:
+  - status: SERVER OFFLINE · Session continues locally · Events queued · Instructor control unavailable · Internet not required
+  - generic: COUNTER-DRONE TRAINING
+  - heading "Training ground" [level=1]
+  - paragraph: Read the sensors. Identify the contact. Choose your response.
+  - generic: Callsign UNIFIED-FINAL-QA
+  - text: EXERCISE / RUNNING
+  - generic: Live
+  - strong: QA persistent 8 contacts / urban
+  - generic: Urban outpost · Day · Mixed contacts
+  - generic: CALLSIGN
+  - text: UNIFIED-FINAL-QA
+  - generic: SCENARIO SEED
+  - text: "62147"
+  - generic: EXERCISE TIME
+  - text: 00:29
+  - generic: / 03:00
+  - generic: RENDER
+  - text: 35 fps
+  - button "Pause":
+    - text: Pause
+  - button "End exercise"
+  - button "Open VR observation cockpit"
+  - link "Experimental VR / setup guide":
+    - /url: /vr-guide.html
+  - region "VR observation cockpit":
+    - generic: IMMERSIVE TRAINING / SOFTWARE PREVIEW
+    - heading "VR observation post" [level=2]
+    - status: Headset session active. All exercise controls are inside VR.
+    - button "Enter VR" [disabled]
+    - button "Close cockpit"
+    - paragraph: A stationary seated cockpit. Point a controller and release its trigger to select. On a laptop, click the cockpit or use the controls below. Experimental integration; physical headset validation pending. Controller target rays only; hand-only input is unsupported.
+    - status: 2 controller ray(s) available. Hands are unsupported.
+    - generic "Local renderer measurements"
+    - generic "Desktop preview controls"
+    - paragraph: "T1 | 123 m reported · Radar: confirmed · EO: identify / IR: identify · RF: no link detected / IFF: no_reply · Declared: Quadcopter / hostile"
+    - button "T1" [pressed]
+    - button "T2"
+    - button "T3"
+    - button "T4"
+    - button "Next contacts · 1/2"
+    - button "1 / Designate contact" [disabled]
+    - 'button "Type: Quadcopter / cycle"'
+    - 'button "Identity: hostile / cycle"'
+    - button "2 / Confirm classification"
+    - button "3 / Hold fire"
+    - button "3 / RF jammer"
+    - button "3 / Kinetic response"
+    - button "Select response, then confirm" [disabled]
+    - button "Pause exercise"
+    - 'button "View: EO day / cycle"'
+    - button "Cancel pending response" [disabled]
+    - button "Exit headset / pause"
+  - text: EXERCISE LOG
+  - generic: 00:24 T1 · Response hold
+  - generic: 00:23 T1 · Classified quad / hostile
+- complementary:
+  - generic "IWER SOFTWARE QA — NOT A HEADSET"
+  - paragraph: Production bundle / test-only emulator
+  - button "Deny next entry"
+  - button "System exit"
+  - button "Hidden"
+  - button "Blurred"
+  - button "Visible"
+  - button "left contact 1"
+  - button "left contact 2"
+  - button "left next page"
+  - button "left designate"
+  - button "left type"
+  - button "left identity"
+  - button "left classify"
+  - button "left hold"
+  - button "left RF"
+  - button "left kinetic"
+  - button "left confirm"
+  - button "left start/pause"
+  - button "left view"
+  - button "left cancel"
+  - button "left exit"
+  - button "right contact 1"
+  - button "right contact 2"
+  - button "right next page"
+  - button "right designate"
+  - button "right type"
+  - button "right identity"
+  - button "right classify"
+  - button "right hold"
+  - button "right RF"
+  - button "right kinetic"
+  - button "right confirm" [active]
+  - button "right start/pause"
+  - button "right view"
+  - button "right cancel"
+  - button "right exit"
+  - button "Head look left"
+  - button "Head neutral"
+  - button "Lose graphics context"
+  - button "Reset frame sample"
+  - button "Remove right controller"
+  - button "Restore right controller"
+  - generic: "{ \"emulator\": \"IWER 2.6.0\", \"physical_headset\": false, \"session\": true, \"views\": 2, \"frames\": 1704, \"controllerInputs\": [ { \"hand\": \"left\", \"mode\": \"tracked-pointer\" }, { \"hand\": \"right\", \"mode\": \"tracked-pointer\" } ], \"frame_ms\": { \"samples\": 1703, \"median\": 16.599999999976717, \"p95\": 21.600000000093132, \"max\": 887.9000000000233 }, \"faults\": [] }"

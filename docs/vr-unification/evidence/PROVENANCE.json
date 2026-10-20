@@ -1,0 +1,10 @@
+{
+  "runtime_commit": "ad430f742f7476feb464c1c53d08cfb3f95823ba",
+  "final_source_prefix": "owner-* browser captures; final suite/build/clean-clone/history/HTTPS manifests identify exact source",
+  "checkpoint_browser_files": "Generic non-owner browser captures and crew-live.json: 7d48d80 checkpoint, supplementary only. Pre-fix reproduction logs intentionally show old failures.",
+  "not_a_gate_failure": "Initial incomplete disposable transfer fixture omitted two contributing histories; complete unchanged histories passed. No original profile or application validator was edited.",
+  "instrumentation": "Production JS/CSS files are unchanged. Visible test-only IWER2.6.0 and axe/frame-sampling adapters are loopback only and stopped after captures. Native owner-review server remains on8096.",
+  "emulator_limit": "Known IWER null onDeviceFrame errors only after deliberately losing context; raw fault logs retained.",
+  "performance_limit": "Startup stalls remain; main-page callbacks are not GPU/headset/input latency measurements.",
+  "physical_and_owner_approval": "PENDING; no RC/stable tag/merge-back created"
+}

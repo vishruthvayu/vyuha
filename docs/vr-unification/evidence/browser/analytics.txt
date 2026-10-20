@@ -1,0 +1,145 @@
+- link "Skip to workspace":
+  - /url: "#workspace-content"
+- banner:
+  - link "VYUHA home":
+    - /url: /
+    - strong: VYUHA
+  - navigation "Primary workspaces":
+    - link "Training":
+      - /url: /
+    - link "Review":
+      - /url: /?view=aar
+    - link "Crew":
+      - /url: /crew
+    - link "Instructor":
+      - /url: /instructor
+    - link "Analytics":
+      - /url: /analytics
+  - button "Find workspace":
+    - generic: Find workspace
+    - generic: ⌘ / Ctrl K
+  - button "Operator guide":
+    - generic: Operator guide
+  - button "Workspaces":
+    - generic: Workspaces
+- banner:
+  - text: Unit
+  - generic: / Training analytics
+- generic: Officer session · expires after eight hours or server restart
+- button "Sign out"
+- main:
+  - generic: PERSISTED TRAINING EVIDENCE
+  - heading "Training analytics" [level=1]
+  - paragraph: Historical estimates and observed differences.
+  - navigation:
+    - link "Training home":
+      - /url: /
+    - link "Instructor console":
+      - /url: /instructor
+    - link "Exercise studio":
+      - /url: /exercises
+  - text: Unit
+  - combobox "Unit":
+    - option "WhiteList Training Unit" [selected]
+  - text: Trainee
+  - combobox "Trainee":
+    - option "CONTEXT-QA" [selected]
+    - option "UNIFIED-FINAL-QA"
+    - option "VR-DESKTOP-QA"
+    - option "VR-IWER-QA"
+  - navigation "Analytics views":
+    - button "Overview" [pressed]
+    - button "Scenario × skill"
+    - button "Session comparison"
+    - button "Director history"
+    - button "Unit trend"
+  - generic: SELECTED TRAINEE · PERSISTED EVIDENCE
+  - heading "Evidence at a glance" [level=2]
+  - strong: "3"
+  - generic: completed tactical sessions
+  - generic: 3 processed learning-ledger entries
+  - text: Latest recorded exercise
+  - heading "QA browser Fusion continuity" [level=3]
+  - paragraph: 0/100 · frozen server result. Open its AAR to inspect decisions and the scoring rubric.
+  - link "Investigate latest AAR →":
+    - /url: /?session=619cf7c6-2834-444a-bdf1-185253932975&review=officer
+  - paragraph: Scores are simulated exercise outcomes. Skill means are historical Bayesian estimates; shared Crew sessions do not contribute to individual learning profiles. Observed differences do not establish learning efficacy.
+  - button "Inspect two recorded sessions →"
+  - heading "Trainee skill trend" [level=2]
+  - figure "Historical model estimates, not calibrated readiness or evidence that training caused improvement. The baseline prior is shown separately from completed observations.":
+    - group "Displayed skill series":
+      - checkbox "Detection" [checked]
+      - generic: Detection
+      - checkbox "Classification / IFF" [checked]
+      - generic: Classification / IFF
+      - checkbox "Effector choice" [checked]
+      - generic: Effector choice
+      - checkbox "Degraded sensor response" [checked]
+      - generic: Degraded sensor response
+    - img "Historical Beta means by processed training sequence; exact values are in the accompanying table":
+      - generic: 0%
+      - generic: 50%
+      - generic: 100%
+      - generic: Prior
+      - generic: Sequence 3
+      - generic "Detection · Prior · 50.00%"
+      - generic "Detection · Sequence 1 · 33.33%"
+      - generic "Detection · Sequence 2 · 33.33%"
+      - generic "Detection · Sequence 3 · 20.00%"
+      - generic "Classification / IFF · Prior · 50.00%"
+      - generic "Classification / IFF · Sequence 1 · 33.33%"
+      - generic "Classification / IFF · Sequence 2 · 33.33%"
+      - generic "Classification / IFF · Sequence 3 · 60.00%"
+      - generic "Effector choice · Prior · 50.00%"
+      - generic "Effector choice · Sequence 1 · 66.67%"
+      - generic "Effector choice · Sequence 2 · 66.67%"
+      - generic "Effector choice · Sequence 3 · 80.00%"
+      - generic "Degraded sensor response · Prior · 50.00%"
+      - generic "Degraded sensor response · Sequence 1 · 50.00%"
+      - generic "Degraded sensor response · Sequence 2 · 50.00%"
+      - generic "Degraded sensor response · Sequence 3 · 50.00%"
+    - generic: Historical model estimates, not calibrated readiness or evidence that training caused improvement. The baseline prior is shown separately from completed observations.
+  - paragraph: Persisted Beta(1,1) ledger estimates by processing sequence. Session comparisons show observed differences, not training causation. Different scenarios/conditions are not controlled comparisons.
+  - generic "Exact historical estimates and baseline prior"
+  - paragraph: FROZEN RESULTS
+  - heading "Exercise evidence" [level=2]
+  - generic: 3 recorded
+  - region "Completed exercise evidence":
+    - table:
+      - rowgroup:
+        - row "Exercise / scenario Observed time Score Review":
+          - columnheader "Exercise / scenario"
+          - columnheader "Observed time"
+          - columnheader "Score"
+          - columnheader "Review"
+      - rowgroup:
+        - row "QA browser Fusion continuity synthetic-stress · seed 62147 41.37s 0/100 Review QA browser Fusion continuity · 619cf7c6":
+          - cell "QA browser Fusion continuity synthetic-stress · seed 62147":
+            - strong: QA browser Fusion continuity
+            - generic: synthetic-stress · seed 62147
+          - cell "41.37s"
+          - cell "0/100"
+          - cell "Review QA browser Fusion continuity · 619cf7c6":
+            - link "Review QA browser Fusion continuity · 619cf7c6":
+              - /url: /?session=619cf7c6-2834-444a-bdf1-185253932975&review=officer
+              - text: Open AAR →
+        - row "QA browser Fusion continuity synthetic-stress · seed 62147 180.00s 0/100 Review QA browser Fusion continuity · f246c5a8":
+          - cell "QA browser Fusion continuity synthetic-stress · seed 62147":
+            - strong: QA browser Fusion continuity
+            - generic: synthetic-stress · seed 62147
+          - cell "180.00s"
+          - cell "0/100"
+          - cell "Review QA browser Fusion continuity · f246c5a8":
+            - link "Review QA browser Fusion continuity · f246c5a8":
+              - /url: /?session=f246c5a8-0fae-4719-82be-51d0039b0c14&review=officer
+              - text: Open AAR →
+        - row "QA persistent 8 contacts / urban synthetic-stress · seed 62147 22.63s 0/100 Review QA persistent 8 contacts / urban · e0b63689":
+          - cell "QA persistent 8 contacts / urban synthetic-stress · seed 62147":
+            - strong: QA persistent 8 contacts / urban
+            - generic: synthetic-stress · seed 62147
+          - cell "22.63s"
+          - cell "0/100"
+          - cell "Review QA persistent 8 contacts / urban · e0b63689":
+            - link "Review QA persistent 8 contacts / urban · e0b63689":
+              - /url: /?session=e0b63689-02f0-431e-bf12-923017321bae&review=officer
+              - text: Open AAR →

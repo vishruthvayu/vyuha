@@ -1,0 +1,8 @@
+[
+  {
+    "level": "error",
+    "message": "TypeError: Cannot read properties of null (reading '0')\n    at onDeviceFrame (http://127.0.0.1:8099/_vrqa/iwer.js:1:58547)",
+    "timestamp": "2026-10-20T02:28:08.140Z",
+    "url": "http://127.0.0.1:8099/_vrqa/iwer.js"
+  }
+]
