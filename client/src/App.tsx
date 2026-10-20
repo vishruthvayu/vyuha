@@ -762,6 +762,16 @@ export default function App({
               m.action,
             )
           : undefined;
+      // A worker reply must belong to one outstanding dispatch before it can
+      // change feedback, the action stream, or presentation evidence. Unknown,
+      // mismatched and duplicate receipts fail closed; a mismatched payload
+      // leaves the real request pending for its correct acknowledgment.
+      if (
+        (m.type === "accepted" || m.type === "rejected") &&
+        m.action &&
+        !capturedEvidence
+      )
+        return;
       if ((m.type === "accepted" || m.type === "rejected") && m.action) {
         const done = m.action;
         setFeedback((f) =>

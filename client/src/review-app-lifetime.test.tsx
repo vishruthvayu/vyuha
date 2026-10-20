@@ -912,14 +912,26 @@ for (const origin of ["browser", "VR"] as const) {
         const init = [...workerMessages]
           .reverse()
           .find((m) => m.type === "init")!;
+        const reply = {
+          type: "accepted",
+          scope: init.scope,
+          scenario_id: request.scenario?.id ?? scenario.id,
+          request_id: request.request_id,
+          action: { ...request.action!, tick: 0, order: 0 },
+        };
         await act(async () => {
-          emitWorker({
-            type: "accepted",
-            scope: init.scope,
-            scenario_id: request.scenario?.id ?? scenario.id,
-            request_id: request.request_id,
-            action: { ...request.action!, tick: 0, order: 0 },
-          });
+          emitWorker({ ...reply, action: { ...reply.action, track: "T999" } });
+          emitWorker({ ...reply, request_id: request.request_id! + 100 });
+          await new Promise((r) => setTimeout(r, 20));
+        });
+        assert.equal(
+          (drafts.get("A") as Draft | undefined)?.events.length ?? 0,
+          0,
+          "unknown IDs and mismatched payloads cannot enter the recorded action stream",
+        );
+        await act(async () => {
+          emitWorker(reply);
+          emitWorker(reply);
           await new Promise((r) => setTimeout(r, 20));
         });
         const draft = drafts.get("A") as Draft;
