@@ -47,7 +47,7 @@ addEventListener('DOMContentLoaded',()=>{
   button(hand+' start/pause',()=>ray(hand,.98,1.37));button(hand+' view',()=>ray(hand,.98,1.22));button(hand+' cancel',()=>ray(hand,.98,1.07));button(hand+' exit',()=>ray(hand,.98,.92));
  }
  button('Head look left',()=>device.quaternion.set(0,Math.sin(.3),0,Math.cos(.3)));button('Head neutral',()=>device.quaternion.set(0,0,0,1));
- button('Lose graphics context',()=>{const canvas=document.querySelector('.vr-canvas canvas');canvas?.getContext('webgl2')?.getExtension('WEBGL_lose_context')?.loseContext();});
+ button('Lose graphics context',()=>{const canvas=document.querySelector('canvas[data-engine^="three.js"]');canvas?.getContext('webgl2')?.getExtension('WEBGL_lose_context')?.loseContext();});
  button('Reset frame sample',()=>{intervals=[];last=0;frames=0;});
  button('Remove right controller',()=>{device.controllers.right.connected=false;});
  button('Restore right controller',()=>{device.controllers.right.connected=true;});
