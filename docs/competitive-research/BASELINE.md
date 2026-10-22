@@ -6,7 +6,8 @@ Inspected checkout: `work/finale/ultimate-experience/browser-vr-unified`, now on
 
 | Item | Verified value |
 |---|---|
-| Repository | `vishruthvayu/vyuha-sih26247` |
+| Supplied / configured repository URL | `vishruthvayu/vyuha-sih26247` |
+| Canonical GitHub location | `https://github.com/vishruthvayu/vyuha` — GitHub reported this move during successful publication; existing remote redirect worked. |
 | Merged main | `2d90137e8116075cd1e48eadab64cb306ea12278` |
 | Merge parents | `654681611bf0028fa40f38e9f116d03c64ca3a8b`, `f5cf3e85314333dce7d6273771a9e139af2c49fa` |
 | Main commit date | 2026-10-20 23:34:23 +05:30 |

@@ -16,8 +16,8 @@
   "files": [
     {
       "path": "BASELINE.md",
-      "sha256": "2f8d728fb089b603ffc6c83c5ef55de83d3ef2e724d7be08329cc1bb3a747263",
-      "bytes": 10029
+      "sha256": "842581e2648782b90ca3c21b8af75c4fcb922a3201fb753a49af0b71379840c8",
+      "bytes": 10221
     },
     {
       "path": "COMPETITOR-INVENTORY.md",
@@ -26,8 +26,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "9226a383b279701682c4fe54fd3673c281180cabc4e425ab06e1032b9e47437f",
-      "bytes": 4318
+      "sha256": "e2878580bdd6b2363b2722e03d60059178660a81b9f18b5d3713706a0a8bee97",
+      "bytes": 4439
     },
     {
       "path": "RESEARCH-REPORT.md",
@@ -415,13 +415,18 @@
       "bytes": 1711
     },
     {
+      "path": "evidence/publication-target.json",
+      "sha256": "2cb3b40622e6ad0b21edc5fc4ebbfe50784203406dcc06fc0da3a0935ccec0f6",
+      "bytes": 559
+    },
+    {
       "path": "evidence/repository-discovery.txt",
       "sha256": "ef65493ae2837ceabc71633db3e6be2f90b276e10f9fe7a70a5cfe859b4b04da",
       "bytes": 2735
     },
     {
       "path": "evidence/research-checks.json",
-      "sha256": "6c2b076a506a7af31162b7ebc5e7410ecbd6caf59b8bbe5dd4db00c33858485c",
+      "sha256": "e249418591456dd54f4ecb1ef2b4f0098da474f8348204056024b8b77d8c4f83",
       "bytes": 718
     },
     {

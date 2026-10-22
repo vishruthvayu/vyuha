@@ -1,6 +1,6 @@
 # VYUHA: competitive research and next-generation direction
 
-Research date: **22 October 2026**. Scope: discovery, source inspection and evaluation only. No product implementation, dependency installation, engine change or new release was performed.
+Research date: **22 October 2026**. GitHub now redirects the supplied `vyuha-sih26247` URL to [`vishruthvayu/vyuha`](https://github.com/vishruthvayu/vyuha). Scope: discovery, source inspection and evaluation only. No product implementation, dependency installation, engine change or new release was performed.
 
 **Recommendation:** develop VYUHA into an evidence-grounded learning platform with a simulation laboratory—not a larger collection of dashboard pages. Preserve the spatial workstation, deterministic browser/VR runtime and server verification. Prioritize reliable interaction and a defensible learning model before expanding AI or visual effects.
 
