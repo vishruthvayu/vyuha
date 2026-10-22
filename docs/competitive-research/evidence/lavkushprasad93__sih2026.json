@@ -1,0 +1,84 @@
+{
+  "repo": "lavkushprasad93/sih2026",
+  "sha": "e83bbcaf1146e9a157b34d0219bac03a1ff51644",
+  "license": null,
+  "description": null,
+  "homepage": "https://sih2026-dusky-nu.vercel.app",
+  "pushed_at": "2026-10-05T17:16:41Z",
+  "tree_count": 30,
+  "paths": [
+    ".gitignore",
+    ".oxlintrc.json",
+    "README.md",
+    "best.pt",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "postcss.config.js",
+    "public/favicon.svg",
+    "public/icons.svg",
+    "public/pixels.jpg",
+    "requirements.txt",
+    "server.py",
+    "src/App.css",
+    "src/App.tsx",
+    "src/assets/hero.png",
+    "src/assets/react.svg",
+    "src/assets/vite.svg",
+    "src/components/AARUI.tsx",
+    "src/components/HomeUI.tsx",
+    "src/components/InstructorUI.tsx",
+    "src/components/TraineeUI.tsx",
+    "src/index.css",
+    "src/main.tsx",
+    "tailwind.config.js",
+    "tsconfig.app.json",
+    "tsconfig.json",
+    "tsconfig.node.json",
+    "vite.config.ts",
+    "yolov8n.pt"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/lavkushprasad93/sih2026/git/trees/main?recursive=1",
+    "status": "200",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/lavkushprasad93/sih2026/e83bbcaf1146e9a157b34d0219bac03a1ff51644/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "684759ef23cbfe83318d9503ca7961cd11f7cd5bf2fd719b6a5ee65bb36615b0",
+      "bytes": 2187
+    },
+    {
+      "path": "package.json",
+      "url": "https://raw.githubusercontent.com/lavkushprasad93/sih2026/e83bbcaf1146e9a157b34d0219bac03a1ff51644/package.json",
+      "status": "200",
+      "error": null,
+      "sha256": "6ccca922528dcd2a6dc311c58cd8a361a4d0b850ca4c8a331bb0588c1c7c7107",
+      "bytes": 802
+    },
+    {
+      "path": "requirements.txt",
+      "url": "https://raw.githubusercontent.com/lavkushprasad93/sih2026/e83bbcaf1146e9a157b34d0219bac03a1ff51644/requirements.txt",
+      "status": "200",
+      "error": null,
+      "sha256": "548ba714987500165d435cbf40505ef1c3fd7de90a7dd3e62a2358ae5ab1e0c5",
+      "bytes": 84
+    }
+  ],
+  "raw_tree_path_count": 30,
+  "filtered_tree_path_count": 30,
+  "path_filter": "Exclude vendored runtime/build directories for readable inventory; no deletion from any repository.",
+  "git_revision_verification": {
+    "repo": "lavkushprasad93/sih2026",
+    "default_branch": "main",
+    "retrieved_revision": "e83bbcaf1146e9a157b34d0219bac03a1ff51644",
+    "git_default_branch_commit": "e83bbcaf1146e9a157b34d0219bac03a1ff51644",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  }
+}

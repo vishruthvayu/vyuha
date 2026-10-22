@@ -1,0 +1,201 @@
+{
+  "total_unique_results": 94,
+  "retained_repository_names": [
+    "25mcce52-wq/aeroguard-ai-simulator",
+    "Adi-Error404/DroneDrill-AI",
+    "Aditya-245/counterDrone",
+    "AncientWarRior13/Vyom-Kavach-sih26247",
+    "ArjunKadam1/Aeroguard",
+    "Ashutosh7706/sih26247-trainer",
+    "Chethan26code/VayuRaksha-",
+    "CoderDesai18/SKYHAWK-ARENA-",
+    "DeepakSinghhh/robotics",
+    "DeepikaKashyapp/AEROGUARD",
+    "Dr4cule/AVLON-DRISHTI",
+    "HarshPrajapati7/Drone-detection-model-RGB-Thermal-Radar-",
+    "HarshPrajapati7/Trinetra",
+    "JitendraSethia/parashurama",
+    "Krishna090205/3D-stimulation",
+    "MissionAdak/HawkEyeAAR",
+    "Mithil-7/SIH26247-AERIS",
+    "MrDeepak211/AEROSHIELD",
+    "Naman-Vasudev/MoD_SIH",
+    "Naman-Vasudev/skyshield-trainer",
+    "Pranav770/SIH",
+    "SIDDHESH-25/SIH-MAIN-FINAL",
+    "Sanjeyj/Vayu-Abhyas-Trainer",
+    "Trivikram-Narayanan/DroneThreatTrainer",
+    "UtkarshKale/Kurukshetra",
+    "UtkarshPandey04/skyguard-trainer",
+    "VedantSaikhede21/vyuh",
+    "Victowolf/Neosim",
+    "aaryan2203/Drone-Counter-Drone-Threat-Simulation-Trainer",
+    "ach69143-afk/DroneDrill-AI",
+    "agastyasharma20/drone_simulator",
+    "aksharabilavendiran-ui/aar-dashboard",
+    "ammar-iitm/drone-sim-platform",
+    "architarora24022006-hue/drone-threat-simulator",
+    "asronal/trinetra",
+    "axionuptti/SIH",
+    "buildwithshikhar/SUDARSHAN",
+    "chetan563-Data/Akash-Rakshak",
+    "codewithsid2256/Vyuha",
+    "dudpatil07/KAZIND",
+    "gemail2225-rgb/sih26247",
+    "itskumara1508-web/skyshield-trainer",
+    "jvstin47/SIH-26247-Counter-Drone-Threat-Simulation-Trainer",
+    "kapilk20005-gif/DroneSim-Academy",
+    "kapilk20005-gif/DroneSim_Academy_PS26247",
+    "khalidansari2707-spec/Astra_Veer",
+    "lavkushprasad93/sih2026",
+    "maindevhoon/sihdrone",
+    "mayankcodes-dev/R.A.K.S.H.A.K",
+    "meenakshi-kay/VayuRaksha",
+    "mohammedmasalawal/DronAcharya",
+    "mp39202/AERIS-SIH26247-Axion_fc",
+    "pranjan6360/DRISHTI-CUAS",
+    "psryogeshwar-14/ASTRAL-C2-Immersive-Multi-Domain-Decision-Making-Trainer",
+    "rishika526/Drishti",
+    "saad-rafeque/drone-swarm-failover",
+    "saisasi2008/garuda-aegis",
+    "sanikabrahmankar/SIH26247",
+    "sathvik210508/Al-Enabled-Drone-Counter-Drone-Threat-Simulation-Trainer",
+    "shobhitgupta12/armyfinal",
+    "sudhanshurai2004/SIH26047",
+    "sudhanshurai2004/SIH26247",
+    "talhaadnan05/SIH26247-DRISTI",
+    "tennetisaisantoshsriram-collab/sih26247",
+    "umeed-1/DCATS",
+    "vabs-2004/Aegis",
+    "vinodkrishna221/TRISHUL-SIM",
+    "vish-4-1/GARUDA-SIH2026",
+    "vishruthvayu/vyuha"
+  ],
+  "other_search_matches": [
+    {
+      "repo": "ARPSyndicate/kenzer-templates",
+      "description": "essential templates for kenzer [DEPRECATED]",
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "YuzeHao2023/daily-arxiv-ai4chem",
+      "description": "\ud83c\udf93Automatically Update AI4Chem Papers Daily using Github Actions",
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "vacacionesfinde/Canales.m3u",
+      "description": null,
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "pradeepkumar673/Unified-Precision-Agriculture-Platform",
+      "description": null,
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "NETHAJI25/ar-organics-aravind-",
+      "description": null,
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "pragyakatiyar73-cyber/Jeevan-setu",
+      "description": null,
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "saksham001k/SIH_Fleet_Priority",
+      "description": null,
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "JasonStys/portfolio-case-study-site",
+      "description": "Evidence-first engineering portfolio with accessible case studies, searchable project metadata, and validated static delivery.",
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "harsh-pandhe/harsh-pandhe",
+      "description": "\ud83d\udee0\ufe0f Computer Science @ SIT Lonavala | Architecting custom blockchains, training neural networks for autonomous robots, and building scalable full-stack solutions. Lead Organizer of Project Morpheus 2026.",
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "zenimon/study-sih",
+      "description": null,
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "developer-jenil/SIH26162",
+      "description": "this is the project of hackathon 2026 with the Ps no.26162",
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "jideshm0/AQRO",
+      "description": null,
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "Wraient/SIH-2024-Problems",
+      "description": null,
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "robinsdeepak/SIH-2020-PS",
+      "description": "Problem Statements of Smart India Hackathon - 2020",
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "DSingh256/simulationSIH26169",
+      "description": null,
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "Ayushanibarik/JanSevak",
+      "description": null,
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "kocendavid/drone-navigation",
+      "description": null,
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "rguptaprofile/NIRVIVAAD---From-Disputed-to-Nirvivaad",
+      "description": "National Intelligence  for Record Verification,  Integrity, Validation And Anomaly Detection",
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "harshiit1705/BhuDrishti",
+      "description": null,
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "ASHUTOSH-2007CODER/IBVAP-Intelligent-Border-Video-Analytics-Platform-",
+      "description": "SIH PROJECT 2026 ",
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "AtlasCloudAI/awesome-gemini-omni-prompts",
+      "description": "Gemini Omni API Prompts collection updated in real time every day, designed to help creators find inspiration faster. Free & Open Source ",
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "siddhesh-b22/jandrishti",
+      "description": null,
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "Morningstar88/MaxuskNDoManc",
+      "description": "Huge data dump for Morningstar AI 2045 players... Github for Law",
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "iamkcube/SIH_Problem_Statements",
+      "description": "All SIH Software Problem Statements",
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    },
+    {
+      "repo": "opensource-works/awesome-seedance-prompts",
+      "description": "Every Seedance video posted on X, in one place \u2014 play the clip, copy the prompt, credit the creator.",
+      "disposition": "Not retained as direct trainer: broader query keyword overlap, other PS, archive, profile or adjacent non-training project; not an absence claim."
+    }
+  ]
+}

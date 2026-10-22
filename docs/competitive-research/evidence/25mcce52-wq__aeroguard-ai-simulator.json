@@ -1,0 +1,53 @@
+{
+  "repo": "25mcce52-wq/aeroguard-ai-simulator",
+  "sha": "e7758e0ea231751e880877fdcbe7e5f3d4890f0d",
+  "license": null,
+  "description": "AeroGuard AI Simulator - SIH 2026 drone threat training prototype",
+  "homepage": null,
+  "pushed_at": "2026-10-09T18:16:25Z",
+  "tree_count": 7,
+  "paths": [
+    "README.md",
+    "app.py",
+    "requirements.txt",
+    "run_windows.bat",
+    "static/app.js",
+    "static/style.css",
+    "templates/index.html"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/25mcce52-wq/aeroguard-ai-simulator/git/trees/main?recursive=1",
+    "status": "200",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/25mcce52-wq/aeroguard-ai-simulator/e7758e0ea231751e880877fdcbe7e5f3d4890f0d/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "6258a851e504781104c3477f125be03c2e60530f6180e5539885e94fbc6df636",
+      "bytes": 2247
+    },
+    {
+      "path": "requirements.txt",
+      "url": "https://raw.githubusercontent.com/25mcce52-wq/aeroguard-ai-simulator/e7758e0ea231751e880877fdcbe7e5f3d4890f0d/requirements.txt",
+      "status": "200",
+      "error": null,
+      "sha256": "f5e4d640c086e28356b27a4b26ef6bba7604521c8a47c513359e0dcd16f018f9",
+      "bytes": 24
+    }
+  ],
+  "git_revision_verification": {
+    "repo": "25mcce52-wq/aeroguard-ai-simulator",
+    "default_branch": "main",
+    "retrieved_revision": "e7758e0ea231751e880877fdcbe7e5f3d4890f0d",
+    "git_default_branch_commit": "e7758e0ea231751e880877fdcbe7e5f3d4890f0d",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  "raw_tree_path_count": 7,
+  "filtered_tree_path_count": 7,
+  "path_filter": "Exclude vendored runtime/build directories from readable inventory."
+}

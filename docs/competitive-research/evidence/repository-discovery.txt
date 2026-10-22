@@ -1,0 +1,20 @@
+gemail2225-rgb/sih26247 6c5c26fe0fe4d55d9468906d026b6c96073e3d9c 1 None [('README.md', '200')]
+tennetisaisantoshsriram-collab/sih26247 f6ab55d8fd5836935108fa4b047e796f35394fce 69 None [('README.md', '200'), ('package.json', '200')]
+AncientWarRior13/Vyom-Kavach-sih26247 b2e89e39620fa3238b697ac5a59219739ad80f95 618 https://vyom-kavach-ps247.vercel.app [('README.md', '200'), ('app/README.md', '200'), ('app/package.json', '200'), ('landing/package.json', '200'), ('package.json', '200'), ('packages/design-tokens/package.json', '200')]
+Ashutosh7706/sih26247-trainer 5c362eb0fd7d61c50a8d88cfe44520fce29d52b0 4284 None [('README.md', '200'), ('backend/requirements.txt', '200'), ('frontend/package.json', '200')]
+sudhanshurai2004/SIH26247 5d4620fb8f359ea16218d82b05ca2820cd9ec1a3 157 None [('LICENSE', '200'), ('README.md', '200'), ('client/README.md', '200'), ('contracts/README.md', '200'), ('dashboard/package.json', '200'), ('demo/scenarios/README.md', '200')]
+talhaadnan05/SIH26247-DRISTI cd266d2bbea2589df000fc73ae454da8bbf03803 1 None [('README.md', '200')]
+Mithil-7/SIH26247-AERIS 75628d3b9b31f9da40ad9347c174c89daa73a3e5 21  [('LICENSE', '200'), ('README.md', '200'), ('package.json', '200')]
+sanikabrahmankar/SIH26247 07b1eb069a250c488bc22d14074ece7ba91cac80 22 None [('README.md', '200'), ('package.json', '200')]
+pranjan6360/DRISHTI-CUAS a52af503e4476a072493436f3fd42ac9fd955928 47 None [('README.md', '200'), ('package.json', '200')]
+mp39202/AERIS-SIH26247-Axion_fc 92387c12e1dccbe283288593a99202502bda605d 17 None [('README.md', '200'), ('docs/README.md', '200'), ('package.json', '200')]
+saisasi2008/garuda-aegis cc96d3077e4847118eeb41c49fee9fa125f8650e 48 None [('README.md', '200'), ('backend/requirements.txt', '200'), ('frontend/package.json', '200')]
+vyom-root {'url': 'https://vyomkavach-api-sw9g.onrender.com/', 'status': '200', 'error': None, 'body_path': '/private/tmp/vyuha-competitive-research-sources/vyom-root.txt'} <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05070A" />
+    <link rel="icon" type="image/svg+xml" href="/landing-static/favicon.svg" />
+    <link rel="icon" t
+vyom-openapi {'url': 'https://vyomkavach-api-sw9g.onrender.com/openapi.json', 'status': '200', 'error': None, 'body_path': '/private/tmp/vyuha-competitive-research-sources/vyom-openapi.txt'} {"openapi":"3.1.0","info":{"title":"Vyom Kavach","version":"0.1.0"},"paths":{"/api/research/assignment/{trainee_id}":{"get":{"summary":"Research Assignment","description":"Returns this trainee's (stable, persistent) arm in each running\nexperiment, plus the difficulty their sequencing arm dictates f

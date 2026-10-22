@@ -1,0 +1,45 @@
+{
+  "repo": "SIDDHESH-25/SIH-MAIN-FINAL",
+  "sha": "740c5273c16d7b6c266e5efb9c50100275727970",
+  "license": null,
+  "description": null,
+  "homepage": null,
+  "pushed_at": "2026-10-04T10:20:24Z",
+  "tree_count": 0,
+  "paths": [
+    "README.md"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/SIDDHESH-25/SIH-MAIN-FINAL/git/trees/main?recursive=1",
+    "status": "403",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/SIDDHESH-25/SIH-MAIN-FINAL/740c5273c16d7b6c266e5efb9c50100275727970/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "75db933a640c5d7de5ec0a11b7a493109ee66fd107f12f7aceb6d358700d5017",
+      "bytes": 8310
+    }
+  ],
+  "fallback_revision_receipt": {
+    "method": "git ls-remote named default branch",
+    "exit_code": 0,
+    "error": null
+  },
+  "tree_scope": "Tree API unavailable; fallback pinned README only",
+  "git_revision_verification": {
+    "repo": "SIDDHESH-25/SIH-MAIN-FINAL",
+    "default_branch": "main",
+    "retrieved_revision": "740c5273c16d7b6c266e5efb9c50100275727970",
+    "git_default_branch_commit": "740c5273c16d7b6c266e5efb9c50100275727970",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  "raw_tree_path_count": 1,
+  "filtered_tree_path_count": 1,
+  "path_filter": "Exclude vendored runtime/build directories from readable inventory."
+}

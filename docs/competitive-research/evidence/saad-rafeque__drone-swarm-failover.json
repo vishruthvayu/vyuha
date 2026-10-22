@@ -1,0 +1,51 @@
+{
+  "repo": "saad-rafeque/drone-swarm-failover",
+  "sha": "5bc99c091d86b1b93f9f3bdf80b253b1c89d338d",
+  "license": {
+    "key": "apache-2.0",
+    "name": "Apache License 2.0",
+    "spdx_id": "Apache-2.0",
+    "url": "https://api.github.com/licenses/apache-2.0",
+    "node_id": "MDc6TGljZW5zZTI="
+  },
+  "description": "Leader-failover drone swarm: V formation, leader election and obstacle avoidance, built and tested in PX4 SIH simulation with ROS 2 and MAVROS (simulation only).",
+  "homepage": "",
+  "pushed_at": "2026-10-18T06:04:50Z",
+  "tree_count": 0,
+  "paths": [
+    "README.md"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/saad-rafeque/drone-swarm-failover/git/trees/main?recursive=1",
+    "status": "403",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/saad-rafeque/drone-swarm-failover/5bc99c091d86b1b93f9f3bdf80b253b1c89d338d/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "141da2fae2356a2ea022329d8ba453208b42c18d90e4aadf44f9961ef4008e7d",
+      "bytes": 17211
+    }
+  ],
+  "fallback_revision_receipt": {
+    "method": "git ls-remote named default branch",
+    "exit_code": 0,
+    "error": null
+  },
+  "tree_scope": "Tree API unavailable; fallback pinned README only",
+  "git_revision_verification": {
+    "repo": "saad-rafeque/drone-swarm-failover",
+    "default_branch": "main",
+    "retrieved_revision": "5bc99c091d86b1b93f9f3bdf80b253b1c89d338d",
+    "git_default_branch_commit": "5bc99c091d86b1b93f9f3bdf80b253b1c89d338d",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  "raw_tree_path_count": 1,
+  "filtered_tree_path_count": 1,
+  "path_filter": "Exclude vendored runtime/build directories from readable inventory."
+}

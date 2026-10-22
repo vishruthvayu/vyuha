@@ -1,0 +1,1493 @@
+{
+  "inspected_commit": "2d90137e8116075cd1e48eadab64cb306ea12278",
+  "files": [
+    {
+      "path": "server/engine.py",
+      "sha256": "f3c44af0a278e4a426469d8ee6c5e3623da4ca4807e69d8339e32e10ee81e774",
+      "last_change_commit": "038dd12521578b82cc6a8bab540f62757afb215f",
+      "anchors": [
+        {
+          "line": 12,
+          "definition": "def validate_engine(scenario):"
+        },
+        {
+          "line": 22,
+          "definition": "class Simulation(legacy.Simulation):"
+        },
+        {
+          "line": 33,
+          "definition": "def replay(scenario,actions,end_tick=2250,commands=None,observer=None):"
+        },
+        {
+          "line": 43,
+          "definition": "def score(sim):"
+        },
+        {
+          "line": 49,
+          "definition": "def position(track,tick):"
+        }
+      ]
+    },
+    {
+      "path": "server/engine_v1_0_1.py",
+      "sha256": "092229c1ee922543d5621eccf17fde4bbb1de666d64a34446fd893b1849bf0db",
+      "last_change_commit": "038dd12521578b82cc6a8bab540f62757afb215f",
+      "anchors": [
+        {
+          "line": 15,
+          "definition": "def sample(seed, tick, index, sensor):"
+        },
+        {
+          "line": 21,
+          "definition": "def rng(seed):"
+        },
+        {
+          "line": 32,
+          "definition": "def make_scenario(seed=482913, focus=\"recognition\", night=True):"
+        },
+        {
+          "line": 52,
+          "definition": "def position(t, tick):"
+        },
+        {
+          "line": 62,
+          "definition": "def distance(t):"
+        },
+        {
+          "line": 68,
+          "definition": "def civil(t):"
+        },
+        {
+          "line": 73,
+          "definition": "def ideal(t):"
+        },
+        {
+          "line": 77,
+          "definition": "def js_round(x):"
+        },
+        {
+          "line": 81,
+          "definition": "def engagement_rule(t, effector):"
+        },
+        {
+          "line": 93,
+          "definition": "def detection_points(t):"
+        },
+        {
+          "line": 98,
+          "definition": "def classification_points(t):"
+        },
+        {
+          "line": 102,
+          "definition": "class Simulation:"
+        },
+        {
+          "line": 211,
+          "definition": "def replay(scenario, events, end_tick, commands=None, observer=None):"
+        },
+        {
+          "line": 249,
+          "definition": "def score(sim):"
+        }
+      ]
+    },
+    {
+      "path": "server/engine_v2.py",
+      "sha256": "c88e4e833d88fbe0069a797278adc15fe4318c8b71e78204beb128b580a07d05",
+      "last_change_commit": "9cdaf6da190a7a47ba8c4300b57e190db5aa1f06",
+      "anchors": [
+        {
+          "line": 13,
+          "definition": "def observed_position(t):"
+        },
+        {
+          "line": 17,
+          "definition": "def capture(sim,t,a):"
+        },
+        {
+          "line": 29,
+          "definition": "class Simulation(LegacySimulation):"
+        },
+        {
+          "line": 102,
+          "definition": "def replay(scenario, events, end_tick, commands=None, observer=None):"
+        },
+        {
+          "line": 140,
+          "definition": "def score(sim):"
+        }
+      ]
+    },
+    {
+      "path": "server/sensors_v2.py",
+      "sha256": "d53d7fb14e44485db97961fd7d2426bafb7f54e3c7b9409286f5e828bf99768f",
+      "last_change_commit": "33e150beb421cc72760e4dcb10b88e7912656f95",
+      "anchors": [
+        {
+          "line": 36,
+          "definition": "def sample(seed, tick, index, sensor):"
+        },
+        {
+          "line": 43,
+          "definition": "def configuration(overrides=None):"
+        },
+        {
+          "line": 58,
+          "definition": "def q(value):"
+        },
+        {
+          "line": 62,
+          "definition": "def validate_environment(environment):"
+        },
+        {
+          "line": 76,
+          "definition": "def position(track):"
+        },
+        {
+          "line": 80,
+          "definition": "def line_of_sight(track, environment):"
+        },
+        {
+          "line": 107,
+          "definition": "def range_m(track, environment):"
+        },
+        {
+          "line": 112,
+          "definition": "def radar_probability(seed, index, track, environment, config=None):"
+        },
+        {
+          "line": 117,
+          "definition": "def _radar_probability(seed, index, track, environment, c):"
+        },
+        {
+          "line": 135,
+          "definition": "def optical_probability(line_pairs, threshold):"
+        },
+        {
+          "line": 141,
+          "definition": "def optical_observation(seed, tick, index, track, environment, channel, config=None):"
+        },
+        {
+          "line": 146,
+          "definition": "def _optical_observation(seed, tick, index, track, environment, channel, c):"
+        },
+        {
+          "line": 171,
+          "definition": "def observe_sensors(seed, tick, index, track, environment, memory=None, config=None):"
+        },
+        {
+          "line": 179,
+          "definition": "def _copy_sensor_memory(memory):"
+        },
+        {
+          "line": 200,
+          "definition": "def _copy_sensor_position(point):"
+        },
+        {
+          "line": 205,
+          "definition": "def _observe_sensors(seed, tick, index, track, environment, memory, c):"
+        },
+        {
+          "line": 279,
+          "definition": "def false_tracks(seed, tick, environment, config=None):"
+        }
+      ]
+    },
+    {
+      "path": "server/config/sensors-v2.json",
+      "sha256": "6564020abbe3b4809503d67a44b10644837b588a098501b8c2420787410e8e30",
+      "last_change_commit": "038dd12521578b82cc6a8bab540f62757afb215f",
+      "anchors": []
+    },
+    {
+      "path": "server/response_v2.py",
+      "sha256": "6a96b1ebec71e78c571f16dd92298c7bf388e9f7ec221edb4751d2918125deff",
+      "last_change_commit": "038dd12521578b82cc6a8bab540f62757afb215f",
+      "anchors": [
+        {
+          "line": 18,
+          "definition": "def configuration(overrides=None):"
+        },
+        {
+          "line": 29,
+          "definition": "def create_state(config=None):"
+        },
+        {
+          "line": 34,
+          "definition": "def channel_count(state):"
+        },
+        {
+          "line": 38,
+          "definition": "def attempt_response(state,action,eligibility):"
+        },
+        {
+          "line": 63,
+          "definition": "def advance_response(state,tick,seed,target_status,resolve):"
+        },
+        {
+          "line": 85,
+          "definition": "def public_state(state):"
+        },
+        {
+          "line": 90,
+          "definition": "def report(state):"
+        },
+        {
+          "line": 98,
+          "definition": "class ResponseConfig(BaseModel):"
+        }
+      ]
+    },
+    {
+      "path": "server/raid_v2.py",
+      "sha256": "0adc0b60440810a55c387e6f2b5b7ab137d039c00e66fda66da1bf41828f93b9",
+      "last_change_commit": "038dd12521578b82cc6a8bab540f62757afb215f",
+      "anchors": [
+        {
+          "line": 23,
+          "definition": "def configs():"
+        },
+        {
+          "line": 30,
+          "definition": "def validate_configs(threats,effectors):"
+        },
+        {
+          "line": 69,
+          "definition": "class RaidRequest(StrictModel):"
+        },
+        {
+          "line": 95,
+          "definition": "class RaidMotion(StrictModel):"
+        },
+        {
+          "line": 104,
+          "definition": "class RaidTrackSpec(StrictModel):"
+        },
+        {
+          "line": 126,
+          "definition": "def raid_contact_active(track,tick):"
+        },
+        {
+          "line": 130,
+          "definition": "def raid_position(track,tick):"
+        },
+        {
+          "line": 167,
+          "definition": "def feature_signature(scenario):"
+        },
+        {
+          "line": 172,
+          "definition": "def similarity(a,b):"
+        },
+        {
+          "line": 178,
+          "definition": "def _candidate(req,attempt,threats,effectors):"
+        },
+        {
+          "line": 271,
+          "definition": "def raid_id(scenario):"
+        },
+        {
+          "line": 288,
+          "definition": "def validate_raid(s):"
+        },
+        {
+          "line": 323,
+          "definition": "def compose_raid(request):"
+        },
+        {
+          "line": 339,
+          "definition": "def group_metrics(scenario,events,tracks,execution_tick):"
+        }
+      ]
+    },
+    {
+      "path": "server/director.py",
+      "sha256": "769785bc28cc76ad4d48f33f3d16b0663f9f4d069e18ba20062e9a3012738cd6",
+      "last_change_commit": "038dd12521578b82cc6a8bab540f62757afb215f",
+      "anchors": [
+        {
+          "line": 20,
+          "definition": "def session_outcomes(review):"
+        },
+        {
+          "line": 37,
+          "definition": "def ensure_profile(db, trainee):"
+        },
+        {
+          "line": 42,
+          "definition": "def persist_outcomes(db, trainee, sid, review):"
+        },
+        {
+          "line": 47,
+          "definition": "def persist_skill_results(db,trainee,sid,outcomes,version):"
+        },
+        {
+          "line": 63,
+          "definition": "def read_profile(db, trainee, unprocessed=None, ensure=True):"
+        },
+        {
+          "line": 73,
+          "definition": "def recent_history(db, trainee):"
+        },
+        {
+          "line": 77,
+          "definition": "def difficulty(mean):"
+        },
+        {
+          "line": 81,
+          "definition": "def select_director(profile, history, seed):"
+        },
+        {
+          "line": 108,
+          "definition": "def adapt_scenario(decision):"
+        }
+      ]
+    },
+    {
+      "path": "server/director_v2.py",
+      "sha256": "6f91cf14766b843c49a7cad22abaced04213403e00d53d4c6a0cb36847a6e96c",
+      "last_change_commit": "038dd12521578b82cc6a8bab540f62757afb215f",
+      "anchors": [
+        {
+          "line": 36,
+          "definition": "class Prepare(StrictModel):"
+        },
+        {
+          "line": 47,
+          "definition": "class PolicyWeights(StrictModel):"
+        },
+        {
+          "line": 53,
+          "definition": "class SkillEvidence(StrictModel):"
+        },
+        {
+          "line": 64,
+          "definition": "class BaselineComparison(StrictModel):"
+        },
+        {
+          "line": 70,
+          "definition": "class SelectionSnapshot(StrictModel):"
+        },
+        {
+          "line": 90,
+          "definition": "class DirectorV2Metadata(StrictModel):"
+        },
+        {
+          "line": 119,
+          "definition": "def owner_binding(db, trainee):"
+        },
+        {
+          "line": 126,
+          "definition": "def selection_snapshot(profile):"
+        },
+        {
+          "line": 134,
+          "definition": "def snapshot(db, trainee):"
+        },
+        {
+          "line": 151,
+          "definition": "def _counts(outcomes, skill):"
+        },
+        {
+          "line": 163,
+          "definition": "def select_policy(profile, history, seed, binding):"
+        },
+        {
+          "line": 206,
+          "definition": "def prepare_scenario(profile, history, signatures, seed, duration, binding):"
+        },
+        {
+          "line": 220,
+          "definition": "def prepare(request: Prepare):"
+        }
+      ]
+    },
+    {
+      "path": "server/fusion.py",
+      "sha256": "a88ec5b7e19edb5e87ff5b5d69b2df8e0873395eda00ec6787535632929f8103",
+      "last_change_commit": "038dd12521578b82cc6a8bab540f62757afb215f",
+      "anchors": [
+        {
+          "line": 20,
+          "definition": "def _integer(v, maximum=5400):"
+        },
+        {
+          "line": 24,
+          "definition": "def _q(v):"
+        },
+        {
+          "line": 28,
+          "definition": "def configuration(value=None):"
+        },
+        {
+          "line": 38,
+          "definition": "def sanitize_evidence(value):"
+        },
+        {
+          "line": 56,
+          "definition": "def _prior(value):"
+        },
+        {
+          "line": 64,
+          "definition": "def _hash(value):"
+        },
+        {
+          "line": 73,
+          "definition": "def advice(observation, prior=None, config=None, context=None):"
+        },
+        {
+          "line": 118,
+          "definition": "def brier_score(distribution, reference):"
+        },
+        {
+          "line": 125,
+          "definition": "def review_reliance(result, decision, max_age_ticks=90):"
+        },
+        {
+          "line": 132,
+          "definition": "class FrozenFusionConfig(BaseModel):"
+        },
+        {
+          "line": 140,
+          "definition": "class Exposure(BaseModel):"
+        },
+        {
+          "line": 151,
+          "definition": "class ExposureBatch(BaseModel):"
+        },
+        {
+          "line": 159,
+          "definition": "def ensure_schema(db):"
+        },
+        {
+          "line": 163,
+          "definition": "def validate_exposure(spec, events, commands, session_id, exposure, horizon, *, _boundary=None):"
+        },
+        {
+          "line": 205,
+          "definition": "def reconstruct_boundaries(spec, events, commands, exposures):"
+        },
+        {
+          "line": 229,
+          "definition": "def record_exposures(session_id: str, body: ExposureBatch):"
+        },
+        {
+          "line": 266,
+          "definition": "def fusion_review(session_id: str):"
+        }
+      ]
+    },
+    {
+      "path": "server/review.py",
+      "sha256": "1a5114aafaa693a120acfe06a52a545ed5f5101d3ec69f7232a6c604062b467e",
+      "last_change_commit": "038dd12521578b82cc6a8bab540f62757afb215f",
+      "anchors": [
+        {
+          "line": 6,
+          "definition": "def evidence(sim,t):"
+        },
+        {
+          "line": 12,
+          "definition": "def build_review(scenario,actions,commands,sid,observed_end,horizon_source='completion',scoring_end=2250):"
+        }
+      ]
+    },
+    {
+      "path": "server/review_v2.py",
+      "sha256": "1d56ab010451e154dd9477e09532d6c10bd0fcec8f0b2e6aa9bb78fac58a5f4d",
+      "last_change_commit": "038dd12521578b82cc6a8bab540f62757afb215f",
+      "anchors": [
+        {
+          "line": 12,
+          "definition": "def evidence(sim,t):"
+        },
+        {
+          "line": 18,
+          "definition": "def command_title(command):"
+        },
+        {
+          "line": 29,
+          "definition": "def expected_engagement(t):"
+        },
+        {
+          "line": 35,
+          "definition": "def explain(code, t, a, ev, tick, expected):"
+        },
+        {
+          "line": 77,
+          "definition": "class Extractor:"
+        },
+        {
+          "line": 127,
+          "definition": "def build_review(scenario, actions, commands, sid, observed_end, horizon_source='completion', scoring_end=2250):"
+        }
+      ]
+    },
+    {
+      "path": "server/counterfactual.py",
+      "sha256": "25723e9fc9b17482785a87b18c4b2bbbecea57205bb83c31152565b51ac70b71",
+      "last_change_commit": "038dd12521578b82cc6a8bab540f62757afb215f",
+      "anchors": [
+        {
+          "line": 12,
+          "definition": "class Alternative(StrictModel):"
+        },
+        {
+          "line": 16,
+          "definition": "def reference_choice(ev,t,rules):"
+        },
+        {
+          "line": 38,
+          "definition": "def branch(scenario,actions,commands,end_tick,index,alternative):"
+        },
+        {
+          "line": 74,
+          "definition": "def what_if(sid:str,req:Alternative):"
+        }
+      ]
+    },
+    {
+      "path": "server/expert_run.py",
+      "sha256": "66cbb88638859d75673ee8f2a89b13c7fef9e2f95c36dc05d4cb8025d65176ca",
+      "last_change_commit": "9cdaf6da190a7a47ba8c4300b57e190db5aa1f06",
+      "anchors": [
+        {
+          "line": 21,
+          "definition": "class UnsupportedArchivedContract(ValueError):"
+        },
+        {
+          "line": 25,
+          "definition": "def _position(value):"
+        },
+        {
+          "line": 30,
+          "definition": "def _sample_current(channel,tick,age):"
+        },
+        {
+          "line": 35,
+          "definition": "def observe_contact(sim,track):"
+        },
+        {
+          "line": 75,
+          "definition": "def evidence_policy(observation):"
+        },
+        {
+          "line": 95,
+          "definition": "def resource_ready(sim,track_id,effector):"
+        },
+        {
+          "line": 104,
+          "definition": "def _rank(track):"
+        },
+        {
+          "line": 111,
+          "definition": "def _rollout(scenario,commands,end_tick,mode):"
+        },
+        {
+          "line": 185,
+          "definition": "def run_completed_session(record,mode='canonical_reference'):"
+        }
+      ]
+    },
+    {
+      "path": "server/crew.py",
+      "sha256": "17258d3a8203ab044294e2de421d6466683082f6ffc7a64effd623e99d06c888",
+      "last_change_commit": "db0ff23a67692d3db5dce07a031d17ea50a409b3",
+      "anchors": [
+        {
+          "line": 35,
+          "definition": "def ensure_schema(db):"
+        },
+        {
+          "line": 48,
+          "definition": "def is_shared_session(db,sid):"
+        },
+        {
+          "line": 53,
+          "definition": "def is_shared_owner(db,trainee):"
+        },
+        {
+          "line": 56,
+          "definition": "class Member(StrictModel):"
+        },
+        {
+          "line": 59,
+          "definition": "class CreateCrew(StrictModel):"
+        },
+        {
+          "line": 69,
+          "definition": "class CrewAction(StrictModel):"
+        },
+        {
+          "line": 83,
+          "definition": "def transaction(cid):"
+        },
+        {
+          "line": 98,
+          "definition": "def clock():return time.monotonic()"
+        },
+        {
+          "line": 100,
+          "definition": "def now():return datetime.now(timezone.utc).isoformat()"
+        },
+        {
+          "line": 101,
+          "definition": "def capability_time():return int(time.time())"
+        },
+        {
+          "line": 103,
+          "definition": "def capability_valid(row):"
+        },
+        {
+          "line": 106,
+          "definition": "def member(db,cid,request):"
+        },
+        {
+          "line": 112,
+          "definition": "def crew(db,cid):"
+        },
+        {
+          "line": 117,
+          "definition": "def runtime(db,row):"
+        },
+        {
+          "line": 149,
+          "definition": "def checkpoint(db,row,rt):"
+        },
+        {
+          "line": 155,
+          "definition": "def picture(db,row,rt,actor):"
+        },
+        {
+          "line": 172,
+          "definition": "def create(req:CreateCrew):"
+        },
+        {
+          "line": 190,
+          "definition": "class RotateCapability(StrictModel):"
+        },
+        {
+          "line": 194,
+          "definition": "def capability_status(row):"
+        },
+        {
+          "line": 200,
+          "definition": "def history(limit:int=100):"
+        },
+        {
+          "line": 207,
+          "definition": "def manageable(limit:int=20):"
+        },
+        {
+          "line": 216,
+          "definition": "def members(cid:str):"
+        },
+        {
+          "line": 223,
+          "definition": "def rotate_capability(cid:str,mid:str,req:RotateCapability):"
+        },
+        {
+          "line": 235,
+          "definition": "def revoke_capability(cid:str,mid:str):"
+        },
+        {
+          "line": 245,
+          "definition": "def catalogue():"
+        },
+        {
+          "line": 255,
+          "definition": "def state(cid:str,request:Request):"
+        },
+        {
+          "line": 261,
+          "definition": "def action(cid:str,req:CrewAction,request:Request):"
+        },
+        {
+          "line": 289,
+          "definition": "def control(cid:str,req:InstructorCommand):"
+        },
+        {
+          "line": 299,
+          "definition": "def complete(cid:str):"
+        },
+        {
+          "line": 311,
+          "definition": "class CrewSessionBoundary:"
+        }
+      ]
+    },
+    {
+      "path": "server/crew_metrics.py",
+      "sha256": "a5bb2efbd8db4d0bbe7608aa2d5bfbf336e1e105a63a443575c048714e2ca55a",
+      "last_change_commit": "9cdaf6da190a7a47ba8c4300b57e190db5aa1f06",
+      "anchors": [
+        {
+          "line": 6,
+          "definition": "def coordination_summary(actions, attribution, roster):"
+        }
+      ]
+    },
+    {
+      "path": "server/evaluation.py",
+      "sha256": "1e0fcfeca572513f9753df29ad430b4abe7d6cedbd28190382d1876061ea5a28",
+      "last_change_commit": "9cdaf6da190a7a47ba8c4300b57e190db5aa1f06",
+      "anchors": [
+        {
+          "line": 10,
+          "definition": "class PilotStart(StrictModel):"
+        },
+        {
+          "line": 19,
+          "definition": "def create(req:PilotStart):"
+        },
+        {
+          "line": 36,
+          "definition": "def view(eid:str):"
+        },
+        {
+          "line": 52,
+          "definition": "def post(eid:str):"
+        }
+      ]
+    },
+    {
+      "path": "server/auth.py",
+      "sha256": "53e0aa97720c83a718ed27c1461f3d3877cbf07e47d97fb1ef8c877cc8b99083",
+      "last_change_commit": "db0ff23a67692d3db5dce07a031d17ea50a409b3",
+      "anchors": [
+        {
+          "line": 24,
+          "definition": "def credential_path():"
+        },
+        {
+          "line": 28,
+          "definition": "def provision(password, path=None):"
+        },
+        {
+          "line": 42,
+          "definition": "def verify(password):"
+        },
+        {
+          "line": 50,
+          "definition": "def protected(method,path):"
+        },
+        {
+          "line": 63,
+          "definition": "def token_hash(token):return hashlib.sha256(token.encode()).hexdigest()"
+        },
+        {
+          "line": 64,
+          "definition": "def valid(token):"
+        },
+        {
+          "line": 71,
+          "definition": "def bearer(headers):"
+        },
+        {
+          "line": 75,
+          "definition": "class OfficerAuthorization:"
+        },
+        {
+          "line": 84,
+          "definition": "def install(app):"
+        }
+      ]
+    },
+    {
+      "path": "server/portable.py",
+      "sha256": "69a7b8c82af65473bf2274b1ae4ffdc7fa4a35b54f8f94e561b9abf47bdeebfc",
+      "last_change_commit": "90c9c1327c0a303a75e7eed59b837292e5bdabf6",
+      "anchors": [
+        {
+          "line": 19,
+          "definition": "class SnapshotTrack(StrictModel):"
+        },
+        {
+          "line": 32,
+          "definition": "class Snapshot(StrictModel):"
+        },
+        {
+          "line": 82,
+          "definition": "class TerrainBox(StrictModel):"
+        },
+        {
+          "line": 93,
+          "definition": "class ThreatProfile(StrictModel):"
+        },
+        {
+          "line": 101,
+          "definition": "class ThreatUnits(StrictModel):"
+        },
+        {
+          "line": 107,
+          "definition": "class ThreatConfig(StrictModel):"
+        },
+        {
+          "line": 114,
+          "definition": "class SensorGeometry(StrictModel):"
+        },
+        {
+          "line": 119,
+          "definition": "class HoldConfig(StrictModel):"
+        },
+        {
+          "line": 122,
+          "definition": "class RFConfig(HoldConfig):"
+        },
+        {
+          "line": 126,
+          "definition": "class KineticConfig(HoldConfig):"
+        },
+        {
+          "line": 129,
+          "definition": "class EffectorRoster(StrictModel):"
+        },
+        {
+          "line": 134,
+          "definition": "class DistanceUnits(StrictModel):"
+        },
+        {
+          "line": 137,
+          "definition": "class EffectorConfig(StrictModel):"
+        },
+        {
+          "line": 148,
+          "definition": "class RestrictedSector(StrictModel):"
+        },
+        {
+          "line": 153,
+          "definition": "class FinaleRules(StrictModel):"
+        },
+        {
+          "line": 163,
+          "definition": "class PackDefaults(StrictModel):"
+        },
+        {
+          "line": 168,
+          "definition": "class FrozenRubric(StrictModel):"
+        },
+        {
+          "line": 176,
+          "definition": "class FinaleDoctrine(StrictModel):"
+        },
+        {
+          "line": 187,
+          "definition": "class RaidWave(StrictModel):"
+        },
+        {
+          "line": 192,
+          "definition": "class RaidConstraints(StrictModel):"
+        },
+        {
+          "line": 197,
+          "definition": "class RaidAntiRepeat(StrictModel):"
+        },
+        {
+          "line": 201,
+          "definition": "class ResponseWindow(StrictModel):"
+        },
+        {
+          "line": 206,
+          "definition": "class RaidGeometry(StrictModel):"
+        },
+        {
+          "line": 212,
+          "definition": "class RaidMetadata(StrictModel):"
+        },
+        {
+          "line": 225,
+          "definition": "class FinaleRedForce(StrictModel):"
+        },
+        {
+          "line": 235,
+          "definition": "class SnapshotV2(StrictModel):"
+        },
+        {
+          "line": 270,
+          "definition": "def validate_snapshot_v2(spec):"
+        },
+        {
+          "line": 295,
+          "definition": "class UnitRef(StrictModel):"
+        },
+        {
+          "line": 304,
+          "definition": "class TacticalEntry(StrictModel):"
+        },
+        {
+          "line": 320,
+          "definition": "class RapidEntry(StrictModel):"
+        },
+        {
+          "line": 329,
+          "definition": "class Payload(StrictModel):"
+        },
+        {
+          "line": 339,
+          "definition": "class Envelope(StrictModel):"
+        },
+        {
+          "line": 345,
+          "definition": "def key():"
+        },
+        {
+          "line": 356,
+          "definition": "def canonical_payload(payload):"
+        },
+        {
+          "line": 382,
+          "definition": "def digest(payload,secret,canonicalization=None):"
+        },
+        {
+          "line": 386,
+          "definition": "def sign(payload,secret):"
+        },
+        {
+          "line": 388,
+          "definition": "def pseudonym(value,secret,prefix):"
+        },
+        {
+          "line": 395,
+          "definition": "def export_scenario(spec,secret):"
+        },
+        {
+          "line": 406,
+          "definition": "def export(uid:str):"
+        },
+        {
+          "line": 446,
+          "definition": "def validate_rapid(entry):"
+        },
+        {
+          "line": 460,
+          "definition": "def import_bundle(req:Envelope):"
+        }
+      ]
+    },
+    {
+      "path": "server/recordings.py",
+      "sha256": "1a86a44641ba34a6f71292047e446a1c2e8cb83f4252ac0b8b65755c2142b3d5",
+      "last_change_commit": "3241db062cbf2c7e137ab9c99f02fea55c8dd147",
+      "anchors": [
+        {
+          "line": 11,
+          "definition": "def import_recording(req:Recording):"
+        },
+        {
+          "line": 17,
+          "definition": "def recordings():"
+        },
+        {
+          "line": 21,
+          "definition": "def recording(rid:str):"
+        },
+        {
+          "line": 27,
+          "definition": "class RecordedPractice(StrictModel):"
+        },
+        {
+          "line": 33,
+          "definition": "def practice(rid:str,req:RecordedPractice):"
+        }
+      ]
+    },
+    {
+      "path": "client/src/action-evidence.ts",
+      "sha256": "f880e237fa0fcd0d4ac0405e4713a4d602a762e5287bdd3adec61015e5ac2fcc",
+      "last_change_commit": "bdb34e215063b40dbff430247a4a4417626de50c",
+      "anchors": [
+        {
+          "line": 4,
+          "definition": "export type CapturedActionEvidence = {"
+        },
+        {
+          "line": 12,
+          "definition": "export class ActionEvidenceLedger {"
+        }
+      ]
+    },
+    {
+      "path": "client/src/App.tsx",
+      "sha256": "9fb32156dcc72cff6dc1f080e4a55da47fe07dc7176e5a1d56271f2aebd6b1ae",
+      "last_change_commit": "ad430f742f7476feb464c1c53d08cfb3f95823ba",
+      "anchors": []
+    },
+    {
+      "path": "client/src/Ghost.tsx",
+      "sha256": "3c38ec2dcacfee7ec42f811e9c09ce93d272add12dbc51686f09b494e5c81c7c",
+      "last_change_commit": "628c1ce6353787a1562947160991d1b647c28394",
+      "anchors": [
+        {
+          "line": 20,
+          "definition": "export function actionLabel("
+        },
+        {
+          "line": 35,
+          "definition": "export function timelineSeek(item: TimelineItem) {"
+        },
+        {
+          "line": 58,
+          "definition": "export function EvidenceView({ review: r }: { review: DecisionReview }) {"
+        },
+        {
+          "line": 146,
+          "definition": "export function GhostPanel({"
+        },
+        {
+          "line": 400,
+          "definition": "export function GhostTimeline({"
+        },
+        {
+          "line": 557,
+          "definition": "export function TimelineEvents({"
+        },
+        {
+          "line": 684,
+          "definition": "export function ReplayTracks({"
+        }
+      ]
+    },
+    {
+      "path": "client/src/Scene.tsx",
+      "sha256": "5a92fe38e0043bca5c0366d34b24655615f1c276221ccd1d74a773572f6d635a",
+      "last_change_commit": "d6b6e73fa48fcfeb469125abf4348b5b29c0dd39",
+      "anchors": [
+        {
+          "line": 50,
+          "definition": "export type { Vision } from \"./visibility\";"
+        },
+        {
+          "line": 51,
+          "definition": "export type RendererMetrics = {"
+        },
+        {
+          "line": 60,
+          "definition": "class Boundary extends Component<"
+        },
+        {
+          "line": 486,
+          "definition": "export type SceneProps = {"
+        },
+        {
+          "line": 511,
+          "definition": "export function Scene(props: SceneProps) {"
+        }
+      ]
+    },
+    {
+      "path": "client/src/ContactRenderer.tsx",
+      "sha256": "9718776e51694bb2901661268110664f8bf00e613acaa36e4feb03f91acae1e3",
+      "last_change_commit": "d6b6e73fa48fcfeb469125abf4348b5b29c0dd39",
+      "anchors": [
+        {
+          "line": 38,
+          "definition": "export function attitude("
+        },
+        {
+          "line": 100,
+          "definition": "export function reviewRing(size = 32) {"
+        },
+        {
+          "line": 118,
+          "definition": "export function softDisc(size = 16) {"
+        },
+        {
+          "line": 133,
+          "definition": "export function obstructedDiamond(size = 32) {"
+        },
+        {
+          "line": 150,
+          "definition": "export function ContactRenderer({"
+        }
+      ]
+    },
+    {
+      "path": "client/src/world/Environment.tsx",
+      "sha256": "ee7110b29585608adeb0e3f3decec5e5bad0fbbbea55cfdb7c65fd75912c0b71",
+      "last_change_commit": "d6b6e73fa48fcfeb469125abf4348b5b29c0dd39",
+      "anchors": [
+        {
+          "line": 245,
+          "definition": "export type EnvironmentProps = {"
+        }
+      ]
+    },
+    {
+      "path": "client/src/world/terrain.ts",
+      "sha256": "b56cd2bc357f07922dca398b9a80eeb992c88c1cb622d2a1af60bf50b4a23290",
+      "last_change_commit": "b7706cc80852eeeab6d6b07a99d92b0b7e4ce6b0",
+      "anchors": [
+        {
+          "line": 10,
+          "definition": "export type TerrainKind = \"urban_outpost\" | \"rural_forward_base\";"
+        },
+        {
+          "line": 18,
+          "definition": "export function valueNoise(x: number, y: number) {"
+        },
+        {
+          "line": 31,
+          "definition": "export function fbm(x: number, y: number, octaves = 4) {"
+        },
+        {
+          "line": 49,
+          "definition": "export function terrainHeight(x: number, z: number, kind: TerrainKind) {"
+        },
+        {
+          "line": 67,
+          "definition": "export function createTerrainGeometry(kind: TerrainKind, detail: number) {"
+        }
+      ]
+    },
+    {
+      "path": "client/src/world/layout.ts",
+      "sha256": "07d385e6ba67916991cde2dda32dc2ff6d91110741a184b8dd5a4d5ffa9a1fce",
+      "last_change_commit": "59a4fac83f9ea832a9974e002cd7fb582c020ae8",
+      "anchors": [
+        {
+          "line": 8,
+          "definition": "export type XZ = [number, number];"
+        },
+        {
+          "line": 9,
+          "definition": "export type PropModel ="
+        },
+        {
+          "line": 17,
+          "definition": "export type Species ="
+        },
+        {
+          "line": 19,
+          "definition": "export type Placement ="
+        },
+        {
+          "line": 94,
+          "definition": "export type Line = {"
+        },
+        {
+          "line": 99,
+          "definition": "export type Surface = {"
+        },
+        {
+          "line": 105,
+          "definition": "export type FacilityLayout = {"
+        },
+        {
+          "line": 131,
+          "definition": "export function insidePolygon([x, z]: XZ, poly: XZ[]) {"
+        },
+        {
+          "line": 634,
+          "definition": "export function facilityLayout(terrain: TerrainKind): FacilityLayout {"
+        },
+        {
+          "line": 641,
+          "definition": "export function withoutBoxes("
+        },
+        {
+          "line": 655,
+          "definition": "export function placementHeight(p: Placement) {"
+        }
+      ]
+    },
+    {
+      "path": "client/src/VRCockpit.tsx",
+      "sha256": "3d786ae6f8a1d401c75701c34afe5629b894e77abce496435050947bd64e1f7f",
+      "last_change_commit": "d737cc60347dd6ef168cb2d4071056296b0ad344",
+      "anchors": [
+        {
+          "line": 66,
+          "definition": "class VRBoundary extends Component<"
+        }
+      ]
+    },
+    {
+      "path": "client/src/VRWorld.tsx",
+      "sha256": "acd7b79c5d2bd7044bcaf16cf97584ad45e825df6bee99bb348797ac324a7b2e",
+      "last_change_commit": "90d09461317d96f9df141ebdcd7d9990be98b3ba",
+      "anchors": [
+        {
+          "line": 19,
+          "definition": "export function VRWorld({"
+        }
+      ]
+    },
+    {
+      "path": "client/src/vr.ts",
+      "sha256": "4e54044b0453451b29a56420f8d94c0ad811aec58be9c6b24eeb0e82e2f18103",
+      "last_change_commit": "bdb34e215063b40dbff430247a4a4417626de50c",
+      "anchors": [
+        {
+          "line": 19,
+          "definition": "export type VRPhase = \"ready\" | \"restoring\" | \"running\" | \"paused\" | \"complete\";"
+        },
+        {
+          "line": 25,
+          "definition": "export function vrObservedState(state: Snapshot, modern: boolean): Snapshot {"
+        },
+        {
+          "line": 42,
+          "definition": "export type VRContact = {"
+        },
+        {
+          "line": 49,
+          "definition": "export function vrContacts(state: Snapshot, modern = true): VRContact[] {"
+        },
+        {
+          "line": 65,
+          "definition": "export function vrEvidence("
+        },
+        {
+          "line": 81,
+          "definition": "export function vrRenderContacts("
+        },
+        {
+          "line": 94,
+          "definition": "export function vrResponseReason("
+        },
+        {
+          "line": 107,
+          "definition": "export function vrAction("
+        },
+        {
+          "line": 138,
+          "definition": "export type PendingResponse = {"
+        },
+        {
+          "line": 145,
+          "definition": "export function validConfirmation("
+        },
+        {
+          "line": 164,
+          "definition": "export type XRSupport ="
+        },
+        {
+          "line": 182,
+          "definition": "export class VRSessionLifecycle {"
+        },
+        {
+          "line": 256,
+          "definition": "export function supportedVRInput("
+        },
+        {
+          "line": 262,
+          "definition": "export function vrVisionLabel(vision: Vision, scenario: Scenario) {"
+        }
+      ]
+    },
+    {
+      "path": "client/src/Instructor.tsx",
+      "sha256": "a08bcf0dcdb15aa67acc471bc826c4aad95c08a55a7e781325a343ad0dcab33c",
+      "last_change_commit": "10a63fefba2201aa9c343d18ca1b0d3b24c0a112",
+      "anchors": [
+        {
+          "line": 12,
+          "definition": "export function statusRank(status: string) {"
+        }
+      ]
+    },
+    {
+      "path": "client/src/Crew.tsx",
+      "sha256": "1b264be6590a83a84dacb44f3e83de6ae9d7fa4df30565874da6c5a2547dc925",
+      "last_change_commit": "db0ff23a67692d3db5dce07a031d17ea50a409b3",
+      "anchors": [
+        {
+          "line": 11,
+          "definition": "export type CoordinationMetrics = {"
+        },
+        {
+          "line": 30,
+          "definition": "export type CrewState = {"
+        },
+        {
+          "line": 72,
+          "definition": "class CrewHTTPError extends Error {"
+        },
+        {
+          "line": 139,
+          "definition": "export function CrewPicture({"
+        },
+        {
+          "line": 272,
+          "definition": "export function CrewCoordination({"
+        },
+        {
+          "line": 358,
+          "definition": "export function latestCrewState(previous: CrewState | null, next: CrewState) {"
+        }
+      ]
+    },
+    {
+      "path": "client/src/Analytics.tsx",
+      "sha256": "85bfa7c3b5dff21635de6ac51a2286a45c58fea9fa426e9853cbd19a2823b608",
+      "last_change_commit": "a87842bd7b99537a540fb7c6adb08f475f8eaed1",
+      "anchors": [
+        {
+          "line": 42,
+          "definition": "export function Trend({"
+        }
+      ]
+    },
+    {
+      "path": "client/src/ExerciseStudio.tsx",
+      "sha256": "70fe9f35b3d80347ae438d510e69b524fac41a2c13dff025a2f2cc23a9d231a2",
+      "last_change_commit": "6707c8c9291fe687aa1cc0763b4866e8dc5e9b7b",
+      "anchors": []
+    },
+    {
+      "path": "client/src/RaidStudio.tsx",
+      "sha256": "f42e4811996a62a91bff8e2bc8ca9a19532a6d9079b745d9cd86790b4e0b8cdb",
+      "last_change_commit": "6707c8c9291fe687aa1cc0763b4866e8dc5e9b7b",
+      "anchors": []
+    },
+    {
+      "path": "client/src/CapabilityTour.tsx",
+      "sha256": "a393934955a7505ad62bf5688ee799ada44efd6e59dec4196c9039cdd36a7e18",
+      "last_change_commit": "a2040fb91fd6954573f638180a54951ecf915ea3",
+      "anchors": [
+        {
+          "line": 41,
+          "definition": "export function tourTransition("
+        },
+        {
+          "line": 58,
+          "definition": "export function startTour() {"
+        }
+      ]
+    },
+    {
+      "path": "client/src/GuidedDecision.tsx",
+      "sha256": "52496feac901039dcbcf76149def5c8490a13253df9b19bedc9fb8338cfe3f21",
+      "last_change_commit": "805de4b73d28a3f9d693420ee76f6919ba10560c",
+      "anchors": [
+        {
+          "line": 39,
+          "definition": "export type Phase = \"ready\" | \"restoring\" | \"running\" | \"paused\" | \"complete\";"
+        },
+        {
+          "line": 40,
+          "definition": "export type DecisionAction = Omit<Action, \"tick\">;"
+        },
+        {
+          "line": 41,
+          "definition": "export type ActionFeedback = {"
+        },
+        {
+          "line": 48,
+          "definition": "export type DecisionStep ="
+        },
+        {
+          "line": 96,
+          "definition": "export type DecisionRecord = Pick<"
+        },
+        {
+          "line": 100,
+          "definition": "export function decisionRecord(track?: Track): DecisionRecord | undefined {"
+        },
+        {
+          "line": 112,
+          "definition": "export function decisionStep("
+        },
+        {
+          "line": 127,
+          "definition": "export function shapeEvidence(target: Track | undefined, vision: Vision) {"
+        },
+        {
+          "line": 156,
+          "definition": "export type EffectorState = {"
+        },
+        {
+          "line": 169,
+          "definition": "export function effectorStates("
+        },
+        {
+          "line": 224,
+          "definition": "export function attemptOutcome(a: PublicResponseAttempt): {"
+        },
+        {
+          "line": 279,
+          "definition": "export function feedbackText(f: ActionFeedback) {"
+        },
+        {
+          "line": 357,
+          "definition": "export function GuidedDecision({"
+        }
+      ]
+    },
+    {
+      "path": "client/src/RapidID.tsx",
+      "sha256": "70988abff208232679caa2928dc83bd363e872ded58a93d87916b358bd80ca56",
+      "last_change_commit": "5189335264e61ee3f9f69cfbe61225ae93562243",
+      "anchors": [
+        {
+          "line": 8,
+          "definition": "export type RapidLabel ="
+        },
+        {
+          "line": 66,
+          "definition": "export function activeElapsed("
+        },
+        {
+          "line": 76,
+          "definition": "export function Silhouette({"
+        }
+      ]
+    },
+    {
+      "path": "client/src/routes.ts",
+      "sha256": "c3251f722ce88b5fd094f1ebdb02de590f3737ed0230dd1e3527f008589a5e36",
+      "last_change_commit": "ea9ba3b12972f2124085725a61927e4f5c04ccdf",
+      "anchors": [
+        {
+          "line": 1,
+          "definition": "export type Discoverability = 'NAVIGATED' | 'SECONDARY_REACHABLE' | 'INTENTIONALLY_HIDDEN';"
+        },
+        {
+          "line": 2,
+          "definition": "export type WorkspaceView = 'drill' | 'aar' | 'unit';"
+        },
+        {
+          "line": 21,
+          "definition": "export type PageId = typeof routes[number]['id'];"
+        },
+        {
+          "line": 22,
+          "definition": "export type NavigationId = PageId | 'review' | 'director';"
+        },
+        {
+          "line": 23,
+          "definition": "export type NavigationItem = {id:NavigationId; href:string; label:string; section:typeof navigationSections[number]; workspace?:WorkspaceView; workspaceHref?:string};"
+        },
+        {
+          "line": 34,
+          "definition": "export function normalisePath(path:string){return path==='/'?'/':path.replace(/\\/+$/,'');}"
+        },
+        {
+          "line": 35,
+          "definition": "export function resolveRoute(path:string){return routes.find(r=>r.path===normalisePath(path));}"
+        },
+        {
+          "line": 36,
+          "definition": "export function workspaceViewFromSearch(search:string):WorkspaceView{"
+        },
+        {
+          "line": 41,
+          "definition": "export function activeNavigation(path:string,search='',view?:WorkspaceView):NavigationId|undefined{"
+        },
+        {
+          "line": 55,
+          "definition": "export function workspaceHref(view:WorkspaceView,search='',verifiedSession?:string){"
+        },
+        {
+          "line": 69,
+          "definition": "export function officerReviewRequested(path:string,search:string){"
+        },
+        {
+          "line": 73,
+          "definition": "export function officerReviewHref(sessionId:string){"
+        }
+      ]
+    }
+  ]
+}

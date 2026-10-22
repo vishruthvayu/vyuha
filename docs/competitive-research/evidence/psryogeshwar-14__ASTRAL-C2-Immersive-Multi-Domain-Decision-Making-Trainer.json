@@ -1,0 +1,45 @@
+{
+  "repo": "psryogeshwar-14/ASTRAL-C2-Immersive-Multi-Domain-Decision-Making-Trainer",
+  "sha": "758956090f4c72e296fee5e1adb2c0d818a60b21",
+  "license": null,
+  "description": null,
+  "homepage": "https://astral-c2-immersive-multi-domain-de.vercel.app",
+  "pushed_at": "2026-10-05T02:11:15Z",
+  "tree_count": 0,
+  "paths": [
+    "README.md"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/psryogeshwar-14/ASTRAL-C2-Immersive-Multi-Domain-Decision-Making-Trainer/git/trees/main?recursive=1",
+    "status": "403",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/psryogeshwar-14/ASTRAL-C2-Immersive-Multi-Domain-Decision-Making-Trainer/758956090f4c72e296fee5e1adb2c0d818a60b21/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "638b5f0be606f15ac67a1aac6a56691919172d7f9f746dba20864416e32cb97e",
+      "bytes": 11272
+    }
+  ],
+  "fallback_revision_receipt": {
+    "method": "git ls-remote named default branch",
+    "exit_code": 0,
+    "error": null
+  },
+  "tree_scope": "Tree API unavailable; fallback pinned README only",
+  "git_revision_verification": {
+    "repo": "psryogeshwar-14/ASTRAL-C2-Immersive-Multi-Domain-Decision-Making-Trainer",
+    "default_branch": "main",
+    "retrieved_revision": "758956090f4c72e296fee5e1adb2c0d818a60b21",
+    "git_default_branch_commit": "758956090f4c72e296fee5e1adb2c0d818a60b21",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  "raw_tree_path_count": 1,
+  "filtered_tree_path_count": 1,
+  "path_filter": "Exclude vendored runtime/build directories from readable inventory."
+}

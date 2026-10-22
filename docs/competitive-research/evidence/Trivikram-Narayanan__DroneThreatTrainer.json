@@ -1,0 +1,45 @@
+{
+  "repo": "Trivikram-Narayanan/DroneThreatTrainer",
+  "sha": "ef0ed62feb32964da08e774422ccea7cbb010cbc",
+  "license": null,
+  "description": null,
+  "homepage": null,
+  "pushed_at": "2026-10-20T22:47:19Z",
+  "tree_count": 0,
+  "paths": [
+    "README.md"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/Trivikram-Narayanan/DroneThreatTrainer/git/trees/main?recursive=1",
+    "status": "403",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/Trivikram-Narayanan/DroneThreatTrainer/ef0ed62feb32964da08e774422ccea7cbb010cbc/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "df164f82e8468d731cd488f4d0336019c6e5def04a4f7d1f313d47c716a81d55",
+      "bytes": 21680
+    }
+  ],
+  "fallback_revision_receipt": {
+    "method": "git ls-remote named default branch",
+    "exit_code": 0,
+    "error": null
+  },
+  "tree_scope": "Tree API unavailable; fallback pinned README only",
+  "git_revision_verification": {
+    "repo": "Trivikram-Narayanan/DroneThreatTrainer",
+    "default_branch": "main",
+    "retrieved_revision": "ef0ed62feb32964da08e774422ccea7cbb010cbc",
+    "git_default_branch_commit": "ef0ed62feb32964da08e774422ccea7cbb010cbc",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  "raw_tree_path_count": 1,
+  "filtered_tree_path_count": 1,
+  "path_filter": "Exclude vendored runtime/build directories from readable inventory."
+}

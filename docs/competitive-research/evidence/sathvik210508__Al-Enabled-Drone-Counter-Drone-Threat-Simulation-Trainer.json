@@ -1,0 +1,54 @@
+{
+  "repo": "sathvik210508/Al-Enabled-Drone-Counter-Drone-Threat-Simulation-Trainer",
+  "sha": "87aae1ab1de65f107e76dffa1c5b8ad8e9eeef26",
+  "license": null,
+  "description": null,
+  "homepage": null,
+  "pushed_at": "2026-10-07T14:11:45Z",
+  "tree_count": 16,
+  "paths": [
+    ".gitignore",
+    "README.md",
+    "css/styles.css",
+    "index.html",
+    "js/aar.js",
+    "js/adaptive.js",
+    "js/analytics.js",
+    "js/app.js",
+    "js/audio.js",
+    "js/scenarios.js",
+    "js/simulation3d.js",
+    "js/state.js",
+    "server.js",
+    "vendor/OrbitControls.js",
+    "vendor/chart.min.js",
+    "vendor/three.min.js"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/sathvik210508/Al-Enabled-Drone-Counter-Drone-Threat-Simulation-Trainer/git/trees/main?recursive=1",
+    "status": "200",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/sathvik210508/Al-Enabled-Drone-Counter-Drone-Threat-Simulation-Trainer/87aae1ab1de65f107e76dffa1c5b8ad8e9eeef26/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "b806dac895213dfef56eed5ae3d61d27da786685569d9fd1fc8be75d34ee2bee",
+      "bytes": 8194
+    }
+  ],
+  "raw_tree_path_count": 16,
+  "filtered_tree_path_count": 16,
+  "path_filter": "Exclude vendored runtime/build directories for readable inventory; no deletion from any repository.",
+  "git_revision_verification": {
+    "repo": "sathvik210508/Al-Enabled-Drone-Counter-Drone-Threat-Simulation-Trainer",
+    "default_branch": "main",
+    "retrieved_revision": "87aae1ab1de65f107e76dffa1c5b8ad8e9eeef26",
+    "git_default_branch_commit": "87aae1ab1de65f107e76dffa1c5b8ad8e9eeef26",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  }
+}

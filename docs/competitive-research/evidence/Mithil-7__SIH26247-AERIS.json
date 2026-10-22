@@ -1,0 +1,80 @@
+{
+  "repo": "Mithil-7/SIH26247-AERIS",
+  "sha": "75628d3b9b31f9da40ad9347c174c89daa73a3e5",
+  "license": {
+    "key": "mit",
+    "name": "MIT License",
+    "spdx_id": "MIT",
+    "url": "https://api.github.com/licenses/mit",
+    "node_id": "MDc6TGljZW5zZTEz"
+  },
+  "description": "AERIS \u2014 an offline-first AI-ready drone and counter-drone simulation trainer with degraded sensors, explainable scoring and after-action review.",
+  "homepage": "",
+  "pushed_at": "2026-10-08T17:06:56Z",
+  "tree_count": 21,
+  "paths": [
+    ".gitignore",
+    "LICENSE",
+    "README.md",
+    "ai/train_model.py",
+    "ai_model.py",
+    "data/scenarios.json",
+    "data/threat_role_model.json",
+    "deck/build.js",
+    "deck/sih-logo.png",
+    "docs/architecture.md",
+    "docs/evaluation.md",
+    "docs/problem-statement.md",
+    "package-lock.json",
+    "package.json",
+    "server.py",
+    "web/app.js",
+    "web/index.html",
+    "web/styles-extra.css",
+    "web/styles.css"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/Mithil-7/SIH26247-AERIS/git/trees/main?recursive=1",
+    "status": "200",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/Mithil-7/SIH26247-AERIS/75628d3b9b31f9da40ad9347c174c89daa73a3e5/LICENSE",
+      "status": "200",
+      "error": null,
+      "sha256": "955374de5760949d22263b97c6c4dfb1e9985364e363bd4d44e2dd168498190e",
+      "bytes": 1065
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/Mithil-7/SIH26247-AERIS/75628d3b9b31f9da40ad9347c174c89daa73a3e5/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "98e7281c72c676ad924362dc7a7761cdff1c728be860d6899f95b331aaf7fd4f",
+      "bytes": 4972
+    },
+    {
+      "path": "package.json",
+      "url": "https://raw.githubusercontent.com/Mithil-7/SIH26247-AERIS/75628d3b9b31f9da40ad9347c174c89daa73a3e5/package.json",
+      "status": "200",
+      "error": null,
+      "sha256": "7c296e66a62132fc9a4531e28de495b84e26a1db79531a4b22849653042da5e5",
+      "bytes": 521
+    }
+  ],
+  "vendored_path_count": 2,
+  "raw_tree_path_count": 19,
+  "filtered_tree_path_count": 19,
+  "path_filter": "Exclude vendored runtime/build directories for readable inventory; no deletion from any repository.",
+  "git_revision_verification": {
+    "repo": "Mithil-7/SIH26247-AERIS",
+    "default_branch": "main",
+    "retrieved_revision": "75628d3b9b31f9da40ad9347c174c89daa73a3e5",
+    "git_default_branch_commit": "75628d3b9b31f9da40ad9347c174c89daa73a3e5",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  }
+}

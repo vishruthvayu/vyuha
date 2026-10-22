@@ -1,0 +1,66 @@
+{
+  "repo": "codewithsid2256/Vyuha",
+  "sha": "df372552bbd493d0accb990773511631d4e2431b",
+  "license": null,
+  "description": null,
+  "homepage": null,
+  "pushed_at": "2026-10-17T11:49:49Z",
+  "tree_count": 20,
+  "paths": [
+    "README.md",
+    "data/data-pack.json",
+    "package.json",
+    "public/app.js",
+    "public/index.html",
+    "public/style.css",
+    "render.yaml",
+    "server.js",
+    "src/engine/bots.js",
+    "src/engine/director.js",
+    "src/engine/doctrine.js",
+    "src/engine/evidence.js",
+    "src/engine/physics.js",
+    "src/engine/rng.js",
+    "src/engine/scenario.js",
+    "src/engine/scoring.js",
+    "src/engine/sim.js",
+    "test/engine.test.mjs",
+    "test/server.test.mjs",
+    "tools/calibrate.mjs"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/codewithsid2256/Vyuha/git/trees/main?recursive=1",
+    "status": "200",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/codewithsid2256/Vyuha/df372552bbd493d0accb990773511631d4e2431b/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "a50979f0e0d4dcccfbc55c18370b4827d7f68dae45e7b73d51ae3a3a6d81e740",
+      "bytes": 3967
+    },
+    {
+      "path": "package.json",
+      "url": "https://raw.githubusercontent.com/codewithsid2256/Vyuha/df372552bbd493d0accb990773511631d4e2431b/package.json",
+      "status": "200",
+      "error": null,
+      "sha256": "3e259cc8c70843edfe0a143efa004cd6fab3224ac21ad73b4340727993b65e50",
+      "bytes": 992
+    }
+  ],
+  "raw_tree_path_count": 20,
+  "filtered_tree_path_count": 20,
+  "path_filter": "Exclude vendored runtime/build directories for readable inventory; no deletion from any repository.",
+  "git_revision_verification": {
+    "repo": "codewithsid2256/Vyuha",
+    "default_branch": "main",
+    "retrieved_revision": "df372552bbd493d0accb990773511631d4e2431b",
+    "git_default_branch_commit": "df372552bbd493d0accb990773511631d4e2431b",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  }
+}

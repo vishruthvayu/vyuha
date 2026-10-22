@@ -1,0 +1,34 @@
+{
+  "repo": "kapilk20005-gif/DroneSim_Academy_PS26247",
+  "sha": null,
+  "license": null,
+  "description": null,
+  "homepage": null,
+  "pushed_at": "2026-10-12T10:51:48Z",
+  "tree_count": 0,
+  "paths": [],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/kapilk20005-gif/DroneSim_Academy_PS26247/git/trees/main?recursive=1",
+    "status": "409",
+    "error": null
+  },
+  "files": [],
+  "raw_tree_path_count": 0,
+  "filtered_tree_path_count": 0,
+  "path_filter": "Exclude vendored runtime/build directories for readable inventory; no deletion from any repository.",
+  "fallback_revision_receipt": {
+    "method": "git ls-remote named default branch",
+    "exit_code": 2,
+    "error": ""
+  },
+  "tree_scope": "No revision retrieved; API/network/empty distinction unresolved",
+  "git_revision_verification": {
+    "repo": "kapilk20005-gif/DroneSim_Academy_PS26247",
+    "default_branch": "main",
+    "retrieved_revision": null,
+    "git_default_branch_commit": null,
+    "match": false,
+    "exit_code": 2,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  }
+}

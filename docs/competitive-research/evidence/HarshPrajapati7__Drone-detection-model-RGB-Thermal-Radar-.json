@@ -1,0 +1,52 @@
+{
+  "repo": "HarshPrajapati7/Drone-detection-model-RGB-Thermal-Radar-",
+  "sha": "e38eb0803dd8a9db445ef9f50de79ab2963bd948",
+  "license": null,
+  "description": null,
+  "homepage": null,
+  "pushed_at": "2026-10-05T14:12:47Z",
+  "tree_count": 6,
+  "paths": [
+    "README.md",
+    "SIH26247_Inference_Test.ipynb",
+    "SIH26247_STEP1_LOCAL_NVIDIA_RTDETR_CRADIOv3L_v15.ipynb",
+    "SIH26247_STEP1_part2_v2.ipynb",
+    "part_2_colab_has2,3,4.ipynb",
+    "requirements.txt"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/HarshPrajapati7/Drone-detection-model-RGB-Thermal-Radar-/git/trees/main?recursive=1",
+    "status": "200",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/HarshPrajapati7/Drone-detection-model-RGB-Thermal-Radar-/e38eb0803dd8a9db445ef9f50de79ab2963bd948/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "dd0ff2e92cf3267f37eb4721cec53e4e848d1975f1aa295d333bcdf91b9627dc",
+      "bytes": 2016
+    },
+    {
+      "path": "requirements.txt",
+      "url": "https://raw.githubusercontent.com/HarshPrajapati7/Drone-detection-model-RGB-Thermal-Radar-/e38eb0803dd8a9db445ef9f50de79ab2963bd948/requirements.txt",
+      "status": "200",
+      "error": null,
+      "sha256": "840df44cd9ecec6cc2eb853c121e2635654835550d5c72de785306cda70bbda6",
+      "bytes": 51
+    }
+  ],
+  "raw_tree_path_count": 6,
+  "filtered_tree_path_count": 6,
+  "path_filter": "Exclude vendored runtime/build directories for readable inventory; no deletion from any repository.",
+  "git_revision_verification": {
+    "repo": "HarshPrajapati7/Drone-detection-model-RGB-Thermal-Radar-",
+    "default_branch": "main",
+    "retrieved_revision": "e38eb0803dd8a9db445ef9f50de79ab2963bd948",
+    "git_default_branch_commit": "e38eb0803dd8a9db445ef9f50de79ab2963bd948",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "repo": "kapilk20005-gif/DroneSim-Academy",
+  "sha": "ebb6ffe9857d09b4e0987fb8bb1209856ff61405",
+  "license": null,
+  "description": null,
+  "homepage": null,
+  "pushed_at": "2026-10-17T19:08:46Z",
+  "tree_count": 18,
+  "paths": [
+    ".gitignore",
+    "README.md",
+    "START-HERE-WINDOWS.bat",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "public/favicon.svg",
+    "src/App.tsx",
+    "src/components/DroneModel.tsx",
+    "src/components/Scene3D.tsx",
+    "src/engine/scenarioEngine.ts",
+    "src/index.css",
+    "src/main.tsx",
+    "src/types/simulation.ts",
+    "tsconfig.app.json",
+    "tsconfig.json",
+    "tsconfig.node.json",
+    "vite.config.ts"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/kapilk20005-gif/DroneSim-Academy/git/trees/main?recursive=1",
+    "status": "200",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/kapilk20005-gif/DroneSim-Academy/ebb6ffe9857d09b4e0987fb8bb1209856ff61405/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "522eca5fbf766529b52a4d437d57ce4395a7604413a81b07766a9c0a44c9c86e",
+      "bytes": 3351
+    },
+    {
+      "path": "package.json",
+      "url": "https://raw.githubusercontent.com/kapilk20005-gif/DroneSim-Academy/ebb6ffe9857d09b4e0987fb8bb1209856ff61405/package.json",
+      "status": "200",
+      "error": null,
+      "sha256": "b65672d645a48de5f19d31cad13446ec79239746e33338db44ca5160d245569e",
+      "bytes": 584
+    }
+  ],
+  "git_revision_verification": {
+    "repo": "kapilk20005-gif/DroneSim-Academy",
+    "default_branch": "main",
+    "retrieved_revision": "ebb6ffe9857d09b4e0987fb8bb1209856ff61405",
+    "git_default_branch_commit": "ebb6ffe9857d09b4e0987fb8bb1209856ff61405",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  "raw_tree_path_count": 18,
+  "filtered_tree_path_count": 18,
+  "path_filter": "Exclude vendored runtime/build directories from readable inventory."
+}

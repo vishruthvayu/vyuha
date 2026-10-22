@@ -1,0 +1,558 @@
+{
+  "schema_version": 1,
+  "research_date": "2026-10-22",
+  "baseline_main_commit": "2d90137e8116075cd1e48eadab64cb306ea12278",
+  "unified_tree_commit": "f5cf3e85314333dce7d6273771a9e139af2c49fa",
+  "tested_runtime_historical": "ad430f742f7476feb464c1c53d08cfb3f95823ba",
+  "runtime_source_hash": "f87104f832e9cb9b03ad18ab3938a23a1a43f1bc51ba95385f540c684c36534a",
+  "runtime_inputs_rechecked": 402,
+  "runtime_mismatches": [],
+  "new_product_code": false,
+  "new_dependencies": false,
+  "product_tests_rerun": false,
+  "third_party_source_executed": false,
+  "new_releases_or_tags": false,
+  "scope": "Research only; public discovery is bounded, no efficacy or physical-device results invented. See SOURCES and inventory for evidence distinctions.",
+  "files": [
+    {
+      "path": "BASELINE.md",
+      "sha256": "2f8d728fb089b603ffc6c83c5ef55de83d3ef2e724d7be08329cc1bb3a747263",
+      "bytes": 10029
+    },
+    {
+      "path": "COMPETITOR-INVENTORY.md",
+      "sha256": "6968fec38889cf62e3027fc28c3e06e291fd3360ee69da09da121fe140980a38",
+      "bytes": 41727
+    },
+    {
+      "path": "README.md",
+      "sha256": "9226a383b279701682c4fe54fd3673c281180cabc4e425ab06e1032b9e47437f",
+      "bytes": 4318
+    },
+    {
+      "path": "RESEARCH-REPORT.md",
+      "sha256": "04c60186944c88b1704ee9baacc1e20b27a1a10022050c1d71852a1d4f22dfc2",
+      "bytes": 28608
+    },
+    {
+      "path": "ROADMAP.md",
+      "sha256": "14bbec5b007f811e4d3f75ff8fc26b6ba19437a146e8e90c0accb36d5dc6bff0",
+      "bytes": 56676
+    },
+    {
+      "path": "SEARCH-SCREENING.md",
+      "sha256": "566847875feb7dc3e7c4e955148b1a39cdf2e581fa51223168c72c95fee9a01c",
+      "bytes": 7534
+    },
+    {
+      "path": "SOURCES.md",
+      "sha256": "94cc5cf48616bdfc8107be497cea4b97a5a462cf01cce941f52b729c35abeb9b",
+      "bytes": 18062
+    },
+    {
+      "path": "VERIFY.md",
+      "sha256": "2c265decae83d3a294c6be15725439f0cadc6a06206daf507a05428e4781980b",
+      "bytes": 2563
+    },
+    {
+      "path": "evidence/25mcce52-wq__aeroguard-ai-simulator.json",
+      "sha256": "83e6ead57505e655d678d2f7c84b1dc69d063a46f4a6086ea918b89567c7836a",
+      "bytes": 1842
+    },
+    {
+      "path": "evidence/Adi-Error404__DroneDrill-AI.json",
+      "sha256": "2ff9895660d3fae48d88c817114bf228e56e13c6e4bae628ebf4e529f84908cc",
+      "bytes": 4612
+    },
+    {
+      "path": "evidence/Aditya-245__counterDrone.json",
+      "sha256": "db79edef892254a5efd47f32094f4153f26ef841cacade73e8ada9fafcbc929e",
+      "bytes": 7550
+    },
+    {
+      "path": "evidence/AncientWarRior13__Vyom-Kavach-sih26247.json",
+      "sha256": "681803b287dbd8bd92b8ca39c3bfec328eac742b3b5ac885100bb9f121387e2c",
+      "bytes": 35917
+    },
+    {
+      "path": "evidence/ArjunKadam1__Aeroguard.json",
+      "sha256": "05cc5c6bce702863759875f254f673871e2e61b8930e1f0543983b16cae57e2d",
+      "bytes": 9921
+    },
+    {
+      "path": "evidence/Ashutosh7706__sih26247-trainer.json",
+      "sha256": "ede4816bd1c029bc0c6f280ab21dea8e97d143946df60271b6ac63f84aa7399f",
+      "bytes": 4841
+    },
+    {
+      "path": "evidence/Chethan26code__VayuRaksha-.json",
+      "sha256": "1c40667e65d247ef57fd6808472b6570485ec1e914d70479e065c09429576136",
+      "bytes": 1471
+    },
+    {
+      "path": "evidence/CoderDesai18__SKYHAWK-ARENA-.json",
+      "sha256": "d9b005e56b163e5e9d8e65894c12effd17dd7b15e58029f501f5c8d8682ba069",
+      "bytes": 3538
+    },
+    {
+      "path": "evidence/DeepakSinghhh__robotics.json",
+      "sha256": "1157b47c53d06219ba98890f031daef53ef966a51781ececb62cbd9092cd4885",
+      "bytes": 3753
+    },
+    {
+      "path": "evidence/DeepikaKashyapp__AEROGUARD.json",
+      "sha256": "0bb64c510f29471e84413dc6a468f6ec9034e384d271ff15bfd5d9e8a45e5b29",
+      "bytes": 6236
+    },
+    {
+      "path": "evidence/Dr4cule__AVLON-DRISHTI.json",
+      "sha256": "ff81d507505dab6b9bc23b1e514c907b2f404fe07dbbd40a7472dcb223b977e7",
+      "bytes": 5651
+    },
+    {
+      "path": "evidence/HarshPrajapati7__Drone-detection-model-RGB-Thermal-Radar-.json",
+      "sha256": "2fa2858adb6eae4a162acf6fed7576f9be0f3aa66f52f66be4f25358cac108df",
+      "bytes": 1982
+    },
+    {
+      "path": "evidence/HarshPrajapati7__Trinetra.json",
+      "sha256": "d5080d76931b94a3ab5dccb33fec0b6df4dad2fd6e2b406811891ee4bc0ea761",
+      "bytes": 3075
+    },
+    {
+      "path": "evidence/JitendraSethia__parashurama.json",
+      "sha256": "194910a5d9d03671234f481241b13bbef223eba392f73c2e10ce036aeae66954",
+      "bytes": 6062
+    },
+    {
+      "path": "evidence/Krishna090205__3D-stimulation.json",
+      "sha256": "b76cb61d7b82bad4cadd45bd9905be71f6ac218a844cca73a6d476a9e9bfc793",
+      "bytes": 3202
+    },
+    {
+      "path": "evidence/MissionAdak__HawkEyeAAR.json",
+      "sha256": "aef29c6ad829e4876a74fedf97ce70c56d1eea922eab1fe78efcda8920d59086",
+      "bytes": 4088
+    },
+    {
+      "path": "evidence/Mithil-7__SIH26247-AERIS.json",
+      "sha256": "9a15af8d9fcc92bfc9810af534a0216f07f96b5f459d16788dc3061480441cea",
+      "bytes": 2676
+    },
+    {
+      "path": "evidence/MrDeepak211__AEROSHIELD.json",
+      "sha256": "058ceaa885421629a76721eb893317c2b0b5d18a37560689e4e2bdb82a56878e",
+      "bytes": 2409
+    },
+    {
+      "path": "evidence/Naman-Vasudev__MoD_SIH.json",
+      "sha256": "ff6ff6f9a5c9bb8864f95305d6dd63f64691ddeb08c28fcdc0ded554647271b9",
+      "bytes": 4411
+    },
+    {
+      "path": "evidence/Naman-Vasudev__skyshield-trainer.json",
+      "sha256": "45809f6b413db8d72f08920ad50c6d412935053bdecbd0c2750d8ace02f2b770",
+      "bytes": 3466
+    },
+    {
+      "path": "evidence/Pranav770__SIH.json",
+      "sha256": "158329346222ee09ba1a4325c7fed225c4d93373d66f82fcc46813b8195dc951",
+      "bytes": 5178
+    },
+    {
+      "path": "evidence/SIDDHESH-25__SIH-MAIN-FINAL.json",
+      "sha256": "1650e0eedfdb69d2349aaad317e078fd12cf6ae1a3e7a8f99931c5f25a0072eb",
+      "bytes": 1474
+    },
+    {
+      "path": "evidence/Sanjeyj__Vayu-Abhyas-Trainer.json",
+      "sha256": "4a80a5068cb99f0c82444884da2aaf7252ae9fa2bfc541887dd9213fa1a9d2a7",
+      "bytes": 4342
+    },
+    {
+      "path": "evidence/Trivikram-Narayanan__DroneThreatTrainer.json",
+      "sha256": "1ee035052083fde53a125bbb90829d5e968b6509fb8eed002a7782f5e64e9c0c",
+      "bytes": 1523
+    },
+    {
+      "path": "evidence/UtkarshKale__Kurukshetra.json",
+      "sha256": "a2251c3b529f301d50af182175e71f28cfa1ef6c76f864bd19483b2cc92f30b6",
+      "bytes": 47128
+    },
+    {
+      "path": "evidence/UtkarshPandey04__skyguard-trainer.json",
+      "sha256": "e509e21585c0359253edcde739f071c1522ed893b514824384b9853119c866db",
+      "bytes": 3402
+    },
+    {
+      "path": "evidence/VedantSaikhede21__vyuh.json",
+      "sha256": "c1a733044c221822072fc2dd764d4850638aac211bd1b515115266372fbf7648",
+      "bytes": 24204
+    },
+    {
+      "path": "evidence/Victowolf__Neosim.json",
+      "sha256": "8460e819db072cd03ab6b622bbba159650d2cf38b7c1f5659ad30287c2debfe8",
+      "bytes": 10263
+    },
+    {
+      "path": "evidence/aaryan2203__Drone-Counter-Drone-Threat-Simulation-Trainer.json",
+      "sha256": "96f6c188fbe7366640e5b601470fbda7a0d51601320834e5d8be75f6ef21e711",
+      "bytes": 6761
+    },
+    {
+      "path": "evidence/ach69143-afk__DroneDrill-AI.json",
+      "sha256": "032a10794f4bc5518c34b74fd69d368b3ad2201025c47fef28405e6ce49d02fd",
+      "bytes": 4640
+    },
+    {
+      "path": "evidence/agastyasharma20__drone_simulator.json",
+      "sha256": "4d258d51efc3bb73d7915ed3c4389a24546043e85e28442781cc7d20d4bc5b6c",
+      "bytes": 2504
+    },
+    {
+      "path": "evidence/aksharabilavendiran-ui__aar-dashboard.json",
+      "sha256": "3dba0e33294dacefb54928e0e6976de027b4cc3b26572760829af5064ea1c5ec",
+      "bytes": 3229
+    },
+    {
+      "path": "evidence/ammar-iitm__drone-sim-platform.json",
+      "sha256": "cdf4db3514b097f9e32c0e770bb05212d7583da04b2c9d85ddf170cff3e99dd7",
+      "bytes": 11738
+    },
+    {
+      "path": "evidence/architarora24022006-hue__drone-threat-simulator.json",
+      "sha256": "0eb879a5faec3927a1d58ad45259388c1d5636597fdeaef3b5f3997e1e4ea475",
+      "bytes": 4536
+    },
+    {
+      "path": "evidence/asronal__trinetra.json",
+      "sha256": "435a491756b9bd9f67cc442b8359cd3d2f5d6b72dcf77745da04ae5f6f9a319f",
+      "bytes": 3394
+    },
+    {
+      "path": "evidence/axionuptti__SIH.json",
+      "sha256": "8258087f3180f0f8796b269512535d41cb28ae60b858ab56492a6e3d85cc9b16",
+      "bytes": 1460
+    },
+    {
+      "path": "evidence/baseline-source.json",
+      "sha256": "e6045aa3892c2cf25e6cfae945d675adc6962dc3b635a07b50b1d7ec879eeecc",
+      "bytes": 42308
+    },
+    {
+      "path": "evidence/buildwithshikhar__SUDARSHAN.json",
+      "sha256": "c4734b998cc891daedff1d622fc53940f6197a607bbb484784dc38e4bd02cafb",
+      "bytes": 31822
+    },
+    {
+      "path": "evidence/chetan563-Data__Akash-Rakshak.json",
+      "sha256": "c0acd28da585c9bf33a55ad8d56e7aec8fb46a87559047e2cf110f4ece96aaa0",
+      "bytes": 2282
+    },
+    {
+      "path": "evidence/codewithsid2256__Vyuha.json",
+      "sha256": "089f7ae2d36e7e3eab93c7a7155b24137d51132832221d207e28791a42557f5f",
+      "bytes": 2098
+    },
+    {
+      "path": "evidence/deep-source-inspection.json",
+      "sha256": "69890db267a58500badac49acb48b552bceef8baa250dead3c35baced889e591",
+      "bytes": 13239
+    },
+    {
+      "path": "evidence/discovery-union.json",
+      "sha256": "c6d2ea6b13505d73a13d2ca6183d4ad6a993274e8213ebc6efef35d2eb7d6aeb",
+      "bytes": 17184
+    },
+    {
+      "path": "evidence/dudpatil07__KAZIND.json",
+      "sha256": "fdea76ef994c24e7aef54ea0dd8370e49dab5daaf15c7647a50e7bf9a6cb4666",
+      "bytes": 7200
+    },
+    {
+      "path": "evidence/expanded-discovery.txt",
+      "sha256": "f377df4de03fc8de507fa13175acd0735f45bbbe599519b7315325f5deed6750",
+      "bytes": 3280
+    },
+    {
+      "path": "evidence/expanded-search-screening.json",
+      "sha256": "5937ff3a7702fbaf557734dbaa34515da9e0a754bf85798b8c5534f7b059e086",
+      "bytes": 10067
+    },
+    {
+      "path": "evidence/external-source-register.json",
+      "sha256": "26d59eabc0cc63721e645404ffaad721529b3e114ec8ccf37de0a8a3520d4a2e",
+      "bytes": 12317
+    },
+    {
+      "path": "evidence/fallback-readme.txt",
+      "sha256": "5bb208538e38bbc88f4c4b227b667f858d9442decb75e29813983cc824cad1db",
+      "bytes": 903
+    },
+    {
+      "path": "evidence/gemail2225-rgb__sih26247.json",
+      "sha256": "9574573465f84b50ba56557835056ec8342b281321d34bc4bdf1f696f5e4a924",
+      "bytes": 1323
+    },
+    {
+      "path": "evidence/git-revision-verification.json",
+      "sha256": "8a538726c6d352006af7dabec7ac8b8be28171665d1da9d75c7423b5e715e018",
+      "bytes": 24410
+    },
+    {
+      "path": "evidence/github-exact-body.json",
+      "sha256": "7bbc355191e5f0af8d6475760e5d51e183e0ca2b53ea821b4fb777fdb63fc66b",
+      "bytes": 77860
+    },
+    {
+      "path": "evidence/github-exact.json",
+      "sha256": "c84f36e292bb4612c71ae7ff36a184d5605760a2827961d8f47d85177b20b7c4",
+      "bytes": 243
+    },
+    {
+      "path": "evidence/github-number-body.json",
+      "sha256": "ce569dcf104af4c5bc0ed6a683e09ced3f9654f1543645072b5d13e5e0787e72",
+      "bytes": 55923
+    },
+    {
+      "path": "evidence/github-number.json",
+      "sha256": "ced09b74af368ee490084ad365c9dbef00c901de5adce9090f3986bc9b42d0c1",
+      "bytes": 247
+    },
+    {
+      "path": "evidence/github-readme-body.json",
+      "sha256": "edc017001a538d412503f96ad52632b71d1f8a8703fb15b8df43c0a597242404",
+      "bytes": 161855
+    },
+    {
+      "path": "evidence/github-readme-broad-body.json",
+      "sha256": "6bdb4238148c97bd39de472b4d17756b2f264f72daf819a97b793af4a9b12c6c",
+      "bytes": 386927
+    },
+    {
+      "path": "evidence/github-readme-number-body.json",
+      "sha256": "aaa564bdbe190f98d4e376ed723fcb0ec4ab14aa23bac11281a839b24f08e319",
+      "bytes": 211427
+    },
+    {
+      "path": "evidence/github-readme-ps247-body.json",
+      "sha256": "54086b2e97008addab430a58f7a437bee7254b628a5a99a8ae91a567d7c62edb",
+      "bytes": 13987
+    },
+    {
+      "path": "evidence/itskumara1508-web__skyshield-trainer.json",
+      "sha256": "e1c3d84e9a41fb7527d65193dd50370f8cb20b2c72e2f216ed5959995ae9259d",
+      "bytes": 4459
+    },
+    {
+      "path": "evidence/jvstin47__SIH-26247-Counter-Drone-Threat-Simulation-Trainer.json",
+      "sha256": "1a56aa60f0e1b2ff9f6dbb600541bad241bcab0df06da4470f87a904bbead090",
+      "bytes": 7797
+    },
+    {
+      "path": "evidence/kapilk20005-gif__DroneSim-Academy.json",
+      "sha256": "b3aa31f02b3b2e4b98c6cd283384c7386a4cd280f581cbb3555c370932443a16",
+      "bytes": 2060
+    },
+    {
+      "path": "evidence/kapilk20005-gif__DroneSim_Academy_PS26247.json",
+      "sha256": "a5fdc21791ddd04453692be5540929ad8ba6668e6cd654ae31dd0cf06ef9a68e",
+      "bytes": 1110
+    },
+    {
+      "path": "evidence/khalidansari2707-spec__Astra_Veer.json",
+      "sha256": "f943046b17d5955d1390f4e8e06e4669c6ea660287dc9cc7cea027c5681d43bb",
+      "bytes": 1540
+    },
+    {
+      "path": "evidence/lavkushprasad93__sih2026.json",
+      "sha256": "a227c7cc485194d2d671f4a074512ce6dc3924e337543889703be0aad9025a1a",
+      "bytes": 2674
+    },
+    {
+      "path": "evidence/live-observations.json",
+      "sha256": "0ae3c6244583d83e1bf481c3e735cdbe1f3230a940a53b9406056ba74084d713",
+      "bytes": 1887
+    },
+    {
+      "path": "evidence/maindevhoon__sihdrone.json",
+      "sha256": "638320d53e7a56ce5091a64eec4e0c48774fb6ba962de3acdbe431cb70df98f7",
+      "bytes": 5981
+    },
+    {
+      "path": "evidence/mayankcodes-dev__R.A.K.S.H.A.K.json",
+      "sha256": "e64ab48b4140411a1b7eb4550f8d119c8d5d8de4a552a1f7371f80b6f781cf73",
+      "bytes": 6167
+    },
+    {
+      "path": "evidence/meenakshi-kay__VayuRaksha.json",
+      "sha256": "3a143d2f327434ee809bc60c3d69ab2e52c670dff0e016fd2105c11ddd2faae4",
+      "bytes": 1795
+    },
+    {
+      "path": "evidence/mohammedmasalawal__DronAcharya.json",
+      "sha256": "a749ac8823c9686a8ea20bfceeddcf3b91de1bf4fdff5c8c1a77ece88e07aa7d",
+      "bytes": 4091
+    },
+    {
+      "path": "evidence/mp39202__AERIS-SIH26247-Axion_fc.json",
+      "sha256": "1fb25c7448d2dbc5ea5b8281adbdf2291ee5a8e852194a775ac77cdcfc3ca09a",
+      "bytes": 2679
+    },
+    {
+      "path": "evidence/pranjan6360__DRISHTI-CUAS.json",
+      "sha256": "997a220403b6624d19afcd6469843364cee3a6208b1726a25184ea57fbb8ff4b",
+      "bytes": 3307
+    },
+    {
+      "path": "evidence/proposed-roadmap.json",
+      "sha256": "7d7a0337ccd49cacddfd44dffbb4bd86e3f7032876d4620fd2c3cfd171197aac",
+      "bytes": 15036
+    },
+    {
+      "path": "evidence/psryogeshwar-14__ASTRAL-C2-Immersive-Multi-Domain-Decision-Making-Trainer.json",
+      "sha256": "7192112631056891a635a2bd2ac6306495402e2f562425ac5bbe6afe8b5aec8d",
+      "bytes": 1711
+    },
+    {
+      "path": "evidence/repository-discovery.txt",
+      "sha256": "ef65493ae2837ceabc71633db3e6be2f90b276e10f9fe7a70a5cfe859b4b04da",
+      "bytes": 2735
+    },
+    {
+      "path": "evidence/research-checks.json",
+      "sha256": "6c2b076a506a7af31162b7ebc5e7410ecbd6caf59b8bbe5dd4db00c33858485c",
+      "bytes": 718
+    },
+    {
+      "path": "evidence/rishika526__Drishti.json",
+      "sha256": "9414f7616dddca510f876e06c0e28f3bc710c12455db19de01a217134fb69d8b",
+      "bytes": 3719
+    },
+    {
+      "path": "evidence/saad-rafeque__drone-swarm-failover.json",
+      "sha256": "2c8d047715c7dbddafd0565dcd0c2a4a0f219c49aa34c5802fc58e7e79b8228e",
+      "bytes": 1840
+    },
+    {
+      "path": "evidence/saisasi2008__garuda-aegis.json",
+      "sha256": "dcc99dbeb8075085f84059b8aee1eff348c72c6ec5b92620cacf8e0d169dbde0",
+      "bytes": 3940
+    },
+    {
+      "path": "evidence/sanikabrahmankar__SIH26247.json",
+      "sha256": "39123cce3d86cab4fd46c57fa5a751c4f038d3675f07e8059ba3fe28bdde5a77",
+      "bytes": 2132
+    },
+    {
+      "path": "evidence/sathvik210508__Al-Enabled-Drone-Counter-Drone-Threat-Simulation-Trainer.json",
+      "sha256": "b08b601d6d8f3f3c608fa470d55b2b42aae6b2ef2b0d9368c6802dc50bf2fbe6",
+      "bytes": 1814
+    },
+    {
+      "path": "evidence/shobhitgupta12__armyfinal.json",
+      "sha256": "e65c97371325ad2ddc8ff98e6919f2d2c91123c823d804b6e2c4d0110bedc6cd",
+      "bytes": 3174
+    },
+    {
+      "path": "evidence/source-fetch.txt",
+      "sha256": "99148d7ff2b5341776e60f885fc5c8bd81e0cc90b2de318a1af4a7b394e308cc",
+      "bytes": 4081
+    },
+    {
+      "path": "evidence/source-file-inspection.json",
+      "sha256": "ec658261722840f29ef30a93f39a9bd4f279d57050b8763def1465d7c4138283",
+      "bytes": 31213
+    },
+    {
+      "path": "evidence/sudhanshurai2004__SIH26047.json",
+      "sha256": "ce54710563053ba9eb6e4b486f12c3a7646fc570c99446dd12c5d280ee6e9bda",
+      "bytes": 8496
+    },
+    {
+      "path": "evidence/sudhanshurai2004__SIH26247.json",
+      "sha256": "0acc9b2d11e0ba6f2d53b3029ddc39c936cfc63f38e273caec200a53eb53a997",
+      "bytes": 8524
+    },
+    {
+      "path": "evidence/talhaadnan05__SIH26247-DRISTI.json",
+      "sha256": "453a1480bbcf1bbfbe7bae4b97108e4337e80445ff80bb7dcc54abeafff35978",
+      "bytes": 1344
+    },
+    {
+      "path": "evidence/tennetisaisantoshsriram-collab__sih26247.json",
+      "sha256": "a544ca3f676395e8b236280da19391093574202486905491ed80953cc097a40e",
+      "bytes": 3867
+    },
+    {
+      "path": "evidence/umeed-1__DCATS.json",
+      "sha256": "b0e6af0074efa0ff34aebfa03569eb38e5791cede0a82501a5e660b54c0bc6a6",
+      "bytes": 4461
+    },
+    {
+      "path": "evidence/vabs-2004__Aegis.json",
+      "sha256": "85069cb0b7da374fe18305eca245ad5f0ca71f5588526249fb71dc3e2a77c713",
+      "bytes": 2723
+    },
+    {
+      "path": "evidence/vinodkrishna221__TRISHUL-SIM.json",
+      "sha256": "13825a980364fd1726639cb0bb8ba455e139bf5bd9ba935e112ee920b36bd1c2",
+      "bytes": 26599
+    },
+    {
+      "path": "evidence/vish-4-1__GARUDA-SIH2026.json",
+      "sha256": "589352a57177569621988d221cd2531bb0bbd0f000f50954bb2e718439ffe0e5",
+      "bytes": 5113
+    },
+    {
+      "path": "evidence/vyom-openapi-direct.json",
+      "sha256": "9b5358e96a6fe14ea043982654e0e0942288b052c366183ddbbce970abf1f553",
+      "bytes": 187
+    },
+    {
+      "path": "evidence/vyom-openapi.json",
+      "sha256": "5198ad7be86986704d2165c2d7aa9cc28c387728b40699f71eef1b75f27c2057",
+      "bytes": 232
+    },
+    {
+      "path": "evidence/vyom-root-direct.json",
+      "sha256": "18893e83d80c06636ecfd124a8add5b5548d512cc06dea376959593ad92338a8",
+      "bytes": 172
+    },
+    {
+      "path": "evidence/vyom-root.json",
+      "sha256": "68f3adc1e6aa087bfc1c5272e777801c9dfdd9f632ba9c4f8a32cc07c4c8014d",
+      "bytes": 220
+    },
+    {
+      "path": "evidence/wide-discovery.txt",
+      "sha256": "7a6811091aba0270a9a7a866246ddd719c788de85e8c899455992237fb8d9bd1",
+      "bytes": 5825
+    },
+    {
+      "path": "evidence/wide-source-inspection.json",
+      "sha256": "5d54124bab8ab3df021b5eb0d3dedf07f2a9722225f7d5581aaf5f17c8c66157",
+      "bytes": 6431
+    },
+    {
+      "path": "screenshots/aegis-mission-entry.png",
+      "sha256": "b085c6a6a79863c91fa8f4fd17335cb2e9649d1df55d8ddd9a4a246a991c27d2",
+      "bytes": 138498
+    },
+    {
+      "path": "screenshots/vyom-landing.png",
+      "sha256": "44eb92d1fef2fd0f96c85af66c03f4b042acf3cc5dda488d2567bd6af2eab7b2",
+      "bytes": 87487
+    },
+    {
+      "path": "screenshots/vyom-trainer-setup.png",
+      "sha256": "dc33f5af23e9b73cacf5ca26a720779b9585ebc5bcb2b06701f2a5e574db071c",
+      "bytes": 85956
+    },
+    {
+      "path": "screenshots/vyom-vr-empty.png",
+      "sha256": "ca54033e947c23de54115e57edf67ecfd0b3a277f218e9e5cd7e05125163065c",
+      "bytes": 39158
+    }
+  ]
+}

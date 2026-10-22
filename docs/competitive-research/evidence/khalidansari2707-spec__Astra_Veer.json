@@ -1,0 +1,45 @@
+{
+  "repo": "khalidansari2707-spec/Astra_Veer",
+  "sha": "862b581544c34bba4db5a589f3daba3ab47b19e1",
+  "license": null,
+  "description": "This one is a simulation based project ",
+  "homepage": null,
+  "pushed_at": "2026-10-17T20:44:20Z",
+  "tree_count": 0,
+  "paths": [
+    "README.md"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/khalidansari2707-spec/Astra_Veer/git/trees/master?recursive=1",
+    "status": "403",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/khalidansari2707-spec/Astra_Veer/862b581544c34bba4db5a589f3daba3ab47b19e1/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "2127578c1e03962678fc1cd6ed18632fb6500d463c23e7c2873ee4c89383e1a5",
+      "bytes": 12033
+    }
+  ],
+  "fallback_revision_receipt": {
+    "method": "git ls-remote named default branch",
+    "exit_code": 0,
+    "error": null
+  },
+  "tree_scope": "Tree API unavailable; fallback pinned README only",
+  "git_revision_verification": {
+    "repo": "khalidansari2707-spec/Astra_Veer",
+    "default_branch": "master",
+    "retrieved_revision": "862b581544c34bba4db5a589f3daba3ab47b19e1",
+    "git_default_branch_commit": "862b581544c34bba4db5a589f3daba3ab47b19e1",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  "raw_tree_path_count": 1,
+  "filtered_tree_path_count": 1,
+  "path_filter": "Exclude vendored runtime/build directories from readable inventory."
+}

@@ -1,0 +1,72 @@
+{
+  "repo": "mp39202/AERIS-SIH26247-Axion_fc",
+  "sha": "92387c12e1dccbe283288593a99202502bda605d",
+  "license": null,
+  "description": "AERIS is a laptop-first drone encounter training simulator for SIH 2026 (SIH26247). It provides repeatable synthetic scenarios, detection and classification practice, transparent decision scoring, and after-action review in browser and Windows WebView2 modes.",
+  "homepage": null,
+  "pushed_at": "2026-10-04T04:47:27Z",
+  "tree_count": 17,
+  "paths": [
+    "README.md",
+    "app.js",
+    "desktop_app.py",
+    "docs/README.md",
+    "docs/downloads/AERIS_SIH26247_Drone_Encounter_Trainer_v0.3.1.zip",
+    "docs/index.html",
+    "docs/styles.css",
+    "index.html",
+    "package.json",
+    "requirements-desktop.txt",
+    "run-aeris-desktop.bat",
+    "run-aeris.bat",
+    "scenario.schema.json",
+    "scenario.template.json",
+    "server.js",
+    "start.py",
+    "styles.css"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/mp39202/AERIS-SIH26247-Axion_fc/git/trees/main?recursive=1",
+    "status": "200",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/mp39202/AERIS-SIH26247-Axion_fc/92387c12e1dccbe283288593a99202502bda605d/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "6ffe98ce95448c8e30910adaad70a6c5482f69fba40e841619bb0b767afccb97",
+      "bytes": 12543
+    },
+    {
+      "path": "docs/README.md",
+      "url": "https://raw.githubusercontent.com/mp39202/AERIS-SIH26247-Axion_fc/92387c12e1dccbe283288593a99202502bda605d/docs/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "d097e37cc58e132d6e3549d5376a381070e079af0fa36a52fe1b61d422043075",
+      "bytes": 778
+    },
+    {
+      "path": "package.json",
+      "url": "https://raw.githubusercontent.com/mp39202/AERIS-SIH26247-Axion_fc/92387c12e1dccbe283288593a99202502bda605d/package.json",
+      "status": "200",
+      "error": null,
+      "sha256": "da64cb3f1e7046b9dd8fe7e642ba27535528efdc0d0ee85ab502e5649980bb18",
+      "bytes": 330
+    }
+  ],
+  "vendored_path_count": 0,
+  "raw_tree_path_count": 17,
+  "filtered_tree_path_count": 17,
+  "path_filter": "Exclude vendored runtime/build directories for readable inventory; no deletion from any repository.",
+  "git_revision_verification": {
+    "repo": "mp39202/AERIS-SIH26247-Axion_fc",
+    "default_branch": "main",
+    "retrieved_revision": "92387c12e1dccbe283288593a99202502bda605d",
+    "git_default_branch_commit": "92387c12e1dccbe283288593a99202502bda605d",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-10-22",
+  "head_at_check": "2d90137e8116075cd1e48eadab64cb306ea12278",
+  "local_link_errors": [],
+  "runtime_manifest_inputs_checked": 402,
+  "runtime_input_mismatches": [],
+  "research_only": true,
+  "product_tests_rerun": false,
+  "protected_refs_snapshot": {
+    "release/v1.0.1": "2ca96105044ad6a14952d74db619e20006c26eca",
+    "v1.0.1": "4696b0583238d07eb9fcfcec128a437caf28e17b",
+    "v1.1.0-rc.1": "bb5150986b76a402cec99223eee95578e845bd42",
+    "v1.1.0-rc.2": "60c1be9a720d508775bba353a9f3fe370cd8d24a",
+    "integration/vyuha-combined-acceptance": "259c50acdc5373a7971e9885b1232645edf23466",
+    "integration/vyuha-browser-vr-unified": "f5cf3e85314333dce7d6273771a9e139af2c49fa"
+  }
+}

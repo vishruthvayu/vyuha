@@ -1,0 +1,5 @@
+{
+  "url": "https://api.github.com/search/repositories?q=26247+drone&per_page=50",
+  "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>",
+  "elapsed_s": 0.23
+}

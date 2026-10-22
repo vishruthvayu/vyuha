@@ -1,0 +1,553 @@
+{
+  "repos": [
+    {
+      "name": "Mithil-7/SIH26247-AERIS",
+      "description": "AERIS \u2014 an offline-first AI-ready drone and counter-drone simulation trainer with degraded sensors, explainable scoring and after-action review.",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "default_branch": "main",
+      "homepage": ""
+    },
+    {
+      "name": "HarshPrajapati7/Drone-detection-model-RGB-Thermal-Radar-",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "gemail2225-rgb/sih26247",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "talhaadnan05/SIH26247-DRISTI",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "sudhanshurai2004/SIH26247",
+      "description": null,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "tennetisaisantoshsriram-collab/sih26247",
+      "description": "AI-Enabled Drone & Counter-Drone Threat Simulation Trainer | SIH26247 | Ministry of Defence | Smart India Hackathon 2026",
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "lavkushprasad93/sih2026",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": "https://sih2026-dusky-nu.vercel.app"
+    },
+    {
+      "name": "aksharabilavendiran-ui/aar-dashboard",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "mp39202/AERIS-SIH26247-Axion_fc",
+      "description": "AERIS is a laptop-first drone encounter training simulator for SIH 2026 (SIH26247). It provides repeatable synthetic scenarios, detection and classification practice, transparent decision scoring, and after-action review in browser and Windows WebView2 modes.",
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "sathvik210508/Al-Enabled-Drone-Counter-Drone-Threat-Simulation-Trainer",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "sanikabrahmankar/SIH26247",
+      "description": "Team Dharak",
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "HarshPrajapati7/Trinetra",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "codewithsid2256/Vyuha",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "saisasi2008/garuda-aegis",
+      "description": "Garuda-Aegis (SIH26247): Advanced Multi-Sensor Data Fusion (UKF/GNN), Radar/RF Physics & EW Counter-UAS Tactical Defense Platform",
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "vishruthvayu/vyuha",
+      "description": "VYUHA counter-drone training prototype \u00b7 SIH26247 \u00b7 Team WhiteList&0",
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "Ashutosh7706/sih26247-trainer",
+      "description": "The intended solution is a training/simulation platform where trainees can practice detecting, identifying, assessing and responding to simulated drone threats under different conditions. The implementation I found describes synthetic sensors, threat scenarios, sensor degradation, decision-making and after-action review.",
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "JitendraSethia/parashurama",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": "https://parashurama-docs.vercel.app"
+    },
+    {
+      "name": "Victowolf/Neosim",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "sudhanshurai2004/SIH26047",
+      "description": null,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "CoderDesai18/SKYHAWK-ARENA-",
+      "description": "Skyhawk Arena is AI enabled drone and counter drone simulation trainer designed for safe , low- cost skill development . it creates adaptive missions involving drone swarms, spoofing,jamming, and other realistic scenarios based on trainee performance.",
+      "license": null,
+      "default_branch": "main",
+      "homepage": "https://skyhawk-arena.vercel.app"
+    },
+    {
+      "name": "asronal/trinetra",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "itskumara1508-web/skyshield-trainer",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "vinodkrishna221/TRISHUL-SIM",
+      "description": "Air-gapped, physics-grounded C-UAS tactical simulation trainer & automated AAR range for multi-spectral sensor triage and swarm deconfliction (SIH 2026)",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "MrDeepak211/AEROSHIELD",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": "https://aeroshield-three.vercel.app"
+    },
+    {
+      "name": "maindevhoon/sihdrone",
+      "description": "Aeron: React drone observation simulator with Delhi Earth view, cockpit radar, and 200 reproducible scenarios",
+      "license": null,
+      "default_branch": "main",
+      "homepage": "https://sihdrone.vercel.app"
+    },
+    {
+      "name": "jvstin47/SIH-26247-Counter-Drone-Threat-Simulation-Trainer",
+      "description": "Software-based AI simulation platform to train defence personnel in recognizing, classifying, and responding to drone/swarm threats with zero hardware dependency (SIH 26247 - MoD/DSSC)",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "dudpatil07/KAZIND",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "Sanjeyj/Vayu-Abhyas-Trainer",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": "https://vayu-abhyas-trainer.vercel.app"
+    },
+    {
+      "name": "mohammedmasalawal/DronAcharya",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "MissionAdak/HawkEyeAAR",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "Krishna090205/3D-stimulation",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": "https://3-d-stimulation.vercel.app"
+    },
+    {
+      "name": "chetan563-Data/Akash-Rakshak",
+      "description": null,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "agastyasharma20/drone_simulator",
+      "description": null,
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "Dr4cule/AVLON-DRISHTI",
+      "description": "drone sim for training ",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "kapilk20005-gif/DroneSim-Academy",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "VedantSaikhede21/vyuh",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "Naman-Vasudev/MoD_SIH",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "Naman-Vasudev/skyshield-trainer",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": "https://skyshield-trainer.vercel.app"
+    },
+    {
+      "name": "UtkarshPandey04/skyguard-trainer",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": "https://skyguard-trainer.vercel.app"
+    },
+    {
+      "name": "aaryan2203/Drone-Counter-Drone-Threat-Simulation-Trainer",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "shobhitgupta12/armyfinal",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "mayankcodes-dev/R.A.K.S.H.A.K",
+      "description": null,
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "default_branch": "main",
+      "homepage": "https://rakshak.mayankcodes.dev"
+    },
+    {
+      "name": "rishika526/Drishti",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "UtkarshKale/Kurukshetra",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "DeepakSinghhh/robotics",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "Adi-Error404/DroneDrill-AI",
+      "description": null,
+      "license": null,
+      "default_branch": "master",
+      "homepage": null
+    },
+    {
+      "name": "DeepikaKashyapp/AEROGUARD",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "ammar-iitm/drone-sim-platform",
+      "description": "Drone and swarm threat training simulator for SIH PS 26247 (Drone Defence): a browser 3D simulator with explainable decision-tree scoring and an after-action review dashboard. Runs offline; English and Hindi.",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "default_branch": "master",
+      "homepage": "https://drone-sim-platform.vercel.app"
+    },
+    {
+      "name": "ach69143-afk/DroneDrill-AI",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "vabs-2004/Aegis",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": "https://aegis-three-puce.vercel.app"
+    },
+    {
+      "name": "Aditya-245/counterDrone",
+      "description": null,
+      "license": null,
+      "default_branch": "master",
+      "homepage": "https://counter-drone.vercel.app"
+    },
+    {
+      "name": "buildwithshikhar/SUDARSHAN",
+      "description": "Browser-based drone and counter-drone threat simulation trainer for unit-level training. Sensor-realistic scenarios, seeded procedural generation, explainable decision-tree scoring, adaptive difficulty and an after-action review dashboard. Built for SIH 2026 PS 26247 (MoD). Fictional scenarios, open data.",
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "25mcce52-wq/aeroguard-ai-simulator",
+      "description": "AeroGuard AI Simulator - SIH 2026 drone threat training prototype",
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "ArjunKadam1/Aeroguard",
+      "description": null,
+      "license": null,
+      "default_branch": "feature/env-aar-design",
+      "homepage": null
+    },
+    {
+      "name": "architarora24022006-hue/drone-threat-simulator",
+      "description": "A drone simulation for theaft and counter theaft operartions",
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "Pranav770/SIH",
+      "description": null,
+      "license": null,
+      "default_branch": "master",
+      "homepage": null
+    },
+    {
+      "name": "AncientWarRior13/Vyom-Kavach-sih26247",
+      "description": "Vyom Kavach (\u0935\u094d\u092f\u094b\u092e \u0915\u0935\u091a) \u2014 AI & 77GHz FMCW micro-Doppler Counter-UAS simulation platform. Sub-millisecond CatBoost ONNX inference, decentralized swarm kinematics, 3D urban canopy C2 digital twin, and Ed25519 cryptographic audit ledger for Air Defense & BSF (SIH 2026 PS-247).",
+      "license": null,
+      "default_branch": "main",
+      "homepage": "https://vyom-kavach-ps247.vercel.app"
+    },
+    {
+      "name": "umeed-1/DCATS",
+      "description": "AI-Enabled Drone & Counter-Drone Threat Simulation Trainer",
+      "license": null,
+      "default_branch": "main",
+      "homepage": ""
+    },
+    {
+      "name": "vish-4-1/GARUDA-SIH2026",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "khalidansari2707-spec/Astra_Veer",
+      "description": "This one is a simulation based project ",
+      "license": null,
+      "default_branch": "master",
+      "homepage": null
+    },
+    {
+      "name": "meenakshi-kay/VayuRaksha",
+      "description": "Built specifically for unit-level operational readiness, VayuRaksha allows defence personnel to recognize, classify, and neutralize asymmetric rogue drone and swarm threats across varied environments (day/night, atmospheric fog/dust, sensor degradation) without requiring expensive live-fire exercises or specialized GPU hardware.",
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "Chethan26code/VayuRaksha-",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "saad-rafeque/drone-swarm-failover",
+      "description": "Leader-failover drone swarm: V formation, leader election and obstacle avoidance, built and tested in PX4 SIH simulation with ROS 2 and MAVROS (simulation only).",
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "default_branch": "main",
+      "homepage": ""
+    },
+    {
+      "name": "Trivikram-Narayanan/DroneThreatTrainer",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "SIDDHESH-25/SIH-MAIN-FINAL",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "psryogeshwar-14/ASTRAL-C2-Immersive-Multi-Domain-Decision-Making-Trainer",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": "https://astral-c2-immersive-multi-domain-de.vercel.app"
+    },
+    {
+      "name": "axionuptti/SIH",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": "https://sih-geo-ai-kappa.vercel.app"
+    },
+    {
+      "name": "kapilk20005-gif/DroneSim_Academy_PS26247",
+      "description": null,
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    },
+    {
+      "name": "pranjan6360/DRISHTI-CUAS",
+      "description": "AI-Powered Drone Threat Simulation & Training Platform | SIH26247",
+      "license": null,
+      "default_branch": "main",
+      "homepage": null
+    }
+  ]
+}

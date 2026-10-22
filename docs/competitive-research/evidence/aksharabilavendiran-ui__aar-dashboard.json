@@ -1,0 +1,93 @@
+{
+  "repo": "aksharabilavendiran-ui/aar-dashboard",
+  "sha": "bf4b6e6fd9b893011436c30e06c045b55b9c4b69",
+  "license": null,
+  "description": null,
+  "homepage": null,
+  "pushed_at": "2026-10-03T08:29:53Z",
+  "tree_count": 39,
+  "paths": [
+    ".gitignore",
+    "README.md",
+    "client/index.html",
+    "client/package-lock.json",
+    "client/package.json",
+    "client/postcss.config.js",
+    "client/src/App.tsx",
+    "client/src/api.ts",
+    "client/src/components/EventTable.tsx",
+    "client/src/components/MetricCard.tsx",
+    "client/src/components/Remediation.tsx",
+    "client/src/components/Sidebar.tsx",
+    "client/src/components/Timeline.tsx",
+    "client/src/index.css",
+    "client/src/main.tsx",
+    "client/src/pages/AarIndex.tsx",
+    "client/src/pages/AarPage.tsx",
+    "client/src/pages/Live.tsx",
+    "client/src/pages/Roster.tsx",
+    "client/src/pages/Scenario.tsx",
+    "client/src/types.ts",
+    "client/tailwind.config.js",
+    "client/tsconfig.json",
+    "client/vite.config.ts",
+    "docker-compose.yml",
+    "server/.env.example",
+    "server/package-lock.json",
+    "server/package.json",
+    "server/prisma/schema.prisma",
+    "server/prisma/seed.ts",
+    "server/src/db.ts",
+    "server/src/index.ts",
+    "server/src/metrics.ts",
+    "server/src/remediation.ts",
+    "server/src/routes.ts",
+    "server/src/scoring.ts",
+    "server/src/simulator.ts",
+    "server/src/websocket.ts",
+    "server/tsconfig.json"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/aksharabilavendiran-ui/aar-dashboard/git/trees/main?recursive=1",
+    "status": "200",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/aksharabilavendiran-ui/aar-dashboard/bf4b6e6fd9b893011436c30e06c045b55b9c4b69/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "8e2d40a2b0f55920460d2353d97aafbd9c6c1dbb3e6c41a91d14354cc7c4e817",
+      "bytes": 2482
+    },
+    {
+      "path": "client/package.json",
+      "url": "https://raw.githubusercontent.com/aksharabilavendiran-ui/aar-dashboard/bf4b6e6fd9b893011436c30e06c045b55b9c4b69/client/package.json",
+      "status": "200",
+      "error": null,
+      "sha256": "cac19762f0f239add1dcf7986f54a1846593337d3bd0c7f1db838c4df6338c20",
+      "bytes": 616
+    },
+    {
+      "path": "server/package.json",
+      "url": "https://raw.githubusercontent.com/aksharabilavendiran-ui/aar-dashboard/bf4b6e6fd9b893011436c30e06c045b55b9c4b69/server/package.json",
+      "status": "200",
+      "error": null,
+      "sha256": "ebdc2b72d72fcd5da991dfd5453ae56aa21973872985d7da6f467b4ac8079d7f",
+      "bytes": 697
+    }
+  ],
+  "raw_tree_path_count": 39,
+  "filtered_tree_path_count": 39,
+  "path_filter": "Exclude vendored runtime/build directories for readable inventory; no deletion from any repository.",
+  "git_revision_verification": {
+    "repo": "aksharabilavendiran-ui/aar-dashboard",
+    "default_branch": "main",
+    "retrieved_revision": "bf4b6e6fd9b893011436c30e06c045b55b9c4b69",
+    "git_default_branch_commit": "bf4b6e6fd9b893011436c30e06c045b55b9c4b69",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  }
+}

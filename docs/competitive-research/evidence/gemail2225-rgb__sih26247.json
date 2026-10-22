@@ -1,0 +1,40 @@
+{
+  "repo": "gemail2225-rgb/sih26247",
+  "sha": "6c5c26fe0fe4d55d9468906d026b6c96073e3d9c",
+  "license": null,
+  "description": null,
+  "homepage": null,
+  "pushed_at": "2026-10-03T10:46:56Z",
+  "tree_count": 1,
+  "paths": [
+    "README.md"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/gemail2225-rgb/sih26247/git/trees/main?recursive=1",
+    "status": "200",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/gemail2225-rgb/sih26247/6c5c26fe0fe4d55d9468906d026b6c96073e3d9c/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "a976ad20c664c74717c66e4a66701c15ce0a1bd14b88c31adaa16e255d01e3de",
+      "bytes": 10
+    }
+  ],
+  "vendored_path_count": 0,
+  "raw_tree_path_count": 1,
+  "filtered_tree_path_count": 1,
+  "path_filter": "Exclude vendored runtime/build directories for readable inventory; no deletion from any repository.",
+  "git_revision_verification": {
+    "repo": "gemail2225-rgb/sih26247",
+    "default_branch": "main",
+    "retrieved_revision": "6c5c26fe0fe4d55d9468906d026b6c96073e3d9c",
+    "git_default_branch_commit": "6c5c26fe0fe4d55d9468906d026b6c96073e3d9c",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  }
+}

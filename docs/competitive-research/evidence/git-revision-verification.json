@@ -1,0 +1,614 @@
+[
+  {
+    "repo": "Sanjeyj/Vayu-Abhyas-Trainer",
+    "default_branch": "main",
+    "retrieved_revision": "5d8292c25a92deb7edf12488a223948af89f4d4a",
+    "git_default_branch_commit": "5d8292c25a92deb7edf12488a223948af89f4d4a",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "DeepakSinghhh/robotics",
+    "default_branch": "main",
+    "retrieved_revision": "7c49618bdcd1c7edf6422b92c0ac7ae0dd43b2be",
+    "git_default_branch_commit": "7c49618bdcd1c7edf6422b92c0ac7ae0dd43b2be",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "aaryan2203/Drone-Counter-Drone-Threat-Simulation-Trainer",
+    "default_branch": "main",
+    "retrieved_revision": "1662b450bd528bef19879fd0fee2796a7c82367b",
+    "git_default_branch_commit": "1662b450bd528bef19879fd0fee2796a7c82367b",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "sudhanshurai2004/SIH26047",
+    "default_branch": "main",
+    "retrieved_revision": "95e183c041bcf6ec7dab0f3453781ffab08042d6",
+    "git_default_branch_commit": "95e183c041bcf6ec7dab0f3453781ffab08042d6",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "meenakshi-kay/VayuRaksha",
+    "default_branch": "main",
+    "retrieved_revision": "19cfa0b56cca9c3bafbdb7a2256f521714e1903a",
+    "git_default_branch_commit": "19cfa0b56cca9c3bafbdb7a2256f521714e1903a",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "buildwithshikhar/SUDARSHAN",
+    "default_branch": "main",
+    "retrieved_revision": "c2a3a4d2b97be4dd449340cba2c4bc0bd78f1b2a",
+    "git_default_branch_commit": "c2a3a4d2b97be4dd449340cba2c4bc0bd78f1b2a",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "rishika526/Drishti",
+    "default_branch": "main",
+    "retrieved_revision": "068bff2d28482102ee6d8b20d811e49dbeb77e39",
+    "git_default_branch_commit": "068bff2d28482102ee6d8b20d811e49dbeb77e39",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "CoderDesai18/SKYHAWK-ARENA-",
+    "default_branch": "main",
+    "retrieved_revision": "a1af7e0a571be73de6d1c55cd73ba259b900be96",
+    "git_default_branch_commit": "a1af7e0a571be73de6d1c55cd73ba259b900be96",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "jvstin47/SIH-26247-Counter-Drone-Threat-Simulation-Trainer",
+    "default_branch": "main",
+    "retrieved_revision": "286375f6fb3fc1c774229c54a29c42c133185285",
+    "git_default_branch_commit": "286375f6fb3fc1c774229c54a29c42c133185285",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "pranjan6360/DRISHTI-CUAS",
+    "default_branch": "main",
+    "retrieved_revision": "a52af503e4476a072493436f3fd42ac9fd955928",
+    "git_default_branch_commit": "a52af503e4476a072493436f3fd42ac9fd955928",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "UtkarshPandey04/skyguard-trainer",
+    "default_branch": "main",
+    "retrieved_revision": "05f6485982029bd73ae6616dac9bcd0a61e6b928",
+    "git_default_branch_commit": "05f6485982029bd73ae6616dac9bcd0a61e6b928",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "ach69143-afk/DroneDrill-AI",
+    "default_branch": "main",
+    "retrieved_revision": "35a9bde7b7510990be984716515f78174b46f963",
+    "git_default_branch_commit": "35a9bde7b7510990be984716515f78174b46f963",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "25mcce52-wq/aeroguard-ai-simulator",
+    "default_branch": "main",
+    "retrieved_revision": "e7758e0ea231751e880877fdcbe7e5f3d4890f0d",
+    "git_default_branch_commit": "e7758e0ea231751e880877fdcbe7e5f3d4890f0d",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "talhaadnan05/SIH26247-DRISTI",
+    "default_branch": "main",
+    "retrieved_revision": "cd266d2bbea2589df000fc73ae454da8bbf03803",
+    "git_default_branch_commit": "cd266d2bbea2589df000fc73ae454da8bbf03803",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "mp39202/AERIS-SIH26247-Axion_fc",
+    "default_branch": "main",
+    "retrieved_revision": "92387c12e1dccbe283288593a99202502bda605d",
+    "git_default_branch_commit": "92387c12e1dccbe283288593a99202502bda605d",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "mohammedmasalawal/DronAcharya",
+    "default_branch": "main",
+    "retrieved_revision": "c57d9a4065f603048b9c8e091d36bba2d92abf13",
+    "git_default_branch_commit": "c57d9a4065f603048b9c8e091d36bba2d92abf13",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "Naman-Vasudev/MoD_SIH",
+    "default_branch": "main",
+    "retrieved_revision": "526fe769bb5247306ce771338361d79b945fb847",
+    "git_default_branch_commit": "526fe769bb5247306ce771338361d79b945fb847",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "kapilk20005-gif/DroneSim-Academy",
+    "default_branch": "main",
+    "retrieved_revision": "ebb6ffe9857d09b4e0987fb8bb1209856ff61405",
+    "git_default_branch_commit": "ebb6ffe9857d09b4e0987fb8bb1209856ff61405",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "Krishna090205/3D-stimulation",
+    "default_branch": "main",
+    "retrieved_revision": "86b0a303bca91e6c87147f7020849be8655e9b64",
+    "git_default_branch_commit": "86b0a303bca91e6c87147f7020849be8655e9b64",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "axionuptti/SIH",
+    "default_branch": "main",
+    "retrieved_revision": "27e26f443b131919779976414fd78e75b3b0df4f",
+    "git_default_branch_commit": "27e26f443b131919779976414fd78e75b3b0df4f",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "vish-4-1/GARUDA-SIH2026",
+    "default_branch": "main",
+    "retrieved_revision": "7df29e8b5df2f40d59546f32802845d088abcd7e",
+    "git_default_branch_commit": "7df29e8b5df2f40d59546f32802845d088abcd7e",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "sudhanshurai2004/SIH26247",
+    "default_branch": "main",
+    "retrieved_revision": "5d4620fb8f359ea16218d82b05ca2820cd9ec1a3",
+    "git_default_branch_commit": "5d4620fb8f359ea16218d82b05ca2820cd9ec1a3",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "Aditya-245/counterDrone",
+    "default_branch": "master",
+    "retrieved_revision": "5cae39251184ea45686e0be2657e61638b78c833",
+    "git_default_branch_commit": "5cae39251184ea45686e0be2657e61638b78c833",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "MissionAdak/HawkEyeAAR",
+    "default_branch": "main",
+    "retrieved_revision": "375d6bbaa078a1cc829c08b19db56a5286e621cc",
+    "git_default_branch_commit": "375d6bbaa078a1cc829c08b19db56a5286e621cc",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "dudpatil07/KAZIND",
+    "default_branch": "main",
+    "retrieved_revision": "24a4585fa024980eeba28c0578bae0e46d7a2a44",
+    "git_default_branch_commit": "24a4585fa024980eeba28c0578bae0e46d7a2a44",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "Chethan26code/VayuRaksha-",
+    "default_branch": "main",
+    "retrieved_revision": "82150fa3ca2a8ac6d8e2e29780fb118a7c661d1d",
+    "git_default_branch_commit": "82150fa3ca2a8ac6d8e2e29780fb118a7c661d1d",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "saad-rafeque/drone-swarm-failover",
+    "default_branch": "main",
+    "retrieved_revision": "5bc99c091d86b1b93f9f3bdf80b253b1c89d338d",
+    "git_default_branch_commit": "5bc99c091d86b1b93f9f3bdf80b253b1c89d338d",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "vabs-2004/Aegis",
+    "default_branch": "main",
+    "retrieved_revision": "6e46e4fe6cc78f182bcd114b91d2dd726786f006",
+    "git_default_branch_commit": "6e46e4fe6cc78f182bcd114b91d2dd726786f006",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "psryogeshwar-14/ASTRAL-C2-Immersive-Multi-Domain-Decision-Making-Trainer",
+    "default_branch": "main",
+    "retrieved_revision": "758956090f4c72e296fee5e1adb2c0d818a60b21",
+    "git_default_branch_commit": "758956090f4c72e296fee5e1adb2c0d818a60b21",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "AncientWarRior13/Vyom-Kavach-sih26247",
+    "default_branch": "main",
+    "retrieved_revision": "b2e89e39620fa3238b697ac5a59219739ad80f95",
+    "git_default_branch_commit": "b2e89e39620fa3238b697ac5a59219739ad80f95",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "ArjunKadam1/Aeroguard",
+    "default_branch": "feature/env-aar-design",
+    "retrieved_revision": "8f0e445df0cc796e9544ed9aebc4c6387983676f",
+    "git_default_branch_commit": "8f0e445df0cc796e9544ed9aebc4c6387983676f",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "Trivikram-Narayanan/DroneThreatTrainer",
+    "default_branch": "main",
+    "retrieved_revision": "ef0ed62feb32964da08e774422ccea7cbb010cbc",
+    "git_default_branch_commit": "ef0ed62feb32964da08e774422ccea7cbb010cbc",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "ammar-iitm/drone-sim-platform",
+    "default_branch": "master",
+    "retrieved_revision": "0996b8c9e6a92af91e519930da932dc8566233a7",
+    "git_default_branch_commit": "0996b8c9e6a92af91e519930da932dc8566233a7",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "Pranav770/SIH",
+    "default_branch": "master",
+    "retrieved_revision": "82ec107c8f00ea65baab81e570adea0e6e4fde64",
+    "git_default_branch_commit": "82ec107c8f00ea65baab81e570adea0e6e4fde64",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "sathvik210508/Al-Enabled-Drone-Counter-Drone-Threat-Simulation-Trainer",
+    "default_branch": "main",
+    "retrieved_revision": "87aae1ab1de65f107e76dffa1c5b8ad8e9eeef26",
+    "git_default_branch_commit": "87aae1ab1de65f107e76dffa1c5b8ad8e9eeef26",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "chetan563-Data/Akash-Rakshak",
+    "default_branch": "main",
+    "retrieved_revision": "6c47a1bfda9c0ded1aaa8fca3fbae649f6110b76",
+    "git_default_branch_commit": "6c47a1bfda9c0ded1aaa8fca3fbae649f6110b76",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "saisasi2008/garuda-aegis",
+    "default_branch": "main",
+    "retrieved_revision": "cc96d3077e4847118eeb41c49fee9fa125f8650e",
+    "git_default_branch_commit": "cc96d3077e4847118eeb41c49fee9fa125f8650e",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "Mithil-7/SIH26247-AERIS",
+    "default_branch": "main",
+    "retrieved_revision": "75628d3b9b31f9da40ad9347c174c89daa73a3e5",
+    "git_default_branch_commit": "75628d3b9b31f9da40ad9347c174c89daa73a3e5",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "JitendraSethia/parashurama",
+    "default_branch": "main",
+    "retrieved_revision": "00998d987c48ac2835cdf669c41453b03f16449c",
+    "git_default_branch_commit": "00998d987c48ac2835cdf669c41453b03f16449c",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "shobhitgupta12/armyfinal",
+    "default_branch": "main",
+    "retrieved_revision": "da8d0f7265e977ea7965568fe7917772b20d65d9",
+    "git_default_branch_commit": "da8d0f7265e977ea7965568fe7917772b20d65d9",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "Naman-Vasudev/skyshield-trainer",
+    "default_branch": "main",
+    "retrieved_revision": "7121ad9a75e695418183a0511c8ca42ffc856f5c",
+    "git_default_branch_commit": "7121ad9a75e695418183a0511c8ca42ffc856f5c",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "Victowolf/Neosim",
+    "default_branch": "main",
+    "retrieved_revision": "368fd392ca8e846f9848926762505aea0c4a6fec",
+    "git_default_branch_commit": "368fd392ca8e846f9848926762505aea0c4a6fec",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "gemail2225-rgb/sih26247",
+    "default_branch": "main",
+    "retrieved_revision": "6c5c26fe0fe4d55d9468906d026b6c96073e3d9c",
+    "git_default_branch_commit": "6c5c26fe0fe4d55d9468906d026b6c96073e3d9c",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "tennetisaisantoshsriram-collab/sih26247",
+    "default_branch": "main",
+    "retrieved_revision": "f6ab55d8fd5836935108fa4b047e796f35394fce",
+    "git_default_branch_commit": "f6ab55d8fd5836935108fa4b047e796f35394fce",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "umeed-1/DCATS",
+    "default_branch": "main",
+    "retrieved_revision": "773da637bf4e6b0599ba6202bcc82330e7ae37a9",
+    "git_default_branch_commit": "773da637bf4e6b0599ba6202bcc82330e7ae37a9",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "HarshPrajapati7/Trinetra",
+    "default_branch": "main",
+    "retrieved_revision": "6a09c82847db790abf983a966ed89915fb860569",
+    "git_default_branch_commit": "6a09c82847db790abf983a966ed89915fb860569",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "asronal/trinetra",
+    "default_branch": "main",
+    "retrieved_revision": "969d265edda66ff9cdd6ecfacdb5b7c5e4dd219a",
+    "git_default_branch_commit": "969d265edda66ff9cdd6ecfacdb5b7c5e4dd219a",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "mayankcodes-dev/R.A.K.S.H.A.K",
+    "default_branch": "main",
+    "retrieved_revision": "06ca939f7d80df3531c31740bad71c00a4aa9439",
+    "git_default_branch_commit": "06ca939f7d80df3531c31740bad71c00a4aa9439",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "VedantSaikhede21/vyuh",
+    "default_branch": "main",
+    "retrieved_revision": "233e99f27e387a9f926c57f0191faa81b0e0f963",
+    "git_default_branch_commit": "233e99f27e387a9f926c57f0191faa81b0e0f963",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "Dr4cule/AVLON-DRISHTI",
+    "default_branch": "main",
+    "retrieved_revision": "b5abd38375d76843bb321204093e15e96995da80",
+    "git_default_branch_commit": "b5abd38375d76843bb321204093e15e96995da80",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "lavkushprasad93/sih2026",
+    "default_branch": "main",
+    "retrieved_revision": "e83bbcaf1146e9a157b34d0219bac03a1ff51644",
+    "git_default_branch_commit": "e83bbcaf1146e9a157b34d0219bac03a1ff51644",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "MrDeepak211/AEROSHIELD",
+    "default_branch": "main",
+    "retrieved_revision": "bb590b83fd56ef908cc59f98f254ebda2a46790c",
+    "git_default_branch_commit": "bb590b83fd56ef908cc59f98f254ebda2a46790c",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "aksharabilavendiran-ui/aar-dashboard",
+    "default_branch": "main",
+    "retrieved_revision": "bf4b6e6fd9b893011436c30e06c045b55b9c4b69",
+    "git_default_branch_commit": "bf4b6e6fd9b893011436c30e06c045b55b9c4b69",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "khalidansari2707-spec/Astra_Veer",
+    "default_branch": "master",
+    "retrieved_revision": "862b581544c34bba4db5a589f3daba3ab47b19e1",
+    "git_default_branch_commit": "862b581544c34bba4db5a589f3daba3ab47b19e1",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "kapilk20005-gif/DroneSim_Academy_PS26247",
+    "default_branch": "main",
+    "retrieved_revision": null,
+    "git_default_branch_commit": null,
+    "match": false,
+    "exit_code": 2,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "itskumara1508-web/skyshield-trainer",
+    "default_branch": "main",
+    "retrieved_revision": "981874e824c1cce9cdd486dce351ca3d7909f1db",
+    "git_default_branch_commit": "981874e824c1cce9cdd486dce351ca3d7909f1db",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "agastyasharma20/drone_simulator",
+    "default_branch": "main",
+    "retrieved_revision": "803862803eb6aa15d37ff588a869bd218aca3a61",
+    "git_default_branch_commit": "803862803eb6aa15d37ff588a869bd218aca3a61",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "Adi-Error404/DroneDrill-AI",
+    "default_branch": "master",
+    "retrieved_revision": "8481bd7185e6ccb74afd1f41b892a93a76c66595",
+    "git_default_branch_commit": "8481bd7185e6ccb74afd1f41b892a93a76c66595",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "sanikabrahmankar/SIH26247",
+    "default_branch": "main",
+    "retrieved_revision": "07b1eb069a250c488bc22d14074ece7ba91cac80",
+    "git_default_branch_commit": "07b1eb069a250c488bc22d14074ece7ba91cac80",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "architarora24022006-hue/drone-threat-simulator",
+    "default_branch": "main",
+    "retrieved_revision": "d8011c2f86eeca546f3d3c7aff9bd637fd9ff641",
+    "git_default_branch_commit": "d8011c2f86eeca546f3d3c7aff9bd637fd9ff641",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "codewithsid2256/Vyuha",
+    "default_branch": "main",
+    "retrieved_revision": "df372552bbd493d0accb990773511631d4e2431b",
+    "git_default_branch_commit": "df372552bbd493d0accb990773511631d4e2431b",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "HarshPrajapati7/Drone-detection-model-RGB-Thermal-Radar-",
+    "default_branch": "main",
+    "retrieved_revision": "e38eb0803dd8a9db445ef9f50de79ab2963bd948",
+    "git_default_branch_commit": "e38eb0803dd8a9db445ef9f50de79ab2963bd948",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "vinodkrishna221/TRISHUL-SIM",
+    "default_branch": "main",
+    "retrieved_revision": "9890768d7e5dd2e71650f688c348bc29ddff60b0",
+    "git_default_branch_commit": "9890768d7e5dd2e71650f688c348bc29ddff60b0",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "Ashutosh7706/sih26247-trainer",
+    "default_branch": "main",
+    "retrieved_revision": "5c362eb0fd7d61c50a8d88cfe44520fce29d52b0",
+    "git_default_branch_commit": "5c362eb0fd7d61c50a8d88cfe44520fce29d52b0",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "SIDDHESH-25/SIH-MAIN-FINAL",
+    "default_branch": "main",
+    "retrieved_revision": "740c5273c16d7b6c266e5efb9c50100275727970",
+    "git_default_branch_commit": "740c5273c16d7b6c266e5efb9c50100275727970",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "UtkarshKale/Kurukshetra",
+    "default_branch": "main",
+    "retrieved_revision": "6e95e09665d4f0dc7a532638e58b5324f74253dd",
+    "git_default_branch_commit": "6e95e09665d4f0dc7a532638e58b5324f74253dd",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "maindevhoon/sihdrone",
+    "default_branch": "main",
+    "retrieved_revision": "f4a23b6c7295266983cabf953d69bd6415e9d2b8",
+    "git_default_branch_commit": "f4a23b6c7295266983cabf953d69bd6415e9d2b8",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  {
+    "repo": "DeepikaKashyapp/AEROGUARD",
+    "default_branch": "main",
+    "retrieved_revision": "5fbda5c66a56538092164223aef189e4c24ef411",
+    "git_default_branch_commit": "5fbda5c66a56538092164223aef189e4c24ef411",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  }
+]

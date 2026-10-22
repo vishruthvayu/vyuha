@@ -1,0 +1,41 @@
+{
+  "access_date": "2026-10-22",
+  "policy": "Read-only public navigation and public schema/status GET; no exercise start, enrollment, upload, command, retraining or access to other trainee histories.",
+  "pages": [
+    {
+      "url": "https://vyomkavach-api-sw9g.onrender.com/",
+      "observed": "3D urban landing rendered; training navigation visible",
+      "capture": "screenshots/vyom-landing.png"
+    },
+    {
+      "url": "https://vyomkavach-api-sw9g.onrender.com/trainer",
+      "observed": "Four-step preparation wizard, default demo identity and research-tracking choice; no enrollment/start submitted",
+      "capture": "screenshots/vyom-trainer-setup.png"
+    },
+    {
+      "url": "https://vyomkavach-api-sw9g.onrender.com/vr",
+      "observed": "VR route loaded with no active scenario; no physical or immersive execution verified",
+      "capture": "screenshots/vyom-vr-empty.png"
+    },
+    {
+      "url": "https://drone-sim-platform.vercel.app/mission",
+      "observed": "Mission selection loaded: objectives, six scripted cards, procedural preview, graphics selection, Hindi affordance and disabled launch until setup; no exercise submitted",
+      "capture": "screenshots/aegis-mission-entry.png"
+    },
+    {
+      "url": "https://parashurama-docs.vercel.app/",
+      "observed": "Vercel 404 DEPLOYMENT_NOT_FOUND; this is linked documentation deployment, not a claim that repository source is nonfunctional"
+    }
+  ],
+  "model_status": {
+    "url": "https://vyomkavach-api-sw9g.onrender.com/api/model/status",
+    "http_status": 200,
+    "response": {
+      "state": "idle",
+      "last_trained_at": null,
+      "last_error": null,
+      "onnx_path": "/opt/render/project/src/radar_classification/artifacts/onnx/radarsense.onnx"
+    },
+    "interpretation": "Training state/path metadata only; does not prove loaded inference, latency, accuracy or failure."
+  }
+}

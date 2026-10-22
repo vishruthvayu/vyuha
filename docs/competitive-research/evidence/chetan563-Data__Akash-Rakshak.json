@@ -1,0 +1,71 @@
+{
+  "repo": "chetan563-Data/Akash-Rakshak",
+  "sha": "6c47a1bfda9c0ded1aaa8fca3fbae649f6110b76",
+  "license": {
+    "key": "mit",
+    "name": "MIT License",
+    "spdx_id": "MIT",
+    "url": "https://api.github.com/licenses/mit",
+    "node_id": "MDc6TGljZW5zZTEz"
+  },
+  "description": null,
+  "homepage": null,
+  "pushed_at": "2026-10-18T10:32:02Z",
+  "tree_count": 11,
+  "paths": [
+    ".gitignore",
+    "DEMO_SCRIPT.md",
+    "LICENSE",
+    "README.md",
+    "USER_TUTORIAL.md",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "tsconfig.json",
+    "vercel.json",
+    "vite.config.ts"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/chetan563-Data/Akash-Rakshak/git/trees/main?recursive=1",
+    "status": "200",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/chetan563-Data/Akash-Rakshak/6c47a1bfda9c0ded1aaa8fca3fbae649f6110b76/LICENSE",
+      "status": "200",
+      "error": null,
+      "sha256": "43e314a5cd124a3aa364691edb309579261e8d38e737672d08a9674cab59ab08",
+      "bytes": 1063
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/chetan563-Data/Akash-Rakshak/6c47a1bfda9c0ded1aaa8fca3fbae649f6110b76/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "46b39c23ffaca379aab17ccfbda87c861751f49eb5d21f24d9f635932d10e52d",
+      "bytes": 12556
+    },
+    {
+      "path": "package.json",
+      "url": "https://raw.githubusercontent.com/chetan563-Data/Akash-Rakshak/6c47a1bfda9c0ded1aaa8fca3fbae649f6110b76/package.json",
+      "status": "200",
+      "error": null,
+      "sha256": "f3b5e9e1664e0fe437ff84afac62b6a18034d8c757f4ebf5368b6bf6fdf72d4c",
+      "bytes": 651
+    }
+  ],
+  "git_revision_verification": {
+    "repo": "chetan563-Data/Akash-Rakshak",
+    "default_branch": "main",
+    "retrieved_revision": "6c47a1bfda9c0ded1aaa8fca3fbae649f6110b76",
+    "git_default_branch_commit": "6c47a1bfda9c0ded1aaa8fca3fbae649f6110b76",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  "raw_tree_path_count": 11,
+  "filtered_tree_path_count": 11,
+  "path_filter": "Exclude vendored runtime/build directories from readable inventory."
+}

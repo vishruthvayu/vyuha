@@ -1,0 +1,45 @@
+{
+  "repo": "Chethan26code/VayuRaksha-",
+  "sha": "82150fa3ca2a8ac6d8e2e29780fb118a7c661d1d",
+  "license": null,
+  "description": null,
+  "homepage": null,
+  "pushed_at": "2026-10-04T10:06:01Z",
+  "tree_count": 0,
+  "paths": [
+    "README.md"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/Chethan26code/VayuRaksha-/git/trees/main?recursive=1",
+    "status": "403",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/Chethan26code/VayuRaksha-/82150fa3ca2a8ac6d8e2e29780fb118a7c661d1d/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "e11beaac2fac6a9663b88cf1579f39c735f0a6b3c41e62e35627e5122512c65f",
+      "bytes": 10204
+    }
+  ],
+  "fallback_revision_receipt": {
+    "method": "git ls-remote named default branch",
+    "exit_code": 0,
+    "error": null
+  },
+  "tree_scope": "Tree API unavailable; fallback pinned README only",
+  "git_revision_verification": {
+    "repo": "Chethan26code/VayuRaksha-",
+    "default_branch": "main",
+    "retrieved_revision": "82150fa3ca2a8ac6d8e2e29780fb118a7c661d1d",
+    "git_default_branch_commit": "82150fa3ca2a8ac6d8e2e29780fb118a7c661d1d",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  "raw_tree_path_count": 1,
+  "filtered_tree_path_count": 1,
+  "path_filter": "Exclude vendored runtime/build directories from readable inventory."
+}

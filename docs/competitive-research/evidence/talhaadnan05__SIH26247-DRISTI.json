@@ -1,0 +1,40 @@
+{
+  "repo": "talhaadnan05/SIH26247-DRISTI",
+  "sha": "cd266d2bbea2589df000fc73ae454da8bbf03803",
+  "license": null,
+  "description": null,
+  "homepage": null,
+  "pushed_at": "2026-10-20T16:16:05Z",
+  "tree_count": 1,
+  "paths": [
+    "README.md"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/talhaadnan05/SIH26247-DRISTI/git/trees/main?recursive=1",
+    "status": "200",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/talhaadnan05/SIH26247-DRISTI/cd266d2bbea2589df000fc73ae454da8bbf03803/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "e2f7a7de6a3b97910beeef7dd6908c45ac0ba231263320e5e645e5c54cb6a709",
+      "bytes": 150
+    }
+  ],
+  "vendored_path_count": 0,
+  "raw_tree_path_count": 1,
+  "filtered_tree_path_count": 1,
+  "path_filter": "Exclude vendored runtime/build directories for readable inventory; no deletion from any repository.",
+  "git_revision_verification": {
+    "repo": "talhaadnan05/SIH26247-DRISTI",
+    "default_branch": "main",
+    "retrieved_revision": "cd266d2bbea2589df000fc73ae454da8bbf03803",
+    "git_default_branch_commit": "cd266d2bbea2589df000fc73ae454da8bbf03803",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  }
+}

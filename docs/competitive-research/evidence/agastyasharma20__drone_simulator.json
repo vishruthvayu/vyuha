@@ -1,0 +1,76 @@
+{
+  "repo": "agastyasharma20/drone_simulator",
+  "sha": "803862803eb6aa15d37ff588a869bd218aca3a61",
+  "license": {
+    "key": "other",
+    "name": "Other",
+    "spdx_id": "NOASSERTION",
+    "url": null,
+    "node_id": "MDc6TGljZW5zZTA="
+  },
+  "description": null,
+  "homepage": null,
+  "pushed_at": "2026-10-04T09:47:24Z",
+  "tree_count": 16,
+  "paths": [
+    ".github/workflows/ci.yml",
+    ".gitignore",
+    "Dockerfile",
+    "LICENSE",
+    "README.md",
+    "backend/app/__init__.py",
+    "backend/app/db.py",
+    "backend/app/main.py",
+    "backend/app/scenarios.py",
+    "backend/app/scoring.py",
+    "backend/requirements-dev.txt",
+    "backend/requirements.txt",
+    "backend/tests/conftest.py",
+    "backend/tests/test_api.py",
+    "docker-compose.yml",
+    "frontend/index.html"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/agastyasharma20/drone_simulator/git/trees/main?recursive=1",
+    "status": "200",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/agastyasharma20/drone_simulator/803862803eb6aa15d37ff588a869bd218aca3a61/LICENSE",
+      "status": "200",
+      "error": null,
+      "sha256": "3c7f8d8ddb42b7e7166e0da224a6bcadfcb3deff0d103112bfea589852b3af1e",
+      "bytes": 3016
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/agastyasharma20/drone_simulator/803862803eb6aa15d37ff588a869bd218aca3a61/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "09fb64d3f6da773c8d59792e2eb4daa92577364a91b9c7ff2205e809ac71b66f",
+      "bytes": 3814
+    },
+    {
+      "path": "backend/requirements.txt",
+      "url": "https://raw.githubusercontent.com/agastyasharma20/drone_simulator/803862803eb6aa15d37ff588a869bd218aca3a61/backend/requirements.txt",
+      "status": "200",
+      "error": null,
+      "sha256": "77cf05b102e6545aed1f280478ad9b5996c92d1669616bfa4f7359cb571a1abe",
+      "bytes": 90
+    }
+  ],
+  "git_revision_verification": {
+    "repo": "agastyasharma20/drone_simulator",
+    "default_branch": "main",
+    "retrieved_revision": "803862803eb6aa15d37ff588a869bd218aca3a61",
+    "git_default_branch_commit": "803862803eb6aa15d37ff588a869bd218aca3a61",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  "raw_tree_path_count": 16,
+  "filtered_tree_path_count": 16,
+  "path_filter": "Exclude vendored runtime/build directories from readable inventory."
+}

@@ -1,0 +1,123 @@
+{
+  "repo": "Naman-Vasudev/MoD_SIH",
+  "sha": "526fe769bb5247306ce771338361d79b945fb847",
+  "license": null,
+  "description": null,
+  "homepage": null,
+  "pushed_at": "2026-10-03T11:43:07Z",
+  "tree_count": 1271,
+  "paths": [
+    ".gitattributes",
+    ".oxlintrc.json",
+    "AI_Drone_CounterDrone_Trainer_PS26247.pptx",
+    "AI_Drone_CounterDrone_Trainer_PS26247_v2.pptx",
+    "Ghost_Protocol_.pdf",
+    "README.md",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "public/favicon.svg",
+    "public/icons.svg",
+    "scripts/generate_pptx.cjs",
+    "src/App.tsx",
+    "src/adaptive/difficulty.ts",
+    "src/ai/instructor.ts",
+    "src/assets/hero.png",
+    "src/assets/react.svg",
+    "src/assets/vite.svg",
+    "src/components/HUDPanel.tsx",
+    "src/components/Header.tsx",
+    "src/components/HotkeysModal.tsx",
+    "src/components/RadarCanvas.tsx",
+    "src/components/TutorialModal.tsx",
+    "src/index.css",
+    "src/main.tsx",
+    "src/pages/AARDashboardPage.tsx",
+    "src/pages/DebriefPage.tsx",
+    "src/pages/HomePage.tsx",
+    "src/pages/LeaderboardPage.tsx",
+    "src/pages/ScenarioSelectPage.tsx",
+    "src/pages/SimulatorPage.tsx",
+    "src/scenarios/generator.ts",
+    "src/scenarios/prng.ts",
+    "src/scenarios/scripted.ts",
+    "src/scoring/decisionTree.ts",
+    "src/scoring/rubric.ts",
+    "src/sim/engine.ts",
+    "src/sim/entities.ts",
+    "src/sim/sensors.ts",
+    "src/storage/storageService.ts",
+    "src/types.ts",
+    "tsconfig.app.json",
+    "tsconfig.json",
+    "tsconfig.node.json",
+    "vite.config.ts"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/Naman-Vasudev/MoD_SIH/git/trees/main?recursive=1",
+    "status": "200",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/Naman-Vasudev/MoD_SIH/526fe769bb5247306ce771338361d79b945fb847/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "121caeb2c9e62d2d8b6491cdbe97903a83b56f42e6056d4fd4f36893ded46830",
+      "bytes": 5954
+    },
+    {
+      "path": "node_modules/autoprefixer/LICENSE",
+      "url": "https://raw.githubusercontent.com/Naman-Vasudev/MoD_SIH/526fe769bb5247306ce771338361d79b945fb847/node_modules/autoprefixer/LICENSE",
+      "status": "200",
+      "error": null,
+      "sha256": "5be1f3465bba68a626777f984878814aaf35e7ef8e9fd314d469bcf887050fb8",
+      "bytes": 1095
+    },
+    {
+      "path": "node_modules/autoprefixer/README.md",
+      "url": "https://raw.githubusercontent.com/Naman-Vasudev/MoD_SIH/526fe769bb5247306ce771338361d79b945fb847/node_modules/autoprefixer/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "59bf3031c842a78380f1150a7c67284782394246d6af8eb20827e56f79a6f07b",
+      "bytes": 1467
+    },
+    {
+      "path": "node_modules/autoprefixer/package.json",
+      "url": "https://raw.githubusercontent.com/Naman-Vasudev/MoD_SIH/526fe769bb5247306ce771338361d79b945fb847/node_modules/autoprefixer/package.json",
+      "status": "200",
+      "error": null,
+      "sha256": "f1a5d3ce48286bd2205673900fb4738f1e19adf9e144b72987fbc77c7d3cf9d9",
+      "bytes": 1142
+    },
+    {
+      "path": "node_modules/base64-arraybuffer/LICENSE",
+      "url": "https://raw.githubusercontent.com/Naman-Vasudev/MoD_SIH/526fe769bb5247306ce771338361d79b945fb847/node_modules/base64-arraybuffer/LICENSE",
+      "status": "200",
+      "error": null,
+      "sha256": "f3eca6ff762533fa5a77caf954a143e48afa204668cf97dce758c45a9e006be3",
+      "bytes": 1062
+    },
+    {
+      "path": "node_modules/base64-arraybuffer/README.md",
+      "url": "https://raw.githubusercontent.com/Naman-Vasudev/MoD_SIH/526fe769bb5247306ce771338361d79b945fb847/node_modules/base64-arraybuffer/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "62eb255c966e25935f419615c665a20fbbda535fa11ed0823d1c4d57746e8ba2",
+      "bytes": 831
+    }
+  ],
+  "git_revision_verification": {
+    "repo": "Naman-Vasudev/MoD_SIH",
+    "default_branch": "main",
+    "retrieved_revision": "526fe769bb5247306ce771338361d79b945fb847",
+    "git_default_branch_commit": "526fe769bb5247306ce771338361d79b945fb847",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  "raw_tree_path_count": 1271,
+  "filtered_tree_path_count": 45,
+  "path_filter": "Exclude vendored runtime/build directories from readable inventory."
+}

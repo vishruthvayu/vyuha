@@ -1,0 +1,386 @@
+[
+  {
+    "id": "s01",
+    "title": "S01 \u2014 ST Engineering AGIL C-UAS simulation",
+    "primary_links": [
+      {
+        "label": "Official product",
+        "url": "https://www.stengg.com/en/defence/training-and-simulation/manned-and-unmanned-simulation-training-systems/defence/air/agil-counter-unmanned-aerial-system-simulation-system/"
+      },
+      {
+        "label": "brochure",
+        "url": "https://www.stengg.com/getmedia/1fb83905-33a1-48ce-98ae-ccc9703235de/AGIL-Counter-Unmanned-Aerial-Systems-Simulation-System.pdf"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s02",
+    "title": "S02 \u2014 AVS Horizon Guardian",
+    "primary_links": [
+      {
+        "label": "Official product and equipment imagery",
+        "url": "https://appliedvirtual.net/horizon-guardian/"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s03",
+    "title": "S03 \u2014 VRAI HEAT",
+    "primary_links": [
+      {
+        "label": "Official product/data-flow description",
+        "url": "https://www.vraisimulation.com/products/heat"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s04",
+    "title": "S04 \u2014 OneArc VBS4",
+    "primary_links": [
+      {
+        "label": "Official product",
+        "url": "https://onearc.com/products/vbs4/"
+      },
+      {
+        "label": "deployment documentation",
+        "url": "https://distribution.bisimulations.com/support/VBSLM2_Instructions/VBS4/20_1_0/VBS4_Deployment_Guide_HTML/Content/VBS4_Manuals/Deployment/VBS4_Deployment_Options.htm"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s05",
+    "title": "S05 \u2014 Simlat",
+    "primary_links": [
+      {
+        "label": "Official applications",
+        "url": "https://www.simlat.com/applications"
+      },
+      {
+        "label": "company capability description",
+        "url": "https://www.simlat.com/about"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s06",
+    "title": "S06 \u2014 DefenceVR KAVACH-SIM",
+    "primary_links": [
+      {
+        "label": "Official site",
+        "url": "https://defencevr.in/"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s07",
+    "title": "S07 \u2014 Foxglove playback and layouts",
+    "primary_links": [
+      {
+        "label": "Playback documentation",
+        "url": "https://docs.foxglove.dev/docs/visualization/playback"
+      },
+      {
+        "label": "visualization overview",
+        "url": "https://docs.foxglove.dev/docs/visualization"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s08",
+    "title": "S08 \u2014 QGroundControl",
+    "primary_links": [
+      {
+        "label": "Source and current feature overview",
+        "url": "https://github.com/mavlink/qgroundcontrol"
+      },
+      {
+        "label": "survey planning documentation source",
+        "url": "https://github.com/mavlink/qgroundcontrol/blob/master/docs/en/qgc-user-guide/plan_view/pattern_survey.md"
+      },
+      {
+        "label": "official developer licensing",
+        "url": "https://docs.qgroundcontrol.com/Stable_V5.0/en/qgc-dev-guide/getting_started/index.html"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s09",
+    "title": "S09 \u2014 GIFT",
+    "primary_links": [
+      {
+        "label": "Official overview",
+        "url": "https://www.gifttutoring.org/projects/gift/wiki/Overview"
+      },
+      {
+        "label": "2025-1 authoring guide",
+        "url": "https://www.gifttutoring.org/projects/gift/wiki/Authoring_Guide_2025-1"
+      },
+      {
+        "label": "developer guide",
+        "url": "https://gifttutoring.org/projects/gift/wiki/Developer_Guide_2025-1"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s10",
+    "title": "S10 \u2014 Evidence-centered assessment design",
+    "primary_links": [
+      {
+        "label": "Mislevy, Almond and Lukas, 2003, ETS RR-03-16",
+        "url": "https://www.ets.org/research/policy_research_reports/publications/report/2003/hsgs.html"
+      },
+      {
+        "label": "CRESST assessment structure",
+        "url": "https://cresst.org/publication/on-the-structure-of-educational-assessments/"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s11",
+    "title": "S11 \u2014 Bayesian knowledge tracing",
+    "primary_links": [
+      {
+        "label": "CAHLR pyBKT",
+        "url": "https://github.com/CAHLR/pyBKT"
+      },
+      {
+        "label": "MIT license",
+        "url": "https://github.com/CAHLR/pyBKT/blob/master/LICENSE"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s12",
+    "title": "S12 \u2014 Confidence calibration",
+    "primary_links": [
+      {
+        "label": "Guo et al., 2017, PMLR",
+        "url": "https://proceedings.mlr.press/v70/guo17a.html"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s13",
+    "title": "S13 \u2014 Workload measurement",
+    "primary_links": [
+      {
+        "label": "Official NASA TLX",
+        "url": "https://www.nasa.gov/human-systems-integration-division/nasa-task-load-index-tlx/"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s14",
+    "title": "S14 \u2014 xAPI / learning interoperability",
+    "primary_links": [
+      {
+        "label": "IEEE 9274.1.1-2023",
+        "url": "https://standards.ieee.org/ieee/9274.1.1/7321/"
+      },
+      {
+        "label": "ADL legacy specification repository",
+        "url": "https://github.com/adlnet/xAPI-Spec"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s15",
+    "title": "S15 \u2014 Virtual simulation-pilot dialogue research",
+    "primary_links": [
+      {
+        "label": "Original paper, 2023",
+        "url": "https://arxiv.org/abs/2304.07842"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s16",
+    "title": "S16 \u2014 AirSim / Cosys-AirSim",
+    "primary_links": [
+      {
+        "label": "Microsoft AirSim source",
+        "url": "https://github.com/microsoft/AirSim"
+      },
+      {
+        "label": "Cosys-AirSim MIT license",
+        "url": "https://github.com/Cosys-Lab/Cosys-AirSim/blob/main/LICENSE"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s17",
+    "title": "S17 \u2014 PX4/Gazebo multi-vehicle simulation",
+    "primary_links": [
+      {
+        "label": "Official PX4 documentation",
+        "url": "https://docs.px4.io/main/en/sim_gazebo_gz/multi_vehicle_simulation"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s18",
+    "title": "S18 \u2014 NVIDIA Isaac Sim",
+    "primary_links": [
+      {
+        "label": "Official product",
+        "url": "https://developer.nvidia.com/isaac/sim/"
+      },
+      {
+        "label": "license documentation",
+        "url": "https://docs.isaacsim.omniverse.nvidia.com/5.1.0/common/licenses-isaac-sim.html"
+      },
+      {
+        "label": "additional materials license",
+        "url": "https://www.nvidia.com/en-us/agreements/enterprise-software/isaac-sim-additional-software-and-materials-license/"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s19",
+    "title": "S19 \u2014 Domain randomization",
+    "primary_links": [
+      {
+        "label": "Tobin et al., 2017",
+        "url": "https://arxiv.org/abs/1703.06907"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s20",
+    "title": "S20 \u2014 Anti-UAV data and evaluation",
+    "primary_links": [
+      {
+        "label": "Official dataset",
+        "url": "https://anti-uav.github.io/dataset/"
+      },
+      {
+        "label": "evaluation rules",
+        "url": "https://anti-uav.github.io/Evaluate/"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s21",
+    "title": "S21 \u2014 Three.js preparation",
+    "primary_links": [
+      {
+        "label": "Official WebGLRenderer documentation",
+        "url": "https://archive.threejs.org/docs/api/en/renderers/WebGLRenderer.html"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s22",
+    "title": "S22 \u2014 Browser responsiveness profiling",
+    "primary_links": [
+      {
+        "label": "Chrome Long Animation Frames documentation",
+        "url": "https://developer.chrome.com/docs/web-platform/long-animation-frames"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s23",
+    "title": "S23 \u2014 XR accessibility",
+    "primary_links": [
+      {
+        "label": "W3C XR Accessibility User Requirements",
+        "url": "https://www.w3.org/TR/xaur/"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s24",
+    "title": "S24 \u2014 MCAP",
+    "primary_links": [
+      {
+        "label": "Format",
+        "url": "https://mcap.dev/"
+      },
+      {
+        "label": "MIT implementation license",
+        "url": "https://github.com/foxglove/mcap/blob/main/LICENSE"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s25",
+    "title": "S25 \u2014 glTF and asset rights",
+    "primary_links": [
+      {
+        "label": "Khronos glTF",
+        "url": "https://github.com/KhronosGroup/glTF"
+      },
+      {
+        "label": "sample-asset inventory",
+        "url": "https://github.com/KhronosGroup/glTF-Sample-Assets/blob/main/Models/Models.md"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  },
+  {
+    "id": "s26",
+    "title": "S26 \u2014 Constructive team review / adjacent public simulator",
+    "primary_links": [
+      {
+        "label": "MASA SWORD exercise/AAR case",
+        "url": "https://www.masasim.com/en/_files/ugd/8d4563_902d92116f0d4095b51939634373b8ce.pdf"
+      },
+      {
+        "label": "SENTINEL public source",
+        "url": "https://github.com/ryanwelchtech/counter-uas-simulator"
+      }
+    ],
+    "access_date": "2026-10-22",
+    "scope": "See SOURCES.md for inspected/documented/proposed distinction and reuse disposition."
+  }
+]

@@ -1,0 +1,5 @@
+{
+  "url": "https://vyomkavach-api-sw9g.onrender.com/openapi.json",
+  "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>",
+  "elapsed_s": 0.22
+}

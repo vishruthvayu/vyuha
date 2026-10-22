@@ -1,0 +1,77 @@
+{
+  "repo": "MrDeepak211/AEROSHIELD",
+  "sha": "bb590b83fd56ef908cc59f98f254ebda2a46790c",
+  "license": null,
+  "description": null,
+  "homepage": "https://aeroshield-three.vercel.app",
+  "pushed_at": "2026-10-09T14:32:54Z",
+  "tree_count": 31,
+  "paths": [
+    "README.md",
+    "START-MAC.command",
+    "START-WINDOWS.bat",
+    "app.js",
+    "assets/hero-bg.jpg",
+    "assets/logo.png",
+    "assets/recommended.jpg",
+    "assets/replay.jpg",
+    "assets/scenario-border.jpg",
+    "assets/scenario-fog.jpg",
+    "assets/scenario-night.jpg",
+    "assets/scenario-rain.jpg",
+    "assets/scenario-swarm.jpg",
+    "assets/scenario-urban.jpg",
+    "assets/training-bg.jpg",
+    "assets/ui-reference.png",
+    "engine.js",
+    "final.css",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "scenario.css",
+    "scenarios.js",
+    "scripts/validate.cjs",
+    "server.cjs",
+    "styles.css",
+    "tests/e2e_scenarios.py",
+    "tests/e2e_training.py",
+    "vendor/three.LICENSE.txt",
+    "vendor/three.min.js",
+    "world3d.js"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/MrDeepak211/AEROSHIELD/git/trees/main?recursive=1",
+    "status": "200",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/MrDeepak211/AEROSHIELD/bb590b83fd56ef908cc59f98f254ebda2a46790c/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "27da73bbefd3d766246dd98edf5a388107e8b7327143186aa05ba2b7dfe96f1b",
+      "bytes": 13426
+    },
+    {
+      "path": "package.json",
+      "url": "https://raw.githubusercontent.com/MrDeepak211/AEROSHIELD/bb590b83fd56ef908cc59f98f254ebda2a46790c/package.json",
+      "status": "200",
+      "error": null,
+      "sha256": "c12fd7073cf6539aa4c8f004c9cc20c3991a1d7adb5097a098bd098c4f66db9f",
+      "bytes": 401
+    }
+  ],
+  "raw_tree_path_count": 31,
+  "filtered_tree_path_count": 31,
+  "path_filter": "Exclude vendored runtime/build directories for readable inventory; no deletion from any repository.",
+  "git_revision_verification": {
+    "repo": "MrDeepak211/AEROSHIELD",
+    "default_branch": "main",
+    "retrieved_revision": "bb590b83fd56ef908cc59f98f254ebda2a46790c",
+    "git_default_branch_commit": "bb590b83fd56ef908cc59f98f254ebda2a46790c",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  }
+}

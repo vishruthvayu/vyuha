@@ -1,0 +1,45 @@
+{
+  "repo": "meenakshi-kay/VayuRaksha",
+  "sha": "19cfa0b56cca9c3bafbdb7a2256f521714e1903a",
+  "license": null,
+  "description": "Built specifically for unit-level operational readiness, VayuRaksha allows defence personnel to recognize, classify, and neutralize asymmetric rogue drone and swarm threats across varied environments (day/night, atmospheric fog/dust, sensor degradation) without requiring expensive live-fire exercises or specialized GPU hardware.",
+  "homepage": null,
+  "pushed_at": "2026-10-05T13:35:18Z",
+  "tree_count": 0,
+  "paths": [
+    "README.md"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/meenakshi-kay/VayuRaksha/git/trees/main?recursive=1",
+    "status": "403",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/meenakshi-kay/VayuRaksha/19cfa0b56cca9c3bafbdb7a2256f521714e1903a/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "e11beaac2fac6a9663b88cf1579f39c735f0a6b3c41e62e35627e5122512c65f",
+      "bytes": 10204
+    }
+  ],
+  "fallback_revision_receipt": {
+    "method": "git ls-remote named default branch",
+    "exit_code": 0,
+    "error": null
+  },
+  "tree_scope": "Tree API unavailable; fallback pinned README only",
+  "git_revision_verification": {
+    "repo": "meenakshi-kay/VayuRaksha",
+    "default_branch": "main",
+    "retrieved_revision": "19cfa0b56cca9c3bafbdb7a2256f521714e1903a",
+    "git_default_branch_commit": "19cfa0b56cca9c3bafbdb7a2256f521714e1903a",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  "raw_tree_path_count": 1,
+  "filtered_tree_path_count": 1,
+  "path_filter": "Exclude vendored runtime/build directories from readable inventory."
+}

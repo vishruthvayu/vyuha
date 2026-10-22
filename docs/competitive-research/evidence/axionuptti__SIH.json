@@ -1,0 +1,45 @@
+{
+  "repo": "axionuptti/SIH",
+  "sha": "27e26f443b131919779976414fd78e75b3b0df4f",
+  "license": null,
+  "description": null,
+  "homepage": "https://sih-geo-ai-kappa.vercel.app",
+  "pushed_at": "2026-09-21T02:36:54Z",
+  "tree_count": 0,
+  "paths": [
+    "README.md"
+  ],
+  "tree_fetch": {
+    "url": "https://api.github.com/repos/axionuptti/SIH/git/trees/main?recursive=1",
+    "status": "403",
+    "error": null
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/axionuptti/SIH/27e26f443b131919779976414fd78e75b3b0df4f/README.md",
+      "status": "200",
+      "error": null,
+      "sha256": "8345daf1bb7401afcccf79e04ca7afedbde9f4ce4f649ad1fe151687cbc8f747",
+      "bytes": 61010
+    }
+  ],
+  "fallback_revision_receipt": {
+    "method": "git ls-remote named default branch",
+    "exit_code": 0,
+    "error": null
+  },
+  "tree_scope": "Tree API unavailable; fallback pinned README only",
+  "git_revision_verification": {
+    "repo": "axionuptti/SIH",
+    "default_branch": "main",
+    "retrieved_revision": "27e26f443b131919779976414fd78e75b3b0df4f",
+    "git_default_branch_commit": "27e26f443b131919779976414fd78e75b3b0df4f",
+    "match": true,
+    "exit_code": 0,
+    "scope": "Public named-branch Git head confirms source revision; no fetch/execution."
+  },
+  "raw_tree_path_count": 1,
+  "filtered_tree_path_count": 1,
+  "path_filter": "Exclude vendored runtime/build directories from readable inventory."
+}
