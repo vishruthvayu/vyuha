@@ -86,6 +86,18 @@ export function ComplianceBoard({
           </a>
         }
       />
+      <section className="panel advanced-card">
+        <h2>Current capability registry</h2>
+        <p>
+          The source-scoped registry is the current implementation and
+          validation index. The 93-finding audit below preserves its recorded
+          checkpoint; its PASS rows are not automatically final-source
+          acceptance.
+        </p>
+        <a href="/system/evidence#capabilities">
+          Inspect current capabilities, proof and all R01–R40 statuses
+        </a>
+      </section>
       <div className="compliance-intro">
         <p>
           Observe → decide → verify → explain → adapt. These records connect the

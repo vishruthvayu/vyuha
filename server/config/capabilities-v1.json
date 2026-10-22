@@ -1,0 +1,507 @@
+{
+  "schema_version": 1,
+  "title": "VYUHA capability and validation registry",
+  "capabilities": [
+    {
+      "id": "deterministic-training",
+      "title": "Versioned deterministic browser/VR training",
+      "implementation": "IMPLEMENTED",
+      "route": "/",
+      "source_files": [
+        "server/engine.py",
+        "client/src/sim.worker.ts"
+      ],
+      "evidence_ids": [
+        "baseline-2026-10-22"
+      ],
+      "limitations": "Illustrative training functionality; no operational certification."
+    },
+    {
+      "id": "ghost-review",
+      "title": "Server-verified Ghost and immutable replay",
+      "implementation": "IMPLEMENTED",
+      "route": "/?view=aar",
+      "source_files": [
+        "server/review.py",
+        "client/src/Ghost.tsx"
+      ],
+      "evidence_ids": [
+        "baseline-2026-10-22"
+      ],
+      "limitations": "Illustrative training functionality; no operational certification."
+    },
+    {
+      "id": "shared-crew",
+      "title": "Role-attributed Crew and reconnection",
+      "implementation": "IMPLEMENTED",
+      "route": "/crew",
+      "source_files": [
+        "server/crew.py",
+        "client/src/Crew.tsx"
+      ],
+      "evidence_ids": [
+        "baseline-2026-10-22"
+      ],
+      "limitations": "Shared outcomes remain separate from individual learning; physical device acceptance is source-specific."
+    },
+    {
+      "id": "fusion-provenance",
+      "title": "Dispatch-bound Fusion advice receipts",
+      "implementation": "IMPLEMENTED",
+      "route": "/",
+      "source_files": [
+        "server/fusion.py",
+        "client/src/action-evidence.ts"
+      ],
+      "evidence_ids": [
+        "baseline-2026-10-22"
+      ],
+      "limitations": "Illustrative training functionality; no operational certification."
+    },
+    {
+      "id": "portable-evidence",
+      "title": "Validated transfer and restore",
+      "implementation": "IMPLEMENTED",
+      "route": "/transfer",
+      "source_files": [
+        "server/portable.py",
+        "client/src/Transfer.tsx"
+      ],
+      "evidence_ids": [
+        "baseline-2026-10-22"
+      ],
+      "limitations": "Shared-key HMAC is integrity, not donor identity or nonrepudiation."
+    },
+    {
+      "id": "xr-training",
+      "title": "Shared WebXR action integration",
+      "implementation": "IMPLEMENTED",
+      "route": "/",
+      "source_files": [
+        "client/src/VRCockpit.tsx",
+        "client/src/VRWorld.tsx"
+      ],
+      "evidence_ids": [
+        "baseline-2026-10-22"
+      ],
+      "limitations": "Software/emulator evidence only; headset FPS, comfort and trusted separate-device HTTPS remain pending."
+    },
+    {
+      "id": "local-diagnostics",
+      "title": "Opt-in timing diagnostics",
+      "implementation": "PARTIAL",
+      "route": "/system/benchmark",
+      "source_files": [
+        "client/src/diagnostics.ts",
+        "client/src/PerformanceDiagnostics.tsx"
+      ],
+      "evidence_ids": [],
+      "limitations": "Instrumentation under acceptance. Timing correlation is not automatic causal attribution or physical headset FPS."
+    },
+    {
+      "id": "capability-registry",
+      "title": "Source-scoped capability and evidence registry",
+      "implementation": "PARTIAL",
+      "route": "/system/evidence#capabilities",
+      "source_files": [
+        "server/capabilities.py",
+        "client/src/CapabilityRegistry.tsx"
+      ],
+      "evidence_ids": [],
+      "limitations": "Historical validation is scoped to its original source hash."
+    },
+    {
+      "id": "competency-contracts",
+      "title": "Competency/task/evidence contracts",
+      "implementation": "PLANNED",
+      "route": "/academy",
+      "source_files": [
+        "server/learning.py"
+      ],
+      "evidence_ids": [],
+      "limitations": "Next-generation implementation backlog; no completion claim."
+    },
+    {
+      "id": "academy-course",
+      "title": "Academy and assessed progression",
+      "implementation": "PLANNED",
+      "route": "/academy",
+      "source_files": [
+        "client/src/Academy.tsx"
+      ],
+      "evidence_ids": [],
+      "limitations": "Next-generation implementation backlog; no completion claim."
+    }
+  ],
+  "roadmap": [
+    {
+      "id": "R01",
+      "title": "Startup, frame and interaction attribution/budgets",
+      "implementation": "PARTIAL",
+      "checkpoint": "A",
+      "dependencies": []
+    },
+    {
+      "id": "R02",
+      "title": "Canonical capability, claim and evidence registry",
+      "implementation": "PARTIAL",
+      "checkpoint": "A",
+      "dependencies": []
+    },
+    {
+      "id": "R03",
+      "title": "Competency/task/evidence contracts",
+      "implementation": "PLANNED",
+      "checkpoint": "A",
+      "dependencies": []
+    },
+    {
+      "id": "R04",
+      "title": "Controlled learning, retention and transfer pilot",
+      "implementation": "PLANNED",
+      "checkpoint": "A",
+      "dependencies": [
+        "R03",
+        "R06"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Academy with fading scaffolds",
+      "implementation": "PLANNED",
+      "checkpoint": "A",
+      "dependencies": [
+        "R03"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Balanced assessment bank and semantic novelty",
+      "implementation": "PLANNED",
+      "checkpoint": "A",
+      "dependencies": [
+        "R03"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Curriculum-aware, testable Director",
+      "implementation": "PLANNED",
+      "checkpoint": "A",
+      "dependencies": [
+        "R03",
+        "R06"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Calibrated, abstaining observable-only assistance",
+      "implementation": "PLANNED",
+      "checkpoint": "B",
+      "dependencies": [
+        "R03",
+        "R06"
+      ]
+    },
+    {
+      "id": "R09",
+      "title": "Active evidence collection and uncertainty literacy",
+      "implementation": "PLANNED",
+      "checkpoint": "B",
+      "dependencies": [
+        "R03"
+      ]
+    },
+    {
+      "id": "R10",
+      "title": "Causal AAR with evidence graph and reflection",
+      "implementation": "PLANNED",
+      "checkpoint": "B",
+      "dependencies": [
+        "R03"
+      ]
+    },
+    {
+      "id": "R11",
+      "title": "Synchronized evidence workspace",
+      "implementation": "PLANNED",
+      "checkpoint": "B",
+      "dependencies": []
+    },
+    {
+      "id": "R12",
+      "title": "Progressive active-session control hierarchy",
+      "implementation": "PLANNED",
+      "checkpoint": "B",
+      "dependencies": [
+        "R01"
+      ]
+    },
+    {
+      "id": "R13",
+      "title": "Accessible/localized input and presentation system",
+      "implementation": "PLANNED",
+      "checkpoint": "B",
+      "dependencies": []
+    },
+    {
+      "id": "R14",
+      "title": "Spatial/timeline scenario authoring with preview",
+      "implementation": "PLANNED",
+      "checkpoint": "B",
+      "dependencies": [
+        "R03"
+      ]
+    },
+    {
+      "id": "R15",
+      "title": "Evidence-rich longitudinal performance reports",
+      "implementation": "PLANNED",
+      "checkpoint": "B",
+      "dependencies": [
+        "R03",
+        "R06",
+        "R10"
+      ]
+    },
+    {
+      "id": "R16",
+      "title": "Crew communication and readback evidence",
+      "implementation": "PLANNED",
+      "checkpoint": "B",
+      "dependencies": []
+    },
+    {
+      "id": "R17",
+      "title": "Instructor intervention plans and review",
+      "implementation": "PLANNED",
+      "checkpoint": "B",
+      "dependencies": [
+        "R10",
+        "R14",
+        "R16"
+      ]
+    },
+    {
+      "id": "R18",
+      "title": "Role-rotation and coordination curriculum",
+      "implementation": "PLANNED",
+      "checkpoint": "B",
+      "dependencies": [
+        "R03",
+        "R16"
+      ]
+    },
+    {
+      "id": "R19",
+      "title": "Versioned semantic scene packs",
+      "implementation": "PLANNED",
+      "checkpoint": "C",
+      "dependencies": []
+    },
+    {
+      "id": "R20",
+      "title": "Explicit weather/lighting/visibility model",
+      "implementation": "PLANNED",
+      "checkpoint": "C",
+      "dependencies": [
+        "R19"
+      ]
+    },
+    {
+      "id": "R21",
+      "title": "Scalable scene fidelity and transition preparation",
+      "implementation": "PLANNED",
+      "checkpoint": "C",
+      "dependencies": [
+        "R01",
+        "R19"
+      ]
+    },
+    {
+      "id": "R22",
+      "title": "Synthetic signal/acoustic learning laboratory",
+      "implementation": "PLANNED",
+      "checkpoint": "C",
+      "dependencies": [
+        "R03",
+        "R08"
+      ]
+    },
+    {
+      "id": "R23",
+      "title": "Lawful recording adapters and data provenance",
+      "implementation": "PLANNED",
+      "checkpoint": "C",
+      "dependencies": []
+    },
+    {
+      "id": "R24",
+      "title": "Track ambiguity, association and sensor trust drills",
+      "implementation": "PLANNED",
+      "checkpoint": "C",
+      "dependencies": [
+        "R09",
+        "R22"
+      ]
+    },
+    {
+      "id": "R25",
+      "title": "Bounded reactive behavior diversity",
+      "implementation": "PLANNED",
+      "checkpoint": "C",
+      "dependencies": [
+        "R06",
+        "R19"
+      ]
+    },
+    {
+      "id": "R26",
+      "title": "Abstract escalation, restraint and resource tradeoffs",
+      "implementation": "PLANNED",
+      "checkpoint": "C",
+      "dependencies": [
+        "R03"
+      ]
+    },
+    {
+      "id": "R27",
+      "title": "Proficiency passport with optional roster identity",
+      "implementation": "PLANNED",
+      "checkpoint": "C",
+      "dependencies": [
+        "R03",
+        "R06",
+        "R15"
+      ]
+    },
+    {
+      "id": "R28",
+      "title": "Prepared offline deployment kits per platform",
+      "implementation": "PLANNED",
+      "checkpoint": "C",
+      "dependencies": []
+    },
+    {
+      "id": "R29",
+      "title": "Unit readiness/trust and recovery assistant",
+      "implementation": "PLANNED",
+      "checkpoint": "C",
+      "dependencies": [
+        "R28"
+      ]
+    },
+    {
+      "id": "R30",
+      "title": "Optional signed provenance and trust lifecycle",
+      "implementation": "PLANNED",
+      "checkpoint": "C",
+      "dependencies": [
+        "R02",
+        "R27"
+      ]
+    },
+    {
+      "id": "R31",
+      "title": "Physical XR acceptance and ergonomic contracts",
+      "implementation": "PLANNED",
+      "checkpoint": "D",
+      "dependencies": [
+        "R13",
+        "R29"
+      ]
+    },
+    {
+      "id": "R32",
+      "title": "Input-equivalent XR coaching/interaction modes",
+      "implementation": "PLANNED",
+      "checkpoint": "D",
+      "dependencies": [
+        "R05",
+        "R31"
+      ]
+    },
+    {
+      "id": "R33",
+      "title": "Offline learning/log interoperability",
+      "implementation": "PLANNED",
+      "checkpoint": "D",
+      "dependencies": [
+        "R02",
+        "R03",
+        "R23"
+      ]
+    },
+    {
+      "id": "R34",
+      "title": "Reproducible performance/reliability qualification",
+      "implementation": "PLANNED",
+      "checkpoint": "D",
+      "dependencies": [
+        "R01",
+        "R28"
+      ]
+    },
+    {
+      "id": "R35",
+      "title": "Simulation validity and model-card program",
+      "implementation": "PLANNED",
+      "checkpoint": "D",
+      "dependencies": []
+    },
+    {
+      "id": "R36",
+      "title": "Optional offline high-fidelity authoring adapters",
+      "implementation": "PLANNED",
+      "checkpoint": "D",
+      "dependencies": [
+        "R19",
+        "R23",
+        "R35"
+      ]
+    },
+    {
+      "id": "R37",
+      "title": "Constrained language-to-scenario drafting",
+      "implementation": "PLANNED",
+      "checkpoint": "D",
+      "dependencies": [
+        "R14",
+        "R35"
+      ]
+    },
+    {
+      "id": "R38",
+      "title": "Local grounded tutor and reflection dialogue",
+      "implementation": "PLANNED",
+      "checkpoint": "D",
+      "dependencies": [
+        "R03",
+        "R10",
+        "R13"
+      ]
+    },
+    {
+      "id": "R39",
+      "title": "Consent-aware workload and attention research",
+      "implementation": "PLANNED",
+      "checkpoint": "D",
+      "dependencies": [
+        "R04",
+        "R13",
+        "R31"
+      ]
+    },
+    {
+      "id": "R40",
+      "title": "Reproducible research/content governance",
+      "implementation": "PLANNED",
+      "checkpoint": "D",
+      "dependencies": [
+        "R02",
+        "R03",
+        "R35"
+      ]
+    }
+  ]
+}

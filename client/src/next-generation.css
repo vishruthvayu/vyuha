@@ -1,0 +1,16 @@
+/* Additive workflow styles; preserve the premium workstation and import order. */
+#capabilities .table-scroll { max-width: 100%; overflow-x: auto; margin-block: 1rem; }
+#capabilities table { width: 100%; border-collapse: collapse; }
+#capabilities th, #capabilities td { text-align: left; vertical-align: top; padding: .8rem; border-bottom: 1px solid var(--border, #3b4144); }
+#capabilities td { min-width: 10rem; }
+#capabilities code { white-space: normal; overflow-wrap: anywhere; }
+#capabilities details { margin-block: .5rem; }
+#capabilities .table-scroll:focus-visible { outline: 2px solid var(--gold, #d7c48a); outline-offset: 3px; }
+
+#capabilities tbody th { text-transform: none; font-weight: 500; min-width: 12rem; }
+
+#capabilities { min-width: 0; max-width: 100%; }
+#capabilities table { font-size: .85rem; }
+#capabilities tbody th { font-family: inherit; letter-spacing: 0; font-size: .9rem; }
+#capabilities table details { padding: 0; margin: .25rem 0; border: 0; background: transparent; }
+#capabilities table summary { min-height: 40px; display: list-item; padding: .5rem 0; font-size: .8rem; }

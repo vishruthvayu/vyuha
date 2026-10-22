@@ -1,0 +1,162 @@
+✖ guide contains all tabbable controls, isolates background and restores focus on Escape (49.312459ms)
+✖ empty modal traps Tab safely and restores preexisting inert and body overflow (7.775542ms)
+✖ navigation drawer exposes a labelled modal, Escape restores the toggle, skip link focuses content (5.583417ms)
+✖ tour announces changed steps, permits outside focus and restores launcher on Escape (5.397209ms)
+✖ radar contacts expose selectable group semantics and Space activates without scrolling (6.281667ms)
+✖ automatic rendering adaptation uses consecutive samples and respects explicit quality controls (5.035625ms)
+✖ offline installation hook reads document state and follows status lifecycle events (5.585417ms)
+✖ axe checks guide and navigation DOM semantics (layout/contrast excluded from jsdom) (4.881417ms)
+✖ axe checks rendered initial important routes and reports real form/ARIA defects (5.36525ms)
+✖ workspace navigation clears stale review data, stops replay and keeps refreshable native URLs (5.948792ms)
+✖ axe checks populated Ghost/decision path, Fusion uncertainty and Crew coordination evidence (57.161542ms)
+✖ interactive guide advances without operating training and keeps previous step available (4.676583ms)
+✖ exercise history distinguishes pending evidence, selection and exact recorded metadata (4.589ms)
+✖ Crew coordination scroll region participates in ordinary tab order without cancelling navigation keys (4.182208ms)
+✖ source-scoped capability table and opt-in diagnostics preserve native keyboard semantics (3.881375ms)
+✔ timing reports tail stalls and never substitutes median FPS (1.131666ms)
+✔ bounded collection preserves first samples and discloses overflow and stopped state (0.169ms)
+✔ optics and startup are separate and malformed timings cannot poison a report (0.686708ms)
+✔ diagnostics are off by default and report snapshots cannot mutate collected data (0.19225ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 4
+ℹ fail 15
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1545.388625
+
+✖ failing tests:
+
+test at client/src/accessibility.test.tsx:115:1
+✖ guide contains all tabbable controls, isolates background and restores focus on Escape (49.312459ms)
+  ReferenceError: React is not defined
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/accessibility.test.tsx:123:15)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at client/src/accessibility.test.tsx:152:1
+✖ empty modal traps Tab safely and restores preexisting inert and body overflow (7.775542ms)
+  ReferenceError: React is not defined
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/accessibility.test.tsx:162:28)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+
+test at client/src/accessibility.test.tsx:172:1
+✖ navigation drawer exposes a labelled modal, Escape restores the toggle, skip link focuses content (5.583417ms)
+  ReferenceError: React is not defined
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/accessibility.test.tsx:174:5)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+
+test at client/src/accessibility.test.tsx:197:1
+✖ tour announces changed steps, permits outside focus and restores launcher on Escape (5.397209ms)
+  ReferenceError: React is not defined
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/accessibility.test.tsx:198:15)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+
+test at client/src/accessibility.test.tsx:220:1
+✖ radar contacts expose selectable group semantics and Space activates without scrolling (6.281667ms)
+  ReferenceError: React is not defined
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/accessibility.test.tsx:225:5)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+
+test at client/src/accessibility.test.tsx:240:1
+✖ automatic rendering adaptation uses consecutive samples and respects explicit quality controls (5.035625ms)
+  ReferenceError: React is not defined
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/accessibility.test.tsx:250:15)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+
+test at client/src/accessibility.test.tsx:267:1
+✖ offline installation hook reads document state and follows status lifecycle events (5.585417ms)
+  ReferenceError: React is not defined
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/accessibility.test.tsx:272:15)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+
+test at client/src/accessibility.test.tsx:293:1
+✖ axe checks guide and navigation DOM semantics (layout/contrast excluded from jsdom) (4.881417ms)
+  ReferenceError: React is not defined
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/accessibility.test.tsx:295:5)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+
+test at client/src/accessibility.test.tsx:311:1
+✖ axe checks rendered initial important routes and reports real form/ARIA defects (5.36525ms)
+  ReferenceError: React is not defined
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/accessibility.test.tsx:323:32)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+
+test at client/src/accessibility.test.tsx:339:1
+✖ workspace navigation clears stale review data, stops replay and keeps refreshable native URLs (5.948792ms)
+  ReferenceError: React is not defined
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/accessibility.test.tsx:374:15)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+
+test at client/src/accessibility.test.tsx:401:1
+✖ axe checks populated Ghost/decision path, Fusion uncertainty and Crew coordination evidence (57.161542ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 2, in <module>
+  ModuleNotFoundError: No module named 'server'
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/accessibility.test.tsx:416:10)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at client/src/accessibility.test.tsx:498:1
+✖ interactive guide advances without operating training and keeps previous step available (4.676583ms)
+  ReferenceError: React is not defined
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/accessibility.test.tsx:499:15)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+
+test at client/src/accessibility.test.tsx:527:1
+✖ exercise history distinguishes pending evidence, selection and exact recorded metadata (4.589ms)
+  ReferenceError: React is not defined
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/accessibility.test.tsx:550:5)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+
+test at client/src/accessibility.test.tsx:574:1
+✖ Crew coordination scroll region participates in ordinary tab order without cancelling navigation keys (4.182208ms)
+  ReferenceError: React is not defined
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/accessibility.test.tsx:576:5)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+
+test at client/src/accessibility.test.tsx:619:1
+✖ source-scoped capability table and opt-in diagnostics preserve native keyboard semantics (3.881375ms)
+  ReferenceError: React is not defined
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/accessibility.test.tsx:621:5)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)

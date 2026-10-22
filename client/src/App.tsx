@@ -1,3 +1,9 @@
+import PerformanceDiagnostics from "./PerformanceDiagnostics";
+import {
+  currentCapture,
+  diagnosticPhase,
+  diagnosticWorkerDelivery,
+} from "./diagnostics";
 import { ActionEvidenceLedger } from "./action-evidence";
 import { useContactMemory } from "./useContactMemory";
 import { useCommandTransport } from "./useCommandTransport";
@@ -160,9 +166,37 @@ export default function App({
     workspaceViewFromSearch(window.location.search),
   );
   const [phase, setPhase] = useState<Phase>("ready");
+  useEffect(() => {
+    diagnosticPhase(
+      phase === "running"
+        ? "startup"
+        : phase === "complete"
+          ? "review"
+          : "preparation",
+    );
+    const timer =
+      phase === "running"
+        ? setTimeout(() => diagnosticPhase("training"), 3000)
+        : undefined;
+    return () => clearTimeout(timer);
+  }, [phase]);
   const [scenario, setScenario] = useState<Scenario>(initial);
   const [state, setState] = useState<Snapshot>(initialState);
   const [vision, setVision] = useState<Vision>("thermal");
+  const priorVision = useRef(vision);
+  useEffect(() => {
+    const changed = priorVision.current !== vision;
+    priorVision.current = vision;
+    if (
+      !changed ||
+      phase !== "running" ||
+      currentCapture()?.phase === "startup"
+    )
+      return;
+    diagnosticPhase("optics");
+    const timer = setTimeout(() => diagnosticPhase("training"), 1500);
+    return () => clearTimeout(timer);
+  }, [vision, phase]);
   const [tactical, setTactical] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
   const [vrOpen, setVROpen] = useState(false);
@@ -716,6 +750,7 @@ export default function App({
             ? ""
             : (m.note ?? "Exercise timer status changed."),
         );
+      if (m.type === "snapshot") diagnosticWorkerDelivery();
       if (m.type === "snapshot" && m.state) {
         if (m.initialized) {
           workerInitialized.current = true;
@@ -2818,6 +2853,7 @@ export default function App({
             </OfficerGate>
           </div>
         )}
+        <PerformanceDiagnostics />
       </main>
       {notice && (
         <div className="toast" role="status">

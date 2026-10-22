@@ -30,6 +30,8 @@ jobs:
       - name: Verify frontend and Python parity
         run: npm test
         working-directory: client
+      - name: Verify capability registry and evidence references
+        run: .venv/bin/python scripts/check_capabilities.py
       - name: Lint frontend
         run: npm run lint
         working-directory: client

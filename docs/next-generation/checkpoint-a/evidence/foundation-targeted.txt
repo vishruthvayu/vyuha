@@ -1,0 +1,27 @@
+✔ guide contains all tabbable controls, isolates background and restores focus on Escape (171.814208ms)
+✔ empty modal traps Tab safely and restores preexisting inert and body overflow (11.792ms)
+✔ navigation drawer exposes a labelled modal, Escape restores the toggle, skip link focuses content (46.235583ms)
+✔ tour announces changed steps, permits outside focus and restores launcher on Escape (15.8845ms)
+✔ radar contacts expose selectable group semantics and Space activates without scrolling (13.900375ms)
+✔ automatic rendering adaptation uses consecutive samples and respects explicit quality controls (8.696334ms)
+✔ offline installation hook reads document state and follows status lifecycle events (8.167792ms)
+✔ axe checks guide and navigation DOM semantics (layout/contrast excluded from jsdom) (229.760541ms)
+✔ axe checks rendered initial important routes and reports real form/ARIA defects (610.252791ms)
+✔ workspace navigation clears stale review data, stops replay and keeps refreshable native URLs (10.117833ms)
+✔ axe checks populated Ghost/decision path, Fusion uncertainty and Crew coordination evidence (522.621125ms)
+✔ interactive guide advances without operating training and keeps previous step available (30.2105ms)
+✔ exercise history distinguishes pending evidence, selection and exact recorded metadata (32.382167ms)
+✔ Crew coordination scroll region participates in ordinary tab order without cancelling navigation keys (8.224541ms)
+✔ source-scoped capability table and opt-in diagnostics preserve native keyboard semantics (51.694584ms)
+✔ timing reports tail stalls and never substitutes median FPS (1.403583ms)
+✔ bounded collection preserves first samples and discloses overflow and stopped state (0.219791ms)
+✔ optics and startup are separate and malformed timings cannot poison a report (0.990167ms)
+✔ diagnostics are off by default and report snapshots cannot mutate collected data (0.185458ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3130.497833

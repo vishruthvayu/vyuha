@@ -351,6 +351,8 @@ app.include_router(advanced_router)
 
 from .evidence import router as evidence_router
 app.include_router(evidence_router)
+from .capabilities import router as capability_router
+app.include_router(capability_router)
 from .portable import router as portable_router
 app.include_router(portable_router)
 from .recordings import router as recording_router

@@ -1,3 +1,5 @@
+import { CapabilityTable } from "./CapabilityRegistry";
+import PerformanceDiagnostics from "./PerformanceDiagnostics";
 import { spawnSync } from "node:child_process";
 import { testPython } from "./test-python";
 import AdvancedAAR from "./AdvancedAAR";
@@ -612,4 +614,55 @@ test("Crew coordination scroll region participates in ordinary tab order without
   assert.equal((await key(region, "Tab")).defaultPrevented, false);
   document.querySelector<HTMLButtonElement>("#mount > button")!.focus();
   assert.equal(document.activeElement?.textContent, "Continue after timeline");
+});
+
+test("source-scoped capability table and opt-in diagnostics preserve native keyboard semantics", async () => {
+  const result = await audit(
+    <main>
+      <h1>Evidence</h1>
+      <CapabilityTable
+        data={{
+          schema_version: 1,
+          title: "Capabilities",
+          current_source_hash: "a".repeat(64),
+          note: "Historical evidence does not certify changed source.",
+          capabilities: [
+            {
+              id: "test",
+              title: "Training",
+              implementation: "PARTIAL",
+              route: "/",
+              source_files: ["server/main.py"],
+              limitations: "Physical testing pending",
+              validation: [
+                {
+                  id: "old",
+                  freshness: "HISTORICAL_PASS",
+                  current_pass: false,
+                  scopes: ["backend"],
+                  note: "Old revision",
+                },
+              ],
+            },
+          ],
+          roadmap: [],
+        }}
+      />
+      <PerformanceDiagnostics />
+    </main>,
+  );
+  assert.equal(result.violations.length, 0, JSON.stringify(result.violations));
+  assert.equal(
+    document
+      .querySelector('[aria-label="Capability evidence table"]')
+      ?.getAttribute("tabindex"),
+    "0",
+  );
+  const buttons = Array.from(document.querySelectorAll("button"));
+  assert.equal(
+    buttons.find((b) => b.textContent?.includes("Export local timings"))
+      ?.disabled,
+    true,
+  );
+  assert.match(document.body.textContent ?? "", /HISTORICAL PASS/);
 });

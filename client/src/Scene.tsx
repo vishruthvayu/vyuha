@@ -1,3 +1,4 @@
+import { diagnosticFrame } from "./diagnostics";
 import {
   Component,
   useCallback,
@@ -133,6 +134,7 @@ function CameraRig({
     [preset, tracks, selected, referenceTruth, size.width, size.height],
   );
   useFrame(({ clock }, dt) => {
+    diagnosticFrame(dt * 1000);
     if (camera instanceof THREE.PerspectiveCamera) {
       const desiredFov = opticalFov(preset ? 52 : 38, opticalZoom);
       if (Math.abs(camera.fov - desiredFov) > 0.001) {

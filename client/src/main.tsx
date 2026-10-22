@@ -1,3 +1,4 @@
+import { startDiagnostics } from "./diagnostics";
 import React, { Suspense } from "react";
 import CapabilityTour from "./CapabilityTour";
 import { createRoot } from "react-dom/client";
@@ -6,6 +7,7 @@ import "./design-system.css";
 import "./mission-navigation.css";
 import "./crew-officer-polish.css";
 import "./vr.css";
+import "./next-generation.css";
 import "./premium/premium.css";
 import WorkspaceBoundary from "./WorkspaceBoundary";
 import { LoadingWorkspace } from "./UI";
@@ -14,6 +16,8 @@ import Navigation from "./Navigation";
 import { pageComponents } from "./RoutePages";
 import { resolveRoute, officerReviewRequested } from "./routes";
 import OfficerGate from "./OfficerGate";
+if (new URLSearchParams(window.location.search).get("diagnostics") === "1")
+  startDiagnostics();
 const route = resolveRoute(window.location.pathname);
 const Page = route && pageComponents[route.id];
 const officerReview = officerReviewRequested(

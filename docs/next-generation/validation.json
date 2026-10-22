@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "receipts": [
+    {
+      "id": "baseline-2026-10-22",
+      "status": "PASS",
+      "source_hash": "f87104f832e9cb9b03ad18ab3938a23a1a43f1bc51ba95385f540c684c36534a",
+      "source_revision": "5a19fa45391defc2470274554bd68e1fab13faeb",
+      "scopes": [
+        "backend",
+        "frontend",
+        "parity",
+        "historical"
+      ],
+      "artifacts": [
+        {
+          "path": "docs/next-generation/checkpoint-a/evidence/baseline-backend.txt",
+          "sha256": "394d414f2cb16b1f95b21cf2842e7b56ae8620fcd12bbabaff29fc7007ae94b3"
+        },
+        {
+          "path": "docs/next-generation/checkpoint-a/evidence/baseline-frontend.txt",
+          "sha256": "4ada996da3af915686bbcea02ee10df45466c819f8bd7a6cb74ddf5b2afc0fc2"
+        }
+      ],
+      "note": "Fresh baseline: 712 backend /367 frontend passed before implementation. Historical as soon as runtime inputs change. No physical or learning-effectiveness claim."
+    }
+  ]
+}

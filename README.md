@@ -6,7 +6,7 @@ VYUHA is a local-first 3D decision-training prototype. Trainees observe mixed ae
 
 ## Current development and protected releases
 
-Parallel development starts from shared baseline `7e3184b15ba38e8242efc6f80c446c9d861b032e`. Engine, sensor presentation and release engineering live on `feature/vyuha-engine-closure`; the separate frontend developer owns `feature/vyuha-premium-ui`. The UI branch is still in progress. [The handoff and renderer contract](docs/finale/parallel/ENGINE-HANDOFF.md) define ownership and tested checkpoints.
+Next-generation development continues from merged main `5a19fa4` on `feature/vyuha-next-generation`. [Checkpoint A status](docs/next-generation/checkpoint-a/STATUS.md) distinguishes implemented slices, current validation and pending work. The [canonical registry](docs/next-generation/CAPABILITIES.md) retains R01–R40; [the research roadmap](docs/competitive-research/ROADMAP.md) defines acceptance. Previous releases remain protected.
 
 This development is **not yet a validated replacement** for immutable `v1.1.0-rc.2` at `bfe221fb5ad3ac2519277e342761bd770b3e80d8`. Historical RC2 passed 617 backend /172 frontend tests and its stated compatibility gates. `release/v1.0.1`, tag `v1.0.1`, RC1 and RC2 remain unchanged. A new candidate requires reviewed frontend integration and complete merged-source acceptance; stable approval additionally requires physical testing of that actual candidate.
 

@@ -1,3 +1,5 @@
+import { diagnosticPhase, diagnosticWorkerDelivery } from "./diagnostics";
+import PerformanceDiagnostics from "./PerformanceDiagnostics";
 import { PageHeader } from "./UI";
 import { useEffect, useRef, useState } from "react";
 import { makeScenario } from "./scenario";
@@ -153,7 +155,10 @@ export default function Benchmark() {
     });
     worker.current = w;
     w.onmessage = (e) => {
-      if (e.data.type === "snapshot") setState(e.data.state);
+      if (e.data.type === "snapshot") {
+        diagnosticWorkerDelivery();
+        setState(e.data.state);
+      }
       if (e.data.type === "benchmark")
         setTicks((t) => [...t, ...e.data.tick_ms]);
     };
@@ -180,7 +185,9 @@ export default function Benchmark() {
           },
         ]);
       }
+      if (secs >= 3) diagnosticPhase("training");
       if (secs >= duration) {
+        diagnosticPhase("review");
         worker.current?.postMessage({ type: "pause" });
         setRunning(false);
       }
@@ -200,6 +207,7 @@ export default function Benchmark() {
     lastHeapSecond.current = -1;
     frames.current = [];
     setElapsed(0);
+    diagnosticPhase("startup");
     setRunning(true);
     started.current = performance.now();
     worker.current?.postMessage({
@@ -276,6 +284,7 @@ export default function Benchmark() {
           </nav>
         }
       />
+      <PerformanceDiagnostics />
       <p>
         Bounded rendering and worker test. Choose 20, 60 or 180 seconds; a
         180-second Finale fixture remains logically active throughout the
