@@ -9,6 +9,7 @@ import re
 from datetime import datetime
 from pathlib import Path
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import FileResponse
 from .evidence import ROOT, source_hash
 
 router = APIRouter(prefix='/api/v1/system', tags=['Capability evidence'])
@@ -54,8 +55,8 @@ def validate_catalog(data, root=ROOT):
         if row['implementation'] in {'PLANNED', 'EXTERNALLY_BLOCKED', 'DEFERRED'} and row['evidence_ids']:
             raise ValueError('Unimplemented capability cannot claim passed validation')
     backlog = data['roadmap']
-    if {r['id'] for r in backlog} != {f'R{i:02}' for i in range(1, 41)} or len(backlog) != 40:
-        raise ValueError('Registry must retain all forty roadmap recommendations')
+    if not isinstance(backlog, list) or not 40 <= len(backlog) <= 128 or {r['id'] for r in backlog} != {f'R{i:02}' for i in range(1, len(backlog) + 1)}:
+        raise ValueError('Registry must retain R01–R40 and unique contiguous extensions')
     for row in backlog:
         if set(row) != {'id', 'title', 'implementation', 'checkpoint', 'dependencies'} or row['implementation'] not in STATUSES:
             raise ValueError('Invalid roadmap contract')
@@ -131,3 +132,21 @@ def capabilities():
         return registry()
     except (ValueError, KeyError, OSError, TypeError) as error:
         raise HTTPException(503, 'Capability registry unavailable: ' + str(error)[:240]) from error
+
+
+@router.get('/capabilities/receipts/{receipt_id}/artifacts/{artifact_index}')
+def proof_download(receipt_id: str, artifact_index: int):
+    """Download a catalog-bound, hash-checked public artifact; never arbitrary paths."""
+    try:
+        data=json.loads(RECEIPTS.read_text())
+        receipt=next((r for r in data['receipts'] if r.get('id')==receipt_id),None)
+        if receipt is None or receipt.get('status')!='PASS':
+            raise HTTPException(404,'Passed receipt not found')
+        validate_receipt(receipt,source_hash())
+        artifacts=receipt['artifacts']
+        if not 0<=artifact_index<len(artifacts):
+            raise HTTPException(404,'Proof artifact not found')
+        path=safe_file(ROOT,artifacts[artifact_index]['path'],['docs'])
+        return FileResponse(path,filename=path.name,headers={'X-Content-Type-Options':'nosniff','Cache-Control':'no-store'})
+    except (ValueError,KeyError,OSError,TypeError) as error:
+        raise HTTPException(503,'Proof is unavailable or its integrity check failed') from error

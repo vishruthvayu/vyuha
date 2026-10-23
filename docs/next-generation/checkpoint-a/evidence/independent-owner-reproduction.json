@@ -1,0 +1,9 @@
+{
+  "method": "isolated temp DB; raw existing functions; synthetic identities only",
+  "prepared_for": "JOINED-B",
+  "ui_current_identity": "JOINED-A",
+  "preparation_has_owner_field": false,
+  "current_identity_load_status": 404,
+  "current_identity_error": "Learning preparation not found for this trainee",
+  "correct_identity_load_status": "success"
+}

@@ -1,0 +1,55 @@
+{
+  "version": "observation-obligation-pilot-v1",
+  "competency_id": "C01",
+  "status": "SATISFIED",
+  "criterion": "At least one observed track has the proposed contiguous detection window",
+  "obligation": {
+    "start_tick": 0,
+    "end_tick": 1799,
+    "minimum_contiguous_ticks": 15,
+    "maximum_sample_age_ticks": 30
+  },
+  "observed_frames": 7200,
+  "projected_observation_sha256": "b43fcf3d3186a532c15604d139e6c0cf9def4081f23c38f1dc036ba8edfe6ce6",
+  "first_qualifying_window": {
+    "track_id": "T1",
+    "start_tick": 60,
+    "end_tick": 74
+  },
+  "longest_windows": [
+    {
+      "track_id": "T1",
+      "start_tick": 60,
+      "end_tick": 1341,
+      "ticks": 1282
+    },
+    {
+      "track_id": "T2",
+      "start_tick": 63,
+      "end_tick": 1341,
+      "ticks": 1279
+    },
+    {
+      "track_id": "T3",
+      "start_tick": 792,
+      "end_tick": 1799,
+      "ticks": 1008
+    },
+    {
+      "track_id": "T4",
+      "start_tick": 1071,
+      "end_tick": 1655,
+      "ticks": 585
+    }
+  ],
+  "stale_channel_samples": 407,
+  "visible_ambiguous_identity_frames": 4277,
+  "reason": "OBSERVED_WINDOW_PRESENT",
+  "limitation": "Passive synthetic observation-window diagnostic only; no score, human solvability, difficulty equivalence, physical calibration, proficiency or learning benefit is established. Identity ambiguity is permitted.",
+  "item_id": "C01_BASELINE-A_A",
+  "catalog_hash": "5abe5c7920a40c989546bc59abf77c4cb6430f0cd8a8af5dca2a361ac977d345",
+  "seed": 7,
+  "scenario_sha256": "2ec4a9f570f1322dbecfadf0c2cf91a6fc2cd009c03f7c76ab6efe66a3eacc72",
+  "engine_version": "vyuha-0.4.0",
+  "method": "passive existing Python engine; no trainee actions or score writes"
+}

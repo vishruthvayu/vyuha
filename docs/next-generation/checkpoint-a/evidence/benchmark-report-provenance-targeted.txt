@@ -1,0 +1,10 @@
+✔ running benchmark never serializes an expanded receipt or exposes a partial export as final (6.457459ms)
+✔ stopped receipt includes its source and captured viewport for independent reproduction (0.474792ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 396.526042

@@ -1,0 +1,17 @@
+{
+  "commit": "9bc8e59592cd9030b907510b0da93bc03c350fe3",
+  "source_hash": "209c717b7ab6cd5ba0735af5c7ce11e1b55faa2ca0070c334420606b403c5727",
+  "inputs": 434,
+  "scope": "Dirty integrated source frozen before complete backend/frontend/build/lint/format checks; commit binding after unchanged hash verification",
+  "backend": {
+    "passed": 801,
+    "failures": 0,
+    "seconds": 703.81
+  },
+  "frontend": {
+    "passed": 416,
+    "failures": 0,
+    "seconds": 85.076102792
+  },
+  "note": "Complete runs validate frozen209c717b source before the later Training HTTP-rejection correction. Later changes use targeted tests under owner testing policy; final release acceptance remains open."
+}

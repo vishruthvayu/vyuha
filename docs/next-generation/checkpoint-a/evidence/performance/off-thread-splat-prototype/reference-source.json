@@ -1,0 +1,65 @@
+{
+  "method": "Temp-only visual preparation prototype; not integrated browser evidence",
+  "recorded_at": "2026-10-23T11:04:14.991232+00:00",
+  "head": "9bc8e59592cd9030b907510b0da93bc03c350fe3",
+  "reference_files": [
+    {
+      "path": "client/src/world/terrain.ts",
+      "sha256": "b56cd2bc357f07922dca398b9a80eeb992c88c1cb622d2a1af60bf50b4a23290"
+    },
+    {
+      "path": "client/src/world/procedural-textures.ts",
+      "sha256": "0e339960f34111aa526e261a1ee92ba5e644e84d5c9a0dd48e939163640f24bf"
+    },
+    {
+      "path": "client/src/world/Environment.tsx",
+      "sha256": "dad99d85d6fbc7ffed511619b96f4e2e72ca930626e99e263089f0e2dd6d12d0"
+    }
+  ],
+  "prototype_files": [
+    {
+      "path": "/private/tmp/vyuha-splat-worker-prototype/correctness.txt",
+      "sha256": "c037e8ee0b000198d100bd21040cf0872a31c80c3ad14f5b1d78ddfc8cdbc484"
+    },
+    {
+      "path": "/private/tmp/vyuha-splat-worker-prototype/kernel.ts",
+      "sha256": "a06aec716632c51e79752e5d2a26ac9d9ff3eda7aafb281b43c5ad99d95c1e8f"
+    },
+    {
+      "path": "/private/tmp/vyuha-splat-worker-prototype/measure.ts",
+      "sha256": "33d43afe86f9f8742316d1cec0c20accbe586157a0cb71de372086710e042c0f"
+    },
+    {
+      "path": "/private/tmp/vyuha-splat-worker-prototype/measurements.json",
+      "sha256": "33eab6bc2a2a6888173c2c1314807603d9fd73e645d1cf3b8c13addb71da9bf7"
+    },
+    {
+      "path": "/private/tmp/vyuha-splat-worker-prototype/node-worker-adapter.ts",
+      "sha256": "efa865ee36985b0c3fd363638fe553084aa1d3b86e42a84f80cf0a1b39c21422"
+    },
+    {
+      "path": "/private/tmp/vyuha-splat-worker-prototype/package.json",
+      "sha256": "a90fc33418afa2b9cbf4768524b021135b965ecdf993457505bfae3ac44a8428"
+    },
+    {
+      "path": "/private/tmp/vyuha-splat-worker-prototype/prepared-texture.integration.ts",
+      "sha256": "ea3ca87c23d3a76d19e99f278a8764e00dc3c77e4ddf2b1c140d114d15800149"
+    },
+    {
+      "path": "/private/tmp/vyuha-splat-worker-prototype/prototype.test.ts",
+      "sha256": "3808ff2d44d258ddb7e5a589a87342ef55a81530ff92856a7d2a895b33dd7224"
+    },
+    {
+      "path": "/private/tmp/vyuha-splat-worker-prototype/resource.ts",
+      "sha256": "d6efa5ab516daeb1d45d1bae786d1847bda5b2405732a3c7920273c869c85587"
+    },
+    {
+      "path": "/private/tmp/vyuha-splat-worker-prototype/splat.worker.ts",
+      "sha256": "bd0054f5cf8e73242bcea85f84437c90f4a8a05cb6eaeac6137ec44183dbe1b2"
+    },
+    {
+      "path": "/private/tmp/vyuha-splat-worker-prototype/typecheck.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

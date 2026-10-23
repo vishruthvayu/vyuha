@@ -445,3 +445,7 @@ The order describes a dependency-aware direction, not a commitment to build all 
 **Checkpoint C:** R19–R30 simulation/data/deployment proposals selectively enabled behind explicit versions and permissions. New semantic engine versions must pass parity and historical compatibility. Platform kits require actual native testing.
 
 **Checkpoint D:** R31–R40 immersive/research work, with hardware, data rights and participant gates visible. Keep optional tools out of ordinary training requirements. Approve releases based on exact-source software/physical evidence and owner review, never a feature-count target.
+
+## Research expansion — 23 October 2026
+
+The original R01–R40 remain intact. [R41–R48](EXPANSION-2026-10-23.md) add researched proposals, not completed features. The canonical capability index tracks all 48 with dependencies. Their progression begins RESEARCHED; design, implementation, integration, testing and validation require distinct evidence. Current Checkpoint A remains PARTIAL.

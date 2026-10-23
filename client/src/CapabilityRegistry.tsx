@@ -20,6 +20,7 @@ export type CapabilityData = {
       scopes?: string[];
       note?: string;
       error?: string;
+      artifacts?: { path: string; sha256: string }[];
     }[];
   }[];
   roadmap: {
@@ -91,6 +92,21 @@ export function CapabilityTable({ data }: { data: CapabilityData }) {
                             <summary>Validation scope and revision</summary>
                             <p>{v.scopes?.join(" · ")}</p>
                             <small>{v.note ?? v.error}</small>
+                            {!!v.artifacts?.length && (
+                              <ul aria-label="Hashed proof artifacts">
+                                {v.artifacts.map((artifact, index) => (
+                                  <li key={artifact.path}>
+                                    <a
+                                      href={`/api/v1/system/capabilities/receipts/${encodeURIComponent(v.id)}/artifacts/${index}`}
+                                    >
+                                      Download {artifact.path.split("/").at(-1)}
+                                    </a>
+                                    <br />
+                                    <code>{artifact.sha256}</code>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
                             {v.source_revision && (
                               <p>
                                 <code>{v.source_revision}</code>
@@ -107,7 +123,9 @@ export function CapabilityTable({ data }: { data: CapabilityData }) {
         </table>
       </div>
       <details>
-        <summary>Next-generation roadmap: R01–R40</summary>
+        <summary>
+          Next-generation roadmap: {data.roadmap.length} tracked recommendations
+        </summary>
         <ol>
           {data.roadmap.map((r) => (
             <li key={r.id}>

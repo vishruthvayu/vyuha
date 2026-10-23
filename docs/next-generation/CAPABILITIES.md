@@ -15,6 +15,9 @@ Source: `server/config/capabilities-v1.json`. Generate with `scripts/check_capab
 | Competency/task/evidence contracts | PARTIAL | `/academy` | `server/learning.py`, `client/src/LearningEvidence.tsx` |
 | Academy and assessed progression | PARTIAL | `/academy` | `client/src/Academy.tsx`, `server/config/learning-v1.json`, `server/controlled_study.py` |
 | Coverage-first curriculum Director | PARTIAL | `/academy` | `server/learning.py` |
+| Frozen assessment bank | PARTIAL | `/academy` | `server/learning.py`, `server/config/learning-v1.json`, `client/src/Academy.tsx` |
+| Controlled retention and transfer protocol | PARTIAL | `/evaluation` | `server/controlled_study.py`, `client/src/ControlledStudy.tsx` |
+| Observed assessment opportunity diagnostic pilot | PARTIAL | `/evaluation` | `server/assessment_obligations.py`, `client/src/AssessmentDiagnostics.tsx`, `scripts/check_assessment_obligations.py` |
 
 ## Long-term backlog
 
@@ -60,3 +63,11 @@ Source: `server/config/capabilities-v1.json`. Generate with `scripts/check_capab
 | R38 | Local grounded tutor and reflection dialogue | PLANNED | D | R03, R10, R13 |
 | R39 | Consent-aware workload and attention research | PLANNED | D | R04, R13, R31 |
 | R40 | Reproducible research/content governance | PLANNED | D | R02, R03, R35 |
+| R41 | Authored instructional paths and misconception contracts | PLANNED | Research extension | R03, R05, R06 |
+| R42 | Tutor grounding and conformance harness | PLANNED | Research extension | R02, R03, R08, R10, R38 |
+| R43 | Assessment obligation monitors and mutation tests | PARTIAL | Research extension | R06, R14, R35 |
+| R44 | Observer bookmarks, reflection and disagreement review | PLANNED | Research extension | R10, R16, R17 |
+| R45 | Task-level input and accommodation equivalence | PLANNED | Research extension | R13, R31 |
+| R46 | Private end-to-end request lineage | PLANNED | Research extension | R01, R29, R34 |
+| R47 | Asset-build qualification and semantic fidelity gate | PLANNED | Research extension | R01, R19, R21, R34 |
+| R48 | Offline artifact verification and update disposition | PLANNED | Research extension | R02, R28, R30 |

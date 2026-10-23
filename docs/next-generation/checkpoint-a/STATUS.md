@@ -45,3 +45,27 @@ Follow-up verified: demo-mode identity continuity reproduced, fixed and checked 
 R01 attribution/retained-workload follow-up is in progress; see [measured investigation](PERFORMANCE-WORK.md). Current probes measured repeated procedural texture generation before optimization. New measurement code is not yet a checkpoint acceptance or a measured improvement claim.
 
 Loader-order R01 experiment: 385 frontend tests/build/lint/format passed; actual texture builds fell 5→1, but measured worst-frame gap did not improve. Raw paired traces and the rejected exact-noise prototype are retained. R01 and whole Checkpoint A remain PARTIAL; no general performance win is claimed.
+
+
+## Lifecycle, registry and assessment-diagnostic integration — 23 October 2026
+
+Frozen source `209c717b7ab6cd5ba0735af5c7ce11e1b55faa2ca0070c334420606b403c5727`: **801 backend passed** (703.81s), **416 frontend passed** (85.08s), production build, lint and formatting passed. The already-started full runs were preserved; they are not repeated for the later focused Training rejection-message correction. See `evidence/integration-completed.json` and raw integration logs. No final integrated release acceptance is claimed.
+
+Implemented in this batch: append-only officer-controlled withdrawal/dropout, frozen v2 analysis/exclusion contract without rewriting v1, atomic future-ticket launch gate and active-session preservation, maximum-seed wrapping, actual participant-owner launch gating, stale asynchronous ControlledStudy/Evaluation protection, source/viewport benchmark metadata and paused live receipt serialization, historical curriculum proof bindings with hash-checked downloads, and a narrow officer-operated C01 opportunity diagnostic. Independent review reproduced the seed and owner defects; both were corrected with focused regressions.
+
+R41–R48 extend the original tracked backlog. Seven remain PLANNED/RESEARCHED; R43 is PARTIAL/IMPLEMENTING: one passive observed detection opportunity with negative mutations. It establishes no full-bank solvability, classification/response validity or learning gains. Exact kernel/worker prototype tests and slower overall Node preparation are archived outside runtime; that prototype is not integrated.
+
+Actual browser on the frozen source: officer sign-in, read-only C01 reconstruction (7,200 rows, proposed window T1 ticks60–74), synthetic v2 protocol registration, P900 fixture enrollment/preparation/withdrawal, disabled future preparations and retained prepared evidence. No human participant was enrolled. A saved-ticket start was correctly rejected by the backend but displayed a misleading offline message; its correction and targeted tests are recorded separately.
+
+| Item | Current status | Remaining acceptance work |
+|---|---|---|
+| R01 | PARTIAL | Schema6 actual viewport/source receipts now present. Earlier retained series is exploratory after viewport mismatch; matched qualification, optics and remaining startup/geometry/frame-tail work open. |
+| R02 | PARTIAL | 14 capability rows/48 recommendations, historical proof bindings/downloads implemented; complete generated claim/compliance/manifest projections and final-source receipt binding remain. |
+| R03 | PARTIAL | Conservative contracts/evidence implemented; broader objective opportunity/content/validity review remains. |
+| R04 | PARTIAL | Lifecycle, atomic gates and frozen analysis/exclusion contract implemented; baseline-versus-curriculum comparison and registered analysis execution remain. Participant evidence is external. |
+| R05 | PARTIAL | Working Academy/assistance modes; deeper task-specific content, saved learner reflection and explicit advancement remain. |
+| R06 | PARTIAL | Frozen forms/parity preserved; C01 diagnostic pilot added, broader semantic novelty/evidence opportunity/solvability and empirical fairness remain. |
+| R07 | PARTIAL | Coverage-first heuristic preserved; alternative-policy/fairness benchmarks remain; fitting requires data. |
+| R43 | PARTIAL | One C01 diagnostic only; other competency contracts require separate justified monitors. |
+
+Checkpoint A is still IN PROGRESS. Native/physical platform, network and headset validation have not been promoted by these software checks. Protected releases unchanged; no tag/RC created.

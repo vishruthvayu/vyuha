@@ -1,0 +1,44 @@
+{
+  "method": "Exploratory Node CPU/worker microbenchmark only; TSX loader startup is included, not browser frame/FPS or XR evidence. Single process, sequential trials; no controlled hardware/thermal experiment.",
+  "node": "v25.2.1",
+  "platform": "darwin",
+  "arch": "arm64",
+  "resolution": 1024,
+  "trials": [
+    {
+      "run": 0,
+      "direct_kernel_ms": 189.16883299999995,
+      "main_patch_ms": 18.97008299999993,
+      "fresh_node_worker_total_ms": 416.69624999999996,
+      "worker_kernel_ms": 285.7969579999999,
+      "noise_buffer_bytes": 12582912
+    },
+    {
+      "run": 1,
+      "direct_kernel_ms": 241.63408299999992,
+      "main_patch_ms": 10.687291000000187,
+      "fresh_node_worker_total_ms": 413.84016599999995,
+      "worker_kernel_ms": 273.45612500000016,
+      "noise_buffer_bytes": 12582912
+    },
+    {
+      "run": 2,
+      "direct_kernel_ms": 206.25708399999985,
+      "main_patch_ms": 17.970542000000023,
+      "fresh_node_worker_total_ms": 426.5047079999995,
+      "worker_kernel_ms": 292.3386250000003,
+      "noise_buffer_bytes": 12582912
+    }
+  ],
+  "fallback": {
+    "wall_ms": 339.22950000000037,
+    "yielded_chunks": 127,
+    "max_chunk_wall_ms": 5.873500000000604
+  },
+  "memory": {
+    "key_1024_bytes": 12582912,
+    "key_512_bytes": 3145728,
+    "four_production_key_cache_bytes": 31457280,
+    "note": "Retained CPU arrays only; canvas buffers, GPU textures, geometry, Worker runtime and transient allocations excluded."
+  }
+}

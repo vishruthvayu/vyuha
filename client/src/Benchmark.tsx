@@ -1,6 +1,10 @@
 import { newId } from "./unit-state";
 import { benchmarkSettings, benchmarkLink } from "./benchmark-settings";
-import { diagnosticPhase, diagnosticWorkerDelivery } from "./diagnostics";
+import {
+  buildSource,
+  diagnosticPhase,
+  diagnosticWorkerDelivery,
+} from "./diagnostics";
 import PerformanceDiagnostics from "./PerformanceDiagnostics";
 import { PageHeader } from "./UI";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -212,6 +216,12 @@ export default function Benchmark() {
   const [vision, setVision] = useState<Vision>(initial.vision),
     [palette, setPalette] = useState<ThermalPalette>(initial.palette),
     [camera, setCamera] = useState<CameraPreset | "trainee">(initial.camera);
+  const runViewport = useRef({
+    css_width: window.innerWidth,
+    css_height: window.innerHeight,
+    device_pixel_ratio: window.devicePixelRatio,
+    visual_scale: window.visualViewport?.scale ?? null,
+  });
   const lastHeapSecond = useRef(-1);
   const worker = useRef<Worker | null>(null),
     frames = useRef<number[]>([]),
@@ -352,6 +362,12 @@ export default function Benchmark() {
     setElapsed(0);
     diagnosticPhase("startup");
     setRunning(true);
+    runViewport.current = {
+      css_width: window.innerWidth,
+      css_height: window.innerHeight,
+      device_pixel_ratio: window.devicePixelRatio,
+      visual_scale: window.visualViewport?.scale ?? null,
+    };
     started.current = performance.now();
     worker.current?.postMessage({
       type: "init",
@@ -408,7 +424,9 @@ export default function Benchmark() {
   });
   const report = {
     reproduction_path: reproduction,
-    schema_version: 5,
+    schema_version: 6,
+    source: buildSource,
+    viewport_at_run: runViewport.current,
     timing_samples_complete:
       !running && !runIssue && state.tick > 0 && ticks.length === state.tick,
     visibility_interruptions: visibilityInterruptions,
@@ -749,10 +767,7 @@ export default function Benchmark() {
           />
         )}
       </div>
-      <details>
-        <summary>Measurement JSON</summary>
-        <pre id="benchmark-report">{JSON.stringify(report, null, 2)}</pre>
-      </details>
+      <BenchmarkReport running={running} report={report} />
       <button
         className="button subtle"
         title={
@@ -768,5 +783,28 @@ export default function Benchmark() {
         Export measurement JSON
       </button>
     </main>
+  );
+}
+
+/** Avoid live serialization/DOM churn from the increasingly large receipt while measuring. */
+export function BenchmarkReport({
+  running,
+  report,
+}: {
+  running: boolean;
+  report: object;
+}) {
+  return (
+    <details>
+      <summary>Measurement JSON</summary>
+      {running ? (
+        <p role="status">
+          Full receipt is available after the worker acknowledges stop; live
+          JSON rendering is suspended during measurement.
+        </p>
+      ) : (
+        <pre id="benchmark-report">{JSON.stringify(report, null, 2)}</pre>
+      )}
+    </details>
   );
 }

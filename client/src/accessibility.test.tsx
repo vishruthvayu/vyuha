@@ -2,6 +2,7 @@ import { UnitGateway } from "./Unit";
 import Academy from "./Academy";
 import { LearningBanner, LearningEvidence } from "./LearningEvidence";
 import ControlledStudy from "./ControlledStudy";
+import AssessmentDiagnostics from "./AssessmentDiagnostics";
 import type { LearningReview, LearningPreparation } from "./learning";
 import { startDiagnostics, stopDiagnostics } from "./diagnostics";
 import { CapabilityTable } from "./CapabilityRegistry";
@@ -647,6 +648,9 @@ test("source-scoped capability table and opt-in diagnostics preserve native keyb
                   current_pass: false,
                   scopes: ["backend"],
                   note: "Old revision",
+                  artifacts: [
+                    { path: "docs/proof.txt", sha256: "b".repeat(64) },
+                  ],
                 },
               ],
             },
@@ -655,6 +659,7 @@ test("source-scoped capability table and opt-in diagnostics preserve native keyb
         }}
       />
       <PerformanceDiagnostics />
+      <AssessmentDiagnostics />
     </main>,
   );
   assert.equal(result.violations.length, 0, JSON.stringify(result.violations));
@@ -671,6 +676,20 @@ test("source-scoped capability table and opt-in diagnostics preserve native keyb
     true,
   );
   assert.match(document.body.textContent ?? "", /HISTORICAL PASS/);
+  assert.equal(
+    document
+      .querySelector('a[href*="/capabilities/receipts/"]')
+      ?.getAttribute("href"),
+    "/api/v1/system/capabilities/receipts/old/artifacts/0",
+  );
+  assert.equal(
+    document
+      .querySelector<HTMLInputElement>(
+        '[aria-describedby="assessment-diagnostic-seed-help"]',
+      )
+      ?.getAttribute("inputmode"),
+    "numeric",
+  );
 });
 
 const learningFixture = {

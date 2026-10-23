@@ -146,6 +146,8 @@ def attach(db, sid, preparation, trainee, scenario_id):
     if not row:raise HTTPException(404,'Learning preparation not found')
     if row['trainee']!=trainee or row['scenario_id']!=scenario_id:
         raise HTTPException(422,'Learning preparation belongs to another trainee or scenario')
+    from .controlled_study import assert_preparation_launchable
+    assert_preparation_launchable(db,preparation)
     item_for(json.loads(row['context']))
     db.execute('INSERT INTO learning_attempts(session_id,preparation_id,context) VALUES (?,?,?)',(sid,preparation,row['context']))
 
@@ -232,30 +234,34 @@ def progress(trainee:str):
         return coverage(db,trainee)
 
 
-@router.post('/prepare',status_code=201)
-def prepare(req:PrepareLearning):
+def prepare_in_transaction(db, req:PrepareLearning):
+    """Prepare against an existing transaction so protocol lifecycle cannot race."""
     from .crew import is_shared_owner
     data,digest=catalog();body=storage.dumps(req.model_dump())
-    with storage.connect() as db:
-        db.execute('BEGIN IMMEDIATE')
-        if is_shared_owner(db,req.trainee):raise HTTPException(422,'Shared crew cannot prepare an individual curriculum')
-        if not db.execute('SELECT 1 FROM trainees WHERE id=?',(req.trainee,)).fetchone():raise HTTPException(422,'Join a unit before preparing a learning item')
-        old=db.execute('SELECT * FROM learning_preparations WHERE id=?',(req.request_id,)).fetchone()
-        if old:
-            if old['body']!=body:raise HTTPException(409,'Preparation request ID is immutable')
-            spec=json.loads(db.execute('SELECT spec FROM scenarios WHERE id=?',(old['scenario_id'],)).fetchone()['spec'])
-            return dict(preparation_id=old['id'],scenario=spec,context=json.loads(old['context']))
-        if db.execute('SELECT COUNT(*) FROM learning_preparations WHERE trainee=?',(req.trainee,)).fetchone()[0]>=1000:raise HTTPException(422,'Curriculum preparation limit reached')
-        state=coverage(db,req.trainee)
-        try:
-            item,selection=choose_item(data,state,req)
-            ctx=LearningContext(catalog_hash=digest,item_id=item['id'],mode=req.mode,assistance='none' if req.mode=='assessment' else item['assistance'],seed=req.seed,selection=selection).model_dump()
-            spec=compile_item(ctx)
-        except ValueError as error:raise HTTPException(422,str(error)) from error
-        db.execute('INSERT OR IGNORE INTO scenarios VALUES (?,?)',(spec['id'],storage.dumps(spec)))
-        db.execute('INSERT INTO learning_preparations VALUES (?,?,?,?,?,?)',(req.request_id,req.trainee,body,storage.dumps(ctx),spec['id'],datetime.now(timezone.utc).isoformat()))
+    if is_shared_owner(db,req.trainee):raise HTTPException(422,'Shared crew cannot prepare an individual curriculum')
+    if not db.execute('SELECT 1 FROM trainees WHERE id=?',(req.trainee,)).fetchone():raise HTTPException(422,'Join a unit before preparing a learning item')
+    old=db.execute('SELECT * FROM learning_preparations WHERE id=?',(req.request_id,)).fetchone()
+    if old:
+        if old['body']!=body:raise HTTPException(409,'Preparation request ID is immutable')
+        spec=json.loads(db.execute('SELECT spec FROM scenarios WHERE id=?',(old['scenario_id'],)).fetchone()['spec'])
+        return dict(preparation_id=old['id'],scenario=spec,context=json.loads(old['context']))
+    if db.execute('SELECT COUNT(*) FROM learning_preparations WHERE trainee=?',(req.trainee,)).fetchone()[0]>=1000:raise HTTPException(422,'Curriculum preparation limit reached')
+    state=coverage(db,req.trainee)
+    try:
+        item,selection=choose_item(data,state,req)
+        ctx=LearningContext(catalog_hash=digest,item_id=item['id'],mode=req.mode,assistance='none' if req.mode=='assessment' else item['assistance'],seed=req.seed,selection=selection).model_dump()
+        spec=compile_item(ctx)
+    except ValueError as error:raise HTTPException(422,str(error)) from error
+    db.execute('INSERT OR IGNORE INTO scenarios VALUES (?,?)',(spec['id'],storage.dumps(spec)))
+    db.execute('INSERT INTO learning_preparations VALUES (?,?,?,?,?,?)',(req.request_id,req.trainee,body,storage.dumps(ctx),spec['id'],datetime.now(timezone.utc).isoformat()))
     return dict(preparation_id=req.request_id,scenario=spec,context=ctx)
 
+
+@router.post('/prepare',status_code=201)
+def prepare(req:PrepareLearning):
+    with storage.connect() as db:
+        db.execute('BEGIN IMMEDIATE')
+        return prepare_in_transaction(db,req)
 
 @router.get('/preparations/{preparation}')
 def get_preparation(preparation:str,trainee:str):

@@ -1,0 +1,13 @@
+✔ explicit read-only run renders provenance and narrow limitations (1616.397625ms)
+✔ invalid seed prevents execution and seed change discards late result (42.089416ms)
+✔ context remount discards late success and error without automatic requests (34.907875ms)
+✔ officer authorization failures are visible and can be retried (21.809959ms)
+✔ DOM exposes named region, labeled seed and semantic controls (11.650125ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3884.327625

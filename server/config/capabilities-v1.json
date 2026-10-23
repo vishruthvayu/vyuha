@@ -119,7 +119,9 @@
         "server/learning.py",
         "client/src/LearningEvidence.tsx"
       ],
-      "evidence_ids": [],
+      "evidence_ids": [
+        "checkpoint-a-curriculum-software"
+      ],
       "limitations": "Server-reconstructed observations; unavailable evidence is unassessable. No calibrated mastery or certification. Final browser/regression acceptance in progress."
     },
     {
@@ -132,7 +134,9 @@
         "server/config/learning-v1.json",
         "server/controlled_study.py"
       ],
-      "evidence_ids": [],
+      "evidence_ids": [
+        "checkpoint-a-curriculum-software"
+      ],
       "limitations": "Fading practice and four assessment forms implemented as a vertical slice. Structural blueprint balance is not empirical fairness; participant learning and retention evidence unavailable."
     },
     {
@@ -143,8 +147,52 @@
       "source_files": [
         "server/learning.py"
       ],
-      "evidence_ids": [],
+      "evidence_ids": [
+        "checkpoint-a-curriculum-software"
+      ],
       "limitations": "Frozen coverage/recent-item selection snapshots; deterministic heuristic, no fitted model or demonstrated learning efficacy."
+    },
+    {
+      "id": "assessment-bank",
+      "title": "Frozen assessment bank",
+      "implementation": "PARTIAL",
+      "route": "/academy",
+      "source_files": [
+        "server/learning.py",
+        "server/config/learning-v1.json",
+        "client/src/Academy.tsx"
+      ],
+      "evidence_ids": [
+        "checkpoint-a-curriculum-software"
+      ],
+      "limitations": "Structural form separation and deterministic compilation are implemented. Broader observable-opportunity, semantic novelty and empirical fairness validation remain incomplete."
+    },
+    {
+      "id": "controlled-pilot",
+      "title": "Controlled retention and transfer protocol",
+      "implementation": "PARTIAL",
+      "route": "/evaluation",
+      "source_files": [
+        "server/controlled_study.py",
+        "client/src/ControlledStudy.tsx"
+      ],
+      "evidence_ids": [
+        "checkpoint-a-curriculum-software"
+      ],
+      "limitations": "Earlier software receipt covers frozen protocol, allocation, consent and phase gates only. Later lifecycle changes require fresh validation. No participants, learning gains or empirical power established."
+    },
+    {
+      "id": "assessment-opportunity-pilot",
+      "title": "Observed assessment opportunity diagnostic pilot",
+      "implementation": "PARTIAL",
+      "route": "/evaluation",
+      "source_files": [
+        "server/assessment_obligations.py",
+        "client/src/AssessmentDiagnostics.tsx",
+        "scripts/check_assessment_obligations.py"
+      ],
+      "evidence_ids": [],
+      "limitations": "One frozen C01 detection assessment; proposed15-tick opportunity only. No classification/response solvability, empirical fairness, physical calibration or human learning claim. Current integrated regression/browser checks required."
     }
   ],
   "roadmap": [
@@ -515,6 +563,96 @@
         "R02",
         "R03",
         "R35"
+      ]
+    },
+    {
+      "id": "R41",
+      "title": "Authored instructional paths and misconception contracts",
+      "implementation": "PLANNED",
+      "checkpoint": "Research extension",
+      "dependencies": [
+        "R03",
+        "R05",
+        "R06"
+      ]
+    },
+    {
+      "id": "R42",
+      "title": "Tutor grounding and conformance harness",
+      "implementation": "PLANNED",
+      "checkpoint": "Research extension",
+      "dependencies": [
+        "R02",
+        "R03",
+        "R08",
+        "R10",
+        "R38"
+      ]
+    },
+    {
+      "id": "R43",
+      "title": "Assessment obligation monitors and mutation tests",
+      "implementation": "PARTIAL",
+      "checkpoint": "Research extension",
+      "dependencies": [
+        "R06",
+        "R14",
+        "R35"
+      ]
+    },
+    {
+      "id": "R44",
+      "title": "Observer bookmarks, reflection and disagreement review",
+      "implementation": "PLANNED",
+      "checkpoint": "Research extension",
+      "dependencies": [
+        "R10",
+        "R16",
+        "R17"
+      ]
+    },
+    {
+      "id": "R45",
+      "title": "Task-level input and accommodation equivalence",
+      "implementation": "PLANNED",
+      "checkpoint": "Research extension",
+      "dependencies": [
+        "R13",
+        "R31"
+      ]
+    },
+    {
+      "id": "R46",
+      "title": "Private end-to-end request lineage",
+      "implementation": "PLANNED",
+      "checkpoint": "Research extension",
+      "dependencies": [
+        "R01",
+        "R29",
+        "R34"
+      ]
+    },
+    {
+      "id": "R47",
+      "title": "Asset-build qualification and semantic fidelity gate",
+      "implementation": "PLANNED",
+      "checkpoint": "Research extension",
+      "dependencies": [
+        "R01",
+        "R19",
+        "R21",
+        "R34"
+      ]
+    },
+    {
+      "id": "R48",
+      "title": "Offline artifact verification and update disposition",
+      "implementation": "PLANNED",
+      "checkpoint": "Research extension",
+      "dependencies": [
+        "R02",
+        "R28",
+        "R30"
       ]
     }
   ]

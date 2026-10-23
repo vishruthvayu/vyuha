@@ -95,7 +95,7 @@ export function ComplianceBoard({
           acceptance.
         </p>
         <a href="/system/evidence#capabilities">
-          Inspect current capabilities, proof and all R01–R40 statuses
+          Inspect current capabilities, proof and tracked roadmap statuses
         </a>
       </section>
       <div className="compliance-intro">

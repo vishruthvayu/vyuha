@@ -1,0 +1,30 @@
+✔ prototype noise code is exactly the current authoritative visual kernel (1.384542ms)
+✔ exact current-source base/patch bytes: urban_outpost/16 (3.135834ms)
+✔ exact current-source base/patch bytes: urban_outpost/512 (419.833666ms)
+✔ exact current-source base/patch bytes: urban_outpost/1024 (1013.474167ms)
+✔ exact current-source base/patch bytes: rural_forward_base/16 (0.590291ms)
+✔ exact current-source base/patch bytes: rural_forward_base/512 (245.432125ms)
+✔ exact current-source base/patch bytes: rural_forward_base/1024 (659.722333ms)
+✔ incremental fallback preserves bytes and yields between bounded row chunks (8.140708ms)
+✔ incremental fallback aborts on a lifecycle change without returning pixels (0.76ms)
+✔ actual module worker transfers the same typed-array bytes/16 (88.559917ms)
+✔ actual module worker transfers the same typed-array bytes/1024 (557.133125ms)
+✔ one worker, shared promise, isolated terrain cache and suspense retries (0.935667ms)
+✔ stale or mismatched worker result cannot populate the current context (0.443833ms)
+✔ worker constructor uses equivalent bounded fallback (0.280208ms)
+✔ worker post uses equivalent bounded fallback (0.204417ms)
+✔ worker error uses equivalent bounded fallback (0.175166ms)
+✔ worker messageerror uses equivalent bounded fallback (0.180667ms)
+✔ worker malformed uses equivalent bounded fallback (0.1805ms)
+✔ worker timeout uses equivalent bounded fallback (6.152959ms)
+✔ clear rejects active/queued work and old callbacks cannot change new resources (0.819ms)
+✔ unbounded input resolution is rejected before worker creation (0.14875ms)
+✔ queued context snapshots cannot be changed by mutating caller input (0.383ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3279.929459

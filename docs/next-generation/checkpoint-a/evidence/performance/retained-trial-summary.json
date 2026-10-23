@@ -1,5 +1,5 @@
 {
-  "scope": "Software measurements on owner-identified MacBook Air M1; RAM unverified; IAB, CSS1440x900 scale1; fixed Medium, rural/night, thermal. No full cold driver guarantee. Manual report/trace pairing; benchmark schema5 lacks embedded source. 200-short timing capture stopped ~1 second before final worker receipt; not a full paired window. Repeated8 JSON details were expanded, other measurements collapsed; UI work differs. Optics capture exploratory and not qualification (adjacent test activity).",
+  "scope": "Software measurements on owner-identified MacBook Air M1; RAM unverified; IAB, CSS1440x900 scale1; fixed Medium, rural/night, thermal. No full cold driver guarantee. Manual report/trace pairing; benchmark schema5 lacks embedded source. 200-short timing capture stopped ~1 second before final worker receipt; not a full paired window. Repeated8 JSON details were expanded, other measurements collapsed; UI work differs. Optics capture exploratory and not qualification (adjacent test activity). CORRECTION: Post-series DOM measured1126x904 CSS,dpr1.8,scale1. Earlier1440x900 override was not retained; schema5 lacks at-run viewport. All trials exploratory, not fixed1440x900 qualification.",
   "trials": [
     {
       "trial": "retained-8-corrected",

@@ -1,4 +1,5 @@
 import ControlledStudy from "./ControlledStudy";
+import AssessmentDiagnostics from "./AssessmentDiagnostics";
 import { PageHeader } from "./UI";
 import { useEffect, useRef, useState } from "react";
 import { api, download } from "./storage";
@@ -16,37 +17,102 @@ type Pilot = {
   protocol: string;
 };
 export default function Evaluation({ identity }: { identity?: UnitIdentity }) {
+  return (
+    <EvaluationWorkspace
+      key={identity?.trainee_id ?? "unjoined"}
+      identity={identity}
+    />
+  );
+}
+function EvaluationWorkspace({ identity }: { identity?: UnitIdentity }) {
   const key = `vyuha-evaluation:${identity?.trainee_id ?? "local"}`,
-    [eid, setEid] = useState(localStorage.getItem(key) ?? ""),
+    [eid, setEid] = useState(() => localStorage.getItem(key) ?? ""),
     [pilot, setPilot] = useState<Pilot | null>(null),
     [participant, setParticipant] = useState("P01"),
     [consent, setConsent] = useState(false),
     [drills, setDrills] = useState(3),
-    [error, setError] = useState("");
+    [error, setError] = useState(""),
+    [busy, setBusy] = useState(false);
   const request = useRef(newId());
-  async function refresh() {
-    if (eid) setPilot(await api<Pilot>(`/evaluations/${eid}`));
-  }
+  const scope = useRef(0);
+  const pending = useRef(false);
   useEffect(() => {
-    void refresh().catch((e) => setError(e.message));
-  }, [eid]);
-  async function start() {
-    try {
-      const p = await api<Pilot>("/evaluations", {
-        request_id: request.current,
-        trainee_id: identity?.trainee_id ?? "CADET-01",
-        participant,
-        consent,
-        drills,
-        seed: 62147,
-      });
-      setEid(p.id);
-      localStorage.setItem(key, p.id);
-      setPilot(p);
+    const active = ++scope.current;
+    const current = () => active === scope.current;
+    if (eid) {
+      pending.current = true;
+      setBusy(true);
+      setPilot((previous) => (previous?.id === eid ? previous : null));
       setError("");
-    } catch (e) {
-      setError((e as Error).message);
+      void api<Pilot>(`/evaluations/${encodeURIComponent(eid)}`)
+        .then((next) => {
+          if (!current()) return;
+          if (next.id !== eid)
+            throw new Error("Evaluation response does not match this protocol");
+          setPilot(next);
+        })
+        .catch((e) => {
+          if (current()) setError((e as Error).message);
+        })
+        .finally(() => {
+          if (current()) {
+            pending.current = false;
+            setBusy(false);
+          }
+        });
     }
+    return () => {
+      scope.current++;
+      pending.current = false;
+    };
+  }, [eid]);
+  async function perform(
+    path: string,
+    body: unknown | undefined,
+    expectedId?: string,
+  ) {
+    if (pending.current) return;
+    const active = ++scope.current;
+    const current = () => active === scope.current;
+    pending.current = true;
+    setBusy(true);
+    setError("");
+    try {
+      const next = await api<Pilot>(path, body);
+      if (!current()) return;
+      if (expectedId && next.id !== expectedId)
+        throw new Error("Evaluation response does not match this protocol");
+      if (!expectedId) {
+        localStorage.setItem(key, next.id);
+        setEid(next.id);
+      }
+      setPilot(next);
+    } catch (e) {
+      if (current()) setError((e as Error).message);
+    } finally {
+      if (current()) {
+        pending.current = false;
+        setBusy(false);
+      }
+    }
+  }
+  function refresh() {
+    if (eid)
+      return perform(`/evaluations/${encodeURIComponent(eid)}`, undefined, eid);
+  }
+  function start() {
+    return perform("/evaluations", {
+      request_id: request.current,
+      trainee_id: identity?.trainee_id ?? "CADET-01",
+      participant,
+      consent,
+      drills,
+      seed: 62147,
+    });
+  }
+  function editRequest() {
+    request.current = newId();
+    setError("");
   }
   return (
     <main className="instructor-page advanced-page utility-page">
@@ -67,6 +133,7 @@ export default function Evaluation({ identity }: { identity?: UnitIdentity }) {
         validation.
       </p>
       {error && <p role="alert">{error}</p>}
+      {busy && <p role="status">Loading evaluation protocol…</p>}
       {!pilot ? (
         <section className="panel advanced-card">
           <label>
@@ -75,14 +142,22 @@ export default function Evaluation({ identity }: { identity?: UnitIdentity }) {
               value={participant}
               pattern="P[0-9]{2,4}"
               maxLength={5}
-              onChange={(e) => setParticipant(e.target.value)}
+              disabled={busy}
+              onChange={(e) => {
+                editRequest();
+                setParticipant(e.target.value);
+              }}
             />
           </label>
           <label>
             Adaptive drills
             <select
               value={drills}
-              onChange={(e) => setDrills(Number(e.target.value))}
+              disabled={busy}
+              onChange={(e) => {
+                editRequest();
+                setDrills(Number(e.target.value));
+              }}
             >
               {[3, 4, 5].map((n) => (
                 <option key={n}>{n}</option>
@@ -93,13 +168,17 @@ export default function Evaluation({ identity }: { identity?: UnitIdentity }) {
             <input
               type="checkbox"
               checked={consent}
-              onChange={(e) => setConsent(e.target.checked)}
+              disabled={busy}
+              onChange={(e) => {
+                editRequest();
+                setConsent(e.target.checked);
+              }}
             />
             Participant has agreed to this informal evaluation
           </label>
           <button
             className="button primary"
-            disabled={!consent}
+            disabled={!consent || busy}
             onClick={() => void start()}
           >
             Create evaluation protocol
@@ -127,17 +206,22 @@ export default function Evaluation({ identity }: { identity?: UnitIdentity }) {
           </a>
           <button
             className="button subtle"
-            onClick={() => void refresh().catch((e) => setError(e.message))}
+            disabled={busy}
+            onClick={() => void refresh()}
           >
             Refresh protocol results
           </button>
           <button
             className="button primary"
-            disabled={!pilot.pre || pilot.drills.length < pilot.drills_required}
+            disabled={
+              busy || !pilot.pre || pilot.drills.length < pilot.drills_required
+            }
             onClick={() =>
-              void api<Pilot>(`/evaluations/${eid}/post`, {})
-                .then(setPilot)
-                .catch((e) => setError(e.message))
+              void perform(
+                `/evaluations/${encodeURIComponent(eid)}/post`,
+                {},
+                eid,
+              )
             }
           >
             Prepare post-test
@@ -197,6 +281,7 @@ export default function Evaluation({ identity }: { identity?: UnitIdentity }) {
         </section>
       )}
       <ControlledStudy identity={identity} />
+      <AssessmentDiagnostics key={key} />
     </main>
   );
 }

@@ -1,0 +1,22 @@
+{
+  "scope": "Controlled pilot backend lifecycle targeted synthetic regression",
+  "recorded_at": "2026-10-23T10:56:41.800100+00:00",
+  "command": ".venv/bin/python -m pytest -q -p no:cacheprovider server/tests/test_controlled_lifecycle.py server/tests/test_controlled_study.py server/tests/test_learning.py",
+  "passed": 36,
+  "failed": 0,
+  "elapsed_seconds": 32.05,
+  "warnings": [
+    "Existing Starlette/httpx TestClient deprecation"
+  ],
+  "source_files": {
+    "server/controlled_study.py": "fb6179d1358702408410c38c95e19301fbca37641c589b3d3f2f633088e62a29",
+    "server/learning.py": "72131dd290798314b3e96823b67e66558d3157656472c03f055a69e39079fa65",
+    "server/tests/test_controlled_lifecycle.py": "5b049d076c1d63005edea15b38a0e1773c27fbf4d79a49428d2f11b836d67795"
+  },
+  "log_sha256": "4ae8b68967832c7363c4815e5ec2c6c8f21f264f5c6304a52d1f234218c55c0e",
+  "limitations": [
+    "Author-performed focused security pass; independent whole-product review remains separate.",
+    "No participant outcomes or human efficacy evidence.",
+    "Full integrated final-source regression remains separate."
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "id": "study_7b78dc8c26ec4c8684b8fd417e3ae252",
+  "protocol": {
+    "allocation": "Seeded permuted blocks of two; full versus faded practice guidance",
+    "analysis_contract": {
+      "allocation": "Seeded permuted blocks of two compare full versus faded guidance only, not adaptive versus baseline policy.",
+      "estimand": "Descriptive within-participant competency evidence change after full versus faded guidance; not a causal learning-effect estimate.",
+      "exclusions": [
+        "Phase incomplete or not server verified: outcome missing, never scored as zero.",
+        "Observed execution ticks below the frozen exposure minimum: retain evidence but exclude that phase from registered exposure-qualified summaries.",
+        "Undefined assessed denominator: report unassessable and missing rate; do not impute a correct rate.",
+        "A terminal disposition blocks new preparation and new session creation. Already-created sessions may finish; their evidence is retained and labeled with the disposition."
+      ],
+      "missing_data": "No imputation, last-observation carry-forward, silent replacement or exclusion based on poor score. Available eligible paired phases only; publish missingness and dispositions by arm.",
+      "population": "All consented allocated participants remain in the disposition report, including missing phases and terminal dispositions.",
+      "power": "Intended sample is an enrollment ceiling, not a power calculation. Empirical form equivalence and participant evaluation remain external requirements.",
+      "primary": {
+        "denominator": "One competency/contact/session vote from server-reconstructed evidence; unassessable observations reported separately.",
+        "measure": "correct / (correct + incorrect) for the registered competency, immediate minus baseline; undefined when either denominator is zero",
+        "phases": [
+          "baseline",
+          "immediate"
+        ]
+      },
+      "reporting": "Participant counts, phase coverage, exposure exclusions and descriptive arm summaries only. No p-value, causal efficacy, calibrated mastery or operational certification is implied.",
+      "secondary": [
+        {
+          "measure": "The same descriptive change; report available pair counts and missing pair counts separately.",
+          "phases": [
+            "baseline",
+            "retention"
+          ]
+        },
+        {
+          "measure": "The same descriptive change; report available pair counts and missing pair counts separately.",
+          "phases": [
+            "baseline",
+            "transfer"
+          ]
+        }
+      ],
+      "terminal_dispositions": "withdrawn and dropout are append-only officer records. Neither permits reactivation; no training evidence is erased or reinterpreted.",
+      "version": "controlled-analysis-v1"
+    },
+    "catalog_hash": "5abe5c7920a40c989546bc59abf77c4cb6430f0cd8a8af5dca2a361ac977d345",
+    "competency": "C02",
+    "forms": {
+      "baseline": "baseline-a",
+      "immediate": "immediate-b",
+      "retention": "retention-c",
+      "transfer": "transfer-d"
+    },
+    "intended_sample": 2,
+    "limitations": [
+      "Pilot infrastructure only; no participants or human efficacy are implied.",
+      "Structural form balance does not establish empirical equivalence.",
+      "Allocation is not blinded; local trainee identifiers are not strong research identity.",
+      "Facilitator must obtain appropriate consent/review before enrolling people. No operational certification."
+    ],
+    "minimum_observed_ticks": 1620,
+    "phases": [
+      "baseline",
+      "practice1",
+      "practice2",
+      "practice3",
+      "immediate",
+      "retention",
+      "transfer"
+    ],
+    "practice_count": 3,
+    "primary_outcome": "Descriptive immediate-minus-baseline correct proportion for the registered competency, with assessable denominators, incorrect/unassessable counts and original score reported separately",
+    "protocol_hash": "a4f7b1d223fe9ef825e5067d9e4cab01c4a3f34f0fb084a230245d4246aae2f1",
+    "retention_hours": 24,
+    "secondary_outcomes": [
+      "Delayed retention observations",
+      "Novel semantic transfer-form observations"
+    ],
+    "seed": 62147,
+    "seed_schedule": "Practice uses (registered seed + practice ordinal) modulo 2^32; assessment uses registered seed.",
+    "transfer_question": "SYNTHETIC BROWSER QA ONLY — verify lifecycle gating, not a participant study.",
+    "version": "controlled-pilot-v2"
+  },
+  "participants": [
+    {
+      "id": "participant_c60bd0be6e1a4517a2b3b9028a38b296",
+      "trainee": "T_cc75652619ba45e49af092",
+      "participant": "P900",
+      "arm": "faded",
+      "consented_at": "2026-10-23T11:10:52.259622+00:00",
+      "lifecycle_status": "withdrawn",
+      "dispositions": [
+        {
+          "id": "disposition_96fc00017e6b434d8918acf1de42ac4c",
+          "disposition": "withdrawn",
+          "reason": "SYNTHETIC QA ONLY — validate terminal launch gate; no human participant.",
+          "request_id": "251cb0b0-69bf-4a43-8efe-4d460f604b8c",
+          "recorded_at": "2026-10-23T11:11:23.306200+00:00"
+        }
+      ],
+      "attempts": [
+        {
+          "phase": "baseline",
+          "session_id": null,
+          "status": "prepared",
+          "completed_at": null,
+          "observed_ticks": null,
+          "exposure_eligible": false,
+          "scorecard": null,
+          "evidence": null
+        }
+      ]
+    }
+  ],
+  "note": "Missing outcomes remain missing. No human learning gain, causal effect or readiness is inferred."
+}
