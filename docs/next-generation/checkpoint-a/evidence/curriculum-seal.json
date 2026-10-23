@@ -1,0 +1,65 @@
+{
+  "validated_runtime_commit": "9e1dff153fc5d4bde7df8fc8b372ec9c2d89d4c2",
+  "source_hash": "eabacc22493f644b01c76d71657f3f8e4b71bf0c83b59857af97c8651341efc5",
+  "backend_tests": 746,
+  "frontend_tests": 380,
+  "additional_curriculum_parity_checkpoints": 300,
+  "individual_curriculum_items": 50,
+  "checkpoint_a_accepted": false,
+  "performance_improvement_claimed": false,
+  "human_learning_gain_claimed": false,
+  "artifacts": [
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/curriculum-backend-frozen.txt",
+      "sha256": "78d2cb39c9fb07e3f42a39a8bb3790cd1b22f38284e252aac6e7d53ade7d0d8f"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/curriculum-backend-receipt.json",
+      "sha256": "b77449238736b25e338cb2522284052a8e35fffdcfb8d7fb821c1afcb16f38c1"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/curriculum-frontend-current-source.txt",
+      "sha256": "2b22c2a78571b781d257445fd337828b994e853fb01c18fbe5bcaface947d1cf"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/curriculum-build-current-source.txt",
+      "sha256": "573c3afe243fe29796ddbcf7f9eaa52e93ac63b62565897588b855345f476428"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/curriculum-lint-current-source.txt",
+      "sha256": "32d4bb591374b737c9958b9642a966d5e7c16a83977e86bbb1f18e22a0435a93"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/curriculum-format-current-source.txt",
+      "sha256": "6ba267e04ba26638734b104b5f77c53844e29805620e64e29cfa4ffb4f816c01"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/curriculum-runtime-source.json",
+      "sha256": "dddab845b30e1f22cda8f52f25c8e1bc05adcc09706ba67225fadc6ae3ac2da2"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/browser-current.md",
+      "sha256": "19c71eaac44b40d78a124922a7afc2948d52dd568be71e77f87f5249b75bdde0"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/browser-session-receipt.json",
+      "sha256": "7a052771fd4d21c5666ea644d54cedfce56687df908f5ae82fbae8701fe71789"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/academy-ghost-desktop.png",
+      "sha256": "8443039c3f190795c2fa311551000fad8c5a98f243f95a001a00116d2a887a52"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/academy-mobile.png",
+      "sha256": "8e7e245bb0b6408bb13b4d36ef1b600515ecdd5a0706b98c09224c2d666cf124"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/assessment-mobile.png",
+      "sha256": "56b34f7940c652915ea7db2a1f19f8410f5bfbc6410977375cb57136f2478f4b"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/controlled-protocol-desktop.png",
+      "sha256": "d1a10c8a2f7df696d5b612d1812dbc3af5c71c434a048d661c0016584a8e38de"
+    }
+  ]
+}

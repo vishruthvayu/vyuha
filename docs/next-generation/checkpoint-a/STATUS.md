@@ -37,3 +37,5 @@ Baseline logs are receipts for the baseline source hash. Implementation immediat
 No authoritative engine, sensor truth, score formula, historical fixture, Crew role or Fusion ownership rule has been changed in this foundation slice. No new release or tag. Existing test totals do not close performance, physical or learning-validity gates.
 
 Next executable work: finish the frozen-source regression, commit the verified curriculum milestone, then close remaining Checkpoint A performance, registry, content and protocol acceptance. Keep a continuously runnable build and run all required final-source checks before declaring Checkpoint A accepted.
+
+Verified curriculum implementation commit: `9e1dff153fc5d4bde7df8fc8b372ec9c2d89d4c2` (pushed). Runtime seal: [curriculum-seal.json](evidence/curriculum-seal.json). Later documentation-only commits do not change this source hash.
