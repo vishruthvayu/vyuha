@@ -13,7 +13,7 @@ Source: `server/config/capabilities-v1.json`. Generate with `scripts/check_capab
 | Opt-in timing diagnostics | PARTIAL | `/system/benchmark` | `client/src/diagnostics.ts`, `client/src/PerformanceDiagnostics.tsx` |
 | Source-scoped capability and evidence registry | PARTIAL | `/system/evidence#capabilities` | `server/capabilities.py`, `client/src/CapabilityRegistry.tsx` |
 | Competency/task/evidence contracts | PARTIAL | `/academy` | `server/learning.py`, `client/src/LearningEvidence.tsx` |
-| Academy and assessed progression | PARTIAL | `/academy` | `client/src/Academy.tsx`, `server/config/learning-v1.json`, `server/controlled_study.py` |
+| Academy and assessed progression | PARTIAL | `/academy` | `client/src/Academy.tsx`, `server/config/learning-v1.json`, `server/controlled_study.py`, `client/src/LearnerReflection.tsx`, `server/learning_reflection.py` |
 | Coverage-first curriculum Director | PARTIAL | `/academy` | `server/learning.py` |
 | Frozen assessment bank | PARTIAL | `/academy` | `server/learning.py`, `server/config/learning-v1.json`, `client/src/Academy.tsx` |
 | Controlled retention and transfer protocol | PARTIAL | `/evaluation` | `server/controlled_study.py`, `client/src/ControlledStudy.tsx` |

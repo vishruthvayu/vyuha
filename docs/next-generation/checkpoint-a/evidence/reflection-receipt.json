@@ -1,0 +1,60 @@
+{
+  "parent_revision": "fc1b30ebd018e9e434c897ea036ecab3392632fa",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_hash": "ab1102e7a3706f5c5e474f7a60a748f45027b457430ea88a7121fc4f074ae878",
+  "scope": "R05 append-only reflection and explicit Academy progression; synthetic QA only",
+  "targeted_backend_pass": 21,
+  "targeted_frontend_reflection_pass": 5,
+  "selected_academy_accessibility_pass": 2,
+  "incremental_types": true,
+  "changed_file_lint_and_format": true,
+  "browser": "Actual IAB development preview8040 and disposable backend8041: own verified practice save/reload, exactly one saved note, original sessions and skill_profiles table hashes unchanged, score5/100. Stale Vite transform cleared by preview restart.",
+  "not_rerun": [
+    "complete backend",
+    "complete frontend",
+    "production build",
+    "engine parity",
+    "unrelated browser workflows",
+    "performance benchmarks"
+  ],
+  "prior_evidence": "801 backend/416 frontend/build are evidence for86b61d2 only",
+  "full_system_acceptance": false,
+  "artifacts": [
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/reflection-academy-accessibility.txt",
+      "sha256": "ee4c6f2f13908dc2926d456e7dae6ac670da1a09bf5b108119f54eeb00c592f1"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/reflection-backend-targeted.txt",
+      "sha256": "de722e9cfca1887e01820c07fc2cc720dfd2e42f2eea88753564a4e28c9f06f3"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/reflection-browser-dom.txt",
+      "sha256": "33e3b86f32551b099635b59f0f995646f9ba5a92712f2a4bd6fd34aae53254e9"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/reflection-frontend-targeted.txt",
+      "sha256": "b2ab870592ede5506ca8fb29d5acfbc1093dd4182fd062fa986c331027bb62de"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/reflection-lint.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/reflection-original-table-hashes.json",
+      "sha256": "aa1094610a1f967e7009a0a8a144478a49d59f844c7b29feb2ed3f8a8533d3ef"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/reflection-reloaded.png",
+      "sha256": "a29e9568d3646a064f75656ef3ffd87cebbd65a17f599a525d19a41609619289"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/reflection-saved.png",
+      "sha256": "afa7d1bb0a0deba1aafdb3de1ec142e80d785e0f23b25ba6008eb8db1efa6e5f"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/reflection-types.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+✔ competency review and registered protocol expose accessible evidence without a mastery claim (546.14575ms)
+✔ Academy preparation binds the joined trainee and exposes the actual integrated launch (180.724041ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4233.106875

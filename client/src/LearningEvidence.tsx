@@ -1,3 +1,4 @@
+import LearnerReflection from "./LearnerReflection";
 import type { LearningPreparation, LearningReview } from "./learning";
 import { learningModeLabel } from "./learning";
 export function LearningBanner({
@@ -26,7 +27,13 @@ export function LearningBanner({
     </section>
   );
 }
-export function LearningEvidence({ review }: { review: LearningReview }) {
+export function LearningEvidence({
+  review,
+  learner,
+}: {
+  review: LearningReview;
+  learner?: { sessionId: string; trainee: string };
+}) {
   const e = review.evidence;
   if (!e)
     return <p>Competency evidence is awaiting original-server verification.</p>;
@@ -90,6 +97,9 @@ export function LearningEvidence({ review }: { review: LearningReview }) {
           ))}
         </ul>
       </details>
+      {learner && (
+        <LearnerReflection {...learner} reviewHash={e.original_review_hash} />
+      )}
     </section>
   );
 }

@@ -57,6 +57,8 @@ def init():
         """)
         from .learning import ensure_schema as ensure_learning_schema
         ensure_learning_schema(db)
+        from .learning_reflection import ensure_schema as ensure_reflection_schema
+        ensure_reflection_schema(db)
         from .controlled_study import ensure_schema as ensure_study_schema
         ensure_study_schema(db)
         from .teaching import ensure_schema as ensure_teaching_schema

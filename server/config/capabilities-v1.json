@@ -132,12 +132,14 @@
       "source_files": [
         "client/src/Academy.tsx",
         "server/config/learning-v1.json",
-        "server/controlled_study.py"
+        "server/controlled_study.py",
+        "client/src/LearnerReflection.tsx",
+        "server/learning_reflection.py"
       ],
       "evidence_ids": [
         "checkpoint-a-curriculum-software"
       ],
-      "limitations": "Fading practice and four assessment forms implemented as a vertical slice. Structural blueprint balance is not empirical fairness; participant learning and retention evidence unavailable."
+      "limitations": "Integrated lessons, full/faded transitions and separate source-bound learner reflections. Broader task-specific content, observed-opportunity validity and human learning evaluation remain incomplete. Reflections do not change scores or assessed mastery; ordinary training transfer omits them."
     },
     {
       "id": "curriculum-director",

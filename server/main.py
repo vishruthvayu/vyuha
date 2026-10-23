@@ -368,6 +368,8 @@ from .capabilities import router as capability_router
 app.include_router(capability_router)
 from .learning import router as learning_router
 app.include_router(learning_router)
+from .learning_reflection import router as learning_reflection_router
+app.include_router(learning_reflection_router)
 from .controlled_study import router as controlled_study_router
 app.include_router(controlled_study_router)
 from .assessment_obligations import router as assessment_obligation_router

@@ -5,6 +5,7 @@ import { newId, type UnitIdentity } from "./unit-state";
 import type { LearningCatalogue, LearningPreparation } from "./learning";
 import { LearningBanner } from "./LearningEvidence";
 type Progress = {
+  practiced_items?: string[];
   practice_attempts: number;
   assessed_attempts: number;
   competencies: Record<
@@ -92,6 +93,17 @@ export default function Academy({ identity }: { identity?: UnitIdentity }) {
     }
   }
   const item = catalogue?.items.find((i) => i.id === selected);
+  const supportedPractice = new Set(progress?.practiced_items ?? []);
+  const fadedLesson =
+    item?.assistance === "full"
+      ? catalogue?.items.find(
+          (i) =>
+            i.audience === "individual" &&
+            i.pool === "practice" &&
+            i.competency_id === item.competency_id &&
+            i.assistance === "faded",
+        )
+      : undefined;
   return (
     <main className="page academy-page">
       <PageHeader
@@ -130,6 +142,9 @@ export default function Academy({ identity }: { identity?: UnitIdentity }) {
                   .map((i) => (
                     <option key={i.id} value={i.id}>
                       {i.title} · {i.assistance} guidance
+                      {supportedPractice.has(i.id)
+                        ? " · practice evidence recorded"
+                        : ""}
                     </option>
                   ))}
               </select>
@@ -143,6 +158,35 @@ export default function Academy({ identity }: { identity?: UnitIdentity }) {
                   ))}
                 </ol>
                 <p>Reflection: {item.reflection}</p>
+                {supportedPractice.has(item.id) && (
+                  <div className="academy-next-step">
+                    <p>
+                      A supported practice observation is recorded for this
+                      lesson. This is practice evidence, not assessed mastery.
+                    </p>
+                    {fadedLesson ? (
+                      <button
+                        className="button subtle"
+                        disabled={busy}
+                        onClick={() => {
+                          setSelected(fadedLesson.id);
+                          setPrepared(null);
+                        }}
+                      >
+                        Try with less guidance
+                      </button>
+                    ) : (
+                      <a href="#academy-assessment">
+                        Choose an independent assessment
+                      </a>
+                    )}
+                  </div>
+                )}
+                <p>
+                  After a verified exercise, open Ghost → Reflect on your
+                  decision to save the cue you used, any uncertainty and your
+                  next check.
+                </p>
               </>
             )}
             <div className="advanced-nav">
@@ -168,7 +212,9 @@ export default function Academy({ identity }: { identity?: UnitIdentity }) {
             </p>
           </section>
           <section className="panel">
-            <h2>2 · Independent assessment</h2>
+            <h2 id="academy-assessment" tabIndex={-1}>
+              2 · Independent assessment
+            </h2>
             <label>
               Assessment form
               <select

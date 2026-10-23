@@ -449,3 +449,5 @@ The order describes a dependency-aware direction, not a commitment to build all 
 ## Research expansion — 23 October 2026
 
 The original R01–R40 remain intact. [R41–R48](EXPANSION-2026-10-23.md) add researched proposals, not completed features. The canonical capability index tracks all 48 with dependencies. Their progression begins RESEARCHED; design, implementation, integration, testing and validation require distinct evidence. Current Checkpoint A remains PARTIAL.
+
+Two additional research streams examined product/AI architecture and actual UI/3D interaction: [Research A](CONTINUATION-2026-10-23-A.md), [Research B](CONTINUATION-2026-10-23-B.md). They strengthen existing IDs; no new recommendation numbers or public competitors were established by these bounded searches. Research B proposes a coherent time-aware evidence cockpit, tested temporal context, authorized review lens and shared browser/XR instruments. These experiments are not implemented by the reports.

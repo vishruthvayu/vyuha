@@ -2821,6 +2821,7 @@ export default function App({
                     <ReplayTracks state={replayState} onSelect={setSelected} />
                   </section>
                   <GhostPanel
+                    viewerTrainee={trainee}
                     record={current}
                     onJump={focusReplay}
                     onReload={() => setReviewReload((n) => n + 1)}

@@ -69,3 +69,9 @@ Actual browser on the frozen source: officer sign-in, read-only C01 reconstructi
 | R43 | PARTIAL | One C01 diagnostic only; other competency contracts require separate justified monitors. |
 
 Checkpoint A is still IN PROGRESS. Native/physical platform, network and headset validation have not been promoted by these software checks. Protected releases unchanged; no tag/RC created.
+
+## Learner-reflection continuation — 23 October 2026
+
+[Structured reflection and explicit practice progression](LEARNER-REFLECTION.md) are implemented and targeted-tested:21 focused backend, five frontend and two selected Academy/accessibility tests. Actual Ghost save/reload preserved original sessions/profiles and score. R05 remains PARTIAL because deeper task-specific coaching/content validation is unfinished. Latest testing cadence follows [TESTING-POLICY.md](../TESTING-POLICY.md); old complete runs retain their exact source bindings.
+
+Research continuations A/B strengthen existing R06/R43 generation diagnostics, R41/R42 paths/outcome denominators, R11 temporal evidence and shared browser/XR instrument context. No duplicate R49+ IDs were invented. Next dependency-ready slices are bounded assessment generation receipts and measured startup responsiveness experiments.

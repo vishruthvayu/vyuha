@@ -1,0 +1,13 @@
+✔ reflection loads only on request and saves a source-bound optional annotation as plain text (725.145375ms)
+✔ failed network save preserves draft and retries the identical request instead of duplicating it (61.134208ms)
+✔ late save cannot contaminate another review and a lost acknowledgment is recovered from saved history (70.093125ms)
+✔ foreign history and missing save acknowledgment fail closed while retaining the current draft (40.080708ms)
+✔ Ghost exposes reflection only to the joined owner of verified individual learning evidence (23.02625ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3305.015791

@@ -792,12 +792,25 @@ test("Academy preparation binds the joined trainee and exposes the actual integr
               instructions: ["Observe", "Reflect"],
               reflection: "What was uncertain?",
             },
+            {
+              id: "C01_PRACTICE_B",
+              title: "Observation with less guidance",
+              competency_id: "C01",
+              pool: "practice",
+              form: null,
+              assistance: "faded",
+              audience: "individual",
+              objective: "Use evidence independently",
+              instructions: ["Observe"],
+              reflection: "What remains uncertain?",
+            },
           ],
           limitation: "Illustrative",
         }
       : url.endsWith("/progress")
         ? {
-            practice_attempts: 0,
+            practice_attempts: 1,
+            practiced_items: ["C01_PRACTICE_A"],
             assessed_attempts: 0,
             competencies: {
               C01: {
@@ -841,6 +854,25 @@ test("Academy preparation binds the joined trainee and exposes the actual integr
     assert.match(
       document.body.textContent ?? "",
       /excluded|does not update individual assessment/,
+    );
+    const before = sent.length;
+    await click(
+      [...document.querySelectorAll("button")].find(
+        (b) => b.textContent === "Try with less guidance",
+      )!,
+    );
+    assert.equal(
+      document.querySelector<HTMLSelectElement>("select")!.value,
+      "C01_PRACTICE_B",
+    );
+    assert.equal(
+      document.querySelector('a[href*="learning=prepared-lesson"]'),
+      null,
+    );
+    assert.equal(
+      sent.length,
+      before,
+      "Changing guidance never launches or prepares an unrequested exercise",
     );
   } finally {
     globalThis.fetch = original;

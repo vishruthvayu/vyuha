@@ -26,3 +26,9 @@
 
 .utility-page .controlled-study label.study-consent { display: flex; align-items: center; gap: .75rem; min-height: 44px; max-width: 52rem; flex-direction: row; }
 .utility-page .controlled-study .study-consent input[type="checkbox"] { width: 1.25rem; height: 1.25rem; min-height: 1.25rem; flex: 0 0 1.25rem; margin: 0; }
+
+.learner-reflection { margin-block: 1rem; min-width: 0; }
+.learner-reflection label { display: grid; gap: .5rem; margin-block: 1rem; max-width: 52rem; }
+.learner-reflection textarea { width: 100%; box-sizing: border-box; min-height: 5rem; resize: vertical; padding: .75rem; font: inherit; color: inherit; background: var(--surface, #131818); border: 1px solid var(--border, #3b4144); border-radius: .4rem; }
+.learner-reflection textarea:focus-visible { outline: 2px solid var(--gold, #d7c48a); outline-offset: 3px; }
+.learner-reflection dd { margin-inline-start: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
