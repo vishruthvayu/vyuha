@@ -65,7 +65,9 @@ export default function PerformanceDiagnostics() {
         For first-load measurement, explicitly{" "}
         <a href="/?diagnostics=1">open Training with timing enabled</a>. Keep
         the same graphics tier, viewport and workload when comparing. Frame
-        intervals are not GPU time or physical headset FPS.
+        intervals are not GPU time or physical headset FPS. Renderer-module
+        timing combines local loading and JavaScript evaluation; unsupported
+        browser observers are disclosed in the export.
       </p>
     </details>
   );

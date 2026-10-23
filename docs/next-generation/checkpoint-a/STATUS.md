@@ -41,3 +41,5 @@ Next executable work: finish the frozen-source regression, commit the verified c
 Verified curriculum implementation commit: `9e1dff153fc5d4bde7df8fc8b372ec9c2d89d4c2` (pushed). Runtime seal: [curriculum-seal.json](evidence/curriculum-seal.json). Later documentation-only commits do not change this source hash.
 
 Follow-up verified: demo-mode identity continuity reproduced, fixed and checked in the actual Review; consent layout corrected. Complete frontend **381 passed**, build/lint/format and targeted accessibility/navigation passed. See [follow-up scope](evidence/identity-followup.md). The 746-backend/380-frontend seal remains historical for its exact source. Checkpoint A remains unaccepted.
+
+R01 attribution/retained-workload follow-up is in progress; see [measured investigation](PERFORMANCE-WORK.md). Current probes measured repeated procedural texture generation before optimization. New measurement code is not yet a checkpoint acceptance or a measured improvement claim.

@@ -1,0 +1,17 @@
+✔ timing reports tail stalls and never substitutes median FPS (1.259458ms)
+✔ bounded collection preserves first samples and discloses overflow and stopped state (0.19875ms)
+✔ optics and startup are separate and malformed timings cannot poison a report (1.261208ms)
+✔ diagnostics are off by default and report snapshots cannot mutate collected data (0.203ms)
+✔ hidden/resumed frame gaps are disclosed rather than counted as foreground stalls (0.185708ms)
+✔ a throttled stop timer cannot extend the bounded timing window (0.13225ms)
+✔ manual stop seals elapsed time and observer support is disclosed (0.234416ms)
+✔ delayed renderer work cannot contaminate a replacement capture or submit twice (1.118542ms)
+✔ timed work preserves original return values, exceptions and one scoped measurement (0.446625ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 265.683

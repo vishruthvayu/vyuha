@@ -5,6 +5,10 @@ import {
   distribution,
   currentCapture,
   diagnosticFrame,
+  diagnosticSpan,
+  diagnosticWork,
+  startDiagnostics,
+  stopDiagnostics,
 } from "./diagnostics";
 test("timing reports tail stalls and never substitutes median FPS", () => {
   const c = new TimingCapture(100, { commit: "test", source_hash: "hash" });
@@ -22,6 +26,7 @@ test("bounded collection preserves first samples and discloses overflow and stop
   c.sample("render_frame", 16, 2);
   c.sample("render_frame", 17, 3);
   assert.equal(c.report(4).complete_sample_window, false);
+  assert.equal(c.report(4).sample_limit,2);
   assert.equal(c.dropped, 1);
   assert.equal(c.samples[0].duration_ms, 1000);
   c.stopped = true;
@@ -85,4 +90,19 @@ test("a throttled stop timer cannot extend the bounded timing window", () => {
   assert.equal(c.stopped,true);
   assert.equal(c.samples.length,1);
   assert.equal(c.report(999999).elapsed_ms,240000);
+});
+
+
+test("manual stop seals elapsed time and observer support is disclosed",()=>{
+ const c=new TimingCapture(100);c.observerSupport=["resource"];c.sample("renderer_module",20,130);c.stop(150);
+ assert.equal(c.report(9000).elapsed_ms,50);assert.deepEqual(c.report(9000).observer_support,["resource"]);assert.equal(c.report(9000).summary.renderer_module.max_ms,20);
+ c.stop(10000);assert.equal(c.report(10000).elapsed_ms,50);
+});
+test("delayed renderer work cannot contaminate a replacement capture or submit twice",()=>{
+ startDiagnostics();const stale=diagnosticSpan("renderer_module");stopDiagnostics();
+ const current=startDiagnostics();try{stale();assert.equal(current.samples.length,0);const finish=diagnosticSpan("renderer_module");finish();finish();assert.equal(current.samples.filter(s=>s.kind==="renderer_module").length,1);}finally{stopDiagnostics();}
+});
+
+test("timed work preserves original return values, exceptions and one scoped measurement",()=>{
+ const owner=startDiagnostics();try{const value={identity:"same"};assert.equal(diagnosticWork("world_build",()=>value),value);const error=new Error("original failure");assert.throws(()=>diagnosticWork("world_build",()=>{throw error;}),e=>e===error);assert.equal(owner.samples.filter(s=>s.kind==="world_build").length,2);}finally{stopDiagnostics();}
 });

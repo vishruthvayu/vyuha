@@ -1,0 +1,24 @@
+✔ rural terrain/fog preserve score and sensor parity at 54 new checkpoints; recorded adapters match (1295.105958ms)
+✔ audio range, observed-contact gate, bird exclusion and fog attenuation prevent omniscient cues (0.217583ms)
+✔ quality changes require sustained measured low FPS and reach tactical fallback (0.127625ms)
+✔ bounded JSON import errors reject malformed/object shape and UTF-8 byte overruns (0.468458ms)
+✔ scale fixtures keep all contact kinds, deterministic positions and supported counts (1.260333ms)
+✔ evidence/import interfaces show limitations without fabricated final validation claims (13.339708ms)
+✔ evaluation enrollment requires participant agreement and pseudonymous IDs (2.397875ms)
+✔ bulk transfer timeout can exceed the six-second tactical request timeout without changing request payloads (5.447708ms)
+✔ Finale benchmark exercises dispatched sensor truth at every supported contact scale (51.566333ms)
+✔ longer Finale stress fixture keeps a full logical horizon and rejects unsupported durations (3.799125ms)
+✔ retained benchmark keeps all 200 contacts active for the complete 180-second workload without changing the engine (2456.397ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4333.515833
+npm notice
+npm notice New minor version of npm available! 11.6.2 -> 11.21.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.1
+npm notice To update run: npm install -g npm@11.21.1
+npm notice

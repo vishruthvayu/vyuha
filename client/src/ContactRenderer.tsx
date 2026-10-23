@@ -1,3 +1,4 @@
+import { diagnosticWork } from "./diagnostics";
 import { uploadInstances } from "./render-work";
 import { useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
@@ -176,7 +177,11 @@ export function ContactRenderer({
   /** Line-of-sight test against decorative scenery (not modelled by sensors). */
   obstruction?: SceneryObstruction;
 }) {
-  const parts = useMemo(() => createAirframeParts(quality), [quality]);
+  const parts = useMemo(
+    () =>
+      diagnosticWork("airframe_geometry", () => createAirframeParts(quality)),
+    [quality],
+  );
   useEffect(() => () => parts.forEach((p) => p.geometry.dispose()), [parts]);
   const thermal = vision !== "day";
   const materials = useMemo(

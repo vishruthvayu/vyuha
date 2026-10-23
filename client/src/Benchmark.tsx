@@ -117,12 +117,52 @@ export function worldScaleScenario(
     terrain_boxes: RAID_BOXES[world],
   };
 }
+/** Synthetic retained roster: unchanged engine, deliberately slow motion.
+ * This fixture qualifies workload retention, never solvability or human skill. */
+export function retainedWorldScenario(
+  count: number,
+  duration: number,
+  world: BenchmarkWorld,
+  night: boolean,
+): Scenario {
+  const base = worldScaleScenario(count, duration, world, night);
+  return {
+    ...base,
+    id: base.id + "_retained",
+    tracks: base.tracks.map((t, i) => ({
+      ...t,
+      distance: 180 + (i % 15) * 8,
+      speed: 0.1,
+      expires_tick: duration * 30 + 1,
+      motion: {
+        version: 1,
+        primitive: "direct",
+        phase_s: 0,
+        lateral_m: 0,
+        period_s: 8,
+        turn_deg: 0,
+      },
+    })),
+  };
+}
 export function median(values: number[]) {
   if (!values.length) return null;
   const v = [...values].sort((a, b) => a - b);
   return (v[Math.floor((v.length - 1) / 2)] + v[Math.floor(v.length / 2)]) / 2;
 }
 export default function Benchmark() {
+  const [retained, setRetained] = useState(false);
+  const [workloadSamples, setWorkloadSamples] = useState<
+    {
+      seconds: number;
+      tick: number;
+      active_contacts: number;
+      logical_lag_ms: number;
+      rendered_contacts: number | null;
+    }[]
+  >([]);
+  const latestState = useRef<Snapshot | null>(null);
+  const renderedContacts = useRef<number | null>(null);
   const [engine, setEngine] = useState<"finale" | "legacy">("finale");
   const [duration, setDuration] = useState(20),
     [heapSamples, setHeapSamples] = useState<
@@ -156,6 +196,7 @@ export default function Benchmark() {
     worker.current = w;
     w.onmessage = (e) => {
       if (e.data.type === "snapshot") {
+        latestState.current = e.data.state;
         diagnosticWorkerDelivery();
         setState(e.data.state);
       }
@@ -172,6 +213,20 @@ export default function Benchmark() {
       const second = Math.floor(secs);
       if (second > lastHeapSecond.current) {
         lastHeapSecond.current = second;
+        const latest = latestState.current;
+        setWorkloadSamples((v) => [
+          ...v,
+          {
+            seconds: secs,
+            tick: latest?.tick ?? 0,
+            active_contacts: latest?.tracks.filter((t) => t.active).length ?? 0,
+            logical_lag_ms: Math.max(
+              0,
+              secs * 1000 - ((latest?.tick ?? 0) * 1000) / 30,
+            ),
+            rendered_contacts: renderedContacts.current,
+          },
+        ]);
         setHeapSamples((v) => [
           ...v,
           {
@@ -195,12 +250,16 @@ export default function Benchmark() {
     return () => clearInterval(timer);
   }, [running, duration]);
   function resetResults() {
+    setWorkloadSamples([]);
     setSamples([]);
     setTicks([]);
     setHeapSamples([]);
     setElapsed(0);
   }
   function start() {
+    setWorkloadSamples([]);
+    latestState.current = null;
+    renderedContacts.current = null;
     setSamples([]);
     setTicks([]);
     setHeapSamples([]);
@@ -214,7 +273,12 @@ export default function Benchmark() {
       type: "init",
       scenario:
         engine === "finale"
-          ? worldScaleScenario(count, duration === 180 ? 180 : 90, world, night)
+          ? (retained ? retainedWorldScenario : worldScaleScenario)(
+              count,
+              duration === 180 ? 180 : 90,
+              world,
+              night,
+            )
           : scaleScenario(count),
       benchmark: true,
     });
@@ -237,7 +301,17 @@ export default function Benchmark() {
       Math.max(0, Math.ceil(ticks.length * 0.95) - 1)
     ] ?? null;
   const report = {
-    schema_version: 3,
+    schema_version: 4,
+    roster_mode:
+      engine === "finale" && retained
+        ? "retained-slow-synthetic"
+        : "advancing-synthetic",
+    workload_samples: workloadSamples,
+    minimum_active_contacts: workloadSamples.length
+      ? Math.min(...workloadSamples.map((s) => s.active_contacts))
+      : null,
+    logical_lag_scope:
+      "Elapsed wall time minus delivered logical ticks since Run, including initialization and bounded scheduling stalls. Background runs are not foreground qualification.",
     requested_seconds: duration,
     simulation_tick: state.tick,
     simulation_tick_samples: ticks.length,
@@ -287,12 +361,14 @@ export default function Benchmark() {
       <PerformanceDiagnostics />
       <p>
         Bounded rendering and worker test. Choose 20, 60 or 180 seconds; a
-        180-second Finale fixture remains logically active throughout the
-        measurement. Run each contact count at a fixed graphics tier; export
-        results with general hardware class and RAM, without device IDs. Auto
-        quality can be tested separately. Synthetic stress fixtures spawn
-        contacts together. Select the engine explicitly; these workloads do not
-        certify human solvability or physical deployment.
+        180-second fixture retains its logical simulation horizon. Contacts in
+        the advancing fixture may resolve or leave; choose retained roster
+        explicitly for sustained contact-count comparisons. Run each contact
+        count at a fixed graphics tier; export results with general hardware
+        class and RAM, without device IDs. Auto quality can be tested
+        separately. Synthetic stress fixtures spawn contacts together. Select
+        the engine explicitly; these workloads do not certify human solvability
+        or physical deployment.
       </p>
       <div className="studio-fields">
         <label>
@@ -310,6 +386,18 @@ export default function Benchmark() {
             <option value="finale">Finale 0.4 · Sensor Truth</option>
             <option value="legacy">Legacy baseline</option>
           </select>
+        </label>
+        <label className="benchmark-retained">
+          <input
+            type="checkbox"
+            checked={retained}
+            disabled={running || engine !== "finale"}
+            onChange={(e) => {
+              setRetained(e.target.checked);
+              resetResults();
+            }}
+          />
+          Retain roster for sustained rendering (synthetic slow motion)
         </label>
         <label>
           Measurement duration
@@ -526,6 +614,9 @@ export default function Benchmark() {
             palette={palette}
             cameraPreset={camera === "trainee" ? undefined : camera}
             onFps={fps}
+            onMetrics={(metrics) => {
+              renderedContacts.current = metrics.observedContacts;
+            }}
             quality={tier}
             fallback={
               <button onClick={() => setTier("tactical")}>

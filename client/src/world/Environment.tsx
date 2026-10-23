@@ -1,3 +1,4 @@
+import { diagnosticSpan } from "../diagnostics";
 import { createContactShading } from "./contact-shading";
 import { memo, useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
@@ -58,6 +59,7 @@ function useWorldTextures(quality: Quality, layout: FacilityLayout) {
   const loaded = useLoader(THREE.TextureLoader, flat);
   const { gl } = useThree();
   return useMemo(() => {
+    const finish = diagnosticSpan("world_textures");
     const byUrl = new Map(flat.map((u, i) => [u, loaded[i]]));
     const anisotropy = Math.min(
       gl.capabilities.getMaxAnisotropy(),
@@ -96,6 +98,7 @@ function useWorldTextures(quality: Quality, layout: FacilityLayout) {
       white: createWhiteTexture(),
       splat: createSplatTexture(layout, quality === "low" ? 512 : 1024),
     };
+    finish();
     return textures;
   }, [flat, loaded, gl, quality, layout]);
 }
@@ -275,6 +278,7 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
   const { gl, scene } = useThree();
 
   const built = useMemo<Built>(() => {
+    const finish = diagnosticSpan("world_build");
     const group = new THREE.Group();
     group.name = "vyuha-environment";
     const swappable: Built["swappable"] = [];
@@ -562,6 +566,7 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     glow.name = "night-lamp-glow";
     glow.visible = false;
     group.add(glow);
+    finish();
     return {
       group,
       swappable,
@@ -670,6 +675,7 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
 
   // PMREM environment from the photographed sky (reflections on glass/metal).
   const envMaps = useMemo(() => {
+    const finish = diagnosticSpan("environment_reflections");
     const pmrem = new THREE.PMREMGenerator(gl);
     // The sky images stop 5 degrees below the horizon; rebuild a full equirect
     // (sky on top, ground colour below) so reflections see ground below them.
@@ -694,6 +700,7 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
       night: make(skyNight, "#0a0a09"),
     };
     pmrem.dispose();
+    finish();
     return maps;
   }, [gl, skyDay, skyNight]);
   useEffect(

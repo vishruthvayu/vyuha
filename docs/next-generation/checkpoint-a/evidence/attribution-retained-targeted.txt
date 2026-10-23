@@ -1,0 +1,32 @@
+✔ timing reports tail stalls and never substitutes median FPS (1.633167ms)
+✔ bounded collection preserves first samples and discloses overflow and stopped state (0.190709ms)
+✔ optics and startup are separate and malformed timings cannot poison a report (0.786917ms)
+✔ diagnostics are off by default and report snapshots cannot mutate collected data (0.205208ms)
+✔ hidden/resumed frame gaps are disclosed rather than counted as foreground stalls (0.181084ms)
+✔ a throttled stop timer cannot extend the bounded timing window (0.131375ms)
+✔ manual stop seals elapsed time and observer support is disclosed (0.285458ms)
+✔ delayed renderer work cannot contaminate a replacement capture or submit twice (1.299625ms)
+✔ rural terrain/fog preserve score and sensor parity at 54 new checkpoints; recorded adapters match (1272.312208ms)
+✔ audio range, observed-contact gate, bird exclusion and fog attenuation prevent omniscient cues (0.223709ms)
+✔ quality changes require sustained measured low FPS and reach tactical fallback (0.12875ms)
+✔ bounded JSON import errors reject malformed/object shape and UTF-8 byte overruns (0.447125ms)
+✔ scale fixtures keep all contact kinds, deterministic positions and supported counts (1.597166ms)
+✔ evidence/import interfaces show limitations without fabricated final validation claims (13.351333ms)
+✔ evaluation enrollment requires participant agreement and pseudonymous IDs (3.250792ms)
+✔ bulk transfer timeout can exceed the six-second tactical request timeout without changing request payloads (7.593916ms)
+✔ Finale benchmark exercises dispatched sensor truth at every supported contact scale (54.195ms)
+✔ longer Finale stress fixture keeps a full logical horizon and rejects unsupported durations (3.739542ms)
+✔ retained benchmark keeps all 200 contacts active for the complete 180-second workload without changing the engine (2515.561333ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4496.478292
+npm notice
+npm notice New minor version of npm available! 11.6.2 -> 11.21.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.1
+npm notice To update run: npm install -g npm@11.21.1
+npm notice

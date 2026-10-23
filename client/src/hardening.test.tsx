@@ -9,7 +9,12 @@ import { recordedObservations, type Recording } from "./observations";
 import { audioCue } from "./LocalAudio";
 import { qualityAfterSamples, pixelRatio } from "./quality";
 import { parseJSONImport } from "./import-json";
-import { scaleScenario, finaleScaleScenario, median } from "./Benchmark";
+import {
+  scaleScenario,
+  finaleScaleScenario,
+  retainedWorldScenario,
+  median,
+} from "./Benchmark";
 import { Simulation } from "./sim";
 import Evidence from "./Evidence";
 import Transfer from "./Transfer";
@@ -220,4 +225,21 @@ test("longer Finale stress fixture keeps a full logical horizon and rejects unsu
   assert.equal(scenario.tracks.length, 200);
   assert.equal(new Simulation(scenario).snapshot().done, false);
   assert.throws(() => finaleScaleScenario(200, 65));
+});
+
+test("retained benchmark keeps all 200 contacts active for the complete 180-second workload without changing the engine", () => {
+  const scenario = retainedWorldScenario(200, 180, "rural_forward_base", false);
+  const sim = new Simulation(scenario);
+  for (let i = 0; i < 5400; i++) {
+    sim.step(true);
+    if (i % 900 === 899)
+      assert.equal(
+        sim.snapshot().tracks.filter((t) => t.active).length,
+        200,
+        `tick ${i + 1}`,
+      );
+  }
+  assert.equal(sim.events.length, 0);
+  assert.equal(sim.state.tick, 5400);
+  assert.equal(scenario.engine_version, "vyuha-0.4.0");
 });

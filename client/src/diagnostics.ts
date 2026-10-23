@@ -1,5 +1,10 @@
 /** Opt-in, bounded, local-only timing. Never reads actions, text, identities or sensor truth. */
 export type TimingKind =
+  | "world_textures"
+  | "world_build"
+  | "environment_reflections"
+  | "airframe_geometry"
+  | "renderer_module"
   | "first_frame"
   | "render_frame"
   | "worker_delivery"
@@ -21,9 +26,14 @@ export const buildSource: DiagnosticSource =
   typeof __VYUHA_BUILD__ === "undefined"
     ? { commit: "unavailable", source_hash: "unavailable" }
     : __VYUHA_BUILD__;
-export const DIAGNOSTIC_LIMIT = 16000;
+export const DIAGNOSTIC_LIMIT = 32000;
 export const DIAGNOSTIC_WINDOW_MS = 240000;
 const KINDS: TimingKind[] = [
+  "world_textures",
+  "world_build",
+  "environment_reflections",
+  "airframe_geometry",
+  "renderer_module",
   "first_frame",
   "render_frame",
   "worker_delivery",
@@ -64,6 +74,9 @@ export class TimingCapture {
   backgroundGap = false;
   phase: DiagnosticPhase = "preparation";
   stopped = false;
+  stoppedAt: number | null = null;
+  observerSupport: string[] = [];
+  stop(now:number) {if(this.stoppedAt===null)this.stoppedAt=Math.min(this.start+DIAGNOSTIC_WINDOW_MS,Math.max(this.start,now));this.stopped=true;}
   constructor(
     readonly start: number,
     readonly source = buildSource,
@@ -82,7 +95,7 @@ export class TimingCapture {
     // Timers can be throttled in an embedded/background browser. Enforce the
     // window on samples too, rather than trusting a delayed setTimeout.
     if (now - this.start > DIAGNOSTIC_WINDOW_MS) {
-      this.stopped = true;
+      this.stop(this.start+DIAGNOSTIC_WINDOW_MS);
       return;
     }
     if (this.samples.length >= this.limit) {
@@ -114,8 +127,10 @@ export class TimingCapture {
     return {
       schema_version: 1,
       source: { ...this.source },
-      elapsed_ms: Math.min(DIAGNOSTIC_WINDOW_MS, Math.max(0, now - this.start)),
+      elapsed_ms: Math.min(DIAGNOSTIC_WINDOW_MS, Math.max(0, (this.stoppedAt??now) - this.start)),
+      observer_support:[...this.observerSupport],
       stopped: this.stopped,
+      sample_limit: this.limit,
       dropped_samples: this.dropped,
       ignored_background_frames: this.ignored,
       complete_sample_window: this.dropped === 0,
@@ -170,7 +185,7 @@ export function currentCapture() {
   return capture;
 }
 export function stopDiagnostics() {
-  if (capture) capture.stopped = true;
+  if (capture) capture.stop(performance.now());
   for (const observer of observers) observer.disconnect();
   observers = [];
   visibilityCleanup();
@@ -196,6 +211,7 @@ export function startDiagnostics() {
   }
   if (typeof PerformanceObserver !== "undefined") {
     const supported = PerformanceObserver.supportedEntryTypes ?? [];
+    capture.observerSupport=["long-animation-frame","longtask","event","resource"].filter(type=>supported.includes(type));
     const observe = (
       type: string,
       receive: (entry: PerformanceEntry) => void,
@@ -272,4 +288,15 @@ export function diagnosticWorkerDelivery() {
   if (previousWorker && !document.hidden)
     recordTiming("worker_delivery", now - previousWorker);
   previousWorker = now;
+}
+
+/** Bind async loading spans to their original capture; replacement captures never inherit stale work. */
+export function diagnosticSpan(kind:TimingKind) {
+ const owner=capture;if(!owner || owner.stopped)return ()=>{};
+ const started=performance.now();let finished=false;
+ return ()=>{if(finished)return;finished=true;if(capture===owner && !owner.stopped){const now=performance.now();owner.sample(kind,now-started,now);}};
+}
+
+export function diagnosticWork<T>(kind:TimingKind, work:()=>T):T {
+ const finish=diagnosticSpan(kind);try{return work();}finally{finish();}
 }

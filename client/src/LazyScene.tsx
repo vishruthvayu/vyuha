@@ -1,3 +1,4 @@
+import { diagnosticSpan } from "./diagnostics";
 import {
   Component,
   lazy,
@@ -7,9 +8,19 @@ import {
 } from "react";
 import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
 import type { Scene as SceneComponent } from "./Scene";
-const Renderer = lazy(() =>
-  import("./Scene").then((m) => ({ default: m.Scene })),
-);
+const Renderer = lazy(() => {
+  const finish = diagnosticSpan("renderer_module");
+  return import("./Scene").then(
+    (m) => {
+      finish();
+      return { default: m.Scene };
+    },
+    (error) => {
+      finish();
+      throw error;
+    },
+  );
+});
 export class RendererBoundary extends Component<
   { children: ReactNode; fallback: ReactNode },
   { failed: boolean }
