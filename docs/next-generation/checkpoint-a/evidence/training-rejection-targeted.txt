@@ -1,0 +1,14 @@
+✔ Actual App waits for the Academy ticket and persists assessment context without default hints (758.917542ms)
+✔ Actual App distinguishes learning-rejected without starting or saving a refused curriculum (244.758667ms)
+✔ Actual App distinguishes learning-invalid without starting or saving a refused curriculum (147.75075ms)
+✔ Actual App distinguishes learning-network without starting or saving a refused curriculum (103.4785ms)
+✔ Actual App preserves safe legacy behavior for legacy-rejected (79.330667ms)
+✔ Actual App preserves safe legacy behavior for legacy-network (78.035375ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3070.072416

@@ -1,0 +1,9 @@
+{
+  "implementation_revision": "86b61d247b4f715bd916c0b2b2a8030e88bb2843",
+  "source_hash": "209c717b7ab6cd5ba0735af5c7ce11e1b55faa2ca0070c334420606b403c5727",
+  "staged_archive_verified": true,
+  "backend_passed": 801,
+  "frontend_passed": 416,
+  "full_system_acceptance": false,
+  "note": "Complete software suites/build/lint/format for this integration only; later HTTP rejection fix uses targeted checks. Checkpoint A and release acceptance remain open."
+}

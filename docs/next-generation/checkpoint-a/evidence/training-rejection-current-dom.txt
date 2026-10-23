@@ -1,0 +1,100 @@
+- button "Start tour"
+- link "Skip to workspace":
+  - /url: "#workspace-content"
+- banner:
+  - link "VYUHA home":
+    - /url: /
+    - strong: VYUHA
+  - navigation "Primary workspaces":
+    - link "Training":
+      - /url: /
+    - link "Review":
+      - /url: /?view=aar
+    - link "Crew":
+      - /url: /crew
+    - link "Instructor":
+      - /url: /instructor
+    - link "Analytics":
+      - /url: /analytics
+  - button "Find workspace":
+    - generic: Find workspace
+    - generic: ⌘ / Ctrl K
+  - button "Operator guide":
+    - generic: Operator guide
+  - button "Workspaces":
+    - generic: Workspaces
+- main:
+  - status: SERVER CONNECTED · Sync up to date · Internet not required
+  - generic: COUNTER-DRONE TRAINING
+  - heading "Training ground" [level=1]
+  - paragraph: Read the sensors. Identify the contact. Choose your response.
+  - generic: Callsign QA-PILOT-OWNER
+  - text: EXERCISE / READY
+  - generic: Ready
+  - strong: "Evidence-based classification: assessment A"
+  - generic: Urban outpost · Day · Mixed contacts
+  - generic: CALLSIGN
+  - text: QA-PILOT-OWNER
+  - generic: CURRICULUM SEED
+  - text: "62147"
+  - generic: EXERCISE TIME
+  - text: 00:00
+  - generic: / 01:00
+  - generic: RENDER
+  - text: 60 fps
+  - generic: Prepare and start in the exercise preview below
+  - generic "Drill settings"
+  - text: Callsign
+  - textbox "Callsign" [disabled]: QA-PILOT-OWNER
+  - text: Drill
+  - combobox "Drill" [disabled]:
+    - option "Original Night Watch · legacy"
+    - option "Scripted / Library"
+    - option "Adaptive / Skill practice" [selected]
+  - text: Curriculum seed
+  - spinbutton "Curriculum seed" [disabled]: "62147"
+  - text: Conditions
+  - generic: · Frozen curriculum
+  - combobox "Conditions" [disabled]:
+    - option "Night · light fog"
+    - option "Day · light fog" [selected]
+  - button "New seed" [disabled]:
+    - text: New seed
+  - generic "Skill evidence & history"
+  - paragraph: "Threat pattern: DIRECT · Illustrative finale local pack@1 · Illustrative training configuration"
+  - button "Open VR observation cockpit"
+  - link "Experimental VR / setup guide":
+    - /url: /vr-guide.html
+  - strong: EO / IR observation
+  - generic "Observation preferences"
+  - button "THERMAL" [pressed]
+  - button "DAY TV"
+  - button "IR NIGHT DISPLAY"
+  - text: WHITE HOT / EO-IR
+  - generic: OBSERVATION SECTOR
+  - heading "Watch. Identify. Respond." [level=2]
+  - paragraph:
+    - text: 4 contacts. 60 seconds.
+    - text: Not every contact is a threat.
+  - button "Start adaptive drill":
+    - text: Start adaptive drill
+  - generic: Illustrative landscape · example sensor and effector values
+  - generic "Sensor availability":
+    - generic: RADAR
+    - generic: NORMAL
+    - generic: RF
+    - generic: NORMAL
+  - generic: Light fog · 0.1
+  - button "2D fallback":
+    - text: 2D fallback
+  - region "Curriculum attempt":
+    - strong: Assessment · C02_BASELINE-A_A
+    - paragraph: Assessment evidence is recorded separately. Guided hints and Fusion advice are disabled.
+    - link "Return to Academy":
+      - /url: /academy
+    - generic: "Guidance: none. Frozen policy: direct-item-v1."
+  - paragraph: Training prototype · Illustrative signatures, ranges and responses · Detection timing begins at first working-sensor observation. Development preview.
+  - generic "Local performance diagnostics"
+- status:
+  - generic: "Exercise was not started: Participant has a terminal disposition; new protocol preparation and session creation are disabled. Existing sessions and evidence are preserved."
+  - button "Dismiss notification":

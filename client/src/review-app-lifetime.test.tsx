@@ -259,7 +259,12 @@ type Mode =
   | "memo"
   | "restoration"
   | "modality-evidence"
-  | "learning";
+  | "learning"
+  | "learning-rejected"
+  | "learning-invalid"
+  | "learning-network"
+  | "legacy-rejected"
+  | "legacy-network";
 async function mounted(
   mode: Mode,
   body: (context: {
@@ -310,7 +315,7 @@ async function mounted(
     context: { before_order: 0 },
   });
   const dom = new JSDOM('<!doctype html><body><div id="root"></div></body>', {
-    url: `http://qa.local/${mode === "learning" ? "?mode=adaptive&learning=prepared-learning" : mode.startsWith("retry") || mode === "memo" ? "?view=aar&session=A" : "?mode=scripted"}`,
+    url: `http://qa.local/${mode.startsWith("learning") ? "?mode=adaptive&learning=prepared-learning" : mode.startsWith("retry") || mode === "memo" ? "?view=aar&session=A" : "?mode=scripted"}`,
     pretendToBeVisual: true,
   });
   const workers: { onmessage?: (event: { data: unknown }) => void }[] = [];
@@ -438,6 +443,22 @@ async function mounted(
       );
     if (url === "/sessions") {
       createBodies.push(JSON.parse(String(init?.body)));
+      if (
+        mode === "learning-rejected" ||
+        mode === "learning-invalid" ||
+        mode === "legacy-rejected"
+      )
+        return new Response(
+          JSON.stringify({
+            detail:
+              mode === "learning-invalid"
+                ? "Learning preparation belongs to another trainee or scenario"
+                : "Participant has a terminal disposition; new session creation is disabled.",
+          }),
+          { status: mode === "learning-invalid" ? 422 : 409 },
+        );
+      if (mode === "learning-network" || mode === "legacy-network")
+        throw new TypeError("Synthetic network failure");
       return json({ id: "A" });
     }
     if (url === "/sessions/A/complete") {
@@ -1048,3 +1069,76 @@ test("Actual App waits for the Academy ticket and persists assessment context wi
       assert.equal(draft.learning?.context.mode, "assessment");
     },
   ));
+
+for (const mode of [
+  "learning-rejected",
+  "learning-invalid",
+  "learning-network",
+] as const) {
+  test(`Actual App distinguishes ${mode} without starting or saving a refused curriculum`, () =>
+    mounted(
+      mode,
+      async ({
+        document,
+        createBodies,
+        drafts,
+        workerMessages,
+        waitForPending,
+        release,
+      }) => {
+        await waitForPending();
+        await act(async () => {
+          release();
+          await new Promise((r) => setTimeout(r, 20));
+        });
+        await click(document, "Start adaptive drill");
+        await act(async () => {
+          await new Promise((r) => setTimeout(r, 20));
+        });
+        assert.equal(createBodies.length, 1);
+        assert.equal(drafts.size, 0);
+        assert.equal(
+          workerMessages.some((m) => m.type === "play"),
+          false,
+        );
+        const text = document.body.textContent ?? "";
+        if (mode === "learning-network") {
+          assert.match(text, /SERVER OFFLINE/);
+          assert.match(text, /original local server/);
+        } else {
+          assert.match(text, /SERVER CONNECTED/);
+          assert.match(text, /Exercise was not started/);
+          assert.match(
+            text,
+            mode === "learning-invalid"
+              ? /belongs to another trainee/
+              : /terminal disposition/,
+          );
+          assert.doesNotMatch(text, /Advanced drills require the original/);
+        }
+      },
+    ));
+}
+for (const mode of ["legacy-rejected", "legacy-network"] as const) {
+  test(`Actual App preserves safe legacy behavior for ${mode}`, () =>
+    mounted(mode, async ({ document, workerMessages }) => {
+      await click(document, "Begin exercise");
+      await act(async () => {
+        await new Promise((r) => setTimeout(r, 20));
+      });
+      const text = document.body.textContent ?? "";
+      if (mode === "legacy-rejected") {
+        assert.match(text, /Exercise was not started/);
+        assert.equal(
+          workerMessages.some((m) => m.type === "play"),
+          false,
+        );
+      } else {
+        assert.match(text, /Local practice mode/);
+        assert.equal(
+          workerMessages.some((m) => m.type === "play"),
+          true,
+        );
+      }
+    }));
+}

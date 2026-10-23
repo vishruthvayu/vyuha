@@ -144,6 +144,16 @@ export function setOfficerToken(token: string) {
   }
   window.dispatchEvent(new Event("vyuha-officer-session"));
 }
+/** A received HTTP refusal is distinct from an unreachable server. */
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    readonly status: number,
+  ) {
+    super(message);
+    this.name = "ApiError";
+  }
+}
 async function requestJSON<T>(
   path: string,
   body: string | undefined,
@@ -164,7 +174,7 @@ async function requestJSON<T>(
     const data = await result
       .json()
       .catch(() => ({ detail: "Request failed" }));
-    throw new Error(
+    throw new ApiError(
       typeof data.detail === "string"
         ? data.detail
         : Array.isArray(data.detail)
@@ -175,6 +185,7 @@ async function requestJSON<T>(
               )
               .join("; ")
           : "The server rejected this session.",
+      result.status,
     );
   }
   return result.json();

@@ -90,6 +90,7 @@ import { useRenderingQuality } from "./useRenderingQuality";
 import { useOfflineStatus } from "./useOfflineStatus";
 import { useWorkspaceNavigation } from "./useWorkspaceNavigation";
 import {
+  ApiError,
   RECONSTRUCTION_TIMEOUT_MS,
   mergeServerRecord,
   api,
@@ -1093,7 +1094,13 @@ export default function App({
       id = launched.sessionId;
       serverSessionRef.current = true;
       setOnline(true);
-    } catch {
+    } catch (error) {
+      if (error instanceof ApiError) {
+        setOnline(true);
+        setBusy(false);
+        setNotice(`Exercise was not started: ${error.message}`);
+        return;
+      }
       setOnline(false);
       if (mode === "adaptive" || mode === "library") {
         setBusy(false);

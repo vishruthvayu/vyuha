@@ -1,0 +1,42 @@
+{
+  "parent_revision": "86b61d247b4f715bd916c0b2b2a8030e88bb2843",
+  "source_hash": "c10e45979e8fef5245042c322a592839e9f8c444faf6df0bdab7a786789f87ef",
+  "targeted_tests_passed": 6,
+  "scope": "Actual App launch + real API error parser; 409/422 rejection, actual network failure, safe legacy fallback, Academy ticket.",
+  "browser": "Actual IAB development preview8040 proxy to disposable QA server8039; withdrawn prepared ticket refused with actual reason; SERVER CONNECTED; no exercise launch.",
+  "not_rerun": [
+    "complete backend",
+    "complete frontend",
+    "production build",
+    "unrelated browser workflows",
+    "performance benchmarks"
+  ],
+  "reuse": "801 backend/416 frontend plus production build/lint/format remain evidence for frozen86b61d2 source. No authoritative engine/scoring/persistence/role/VR dispatcher change in HTTP correction.",
+  "artifacts": [
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/training-rejection-targeted.txt",
+      "sha256": "38a4cfcc0d9fd7bd39c90072cf989f819855ca2cd5335a932062a60a8c54fc6a"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/training-rejection-types.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/training-rejection-lint.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/training-rejection-format.txt",
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/training-rejection-corrected.png",
+      "sha256": "5f4bb437357b99d137b7731ed95d88f6936d9b050d6102b6bc6150e05d1cd6f9"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/training-rejection-current-dom.txt",
+      "sha256": "ebc59c73f1dbe947a9cc1225e149aad017802e0d1ecc0e5f295857b3a9a80a4c"
+    }
+  ],
+  "full_system_acceptance": false
+}

@@ -1,0 +1,48 @@
+✔ Actual App waits for the Academy ticket and persists assessment context without default hints (768.397209ms)
+✔ Actual App distinguishes learning-rejected without starting or saving a refused curriculum (245.24225ms)
+✔ Actual App distinguishes learning-invalid without starting or saving a refused curriculum (137.345416ms)
+✔ Actual App distinguishes learning-network without starting or saving a refused curriculum (100.535417ms)
+✖ Actual App preserves safe legacy behavior for legacy-rejected (58.574334ms)
+✖ Actual App preserves safe legacy behavior for legacy-network (63.305417ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 4
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3022.698791
+
+✖ failing tests:
+
+test at src/review-app-lifetime.test.tsx:1:26210
+✖ Actual App preserves safe legacy behavior for legacy-rejected (58.574334ms)
+  AssertionError [ERR_ASSERTION]: Missing button Start drill
+      at click (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:620:10)
+      at <anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:1125:13)
+      at mounted (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:566:11)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at src/review-app-lifetime.test.tsx:1:26210
+✖ Actual App preserves safe legacy behavior for legacy-network (63.305417ms)
+  AssertionError [ERR_ASSERTION]: Missing button Start drill
+      at click (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:620:10)
+      at <anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:1125:13)
+      at mounted (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:566:11)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
