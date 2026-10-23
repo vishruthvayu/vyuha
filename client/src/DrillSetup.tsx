@@ -16,6 +16,7 @@ export default function DrillSetup({
   profile,
   prepared,
   busy,
+  frozenLearning = false,
   library,
   libraryId,
   onLibrary,
@@ -33,6 +34,7 @@ export default function DrillSetup({
   prepared: Scenario | null;
   onStart: () => void;
   busy: boolean;
+  frozenLearning?: boolean;
   library: Scenario[];
   libraryId: string;
   onLibrary: (value: string) => void;
@@ -48,7 +50,7 @@ export default function DrillSetup({
               {identity ? "Callsign" : "Trainee ID"}
               <input
                 aria-label={identity ? "Callsign" : "Trainee ID"}
-                disabled={busy}
+                disabled={busy || frozenLearning}
                 readOnly={!!identity}
                 value={identity?.callsign ?? trainee}
                 maxLength={24}
@@ -62,7 +64,7 @@ export default function DrillSetup({
             <label>
               Drill
               <select
-                disabled={busy}
+                disabled={busy || frozenLearning}
                 aria-label="Drill"
                 value={mode}
                 onChange={(e) => onMode(e.target.value as typeof mode)}
@@ -74,9 +76,9 @@ export default function DrillSetup({
             </label>
             {mode === "adaptive" && (
               <label>
-                Director seed
+                {frozenLearning ? "Curriculum seed" : "Director seed"}
                 <input
-                  disabled={busy}
+                  disabled={busy || frozenLearning}
                   type="number"
                   min={0}
                   max={4294967295}
@@ -97,10 +99,15 @@ export default function DrillSetup({
             )}
             <label>
               Conditions
-              {mode === "adaptive" && <small> · Director selected</small>}
+              {mode === "adaptive" && (
+                <small>
+                  {" "}
+                  · {frozenLearning ? "Frozen curriculum" : "Director selected"}
+                </small>
+              )}
               <select
                 aria-label="Conditions"
-                disabled={busy || mode !== "scripted"}
+                disabled={busy || frozenLearning || mode !== "scripted"}
                 title={
                   mode === "adaptive"
                     ? "Conditions are selected by the Director."
@@ -117,7 +124,7 @@ export default function DrillSetup({
             </label>
             <button
               className="text-button"
-              disabled={busy || mode === "library"}
+              disabled={busy || frozenLearning || mode === "library"}
               title={
                 mode === "library"
                   ? "The library scenario has a frozen seed."
@@ -180,7 +187,7 @@ export default function DrillSetup({
           <label>
             Scenario library
             <select
-              disabled={busy}
+              disabled={busy || frozenLearning}
               aria-label="Scenario library"
               value={libraryId}
               onChange={(e) => onLibrary(e.target.value)}

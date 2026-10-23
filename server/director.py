@@ -47,6 +47,8 @@ def persist_outcomes(db, trainee, sid, review):
 def persist_skill_results(db,trainee,sid,outcomes,version):
     from .crew import is_shared_session,is_shared_owner
     if is_shared_session(db,sid) or is_shared_owner(db,trainee):return False
+    from .learning import is_practice
+    if is_practice(db,sid):return False
     ensure_profile(db,trainee)
     if db.execute('SELECT 1 FROM skill_outcomes WHERE session_id=?',(sid,)).fetchone():
         return False

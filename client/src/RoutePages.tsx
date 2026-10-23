@@ -5,6 +5,7 @@ import type { UnitIdentity } from "./unit-state";
 
 // The Record type and navigation coverage test reject a renderer/policy mismatch.
 export const pageComponents = {
+  academy: lazy(() => import("./Academy")),
   training: lazy(() => import("./App")),
   crew: lazy(() => import("./Crew")),
   rapid: lazy(() => import("./RapidID")),

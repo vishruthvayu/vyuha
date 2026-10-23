@@ -5,6 +5,7 @@ export const navigationSections = ['Workspace', 'Unit', 'Exercises', 'Data / ope
 // Every renderer must have a policy. These are pages, not API or asset URLs.
 export const routes = [
  {id:'training', path:'/', title:'Training ground', section:'Workspace', policy:'NAVIGATED', identity:true, status:'ACTIVE', audience:'Trainee', reason:'Primary tactical workspace; also contains review, profile and Director.'},
+ {id:'academy', path:'/academy', title:'Academy', section:'Workspace', policy:'NAVIGATED', identity:true, status:'EXPERIMENTAL', audience:'Trainee', reason:'Practice lessons, separate assessment forms and evidence coverage; no operational certification.'},
  {id:'crew', path:'/crew', title:'Shared crew', section:'Workspace', policy:'NAVIGATED', identity:false, status:'EXPERIMENTAL', audience:'Crew / instructor', reason:'Shared authoritative spotter and responder exercise with role capabilities.'},
  {id:'rapid', path:'/rapid-id', title:'Rapid ID', section:'Workspace', policy:'NAVIGATED', identity:true, status:'ACTIVE', audience:'Trainee', reason:'Focused recognition practice.'},
  {id:'unit', path:'/unit', title:'Unit training overview', section:'Unit', policy:'NAVIGATED', identity:false, status:'ACTIVE', audience:'Officer / instructor', reason:'Unit profiles and completed session history.'},
@@ -27,7 +28,7 @@ export const navigationItems: readonly NavigationItem[] = ([
  {id:'review', href:'/?view=aar', label:'After-action review', section:'Workspace', workspace:'aar'},
  {id:'director', href:'/?mode=adaptive', label:'Adaptive Director', section:'Workspace', workspace:'drill'},
 ] satisfies NavigationItem[]).sort((a,b)=>{
- const order:NavigationId[]=['training','review','crew','rapid','director','unit','instructor','analytics','exercises','recorded','transfer','evidence','compliance'];
+ const order:NavigationId[]=['training','academy','review','crew','rapid','director','unit','instructor','analytics','exercises','recorded','transfer','evidence','compliance'];
  return order.indexOf(a.id)-order.indexOf(b.id);
 });
 

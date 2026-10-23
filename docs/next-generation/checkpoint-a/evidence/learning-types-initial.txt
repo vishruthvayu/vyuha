@@ -1,0 +1,4 @@
+client/src/App.tsx(247,9): error TS2451: Cannot redeclare block-scoped variable 'saveDraft'.
+client/src/App.tsx(296,9): error TS2451: Cannot redeclare block-scoped variable 'saveDraft'.
+client/src/App.tsx(296,49): error TS2304: Cannot find name 'persistDraft'.
+client/src/App.tsx(297,5): error TS2304: Cannot find name 'persistDraft'.

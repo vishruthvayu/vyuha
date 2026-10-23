@@ -14,3 +14,12 @@
 #capabilities tbody th { font-family: inherit; letter-spacing: 0; font-size: .9rem; }
 #capabilities table details { padding: 0; margin: .25rem 0; border: 0; background: transparent; }
 #capabilities table summary { min-height: 40px; display: list-item; padding: .5rem 0; font-size: .8rem; }
+.academy-page { display: grid; gap: 1rem; }
+.academy-page > .panel { padding: clamp(1rem, 2vw, 1.5rem); }
+.academy-page label { display: grid; gap: .5rem; max-width: 45rem; }
+.academy-page select { max-width: 100%; width: 100%; }
+.curriculum-banner { padding: .8rem 1rem; border-inline-start: 3px solid var(--accent, #63d8d0); }
+.curriculum-evidence { padding: 1rem; border-block: 1px solid var(--border, #345); }
+.curriculum-evidence code { overflow-wrap: anywhere; }
+.table-scroll { max-width: 100%; overflow-x: auto; }
+.table-scroll:focus-visible { outline: 2px solid #7cdbff; outline-offset: 3px; }

@@ -1,3 +1,9 @@
+import { UnitGateway } from "./Unit";
+import Academy from "./Academy";
+import { LearningBanner, LearningEvidence } from "./LearningEvidence";
+import ControlledStudy from "./ControlledStudy";
+import type { LearningReview, LearningPreparation } from "./learning";
+import { startDiagnostics, stopDiagnostics } from "./diagnostics";
 import { CapabilityTable } from "./CapabilityRegistry";
 import PerformanceDiagnostics from "./PerformanceDiagnostics";
 import { spawnSync } from "node:child_process";
@@ -665,4 +671,223 @@ test("source-scoped capability table and opt-in diagnostics preserve native keyb
     true,
   );
   assert.match(document.body.textContent ?? "", /HISTORICAL PASS/);
+});
+
+const learningFixture = {
+  context: {
+    version: "learning-v1",
+    catalog_hash: "a".repeat(64),
+    item_id: "C01_PRACTICE_A",
+    mode: "practice",
+    assistance: "full",
+    seed: 7,
+    selection: {
+      policy: "direct-item-v1",
+      reason: "Explicit practice selection",
+      coverage: {},
+      recent_items: [],
+      candidates: ["C01_PRACTICE_A"],
+    },
+  },
+  evidence: {
+    version: "competency-evidence-v1",
+    item_id: "C01_PRACTICE_A",
+    mode: "practice",
+    assessed: false,
+    assistance: "full",
+    summary: { C01: { correct: 1, incorrect: 0, unassessable: 0 } },
+    observations: [
+      {
+        competency_id: "C01",
+        decision_id: "D1",
+        tick: 30,
+        verdict: "correct",
+        reason: "DETECTION_ON_TIME",
+      },
+    ],
+    original_review_hash: "b".repeat(64),
+    limitation: "Scenario-bound evidence only; not operational certification.",
+  },
+} as LearningReview;
+test("competency review and registered protocol expose accessible evidence without a mastery claim", async () => {
+  const result = await audit(
+    <main>
+      <h1>Learning</h1>
+      <LearningEvidence review={learningFixture} />
+      <LearningBanner
+        preparation={
+          {
+            preparation_id: "test",
+            context: learningFixture.context,
+          } as LearningPreparation
+        }
+      />
+      <ControlledStudy />
+    </main>,
+  );
+  assert.equal(result.violations.length, 0, JSON.stringify(result.violations));
+  assert.match(
+    document.body.textContent ?? "",
+    /excluded from individual assessment/,
+  );
+  assert.equal(
+    document
+      .querySelector('[aria-label="Competency evidence counts"]')
+      ?.getAttribute("tabindex"),
+    "0",
+  );
+  assert.equal(
+    document.querySelectorAll('input[type="checkbox"]:checked').length,
+    0,
+  );
+});
+test("Academy preparation binds the joined trainee and exposes the actual integrated launch", async () => {
+  const original = globalThis.fetch;
+  const sent: { url: string; body: unknown }[] = [];
+  globalThis.fetch = async (input, init) => {
+    const url = String(input);
+    sent.push({ url, body: init?.body ? JSON.parse(String(init.body)) : null });
+    const value = url.endsWith("/catalogue")
+      ? {
+          version: "learning-v1",
+          catalog_hash: "a".repeat(64),
+          competencies: [
+            {
+              id: "C01",
+              title: "Observation",
+              scope: "individual",
+              claim: "Observe before deciding",
+              limitation: "Illustrative",
+            },
+          ],
+          items: [
+            {
+              id: "C01_PRACTICE_A",
+              title: "Observation practice",
+              competency_id: "C01",
+              pool: "practice",
+              form: null,
+              assistance: "full",
+              audience: "individual",
+              objective: "Use available observations",
+              instructions: ["Observe", "Reflect"],
+              reflection: "What was uncertain?",
+            },
+          ],
+          limitation: "Illustrative",
+        }
+      : url.endsWith("/progress")
+        ? {
+            practice_attempts: 0,
+            assessed_attempts: 0,
+            competencies: {
+              C01: {
+                correct: 0,
+                incorrect: 0,
+                unassessable: 0,
+                assessed_sessions: 0,
+              },
+            },
+            limitation: "Counts are not mastery",
+          }
+        : {
+            preparation_id: "prepared-lesson",
+            scenario: { title: "Frozen observation lesson" },
+            context: learningFixture.context,
+          };
+    return new Response(JSON.stringify(value), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  };
+  try {
+    await mount(
+      <Academy
+        identity={{ trainee_id: "T_A", unit_id: "local", callsign: "Learner" }}
+      />,
+    );
+    const button = Array.from(document.querySelectorAll("button")).find(
+      (x) => x.textContent === "Prepare selected lesson",
+    )!;
+    await click(button);
+    const req = sent.find((x) => x.url.endsWith("/learning/prepare"))!;
+    assert.equal((req.body as { trainee: string }).trainee, "T_A");
+    assert.equal((req.body as { mode: string }).mode, "practice");
+    assert.equal(
+      document.querySelector(
+        'a[href="/?mode=adaptive&learning=prepared-lesson"]',
+      )?.textContent,
+      "Open prepared training",
+    );
+    assert.match(
+      document.body.textContent ?? "",
+      /excluded|does not update individual assessment/,
+    );
+  } finally {
+    globalThis.fetch = original;
+  }
+});
+test("timing export produces a JSON object, never a double-encoded string", async () => {
+  const create = URL.createObjectURL,
+    revoke = URL.revokeObjectURL,
+    anchor = dom.window.HTMLAnchorElement.prototype.click;
+  let blob: Blob | undefined;
+  URL.createObjectURL = (value) => {
+    blob = value as Blob;
+    return "blob:test";
+  };
+  URL.revokeObjectURL = () => {};
+  dom.window.HTMLAnchorElement.prototype.click = () => {};
+  try {
+    await mount(<PerformanceDiagnostics />);
+    await act(async () => {
+      startDiagnostics().sample("render_frame", 16, performance.now());
+    });
+    await click(
+      Array.from(document.querySelectorAll("button")).find(
+        (x) => x.textContent === "Export local timings",
+      )!,
+    );
+    const parsed = JSON.parse(await blob!.text());
+    assert.equal(typeof parsed, "object");
+    assert.equal(parsed.schema_version, 1);
+    assert.equal(parsed.stopped, true);
+  } finally {
+    await act(async () => stopDiagnostics());
+    URL.createObjectURL = create;
+    URL.revokeObjectURL = revoke;
+    dom.window.HTMLAnchorElement.prototype.click = anchor;
+  }
+});
+
+test("Academy identity requirement uses the real join gateway even in local demo mode", async () => {
+  const original = globalThis.fetch;
+  const seen: string[] = [];
+  globalThis.fetch = async (input) => {
+    const url = String(input);
+    seen.push(url);
+    return new Response(
+      JSON.stringify(
+        url.endsWith("/health")
+          ? { mode: "demo" }
+          : { units: [{ id: "local", name: "Training Unit" }] },
+      ),
+    );
+  };
+  try {
+    await mount(
+      <UnitGateway requireIdentity>
+        {() => <p>Identity-dependent Academy</p>}
+      </UnitGateway>,
+    );
+    assert.match(document.body.textContent ?? "", /Join your training unit/);
+    assert.equal(
+      document.body.textContent?.includes("Identity-dependent Academy"),
+      false,
+    );
+    assert.ok(seen.includes("/api/v1/units"));
+    assert.ok(document.querySelector('[aria-label="Callsign"]'));
+  } finally {
+    globalThis.fetch = original;
+  }
 });

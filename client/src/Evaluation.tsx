@@ -1,3 +1,4 @@
+import ControlledStudy from "./ControlledStudy";
 import { PageHeader } from "./UI";
 import { useEffect, useRef, useState } from "react";
 import { api, download } from "./storage";
@@ -195,6 +196,7 @@ export default function Evaluation({ identity }: { identity?: UnitIdentity }) {
           </button>
         </section>
       )}
+      <ControlledStudy identity={identity} />
     </main>
   );
 }

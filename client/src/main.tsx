@@ -30,6 +30,12 @@ const rendered =
       <Page reviewOnly />
     ) : route.identity ? (
       <UnitGateway
+        requireIdentity={
+          route.id === "academy" ||
+          route.id === "evaluation" ||
+          (route.id === "training" &&
+            new URLSearchParams(window.location.search).has("learning"))
+        }
         fallbackNavigation={
           route.id === "training" ? <Navigation /> : undefined
         }

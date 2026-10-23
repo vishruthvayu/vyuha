@@ -18,7 +18,7 @@ def test_catalog_covers_every_roadmap_without_conflating_implementation_and_acce
     assert old['implementation']=='IMPLEMENTED'
     assert old['validation'][0]['freshness']=='HISTORICAL_PASS'
     assert old['validation'][0]['current_pass'] is False
-    assert next(r for r in data['capabilities'] if r['id']=='academy-course')['implementation']=='PLANNED'
+    assert next(r for r in data['capabilities'] if r['id']=='academy-course')['implementation']=='PARTIAL'
     assert 'No human' not in str(data.get('current_source_hash'))
 
 

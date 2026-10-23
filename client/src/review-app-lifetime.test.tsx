@@ -123,6 +123,25 @@ const restoredDraft: Draft = {
   server: false,
   eventBatches: [restoredEvents],
   fusionExposures: [],
+  learning: {
+    preparation_id: "restored-curriculum",
+    scenario: restoredScenario,
+    context: {
+      version: "learning-v1",
+      catalog_hash: "a".repeat(64),
+      item_id: "C01_PRACTICE_A",
+      mode: "practice",
+      assistance: "full",
+      seed: 7,
+      selection: {
+        policy: "direct-item-v1",
+        coverage: {},
+        recent_items: [],
+        candidates: ["C01_PRACTICE_A"],
+        reason: "Restored lesson",
+      },
+    },
+  },
   updated_at: "2026-10-14T00:00:00Z",
 };
 
@@ -239,12 +258,14 @@ type Mode =
   | "notes-failed"
   | "memo"
   | "restoration"
-  | "modality-evidence";
+  | "modality-evidence"
+  | "learning";
 async function mounted(
   mode: Mode,
   body: (context: {
     document: Document;
     saved: Map<string, TrainingRecord>;
+    createBodies: unknown[];
     drafts: Map<string, unknown>;
     setAdvice: (id: string) => void;
     waitForPending: () => Promise<void>;
@@ -289,7 +310,7 @@ async function mounted(
     context: { before_order: 0 },
   });
   const dom = new JSDOM('<!doctype html><body><div id="root"></div></body>', {
-    url: `http://qa.local/${mode.startsWith("retry") || mode === "memo" ? "?view=aar&session=A" : "?mode=scripted"}`,
+    url: `http://qa.local/${mode === "learning" ? "?mode=adaptive&learning=prepared-learning" : mode.startsWith("retry") || mode === "memo" ? "?view=aar&session=A" : "?mode=scripted"}`,
     pretendToBeVisual: true,
   });
   const workers: { onmessage?: (event: { data: unknown }) => void }[] = [];
@@ -361,7 +382,8 @@ async function mounted(
     diagnosticErrors.push(messages.map(String).join(" "));
     consoleError(...messages);
   };
-  const fetcher: typeof fetch = async (input) => {
+  const createBodies: unknown[] = [];
+  const fetcher: typeof fetch = async (input, init) => {
     const url = String(input).replace(/^\/api\/v1/, "");
     const json = (value: unknown) => new Response(JSON.stringify(value));
     if (url === "/sessions/RESTORED/aar")
@@ -369,6 +391,31 @@ async function mounted(
         JSON.stringify({ detail: "Synthetic server offline" }),
         { status: 503 },
       );
+    if (url.startsWith("/learning/preparations/")) {
+      pending = true;
+      await new Promise<void>((resolve) => {
+        release = resolve;
+      });
+      return json({
+        preparation_id: "prepared-learning",
+        scenario,
+        context: {
+          version: "learning-v1",
+          catalog_hash: "a".repeat(64),
+          item_id: "C01_BASELINE-A_A",
+          mode: "assessment",
+          assistance: "none",
+          seed: 7,
+          selection: {
+            policy: "direct-item-v1",
+            reason: "Frozen assessment item",
+            coverage: {},
+            recent_items: [],
+            candidates: ["C01_BASELINE-A_A"],
+          },
+        },
+      });
+    }
     if (url === "/health") return json({ ok: true });
     if (url.endsWith("/profile"))
       return json({ sessions: 2, skills: {}, unprocessed_sessions: [] });
@@ -389,7 +436,10 @@ async function mounted(
             }
           : scenario,
       );
-    if (url === "/sessions") return json({ id: "A" });
+    if (url === "/sessions") {
+      createBodies.push(JSON.parse(String(init?.body)));
+      return json({ id: "A" });
+    }
     if (url === "/sessions/A/complete") {
       if (mode === "completion" || mode === "retry-complete") {
         pending = true;
@@ -495,6 +545,7 @@ async function mounted(
     await body({
       document: dom.window.document,
       saved: savedRecords,
+      createBodies,
       drafts: savedDrafts,
       setAdvice: (id) => {
         (globalThis as unknown as { __qaAdvice: unknown }).__qaAdvice =
@@ -653,7 +704,13 @@ test("Actual App presentation-only FPS/camera changes reuse replay snapshot whil
 test("Actual App restored draft locks evidence until its own initialized replay and ignores stale worker ownership", () =>
   mounted(
     "restoration",
-    async ({ document, workerMessages, emitWorker, sceneSnapshots }) => {
+    async ({
+      document,
+      workerMessages,
+      emitWorker,
+      sceneSnapshots,
+      drafts,
+    }) => {
       await click(document, "Resume saved drill");
       const init = [...workerMessages]
         .reverse()
@@ -663,6 +720,10 @@ test("Actual App restored draft locks evidence until its own initialized replay 
       assert.deepEqual(init.events, restoredDraft.events);
       assert.deepEqual(init.commands, restoredDraft.commands);
       assert.equal(init.tick, 990);
+      assert.equal(
+        (drafts.get("RESTORED") as Draft).learning?.preparation_id,
+        "restored-curriculum",
+      );
       assert.match(document.body.textContent!, /EXERCISE \/ RESTORING/);
       assert.match(document.body.textContent!, /Controls are unavailable/);
       assert.equal(document.querySelectorAll(".contact-item").length, 0);
@@ -945,3 +1006,45 @@ for (const origin of ["browser", "VR"] as const) {
       },
     ));
 }
+
+test("Actual App waits for the Academy ticket and persists assessment context without default hints", () =>
+  mounted(
+    "learning",
+    async ({ document, createBodies, drafts, waitForPending, release }) => {
+      await waitForPending();
+      await click(document, "Prepare adaptive drill");
+      assert.equal(
+        createBodies.length,
+        0,
+        "pending curriculum must not launch a regular Director session",
+      );
+      await act(async () => {
+        release();
+        await new Promise((r) => setTimeout(r, 20));
+      });
+      const seedInput = document.querySelector<HTMLInputElement>(
+        'input[type="number"]',
+      )!;
+      assert.equal(seedInput.disabled, true);
+      assert.equal(seedInput.value, "7");
+      await click(document, "Start adaptive drill");
+      await act(async () => {
+        await new Promise((r) => setTimeout(r, 20));
+      });
+      assert.deepEqual(createBodies, [
+        {
+          scenario_id: scenario.id,
+          trainee: "CADET-01",
+          learning_preparation: "prepared-learning",
+        },
+      ]);
+      const guidance = [...document.querySelectorAll("button")].find(
+        (b) => b.textContent?.trim() === "Guidance",
+      )!;
+      assert.equal(guidance.disabled, true);
+      assert.equal(guidance.getAttribute("aria-pressed"), "false");
+      const draft = drafts.get("A") as Draft;
+      assert.equal(draft.learning?.preparation_id, "prepared-learning");
+      assert.equal(draft.learning?.context.mode, "assessment");
+    },
+  ));

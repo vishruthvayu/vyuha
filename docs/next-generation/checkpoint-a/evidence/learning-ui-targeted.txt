@@ -1,0 +1,54 @@
+✔ guide contains all tabbable controls, isolates background and restores focus on Escape (350.762458ms)
+✔ empty modal traps Tab safely and restores preexisting inert and body overflow (27.460667ms)
+✔ navigation drawer exposes a labelled modal, Escape restores the toggle, skip link focuses content (115.461292ms)
+✔ tour announces changed steps, permits outside focus and restores launcher on Escape (33.679542ms)
+✔ radar contacts expose selectable group semantics and Space activates without scrolling (33.873709ms)
+✔ automatic rendering adaptation uses consecutive samples and respects explicit quality controls (18.41075ms)
+✔ offline installation hook reads document state and follows status lifecycle events (18.469417ms)
+✔ axe checks guide and navigation DOM semantics (layout/contrast excluded from jsdom) (399.151958ms)
+✔ axe checks rendered initial important routes and reports real form/ARIA defects (980.742708ms)
+✔ workspace navigation clears stale review data, stops replay and keeps refreshable native URLs (12.090917ms)
+✔ axe checks populated Ghost/decision path, Fusion uncertainty and Crew coordination evidence (649.922792ms)
+✔ interactive guide advances without operating training and keeps previous step available (41.28ms)
+✔ exercise history distinguishes pending evidence, selection and exact recorded metadata (28.65825ms)
+✔ Crew coordination scroll region participates in ordinary tab order without cancelling navigation keys (16.562083ms)
+✔ source-scoped capability table and opt-in diagnostics preserve native keyboard semantics (102.610334ms)
+✔ competency review and registered protocol expose accessible evidence without a mastery claim (86.956958ms)
+✔ Academy preparation binds the joined trainee and exposes the actual integrated launch (54.482916ms)
+✔ timing export produces a JSON object, never a double-encoded string (18.176958ms)
+✔ route coverage: every actual renderer has a canonical discoverability policy (3.938375ms)
+✔ navigation policies retain all baseline page paths and finale pages and have no duplicate links (0.437334ms)
+✔ Transfer is a visible, descriptive anchor that reaches the canonical route (29.869167ms)
+✔ each navigated page highlights exactly its own link with aria-current page (200.799292ms)
+✔ review, Director, session details and retained embedded unit view resolve intentionally (0.5415ms)
+✔ engineering and opt-in evaluation stay secondary, with parent location highlighting (18.55925ms)
+✔ matching supports canonical trailing slash but does not capture unknown prefix or nested URLs (0.819ms)
+✔ all links expose keyboard-native anchor semantics, labels and text rather than icon-only controls (8.337541ms)
+✔ secondary workflows retain real links in their parent components (1.847334ms)
+✔ Unit navigation retains the embedded workspace without unloading a live trainee exercise (16.621208ms)
+✔ internal view transitions clear stale reviews and retain refreshable session details (0.625416ms)
+✔ officer AAR routing requires explicit complete-review intent and preserves trainee links (1.404625ms)
+✔ Actual App completion persists verified evidence without stealing a subsequently selected review (1507.96975ms)
+✔ Actual App retry-complete persists verified evidence without stealing a subsequently selected review (275.294292ms)
+✔ Actual App retry-existing persists verified evidence without stealing a subsequently selected review (274.736292ms)
+✔ Actual App completion notes keeps the score verified and exposes annotation availability immediately (446.870792ms)
+✔ Actual App completion notes-failed keeps the score verified and exposes annotation availability immediately (174.942084ms)
+✔ Actual App presentation-only FPS/camera changes reuse replay snapshot while a seek reconstructs (61.786792ms)
+✔ Actual App restored draft locks evidence until its own initialized replay and ignores stale worker ownership (420.550959ms)
+✔ Actual App ignores an older accepted acknowledgment while a different classification is pending (325.7825ms)
+✔ Actual App ignores an older rejected acknowledgment while a different classification is pending (197.53175ms)
+✔ Actual App freezes browser Fusion attribution across a delayed cross-modality acknowledgment (161.838792ms)
+✔ Actual App freezes VR Fusion attribution across a delayed cross-modality acknowledgment (422.330584ms)
+ℹ tests 41
+ℹ suites 0
+ℹ pass 41
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6793.073667
+npm notice
+npm notice New minor version of npm available! 11.6.2 -> 11.21.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.1
+npm notice To update run: npm install -g npm@11.21.1
+npm notice

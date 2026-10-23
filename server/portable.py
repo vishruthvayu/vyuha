@@ -301,7 +301,10 @@ from .portable_teaching import TeachingNote,export_notes,validate_notes,notes_ma
 from .fusion import Exposure
 from .portable_fusion import export_exposures,prepare_exposures,verify_existing_exposures,insert_exposures
 
+from .learning import LearningContext,compile_item,is_practice,complete_attempt,decorate as decorate_learning
+
 class TacticalEntry(StrictModel):
+ learning_context:LearningContext|None=None
  id:str=Field(min_length=8,max_length=64,pattern=r'^[A-Za-z0-9_-]+$')
  trainee:str=Field(pattern=r'^P_[a-f0-9]{20}$')
  created_at:str=Field(max_length=40)
@@ -421,14 +424,17 @@ def export(uid:str):
   if len(rows)>200 or len(rr)>100:raise HTTPException(422,'Unit exceeds portable bundle limits: 200 tactical and 100 recognition sessions; no partial history is silently exported')
   for r in rows:
    a=aar(r['id']);o=db.execute('SELECT outcomes,processed_at FROM skill_outcomes WHERE session_id=?',(r['id'],)).fetchone()
+   learning=decorate_learning(db,r['id']).get('learning')
+   practice=is_practice(db,r['id'])
    shared=shared_metadata(db,r['id'],secret)
    if shared and o:raise HTTPException(422,'Shared crew session has an invalid individual outcome ledger; repair source classification before export')
-   if not shared and not o:raise HTTPException(422,'Session has no reconstructable skill outcomes')
+   if practice and o:raise HTTPException(422,'Practice cannot have individual outcomes')
+   if not shared and not practice and not o:raise HTTPException(422,'Session has no reconstructable skill outcomes')
    exposures=export_exposures(db,r['id'])
    try:notes=export_notes(db,r['id'])
    except ValueError as e:raise HTTPException(422,'Teaching archive source is invalid: '+str(e)) from e
    versions.add(a['scorecard']['engine_version'])
-   entries.append(dict(id=r['id'],trainee=pseudonym(r['trainee'],secret,'P_'),created_at=r['created_at'],processed_at=r['completed_at'] or r['created_at'] if shared else o['processed_at'],scenario=export_scenario(a['scenario'],secret),events=a['events'],commands=a['commands'],execution_tick=a['executionTick'],end_tick=a['endTick'],scorecard=a['scorecard'],outcomes=None if shared else json.loads(o['outcomes']),**({'shared_crew':shared} if shared else {}),**({'fusion_exposures':exposures} if exposures else {}),**({'teaching_notes':notes} if notes else {})))
+   entries.append(dict(id=r['id'],trainee=pseudonym(r['trainee'],secret,'P_'),created_at=r['created_at'],processed_at=r['completed_at'] or r['created_at'] if shared or practice else o['processed_at'],scenario=export_scenario(a['scenario'],secret),events=a['events'],commands=a['commands'],execution_tick=a['executionTick'],end_tick=a['endTick'],scorecard=a['scorecard'],outcomes=None if shared or practice else json.loads(o['outcomes']),**({'learning_context':learning['context']} if learning else {}),**({'shared_crew':shared} if shared else {}),**({'fusion_exposures':exposures} if exposures else {}),**({'teaching_notes':notes} if notes else {})))
   for r in rr:
    o=db.execute('SELECT processed_at FROM skill_outcomes WHERE session_id=?',(r['id'],)).fetchone()
    if not o:raise HTTPException(422,'Recognition ledger missing')
@@ -500,7 +506,13 @@ def import_bundle(req:Envelope):
    if any(a.tick>e.execution_tick for a in e.events) or any(c['tick']>e.execution_tick for c in e.commands):raise ValueError('Action exceeds observed horizon')
    review,card=build_review(e.scenario,[a.model_dump(exclude_none=True) for a in e.events],e.commands,e.id,e.execution_tick,'completion',e.end_tick)
    if (card if e.scenario['version']==2 else {k:v for k,v in card.items() if k!='engine_version'})!=(e.scorecard if e.scenario['version']==2 else {k:v for k,v in e.scorecard.items() if k!='engine_version'}):raise ValueError('Stored score disagrees with reconstruction')
-   if e.shared_crew:validate_shared(e)
+   if e.learning_context:
+    if e.shared_crew:raise ValueError('Shared crew cannot own individual learning attempts')
+    if compile_item(e.learning_context)!=e.scenario:raise ValueError('Learning item disagrees with frozen scenario')
+   practice=bool(e.learning_context and e.learning_context.mode!='assessment')
+   if practice:
+    if e.outcomes is not None:raise ValueError('Practice must not carry individual skill outcomes')
+   elif e.shared_crew:validate_shared(e)
    elif session_outcomes(review)!=e.outcomes:raise ValueError('Skill outcomes disagree with reconstructed Ghost')
    validate_notes(e)
    fusion_prepared[e.id]=prepare_exposures(e)
@@ -545,18 +557,23 @@ def import_bundle(req:Envelope):
    if old:
     from .main import logged_events,applied_commands
     o=db.execute('SELECT outcomes,processed_at FROM skill_outcomes WHERE session_id=?',(e.id,)).fetchone()
-    if old['trainee']!=e.trainee or old['unit_id']!=unit_id or old['status']!='completed' or old['scenario_id']!=e.scenario['id'] or json.loads(old['scorecard'])!=e.scorecard or logged_events(db,e.id)!=[a.model_dump(exclude_none=True) for a in e.events] or applied_commands(db,e.id)!=e.commands or (bool(o) if e.shared_crew else not o or json.loads(o['outcomes'])!=e.outcomes) or old['execution_tick']!=e.execution_tick:raise HTTPException(409,'Canonical session ID conflicts; import rolled back')
+    if old['trainee']!=e.trainee or old['unit_id']!=unit_id or old['status']!='completed' or old['scenario_id']!=e.scenario['id'] or json.loads(old['scorecard'])!=e.scorecard or logged_events(db,e.id)!=[a.model_dump(exclude_none=True) for a in e.events] or applied_commands(db,e.id)!=e.commands or (bool(o) if e.shared_crew or e.learning_context and e.learning_context.mode!='assessment' else not o or json.loads(o['outcomes'])!=e.outcomes) or old['execution_tick']!=e.execution_tick:raise HTTPException(409,'Canonical session ID conflicts; import rolled back')
+    expected_learning=e.learning_context.model_dump() if e.learning_context else None
+    if decorate_learning(db,e.id).get('learning',{}).get('context')!=expected_learning:raise HTTPException(409,'Learning context conflicts with immutable history; import rolled back')
     if not compatible_metadata(shared_metadata(db,e.id,key()),e.shared_crew):raise HTTPException(409,'Shared crew classification or attribution conflicts; import rolled back')
     if not notes_match(db,e):raise HTTPException(409,'Teaching notes conflict with immutable history; import rolled back')
     verify_existing_exposures(db,e,fusion_prepared[e.id])
     skipped+=1;continue
    if e.shared_crew and db.execute('SELECT 1 FROM skill_profiles WHERE trainee=? UNION ALL SELECT 1 FROM skill_outcomes WHERE trainee=?',(e.trainee,e.trainee)).fetchone():raise HTTPException(409,'Crew owner conflicts with an individual skill profile; import rolled back')
    member(e);db.execute('INSERT OR IGNORE INTO scenarios VALUES (?,?)',(e.scenario['id'],dumps(e.scenario)))
-   db.execute("INSERT INTO sessions(id,trainee,scenario_id,created_at,status,scorecard,end_tick,unit_id,execution_tick,completed_at) VALUES (?,?,?,?,'completed',?,?,?,?,?)",(e.id,e.trainee,e.scenario['id'],e.created_at,dumps(e.scorecard),e.end_tick,unit_id,e.execution_tick,e.processed_at if e.shared_crew else e.created_at))
+   db.execute("INSERT INTO sessions(id,trainee,scenario_id,created_at,status,scorecard,end_tick,unit_id,execution_tick,completed_at) VALUES (?,?,?,?,'completed',?,?,?,?,?)",(e.id,e.trainee,e.scenario['id'],e.created_at,dumps(e.scorecard),e.end_tick,unit_id,e.execution_tick,e.processed_at if e.shared_crew or e.learning_context else e.created_at))
    log=[a.model_dump(exclude_none=True) for a in e.events]
    for seq,offset in enumerate(range(0,len(log),2000)):db.execute('INSERT INTO chunks VALUES (?,?,?)',(e.id,seq,dumps(log[offset:offset+2000])))
    for c in e.commands:db.execute('INSERT INTO instructor_commands VALUES (?,?,?,?,?,?,?)',(e.id,c['seq'],c['command_id'],c['issued_at'],dumps({k:c[k] for k in ['command_id','type','payload']}),c['tick'],c['order']))
    insert_notes(db,e)
+   if e.learning_context:
+    db.execute('INSERT INTO learning_attempts(session_id,context) VALUES (?,?)',(e.id,dumps(e.learning_context.model_dump())))
+    complete_attempt(db,e.id,review)
    if e.shared_crew:save_archive(db,e.id,e.shared_crew)
    else:
     persist_skill_results(db,e.trainee,e.id,e.outcomes,'director-v1');db.execute('UPDATE skill_outcomes SET processed_at=? WHERE session_id=?',(e.processed_at,e.id))

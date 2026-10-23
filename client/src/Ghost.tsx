@@ -1,3 +1,4 @@
+import { LearningEvidence } from "./LearningEvidence";
 import { useEffect, useRef, useState } from "react";
 import { Flag, ChevronRight, Activity } from "lucide-react";
 import type {
@@ -172,6 +173,9 @@ export function GhostPanel({
           {record.verified ? "RULE-GROUNDED" : "VERIFICATION PENDING"}
         </span>
       </div>
+      {record.verified && record.learning && (
+        <LearningEvidence review={record.learning} />
+      )}
       {!record.verified ? (
         <div className="ghost-content">
           <h3>Verification pending</h3>

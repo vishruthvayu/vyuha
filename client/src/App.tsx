@@ -1,3 +1,5 @@
+import type { LearningPreparation } from "./learning";
+import { LearningBanner } from "./LearningEvidence";
 import PerformanceDiagnostics from "./PerformanceDiagnostics";
 import {
   currentCapture,
@@ -242,6 +244,9 @@ export default function App({
   const pendingActionEvidence = useRef(new ActionEvidenceLedger());
   const confidenceRef = useRef<number | null>(null);
   confidenceRef.current = !vrOpen && logConfidence ? confidence : null;
+  const learningRef = useRef<LearningPreparation | undefined>(undefined);
+  const learningRequest = useRef(0);
+  const [learning, setLearning] = useState<LearningPreparation | undefined>();
   const saveDraft = (
     id: string,
     actions: Action[],
@@ -252,9 +257,18 @@ export default function App({
     cs: AppliedCommand[] = [],
     batches: Action[][] = [],
   ) =>
-    storeDraft(id, actions, spec, owner, tick, server, cs, batches, [
-      ...fusionRecords.current,
-    ]);
+    storeDraft(
+      id,
+      actions,
+      spec,
+      owner,
+      tick,
+      server,
+      cs,
+      batches,
+      [...fusionRecords.current],
+      learningRef.current,
+    );
   const [clockNote, setClockNote] = useState("");
   const offline = useOfflineStatus();
   const [recovery, setRecovery] = useState<Draft | null>(null);
@@ -304,7 +318,10 @@ export default function App({
     };
   }, [trainee, current?.id, current?.verified, phase]);
   useEffect(() => {
+    if (phase !== "ready") return;
     setPrepared(null);
+    learningRef.current = undefined;
+    setLearning(undefined);
   }, [trainee, seed, mode]);
   useEffect(() => {
     if (phase === "ready" && mode === "scripted") {
@@ -325,7 +342,50 @@ export default function App({
       }
     }
   }, [phase, mode, libraryId, library]);
+  useEffect(() => {
+    const ticket = new URLSearchParams(window.location.search).get("learning");
+    if (!ticket || reviewOnly || phase !== "ready") return;
+    let cancelled = false;
+    const request = ++learningRequest.current;
+    void api<LearningPreparation>(
+      `/learning/preparations/${encodeURIComponent(ticket)}?trainee=${encodeURIComponent(trainee)}`,
+    )
+      .then((p) => {
+        if (cancelled || request !== learningRequest.current) return;
+        if (p.session_id) {
+          setNotice(
+            "This Academy attempt already started. Restore its saved draft or prepare a new attempt in Academy.",
+          );
+          return;
+        }
+        learningRef.current = p;
+        setLearning(p);
+        setMode("adaptive");
+        setPrepared(p.scenario);
+        setScenario(p.scenario);
+        setState(new Simulation(p.scenario).snapshot());
+        setNight(p.scenario.night);
+        setSelected(null);
+      })
+      .catch((e) => {
+        if (!cancelled)
+          setNotice(
+            e instanceof Error ? e.message : "Academy preparation unavailable",
+          );
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [trainee, phase, reviewOnly]);
   const prepare = async () => {
+    learningRequest.current++;
+    const url = new URL(window.location.href);
+    if (url.searchParams.has("learning")) {
+      url.searchParams.delete("learning");
+      window.history.replaceState(null, "", url.pathname + url.search);
+    }
+    learningRef.current = undefined;
+    setLearning(undefined);
     setClockNote("");
     setPhase("ready");
     setBusy(true);
@@ -992,6 +1052,17 @@ export default function App({
     return () => clearTimeout(timer);
   }, [notice]);
   const start = async () => {
+    if (
+      new URLSearchParams(window.location.search).has("learning") &&
+      (!learningRef.current ||
+        mode !== "adaptive" ||
+        prepared?.id !== learningRef.current.scenario.id)
+    ) {
+      setNotice(
+        "Wait for the Academy preparation, restore its original draft, or return to Academy for a new attempt.",
+      );
+      return;
+    }
     if (mode === "adaptive" && !prepared) {
       await prepare();
       return;
@@ -1013,8 +1084,11 @@ export default function App({
                 mode,
                 trainee,
               });
-      const launched = await launchPreparedScenario(spec, trainee, (body) =>
-        api("/sessions", body),
+      const launched = await launchPreparedScenario(
+        spec,
+        trainee,
+        (body) => api("/sessions", body),
+        learningRef.current?.preparation_id,
       );
       id = launched.sessionId;
       serverSessionRef.current = true;
@@ -1067,6 +1141,8 @@ export default function App({
     setBusy(false);
   };
   const startAssigned = async () => {
+    learningRef.current = undefined;
+    setLearning(undefined);
     if (!assignment || busy) return;
     setBusy(true);
     try {
@@ -1173,6 +1249,8 @@ export default function App({
     if (!recovery) return;
     const d = recovery;
     if (d.trainee !== trainee) return;
+    learningRef.current = d.learning;
+    setLearning(d.learning);
     eventBatches.current = d.eventBatches ?? [];
     scenarioRef.current = d.scenario;
     traineeRef.current = d.trainee;
@@ -1594,11 +1672,13 @@ export default function App({
                 <span>
                   <small>
                     {phase === "ready" && mode === "adaptive"
-                      ? "DIRECTOR SEED"
+                      ? learning
+                        ? "CURRICULUM SEED"
+                        : "DIRECTOR SEED"
                       : "SCENARIO SEED"}
                   </small>
                   {phase === "ready" && mode !== "library"
-                    ? seed
+                    ? (learning?.context.seed ?? seed)
                     : scenario.seed}
                 </span>
                 <span>
@@ -1713,7 +1793,8 @@ export default function App({
                   onMode={setMode}
                   night={night}
                   onNight={setNight}
-                  seed={seed}
+                  seed={learning?.context.seed ?? seed}
+                  frozenLearning={!!learning}
                   onSeed={setSeed}
                   trainee={trainee}
                   onTrainee={setTrainee}
@@ -2196,202 +2277,211 @@ export default function App({
                   </section>
                 </aside>
                 {phase !== "restoring" && (
-                  <DecisionWorkspace
-                    ref={decisionDock}
-                    evidence={
-                      <>
-                        {" "}
-                        <section className="panel rf-panel">
-                          <div className="panel-header">
-                            <div>
-                              <Zap size={16} />
-                              <strong>RF / IFF evidence</strong>
+                  <>
+                    {learning && <LearningBanner preparation={learning} />}
+                    <DecisionWorkspace
+                      ref={decisionDock}
+                      evidence={
+                        <>
+                          {" "}
+                          <section className="panel rf-panel">
+                            <div className="panel-header">
+                              <div>
+                                <Zap size={16} />
+                                <strong>RF / IFF evidence</strong>
+                              </div>
                             </div>
-                          </div>
-                          <div className="evidence-grid">
-                            <span>
-                              CONTROL LINK
-                              <strong
-                                className={
-                                  rfObservation?.rf_signal ? "lime" : ""
-                                }
-                              >
-                                {!state.rfAvailable
-                                  ? "OFFLINE"
-                                  : target
-                                    ? rfObservation?.rf_signal
-                                      ? "Detected"
-                                      : "Not detected"
-                                    : "—"}
-                              </strong>
-                            </span>
-                            <span>
-                              IFF RESPONSE
-                              <strong
-                                className={
-                                  rfObservation?.iff === "friendly_reply"
-                                    ? "blue"
-                                    : ""
-                                }
-                              >
-                                {!state.rfAvailable
-                                  ? "OFFLINE"
-                                  : target
-                                    ? rfObservation?.iff === "friendly_reply"
-                                      ? "Friendly reply"
-                                      : rfObservation?.iff ===
-                                          "registered_civil"
-                                        ? "Registered civil"
-                                        : "No reply"
-                                    : "—"}
-                              </strong>
-                            </span>
-                          </div>
-                          <p>
-                            {!selected
-                              ? "Select a contact to inspect its current RF and IFF evidence."
-                              : !target
-                                ? "No current observation. Selection is retained; wait for reacquisition."
-                                : target && inCivilZone(target)
-                                  ? "Restricted zone: kinetic engagement is blocked here."
-                                  : !state.rfAvailable
-                                    ? "RF sensor unavailable. Use EO/IR cues; link and IFF evidence are unavailable."
-                                    : target &&
-                                        rfObservation?.rf_signal === false
-                                      ? "No detected RF link. Review the contact before selecting an effector."
-                                      : "Sensor cues support classification; they do not replace your decision."}
-                          </p>
-                        </section>
-                        {(phase === "running" || phase === "paused") &&
-                          scenario.fusion && (
-                            <>
-                              <FusionPanel
-                                observation={target?.observation}
-                                prior={{
-                                  kind: target?.classification,
-                                  identity: target?.declared,
-                                }}
-                                config={scenario.fusion}
-                                context={{
-                                  session_id: sessionRef.current || "local",
-                                  scenario_id: scenario.id,
-                                  before_order:
-                                    Math.max(
-                                      -1,
-                                      ...events.current.map(
-                                        (a) => a.order ?? -1,
-                                      ),
-                                      ...commands.current.map((c) => c.order),
-                                    ) + 1,
-                                }}
-                                onExposure={fusionExposure}
-                              />
-                              {scenario.fusion.mode === "training" && (
-                                <details className="panel evidence-disclosure confidence-options">
-                                  <summary>
-                                    Optional classification confidence
-                                  </summary>
-                                  <label>
-                                    <input
-                                      type="checkbox"
-                                      checked={logConfidence}
-                                      onChange={(e) =>
-                                        setLogConfidence(e.target.checked)
-                                      }
-                                    />
-                                    Optional confidence · classification
-                                  </label>
-                                  {logConfidence && (
+                            <div className="evidence-grid">
+                              <span>
+                                CONTROL LINK
+                                <strong
+                                  className={
+                                    rfObservation?.rf_signal ? "lime" : ""
+                                  }
+                                >
+                                  {!state.rfAvailable
+                                    ? "OFFLINE"
+                                    : target
+                                      ? rfObservation?.rf_signal
+                                        ? "Detected"
+                                        : "Not detected"
+                                      : "—"}
+                                </strong>
+                              </span>
+                              <span>
+                                IFF RESPONSE
+                                <strong
+                                  className={
+                                    rfObservation?.iff === "friendly_reply"
+                                      ? "blue"
+                                      : ""
+                                  }
+                                >
+                                  {!state.rfAvailable
+                                    ? "OFFLINE"
+                                    : target
+                                      ? rfObservation?.iff === "friendly_reply"
+                                        ? "Friendly reply"
+                                        : rfObservation?.iff ===
+                                            "registered_civil"
+                                          ? "Registered civil"
+                                          : "No reply"
+                                      : "—"}
+                                </strong>
+                              </span>
+                            </div>
+                            <p>
+                              {!selected
+                                ? "Select a contact to inspect its current RF and IFF evidence."
+                                : !target
+                                  ? "No current observation. Selection is retained; wait for reacquisition."
+                                  : target && inCivilZone(target)
+                                    ? "Restricted zone: kinetic engagement is blocked here."
+                                    : !state.rfAvailable
+                                      ? "RF sensor unavailable. Use EO/IR cues; link and IFF evidence are unavailable."
+                                      : target &&
+                                          rfObservation?.rf_signal === false
+                                        ? "No detected RF link. Review the contact before selecting an effector."
+                                        : "Sensor cues support classification; they do not replace your decision."}
+                            </p>
+                          </section>
+                          {(phase === "running" || phase === "paused") &&
+                            scenario.fusion && (
+                              <>
+                                <FusionPanel
+                                  observation={target?.observation}
+                                  prior={{
+                                    kind: target?.classification,
+                                    identity: target?.declared,
+                                  }}
+                                  config={scenario.fusion}
+                                  context={{
+                                    session_id: sessionRef.current || "local",
+                                    scenario_id: scenario.id,
+                                    before_order:
+                                      Math.max(
+                                        -1,
+                                        ...events.current.map(
+                                          (a) => a.order ?? -1,
+                                        ),
+                                        ...commands.current.map((c) => c.order),
+                                      ) + 1,
+                                  }}
+                                  onExposure={fusionExposure}
+                                />
+                                {scenario.fusion.mode === "training" && (
+                                  <details className="panel evidence-disclosure confidence-options">
+                                    <summary>
+                                      Optional classification confidence
+                                    </summary>
                                     <label>
-                                      Confidence in selected type (%)
                                       <input
-                                        type="number"
-                                        min={0}
-                                        max={100}
-                                        value={confidence}
+                                        type="checkbox"
+                                        checked={logConfidence}
                                         onChange={(e) =>
-                                          setConfidence(
-                                            Math.max(
-                                              0,
-                                              Math.min(
-                                                100,
-                                                Number(e.target.value) || 0,
-                                              ),
-                                            ),
-                                          )
+                                          setLogConfidence(e.target.checked)
                                         }
                                       />
+                                      Optional confidence · classification
                                     </label>
-                                  )}
-                                  <p className="footnote">
-                                    Your selected type receives this
-                                    probability; the remainder is divided
-                                    equally among the other three types. A
-                                    post-exercise Brier diagnostic does not
-                                    change the score or mastery profile.
-                                  </p>
-                                </details>
-                              )}
-                            </>
-                          )}
-                        {state.response && (
-                          <details className="panel evidence-disclosure response-resources">
-                            <summary>
-                              Response resources ·{" "}
-                              {state.response.kinetic_ammo_remaining} rounds ·{" "}
-                              {state.response.jammer_channels_in_use}/
-                              {scenario.response_model?.jammer_channels} jammer
-                              channels
-                            </summary>
-                            <p>
-                              Kinetic: {state.response.kinetic_ammo_remaining}{" "}
-                              rounds · ready{" "}
-                              {state.tick >= state.response.kinetic_ready_tick
-                                ? "now"
-                                : `at ${time(state.response.kinetic_ready_tick)}`}
-                            </p>
-                            <p>
-                              Jammer channels:{" "}
-                              {state.response.jammer_channels_in_use}/
-                              {scenario.response_model?.jammer_channels} in use
-                            </p>
-                            {state.response.attempts.slice(-3).map((a) => (
-                              <p key={a.id}>
-                                {a.track} · {a.effector} ·{" "}
-                                {a.status.replaceAll("_", " ")}
-                                {a.status === "pending" && a.due_tick !== null
-                                  ? ` · due ${time(a.due_tick)}`
-                                  : ""}
+                                    {logConfidence && (
+                                      <label>
+                                        Confidence in selected type (%)
+                                        <input
+                                          type="number"
+                                          min={0}
+                                          max={100}
+                                          value={confidence}
+                                          onChange={(e) =>
+                                            setConfidence(
+                                              Math.max(
+                                                0,
+                                                Math.min(
+                                                  100,
+                                                  Number(e.target.value) || 0,
+                                                ),
+                                              ),
+                                            )
+                                          }
+                                        />
+                                      </label>
+                                    )}
+                                    <p className="footnote">
+                                      Your selected type receives this
+                                      probability; the remainder is divided
+                                      equally among the other three types. A
+                                      post-exercise Brier diagnostic does not
+                                      change the score or mastery profile.
+                                    </p>
+                                  </details>
+                                )}
+                              </>
+                            )}
+                          {state.response && (
+                            <details className="panel evidence-disclosure response-resources">
+                              <summary>
+                                Response resources ·{" "}
+                                {state.response.kinetic_ammo_remaining} rounds ·{" "}
+                                {state.response.jammer_channels_in_use}/
+                                {scenario.response_model?.jammer_channels}{" "}
+                                jammer channels
+                              </summary>
+                              <p>
+                                Kinetic: {state.response.kinetic_ammo_remaining}{" "}
+                                rounds · ready{" "}
+                                {state.tick >= state.response.kinetic_ready_tick
+                                  ? "now"
+                                  : `at ${time(state.response.kinetic_ready_tick)}`}
                               </p>
-                            ))}
-                            <p className="footnote">
-                              Illustrative resources and seeded effects. A
-                              response can be accepted but fail to resolve a
-                              contact.
-                            </p>
-                          </details>
+                              <p>
+                                Jammer channels:{" "}
+                                {state.response.jammer_channels_in_use}/
+                                {scenario.response_model?.jammer_channels} in
+                                use
+                              </p>
+                              {state.response.attempts.slice(-3).map((a) => (
+                                <p key={a.id}>
+                                  {a.track} · {a.effector} ·{" "}
+                                  {a.status.replaceAll("_", " ")}
+                                  {a.status === "pending" && a.due_tick !== null
+                                    ? ` · due ${time(a.due_tick)}`
+                                    : ""}
+                                </p>
+                              ))}
+                              <p className="footnote">
+                                Illustrative resources and seeded effects. A
+                                response can be accepted but fail to resolve a
+                                contact.
+                              </p>
+                            </details>
+                          )}
+                        </>
+                      }
+                    >
+                      <GuidedDecision
+                        phase={phase}
+                        selected={selected}
+                        target={target}
+                        record={decisionRecord(
+                          state.tracks.find((t) => t.id === selected),
                         )}
-                      </>
-                    }
-                  >
-                    <GuidedDecision
-                      phase={phase}
-                      selected={selected}
-                      target={target}
-                      record={decisionRecord(
-                        state.tracks.find((t) => t.id === selected),
-                      )}
-                      state={state}
-                      scenario={scenario}
-                      vision={vision}
-                      rf={rfObservation}
-                      feedback={feedback}
-                      guidance={guidance}
-                      onGuidance={setGuidance}
-                      onAct={act}
-                      onNext={nextContact}
-                    />
-                  </DecisionWorkspace>
+                        state={state}
+                        scenario={scenario}
+                        vision={vision}
+                        rf={rfObservation}
+                        feedback={feedback}
+                        guidance={
+                          learning
+                            ? learning.context.assistance === "full"
+                            : guidance
+                        }
+                        guidanceLocked={!!learning}
+                        onGuidance={setGuidance}
+                        onAct={act}
+                        onNext={nextContact}
+                      />
+                    </DecisionWorkspace>
+                  </>
                 )}
               </div>
             )}

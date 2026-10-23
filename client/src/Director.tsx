@@ -139,13 +139,21 @@ export async function launchPreparedScenario(
   create: (body: {
     scenario_id: string;
     trainee: string;
+    learning_preparation?: string;
   }) => Promise<{ id: string }>,
+  learningPreparation?: string,
 ) {
   if (
     scenario.director_decision &&
     scenario.director_decision.trainee_id !== trainee
   )
     throw new Error("Prepare this trainee’s adaptive drill first.");
-  const session = await create({ scenario_id: scenario.id, trainee });
+  const session = await create({
+    scenario_id: scenario.id,
+    trainee,
+    ...(learningPreparation
+      ? { learning_preparation: learningPreparation }
+      : {}),
+  });
   return { scenario, sessionId: session.id };
 }

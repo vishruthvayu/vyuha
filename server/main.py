@@ -68,11 +68,11 @@ def profile(trainee):
             from .director import SKILLS
             return TrainingProfile(trainee=trainee,sessions=0,skills={s:dict(alpha=1.,beta=1.,observations=0,mean=.5,updated_at=None,last_session_id=None) for s in SKILLS},outcomes=[],unprocessed_sessions=[],version='shared-crew-not-individual').model_dump()
         ready=db.execute('SELECT COUNT(*) FROM skill_profiles WHERE trainee=?',(trainee,)).fetchone()[0]==4
-        pending=db.execute("SELECT 1 FROM sessions s LEFT JOIN skill_outcomes o ON o.session_id=s.id WHERE s.trainee=? AND s.status='completed' AND o.session_id IS NULL LIMIT 1",(trainee,)).fetchone()
+        pending=db.execute("SELECT 1 FROM sessions s LEFT JOIN skill_outcomes o ON o.session_id=s.id WHERE s.trainee=? AND s.status='completed' AND o.session_id IS NULL AND NOT EXISTS(SELECT 1 FROM learning_attempts la WHERE la.session_id=s.id AND json_extract(la.context,'$.mode')!='assessment') LIMIT 1",(trainee,)).fetchone()
         if ready and not pending:return read_profile(db,trainee,ensure=False)
     with connect() as db:
         db.execute('BEGIN IMMEDIATE')
-        pending=db.execute("SELECT s.*,sc.spec FROM sessions s JOIN scenarios sc ON sc.id=s.scenario_id LEFT JOIN skill_outcomes o ON o.session_id=s.id WHERE s.trainee=? AND s.status='completed' AND o.session_id IS NULL ORDER BY s.created_at,s.id",(trainee,)).fetchall()
+        pending=db.execute("SELECT s.*,sc.spec FROM sessions s JOIN scenarios sc ON sc.id=s.scenario_id LEFT JOIN skill_outcomes o ON o.session_id=s.id WHERE s.trainee=? AND s.status='completed' AND o.session_id IS NULL AND NOT EXISTS(SELECT 1 FROM learning_attempts la WHERE la.session_id=s.id AND json_extract(la.context,'$.mode')!='assessment') ORDER BY s.created_at,s.id",(trainee,)).fetchall()
         skipped=[]
         for row in pending:
             try:review=review_session(db,row)
@@ -123,6 +123,13 @@ def create_session(req: CreateSession):
     session_id = str(uuid.uuid4())
     with connect() as db:
         db.execute("BEGIN IMMEDIATE")
+        if req.learning_preparation:
+            previous=db.execute('SELECT a.session_id,s.trainee,s.scenario_id,s.status,s.control_state FROM learning_attempts a JOIN sessions s ON s.id=a.session_id WHERE a.preparation_id=?',(req.learning_preparation,)).fetchone()
+            if previous:
+                if previous['trainee']!=req.trainee or previous['scenario_id']!=req.scenario_id:raise HTTPException(422,'Preparation belongs to another trainee or scenario')
+                used=db.execute('SELECT 1 FROM chunks WHERE session_id=? UNION ALL SELECT 1 FROM instructor_commands WHERE session_id=?',(previous['session_id'],previous['session_id'])).fetchone()
+                if previous['status']=='active' and not previous['control_state'] and not used:return {'id':previous['session_id']}
+                raise HTTPException(409,'Learning preparation already started; restore its original session or prepare a new attempt')
         spec_row=db.execute("SELECT spec FROM scenarios WHERE id=?", (req.scenario_id,)).fetchone()
         if not spec_row:
             raise HTTPException(404, "Scenario not found")
@@ -131,6 +138,9 @@ def create_session(req: CreateSession):
             if os.environ.get('VYUHA_UNIT_MODE')=='1':raise HTTPException(422,'Join a unit before starting training')
             db.execute("INSERT INTO trainees VALUES (?,'local',?,?)",(req.trainee,req.trainee,datetime.now(timezone.utc).isoformat()))
         db.execute("INSERT INTO sessions(id,trainee,scenario_id,created_at,unit_id) VALUES (?,?,?,?,?)", (session_id, req.trainee, req.scenario_id, datetime.now(timezone.utc).isoformat(),member['unit_id'] if member else 'local'))
+        if req.learning_preparation:
+            from .learning import attach
+            attach(db,session_id,req.learning_preparation,req.trainee,req.scenario_id)
         decision=json.loads(spec_row['spec']).get('director_decision')
         if decision:
             if decision['trainee_id']!=req.trainee:
@@ -200,6 +210,8 @@ def complete(session_id: str, req: Complete):
         if logged_events(db,session_id)!=log or applied_commands(db,session_id)!=commands or req.execution_tick is None and latest['control_state']!=row['control_state']:
             raise HTTPException(409,'Session changed during scoring; retry completion')
         db.execute("UPDATE sessions SET status='completed',scorecard=?,end_tick=?,execution_tick=?,completed_at=? WHERE id=?",(dumps(card),req.end_tick,req.execution_tick,datetime.now(timezone.utc).isoformat(),session_id))
+        from .learning import complete_attempt
+        complete_attempt(db,session_id,review)
         persist_outcomes(db,row['trainee'],session_id,review)
         from .units import persist_stats
         persist_stats(db,session_id,review)
@@ -219,9 +231,10 @@ def aar(session_id: str, include_review: bool = True):
             observed=json.loads(row["control_state"])["tick"];source="telemetry"
         else:
             observed=max([e["tick"] for e in log+commands],default=0);source="last_recorded_event"
+        from .learning import decorate as decorate_learning
         if not include_review:
             return dict(id=row["id"],trainee=row["trainee"],unit_id=row["unit_id"],exercise_group_id=row["exercise_group_id"],scenario=json.loads(row["spec"]),events=log,commands=commands,
-                        executionTick=observed,endTick=row["end_tick"],scorecard=json.loads(row["scorecard"]),created_at=row["created_at"],verified=True)
+                        executionTick=observed,endTick=row["end_tick"],scorecard=json.loads(row["scorecard"]),created_at=row["created_at"],verified=True,**decorate_learning(db,session_id))
         try:
             review,reconstructed_card=build_review(json.loads(row["spec"]),log,commands,session_id,observed,source,row["end_tick"])
         except (ValueError,KeyError,TypeError) as error:
@@ -231,7 +244,7 @@ def aar(session_id: str, include_review: bool = True):
             raise HTTPException(422,"Stored score disagrees with reconstructed session")
         return dict(id=row["id"], trainee=row["trainee"], unit_id=row["unit_id"], exercise_group_id=row["exercise_group_id"], scenario=json.loads(row["spec"]), events=log,
                     commands=commands,executionTick=observed,endTick=row["end_tick"],scorecard=json.loads(row["scorecard"]),
-                    created_at=row["created_at"],verified=True,**decorate_review(db,session_id,review))
+                    created_at=row["created_at"],verified=True,**decorate_review(db,session_id,review),**decorate_learning(db,session_id))
 
 
 @app.get("/api/v1/units/{unit_id}/dashboard")
@@ -353,6 +366,10 @@ from .evidence import router as evidence_router
 app.include_router(evidence_router)
 from .capabilities import router as capability_router
 app.include_router(capability_router)
+from .learning import router as learning_router
+app.include_router(learning_router)
+from .controlled_study import router as controlled_study_router
+app.include_router(controlled_study_router)
 from .portable import router as portable_router
 app.include_router(portable_router)
 from .recordings import router as recording_router

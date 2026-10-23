@@ -1,0 +1,7 @@
+import type { Scenario } from './types';
+export type LearningContext = { version:'learning-v1';catalog_hash:string;item_id:string;mode:'practice'|'assessment'|'adaptive';assistance:'full'|'faded'|'none';seed:number;selection:{policy:string;reason:string;coverage:Record<string,{correct:number;incorrect:number;unassessable:number;assessed_sessions:number}>;recent_items:string[];candidates:string[]} };
+export type LearningPreparation={preparation_id:string;scenario:Scenario;context:LearningContext;session_id?:string|null};
+export type LearningReview={context:LearningContext;evidence:null|{version:string;item_id:string;mode:string;assessed:boolean;assistance:string;summary:Record<string,{correct:number;incorrect:number;unassessable:number}>;observations:{competency_id:string;decision_id:string;tick:number;verdict:string;reason:string}[];original_review_hash:string;limitation:string}};
+export type LearningItem={id:string;title:string;competency_id:string;pool:'practice'|'assessment';form:string|null;assistance:string;audience:string;objective:string;instructions:string[];reflection:string};
+export type LearningCatalogue={version:string;catalog_hash:string;competencies:{id:string;title:string;scope:string;claim:string;limitation:string}[];items:LearningItem[];limitation:string};
+export const learningModeLabel=(mode:string)=>mode==='assessment'?'Assessment':mode==='adaptive'?'Adaptive practice':'Academy practice';

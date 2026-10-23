@@ -67,7 +67,9 @@ export type Assignment = {
 export function UnitGateway({
   children,
   fallbackNavigation,
+  requireIdentity = false,
 }: {
+  requireIdentity?: boolean;
   children: (identity?: UnitIdentity) => ReactNode;
   fallbackNavigation?: ReactNode;
 }) {
@@ -86,8 +88,9 @@ export function UnitGateway({
     void api<{ mode: string }>("/health")
       .then(async (h) => {
         if (stopped) return;
-        setUnitMode(h.mode === "unit");
-        if (h.mode === "unit") {
+        const required = h.mode === "unit" || requireIdentity;
+        setUnitMode(required);
+        if (required) {
           const list = await api<{ units: { id: string; name: string }[] }>(
             "/units",
           );

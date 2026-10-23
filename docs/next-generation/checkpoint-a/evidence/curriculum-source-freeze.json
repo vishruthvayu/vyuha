@@ -1,0 +1,6 @@
+{
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_hash": "eabacc22493f644b01c76d71657f3f8e4b71bf0c83b59857af97c8651341efc5",
+  "parent_commit": "14f1845",
+  "scope": "Curriculum final validation begins after all listed runtime/test edits; implementation commit to be bound afterward."
+}

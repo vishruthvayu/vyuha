@@ -1,0 +1,75 @@
+{
+  "scope": "Disposable QA sessions operated through actual browser controls. Deliberately incomplete/incorrect actions; not human learning evidence.",
+  "sessions": [
+    {
+      "session_id": "efb07363-e9af-43e7-aa15-b94dd0233dd7",
+      "mode": "practice",
+      "status": "completed",
+      "observed_ticks": 363,
+      "score": 5,
+      "competency_summary": {
+        "C01": {
+          "correct": 0,
+          "incorrect": 1,
+          "unassessable": 0
+        },
+        "C02": {
+          "correct": 0,
+          "incorrect": 0,
+          "unassessable": 1
+        },
+        "C03": {
+          "correct": 0,
+          "incorrect": 0,
+          "unassessable": 0
+        },
+        "C04": {
+          "correct": 0,
+          "incorrect": 0,
+          "unassessable": 0
+        },
+        "C05": {
+          "correct": 0,
+          "incorrect": 0,
+          "unassessable": 0
+        }
+      },
+      "individual_outcome_rows": 0
+    },
+    {
+      "session_id": "10c956fd-8fbc-440e-98fa-9df7bb51e5d4",
+      "mode": "assessment",
+      "status": "completed",
+      "observed_ticks": 875,
+      "score": 0,
+      "competency_summary": {
+        "C01": {
+          "correct": 0,
+          "incorrect": 2,
+          "unassessable": 0
+        },
+        "C02": {
+          "correct": 0,
+          "incorrect": 0,
+          "unassessable": 1
+        },
+        "C03": {
+          "correct": 0,
+          "incorrect": 0,
+          "unassessable": 0
+        },
+        "C04": {
+          "correct": 0,
+          "incorrect": 0,
+          "unassessable": 1
+        },
+        "C05": {
+          "correct": 0,
+          "incorrect": 0,
+          "unassessable": 0
+        }
+      },
+      "individual_outcome_rows": 1
+    }
+  ]
+}

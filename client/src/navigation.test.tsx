@@ -50,6 +50,7 @@ test("navigation policies retain all baseline page paths and finale pages and ha
     [
       "/",
       "/rapid-id",
+      "/academy",
       "/unit",
       "/instructor",
       "/analytics",

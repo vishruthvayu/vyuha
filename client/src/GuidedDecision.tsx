@@ -366,6 +366,7 @@ export function GuidedDecision({
   feedback,
   guidance,
   onGuidance,
+  guidanceLocked = false,
   onAct,
   onNext,
 }: {
@@ -382,6 +383,7 @@ export function GuidedDecision({
   feedback: ActionFeedback | null;
   guidance: boolean;
   onGuidance: (on: boolean) => void;
+  guidanceLocked?: boolean;
   onAct: (action: DecisionAction) => void;
   onNext?: () => void;
 }) {
@@ -527,6 +529,12 @@ export function GuidedDecision({
         <button
           type="button"
           className="text-button guided-toggle"
+          disabled={guidanceLocked}
+          title={
+            guidanceLocked
+              ? "Guidance is fixed by this curriculum attempt"
+              : undefined
+          }
           aria-pressed={guidance}
           onClick={() => onGuidance(!guidance)}
         >

@@ -12,8 +12,9 @@ Source: `server/config/capabilities-v1.json`. Generate with `scripts/check_capab
 | Shared WebXR action integration | IMPLEMENTED | `/` | `client/src/VRCockpit.tsx`, `client/src/VRWorld.tsx` |
 | Opt-in timing diagnostics | PARTIAL | `/system/benchmark` | `client/src/diagnostics.ts`, `client/src/PerformanceDiagnostics.tsx` |
 | Source-scoped capability and evidence registry | PARTIAL | `/system/evidence#capabilities` | `server/capabilities.py`, `client/src/CapabilityRegistry.tsx` |
-| Competency/task/evidence contracts | PLANNED | `/academy` | `server/learning.py` |
-| Academy and assessed progression | PLANNED | `/academy` | `client/src/Academy.tsx` |
+| Competency/task/evidence contracts | PARTIAL | `/academy` | `server/learning.py`, `client/src/LearningEvidence.tsx` |
+| Academy and assessed progression | PARTIAL | `/academy` | `client/src/Academy.tsx`, `server/config/learning-v1.json`, `server/controlled_study.py` |
+| Coverage-first curriculum Director | PARTIAL | `/academy` | `server/learning.py` |
 
 ## Long-term backlog
 
@@ -21,11 +22,11 @@ Source: `server/config/capabilities-v1.json`. Generate with `scripts/check_capab
 |---|---|---|---|---|
 | R01 | Startup, frame and interaction attribution/budgets | PARTIAL | A | Existing baseline |
 | R02 | Canonical capability, claim and evidence registry | PARTIAL | A | Existing baseline |
-| R03 | Competency/task/evidence contracts | PLANNED | A | Existing baseline |
-| R04 | Controlled learning, retention and transfer pilot | PLANNED | A | R03, R06 |
-| R05 | Academy with fading scaffolds | PLANNED | A | R03 |
-| R06 | Balanced assessment bank and semantic novelty | PLANNED | A | R03 |
-| R07 | Curriculum-aware, testable Director | PLANNED | A | R03, R06 |
+| R03 | Competency/task/evidence contracts | PARTIAL | A | Existing baseline |
+| R04 | Controlled learning, retention and transfer pilot | PARTIAL | A | R03, R06 |
+| R05 | Academy with fading scaffolds | PARTIAL | A | R03 |
+| R06 | Balanced assessment bank and semantic novelty | PARTIAL | A | R03 |
+| R07 | Curriculum-aware, testable Director | PARTIAL | A | R03, R06 |
 | R08 | Calibrated, abstaining observable-only assistance | PLANNED | B | R03, R06 |
 | R09 | Active evidence collection and uncertainty literacy | PLANNED | B | R03 |
 | R10 | Causal AAR with evidence graph and reflection | PLANNED | B | R03 |

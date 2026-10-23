@@ -37,6 +37,7 @@ class Generate(BaseModel):
 
 
 class CreateSession(BaseModel):
+    learning_preparation: str | None = Field(default=None,min_length=8,max_length=80,pattern=r"^[A-Za-z0-9_-]+$")
     scenario_id: str = Field(max_length=100)
     trainee: str = Field(default="CADET-01", min_length=1, max_length=24, pattern=r"^[A-Za-z0-9_-]+$")
 

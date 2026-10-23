@@ -51,6 +51,7 @@ export type Draft = {
   commands?: AppliedCommand[];
   eventBatches?: Action[][];
   fusionExposures?: import("./types").FusionExposure[];
+  learning?: import("./learning").LearningPreparation;
   updated_at: string;
 };
 export async function saveDraft(
@@ -63,6 +64,7 @@ export async function saveDraft(
   commands: AppliedCommand[] = [],
   eventBatches: Action[][] = [],
   fusionExposures: import("./types").FusionExposure[] = [],
+  learning?: import("./learning").LearningPreparation,
 ) {
   await put("drafts", {
     id,
@@ -74,6 +76,7 @@ export async function saveDraft(
     commands,
     eventBatches,
     fusionExposures,
+    learning,
     updated_at: new Date().toISOString(),
   });
 }
