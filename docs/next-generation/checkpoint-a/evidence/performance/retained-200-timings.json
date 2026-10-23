@@ -1,0 +1,7698 @@
+{
+  "schema_version": 1,
+  "source": {
+    "working_tree_source_dirty": true,
+    "commit": "7379f771ef1c1620147ee1b958a8a243628cf65f",
+    "source_hash": "b1b7441c91fb09e5262f63bc41ff50aac1a312f08de48b1e807875d59df86992"
+  },
+  "elapsed_ms": 18333.70000000298,
+  "observer_support": [
+    "long-animation-frame",
+    "longtask",
+    "event",
+    "resource"
+  ],
+  "interaction_sample_floor_ms": 16,
+  "stopped": true,
+  "sample_limit": 32000,
+  "dropped_samples": 0,
+  "ignored_background_frames": 0,
+  "complete_sample_window": true,
+  "summary": {
+    "world_textures": {
+      "samples": 0,
+      "p50_ms": null,
+      "p95_ms": null,
+      "p99_ms": null,
+      "max_ms": null,
+      "over_50_ms": 0,
+      "over_100_ms": 0
+    },
+    "world_build": {
+      "samples": 0,
+      "p50_ms": null,
+      "p95_ms": null,
+      "p99_ms": null,
+      "max_ms": null,
+      "over_50_ms": 0,
+      "over_100_ms": 0
+    },
+    "environment_reflections": {
+      "samples": 0,
+      "p50_ms": null,
+      "p95_ms": null,
+      "p99_ms": null,
+      "max_ms": null,
+      "over_50_ms": 0,
+      "over_100_ms": 0
+    },
+    "airframe_geometry": {
+      "samples": 0,
+      "p50_ms": null,
+      "p95_ms": null,
+      "p99_ms": null,
+      "max_ms": null,
+      "over_50_ms": 0,
+      "over_100_ms": 0
+    },
+    "renderer_module": {
+      "samples": 0,
+      "p50_ms": null,
+      "p95_ms": null,
+      "p99_ms": null,
+      "max_ms": null,
+      "over_50_ms": 0,
+      "over_100_ms": 0
+    },
+    "first_frame": {
+      "samples": 1,
+      "p50_ms": 30.9,
+      "p95_ms": 30.9,
+      "p99_ms": 30.9,
+      "max_ms": 30.9,
+      "over_50_ms": 0,
+      "over_100_ms": 0
+    },
+    "render_frame": {
+      "samples": 1008,
+      "p50_ms": 16.7,
+      "p95_ms": 30.5,
+      "p99_ms": 41.1,
+      "max_ms": 66.6,
+      "over_50_ms": 3,
+      "over_100_ms": 0
+    },
+    "worker_delivery": {
+      "samples": 179,
+      "p50_ms": 99.2,
+      "p95_ms": 129.7,
+      "p99_ms": 132.1,
+      "max_ms": 132.5,
+      "over_50_ms": 178,
+      "over_100_ms": 59
+    },
+    "long_frame": {
+      "samples": 3,
+      "p50_ms": 60,
+      "p95_ms": 65.1,
+      "p99_ms": 65.1,
+      "max_ms": 65.1,
+      "over_50_ms": 3,
+      "over_100_ms": 0
+    },
+    "long_task": {
+      "samples": 0,
+      "p50_ms": null,
+      "p95_ms": null,
+      "p99_ms": null,
+      "max_ms": null,
+      "over_50_ms": 0,
+      "over_100_ms": 0
+    },
+    "script_work": {
+      "samples": 3,
+      "p50_ms": 0,
+      "p95_ms": 0,
+      "p99_ms": 0,
+      "max_ms": 0,
+      "over_50_ms": 0,
+      "over_100_ms": 0
+    },
+    "layout_work": {
+      "samples": 3,
+      "p50_ms": 0.1,
+      "p95_ms": 0.1,
+      "p99_ms": 0.1,
+      "max_ms": 0.1,
+      "over_50_ms": 0,
+      "over_100_ms": 0
+    },
+    "resource": {
+      "samples": 0,
+      "p50_ms": null,
+      "p95_ms": null,
+      "p99_ms": null,
+      "max_ms": null,
+      "over_50_ms": 0,
+      "over_100_ms": 0
+    },
+    "interaction": {
+      "samples": 52,
+      "p50_ms": 128,
+      "p95_ms": 240,
+      "p99_ms": 240,
+      "max_ms": 240,
+      "over_50_ms": 52,
+      "over_100_ms": 40
+    }
+  },
+  "phases": {
+    "preparation": {
+      "samples": 14,
+      "p50_ms": 28.4,
+      "p95_ms": 66.6,
+      "p99_ms": 66.6,
+      "max_ms": 66.6,
+      "over_50_ms": 1,
+      "over_100_ms": 0
+    },
+    "startup": {
+      "samples": 138,
+      "p50_ms": 17.2,
+      "p95_ms": 38.6,
+      "p99_ms": 43.2,
+      "max_ms": 44,
+      "over_50_ms": 0,
+      "over_100_ms": 0
+    },
+    "training": {
+      "samples": 856,
+      "p50_ms": 16.7,
+      "p95_ms": 22.8,
+      "p99_ms": 38.9,
+      "max_ms": 60.6,
+      "over_50_ms": 2,
+      "over_100_ms": 0
+    },
+    "optics": {
+      "samples": 0,
+      "p50_ms": null,
+      "p95_ms": null,
+      "p99_ms": null,
+      "max_ms": null,
+      "over_50_ms": 0,
+      "over_100_ms": 0
+    },
+    "review": {
+      "samples": 0,
+      "p50_ms": null,
+      "p95_ms": null,
+      "p99_ms": null,
+      "max_ms": null,
+      "over_50_ms": 0,
+      "over_100_ms": 0
+    }
+  },
+  "samples": [
+    {
+      "kind": "render_frame",
+      "phase": "preparation",
+      "elapsed_ms": 22.6,
+      "duration_ms": 25.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "preparation",
+      "elapsed_ms": 47.8,
+      "duration_ms": 25.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "preparation",
+      "elapsed_ms": 70.3,
+      "duration_ms": 22.4
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 95.3,
+      "duration_ms": 128
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 95.4,
+      "duration_ms": 128
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 95.4,
+      "duration_ms": 128
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 95.4,
+      "duration_ms": 128
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 95.4,
+      "duration_ms": 128
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 95.4,
+      "duration_ms": 128
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 95.4,
+      "duration_ms": 128
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 95.4,
+      "duration_ms": 128
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 95.4,
+      "duration_ms": 128
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 95.4,
+      "duration_ms": 128
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 95.4,
+      "duration_ms": 128
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 95.4,
+      "duration_ms": 128
+    },
+    {
+      "kind": "render_frame",
+      "phase": "preparation",
+      "elapsed_ms": 98.2,
+      "duration_ms": 28
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 129.2,
+      "duration_ms": 128
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 129.2,
+      "duration_ms": 128
+    },
+    {
+      "kind": "render_frame",
+      "phase": "preparation",
+      "elapsed_ms": 164.9,
+      "duration_ms": 66.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "preparation",
+      "elapsed_ms": 186.8,
+      "duration_ms": 22
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 188.2,
+      "duration_ms": 192
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 188.2,
+      "duration_ms": 192
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 188.2,
+      "duration_ms": 192
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 188.2,
+      "duration_ms": 168
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 188.2,
+      "duration_ms": 168
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 188.2,
+      "duration_ms": 168
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 188.2,
+      "duration_ms": 168
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 188.2,
+      "duration_ms": 168
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 188.2,
+      "duration_ms": 168
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 188.2,
+      "duration_ms": 168
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 188.2,
+      "duration_ms": 168
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 188.2,
+      "duration_ms": 168
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 188.2,
+      "duration_ms": 168
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 188.2,
+      "duration_ms": 168
+    },
+    {
+      "kind": "interaction",
+      "phase": "preparation",
+      "elapsed_ms": 188.2,
+      "duration_ms": 168
+    },
+    {
+      "kind": "render_frame",
+      "phase": "preparation",
+      "elapsed_ms": 215.8,
+      "duration_ms": 28.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "preparation",
+      "elapsed_ms": 252.4,
+      "duration_ms": 36.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "preparation",
+      "elapsed_ms": 300.8,
+      "duration_ms": 48.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "preparation",
+      "elapsed_ms": 327,
+      "duration_ms": 26.3
+    },
+    {
+      "kind": "long_frame",
+      "phase": "preparation",
+      "elapsed_ms": 328.3,
+      "duration_ms": 65.1
+    },
+    {
+      "kind": "script_work",
+      "phase": "preparation",
+      "elapsed_ms": 328.4,
+      "duration_ms": 0
+    },
+    {
+      "kind": "layout_work",
+      "phase": "preparation",
+      "elapsed_ms": 328.4,
+      "duration_ms": 0.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "preparation",
+      "elapsed_ms": 358.3,
+      "duration_ms": 31.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "preparation",
+      "elapsed_ms": 396.3,
+      "duration_ms": 38
+    },
+    {
+      "kind": "render_frame",
+      "phase": "preparation",
+      "elapsed_ms": 437.4,
+      "duration_ms": 41.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "preparation",
+      "elapsed_ms": 465.8,
+      "duration_ms": 28.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 499.2,
+      "duration_ms": 33.3
+    },
+    {
+      "kind": "first_frame",
+      "phase": "startup",
+      "elapsed_ms": 499.2,
+      "duration_ms": 30.9
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 503.7,
+      "duration_ms": 1.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 535.5,
+      "duration_ms": 36.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 577,
+      "duration_ms": 41.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 584.9,
+      "duration_ms": 81.1
+    },
+    {
+      "kind": "interaction",
+      "phase": "startup",
+      "elapsed_ms": 595.6,
+      "duration_ms": 208
+    },
+    {
+      "kind": "interaction",
+      "phase": "startup",
+      "elapsed_ms": 595.6,
+      "duration_ms": 208
+    },
+    {
+      "kind": "interaction",
+      "phase": "startup",
+      "elapsed_ms": 595.6,
+      "duration_ms": 208
+    },
+    {
+      "kind": "interaction",
+      "phase": "startup",
+      "elapsed_ms": 595.6,
+      "duration_ms": 208
+    },
+    {
+      "kind": "interaction",
+      "phase": "startup",
+      "elapsed_ms": 595.6,
+      "duration_ms": 208
+    },
+    {
+      "kind": "interaction",
+      "phase": "startup",
+      "elapsed_ms": 595.6,
+      "duration_ms": 208
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 616.3,
+      "duration_ms": 39.2
+    },
+    {
+      "kind": "interaction",
+      "phase": "startup",
+      "elapsed_ms": 645.7,
+      "duration_ms": 192
+    },
+    {
+      "kind": "interaction",
+      "phase": "startup",
+      "elapsed_ms": 645.7,
+      "duration_ms": 192
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 659.5,
+      "duration_ms": 43.2
+    },
+    {
+      "kind": "interaction",
+      "phase": "startup",
+      "elapsed_ms": 679,
+      "duration_ms": 240
+    },
+    {
+      "kind": "interaction",
+      "phase": "startup",
+      "elapsed_ms": 679,
+      "duration_ms": 240
+    },
+    {
+      "kind": "interaction",
+      "phase": "startup",
+      "elapsed_ms": 679,
+      "duration_ms": 240
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 682.3,
+      "duration_ms": 97.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 694,
+      "duration_ms": 34.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 733.1,
+      "duration_ms": 39.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 769.4,
+      "duration_ms": 36.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 781.3,
+      "duration_ms": 99
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 808.1,
+      "duration_ms": 38.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 852,
+      "duration_ms": 44
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 890.1,
+      "duration_ms": 38.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 911,
+      "duration_ms": 129.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 928.8,
+      "duration_ms": 38.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 963.8,
+      "duration_ms": 35.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 979.6,
+      "duration_ms": 68.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 995.6,
+      "duration_ms": 31.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1025.6,
+      "duration_ms": 30.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1056.8,
+      "duration_ms": 31.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1083.3,
+      "duration_ms": 26.5
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 1111.3,
+      "duration_ms": 131.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1114,
+      "duration_ms": 30.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1144,
+      "duration_ms": 30
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1172.7,
+      "duration_ms": 28.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1195.7,
+      "duration_ms": 22.9
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 1211,
+      "duration_ms": 99.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1224.8,
+      "duration_ms": 29
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1251.9,
+      "duration_ms": 27.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1286.6,
+      "duration_ms": 34.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1306.4,
+      "duration_ms": 19.9
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 1311.4,
+      "duration_ms": 100.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1335.4,
+      "duration_ms": 28.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1364.9,
+      "duration_ms": 29.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1389.5,
+      "duration_ms": 24.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 1407.7,
+      "duration_ms": 96.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1418.5,
+      "duration_ms": 28.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1448.9,
+      "duration_ms": 30.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1478.2,
+      "duration_ms": 29.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 1508.4,
+      "duration_ms": 100.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1509.2,
+      "duration_ms": 30.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1533,
+      "duration_ms": 23.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1564.3,
+      "duration_ms": 31.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1593.4,
+      "duration_ms": 29.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 1607.3,
+      "duration_ms": 98.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1624.1,
+      "duration_ms": 30.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1653.3,
+      "duration_ms": 29.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1677,
+      "duration_ms": 23.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 1705.1,
+      "duration_ms": 97.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1707.6,
+      "duration_ms": 30.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1735.8,
+      "duration_ms": 28.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1763.8,
+      "duration_ms": 28.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1787.1,
+      "duration_ms": 23.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 1804.9,
+      "duration_ms": 99.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1817.5,
+      "duration_ms": 30.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1846.9,
+      "duration_ms": 29.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1870.3,
+      "duration_ms": 23.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1901.4,
+      "duration_ms": 31.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 1907.4,
+      "duration_ms": 102.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1933.5,
+      "duration_ms": 31.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1965.4,
+      "duration_ms": 31.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1980.4,
+      "duration_ms": 15.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 1997.3,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 2003,
+      "duration_ms": 95.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2014.7,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2029.5,
+      "duration_ms": 15
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2046.6,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2062.9,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2081.9,
+      "duration_ms": 18.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2097.1,
+      "duration_ms": 15.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 2102.8,
+      "duration_ms": 99.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2114.5,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2131.2,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2147.8,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2163.9,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2182.8,
+      "duration_ms": 18.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2197.9,
+      "duration_ms": 15.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 2202.6,
+      "duration_ms": 99.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2216.2,
+      "duration_ms": 18.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2231.3,
+      "duration_ms": 15.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2248.4,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2264.2,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2281.1,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2297.7,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 2302.1,
+      "duration_ms": 99.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2313.4,
+      "duration_ms": 15.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2329.9,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2347,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2364.3,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2380.4,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 2396.9,
+      "duration_ms": 94.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2398,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2414.4,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2430.2,
+      "duration_ms": 16
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2447.7,
+      "duration_ms": 17.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2463.7,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2481.6,
+      "duration_ms": 17.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2497.7,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 2502.6,
+      "duration_ms": 105.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2514.4,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2535.4,
+      "duration_ms": 21.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2549,
+      "duration_ms": 13.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2562.7,
+      "duration_ms": 13.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2579.9,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 2596.8,
+      "duration_ms": 94.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2597.9,
+      "duration_ms": 18
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2614.3,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2630.4,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2647.6,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2663.8,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2692.3,
+      "duration_ms": 28.5
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 2695.9,
+      "duration_ms": 99.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2697.1,
+      "duration_ms": 4.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2714.8,
+      "duration_ms": 17.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2732.6,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2748.6,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2764.2,
+      "duration_ms": 15.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2780.8,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 2790.9,
+      "duration_ms": 95
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2797.4,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2814.1,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2829.8,
+      "duration_ms": 15.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2847.5,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2863.1,
+      "duration_ms": 15.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2879.7,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 2891,
+      "duration_ms": 100.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2896.4,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2913.1,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2929.4,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2947.5,
+      "duration_ms": 18.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2963.7,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2982.8,
+      "duration_ms": 19
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 2989.4,
+      "duration_ms": 98.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 2997.9,
+      "duration_ms": 15.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3014.2,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3030.4,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3047.6,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3075.6,
+      "duration_ms": 28.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 3087,
+      "duration_ms": 97.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3091.4,
+      "duration_ms": 15.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3096,
+      "duration_ms": 4.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3113.6,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3130.3,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3147.3,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3163.6,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3180.2,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 3186.6,
+      "duration_ms": 99.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3196,
+      "duration_ms": 15.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3213.5,
+      "duration_ms": 17.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3229.6,
+      "duration_ms": 16
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3245.9,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3263.7,
+      "duration_ms": 17.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3280.3,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 3289.6,
+      "duration_ms": 103
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3296.9,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3313.2,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3330.3,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3346.9,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3363.7,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3380.2,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "startup",
+      "elapsed_ms": 3385.3,
+      "duration_ms": 95.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3397,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3413.6,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3430.2,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3447,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "startup",
+      "elapsed_ms": 3463.9,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3481,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 3489.9,
+      "duration_ms": 104.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3497.2,
+      "duration_ms": 16
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3526.5,
+      "duration_ms": 29.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3536.8,
+      "duration_ms": 10.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3554.2,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3578.2,
+      "duration_ms": 24
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 3588.1,
+      "duration_ms": 98.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3608.1,
+      "duration_ms": 29.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3633,
+      "duration_ms": 25.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3657.4,
+      "duration_ms": 24.4
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 3688.1,
+      "duration_ms": 100
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3694,
+      "duration_ms": 36.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3732.1,
+      "duration_ms": 38.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3757.3,
+      "duration_ms": 25.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3775,
+      "duration_ms": 17.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 3786.8,
+      "duration_ms": 98.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3792.4,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3826.9,
+      "duration_ms": 34.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3834.6,
+      "duration_ms": 7.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3856.6,
+      "duration_ms": 22
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3867.6,
+      "duration_ms": 11.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3881.1,
+      "duration_ms": 13.4
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 3887.6,
+      "duration_ms": 100.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3897.5,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3932.1,
+      "duration_ms": 34.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3958.9,
+      "duration_ms": 26.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3977,
+      "duration_ms": 18.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 3986.9,
+      "duration_ms": 99.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 3994.2,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4014.7,
+      "duration_ms": 20.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4030.3,
+      "duration_ms": 15.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4046,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 4084.6,
+      "duration_ms": 97.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4084.9,
+      "duration_ms": 38.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4112.2,
+      "duration_ms": 27.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4129.5,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4147.2,
+      "duration_ms": 17.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4164.2,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4179.3,
+      "duration_ms": 15.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4195.9,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 4215.2,
+      "duration_ms": 130.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4215.4,
+      "duration_ms": 19.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4230,
+      "duration_ms": 14.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4246.6,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4263.6,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4279.3,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 4287.1,
+      "duration_ms": 71.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4297.1,
+      "duration_ms": 17.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4314,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4330.4,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4347.3,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4363.7,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4380.2,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4397,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 4414.7,
+      "duration_ms": 127.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4428.5,
+      "duration_ms": 31.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4458.1,
+      "duration_ms": 29.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4476.8,
+      "duration_ms": 18.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4508.7,
+      "duration_ms": 31.9
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 4516.9,
+      "duration_ms": 102.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4523,
+      "duration_ms": 14.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4537.9,
+      "duration_ms": 15
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4577,
+      "duration_ms": 39.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4600,
+      "duration_ms": 23
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 4613.2,
+      "duration_ms": 96.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4617.3,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4636.1,
+      "duration_ms": 19
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4652.7,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4670.9,
+      "duration_ms": 18.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4688.5,
+      "duration_ms": 17.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4703.7,
+      "duration_ms": 15.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 4709.8,
+      "duration_ms": 96.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4720.2,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4736.9,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4753,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4772.4,
+      "duration_ms": 19.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4784.3,
+      "duration_ms": 11.9
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 4809,
+      "duration_ms": 99.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4815.1,
+      "duration_ms": 30.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4830.4,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4846.5,
+      "duration_ms": 16
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4863.9,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4880.3,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4896.1,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 4906.1,
+      "duration_ms": 97
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4914,
+      "duration_ms": 17.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4929.4,
+      "duration_ms": 15.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4948.1,
+      "duration_ms": 18.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4964.1,
+      "duration_ms": 16
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4982,
+      "duration_ms": 17.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 4997.7,
+      "duration_ms": 15.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 5007.9,
+      "duration_ms": 101.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5024.9,
+      "duration_ms": 27.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5030,
+      "duration_ms": 5.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5047.2,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5063.9,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5083.8,
+      "duration_ms": 20
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5100.7,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 5108.8,
+      "duration_ms": 100.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5118.5,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5134.8,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5174.4,
+      "duration_ms": 39.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 5201.1,
+      "duration_ms": 92.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5205.5,
+      "duration_ms": 31.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5250.2,
+      "duration_ms": 44.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5283.1,
+      "duration_ms": 33
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 5303.7,
+      "duration_ms": 102.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5325.9,
+      "duration_ms": 42.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5361.5,
+      "duration_ms": 35.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5395.1,
+      "duration_ms": 33.8
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 5400.8,
+      "duration_ms": 97.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5424.5,
+      "duration_ms": 29.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5441.4,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5471.5,
+      "duration_ms": 30.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5487.1,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 5495.1,
+      "duration_ms": 94.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5498.2,
+      "duration_ms": 11.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5513.3,
+      "duration_ms": 15.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5534.5,
+      "duration_ms": 21.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5548.9,
+      "duration_ms": 14.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5563.9,
+      "duration_ms": 14.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5580.9,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5597.1,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 5600.9,
+      "duration_ms": 105.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5614.3,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5630.5,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5647.5,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5663.8,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5680.8,
+      "duration_ms": 17
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 5697.9,
+      "duration_ms": 97
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5698.1,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5714.3,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5732.8,
+      "duration_ms": 18.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5748.8,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5764.1,
+      "duration_ms": 15.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5782,
+      "duration_ms": 17.8
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 5792.8,
+      "duration_ms": 94.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5798.1,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5814.1,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5830.8,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5847.4,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5864.1,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5880.7,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 5896.1,
+      "duration_ms": 103.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5897.5,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5914.1,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5930.4,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5947.4,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5963.8,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5981.4,
+      "duration_ms": 17.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 5990.5,
+      "duration_ms": 94.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 5997.2,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6014.2,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6030.6,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6047.6,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6063.9,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6081.1,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 6092.4,
+      "duration_ms": 101.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6097.3,
+      "duration_ms": 16
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6114.5,
+      "duration_ms": 17.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6130.5,
+      "duration_ms": 16
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6147.9,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6163.9,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6183.3,
+      "duration_ms": 19.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 6193.5,
+      "duration_ms": 101.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6198.5,
+      "duration_ms": 15.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6216.1,
+      "duration_ms": 17.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6232.3,
+      "duration_ms": 16
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6249.4,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6264.3,
+      "duration_ms": 14.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6280.9,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 6291.6,
+      "duration_ms": 98.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6297.5,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6314.3,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6330.8,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6347.1,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6364.1,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6381,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 6391.6,
+      "duration_ms": 100
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6397.6,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6414.3,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6430.5,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6447.6,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6463.8,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6481.3,
+      "duration_ms": 17.5
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 6490.8,
+      "duration_ms": 99.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6497.6,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6514.3,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6534.8,
+      "duration_ms": 20.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6550.2,
+      "duration_ms": 15.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6563.8,
+      "duration_ms": 13.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6581,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 6589.3,
+      "duration_ms": 98.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6597.3,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6614.4,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6630.5,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6647.7,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6663.9,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6682.4,
+      "duration_ms": 18.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 6686.5,
+      "duration_ms": 97.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6697.9,
+      "duration_ms": 15.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6715.8,
+      "duration_ms": 17.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6732,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6747.9,
+      "duration_ms": 15.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6763,
+      "duration_ms": 15.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6781.1,
+      "duration_ms": 17.9
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 6786.3,
+      "duration_ms": 99.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6797.2,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6813.1,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6829.7,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6847.5,
+      "duration_ms": 17.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6864.1,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6880.9,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 6884.8,
+      "duration_ms": 98.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6897.7,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6914.2,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6930.5,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6947.6,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6963.8,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6981.4,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 6985.9,
+      "duration_ms": 101.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 6997.3,
+      "duration_ms": 15.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7014.4,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7030.7,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7047.6,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7063.8,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7081,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 7084.8,
+      "duration_ms": 98.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7097.2,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7114.4,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7129.6,
+      "duration_ms": 15.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7146.6,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7162.9,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7181.1,
+      "duration_ms": 18.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 7185.5,
+      "duration_ms": 100.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7196.3,
+      "duration_ms": 15.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7213.8,
+      "duration_ms": 17.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7232.3,
+      "duration_ms": 18.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7248.3,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7264.3,
+      "duration_ms": 15.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7281,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 7285.2,
+      "duration_ms": 99.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7297.8,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7313.4,
+      "duration_ms": 15.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7329.9,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7346.7,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7364.3,
+      "duration_ms": 17.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7380,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 7384.5,
+      "duration_ms": 99.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7396.8,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7414.3,
+      "duration_ms": 17.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7430.6,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7446.8,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7464,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 7481.1,
+      "duration_ms": 96.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7481.5,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7497.3,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7514.4,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7534,
+      "duration_ms": 19.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7548.3,
+      "duration_ms": 14.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7563,
+      "duration_ms": 14.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7580.9,
+      "duration_ms": 17.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7596.1,
+      "duration_ms": 15.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 7609.1,
+      "duration_ms": 128
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7613.4,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7629.5,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7646.8,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7664,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7681.1,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7697.3,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 7709.2,
+      "duration_ms": 100.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7714.5,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7733.3,
+      "duration_ms": 18.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7749.4,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7769.6,
+      "duration_ms": 20.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7783.7,
+      "duration_ms": 14.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7798.9,
+      "duration_ms": 15.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 7809.2,
+      "duration_ms": 100
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7814.3,
+      "duration_ms": 15.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7831,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7847.5,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7864.2,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7879.9,
+      "duration_ms": 15.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7897.5,
+      "duration_ms": 17.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 7908,
+      "duration_ms": 98.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7914.3,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7929.6,
+      "duration_ms": 15.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7946.6,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7963.2,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7981.3,
+      "duration_ms": 18
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 7996.5,
+      "duration_ms": 15.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 8004,
+      "duration_ms": 96
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8013.4,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8031.6,
+      "duration_ms": 18.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8048.4,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8063.3,
+      "duration_ms": 14.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8079.9,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8096.2,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 8107.3,
+      "duration_ms": 103.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8113.4,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8129.9,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8146.7,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8163.3,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8181.6,
+      "duration_ms": 18.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8198.4,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 8206.3,
+      "duration_ms": 99
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8215.1,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8232,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8248.3,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8263.2,
+      "duration_ms": 14.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8280,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8297.7,
+      "duration_ms": 17.8
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 8302,
+      "duration_ms": 95.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8313.4,
+      "duration_ms": 15.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8330.1,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8346.8,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8364.4,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8381,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8397.8,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 8405,
+      "duration_ms": 103
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8413.8,
+      "duration_ms": 16
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8429.6,
+      "duration_ms": 15.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8447.7,
+      "duration_ms": 18
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8464.3,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8481.5,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8497.7,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 8503.6,
+      "duration_ms": 98.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8514.8,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8534.5,
+      "duration_ms": 19.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8549.3,
+      "duration_ms": 14.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8564.3,
+      "duration_ms": 14.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8581,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8596.2,
+      "duration_ms": 15.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 8602.2,
+      "duration_ms": 98.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8614.4,
+      "duration_ms": 18.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8631,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8647.5,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8663.9,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8681.5,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8698.8,
+      "duration_ms": 17.4
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 8702.7,
+      "duration_ms": 100.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8716.2,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8731.9,
+      "duration_ms": 15.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8748,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8763.8,
+      "duration_ms": 15.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8785,
+      "duration_ms": 21.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 8798.1,
+      "duration_ms": 95.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8799.7,
+      "duration_ms": 14.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8814.3,
+      "duration_ms": 14.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8831,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8847.5,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8864.3,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8880.9,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8897,
+      "duration_ms": 15.9
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 8900.6,
+      "duration_ms": 102.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8914.5,
+      "duration_ms": 17.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8930.6,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8959.1,
+      "duration_ms": 28.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8963.6,
+      "duration_ms": 4.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8980.8,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 8993.3,
+      "duration_ms": 92.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 8997.3,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9014.8,
+      "duration_ms": 17.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9030.5,
+      "duration_ms": 15.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9047.5,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9063.8,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9081,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 9096.4,
+      "duration_ms": 103.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9097.4,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9114.5,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9130.4,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9147.4,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9163.8,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9180.8,
+      "duration_ms": 17
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 9195.6,
+      "duration_ms": 99.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9197.1,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9214.1,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9232.9,
+      "duration_ms": 18.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9249,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9264.1,
+      "duration_ms": 15.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9280.9,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 9295.1,
+      "duration_ms": 99.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9297.5,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9314.1,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9330.9,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9347.5,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9364.3,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9381,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 9394.3,
+      "duration_ms": 99.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9397.7,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9414.4,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9430.6,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9447.6,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9463.8,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9481.8,
+      "duration_ms": 17.8
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 9493.3,
+      "duration_ms": 99
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9500,
+      "duration_ms": 18.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9515.9,
+      "duration_ms": 15.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9534.6,
+      "duration_ms": 18.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9548.8,
+      "duration_ms": 14.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9565.3,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9586.3,
+      "duration_ms": 21.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 9591.7,
+      "duration_ms": 98.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9599.6,
+      "duration_ms": 13.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9616.3,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9632.4,
+      "duration_ms": 16
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9649.1,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9664.6,
+      "duration_ms": 15.5
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 9691.5,
+      "duration_ms": 99.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9693.7,
+      "duration_ms": 29
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9725.8,
+      "duration_ms": 32.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9778.6,
+      "duration_ms": 52.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 9790,
+      "duration_ms": 98.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9823.5,
+      "duration_ms": 44.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9884,
+      "duration_ms": 60.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 9888.6,
+      "duration_ms": 98.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9919.1,
+      "duration_ms": 35.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9941.6,
+      "duration_ms": 22.5
+    },
+    {
+      "kind": "long_frame",
+      "phase": "training",
+      "elapsed_ms": 9975.6,
+      "duration_ms": 52.8
+    },
+    {
+      "kind": "script_work",
+      "phase": "training",
+      "elapsed_ms": 9975.6,
+      "duration_ms": 0
+    },
+    {
+      "kind": "layout_work",
+      "phase": "training",
+      "elapsed_ms": 9975.6,
+      "duration_ms": 0
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9982.5,
+      "duration_ms": 40.8
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 9987.1,
+      "duration_ms": 98.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 9999.7,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10025.7,
+      "duration_ms": 26.1
+    },
+    {
+      "kind": "long_frame",
+      "phase": "training",
+      "elapsed_ms": 10029.1,
+      "duration_ms": 60
+    },
+    {
+      "kind": "script_work",
+      "phase": "training",
+      "elapsed_ms": 10029.1,
+      "duration_ms": 0
+    },
+    {
+      "kind": "layout_work",
+      "phase": "training",
+      "elapsed_ms": 10029.1,
+      "duration_ms": 0.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10030.3,
+      "duration_ms": 4.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10047.8,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10063.9,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10081.1,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 10085.4,
+      "duration_ms": 98.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10097.3,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10114.5,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10129.7,
+      "duration_ms": 15.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10147.7,
+      "duration_ms": 17.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10162.9,
+      "duration_ms": 15.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 10183.4,
+      "duration_ms": 98
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10183.7,
+      "duration_ms": 20.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10197.8,
+      "duration_ms": 14.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10215,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10233.2,
+      "duration_ms": 18.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10248.3,
+      "duration_ms": 15.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10266.2,
+      "duration_ms": 17.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10282.7,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 10286.7,
+      "duration_ms": 103.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10297.8,
+      "duration_ms": 15
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10314.3,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10330.9,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10347.1,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10364.4,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10381.1,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 10385.3,
+      "duration_ms": 98.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10397.8,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10414.3,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10430.6,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10447.6,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10462.9,
+      "duration_ms": 15.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10480.9,
+      "duration_ms": 18
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 10485.2,
+      "duration_ms": 99.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10496.3,
+      "duration_ms": 15.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10514.5,
+      "duration_ms": 18.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10534.8,
+      "duration_ms": 20.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10549.2,
+      "duration_ms": 14.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10565.5,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 10582.1,
+      "duration_ms": 96.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10585.7,
+      "duration_ms": 20.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10598.1,
+      "duration_ms": 12.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10614.4,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10630,
+      "duration_ms": 15.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10647.9,
+      "duration_ms": 17.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10663.9,
+      "duration_ms": 15.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10681.8,
+      "duration_ms": 17.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10696.7,
+      "duration_ms": 14.9
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 10714.2,
+      "duration_ms": 132.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10716,
+      "duration_ms": 19.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10732.2,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10748.9,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10764.1,
+      "duration_ms": 15.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 10780.6,
+      "duration_ms": 66.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10781.8,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10796.6,
+      "duration_ms": 14.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10813.2,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10829.9,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10849.3,
+      "duration_ms": 19.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10865,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 10879.9,
+      "duration_ms": 99.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10881.1,
+      "duration_ms": 16
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10896.5,
+      "duration_ms": 15.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10913.3,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10930.5,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10947.4,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10963.7,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10981.5,
+      "duration_ms": 17.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 10996.2,
+      "duration_ms": 14.8
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 11011.9,
+      "duration_ms": 132.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11014.5,
+      "duration_ms": 18.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11030.6,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11047.6,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11063.9,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11080.9,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11097.2,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 11108.1,
+      "duration_ms": 96.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11114.4,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11130.5,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11147.7,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11164.1,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11180.1,
+      "duration_ms": 15.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11197.3,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 11208.6,
+      "duration_ms": 100.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11214.4,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11233.3,
+      "duration_ms": 18.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11248.6,
+      "duration_ms": 15.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11264.3,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11281,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11297.7,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 11307.9,
+      "duration_ms": 99.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11314.3,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11331,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11347.7,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11364.3,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11381,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11397.6,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 11406.2,
+      "duration_ms": 98.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11414.5,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11430.5,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11447.8,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11463.9,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11481.6,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11497.3,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 11503.3,
+      "duration_ms": 97.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11514.7,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11535.7,
+      "duration_ms": 21.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11549.1,
+      "duration_ms": 13.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11562.9,
+      "duration_ms": 13.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11580.2,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11596.3,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 11602.8,
+      "duration_ms": 99.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11613.6,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11629.6,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11647.8,
+      "duration_ms": 18.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11663.9,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11681.1,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11697.2,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 11704.3,
+      "duration_ms": 101.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11714.5,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11733.3,
+      "duration_ms": 18.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11757.1,
+      "duration_ms": 23.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11775.7,
+      "duration_ms": 18.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11780.3,
+      "duration_ms": 4.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11797,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 11800.7,
+      "duration_ms": 96.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11813.7,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11830.2,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11847,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11863.6,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11880.3,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11896.9,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 11901.3,
+      "duration_ms": 100.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11913.7,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11929.4,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11946.5,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11962.8,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11980.2,
+      "duration_ms": 17.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 11996.1,
+      "duration_ms": 15.9
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 12000.3,
+      "duration_ms": 99
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12014.3,
+      "duration_ms": 18.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12031.7,
+      "duration_ms": 17.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12048.9,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12063.9,
+      "duration_ms": 15.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12080.8,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 12097.8,
+      "duration_ms": 97.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12098,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12114.3,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12130.5,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12147.5,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12163.8,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12182.5,
+      "duration_ms": 18.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12198,
+      "duration_ms": 15.5
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 12202.2,
+      "duration_ms": 104.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12216,
+      "duration_ms": 18
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12232.2,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12247.9,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12263.7,
+      "duration_ms": 15.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12279.9,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 12298.7,
+      "duration_ms": 96.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12298.9,
+      "duration_ms": 19.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12314.4,
+      "duration_ms": 15.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12329.9,
+      "duration_ms": 15.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12346.7,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12363.3,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12386.1,
+      "duration_ms": 22.8
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 12397.1,
+      "duration_ms": 98.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12399.6,
+      "duration_ms": 13.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12415,
+      "duration_ms": 15.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12430.7,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12447.6,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12464.2,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12481.3,
+      "duration_ms": 17
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 12496.7,
+      "duration_ms": 99.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12496.9,
+      "duration_ms": 15.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12514.3,
+      "duration_ms": 17.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12534.7,
+      "duration_ms": 20.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12549.1,
+      "duration_ms": 14.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12562.9,
+      "duration_ms": 13.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12581.1,
+      "duration_ms": 18.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 12591.5,
+      "duration_ms": 94.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12596.7,
+      "duration_ms": 15.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12613.2,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12630.1,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12647.7,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12663.4,
+      "duration_ms": 15.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12682.6,
+      "duration_ms": 19.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 12693.2,
+      "duration_ms": 101.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12698.9,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12715.6,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12732,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12749.2,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12764.2,
+      "duration_ms": 15.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12782.4,
+      "duration_ms": 18.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 12792.5,
+      "duration_ms": 99.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12798.9,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12814.2,
+      "duration_ms": 15.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12830.9,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12847.5,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12864.2,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12880.9,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 12889.8,
+      "duration_ms": 97.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12897.6,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12914.2,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12930.9,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12947.7,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12964.3,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12981.4,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 12992,
+      "duration_ms": 102.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 12997.8,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13014.3,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13031,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13047.6,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13064,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13081.2,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 13088.3,
+      "duration_ms": 96.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13097.7,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13114.4,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13131.1,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13147.8,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13164.4,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13181.1,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 13189.4,
+      "duration_ms": 101.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13197.7,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13214.4,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13232.2,
+      "duration_ms": 17.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13249.3,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13264.6,
+      "duration_ms": 15.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13280.9,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 13287.9,
+      "duration_ms": 98.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13297.6,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13314.3,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13330.9,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13349.5,
+      "duration_ms": 18.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13366,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 13384.1,
+      "duration_ms": 96.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13386,
+      "duration_ms": 19.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13398.9,
+      "duration_ms": 13
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13415.6,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13429.5,
+      "duration_ms": 13.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13446.6,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13462.9,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13481.9,
+      "duration_ms": 18.9
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 13486.6,
+      "duration_ms": 102.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13497.3,
+      "duration_ms": 15.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13514.3,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13534.7,
+      "duration_ms": 20.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13548.9,
+      "duration_ms": 14.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13563.8,
+      "duration_ms": 14.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13581.1,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 13585.2,
+      "duration_ms": 98.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13597.4,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13614.3,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13630.6,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13647,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13663.9,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13681,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 13685.4,
+      "duration_ms": 100.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13697.3,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13714.4,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13733.3,
+      "duration_ms": 18.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13748.6,
+      "duration_ms": 15.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13763.3,
+      "duration_ms": 14.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13781.5,
+      "duration_ms": 18.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 13785.7,
+      "duration_ms": 100.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13798.6,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13813.8,
+      "duration_ms": 15.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13831,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13847.7,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13864.4,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13881.1,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 13885.4,
+      "duration_ms": 99.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13896.8,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13914.3,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13929.6,
+      "duration_ms": 15.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13946.7,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13962.9,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13981.8,
+      "duration_ms": 18.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 13997.4,
+      "duration_ms": 15.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 14015.1,
+      "duration_ms": 129.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14015.4,
+      "duration_ms": 18
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14030.6,
+      "duration_ms": 15.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14047.9,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14063,
+      "duration_ms": 15.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 14081.2,
+      "duration_ms": 66.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14081.3,
+      "duration_ms": 18.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14097.4,
+      "duration_ms": 16
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14114.6,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14130.6,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14147.7,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14163.9,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14183.6,
+      "duration_ms": 19.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14197.8,
+      "duration_ms": 14.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 14212.1,
+      "duration_ms": 130.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14215.9,
+      "duration_ms": 18.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14232.4,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14247.9,
+      "duration_ms": 15.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14264.4,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 14279.1,
+      "duration_ms": 67
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14281.1,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14296.7,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14314.3,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14330.9,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14347.7,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14364.3,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14381,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14397.7,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 14410.9,
+      "duration_ms": 131.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14414.5,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14430.5,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14447.7,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14463.9,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14481.6,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14497.3,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 14511.1,
+      "duration_ms": 100.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14514.7,
+      "duration_ms": 17.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14535.7,
+      "duration_ms": 21
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14549.4,
+      "duration_ms": 13.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14563.9,
+      "duration_ms": 14.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14581.1,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14597.2,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 14609.2,
+      "duration_ms": 98.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14614.5,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14630.7,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14647.8,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14664,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14683.9,
+      "duration_ms": 20
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14697,
+      "duration_ms": 13
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 14706.8,
+      "duration_ms": 97.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14714.9,
+      "duration_ms": 17.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14731.5,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14748.1,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14763.2,
+      "duration_ms": 15.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14781.3,
+      "duration_ms": 18.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14798.4,
+      "duration_ms": 17
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 14803.4,
+      "duration_ms": 96.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14813.4,
+      "duration_ms": 15
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14830,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14847.6,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14864.3,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14880.1,
+      "duration_ms": 15.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14897.7,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 14906,
+      "duration_ms": 102.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14913.5,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14930.6,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14947.8,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14964,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14981.5,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 14996.7,
+      "duration_ms": 15.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 15005.7,
+      "duration_ms": 99.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15014.7,
+      "duration_ms": 18
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15030.7,
+      "duration_ms": 16
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15047.6,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15064,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15081,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15097.2,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 15102,
+      "duration_ms": 96.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15114,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15130.6,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15147.9,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15163,
+      "duration_ms": 15.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15180.3,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15197.3,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 15202.2,
+      "duration_ms": 100.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15213.7,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15232.7,
+      "duration_ms": 19.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15249.7,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15264.4,
+      "duration_ms": 14.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15281,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15297.8,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 15302.5,
+      "duration_ms": 100.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15314.6,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15330.2,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15347.8,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15363.8,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15381.1,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15397.8,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 15402.6,
+      "duration_ms": 100.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15414.5,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15430.1,
+      "duration_ms": 15.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15447.8,
+      "duration_ms": 17.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15463,
+      "duration_ms": 15.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15481.7,
+      "duration_ms": 18.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15497.7,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 15503.2,
+      "duration_ms": 100.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15514.5,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15534.4,
+      "duration_ms": 20
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15548.1,
+      "duration_ms": 13.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15563.9,
+      "duration_ms": 15.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15579.9,
+      "duration_ms": 16
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 15597.7,
+      "duration_ms": 94.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15597.9,
+      "duration_ms": 18.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15614.2,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15630.5,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15647.5,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15662.9,
+      "duration_ms": 15.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15679.9,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 15696.8,
+      "duration_ms": 99.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15697.1,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15714.5,
+      "duration_ms": 17.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15732.8,
+      "duration_ms": 18.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15756.3,
+      "duration_ms": 23.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15764.3,
+      "duration_ms": 8.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15782.3,
+      "duration_ms": 17.9
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 15792.3,
+      "duration_ms": 95.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15798.3,
+      "duration_ms": 16
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15813.9,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15830.9,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15847.6,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15864.2,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15880.9,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 15894.1,
+      "duration_ms": 101.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15897.6,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15914.2,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15930.5,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15947.5,
+      "duration_ms": 17
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15963.9,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15981.3,
+      "duration_ms": 17.4
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 15994,
+      "duration_ms": 99.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 15997.2,
+      "duration_ms": 15.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16014.2,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16030.5,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16047.6,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16063.9,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16080.9,
+      "duration_ms": 17
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 16092.7,
+      "duration_ms": 98.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16097.3,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16114.4,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16130.6,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16147.7,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16163.9,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16182.7,
+      "duration_ms": 18.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 16192,
+      "duration_ms": 99.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16197.9,
+      "duration_ms": 15.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16215.9,
+      "duration_ms": 17.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16232.4,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16249.2,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16264.2,
+      "duration_ms": 15
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16281,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 16291.2,
+      "duration_ms": 99.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16297.7,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16314.3,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16331,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16347.7,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16364.3,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 16386.4,
+      "duration_ms": 95.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16387.7,
+      "duration_ms": 23.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16399.1,
+      "duration_ms": 11.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16416.6,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16430.9,
+      "duration_ms": 14.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16447.6,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16463.9,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16481.5,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 16488.7,
+      "duration_ms": 102.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16496.7,
+      "duration_ms": 15.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16514.4,
+      "duration_ms": 17.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16534.3,
+      "duration_ms": 20
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16549.3,
+      "duration_ms": 14.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16564.3,
+      "duration_ms": 15.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16580.1,
+      "duration_ms": 15.8
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 16587.5,
+      "duration_ms": 98.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16597.8,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16614.3,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16630.5,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16647.6,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16664.3,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16681.6,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 16686.7,
+      "duration_ms": 99.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16698,
+      "duration_ms": 16.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16715.8,
+      "duration_ms": 17.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16732.9,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16749.2,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16764.2,
+      "duration_ms": 15.1
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 16783,
+      "duration_ms": 96.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16783.2,
+      "duration_ms": 19
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16797.3,
+      "duration_ms": 14
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16813.2,
+      "duration_ms": 16
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16829.9,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16847.5,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16864.2,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16880.9,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 16884.5,
+      "duration_ms": 101.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16897.6,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16914.2,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16931.1,
+      "duration_ms": 16.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16947.6,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16964.3,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16981.5,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 16985.6,
+      "duration_ms": 101.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 16997.8,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17014.3,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17031.1,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17046.7,
+      "duration_ms": 15.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17064.5,
+      "duration_ms": 17.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17081.1,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 17085.5,
+      "duration_ms": 99.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17096.8,
+      "duration_ms": 15.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17113.5,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17131,
+      "duration_ms": 17.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17147.7,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17164.6,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17181.2,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 17185.7,
+      "duration_ms": 100.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17197.8,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17214.4,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17233.9,
+      "duration_ms": 19.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17249.9,
+      "duration_ms": 16.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17264.5,
+      "duration_ms": 14.5
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 17282.1,
+      "duration_ms": 96.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17282.3,
+      "duration_ms": 17.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17297.9,
+      "duration_ms": 15.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17313.4,
+      "duration_ms": 15.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17330.1,
+      "duration_ms": 16.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17349.1,
+      "duration_ms": 19
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17365.1,
+      "duration_ms": 16
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 17380.6,
+      "duration_ms": 98.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17385.3,
+      "duration_ms": 20.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17398.8,
+      "duration_ms": 13.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17414.7,
+      "duration_ms": 15.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17429.6,
+      "duration_ms": 14.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17447.7,
+      "duration_ms": 18
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17464,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17481.5,
+      "duration_ms": 17.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17496.3,
+      "duration_ms": 14.8
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 17513.1,
+      "duration_ms": 132.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17514.1,
+      "duration_ms": 17.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17535.2,
+      "duration_ms": 21
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17549,
+      "duration_ms": 13.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17563.8,
+      "duration_ms": 14.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17581,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17597.2,
+      "duration_ms": 16.3
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 17611.2,
+      "duration_ms": 98.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17614.6,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17630.6,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17647.8,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17664,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17681.1,
+      "duration_ms": 17.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17697.3,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 17708.9,
+      "duration_ms": 97.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17714.5,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17733.4,
+      "duration_ms": 18.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17749,
+      "duration_ms": 15.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17764.3,
+      "duration_ms": 15.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17782.4,
+      "duration_ms": 18.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17798.4,
+      "duration_ms": 15.9
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 17808.4,
+      "duration_ms": 99.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17814.3,
+      "duration_ms": 16
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17831,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17847.6,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17864.3,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17881.1,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17897.7,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 17908.7,
+      "duration_ms": 100.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17914.5,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17930.7,
+      "duration_ms": 16.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17947.9,
+      "duration_ms": 17.2
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17975.6,
+      "duration_ms": 27.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 17988.3,
+      "duration_ms": 12.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 18002.1,
+      "duration_ms": 93.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18002.3,
+      "duration_ms": 14.1
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18017.8,
+      "duration_ms": 15.4
+    },
+    {
+      "kind": "interaction",
+      "phase": "training",
+      "elapsed_ms": 18020.4,
+      "duration_ms": 64
+    },
+    {
+      "kind": "interaction",
+      "phase": "training",
+      "elapsed_ms": 18020.4,
+      "duration_ms": 64
+    },
+    {
+      "kind": "interaction",
+      "phase": "training",
+      "elapsed_ms": 18020.4,
+      "duration_ms": 64
+    },
+    {
+      "kind": "interaction",
+      "phase": "training",
+      "elapsed_ms": 18020.4,
+      "duration_ms": 64
+    },
+    {
+      "kind": "interaction",
+      "phase": "training",
+      "elapsed_ms": 18020.4,
+      "duration_ms": 64
+    },
+    {
+      "kind": "interaction",
+      "phase": "training",
+      "elapsed_ms": 18020.4,
+      "duration_ms": 64
+    },
+    {
+      "kind": "interaction",
+      "phase": "training",
+      "elapsed_ms": 18020.4,
+      "duration_ms": 64
+    },
+    {
+      "kind": "interaction",
+      "phase": "training",
+      "elapsed_ms": 18020.4,
+      "duration_ms": 64
+    },
+    {
+      "kind": "interaction",
+      "phase": "training",
+      "elapsed_ms": 18020.4,
+      "duration_ms": 64
+    },
+    {
+      "kind": "interaction",
+      "phase": "training",
+      "elapsed_ms": 18020.4,
+      "duration_ms": 64
+    },
+    {
+      "kind": "interaction",
+      "phase": "training",
+      "elapsed_ms": 18020.4,
+      "duration_ms": 64
+    },
+    {
+      "kind": "interaction",
+      "phase": "training",
+      "elapsed_ms": 18020.4,
+      "duration_ms": 64
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18030.3,
+      "duration_ms": 12.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18046.9,
+      "duration_ms": 16.5
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18063.5,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18080.2,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18096.9,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 18105.5,
+      "duration_ms": 103.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18112.8,
+      "duration_ms": 15.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18129.4,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18146.9,
+      "duration_ms": 17.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18163.5,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18179.2,
+      "duration_ms": 15.6
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18195.8,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 18204.9,
+      "duration_ms": 99.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18213.7,
+      "duration_ms": 17.8
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18229.6,
+      "duration_ms": 15.9
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18246.8,
+      "duration_ms": 17.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18263.5,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18280.2,
+      "duration_ms": 16.7
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18296.8,
+      "duration_ms": 16.6
+    },
+    {
+      "kind": "worker_delivery",
+      "phase": "training",
+      "elapsed_ms": 18304.2,
+      "duration_ms": 99.3
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18314.3,
+      "duration_ms": 17.4
+    },
+    {
+      "kind": "render_frame",
+      "phase": "training",
+      "elapsed_ms": 18330.3,
+      "duration_ms": 16.1
+    }
+  ],
+  "scope": "Local opt-in browser timings. Render callbacks are not GPU time or headset FPS. Worker delivery measures wall-time between snapshots, not simulation CPU cost. No actions, identifiers, text, URLs or hidden sensor truth are recorded.",
+  "limitations": [
+    "CPU, resource and frame timings are correlated evidence, not automatic causal attribution.",
+    "Background frames are excluded; gaps and dropped samples are disclosed.",
+    "Compare fixed viewport, hardware, quality, roster, warm state and workload; median alone is insufficient."
+  ]
+}

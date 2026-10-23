@@ -39,3 +39,24 @@ Actual same-viewport/tier/world/optics paired traces show texture calls **5 →1
 Complete frontend after the loader-order change: **385 passed**, production build/lint/format passed. Backend runtime is untouched; the prior 746-test source seal remains separately scoped. Matched retained/optics runs and final combined acceptance are still required.
 
 A numerically exact compiled-noise prototype was independently microbenchmarked in a temporary experiment and **rejected** because it was slower at 1024 resolution with additional scratch memory. The negative result and nonproduction prototype are archived under evidence/performance/rejected-splat-prototype. No speculative math change was integrated.
+
+
+## Corrected timing samples and retained trials
+
+Runtime input hash `b1b7441c91fb09e5262f63bc41ff50aac1a312f08de48b1e807875d59df86992` (qualification-source.json) includes the worker tail flush and per-run request isolation. All **390 frontend tests passed**, including pause/finish timing accounting, rejecting stale scope and ordinary training protocol regressions; production build/lint/format passed. This is a frontend software milestone, not final combined backend acceptance.
+
+Actual Codex in-app browser, owner-identified M1, fixed Medium/auto off, 1440×900 CSS at scale1, retained synthetic rural/night/thermal scene:
+
+| Trial | Minimum active | Executed ticks / timing samples | Median FPS | Warm p95 /p99 /max ms | >50 / >100 ms | Worker CPU p95 ms |
+|---|---:|---:|---:|---|---|---:|
+| 8, first20s |8|599 /599|60|18.1 /27.8 /78.2|2 /0|0.3|
+| 8, repeat20s |8|599 /599|60|28.2 /49.7 /203.1|9 /1|0.3|
+| 50,20s |50|600 /600|60|20.4 /28.3 /64.3|2 /0|0.4|
+| 200,20s |200|598 /598|60|22.8 /38.9 /60.6|2 /0|0.9|
+| 200,180s |200|5386 /5386|60|19.9 /28.2 /322.6|30 /6|2.3|
+
+All worker receipts acknowledge stop and account for every executed tick. Sustained execution disclosed **433.33ms dropped wall-clock backlog**; this is bounded clock scheduling behavior, not missing worker samples or evidence of 180 logical seconds executed. All 200 contacts stayed active; renderer samples ranged199–200 because observed-only filtering remains in force. Main-page heap is not total Worker/GPU memory. No diagnostic sample overflow or hidden-frame gaps.
+
+**Limits and failed targets:** repeat8 had expanded live JSON details while other trials had collapsed details; its workload differs. 200-short timing capture was manually stopped about one second before the final worker receipt; retain it as an incomplete paired frame window. Benchmark schema5 reports are manually paired to source-bound traces; they do not themselves embed build provenance. Initial preparation still recorded a430.5ms rendered gap,333.9ms procedural texture construction and222ms world construction. Warm20ms p95 target fails in repeat8/50/200-short; sustained p95 passes only that criterion while its322.6ms worst frame remains a defect to investigate. No universal smoothness or controlled before/after FPS claim. The optics transition trace is exploratory only: mixed timing/adjacent targeted-test activity prevents qualification.
+
+Raw JSON, hashes, source receipt and summary are under evidence/performance. Earlier unflushed8-contact report remains preserved as evidence of the fixed measurement defect. Next: embed source and viewport in benchmark reports, isolate inactive report rendering, perform fresh/repeated equivalent trials and inspect dominant remaining startup work before choosing further optimization. R01 and Checkpoint A remain PARTIAL.

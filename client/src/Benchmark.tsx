@@ -1,7 +1,9 @@
+import { newId } from "./unit-state";
+import { benchmarkSettings, benchmarkLink } from "./benchmark-settings";
 import { diagnosticPhase, diagnosticWorkerDelivery } from "./diagnostics";
 import PerformanceDiagnostics from "./PerformanceDiagnostics";
 import { PageHeader } from "./UI";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { makeScenario } from "./scenario";
 import { Scene } from "./LazyScene";
 import type { Vision } from "./visibility";
@@ -151,7 +153,14 @@ export function median(values: number[]) {
   return (v[Math.floor((v.length - 1) / 2)] + v[Math.floor(v.length / 2)]) / 2;
 }
 export default function Benchmark() {
-  const [retained, setRetained] = useState(false);
+  const initial = useMemo(
+    () =>
+      benchmarkSettings(
+        typeof window === "undefined" ? "" : window.location.search,
+      ),
+    [],
+  );
+  const [retained, setRetained] = useState(initial.retained);
   const [workloadSamples, setWorkloadSamples] = useState<
     {
       seconds: number;
@@ -161,18 +170,36 @@ export default function Benchmark() {
       rendered_contacts: number | null;
     }[]
   >([]);
+  const benchmarkScope = useRef<string | undefined>(undefined);
+  const stopping = useRef(false),
+    activeRun = useRef(false);
+  const stopTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
+  const [runIssue, setRunIssue] = useState("");
+  const [visibilityInterruptions, setVisibilityInterruptions] = useState(0);
+  const [clockDroppedMs, setClockDroppedMs] = useState(0);
   const latestState = useRef<Snapshot | null>(null);
   const renderedContacts = useRef<number | null>(null);
-  const [engine, setEngine] = useState<"finale" | "legacy">("finale");
-  const [duration, setDuration] = useState(20),
+  const [engine, setEngine] = useState<"finale" | "legacy">(initial.engine);
+  const [duration, setDuration] = useState(initial.duration),
     [heapSamples, setHeapSamples] = useState<
       { seconds: number; used_js_heap_bytes: number | null }[]
     >([]);
-  const [count, setCount] = useState(8),
-    [tier, setTier] = useState<Quality>("medium"),
-    [auto, setAuto] = useState(false),
+  const [count, setCount] = useState(initial.count),
+    [tier, setTier] = useState<Quality>(initial.tier),
+    [auto, setAuto] = useState(initial.auto),
     [state, setState] = useState<Snapshot>(() =>
-      new Simulation(finaleScaleScenario(8)).snapshot(),
+      new Simulation(
+        initial.engine === "legacy"
+          ? scaleScenario(initial.count)
+          : (initial.retained ? retainedWorldScenario : worldScaleScenario)(
+              initial.count,
+              initial.duration === 180 ? 180 : 90,
+              initial.world,
+              initial.night,
+            ),
+      ).snapshot(),
     ),
     [running, setRunning] = useState(false),
     [samples, setSamples] = useState<number[]>([]),
@@ -180,11 +207,11 @@ export default function Benchmark() {
     [hardware, setHardware] = useState(""),
     [ram, setRam] = useState(""),
     [elapsed, setElapsed] = useState(0);
-  const [world, setWorld] = useState<BenchmarkWorld>("rural_forward_base"),
-    [night, setNight] = useState(true);
-  const [vision, setVision] = useState<Vision>("thermal"),
-    [palette, setPalette] = useState<ThermalPalette>("white"),
-    [camera, setCamera] = useState<CameraPreset | "trainee">("trainee");
+  const [world, setWorld] = useState<BenchmarkWorld>(initial.world),
+    [night, setNight] = useState(initial.night);
+  const [vision, setVision] = useState<Vision>(initial.vision),
+    [palette, setPalette] = useState<ThermalPalette>(initial.palette),
+    [camera, setCamera] = useState<CameraPreset | "trainee">(initial.camera);
   const lastHeapSecond = useRef(-1);
   const worker = useRef<Worker | null>(null),
     frames = useRef<number[]>([]),
@@ -195,6 +222,17 @@ export default function Benchmark() {
     });
     worker.current = w;
     w.onmessage = (e) => {
+      if (e.data.scope !== benchmarkScope.current) return;
+      if (e.data.type === "clock-status" && e.data.status === "throttled")
+        setClockDroppedMs((v) => v + (e.data.dropped_ms ?? 0));
+      if (e.data.type === "benchmark-stopped") {
+        clearTimeout(stopTimeout.current);
+        stopping.current = false;
+        activeRun.current = false;
+        setRunning(false);
+        diagnosticPhase("review");
+      }
+
       if (e.data.type === "snapshot") {
         latestState.current = e.data.state;
         diagnosticWorkerDelivery();
@@ -203,11 +241,37 @@ export default function Benchmark() {
       if (e.data.type === "benchmark")
         setTicks((t) => [...t, ...e.data.tick_ms]);
     };
-    return () => w.terminate();
+    const visibility = () => {
+      if (document.hidden && activeRun.current)
+        setVisibilityInterruptions((v) => v + 1);
+      w.postMessage({
+        type: "visibility",
+        scope: benchmarkScope.current,
+        hidden: document.hidden,
+      });
+    };
+    document.addEventListener("visibilitychange", visibility);
+    w.onerror = () => {
+      activeRun.current = false;
+      stopping.current = false;
+      clearTimeout(stopTimeout.current);
+      setRunning(false);
+      setRunIssue(
+        "Worker failed; this measurement is incomplete. Reload the benchmark before retrying.",
+      );
+      w.terminate();
+      worker.current = null;
+    };
+    return () => {
+      document.removeEventListener("visibilitychange", visibility);
+      clearTimeout(stopTimeout.current);
+      w.terminate();
+    };
   }, []);
   useEffect(() => {
     if (!running) return;
     const timer = setInterval(() => {
+      if (stopping.current) return;
       const secs = (performance.now() - started.current) / 1000;
       setElapsed(secs);
       const second = Math.floor(secs);
@@ -242,9 +306,18 @@ export default function Benchmark() {
       }
       if (secs >= 3) diagnosticPhase("training");
       if (secs >= duration) {
-        diagnosticPhase("review");
-        worker.current?.postMessage({ type: "pause" });
-        setRunning(false);
+        stopping.current = true;
+        const scope = benchmarkScope.current;
+        worker.current?.postMessage({ type: "pause", scope });
+        stopTimeout.current = setTimeout(() => {
+          if (scope !== benchmarkScope.current || !stopping.current) return;
+          activeRun.current = false;
+          stopping.current = false;
+          setRunning(false);
+          setRunIssue(
+            "Worker did not acknowledge its final samples; this measurement is incomplete. Reload before retrying.",
+          );
+        }, 5000);
       }
     }, 250);
     return () => clearInterval(timer);
@@ -257,6 +330,17 @@ export default function Benchmark() {
     setElapsed(0);
   }
   function start() {
+    if (!worker.current) {
+      setRunIssue("Reload the benchmark before retrying.");
+      return;
+    }
+    clearTimeout(stopTimeout.current);
+    benchmarkScope.current = newId();
+    stopping.current = false;
+    activeRun.current = true;
+    setRunIssue("");
+    setVisibilityInterruptions(document.hidden ? 1 : 0);
+    setClockDroppedMs(0);
     setWorkloadSamples([]);
     latestState.current = null;
     renderedContacts.current = null;
@@ -281,8 +365,17 @@ export default function Benchmark() {
             )
           : scaleScenario(count),
       benchmark: true,
+      scope: benchmarkScope.current,
     });
-    worker.current?.postMessage({ type: "play" });
+    worker.current?.postMessage({
+      type: "visibility",
+      scope: benchmarkScope.current,
+      hidden: document.hidden,
+    });
+    worker.current?.postMessage({
+      type: "play",
+      scope: benchmarkScope.current,
+    });
   }
   function fps(n: number) {
     if (!running) return;
@@ -300,8 +393,28 @@ export default function Benchmark() {
     [...ticks].sort((a, b) => a - b)[
       Math.max(0, Math.ceil(ticks.length * 0.95) - 1)
     ] ?? null;
+  const reproduction = benchmarkLink({
+    engine,
+    count,
+    duration,
+    retained,
+    tier,
+    auto,
+    world,
+    night,
+    vision,
+    palette,
+    camera,
+  });
   const report = {
-    schema_version: 4,
+    reproduction_path: reproduction,
+    schema_version: 5,
+    timing_samples_complete:
+      !running && !runIssue && state.tick > 0 && ticks.length === state.tick,
+    visibility_interruptions: visibilityInterruptions,
+    foreground_only: visibilityInterruptions === 0,
+    clock_dropped_ms: clockDroppedMs,
+    measurement_issue: runIssue || null,
     roster_mode:
       engine === "finale" && retained
         ? "retained-slow-synthetic"
@@ -359,6 +472,12 @@ export default function Benchmark() {
         }
       />
       <PerformanceDiagnostics />
+      {runIssue && <p role="alert">{runIssue}</p>}
+      <p>
+        <a href={reproduction}>Open this workload with local timing enabled</a>{" "}
+        · The link contains settings only; hardware notes and device identity
+        are excluded.
+      </p>
       <p>
         Bounded rendering and worker test. Choose 20, 60 or 180 seconds; a
         180-second fixture retains its logical simulation horizon. Contacts in
@@ -379,6 +498,7 @@ export default function Benchmark() {
             value={engine}
             onChange={(e) => {
               setEngine(e.target.value as typeof engine);
+              if (e.target.value === "legacy") setRetained(false);
               setDuration(20);
               resetResults();
             }}
@@ -468,6 +588,7 @@ export default function Benchmark() {
             }
             value={vision}
             onChange={(e) => {
+              diagnosticPhase("optics");
               setVision(e.target.value as Vision);
               resetResults();
             }}
@@ -489,6 +610,7 @@ export default function Benchmark() {
             }
             value={palette}
             onChange={(e) => {
+              diagnosticPhase("optics");
               setPalette(e.target.value as ThermalPalette);
               resetResults();
             }}
@@ -512,6 +634,7 @@ export default function Benchmark() {
             }
             value={camera}
             onChange={(e) => {
+              diagnosticPhase("optics");
               setCamera(e.target.value as typeof camera);
               resetResults();
             }}

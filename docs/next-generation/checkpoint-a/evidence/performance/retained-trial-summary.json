@@ -1,0 +1,190 @@
+{
+  "scope": "Software measurements on owner-identified MacBook Air M1; RAM unverified; IAB, CSS1440x900 scale1; fixed Medium, rural/night, thermal. No full cold driver guarantee. Manual report/trace pairing; benchmark schema5 lacks embedded source. 200-short timing capture stopped ~1 second before final worker receipt; not a full paired window. Repeated8 JSON details were expanded, other measurements collapsed; UI work differs. Optics capture exploratory and not qualification (adjacent test activity).",
+  "trials": [
+    {
+      "trial": "retained-8-corrected",
+      "seconds": 20,
+      "active_min": 8,
+      "rendered_min": 8,
+      "median_fps": 60,
+      "cpu_p95_ms": 0.30000000447034836,
+      "worker_samples": 599,
+      "executed_ticks": 599,
+      "complete": true,
+      "foreground": true,
+      "clock_dropped_ms": 0,
+      "frame": {
+        "samples": 1011,
+        "p50_ms": 16.7,
+        "p95_ms": 18.1,
+        "p99_ms": 27.8,
+        "max_ms": 78.2,
+        "over_50_ms": 2,
+        "over_100_ms": 0
+      },
+      "source": {
+        "working_tree_source_dirty": true,
+        "commit": "7379f771ef1c1620147ee1b958a8a243628cf65f",
+        "source_hash": "b1b7441c91fb09e5262f63bc41ff50aac1a312f08de48b1e807875d59df86992"
+      },
+      "artifacts": [
+        {
+          "path": "docs/next-generation/checkpoint-a/evidence/performance/retained-8-corrected-benchmark.json",
+          "sha256": "dcf5675c6ee1e8ace091cbfec017c4b0e086c69947e4b0d5b8404e0d535acb5b"
+        },
+        {
+          "path": "docs/next-generation/checkpoint-a/evidence/performance/retained-8-corrected-timings.json",
+          "sha256": "e72c09a384699e85d50655209aab73150eeadef6143fd7aec13c907d77bf1d42"
+        }
+      ]
+    },
+    {
+      "trial": "retained-8-repeat",
+      "seconds": 20,
+      "active_min": 8,
+      "rendered_min": 8,
+      "median_fps": 60,
+      "cpu_p95_ms": 0.29999999701976776,
+      "worker_samples": 599,
+      "executed_ticks": 599,
+      "complete": true,
+      "foreground": true,
+      "clock_dropped_ms": 0,
+      "frame": {
+        "samples": 944,
+        "p50_ms": 16.7,
+        "p95_ms": 28.2,
+        "p99_ms": 49.7,
+        "max_ms": 203.1,
+        "over_50_ms": 9,
+        "over_100_ms": 1
+      },
+      "source": {
+        "working_tree_source_dirty": true,
+        "commit": "7379f771ef1c1620147ee1b958a8a243628cf65f",
+        "source_hash": "b1b7441c91fb09e5262f63bc41ff50aac1a312f08de48b1e807875d59df86992"
+      },
+      "artifacts": [
+        {
+          "path": "docs/next-generation/checkpoint-a/evidence/performance/retained-8-repeat-benchmark.json",
+          "sha256": "b0113ce0f2c8f0d27843570a1c4a376e4ca4252985362e01c9e336cc7f7b80a1"
+        },
+        {
+          "path": "docs/next-generation/checkpoint-a/evidence/performance/retained-8-repeat-timings.json",
+          "sha256": "00a58b0da4d680aca649f5a90c379fca3813d4c1b238758dba333cf68661873d"
+        }
+      ]
+    },
+    {
+      "trial": "retained-50",
+      "seconds": 20,
+      "active_min": 50,
+      "rendered_min": 50,
+      "median_fps": 60,
+      "cpu_p95_ms": 0.3999999910593033,
+      "worker_samples": 600,
+      "executed_ticks": 600,
+      "complete": true,
+      "foreground": true,
+      "clock_dropped_ms": 0,
+      "frame": {
+        "samples": 1002,
+        "p50_ms": 16.7,
+        "p95_ms": 20.4,
+        "p99_ms": 28.3,
+        "max_ms": 64.3,
+        "over_50_ms": 2,
+        "over_100_ms": 0
+      },
+      "source": {
+        "working_tree_source_dirty": true,
+        "commit": "7379f771ef1c1620147ee1b958a8a243628cf65f",
+        "source_hash": "b1b7441c91fb09e5262f63bc41ff50aac1a312f08de48b1e807875d59df86992"
+      },
+      "artifacts": [
+        {
+          "path": "docs/next-generation/checkpoint-a/evidence/performance/retained-50-benchmark.json",
+          "sha256": "302dcd7bc662add1a7689ba0835bcb604606fd3473ee4196247af7105cad1f8b"
+        },
+        {
+          "path": "docs/next-generation/checkpoint-a/evidence/performance/retained-50-timings.json",
+          "sha256": "a6532a6950d12ad6321fa144baa2ef4d80f202f51ddc655f483806e49639d092"
+        }
+      ]
+    },
+    {
+      "trial": "retained-200",
+      "seconds": 20,
+      "active_min": 200,
+      "rendered_min": 199,
+      "median_fps": 60,
+      "cpu_p95_ms": 0.9000000059604645,
+      "worker_samples": 598,
+      "executed_ticks": 598,
+      "complete": true,
+      "foreground": true,
+      "clock_dropped_ms": 0,
+      "frame": {
+        "samples": 856,
+        "p50_ms": 16.7,
+        "p95_ms": 22.8,
+        "p99_ms": 38.9,
+        "max_ms": 60.6,
+        "over_50_ms": 2,
+        "over_100_ms": 0
+      },
+      "source": {
+        "working_tree_source_dirty": true,
+        "commit": "7379f771ef1c1620147ee1b958a8a243628cf65f",
+        "source_hash": "b1b7441c91fb09e5262f63bc41ff50aac1a312f08de48b1e807875d59df86992"
+      },
+      "artifacts": [
+        {
+          "path": "docs/next-generation/checkpoint-a/evidence/performance/retained-200-benchmark.json",
+          "sha256": "cb69ee5faa0b1985098beff11e5f8dbce244589ed4b2604cc4cc0d128511a80c"
+        },
+        {
+          "path": "docs/next-generation/checkpoint-a/evidence/performance/retained-200-timings.json",
+          "sha256": "9d4abb4793fb0344bf5e2a728243cdf5c0781c07aee48db86662c943b32cba5a"
+        }
+      ]
+    },
+    {
+      "trial": "retained-200-sustained",
+      "seconds": 180,
+      "active_min": 200,
+      "rendered_min": 199,
+      "median_fps": 60,
+      "cpu_p95_ms": 2.2999999970197678,
+      "worker_samples": 5386,
+      "executed_ticks": 5386,
+      "complete": true,
+      "foreground": true,
+      "clock_dropped_ms": 433.33333333333337,
+      "frame": {
+        "samples": 10417,
+        "p50_ms": 16.7,
+        "p95_ms": 19.9,
+        "p99_ms": 28.2,
+        "max_ms": 322.6,
+        "over_50_ms": 30,
+        "over_100_ms": 6
+      },
+      "source": {
+        "working_tree_source_dirty": true,
+        "commit": "7379f771ef1c1620147ee1b958a8a243628cf65f",
+        "source_hash": "b1b7441c91fb09e5262f63bc41ff50aac1a312f08de48b1e807875d59df86992"
+      },
+      "artifacts": [
+        {
+          "path": "docs/next-generation/checkpoint-a/evidence/performance/retained-200-sustained-benchmark.json",
+          "sha256": "922d3f87863f62ec3e065c46428806bf5594748a23460174df851060c2ae210e"
+        },
+        {
+          "path": "docs/next-generation/checkpoint-a/evidence/performance/retained-200-sustained-timings.json",
+          "sha256": "a0537a8da6c92d143338808a0751a5f786baad73f7a2f99a372b41c87838e963"
+        }
+      ]
+    }
+  ]
+}

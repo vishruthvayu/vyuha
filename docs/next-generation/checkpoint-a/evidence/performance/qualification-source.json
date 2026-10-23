@@ -1,0 +1,5 @@
+{
+  "source_hash": "b1b7441c91fb09e5262f63bc41ff50aac1a312f08de48b1e807875d59df86992",
+  "parent_commit": "7379f771ef1c1620147ee1b958a8a243628cf65f",
+  "scope": "Before qualified retained trials; benchmark scopes, final timing flush, bounded links and interaction floor enabled. Before/after qualification hash must match."
+}

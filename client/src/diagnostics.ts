@@ -129,6 +129,7 @@ export class TimingCapture {
       source: { ...this.source },
       elapsed_ms: Math.min(DIAGNOSTIC_WINDOW_MS, Math.max(0, (this.stoppedAt??now) - this.start)),
       observer_support:[...this.observerSupport],
+      interaction_sample_floor_ms:16,
       stopped: this.stopped,
       sample_limit: this.limit,
       dropped_samples: this.dropped,
@@ -221,7 +222,7 @@ export function startDiagnostics() {
         const observer = new PerformanceObserver((list) => {
           for (const entry of list.getEntries()) receive(entry);
         });
-        observer.observe({ type, buffered: false });
+        observer.observe(type === "event" ? ({type,buffered:false,durationThreshold:16} as PerformanceObserverInit & {durationThreshold:number}) : { type, buffered: false });
         observers.push(observer);
       } catch {
         /* Unsupported observer never breaks training. */

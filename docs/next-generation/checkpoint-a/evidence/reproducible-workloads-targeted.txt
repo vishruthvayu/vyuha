@@ -1,0 +1,35 @@
+✔ fixed retained qualification settings survive a shareable link without personal hardware notes (3.165291ms)
+✔ unbounded/malformed contacts and incompatible legacy retention cannot create uncontrolled workloads (0.7935ms)
+✔ timing reports tail stalls and never substitutes median FPS (4.121334ms)
+✔ bounded collection preserves first samples and discloses overflow and stopped state (0.500083ms)
+✔ optics and startup are separate and malformed timings cannot poison a report (1.557042ms)
+✔ diagnostics are off by default and report snapshots cannot mutate collected data (1.255958ms)
+✔ hidden/resumed frame gaps are disclosed rather than counted as foreground stalls (0.55725ms)
+✔ a throttled stop timer cannot extend the bounded timing window (0.365875ms)
+✔ manual stop seals elapsed time and observer support is disclosed (0.837667ms)
+✔ delayed renderer work cannot contaminate a replacement capture or submit twice (3.848208ms)
+✔ timed work preserves original return values, exceptions and one scoped measurement (1.124833ms)
+✔ rural terrain/fog preserve score and sensor parity at 54 new checkpoints; recorded adapters match (2522.392542ms)
+✔ audio range, observed-contact gate, bird exclusion and fog attenuation prevent omniscient cues (0.262042ms)
+✔ quality changes require sustained measured low FPS and reach tactical fallback (0.158625ms)
+✔ bounded JSON import errors reject malformed/object shape and UTF-8 byte overruns (0.863542ms)
+✔ scale fixtures keep all contact kinds, deterministic positions and supported counts (1.573084ms)
+✔ evidence/import interfaces show limitations without fabricated final validation claims (18.394292ms)
+✔ evaluation enrollment requires participant agreement and pseudonymous IDs (4.100042ms)
+✔ bulk transfer timeout can exceed the six-second tactical request timeout without changing request payloads (6.0215ms)
+✔ Finale benchmark exercises dispatched sensor truth at every supported contact scale (62.54125ms)
+✔ longer Finale stress fixture keeps a full logical horizon and rejects unsupported durations (4.280833ms)
+✔ retained benchmark keeps all 200 contacts active for the complete 180-second workload without changing the engine (6074.083541ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10719.305292
+npm notice
+npm notice New minor version of npm available! 11.6.2 -> 11.21.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.1
+npm notice To update run: npm install -g npm@11.21.1
+npm notice

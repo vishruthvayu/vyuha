@@ -1,0 +1,31 @@
+✔ fixed retained qualification settings survive a shareable link without personal hardware notes (1.642375ms)
+✔ unbounded/malformed contacts and incompatible legacy retention cannot create uncontrolled workloads (0.831208ms)
+✔ worker restoration publishes owned initialization with exact frozen tick/actions/commands and rejects stale intents (950.768041ms)
+✔ all accepted/control/finalized worker replies retain ownership while Benchmark supports the original unscoped protocol (134.610084ms)
+✔ restoring an already-ended saved horizon finalizes once with its original evidence rather than remaining running (263.745542ms)
+✔ worker receipts correlate rapid decisions and reject paused/ended intents without changing authoritative evidence (89.142167ms)
+✔ timing reports tail stalls and never substitutes median FPS (1.35175ms)
+✔ bounded collection preserves first samples and discloses overflow and stopped state (0.246042ms)
+✔ optics and startup are separate and malformed timings cannot poison a report (1.109833ms)
+✔ diagnostics are off by default and report snapshots cannot mutate collected data (0.230167ms)
+✔ hidden/resumed frame gaps are disclosed rather than counted as foreground stalls (0.212291ms)
+✔ a throttled stop timer cannot extend the bounded timing window (0.151375ms)
+✔ manual stop seals elapsed time and observer support is disclosed (6.08825ms)
+✔ delayed renderer work cannot contaminate a replacement capture or submit twice (1.2625ms)
+✔ timed work preserves original return values, exceptions and one scoped measurement (0.47875ms)
+✔ benchmark pause flushes a partial timing batch before its owned stop acknowledgment (327.035125ms)
+✔ repeated benchmark initialization rejects old stop intents and accounts for every delivered step (147.460125ms)
+✔ ordinary training never emits benchmark timing or stop messages (48.935834ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3295.775666
+npm notice
+npm notice New minor version of npm available! 11.6.2 -> 11.21.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.1
+npm notice To update run: npm install -g npm@11.21.1
+npm notice

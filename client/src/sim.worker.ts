@@ -15,7 +15,9 @@ let hidden=false;
 const clock=new FixedStepClock();
 let timer:ReturnType<typeof setInterval>|null=null;
 function publish(initialized=false){if(sim)emit({type:'snapshot',state:sim.snapshot(),paused:localPaused||sim.state.paused,initialized});}
-function finish(){if(!sim||ended)return;ended=true;localPaused=true;publish();emit({type:'finalized',events:sim.events,commands:sim.commands});}
+function flushBenchmark(){if(benchmark&&tickTimes.length){emit({type:'benchmark',tick_ms:tickTimes});tickTimes=[];}}
+function stoppedBenchmark(){if(benchmark&&sim)emit({type:'benchmark-stopped',tick:sim.state.tick});}
+function finish(){if(!sim||ended)return;ended=true;localPaused=true;flushBenchmark();publish();stoppedBenchmark();emit({type:'finalized',events:sim.events,commands:sim.commands});}
 onmessage=(e:MessageEvent<{type:string;scope?:string;request_id?:number;scenario?:Scenario;action?:Action;events?:Action[];commands?:AppliedCommand[];command?:InstructorCommand;tick?:number;benchmark?:boolean;hidden?:boolean}>)=>{
  const m=e.data;
  // Benchmark retains its unscoped worker protocol. Training initialization is
@@ -38,7 +40,7 @@ onmessage=(e:MessageEvent<{type:string;scope?:string;request_id?:number;scenario
    }
   },1000/30);
  }else if(m.type==='play'){localPaused=false;clock.reset(performance.now());if(sim?.state.done)finish();else publish();}
- else if(m.type==='pause'){localPaused=true;clock.reset(performance.now());publish();}
+ else if(m.type==='pause'){localPaused=true;clock.reset(performance.now());flushBenchmark();publish();stoppedBenchmark();}
  else if(m.type==='visibility'){hidden=m.hidden===true;clock.reset(performance.now());emit({type:'clock-status',status:hidden?'hidden':'visible',note:hidden?'Exercise logical time is suspended while this browser tab is hidden.':'Tab visible. Logical time resumes without accumulating hidden wall time.'});}
  else if(m.type==='finish')finish();
  else if(m.type==='control'&&sim&&m.command&&!ended){
