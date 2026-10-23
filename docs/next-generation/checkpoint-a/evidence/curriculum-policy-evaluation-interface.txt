@@ -1,0 +1,15 @@
+✔ identity changes reload the correct stored protocol and discard delayed load results and errors (2689.177084ms)
+✔ late pre-test protocol creation cannot write another identity or retain consent/request state (449.181ms)
+✔ late post-test success and error cannot replace the next identity's protocol (383.761917ms)
+✔ late manual refresh cannot overwrite a later identity or surface its error (190.139291ms)
+✔ unmount revokes a late creation result before any persistent identity write (61.36675ms)
+✔ mismatched load/post receipts fail closed without replacing the selected protocol (235.360042ms)
+✔ a failed creation can retry unchanged but editing creates a fresh immutable request (193.109833ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9528.028625

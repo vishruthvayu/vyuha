@@ -14,8 +14,8 @@ Source: `server/config/capabilities-v1.json`. Generate with `scripts/check_capab
 | Source-scoped capability and evidence registry | PARTIAL | `/system/evidence#capabilities` | `server/capabilities.py`, `client/src/CapabilityRegistry.tsx` |
 | Competency/task/evidence contracts | PARTIAL | `/academy` | `server/learning.py`, `client/src/LearningEvidence.tsx` |
 | Academy and assessed progression | PARTIAL | `/academy` | `client/src/Academy.tsx`, `server/config/learning-v1.json`, `server/controlled_study.py`, `client/src/LearnerReflection.tsx`, `server/learning_reflection.py` |
-| Coverage-first curriculum Director | PARTIAL | `/academy` | `server/learning.py` |
-| Frozen assessment bank | PARTIAL | `/academy` | `server/learning.py`, `server/config/learning-v1.json`, `client/src/Academy.tsx` |
+| Coverage-first curriculum Director | PARTIAL | `/academy` | `server/learning.py`, `server/curriculum_diagnostic.py`, `client/src/CurriculumPolicyDiagnostic.tsx` |
+| Frozen assessment bank | PARTIAL | `/academy` | `server/learning.py`, `server/config/learning-v1.json`, `client/src/Academy.tsx`, `server/assessment_obligations.py` |
 | Controlled retention and transfer protocol | PARTIAL | `/evaluation` | `server/controlled_study.py`, `client/src/ControlledStudy.tsx` |
 | Observed assessment opportunity diagnostic pilot | PARTIAL | `/evaluation` | `server/assessment_obligations.py`, `client/src/AssessmentDiagnostics.tsx`, `scripts/check_assessment_obligations.py` |
 

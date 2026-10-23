@@ -75,3 +75,9 @@ Checkpoint A is still IN PROGRESS. Native/physical platform, network and headset
 [Structured reflection and explicit practice progression](LEARNER-REFLECTION.md) are implemented and targeted-tested:21 focused backend, five frontend and two selected Academy/accessibility tests. Actual Ghost save/reload preserved original sessions/profiles and score. R05 remains PARTIAL because deeper task-specific coaching/content validation is unfinished. Latest testing cadence follows [TESTING-POLICY.md](../TESTING-POLICY.md); old complete runs retain their exact source bindings.
 
 Research continuations A/B strengthen existing R06/R43 generation diagnostics, R41/R42 paths/outcome denominators, R11 temporal evidence and shared browser/XR instrument context. No duplicate R49+ IDs were invented. Next dependency-ready slices are bounded assessment generation receipts and measured startup responsiveness experiments.
+
+## Bounded assessment generation and selection diagnostics
+
+R06/R43 now include a bounded officer-only C01 generation receipt (three outer candidates maximum, unchanged24-attempt compiler bound), source/config drift protection, separate author preview, known structured cue/frozen-copy rejections, explicit exhaustion and observed-window evidence.50 integrated backend tests passed98.97s. This API is diagnostic-only and does not expand/validate the whole assessment bank. See ASSESSMENT-GENERATION-RECEIPTS.md.
+
+R07 [selection laboratory](CURRICULUM-POLICY-LAB.md) is integrated in actual Evaluation with disclosed baseline comparisons and limitations.9 backend +2 UI +7 affected lifecycle tests passed. No participant evidence or efficacy claims; R06/R07/R43 and Checkpoint A remain PARTIAL. Quiet retained200 baseline recorded60 medianFPS,599 complete ticks at1280×720CSS/dpr2/fixedMedium; the earlier49FPS contended trial is retained separately. Texture responsiveness remains an unintegrated experiment at this milestone.

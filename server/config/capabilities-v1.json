@@ -147,12 +147,14 @@
       "implementation": "PARTIAL",
       "route": "/academy",
       "source_files": [
-        "server/learning.py"
+        "server/learning.py",
+        "server/curriculum_diagnostic.py",
+        "client/src/CurriculumPolicyDiagnostic.tsx"
       ],
       "evidence_ids": [
         "checkpoint-a-curriculum-software"
       ],
-      "limitations": "Frozen coverage/recent-item selection snapshots; deterministic heuristic, no fitted model or demonstrated learning efficacy."
+      "limitations": "Frozen coverage/recent-item snapshots plus a read-only six-history selection lab comparing current policy with disclosed uniform/round-robin baselines. Synthetic selection properties only; no fitted model, Beta-policy equivalence, participant fairness or demonstrated learning efficacy."
     },
     {
       "id": "assessment-bank",
@@ -162,12 +164,13 @@
       "source_files": [
         "server/learning.py",
         "server/config/learning-v1.json",
-        "client/src/Academy.tsx"
+        "client/src/Academy.tsx",
+        "server/assessment_obligations.py"
       ],
       "evidence_ids": [
         "checkpoint-a-curriculum-software"
       ],
-      "limitations": "Structural form separation and deterministic compilation are implemented. Broader observable-opportunity, semantic novelty and empirical fairness validation remain incomplete."
+      "limitations": "Structural form separation and deterministic compilation; bounded C01-only generation/observation receipts with structured cue checks. Broader observable-opportunity, prose cue leakage, semantic novelty and empirical fairness remain incomplete."
     },
     {
       "id": "controlled-pilot",

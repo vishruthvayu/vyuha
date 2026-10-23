@@ -1,0 +1,74 @@
+{
+  "parent_revision": "3dc6c5e50c0b1dc62387eb9a684b5d52da7e2158",
+  "source_hash": "d8bbe8bc97fae718f96fdd77e4adac9c77be1654d66801141ca5f034d2642d43",
+  "backend": {
+    "assessment_generation_and_obligations": 50,
+    "curriculum_policy": 9
+  },
+  "frontend": {
+    "policy_dom_axe": 2,
+    "evaluation_lifecycle": 7
+  },
+  "browser": "Actual IAB localhost8040\u21928042 officer-only comparison returned18 rows; readonly synthetic histories; corrected stale development proxy before successful run",
+  "not_rerun": [
+    "complete backend/frontend",
+    "production build",
+    "unrelated engine parity/historical suites",
+    "unrelated browser workflows"
+  ],
+  "full_system_acceptance": false,
+  "artifacts": [
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/curriculum-policy-types.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/curriculum-policy-lint.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/curriculum-policy-browser.png",
+      "sha256": "61d6da9e90efc863440fa0ae7a67a66b86462285ab4e2d24adc676bddc5c23c8"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/curriculum-policy-evaluation-interface.txt",
+      "sha256": "9462a77f9953edfc824c2567219b14eaaad8f0f2180fb716193679bf2412af52"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/curriculum-policy-seed7.json",
+      "sha256": "c4b0fb3e600f94bb90cd8c05414fd513991e8c508ff77bd3ae6a7b9540c4d6dc"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/curriculum-policy-frontend.txt",
+      "sha256": "b12bd8ccd92e3ddd38933cacd2ffe722359384258e7cceb7d785de29ec5dbc53"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/curriculum-policy-browser-dom.txt",
+      "sha256": "743ddbf6a80fd90c0d360d123a8b429938acfbdd78f968c9be57f5b919c671ff"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/curriculum-policy-backend.txt",
+      "sha256": "2c2194823f6a240a65eaf2111addfeee40d59212d9020783ca96379ce1880ec3"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/assessment-generation-integrated.txt",
+      "sha256": "0b6986bdf7eb81a48fe9ece594de842229bbbd828a4889ea9f6d13417ab59ca2"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/performance/chunked-warm-quiet-before.json",
+      "sha256": "a8efe3f589e787cea069fac154a9207c4142add0a00dd717bb8515814560db95"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/performance/chunked-workload-quiet-before.json",
+      "sha256": "d4110b033a799a70de5bab7d7155a6e17ac215bec80588b48812966fc050d9ed"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/performance/chunked-workload-contended-before.json",
+      "sha256": "fea01c87b74598a1dfc6712eb16c840c39fefb3c6174a2075bbef3a886da8963"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/performance/chunked-startup-before.json",
+      "sha256": "a284604d523dca217805ab867e733b16bbaf3c7b7b828da4c36b9037a934a973"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+- link "Skip to workspace":
+  - /url: "#workspace-content"
+- banner:
+  - link "VYUHA home":
+    - /url: /
+    - strong: VYUHA
+  - navigation "Primary workspaces":
+    - link "Training":
+      - /url: /
+    - link "Review":
+      - /url: /?view=aar
+    - link "Crew":
+      - /url: /crew
+    - link "Instructor":
+      - /url: /instructor
+    - link "Analytics":
+      - /url: /analytics
+  - button "Find workspace":
+    - generic: Find workspace
+    - generic: ⌘ / Ctrl K
+  - button "Operator guide":
+    - generic: Operator guide
+  - button "Workspaces":
+    - generic: Workspaces
+- banner:
+  - text: SUPPORT
+  - generic: / Informal evaluation
+- generic: Officer session · expires after eight hours or server restart
+- button "Sign out"
+- main:
+  - paragraph: CONSENT-BASED PILOT
+  - heading "Informal evaluation" [level=1]
+  - paragraph: Prepare a voluntary evaluation protocol; no study runs automatically.
+  - navigation:
+    - link "Training home":
+      - /url: /
+  - paragraph: Support for a small voluntary pilot. No human study is conducted automatically. Use pseudonymous participant IDs and record only training measures. This protocol does not establish training efficacy or military validation.
+  - text: Participant ID
+  - textbox "Participant ID": P01
+  - text: Adaptive drills
+  - combobox "Adaptive drills":
+    - option "3" [selected]
+    - option "4"
+    - option "5"
+  - checkbox "Participant has agreed to this informal evaluation"
+  - text: Participant has agreed to this informal evaluation
+  - button "Create evaluation protocol" [disabled]
+  - generic "Controlled retention and transfer protocol · infrastructure"
+  - option "C01"
+  - option "C02" [selected]
+  - option "C03"
+  - option "C04"
+  - option "C05"
+  - region "Assessment opportunity diagnostic · pilot":
+    - heading "Assessment opportunity diagnostic · pilot" [level=2]
+    - paragraph: "Officer-only, read-only check of one frozen C01 assessment: C01_BASELINE-A_A. Run a passive simulation and inspect whether an observed contact supplies a proposed 15-tick detection window (0.5 simulation seconds), with samples no older than 30 ticks. No participant is enrolled."
+    - paragraph: This partial diagnostic does not grade a trainee or establish human solvability, classification support, empirical difficulty or learning benefit. Identity ambiguity is allowed. Original evidence and scores stay unchanged.
+    - text: Diagnostic seed
+    - textbox "Diagnostic seed": "7"
+    - paragraph: Whole number from 0 to 4294967295. Editing it discards any pending result.
+    - button "Run observation diagnostic"
+  - region "Curriculum selection laboratory":
+    - heading "Curriculum selection laboratory" [level=2]
+    - paragraph: Compare the current coverage-first selector with uniform and round-robin practice on six fixed synthetic histories, using 64 shared seeds. No trainee history is read and no exercise is started.
+    - paragraph: These are selection and recency checks. They do not predict learning, certify fairness or replace the active Director.
+    - button "Compare curriculum policies"
+    - generic "Curriculum policy comparison":
+      - status: Six synthetic cases · 64 seeds per policy. Full inputs and selected items are included in the export.
+      - region "Selection policy results":
+        - table "Selections of least-assessed competencies and recent items · counts, not learning scores":
+          - caption: Selections of least-assessed competencies and recent items · counts, not learning scores
+          - rowgroup:
+            - row "Fixed history Policy Least-assessed selection Repeat of last two items Competency selections":
+              - columnheader "Fixed history"
+              - columnheader "Policy"
+              - columnheader "Least-assessed selection"
+              - columnheader "Repeat of last two items"
+              - columnheader "Competency selections"
+          - rowgroup:
+            - 'row "cold-start coverage-director-v1 64/64 · C01, C02, C03, C04, C05 0/64 C01: 19 · C02: 9 · C03: 13 · C04: 11 · C05: 12"':
+              - rowheader "cold-start"
+              - cell "coverage-director-v1"
+              - cell "64/64 · C01, C02, C03, C04, C05"
+              - cell "0/64"
+              - 'cell "C01: 19 · C02: 9 · C03: 13 · C04: 11 · C05: 12"'
+            - 'row "cold-start uniform-practice-v1 64/64 · C01, C02, C03, C04, C05 0/64 C01: 19 · C02: 9 · C03: 13 · C04: 11 · C05: 12"':
+              - rowheader "cold-start"
+              - cell "uniform-practice-v1"
+              - cell "64/64 · C01, C02, C03, C04, C05"
+              - cell "0/64"
+              - 'cell "C01: 19 · C02: 9 · C03: 13 · C04: 11 · C05: 12"'
+            - 'row "cold-start round-robin-practice-v1 64/64 · C01, C02, C03, C04, C05 0/64 C01: 13 · C02: 12 · C03: 12 · C04: 13 · C05: 14"':
+              - rowheader "cold-start"
+              - cell "round-robin-practice-v1"
+              - cell "64/64 · C01, C02, C03, C04, C05"
+              - cell "0/64"
+              - 'cell "C01: 13 · C02: 12 · C03: 12 · C04: 13 · C05: 14"'
+            - 'row "balanced-evidence coverage-director-v1 64/64 · C01, C02, C03, C04, C05 0/64 C01: 19 · C02: 9 · C03: 13 · C04: 11 · C05: 12"':
+              - rowheader "balanced-evidence"
+              - cell "coverage-director-v1"
+              - cell "64/64 · C01, C02, C03, C04, C05"
+              - cell "0/64"
+              - 'cell "C01: 19 · C02: 9 · C03: 13 · C04: 11 · C05: 12"'
+            - 'row "balanced-evidence uniform-practice-v1 64/64 · C01, C02, C03, C04, C05 0/64 C01: 19 · C02: 9 · C03: 13 · C04: 11 · C05: 12"':
+              - rowheader "balanced-evidence"
+              - cell "uniform-practice-v1"
+              - cell "64/64 · C01, C02, C03, C04, C05"
+              - cell "0/64"
+              - 'cell "C01: 19 · C02: 9 · C03: 13 · C04: 11 · C05: 12"'
+            - 'row "balanced-evidence round-robin-practice-v1 64/64 · C01, C02, C03, C04, C05 0/64 C01: 13 · C02: 12 · C03: 12 · C04: 13 · C05: 14"':
+              - rowheader "balanced-evidence"
+              - cell "round-robin-practice-v1"
+              - cell "64/64 · C01, C02, C03, C04, C05"
+              - cell "0/64"
+              - 'cell "C01: 13 · C02: 12 · C03: 12 · C04: 13 · C05: 14"'
+            - 'row "one-underexposed-competency coverage-director-v1 64/64 · C05 0/64 C01: 0 · C02: 0 · C03: 0 · C04: 0 · C05: 64"':
+              - rowheader "one-underexposed-competency"
+              - cell "coverage-director-v1"
+              - cell "64/64 · C05"
+              - cell "0/64"
+              - 'cell "C01: 0 · C02: 0 · C03: 0 · C04: 0 · C05: 64"'
+            - 'row "one-underexposed-competency uniform-practice-v1 12/64 · C05 0/64 C01: 19 · C02: 9 · C03: 13 · C04: 11 · C05: 12"':
+              - rowheader "one-underexposed-competency"
+              - cell "uniform-practice-v1"
+              - cell "12/64 · C05"
+              - cell "0/64"
+              - 'cell "C01: 19 · C02: 9 · C03: 13 · C04: 11 · C05: 12"'
+            - 'row "one-underexposed-competency round-robin-practice-v1 14/64 · C05 0/64 C01: 13 · C02: 12 · C03: 12 · C04: 13 · C05: 14"':
+              - rowheader "one-underexposed-competency"
+              - cell "round-robin-practice-v1"
+              - cell "14/64 · C05"
+              - cell "0/64"
+              - 'cell "C01: 13 · C02: 12 · C03: 12 · C04: 13 · C05: 14"'
+            - 'row "errors-at-equal-exposure coverage-director-v1 64/64 · C01, C02, C03, C04, C05 0/64 C01: 0 · C02: 0 · C03: 64 · C04: 0 · C05: 0"':
+              - rowheader "errors-at-equal-exposure"
+              - cell "coverage-director-v1"
+              - cell "64/64 · C01, C02, C03, C04, C05"
+              - cell "0/64"
+              - 'cell "C01: 0 · C02: 0 · C03: 64 · C04: 0 · C05: 0"'
+            - 'row "errors-at-equal-exposure uniform-practice-v1 64/64 · C01, C02, C03, C04, C05 0/64 C01: 19 · C02: 9 · C03: 13 · C04: 11 · C05: 12"':
+              - rowheader "errors-at-equal-exposure"
+              - cell "uniform-practice-v1"
+              - cell "64/64 · C01, C02, C03, C04, C05"
+              - cell "0/64"
+              - 'cell "C01: 19 · C02: 9 · C03: 13 · C04: 11 · C05: 12"'
+            - 'row "errors-at-equal-exposure round-robin-practice-v1 64/64 · C01, C02, C03, C04, C05 0/64 C01: 13 · C02: 12 · C03: 12 · C04: 13 · C05: 14"':
+              - rowheader "errors-at-equal-exposure"
+              - cell "round-robin-practice-v1"
+              - cell "64/64 · C01, C02, C03, C04, C05"
+              - cell "0/64"
+              - 'cell "C01: 13 · C02: 12 · C03: 12 · C04: 13 · C05: 14"'
+            - 'row "unassessable-is-not-success coverage-director-v1 64/64 · C02 0/64 C01: 0 · C02: 64 · C03: 0 · C04: 0 · C05: 0"':
+              - rowheader "unassessable-is-not-success"
+              - cell "coverage-director-v1"
+              - cell "64/64 · C02"
+              - cell "0/64"
+              - 'cell "C01: 0 · C02: 64 · C03: 0 · C04: 0 · C05: 0"'
+            - 'row "unassessable-is-not-success uniform-practice-v1 9/64 · C02 0/64 C01: 19 · C02: 9 · C03: 13 · C04: 11 · C05: 12"':
+              - rowheader "unassessable-is-not-success"
+              - cell "uniform-practice-v1"
+              - cell "9/64 · C02"
+              - cell "0/64"
+              - 'cell "C01: 19 · C02: 9 · C03: 13 · C04: 11 · C05: 12"'
+            - 'row "unassessable-is-not-success round-robin-practice-v1 12/64 · C02 0/64 C01: 13 · C02: 12 · C03: 12 · C04: 13 · C05: 14"':
+              - rowheader "unassessable-is-not-success"
+              - cell "round-robin-practice-v1"
+              - cell "12/64 · C02"
+              - cell "0/64"
+              - 'cell "C01: 13 · C02: 12 · C03: 12 · C04: 13 · C05: 14"'
+            - 'row "recent-exclusion-vs-coverage coverage-director-v1 0/64 · C05 0/64 C01: 21 · C02: 13 · C03: 15 · C04: 15 · C05: 0"':
+              - rowheader "recent-exclusion-vs-coverage"
+              - cell "coverage-director-v1"
+              - cell "0/64 · C05"
+              - cell "0/64"
+              - 'cell "C01: 21 · C02: 13 · C03: 15 · C04: 15 · C05: 0"'
+            - 'row "recent-exclusion-vs-coverage uniform-practice-v1 12/64 · C05 12/64 C01: 19 · C02: 9 · C03: 13 · C04: 11 · C05: 12"':
+              - rowheader "recent-exclusion-vs-coverage"
+              - cell "uniform-practice-v1"
+              - cell "12/64 · C05"
+              - cell "12/64"
+              - 'cell "C01: 19 · C02: 9 · C03: 13 · C04: 11 · C05: 12"'
+            - 'row "recent-exclusion-vs-coverage round-robin-practice-v1 14/64 · C05 14/64 C01: 13 · C02: 12 · C03: 12 · C04: 13 · C05: 14"':
+              - rowheader "recent-exclusion-vs-coverage"
+              - cell "round-robin-practice-v1"
+              - cell "14/64 · C05"
+              - cell "14/64"
+              - 'cell "C01: 13 · C02: 12 · C03: 12 · C04: 13 · C05: 14"'
+      - paragraph: "Inspect the recency-versus-coverage case: avoiding both recent items can defer an underexposed competency. A zero in that column is a disclosed tradeoff."
+      - list:
+        - listitem: Synthetic fixed histories, not participants or predicted learning trajectories.
+        - listitem: Selection frequencies, coverage and recency are software properties, not learning gains or empirical fairness.
+        - listitem: No engine, scenarios, actions, scores, profiles or preparations are written.
+        - listitem: The two comparison baselines do not avoid repeats; their policies are disclosed, not tuned to win.
+        - listitem: Existing Beta Director has a different task space and is not compared on incompatible item IDs.
+        - listitem: No fitted retention, calibration, participant subgroup analysis or automatic policy replacement.
+      - generic "Reproduction identifiers"
+      - button "Export policy diagnostic"
