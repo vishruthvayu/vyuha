@@ -1,0 +1,31 @@
+diff --git a/client/src/world/Environment.tsx b/client/src/world/Environment.tsx
+index 32b5f64..9a05936 100644
+--- a/client/src/world/Environment.tsx
++++ b/client/src/world/Environment.tsx
+@@ -263,6 +263,14 @@ export type EnvironmentProps = {
+ 
+ export const Environment = memo(function Environment(props: EnvironmentProps) {
+   const { terrain, boxes, legacy, quality } = props;
++  // Resolve every later asset read before allocating procedural textures. An
++  // initial suspension discards memo caches; constructing first repeated this
++  // expensive work on each GLTF/sky loading retry.
++  const props3d = useLoader(GLTFLoader, Object.values(PROP_URLS));
++  const [skyDay, skyNight] = useLoader(THREE.TextureLoader, [
++    SKY.day,
++    SKY.night,
++  ]);
+   const layout = useMemo(() => {
+     const base = withoutBoxes(facilityLayout(terrain), boxes);
+     if (!legacy || terrain !== "urban_outpost") return base;
+@@ -270,11 +278,6 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
+     return base;
+   }, [terrain, boxes, legacy]);
+   const textures = useWorldTextures(quality, layout);
+-  const props3d = useLoader(GLTFLoader, Object.values(PROP_URLS));
+-  const [skyDay, skyNight] = useLoader(THREE.TextureLoader, [
+-    SKY.day,
+-    SKY.night,
+-  ]);
+   const { gl, scene } = useThree();
+ 
+   const built = useMemo<Built>(() => {

@@ -28,3 +28,14 @@ Codex in-app browser, MacBook Air M1 as identified by the owner, 1440×900 CSS, 
 These are scoped observations, not matched improvement results. Both traces disclosed zero dropped samples. The second trace's startup cost is dominated by repeated procedural texture work; layout max was 16 ms. The code currently creates procedural textures before later GLTF and sky `useLoader` reads can suspend. Initial suspension can discard memoized work ([React useMemo documentation](https://react.dev/reference/react/useMemo)). This is a measured, testable explanation for repeated generation, not proof of GPU timing.
 
 Next executable optimization: move all suspending asset reads before procedural construction, preserving texture/geometry/sensor/scoring inputs. Measure the same startup spans again on a fresh comparable origin; retain both traces. Then run matched retained 8/50/200 and optics trials, full regression and actual scene review. No performance improvement is claimed yet. Whole Checkpoint A, human learning, physical headset/platform/network and empirical calibration gates remain separate.
+
+
+## Loader-order experiment
+
+The asset-order patch resolves the existing GLTF/sky reads before procedural textures; formulas, texture resolution, geometry, sensors and clocks are unchanged. Source before: `9b0f8ea` / `b396858224895d31e458bfb0690ffa805ee7633838fdd187d173d5a3d68a3131`. Source after hash: `3becde753fb27b754680b51f07cefa16266ca9d605fd84ef89d916783d067dc6` (implementation commit bound afterward). The exact patch is retained under evidence/performance.
+
+Actual same-viewport/tier/world/optics paired traces show texture calls **5 →1**, total measured texture work **1435.0 →232.5 ms**. This is a reduction in repeated work, not an end-to-end smoothness win: maximum rendered-frame interval **478.2 →681.8 ms**; warm p95 **17.6 →17.6 ms**. Reflection work also varied **84.3 →189.9 ms**, and module timing **452.8 →87.1 ms**. Cache/driver state was not fully controlled, capture lengths differ, and this single pair does not establish a general FPS or startup-latency improvement. All raw traces retain source hashes; no samples dropped.
+
+Complete frontend after the loader-order change: **385 passed**, production build/lint/format passed. Backend runtime is untouched; the prior 746-test source seal remains separately scoped. Matched retained/optics runs and final combined acceptance are still required.
+
+A numerically exact compiled-noise prototype was independently microbenchmarked in a temporary experiment and **rejected** because it was slower at 1024 resolution with additional scratch memory. The negative result and nonproduction prototype are archived under evidence/performance/rejected-splat-prototype. No speculative math change was integrated.

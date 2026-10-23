@@ -43,3 +43,5 @@ Verified curriculum implementation commit: `9e1dff153fc5d4bde7df8fc8b372ec9c2d89
 Follow-up verified: demo-mode identity continuity reproduced, fixed and checked in the actual Review; consent layout corrected. Complete frontend **381 passed**, build/lint/format and targeted accessibility/navigation passed. See [follow-up scope](evidence/identity-followup.md). The 746-backend/380-frontend seal remains historical for its exact source. Checkpoint A remains unaccepted.
 
 R01 attribution/retained-workload follow-up is in progress; see [measured investigation](PERFORMANCE-WORK.md). Current probes measured repeated procedural texture generation before optimization. New measurement code is not yet a checkpoint acceptance or a measured improvement claim.
+
+Loader-order R01 experiment: 385 frontend tests/build/lint/format passed; actual texture builds fell 5→1, but measured worst-frame gap did not improve. Raw paired traces and the rejected exact-noise prototype are retained. R01 and whole Checkpoint A remain PARTIAL; no general performance win is claimed.
