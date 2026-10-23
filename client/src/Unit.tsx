@@ -88,7 +88,8 @@ export function UnitGateway({
     void api<{ mode: string }>("/health")
       .then(async (h) => {
         if (stopped) return;
-        const required = h.mode === "unit" || requireIdentity;
+        const required =
+          h.mode === "unit" || requireIdentity || !!readIdentity(localStorage);
         setUnitMode(required);
         if (required) {
           const list = await api<{ units: { id: string; name: string }[] }>(
@@ -119,7 +120,7 @@ export function UnitGateway({
       })
       .catch(() => {
         if (!stopped) {
-          setUnitMode(!!identity);
+          setUnitMode(requireIdentity || !!identity);
           setError(
             "Server unavailable. A saved identity can continue its own recovered drill.",
           );

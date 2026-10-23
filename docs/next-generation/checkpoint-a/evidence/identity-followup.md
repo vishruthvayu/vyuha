@@ -1,0 +1,9 @@
+# Academy identity and consent layout follow-up
+
+The new regression first failed with `LaunchUnjoined demo`, reproducing loss of the deliberately joined Academy identity on ordinary local-demo navigation. UnitGateway now revalidates and retains a saved joined identity in both deployment modes. First-time local demo remains available without a saved identity; officer authentication is unchanged. Offline identity requirements cannot silently substitute an unjoined demo identity for a curriculum attempt.
+
+Actual browser: `/academy` → primary Review showed both server-verified exercises owned by ACADEMY-BROWSER. Screenshot `academy-review-identity.png`. The registered protocol reloaded by its existing ID; no participant was enrolled. Its consent checkbox now measures 20×20 CSS pixels within a label with a 44-pixel minimum target, in a horizontal layout. Screenshot `controlled-protocol-consent-refined.png`. Premium CSS remains imported last; the correction is scoped to the controlled-protocol panel.
+
+Validation: complete frontend **381 passed**, lint and formatting passed; production build and subsequent targeted accessibility/navigation pass. Final change after the complete frontend run was CSS specificity only, rechecked with the production build, browser and targeted DOM tests. No backend runtime source changed in this follow-up. The 746-test backend receipt remains bound to the prior sealed source; it is not silently relabelled a new full-source acceptance. Checkpoint A remains in progress.
+
+During local production rebuilds, the pre-existing service worker can require a second reload to activate the new cached assets. Verification above checked the actual computed layout and final rendered identity, not merely the first reload. Update/recovery readiness remains in the long-term deployment backlog.

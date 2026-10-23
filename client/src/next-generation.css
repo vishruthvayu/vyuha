@@ -23,3 +23,6 @@
 .curriculum-evidence code { overflow-wrap: anywhere; }
 .table-scroll { max-width: 100%; overflow-x: auto; }
 .table-scroll:focus-visible { outline: 2px solid #7cdbff; outline-offset: 3px; }
+
+.utility-page .controlled-study label.study-consent { display: flex; align-items: center; gap: .75rem; min-height: 44px; max-width: 52rem; flex-direction: row; }
+.utility-page .controlled-study .study-consent input[type="checkbox"] { width: 1.25rem; height: 1.25rem; min-height: 1.25rem; flex: 0 0 1.25rem; margin: 0; }

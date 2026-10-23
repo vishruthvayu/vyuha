@@ -891,3 +891,34 @@ test("Academy identity requirement uses the real join gateway even in local demo
     globalThis.fetch = original;
   }
 });
+
+test("a deliberately joined Academy identity survives navigation to ordinary demo-mode Review", async () => {
+  const original = globalThis.fetch;
+  const identity = {
+    trainee_id: "T_LEARNER",
+    unit_id: "local",
+    callsign: "Learner",
+  };
+  localStorage.setItem("vyuha-unit-identity-v1", JSON.stringify(identity));
+  globalThis.fetch = async (input) =>
+    new Response(
+      JSON.stringify(
+        String(input).endsWith("/health")
+          ? { mode: "demo" }
+          : String(input).endsWith("/units")
+            ? { units: [{ id: "local", name: "Unit" }] }
+            : identity,
+      ),
+    );
+  try {
+    await mount(
+      <UnitGateway>
+        {(id) => <p>{id?.callsign ?? "Unjoined demo"}</p>}
+      </UnitGateway>,
+    );
+    assert.match(document.body.textContent ?? "", /Learner/);
+    assert.equal(document.body.textContent?.includes("Unjoined demo"), false);
+  } finally {
+    globalThis.fetch = original;
+  }
+});

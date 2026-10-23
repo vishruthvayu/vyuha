@@ -1,0 +1,45 @@
+✔ guide contains all tabbable controls, isolates background and restores focus on Escape (179.207958ms)
+✔ empty modal traps Tab safely and restores preexisting inert and body overflow (12.627708ms)
+✔ navigation drawer exposes a labelled modal, Escape restores the toggle, skip link focuses content (50.338417ms)
+✔ tour announces changed steps, permits outside focus and restores launcher on Escape (15.851166ms)
+✔ radar contacts expose selectable group semantics and Space activates without scrolling (14.696708ms)
+✔ automatic rendering adaptation uses consecutive samples and respects explicit quality controls (8.910042ms)
+✔ offline installation hook reads document state and follows status lifecycle events (8.740458ms)
+✔ axe checks guide and navigation DOM semantics (layout/contrast excluded from jsdom) (230.13475ms)
+✔ axe checks rendered initial important routes and reports real form/ARIA defects (926.457792ms)
+✔ workspace navigation clears stale review data, stops replay and keeps refreshable native URLs (11.413833ms)
+✔ axe checks populated Ghost/decision path, Fusion uncertainty and Crew coordination evidence (495.866375ms)
+✔ interactive guide advances without operating training and keeps previous step available (33.112875ms)
+✔ exercise history distinguishes pending evidence, selection and exact recorded metadata (20.023ms)
+✔ Crew coordination scroll region participates in ordinary tab order without cancelling navigation keys (9.632792ms)
+✔ source-scoped capability table and opt-in diagnostics preserve native keyboard semantics (62.211375ms)
+✔ competency review and registered protocol expose accessible evidence without a mastery claim (78.997625ms)
+✔ Academy preparation binds the joined trainee and exposes the actual integrated launch (69.890333ms)
+✔ timing export produces a JSON object, never a double-encoded string (21.226958ms)
+✔ Academy identity requirement uses the real join gateway even in local demo mode (21.019708ms)
+✔ a deliberately joined Academy identity survives navigation to ordinary demo-mode Review (15.767875ms)
+✔ route coverage: every actual renderer has a canonical discoverability policy (4.077417ms)
+✔ navigation policies retain all baseline page paths and finale pages and have no duplicate links (0.402917ms)
+✔ Transfer is a visible, descriptive anchor that reaches the canonical route (24.861292ms)
+✔ each navigated page highlights exactly its own link with aria-current page (103.610208ms)
+✔ review, Director, session details and retained embedded unit view resolve intentionally (0.368291ms)
+✔ engineering and opt-in evaluation stay secondary, with parent location highlighting (10.100084ms)
+✔ matching supports canonical trailing slash but does not capture unknown prefix or nested URLs (0.293792ms)
+✔ all links expose keyboard-native anchor semantics, labels and text rather than icon-only controls (6.608ms)
+✔ secondary workflows retain real links in their parent components (1.000542ms)
+✔ Unit navigation retains the embedded workspace without unloading a live trainee exercise (12.200083ms)
+✔ internal view transitions clear stale reviews and retain refreshable session details (0.347584ms)
+✔ officer AAR routing requires explicit complete-review intent and preserves trainee links (0.9245ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4892.075125
+npm notice
+npm notice New minor version of npm available! 11.6.2 -> 11.21.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.1
+npm notice To update run: npm install -g npm@11.21.1
+npm notice

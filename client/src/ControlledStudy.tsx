@@ -55,7 +55,7 @@ export default function ControlledStudy({
     setId(next.id);
   }
   return (
-    <details className="panel advanced-card">
+    <details className="panel advanced-card controlled-study">
       <summary>
         Controlled retention and transfer protocol · infrastructure
       </summary>
@@ -144,7 +144,7 @@ export default function ControlledStudy({
               }}
             />
           </label>
-          <label>
+          <label className="study-consent">
             <input
               type="checkbox"
               checked={consent}

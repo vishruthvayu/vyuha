@@ -1,0 +1,89 @@
+
+> vyuha-trainer@1.1.0-rc.3 build
+> tsc -b && vite build && node scripts/offline.mjs
+
+vite v6.4.3 building for production...
+transforming...
+✓ 1761 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                   0.66 kB │ gzip:   0.40 kB
+dist/assets/concrete-floor-normal-Bkyi_Xy6.webp                   4.25 kB
+dist/assets/corrugated-albedo-CVwdQmVr.webp                       7.60 kB
+dist/assets/corrugated-normal-B1avRvho.webp                       7.65 kB
+dist/assets/painted-metal-orm-C_JAdf8Q.webp                       9.11 kB
+dist/assets/concrete-floor-albedo-BnSPsPDf.webp                   9.18 kB
+dist/assets/concrete-wall-orm-jD1N_kRa.webp                       9.86 kB
+dist/assets/plaster-normal-D_gLpnpN.webp                         10.17 kB
+dist/assets/concrete-wall-albedo-DPykxv2W.webp                   12.85 kB
+dist/assets/sky-night-BwAjAQkQ.webp                              13.35 kB
+dist/assets/concrete-floor-orm-BfdEzn8y.webp                     14.52 kB
+dist/assets/painted-metal-normal-SbgwzMnD.webp                   14.80 kB
+dist/assets/painted-metal-albedo-GP9giPsB.webp                   16.16 kB
+dist/assets/corrugated-orm-BvJ8HDqZ.webp                         18.14 kB
+dist/assets/instrument-serif-latin-400-normal-DnYpCC2O.woff2     21.03 kB
+dist/assets/instrument-serif-latin-400-italic-DKMiL14s.woff2     22.13 kB
+dist/assets/geist-mono-latin-wght-normal-XN7g48iV.woff2          23.13 kB
+dist/assets/blue-hour-960-B1ywJL9S.webp                          26.45 kB
+dist/assets/geist-latin-wght-normal-BgDaEnEv.woff2               29.40 kB
+dist/assets/sim.worker-CSSfpJ9A.js                               30.42 kB
+dist/assets/crate-C933X1D5.glb                                   38.36 kB
+dist/assets/barrel-CHAo9B7Z.glb                                  39.28 kB
+dist/assets/ground-laterite-albedo-Clcbg-r6.webp                 41.69 kB
+dist/assets/jersey-barrier-BuYaoBwA.glb                          42.36 kB
+dist/assets/utility-box-DCal0sQC.glb                             43.32 kB
+dist/assets/ground-grass-albedo-CgE9z6FE.webp                    47.12 kB
+dist/assets/boulder-b-DPHJlhML.glb                               52.13 kB
+dist/assets/asphalt-orm-Bb1FPLo0.webp                            60.42 kB
+dist/assets/ground-gravel-albedo-CiSCKMqx.webp                   65.13 kB
+dist/assets/boulder-a-DjxhI_fe.glb                               65.29 kB
+dist/assets/blue-hour-1600-DiW3eLXV.webp                         67.29 kB
+dist/assets/asphalt-albedo-CopSvMBq.webp                         84.41 kB
+dist/assets/asphalt-normal-ChhaPvuC.webp                         88.12 kB
+dist/assets/ground-dry-orm-CqVIPRYp.webp                         98.93 kB
+dist/assets/sky-day-cAAz87b7.webp                               100.28 kB
+dist/assets/ground-gravel-normal-R0Vgf7EW.webp                  115.80 kB
+dist/assets/ground-laterite-normal--ju6xJb3.webp                131.15 kB
+dist/assets/covered-car-DapXKOpX.glb                            142.30 kB
+dist/assets/ground-dry-albedo-C1a3AO5I.webp                     215.47 kB
+dist/assets/ground-dry-normal-C0OkiSMX.webp                     232.53 kB
+dist/assets/ground-macro-albedo-BF6IrQeg.webp                   278.89 kB
+dist/assets/vegetation-atlas-CkUBdN-5.webp                      571.93 kB
+dist/assets/index-C4n98uE1.css                                  224.87 kB │ gzip:  40.98 kB
+dist/assets/import-json-DEPqWbQE.js                               0.40 kB │ gzip:   0.27 kB
+dist/assets/visibility-CFPvGPvL.js                                1.50 kB │ gzip:   0.77 kB
+dist/assets/live-stream-BLREEZZm.js                               1.78 kB │ gzip:   1.00 kB
+dist/assets/observations-BpoFlUue.js                              2.52 kB │ gzip:   0.95 kB
+dist/assets/presentation-Ct-AeMlE.js                              2.92 kB │ gzip:   1.42 kB
+dist/assets/Radar-DRkNX9mb.js                                     5.08 kB │ gzip:   2.14 kB
+dist/assets/Academy-iqeb8usJ.js                                   5.79 kB │ gzip:   2.27 kB
+dist/assets/Transfer-Bj4SnNrr.js                                  7.09 kB │ gzip:   2.69 kB
+dist/assets/Recorded-BC3BfHoR.js                                  8.42 kB │ gzip:   2.98 kB
+dist/assets/Evaluation-CmwqlbjL.js                                8.47 kB │ gzip:   3.07 kB
+dist/assets/RapidID-DNz7WzPZ.js                                   9.08 kB │ gzip:   3.46 kB
+dist/assets/Compliance-BldUq8zo.js                               10.06 kB │ gzip:   3.30 kB
+dist/assets/Benchmark-CxhHWtwE.js                                10.22 kB │ gzip:   4.05 kB
+dist/assets/Evidence-DSdu_wsj.js                                 12.22 kB │ gzip:   3.56 kB
+dist/assets/Scene-BNZwt5Db.js                                    12.74 kB │ gzip:   5.42 kB
+dist/assets/response-v2-CKu7QcVd.js                              13.15 kB │ gzip:   4.88 kB
+dist/assets/ExerciseStudio-BVpmp6hm.js                           19.85 kB │ gzip:   6.18 kB
+dist/assets/Analytics-Dle9OgUH.js                                19.86 kB │ gzip:   6.25 kB
+dist/assets/VRCockpit-uMDx-Vpx.js                                21.03 kB │ gzip:   8.27 kB
+dist/assets/Instructor-CZ4ooU2t.js                               22.04 kB │ gzip:   7.17 kB
+dist/assets/Crew-C81-OaXx.js                                     25.21 kB │ gzip:   7.76 kB
+dist/assets/quality-M3AFKEPB.js                                  26.21 kB │ gzip:   8.88 kB
+dist/assets/App-Be7bs8Y9.js                                     112.37 kB │ gzip:  35.01 kB
+dist/assets/index-D-G8VAVA.js                                   309.67 kB │ gzip:  96.21 kB
+dist/assets/obstruction-Ch299oZP.js                           1,047.15 kB │ gzip: 296.22 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.00s
+Offline cache: 76 local assets (7ef24e551965)
+npm notice
+npm notice New minor version of npm available! 11.6.2 -> 11.21.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.1
+npm notice To update run: npm install -g npm@11.21.1
+npm notice
