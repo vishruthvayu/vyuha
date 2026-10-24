@@ -1,5 +1,6 @@
 import ControlledStudy from "./ControlledStudy";
 import AssessmentDiagnostics from "./AssessmentDiagnostics";
+import AssessmentGeneration from "./AssessmentGeneration";
 import CurriculumPolicyDiagnostic from "./CurriculumPolicyDiagnostic";
 import { PageHeader } from "./UI";
 import { useEffect, useRef, useState } from "react";
@@ -283,6 +284,7 @@ function EvaluationWorkspace({ identity }: { identity?: UnitIdentity }) {
       )}
       <ControlledStudy identity={identity} />
       <AssessmentDiagnostics key={key} />
+      <AssessmentGeneration key={`generation:${key}`} />
       <CurriculumPolicyDiagnostic key={`policy:${key}`} />
     </main>
   );

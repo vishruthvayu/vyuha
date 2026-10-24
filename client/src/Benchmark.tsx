@@ -410,6 +410,7 @@ export default function Benchmark() {
       Math.max(0, Math.ceil(ticks.length * 0.95) - 1)
     ] ?? null;
   const reproduction = benchmarkLink({
+    texturePreparation: initial.texturePreparation,
     engine,
     count,
     duration,
@@ -424,7 +425,8 @@ export default function Benchmark() {
   });
   const report = {
     reproduction_path: reproduction,
-    schema_version: 6,
+    schema_version: 7,
+    texture_preparation: initial.texturePreparation,
     source: buildSource,
     viewport_at_run: runViewport.current,
     timing_samples_complete:
@@ -490,6 +492,13 @@ export default function Benchmark() {
         }
       />
       <PerformanceDiagnostics />
+      {initial.texturePreparation === "chunked" && (
+        <p role="status">
+          Experimental chunked texture preparation · qualification only. Default
+          training remains synchronous; total preparation and chunk timings are
+          separate.
+        </p>
+      )}
       {runIssue && <p role="alert">{runIssue}</p>}
       <p>
         <a href={reproduction}>Open this workload with local timing enabled</a>{" "}

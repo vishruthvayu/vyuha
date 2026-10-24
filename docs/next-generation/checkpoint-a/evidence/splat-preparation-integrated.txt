@@ -1,0 +1,23 @@
+✔ exact original base and post-raster bytes urban_outpost/512 (243.469625ms)
+✔ exact original base and post-raster bytes urban_outpost/1024 (874.213083ms)
+✔ exact original base and post-raster bytes rural_forward_base/512 (172.831459ms)
+✔ exact original base and post-raster bytes rural_forward_base/1024 (625.228083ms)
+✔ cold/retried Suspense reads share one pending promise and reveal only complete pixels (33.848666ms)
+✔ only one key prepares at once; queued contexts snapshot mutable caller input (71.453709ms)
+✔ clear cancels active/queued work; stale completion cannot replace a reused key (33.758375ms)
+✔ aborting between chunks stops before the next chunk (0.858333ms)
+✔ a preparation failure is stable and releases the queue (33.864375ms)
+✔ invalid workloads fail before scheduling or allocating; production keyspace is four (0.281042ms)
+✔ prepared texture rejects a wrong terrain/resolution/buffer before any canvas allocation (39.347542ms)
+✔ real MessageChannel yields a task and closes its ports (24.638625ms)
+✔ diagnostics attribute preparation wall time and every bounded CPU chunk (38.67175ms)
+✔ missing or blocked MessageChannel falls back to local timer tasks (1.926334ms)
+✔ replacement capture never inherits chunks from an older in-flight preparation (34.058709ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2741.419667

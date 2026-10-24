@@ -1,0 +1,36 @@
+✔ collapsed explicit generation guards double submit, shows exact receipt, exports JSON and passes axe (733.898334ms)
+✔ exhaustion shows zero accepted and separate failures without claiming unsolvability (30.820042ms)
+✔ authorization and contract errors remain retryable; remount discards late success and failure (41.683792ms)
+✔ fixed retained qualification settings survive a shareable link without personal hardware notes (7.122792ms)
+✔ unbounded/malformed contacts and incompatible legacy retention cannot create uncontrolled workloads (0.56975ms)
+✔ experimental preparation is explicit, source-reportable and survives reproduction links (0.607916ms)
+✔ timing reports tail stalls and never substitutes median FPS (9.701292ms)
+✔ bounded collection preserves first samples and discloses overflow and stopped state (0.487583ms)
+✔ optics and startup are separate and malformed timings cannot poison a report (4.487833ms)
+✔ diagnostics are off by default and report snapshots cannot mutate collected data (0.509ms)
+✔ hidden/resumed frame gaps are disclosed rather than counted as foreground stalls (0.503792ms)
+✔ a throttled stop timer cannot extend the bounded timing window (0.669834ms)
+✔ manual stop seals elapsed time and observer support is disclosed (1.314334ms)
+✔ delayed renderer work cannot contaminate a replacement capture or submit twice (3.111041ms)
+✔ timed work preserves original return values, exceptions and one scoped measurement (0.889667ms)
+✔ visual ground is exactly the sensor model's flat plane within optical range (40.193167ms)
+✔ decorative scenery keeps clear of authoritative occluders and of the sensor's eye line (16.618708ms)
+✔ occluder dressing never extends outside its box (visual occlusion within sensor occlusion) (495.849042ms)
+✔ the facility merges into a handful of draw calls with every material thermally classified (616.081833ms)
+✔ city block dressing keeps every vertex inside its box for any box shape, and towers carry balconies (4162.605458ms)
+✔ HESCO cells bulge between seams with the fill recessed under the mesh rim (2.6335ms)
+✔ the perimeter concertina coil stays within its triangle budget and on the outriggers (29.982292ms)
+✔ both hangar end walls are framed, with a personnel door and louvred vents on the rear (5.338542ms)
+✔ the procedural kit is deterministic (148.957958ms)
+✔ thermal display is an illustrative, bounded mapping with hot sources saturating (0.743542ms)
+✔ day sun heating warms faces turned to the sun, cools the shaded side, and stops at night (0.237959ms)
+✔ display haze follows the scenario fog monotonically between clear and dense (0.126667ms)
+✔ scenery line-of-sight: buildings and canopies block, open sky and grazing edges do not (5.658959ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6426.217083

@@ -1,0 +1,84 @@
+- link "Skip to workspace":
+  - /url: "#workspace-content"
+- banner:
+  - link "VYUHA home":
+    - /url: /
+    - strong: VYUHA
+  - navigation "Primary workspaces":
+    - link "Training":
+      - /url: /
+    - link "Review":
+      - /url: /?view=aar
+    - link "Crew":
+      - /url: /crew
+    - link "Instructor":
+      - /url: /instructor
+    - link "Analytics":
+      - /url: /analytics
+  - button "Find workspace":
+    - generic: Find workspace
+    - generic: ⌘ / Ctrl K
+  - button "Operator guide":
+    - generic: Operator guide
+  - button "Workspaces":
+    - generic: Workspaces
+- banner:
+  - text: SUPPORT
+  - generic: / Informal evaluation
+- generic: Officer session · expires after eight hours or server restart
+- button "Sign out"
+- main:
+  - paragraph: CONSENT-BASED PILOT
+  - heading "Informal evaluation" [level=1]
+  - paragraph: Prepare a voluntary evaluation protocol; no study runs automatically.
+  - navigation:
+    - link "Training home":
+      - /url: /
+  - paragraph: Support for a small voluntary pilot. No human study is conducted automatically. Use pseudonymous participant IDs and record only training measures. This protocol does not establish training efficacy or military validation.
+  - text: Participant ID
+  - textbox "Participant ID": P01
+  - text: Adaptive drills
+  - combobox "Adaptive drills":
+    - option "3" [selected]
+    - option "4"
+    - option "5"
+  - checkbox "Participant has agreed to this informal evaluation"
+  - text: Participant has agreed to this informal evaluation
+  - button "Create evaluation protocol" [disabled]
+  - generic "Controlled retention and transfer protocol · infrastructure"
+  - option "C01"
+  - option "C02" [selected]
+  - option "C03"
+  - option "C04"
+  - option "C05"
+  - region "Assessment opportunity diagnostic · pilot":
+    - heading "Assessment opportunity diagnostic · pilot" [level=2]
+    - paragraph: "Officer-only, read-only check of one frozen C01 assessment: C01_BASELINE-A_A. Run a passive simulation and inspect whether an observed contact supplies a proposed 15-tick detection window (0.5 simulation seconds), with samples no older than 30 ticks. No participant is enrolled."
+    - paragraph: This partial diagnostic does not grade a trainee or establish human solvability, classification support, empirical difficulty or learning benefit. Identity ambiguity is allowed. Original evidence and scores stay unchanged.
+    - text: Diagnostic seed
+    - textbox "Diagnostic seed": "7"
+    - paragraph: Whole number from 0 to 4294967295. Editing it discards any pending result.
+    - button "Run observation diagnostic"
+  - generic "Assessment generation receipt"
+  - paragraph: Officer-only diagnostic for C01_BASELINE-A_A · seed 7 · at most two candidate attempts. Runs only when requested. No training allocation or participant enrollment occurs, and this does not establish human solvability, difficulty equivalence or empirical fairness.
+  - button "Run assessment generation"
+  - generic "Assessment generation result":
+    - status: "valid-ambiguous · Accepted: 1 · Rejected: 0 · Exhausted requests: 0 · Attempted: 1/2."
+    - paragraph: "Accepted frozen parameters: requested seed 7, compiled seed 7; DIRECT · detection · standard; 60 seconds · urban · day · fog 0.1. Compiler-rejected candidates: 0."
+    - paragraph: Passive synthetic observation-window diagnostic only; no score, human solvability, difficulty equivalence, physical calibration, proficiency or learning benefit is established. Identity ambiguity is permitted.
+    - term: Receipt / content version
+    - definition: c01-generation-receipt-v1 / learning-v1
+    - term: Item / mode / study
+    - definition: C01_BASELINE-A_A / assessment / not-enrolled
+    - term: Receipt SHA-256
+    - definition: aa47a1be352350a8f2a5be141ba98ae67118326235cae286a044c57785928ceb
+    - term: Catalog SHA-256
+    - definition: 5abe5c7920a40c989546bc59abf77c4cb6430f0cd8a8af5dca2a361ac977d345
+    - term: Accepted scenario SHA-256
+    - definition: 2ec4a9f570f1322dbecfadf0c2cf91a6fc2cd009c03f7c76ab6efe66a3eacc72
+    - button "Export assessment generation JSON"
+  - region "Curriculum selection laboratory":
+    - heading "Curriculum selection laboratory" [level=2]
+    - paragraph: Compare the current coverage-first selector with uniform and round-robin practice on six fixed synthetic histories, using 64 shared seeds. No trainee history is read and no exercise is started.
+    - paragraph: These are selection and recency checks. They do not predict learning, certify fairness or replace the active Director.
+    - button "Compare curriculum policies"

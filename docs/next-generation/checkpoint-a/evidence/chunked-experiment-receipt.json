@@ -1,0 +1,58 @@
+{
+  "parent_revision": "8f6d6f18d7cabc1d490e31b60e0b5fe05efdeeed",
+  "source_hash": "1f6a3a5278ca7ec71b111b26c010a99aee969d1113598898a98075214ed5ad0b",
+  "targeted_preparation_pass": 15,
+  "affected_ui_diagnostics_world_pass": 28,
+  "canvas_byte_pairs_pass": 4,
+  "production_default": "synchronous",
+  "experiment": "explicit texturePreparation=chunked; not generally qualified",
+  "full_system_acceptance": false,
+  "not_rerun": [
+    "full backend/frontend",
+    "production build",
+    "unrelated engine/historical parity",
+    "unrelated browser workflows"
+  ],
+  "artifacts": [
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/performance/chunked-startup-candidate.json",
+      "sha256": "01e67e0381a33726a592a5ebcfa0a3ed56c66460136f90e3231fee488886d8ee"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/performance/chunked-workload-candidate.json",
+      "sha256": "2f6c4379a7e833883622f92d7bba1aeef57425f1a30c3ecf8b9d64f13f667e74"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/performance/chunked-canvas-report.json",
+      "sha256": "3c98ad7072bcf30a02613999d6ed2638539ceec02e1d00e2ec5ed955a2eb06f6"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/performance/chunked-node-cpu.json",
+      "sha256": "3de4ec0b1afcb9b1ba264feb1e6372c690f5876a7ef6317962204334a564d192"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/chunked-and-generation-targeted.txt",
+      "sha256": "d37d8653321236cc3b2427fad4b94aa1ae12973a52c8d0c234f599492aa0a355"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/splat-preparation-integrated.txt",
+      "sha256": "2fbc363250260ecdb407d2d3b5989338a8f24da4aeb9b7dd2fa6c99d55f1719c"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/chunked-types.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/chunked-lint.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "client/qa/splat-qualification.html",
+      "sha256": "020e33724c18ce105a6d98d62ef5b5ff04ff70d3b160a3e56185bb9c67a3c21e"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/assessment-generation-browser-dom.txt",
+      "sha256": "657e3b4d0cbd82f78e60bcd8de0b5a7dea6b606ee10295a3e2b6a7dc3fe0870e"
+    }
+  ]
+}

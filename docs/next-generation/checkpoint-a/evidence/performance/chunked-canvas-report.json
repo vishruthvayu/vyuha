@@ -1,0 +1,37 @@
+{
+  "scope": "Actual Canvas2D full raster including layout surfaces; no GPU or headset claim",
+  "results": [
+    {
+      "terrain": "rural_forward_base",
+      "resolution": 512,
+      "original_sha256": "81eb8823886b3e48fb8e0110a6c6eb5aaf96e731249629920d4b8386e73189f4",
+      "candidate_sha256": "81eb8823886b3e48fb8e0110a6c6eb5aaf96e731249629920d4b8386e73189f4",
+      "equal": true,
+      "texture_configuration_equal": true
+    },
+    {
+      "terrain": "rural_forward_base",
+      "resolution": 1024,
+      "original_sha256": "82706aaefcc5093bc08eab9493c56ec438f1bc01a13a95d008de8cec0dee47a9",
+      "candidate_sha256": "82706aaefcc5093bc08eab9493c56ec438f1bc01a13a95d008de8cec0dee47a9",
+      "equal": true,
+      "texture_configuration_equal": true
+    },
+    {
+      "terrain": "urban_outpost",
+      "resolution": 512,
+      "original_sha256": "32f106d087d0bfdce3dfa057b9599e4dfe0bb9cf8f50f1035ed66776d9583095",
+      "candidate_sha256": "32f106d087d0bfdce3dfa057b9599e4dfe0bb9cf8f50f1035ed66776d9583095",
+      "equal": true,
+      "texture_configuration_equal": true
+    },
+    {
+      "terrain": "urban_outpost",
+      "resolution": 1024,
+      "original_sha256": "96c5a802ff88d24bbe87ae9bf0cde532304a53737c3a232138a967f856ebbf85",
+      "candidate_sha256": "96c5a802ff88d24bbe87ae9bf0cde532304a53737c3a232138a967f856ebbf85",
+      "equal": true,
+      "texture_configuration_equal": true
+    }
+  ]
+}

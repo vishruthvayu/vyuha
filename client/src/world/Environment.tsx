@@ -1,4 +1,6 @@
 import { diagnosticSpan } from "../diagnostics";
+import { splatResources } from "./splat-preparation";
+import { texturePreparationMode } from "./texture-preparation-mode";
 import { createContactShading } from "./contact-shading";
 import { memo, useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
@@ -58,6 +60,17 @@ function useWorldTextures(quality: Quality, layout: FacilityLayout) {
   const flat = useMemo(() => Object.values(TEXTURE_URLS).flat(), []);
   const loaded = useLoader(THREE.TextureLoader, flat);
   const { gl } = useThree();
+  // Suspend before allocating GPU textures: retries share a finite CPU resource,
+  // and the scene is revealed only after the exact map is ready.
+  const splat =
+    texturePreparationMode(
+      typeof window === "undefined" ? "" : window.location.search,
+    ) === "chunked"
+      ? splatResources.read({
+          terrain: layout.terrain,
+          resolution: quality === "low" ? 512 : 1024,
+        })
+      : undefined;
   return useMemo(() => {
     const finish = diagnosticSpan("world_textures");
     const byUrl = new Map(flat.map((u, i) => [u, loaded[i]]));
@@ -96,11 +109,11 @@ function useWorldTextures(quality: Quality, layout: FacilityLayout) {
       hesco: createHescoTexture(),
       chainLink: createChainLinkTexture(),
       white: createWhiteTexture(),
-      splat: createSplatTexture(layout, quality === "low" ? 512 : 1024),
+      splat: createSplatTexture(layout, quality === "low" ? 512 : 1024, splat),
     };
     finish();
     return textures;
-  }, [flat, loaded, gl, quality, layout]);
+  }, [flat, loaded, gl, quality, layout, splat]);
 }
 
 /** Ribbon along a centreline with metric UVs (u across, v along). */

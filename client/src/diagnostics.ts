@@ -1,6 +1,8 @@
 /** Opt-in, bounded, local-only timing. Never reads actions, text, identities or sensor truth. */
 export type TimingKind =
   | "world_textures"
+  | "world_texture_preparation"
+  | "world_texture_chunk"
   | "world_build"
   | "environment_reflections"
   | "airframe_geometry"
@@ -30,6 +32,8 @@ export const DIAGNOSTIC_LIMIT = 32000;
 export const DIAGNOSTIC_WINDOW_MS = 240000;
 const KINDS: TimingKind[] = [
   "world_textures",
+  "world_texture_preparation",
+  "world_texture_chunk",
   "world_build",
   "environment_reflections",
   "airframe_geometry",

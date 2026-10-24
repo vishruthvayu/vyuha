@@ -1,0 +1,92 @@
+{
+  "runtime": "v25.2.1",
+  "platform": "darwin",
+  "arch": "arm64",
+  "scope": "Matched sequential Node pure-kernel receipt, not browser/Canvas2D/GPU/paint qualification. New wall includes MessageChannel task yields; old/new alternating. Arbitrary raster bytes were seeded identically; every result is byte-equal. CPU chunks plus post-raster patch do not include Canvas2D, geometry, GPU or total scene startup.",
+  "results": [
+    {
+      "terrain": "urban_outpost",
+      "run": 0,
+      "order": "old/new",
+      "resolution": 1024,
+      "old_synchronous_cpu_ms": 881.4070830000001,
+      "new_preparation_and_patch_wall_ms": 703.2829579999998,
+      "new_chunk_cpu_sum_ms": 539.5600000000001,
+      "new_chunk_max_ms": 13.69,
+      "new_chunk_count": 128,
+      "new_post_raster_patch_ms": 21.41687499999989,
+      "base_sha256": "1bea0f7db9fb74770df49df52d7b8822cb013d31a5c65155e114805ae871b603",
+      "arbitrary_raster_result_sha256": "285885b3fb1b896472842193975caedb586dce66e7e8bccd645dca86129a03f9"
+    },
+    {
+      "terrain": "urban_outpost",
+      "run": 1,
+      "order": "new/old",
+      "resolution": 1024,
+      "old_synchronous_cpu_ms": 733.7426670000004,
+      "new_preparation_and_patch_wall_ms": 892.7367919999997,
+      "new_chunk_cpu_sum_ms": 793.9799999999999,
+      "new_chunk_max_ms": 20.74,
+      "new_chunk_count": 128,
+      "new_post_raster_patch_ms": 30.50562499999978,
+      "base_sha256": "1bea0f7db9fb74770df49df52d7b8822cb013d31a5c65155e114805ae871b603",
+      "arbitrary_raster_result_sha256": "285885b3fb1b896472842193975caedb586dce66e7e8bccd645dca86129a03f9"
+    },
+    {
+      "terrain": "urban_outpost",
+      "run": 2,
+      "order": "old/new",
+      "resolution": 1024,
+      "old_synchronous_cpu_ms": 592.0300830000015,
+      "new_preparation_and_patch_wall_ms": 1317.3257909999993,
+      "new_chunk_cpu_sum_ms": 1180.64,
+      "new_chunk_max_ms": 91.12,
+      "new_chunk_count": 128,
+      "new_post_raster_patch_ms": 37.529083999999784,
+      "base_sha256": "1bea0f7db9fb74770df49df52d7b8822cb013d31a5c65155e114805ae871b603",
+      "arbitrary_raster_result_sha256": "285885b3fb1b896472842193975caedb586dce66e7e8bccd645dca86129a03f9"
+    },
+    {
+      "terrain": "rural_forward_base",
+      "run": 0,
+      "order": "old/new",
+      "resolution": 1024,
+      "old_synchronous_cpu_ms": 516.6272499999995,
+      "new_preparation_and_patch_wall_ms": 647.1868329999998,
+      "new_chunk_cpu_sum_ms": 567.0999999999998,
+      "new_chunk_max_ms": 26.62,
+      "new_chunk_count": 128,
+      "new_post_raster_patch_ms": 28.20104199999878,
+      "base_sha256": "c02617d8484c54ee4cfc16460e2c233df6785d64c4a74483d037c13c5b37cdb0",
+      "arbitrary_raster_result_sha256": "285885b3fb1b896472842193975caedb586dce66e7e8bccd645dca86129a03f9"
+    },
+    {
+      "terrain": "rural_forward_base",
+      "run": 1,
+      "order": "new/old",
+      "resolution": 1024,
+      "old_synchronous_cpu_ms": 709.6330839999973,
+      "new_preparation_and_patch_wall_ms": 556.718541000002,
+      "new_chunk_cpu_sum_ms": 487.80000000000007,
+      "new_chunk_max_ms": 22.74,
+      "new_chunk_count": 128,
+      "new_post_raster_patch_ms": 38.13816600000064,
+      "base_sha256": "c02617d8484c54ee4cfc16460e2c233df6785d64c4a74483d037c13c5b37cdb0",
+      "arbitrary_raster_result_sha256": "285885b3fb1b896472842193975caedb586dce66e7e8bccd645dca86129a03f9"
+    },
+    {
+      "terrain": "rural_forward_base",
+      "run": 2,
+      "order": "old/new",
+      "resolution": 1024,
+      "old_synchronous_cpu_ms": 734.1977079999997,
+      "new_preparation_and_patch_wall_ms": 1296.512749999998,
+      "new_chunk_cpu_sum_ms": 1068.8599999999997,
+      "new_chunk_max_ms": 130.17,
+      "new_chunk_count": 128,
+      "new_post_raster_patch_ms": 92.2319580000003,
+      "base_sha256": "c02617d8484c54ee4cfc16460e2c233df6785d64c4a74483d037c13c5b37cdb0",
+      "arbitrary_raster_result_sha256": "285885b3fb1b896472842193975caedb586dce66e7e8bccd645dca86129a03f9"
+    }
+  ]
+}
