@@ -1,0 +1,67 @@
+{
+  "scope": "Disposable synthetic browser QA only; original rows unchanged, one deliberate new practice session created. No participant learning claim.",
+  "original_tables": {
+    "learning_attempts": {
+      "original_rows": 2,
+      "original_before_sha256": "8fda4b22854a78d88baed0d263acfe20c17c27917782fefb93bfec977eee956e",
+      "original_after_sha256": "8fda4b22854a78d88baed0d263acfe20c17c27917782fefb93bfec977eee956e",
+      "new_rows": 1
+    },
+    "sessions": {
+      "original_rows": 2,
+      "original_before_sha256": "d01fd65025d55418de2454fc7bb95ff0224b0fee6a752ea351022b9f018f149e",
+      "original_after_sha256": "d01fd65025d55418de2454fc7bb95ff0224b0fee6a752ea351022b9f018f149e",
+      "new_rows": 1
+    },
+    "skill_outcomes": {
+      "original_rows": 1,
+      "original_before_sha256": "41e4f6436872ba48b3207ebff951fcd3c4dffe29ddf571b14707aa8861901234",
+      "original_after_sha256": "41e4f6436872ba48b3207ebff951fcd3c4dffe29ddf571b14707aa8861901234",
+      "new_rows": 0
+    },
+    "skill_profiles": {
+      "original_rows": 8,
+      "original_before_sha256": "deaf0acb2fd36a6af625f5e1417df6e2526c7a09834f9436c7d5462e2abf7126",
+      "original_after_sha256": "deaf0acb2fd36a6af625f5e1417df6e2526c7a09834f9436c7d5462e2abf7126",
+      "new_rows": 0
+    }
+  },
+  "new_practice": {
+    "session_id": "3957be96-8082-4209-884d-cff91964ab56",
+    "status": "completed",
+    "item_id": "C01_PRACTICE_A",
+    "mode": "practice",
+    "assistance": "full",
+    "assessed": false,
+    "execution_tick": 413,
+    "score": 2,
+    "summary": {
+      "C01": {
+        "correct": 0,
+        "incorrect": 1,
+        "unassessable": 0
+      },
+      "C02": {
+        "correct": 0,
+        "incorrect": 0,
+        "unassessable": 1
+      },
+      "C03": {
+        "correct": 0,
+        "incorrect": 0,
+        "unassessable": 0
+      },
+      "C04": {
+        "correct": 0,
+        "incorrect": 0,
+        "unassessable": 0
+      },
+      "C05": {
+        "correct": 0,
+        "incorrect": 0,
+        "unassessable": 0
+      }
+    }
+  },
+  "skill_profile_and_outcome_row_counts_unchanged": true
+}

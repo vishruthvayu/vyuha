@@ -1,0 +1,12 @@
+✔ competency review and registered protocol expose accessible evidence without a mastery claim (350.197625ms)
+✔ Academy preparation binds the joined trainee and exposes the actual integrated launch (125.513458ms)
+✔ premium layer is imported after the legacy stylesheets (2.4565ms)
+✔ Actual App waits for the Academy ticket and persists assessment context without default hints (842.499625ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3228.47175

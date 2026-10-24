@@ -141,3 +141,6 @@ Proceed to active inquiry only after its model and cross-surface replay contract
 ## Implementation status —24 October2026
 
 The first Level3 Theatre slice is integrated and focused-tested: primary scene-led observation/reference composition, source-linked chapters, exact event boundaries, cursor/pinned disclosure, bounded rail, keyboard and responsive fallback. See [actual scope, tests and browser evidence](../next-generation/checkpoint-a/EVIDENCE-THEATRE.md). Original replay composition has been replaced after this bounded acceptance; Git history preserves rollback, rather than shipping two diverging review implementations. No Level4 learning outcome or complete product transformation is claimed. Observation-driven inquiry, Studio and instructional runtime remain proposed, with their versioning/dependency gates above.
+
+
+The next integrated Level3 learning-journey slice is also implemented: five competency routes through supported/faded practice and item/form-bound independent assessment, linked from verified Ghost evidence and back through the actual simulator. See [scope and browser acceptance](../next-generation/checkpoint-a/ACADEMY-JOURNEY.md). It reuses frozen lesson content and does not constitute the proposed fitted instructional runtime or demonstrated learning improvement.

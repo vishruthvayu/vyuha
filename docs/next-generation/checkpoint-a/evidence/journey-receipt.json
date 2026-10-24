@@ -1,0 +1,136 @@
+{
+  "scope": "Integrated Academy competency journey focused development acceptance; not final software release acceptance",
+  "date": "2026-10-24",
+  "branch": "feature/vyuha-next-generation",
+  "source_parent_commit": "7bebb6cabe9f561331513c213e997dbf66c6136f",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "428af487f864393e1be190af25d4a13737d85f5b83e1a52ca737ca32dbc75ac0",
+  "tests": [
+    {
+      "scope": "final integrated Academy/helper/verified-review links",
+      "passed": 10,
+      "failed": 0,
+      "seconds": 2.454294292
+    },
+    {
+      "scope": "existing affected integrated UI interfaces",
+      "passed": 4,
+      "failed": 0,
+      "seconds": 3.22847175
+    },
+    {
+      "scope": "explicit selected-competency/form preparation API",
+      "passed": 2,
+      "failed": 0,
+      "seconds": 1.71
+    }
+  ],
+  "checks": {
+    "incremental_typescript": "PASS",
+    "changed_file_eslint": "PASS",
+    "changed_file_prettier": "PASS",
+    "registry_projection": "PASS",
+    "desktop_mobile_tablet_keyboard": "PASS FOR RECORDED SCOPE",
+    "actual_practice_to_verified_Ghost_to_course": "PASS",
+    "original_QA_rows_and_skill_profiles": "UNCHANGED",
+    "independent_source_and_rendered_review": "NO BLOCKER"
+  },
+  "not_claimed": [
+    "full-system release acceptance",
+    "new lesson-content validity",
+    "calibrated mastery",
+    "human learning gain",
+    "measured rendering/performance improvement",
+    "new physical platform/network/XR acceptance"
+  ],
+  "not_rerun": [
+    "unchanged complete backend/frontend suites",
+    "full parity/history",
+    "production build",
+    "Docker",
+    "complete browser suite",
+    "matched performance benchmarks"
+  ],
+  "artifacts": [
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/academy-journey-focused.txt",
+      "sha256": "7765502c401491281030fd9acac9002b0417b1264550c51b3d80cc9c40442464"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/academy-journey-lint.txt",
+      "sha256": "a00d1773ab6544bf6ecad2d57fd9188a04cb16f45594dcd4b4b4e9184d59d8d4"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/academy-journey-types.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/journey-database-integrity.json",
+      "sha256": "6c8e54bbb41322d958a49298909e5c627c8ace160b310464f369517a91214a6f"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/journey-final-ui.txt",
+      "sha256": "2e5eac77ea4269cf454dfff3dc831a6d3914129bd5dd16de8fe7057c50de8570"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/journey-format.txt",
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/journey-integrated-ui.txt",
+      "sha256": "b32b5d0835282b7195ca5875aa5757bf6878cae84a6a007df7ab2a6f857fe500"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/journey-lint.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/journey-preparation-contract.txt",
+      "sha256": "c4b93bdb3df64136d8ad7aa38ec90efa7a6007809142945dc3cb45aec780d0ca"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/journey-registry.txt",
+      "sha256": "2665298aae00a36d2b8f0c019b1113b33ac2be8a5ac0c442639443266afd115e"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/journey-review-a11y.txt",
+      "sha256": "4386b5509518b7fb7115077c47020b7577958f958dceda6560d112e92619eb56"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/journey-review-links.txt",
+      "sha256": "c032c1507407f02ca7d25e379b5ac25dc057d27e25243775e8c28f2ffc446d8c"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/journey-types.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-academy-assessment-training-ready.jpg",
+      "sha256": "fbbe0964212c3c7c0c4ea3ef430a997cb124459ca6d4ebabfac8cef2d4eb3672"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-academy-before.jpg",
+      "sha256": "6eff94eadaa8f300d4e935cc730fe309984cc8d0adb0fc07b9f4128b158316cc"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-academy-journey-desktop-final.jpg",
+      "sha256": "409d6285e19941a0f8882ba4a057db3b463bac9d5daee3b0f755e83b4c5142e6"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-academy-journey-lesson-final.jpg",
+      "sha256": "b6917339dc8a4a86b25d7806134ca19f5b5c396330ede0fe5460d61dc464634f"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-academy-journey-mobile-final.jpg",
+      "sha256": "4d444312b2d8f50bdcd16adeb50f88279882dabb91f26d7eba7a03b314bb403c"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-academy-journey-tablet-final.jpg",
+      "sha256": "8a2d38f7b73c4df691f24e6d038db753f6ed8f01185b367d5c17aa7fb83ebfd0"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-journey-fresh-practice-verified.jpg",
+      "sha256": "c5c0e6491021601653c23289410863612e47529ff3ebf5ffc1e3b261ad71779b"
+    }
+  ]
+}

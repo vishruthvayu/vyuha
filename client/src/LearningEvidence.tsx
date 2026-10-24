@@ -64,6 +64,7 @@ export function LearningEvidence({
               <th scope="col">Supported</th>
               <th scope="col">Incorrect</th>
               <th scope="col">Unassessable</th>
+              <th scope="col">Continue learning</th>
             </tr>
           </thead>
           <tbody>
@@ -73,6 +74,16 @@ export function LearningEvidence({
                 <td>{c.correct}</td>
                 <td>{c.incorrect}</td>
                 <td>{c.unassessable}</td>
+                <td>
+                  {/^C0[1-5]$/.test(id) &&
+                  c.correct + c.incorrect + c.unassessable > 0 ? (
+                    <a href={`/academy?competency=${encodeURIComponent(id)}`}>
+                      Explore {id} practice
+                    </a>
+                  ) : (
+                    "No linked practice evidence"
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>

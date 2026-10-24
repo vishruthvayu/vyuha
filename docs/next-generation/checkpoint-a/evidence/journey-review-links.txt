@@ -1,0 +1,9 @@
+✔ verified review links only observed known competencies to an explicit course selection (82.936625ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2614.29675

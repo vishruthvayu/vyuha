@@ -133,6 +133,9 @@
       "route": "/academy",
       "source_files": [
         "client/src/Academy.tsx",
+        "client/src/AcademyLesson.tsx",
+        "client/src/academy-journey.ts",
+        "client/src/academy-journey.css",
         "server/config/learning-v1.json",
         "server/controlled_study.py",
         "client/src/LearnerReflection.tsx",
@@ -141,7 +144,7 @@
       "evidence_ids": [
         "checkpoint-a-curriculum-software"
       ],
-      "limitations": "Integrated lessons, full/faded transitions and separate source-bound learner reflections. Broader task-specific content, observed-opportunity validity and human learning evaluation remain incomplete. Reflections do not change scores or assessed mastery; ordinary training transfer omits them."
+      "limitations": "Integrated competency journey, full/faded/independent stages, explicit item/form preparation and verified-review return links. Counts and suggestions are not mastery or stage certification. Broader task-specific content, observed-opportunity validity and human learning evaluation remain incomplete. Reflections do not change scores or assessed mastery; ordinary training transfer omits them."
     },
     {
       "id": "curriculum-director",

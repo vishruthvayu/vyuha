@@ -1,0 +1,18 @@
+✔ real catalog maps five individual journeys and keeps pools, help and Crew distinct (24.320667ms)
+✔ suggestions use positive practice observations, not assessed mastery or unassessable counts (0.47725ms)
+✔ preparation acceptance binds catalogue, selected item, pool and immutable assistance mode (0.360583ms)
+✔ competency-linked journey prepares full, faded and independent tasks explicitly and passes axe (495.451375ms)
+✔ late preparations cannot restore another stage or identity and preparation never counts as completion (81.909583ms)
+✔ network retry retains the frozen request while a deliberate new attempt gets a new ID (83.798292ms)
+✔ supporting evidence suggests less guidance without switching or granting mastery, refresh preserves choice (52.842583ms)
+✔ sparse assessment forms normalize the visible selection and actual request; invalid route cannot select Crew (45.787042ms)
+✔ initial load and mismatched preparation fail visibly with explicit retry and no accepted launch (39.807375ms)
+✔ verified review links only observed known competencies to an explicit course selection (107.622667ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2454.294292
