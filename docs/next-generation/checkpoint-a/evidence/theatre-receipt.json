@@ -137,5 +137,8 @@
       "path": "docs/next-generation/checkpoint-a/evidence/vyuha-theatre-tablet.png",
       "sha256": "736d02bddb5717573e007c92d0ce24e74ec16e98c9926a1e41e1b6bb30e8ef1a"
     }
-  ]
+  ],
+  "runtime_commit": "48c0d27888df10f1e13048bed75739ad2c9b3f10",
+  "clean_git_archive_source_hash": "024173a869a77c9da745c45a80ed6b33e5b6a4778049852a2c76304bd6182acc",
+  "clean_git_archive_and_artifact_hashes_verified": true
 }
