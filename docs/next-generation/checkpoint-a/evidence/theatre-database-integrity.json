@@ -1,0 +1,23 @@
+{
+  "scope": "Disposable synthetic QA database only. Original four tables unchanged across Theatre browser acceptance, including API-process outage and cached-record review. Presence/unit tables excluded. No physical network claim.",
+  "algorithm": "sha256(json.dumps(rows as dictionaries, sort_keys=True, default=str)); ordered by listed keys",
+  "order_by": {
+    "sessions": "id",
+    "learning_attempts": "session_id",
+    "skill_profiles": "trainee,skill",
+    "skill_outcomes": "session_id"
+  },
+  "before": {
+    "sessions": "efe12d8e7c945bb887a1bc78ce48531fb2fc1443d748087b1e389db4896f9c2a",
+    "learning_attempts": "9b646e5de86de98401b557d7bd8f2e55b715ab6bdd707fe4d6343e89c0338ba5",
+    "skill_profiles": "404488eb00cc320e41cd523e0bdb14b86b2be7492812dfc3e102baa0ddab3d02",
+    "skill_outcomes": "41e4f6436872ba48b3207ebff951fcd3c4dffe29ddf571b14707aa8861901234"
+  },
+  "after": {
+    "sessions": "efe12d8e7c945bb887a1bc78ce48531fb2fc1443d748087b1e389db4896f9c2a",
+    "learning_attempts": "9b646e5de86de98401b557d7bd8f2e55b715ab6bdd707fe4d6343e89c0338ba5",
+    "skill_profiles": "404488eb00cc320e41cd523e0bdb14b86b2be7492812dfc3e102baa0ddab3d02",
+    "skill_outcomes": "41e4f6436872ba48b3207ebff951fcd3c4dffe29ddf571b14707aa8861901234"
+  },
+  "all_match": true
+}

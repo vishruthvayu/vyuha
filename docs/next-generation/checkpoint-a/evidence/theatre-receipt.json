@@ -1,0 +1,141 @@
+{
+  "scope": "Focused development acceptance for integrated Evidence Reconstruction Theatre; not full release acceptance",
+  "date": "2026-10-24",
+  "branch": "feature/vyuha-next-generation",
+  "source_parent_commit": "72e0baa53cdc07abafe4a10db2e8c616da95ea0c",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "024173a869a77c9da745c45a80ed6b33e5b6a4778049852a2c76304bd6182acc",
+  "tests": [
+    {
+      "scope": "review-frame/review-theatre/ghost final",
+      "passed": 23,
+      "failed": 0,
+      "duration_seconds": 4.70575125
+    },
+    {
+      "scope": "affected actual App review/draft integration",
+      "passed": 5,
+      "failed": 0,
+      "duration_seconds": 3.188226375
+    }
+  ],
+  "checks": {
+    "incremental_typescript": "PASS",
+    "changed_file_eslint": "PASS",
+    "changed_file_format": "PASS",
+    "catalogue_projection": "PASS",
+    "original_four_qa_tables": "UNCHANGED",
+    "independent_source_and_visual_review": "NO ACTIONABLE BLOCKER"
+  },
+  "not_rerun": [
+    "complete backend/frontend",
+    "full parity/history",
+    "production build",
+    "Docker",
+    "full browser acceptance",
+    "matched renderer benchmarks"
+  ],
+  "physical_validation": "No new physical device/network/XR acceptance claimed",
+  "artifacts": [
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/theatre-app-integration.txt",
+      "sha256": "5129ca9c1950d6c17d005fb2e7065f6dad5b6e81b8bcdb9dcfdfb97bd6c10555"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/theatre-chapters-tests.txt",
+      "sha256": "f34ed517d69785beffc350947974507dffdca825d772395570803512d42f81a7"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/theatre-database-integrity.json",
+      "sha256": "0eb8aa683a651a4a1712e10226371efb15cb88dea1121f77576ea88d892e0b76"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/theatre-final-component-tests.txt",
+      "sha256": "574945fcd007adda6ce232cf9f845643c350f7b79cc33c36a9ce7d990e1f626e"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/theatre-format.txt",
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/theatre-lint-initial.txt",
+      "sha256": "f1747fe38113e193c296778410fe504c8ab702a18c54b52e2372c048480ecdb2"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/theatre-lint.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/theatre-memoization-followup.txt",
+      "sha256": "30b3d618597244b74327e3a75054d08ae28d7081ef13a8fea2c6f2b891aa1064"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/theatre-targeted.txt",
+      "sha256": "8fc3112727af67f1bf0c9ae11596f5bfecf88a92efecbd35d4a7bfd729f1840c"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/theatre-types-initial.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/theatre-types.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/theatre-ui-final.txt",
+      "sha256": "af29fd999d20b6dd795badcad677d378fc07b0a715d3f26a53db09829da600a7"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-theatre-chapters-desktop.png",
+      "sha256": "b0d4ee2b69feeae11edaa45367e2ab29524aca89e3c6c392832ecbb870de8736"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-theatre-desktop-final.png",
+      "sha256": "eb4704de72cdf64a323948843b41229ecf7497bdbefff432ee3ff3d4ad39406e"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-theatre-divergent-dom.txt",
+      "sha256": "f9a3cea28efc7ff128fb746974ee0e5586088c5030353d7294c4b861b7f1089a"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-theatre-fallback-final.png",
+      "sha256": "1ac23c01a0623bd88179da59d562d37ff65774829a12133a5b30f50dd75966f0"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-theatre-mobile-chapters-final.png",
+      "sha256": "049e2a101496acff09788351bc65ff0d43cb00fed45caa280d6290f9ccfa3ef8"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-theatre-mobile-radar.png",
+      "sha256": "5bf309c100d6d7187db1caa0fcc80c7f28d8795d0e09b452c75b9550bc1fc3ba"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-theatre-mobile.png",
+      "sha256": "3f8130eb6d6384f20adb88fb8c6dcddbbe0d1c3928b67fad47525719e3940830"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-theatre-observations-dom.txt",
+      "sha256": "920f9a59d5cc86159af1b521fe39a834f0d3425d6f77c75435047c0876b5324d"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-theatre-offline-cached.png",
+      "sha256": "494bb39cd9d83f79b74250477da6e8c9214f9ed2f141bf44c52bfc9e9e2294e6"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-theatre-reference-desktop.png",
+      "sha256": "52fa22023c0eb3dbdfea081e015f703833ffd15001d02d19ec49d85e9ce86333"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-theatre-stage-final.png",
+      "sha256": "763314a11f368cee3d4934fa19091eaf83eb7915fb77fd2ff9719095cd0740eb"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-theatre-tablet-chapters-final.png",
+      "sha256": "d7e0aba668700203360610949f90087f1d9ec0310ebc4f462ea22e686da5c6c3"
+    },
+    {
+      "path": "docs/next-generation/checkpoint-a/evidence/vyuha-theatre-tablet.png",
+      "sha256": "736d02bddb5717573e007c92d0ce24e74ec16e98c9926a1e41e1b6bb30e8ef1a"
+    }
+  ]
+}

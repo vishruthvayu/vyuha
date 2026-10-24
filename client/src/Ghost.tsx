@@ -10,6 +10,7 @@ import type {
   Snapshot,
 } from "./types";
 import { KIND_LABEL } from "./types";
+export { timelineSeek } from "./review-frame";
 
 export const skillLabel: { [K in GhostSkill]: string } = {
   detection: "Detection",
@@ -32,17 +33,6 @@ export function actionLabel(
   if (type === "classify")
     return `${action.kind ? KIND_LABEL[action.kind] : "Unknown type"} / ${action.identity ?? "unknown"}`;
   return type === "designate" ? "Designate" : "Observe";
-}
-export function timelineSeek(item: TimelineItem) {
-  return {
-    tick: item.tick,
-    beforeOrder:
-      item.order === null
-        ? undefined
-        : item.seek_before
-          ? item.order
-          : item.order + 1,
-  };
 }
 function selectedReview(record: TrainingRecord, id: string | null) {
   return (

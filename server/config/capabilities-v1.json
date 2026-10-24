@@ -23,12 +23,14 @@
       "route": "/?view=aar",
       "source_files": [
         "server/review.py",
-        "client/src/Ghost.tsx"
+        "client/src/Ghost.tsx",
+        "client/src/ReviewTheatre.tsx",
+        "client/src/review-frame.ts"
       ],
       "evidence_ids": [
         "baseline-2026-10-22"
       ],
-      "limitations": "Illustrative training functionality; no operational certification."
+      "limitations": "Core Ghost is implemented. The new primary reconstruction theatre adds modeled-observation/reference lenses and explicit evidence/cursor times; focused integration is in progress. Modeled availability is not recorded gaze or viewport exposure. Completed-AAR reference answers remain visible in the labeled inspector. No causal effect or human-learning claim."
     },
     {
       "id": "shared-crew",

@@ -1,3 +1,4 @@
+import ReviewTheatre from "./ReviewTheatre";
 import type { LearningPreparation } from "./learning";
 import { LearningBanner } from "./LearningEvidence";
 import PerformanceDiagnostics from "./PerformanceDiagnostics";
@@ -11,12 +12,7 @@ import { useContactMemory } from "./useContactMemory";
 import { useCommandTransport } from "./useCommandTransport";
 import { reportedContacts } from "./observed-contacts";
 import OfficerGate from "./OfficerGate";
-import {
-  palettes,
-  cameraPose,
-  type CameraPreset,
-  type ThermalPalette,
-} from "./presentation";
+import { palettes, type ThermalPalette } from "./presentation";
 import { SensorBadges } from "./SensorBadges";
 import Navigation from "./Navigation";
 import { workspaceViewFromSearch } from "./routes";
@@ -73,7 +69,7 @@ import {
 } from "./GuidedDecision";
 import { ReviewSections } from "./ReviewSections";
 import type { TrainingProfile } from "./types";
-import { GhostPanel, GhostTimeline, timelineSeek, ReplayTracks } from "./Ghost";
+import { GhostPanel, GhostTimeline, timelineSeek } from "./Ghost";
 import { HZ, inCivilZone, replay, score, Simulation } from "./sim";
 import { makeScenario } from "./scenario";
 import LocalAudio from "./LocalAudio";
@@ -1526,10 +1522,7 @@ export default function App({
     );
   };
   const [palette, setPalette] = useState<ThermalPalette>("white"),
-    [cameraPreset, setCameraPreset] = useState<CameraPreset>("overview"),
-    [opticalZoom, setOpticalZoom] = useState(1),
-    [replayTactical, setReplayTactical] = useState(false),
-    [replayFps, setReplayFps] = useState(0);
+    [opticalZoom, setOpticalZoom] = useState(1);
   // Reconstruction depends on immutable evidence and seek position, not camera/FPS/notice updates.
   const replayState =
     useMemo(
@@ -2531,7 +2524,7 @@ export default function App({
             </p>
           </div>
         ) : view === "aar" ? (
-          <div className="page">
+          <div className="page reconstruction-page">
             <div className="page-heading">
               <div>
                 <div className="eyebrow">LEARN FROM EVERY DECISION</div>
@@ -2699,143 +2692,51 @@ export default function App({
                     { id: "review-score", label: "Score breakdown" },
                   ]}
                 />
-                <div className="aar-grid" id="review-replay">
-                  <section className="panel replay-panel">
-                    <div className="panel-header">
-                      <div>
-                        <RotateCcw size={16} />
-                        <h2
-                          ref={replayHeading}
-                          tabIndex={-1}
-                          className="replay-heading"
-                        >
-                          Time-machine replay
-                        </h2>
-                      </div>
-                      <span className="mono">
-                        T+{(replayTick / HZ).toFixed(2)}s
-                      </span>
-                    </div>
-                    <div className="replay-camera-controls segmented">
-                      {(["overview", "observer", "follow"] as const).map(
-                        (p) => (
-                          <button
-                            key={p}
-                            disabled={
-                              p === "follow" &&
-                              !replayState.tracks.some((t) => t.id === selected)
-                            }
-                            title={
-                              p === "follow" &&
-                              !replayState.tracks.some((t) => t.id === selected)
-                                ? "Select a contact or decision event first."
-                                : undefined
-                            }
-                            aria-pressed={cameraPreset === p}
-                            onClick={() => setCameraPreset(p)}
-                          >
-                            {p === "follow" ? "FOLLOW TARGET" : p.toUpperCase()}
-                          </button>
-                        ),
-                      )}
-                      <button
-                        aria-pressed={replayTactical}
-                        onClick={() => setReplayTactical((v) => !v)}
-                      >
-                        Tactical 2D
-                      </button>
-                    </div>
-                    <p className="footnote">
-                      {cameraPose(cameraPreset, replayState.tracks, selected)
-                        .fallback
-                        ? "Selected contact is absent or ended; showing Overview."
-                        : `${cameraPreset.toUpperCase()} · ${replayFps || "—"} fps`}{" "}
-                      · Ground-truth debrief view · External camera; terrain
-                      translucent. Camera changes observation only.
-                    </p>
-                    <div className={`replay-scene scene-container ${vision}`}>
-                      {replayTactical || quality === "tactical" ? (
-                        <Radar
-                          state={replayState}
-                          selected={selected}
-                          onSelect={setSelected}
-                          large
-                        />
-                      ) : (
-                        <Scene
-                          terrainBoxes={current.scenario.terrain_boxes}
-                          engineVersion={current.scenario.engine_version}
-                          groundTruth
-                          visibilityKey={current.id}
-                          state={replayState}
-                          selected={selected}
-                          vision={vision}
-                          palette={palette}
-                          cameraPreset={cameraPreset}
-                          quality={quality}
-                          fog={current.scenario.fog}
-                          terrain={current.scenario.terrain_id}
-                          onFps={setReplayFps}
-                          fallback={
-                            <button onClick={() => setReplayTactical(true)}>
-                              Use tactical fallback
-                            </button>
-                          }
-                        />
-                      )}
-                    </div>
-                    <div className="replay-controls">
-                      <button
-                        aria-label={replayPlay ? "Pause replay" : "Play replay"}
-                        onClick={() => {
-                          if (replayTick >= replayEnd) setReplayTick(0);
-                          setReplayOrder(undefined);
-                          setReplayPlay(!replayPlay);
-                        }}
-                      >
-                        {replayPlay ? <Pause size={17} /> : <Play size={17} />}
-                      </button>
-                      <input
-                        aria-label="Replay time"
-                        aria-valuetext={`${time(replayTick)} of ${time(replayEnd)}`}
-                        type="range"
-                        min={0}
-                        max={replayEnd}
-                        value={replayTick}
-                        onChange={(e) => {
-                          setReplayPlay(false);
-                          setReplayOrder(undefined);
-                          setReplayTick(Number(e.target.value));
-                        }}
-                      />
-                      <span>{time(replayEnd)}</span>
-                    </div>
-                    <div className="replay-events">
-                      {replayState.messages.slice(-3).map((m, i) => (
-                        <p key={i}>
-                          <span className="mono">{time(m.tick)}</span> {m.track}{" "}
-                          · {m.text}
-                        </p>
-                      ))}
-                    </div>
-                    <ReplayTracks state={replayState} onSelect={setSelected} />
-                  </section>
-                  <GhostPanel
-                    viewerTrainee={trainee}
-                    record={current}
-                    onJump={focusReplay}
-                    onReload={() => setReviewReload((n) => n + 1)}
-                    selectedId={reviewId}
-                    onChoose={(r) => {
-                      setReviewId(r.decision_id);
-                      seek(
-                        r.tick,
-                        r.trainee_action ? (r.order ?? undefined) : undefined,
-                        r.track_id,
-                      );
-                    }}
-                  />
-                </div>
+                <ReviewTheatre
+                  key={`theatre:${current.id}`}
+                  record={current}
+                  snapshot={replayState}
+                  tick={replayTick}
+                  endTick={replayEnd}
+                  beforeOrder={replayOrder}
+                  selected={selected}
+                  decisionId={reviewId}
+                  playing={replayPlay}
+                  quality={quality}
+                  headingRef={replayHeading}
+                  onSelect={setSelected}
+                  onSeek={seek}
+                  onPlay={() => {
+                    if (replayTick >= replayEnd) setReplayTick(0);
+                    setReplayOrder(undefined);
+                    setReplayPlay(!replayPlay);
+                  }}
+                  onDecision={(r) => {
+                    setReviewId(r.decision_id);
+                    seek(
+                      r.tick,
+                      r.trainee_action ? (r.order ?? undefined) : undefined,
+                      r.track_id,
+                    );
+                  }}
+                  inspector={
+                    <GhostPanel
+                      viewerTrainee={trainee}
+                      record={current}
+                      onJump={focusReplay}
+                      onReload={() => setReviewReload((n) => n + 1)}
+                      selectedId={reviewId}
+                      onChoose={(r) => {
+                        setReviewId(r.decision_id);
+                        seek(
+                          r.tick,
+                          r.trainee_action ? (r.order ?? undefined) : undefined,
+                          r.track_id,
+                        );
+                      }}
+                    />
+                  }
+                />
                 <div id="review-timeline" className="review-anchor">
                   <GhostTimeline
                     record={current}

@@ -9,7 +9,7 @@ Actual IAB/MacBook Air M1 (owner hardware identification),1280×720CSS/dpr2/scal
 |Measure|Synchronous before|Chunked candidate|
 |---|---:|---:|
 |200-contact20s medianFPS|60|60|
-|Executed/timing ticks|599/599|599/599|
+|Executed/timing ticks|599/599|600/600|
 |Worker median/p95ms|0.4/0.8|0.4/0.9|
 |Full startup capture frame maxms|672.0|418.8|
 |Full capture p95ms|18.6|18.6|

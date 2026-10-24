@@ -1,0 +1,31 @@
+✔ timeline decision jump reconstructs the exact pre-action boundary (7.977709ms)
+✔ Ghost panel renders actual and authoritative expected decisions (23.13425ms)
+✔ failed RF and IFF evidence renders unavailable without hidden truth (2.327542ms)
+✔ degraded radar evidence and modeled silhouette render grounded values (2.650375ms)
+✔ instructor commands and sensor transitions appear as separate timeline categories (26.615458ms)
+✔ no-RF explanation and score scope come from the server review (7.81825ms)
+✔ device-only scores do not produce client-generated Ghost expectations (1.759334ms)
+✔ same-tick designation seek shows unmodified prior classification (0.837792ms)
+✔ replay contact history uses observed contacts and trainee labels across seek boundaries (2.672417ms)
+✔ detection-only optics never print undefined or fabricate identifying shape (2.13525ms)
+✔ cursor projection uses public channels and trainee declaration, never canonical truth (11.073542ms)
+✔ future, mismatched and missing modern reports fail closed without truth fallback (0.731ms)
+✔ unavailable channels cannot expose contacts; no IFF reply is never hostile evidence (0.644ms)
+✔ legacy reports disclose absent provenance and never synthesize RF or IFF truth (0.552125ms)
+✔ decision alignment includes the same-tick action boundary and absent actions (0.370084ms)
+✔ real frozen v0.4 reconstruction supplies current observation timestamps without changing scores/history (84.108125ms)
+✔ missing-action review time never masquerades as its first-observation evidence time (0.464375ms)
+✔ investigation chapters preserve exact source boundaries without inventing order or outcomes (1.272041ms)
+✔ modeled renderer receives no future optical geometry, broken legacy fallback or invalid clutter (0.774917ms)
+✔ theatre starts in modeled sensor view; reference/EO transitions preserve time, contact and source (839.619208ms)
+✔ divergent playhead and missing-action evidence disclose both times and seek actual stored evidence (41.338292ms)
+✔ bounded chronological rail retains all decisions through paging and populated semantics pass axe (369.950792ms)
+✔ investigation chapters retain lens and record, use source order and disable unobserved outcomes (32.37ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4705.75125

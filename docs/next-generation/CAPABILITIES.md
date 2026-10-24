@@ -5,7 +5,7 @@ Source: `server/config/capabilities-v1.json`. Generate with `scripts/check_capab
 | Capability | Implementation | Workflow | Source |
 |---|---|---|---|
 | Versioned deterministic browser/VR training | IMPLEMENTED | `/` | `server/engine.py`, `client/src/sim.worker.ts` |
-| Server-verified Ghost and immutable replay | IMPLEMENTED | `/?view=aar` | `server/review.py`, `client/src/Ghost.tsx` |
+| Server-verified Ghost and immutable replay | IMPLEMENTED | `/?view=aar` | `server/review.py`, `client/src/Ghost.tsx`, `client/src/ReviewTheatre.tsx`, `client/src/review-frame.ts` |
 | Role-attributed Crew and reconnection | IMPLEMENTED | `/crew` | `server/crew.py`, `client/src/Crew.tsx` |
 | Dispatch-bound Fusion advice receipts | IMPLEMENTED | `/` | `server/fusion.py`, `client/src/action-evidence.ts` |
 | Validated transfer and restore | IMPLEMENTED | `/transfer` | `server/portable.py`, `client/src/Transfer.tsx` |

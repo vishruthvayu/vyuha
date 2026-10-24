@@ -1,0 +1,11 @@
+✔ theatre starts in modeled sensor view; reference/EO transitions preserve time, contact and source (594.486791ms)
+✔ divergent playhead and missing-action evidence disclose both times and seek actual stored evidence (59.939792ms)
+✔ bounded chronological rail retains all decisions through paging and populated semantics pass axe (451.394125ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4246.46725

@@ -1,0 +1,98 @@
+✔ timeline decision jump reconstructs the exact pre-action boundary (6.979542ms)
+✔ Ghost panel renders actual and authoritative expected decisions (25.999458ms)
+✔ failed RF and IFF evidence renders unavailable without hidden truth (2.284458ms)
+✔ degraded radar evidence and modeled silhouette render grounded values (1.975958ms)
+✔ instructor commands and sensor transitions appear as separate timeline categories (36.213375ms)
+✔ no-RF explanation and score scope come from the server review (7.826875ms)
+✔ device-only scores do not produce client-generated Ghost expectations (5.390916ms)
+✔ same-tick designation seek shows unmodified prior classification (0.756125ms)
+✔ replay contact history uses observed contacts and trainee labels across seek boundaries (4.011541ms)
+✔ detection-only optics never print undefined or fabricate identifying shape (4.469ms)
+✔ Actual App completion persists verified evidence without stealing a subsequently selected review (2162.685792ms)
+✔ Actual App retry-complete persists verified evidence without stealing a subsequently selected review (411.510792ms)
+✔ Actual App retry-existing persists verified evidence without stealing a subsequently selected review (307.80025ms)
+✔ Actual App completion notes keeps the score verified and exposes annotation availability immediately (249.845709ms)
+✔ Actual App completion notes-failed keeps the score verified and exposes annotation availability immediately (440.658083ms)
+✖ Actual App presentation-only FPS/camera changes reuse replay snapshot while a seek reconstructs (149.555708ms)
+✔ Actual App restored draft locks evidence until its own initialized replay and ignores stale worker ownership (657.139375ms)
+✔ Actual App ignores an older accepted acknowledgment while a different classification is pending (535.598583ms)
+✔ Actual App ignores an older rejected acknowledgment while a different classification is pending (253.121875ms)
+✔ Actual App freezes browser Fusion attribution across a delayed cross-modality acknowledgment (485.570708ms)
+✔ Actual App freezes VR Fusion attribution across a delayed cross-modality acknowledgment (325.884209ms)
+✔ Actual App waits for the Academy ticket and persists assessment context without default hints (117.30475ms)
+✔ Actual App distinguishes learning-rejected without starting or saving a refused curriculum (99.178625ms)
+✔ Actual App distinguishes learning-invalid without starting or saving a refused curriculum (229.16325ms)
+✔ Actual App distinguishes learning-network without starting or saving a refused curriculum (243.263083ms)
+✔ Actual App preserves safe legacy behavior for legacy-rejected (173.571583ms)
+✔ Actual App preserves safe legacy behavior for legacy-network (92.877417ms)
+✔ cursor projection uses public channels and trainee declaration, never canonical truth (29.1975ms)
+✔ future, mismatched and missing modern reports fail closed without truth fallback (12.896083ms)
+✔ unavailable channels cannot expose contacts; no IFF reply is never hostile evidence (3.646125ms)
+✔ legacy reports disclose absent provenance and never synthesize RF or IFF truth (0.612041ms)
+✖ decision alignment includes the same-tick action boundary and absent actions (36.4815ms)
+✔ real frozen v0.4 reconstruction supplies current observation timestamps without changing scores/history (396.17675ms)
+✔ missing-action review time never masquerades as its first-observation evidence time (8.323042ms)
+✔ modeled renderer receives no future optical geometry, broken legacy fallback or invalid clutter (27.3595ms)
+✔ theatre starts in modeled sensor view; reference/EO transitions preserve time, contact and source (786.880084ms)
+✔ divergent playhead and missing-action evidence disclose both times and seek actual stored evidence (105.464541ms)
+✔ bounded chronological rail retains all decisions through paging and populated semantics pass axe (625.816708ms)
+✔ all live geometric views hide never-observed and radar-only contacts (3.212125ms)
+✔ current optical observation permits geometry without historical detection assumptions (0.466209ms)
+✔ bounded hold freezes observed geometry and never follows hidden current coordinates (0.446ms)
+✔ failure, inactive or absent contacts clear held observations immediately (0.510833ms)
+✔ session/scenario key, backward seek, long jump and channel changes cannot carry memory (1.365ms)
+✔ a reset at tick zero clears a same-tick prior observation even before a new key arrives (0.533208ms)
+✔ follow and overview framing use only observed geometry (0.943416ms)
+✔ reference truth is explicit, labelled and does not seed trainee visibility memory (27.911375ms)
+✔ presentation gating never changes snapshots or scoring inputs (2.264625ms)
+✔ v0.4 DAY TV uses EO while thermal and infrared-styled night use IR (5.514334ms)
+✔ v0.4 detection does not expose bird/quad/fixed-wing truth geometry before recognition (0.659375ms)
+✔ v0.4 unavailable channel clears held geometry immediately despite legacy thermal flag (0.471167ms)
+✔ v0.4 reference truth intentionally bypasses observation masking and is opt-in (0.447958ms)
+ℹ tests 51
+ℹ suites 0
+ℹ pass 49
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12424.823167
+
+✖ failing tests:
+
+test at src/review-app-lifetime.test.tsx:1:16114
+✖ Actual App presentation-only FPS/camera changes reuse replay snapshot while a seek reconstructs (149.555708ms)
+  AssertionError [ERR_ASSERTION]: Missing button OBSERVER
+      at click (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:650:10)
+      at <anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:733:11)
+      at async mounted (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:596:5)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at src/review-frame.test.ts:1:3367
+✖ decision alignment includes the same-tick action boundary and absent actions (36.4815ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-frame.test.ts:152:10)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -84,6 +84,11 @@ R07 [selection laboratory](CURRICULUM-POLICY-LAB.md) is integrated in actual Eva
 
 ## Settled texture experiment / transformation handoff —24 October2026
 
-[Chunked experiment](CHUNKED-TEXTURE-EXPERIMENT.md): exact Canvas2D equivalence4/4;15 preparation tests plus28 affected UI/diagnostic/world tests; actual200-contact candidate and quietbefore both60medianFPS/599complete ticks. Candidate chunks max3.4ms; default remains synchronous pending broader qualification. No whole-startup or GPU/headset benefit claim. Assessment-generation explicit officer UI now browser-verified:1accepted/0rejected/0exhausted, source-bound seed7receipt; three targeted UI tests within28.
+[Chunked experiment](CHUNKED-TEXTURE-EXPERIMENT.md): exact Canvas2D equivalence4/4;15 preparation tests plus28 affected UI/diagnostic/world tests; actual200-contact candidate and quietbefore both60medianFPS, with599/599 before and600/600 candidate ticks/timings. Candidate chunks max3.4ms; default remains synchronous pending broader qualification. No whole-startup or GPU/headset benefit claim. Assessment-generation explicit officer UI now browser-verified:1accepted/0rejected/0exhausted, source-bound seed7receipt; three targeted UI tests within28.
 
 New owner mission raises strategic emphasis to levels3–5 product transformation. Parallel primary-source research is defining a connected Evidence Reconstruction Theatre, observation-driven simulation, Mission/Scenario Studio and learning journey. Existing diagnostic/reflection slices remain honest level2 foundations; none is relabeled a product transformation. Whole Checkpoint A remains PARTIAL.
+
+
+## Evidence Reconstruction Theatre —24 October2026
+
+[Integrated Theatre](EVIDENCE-THEATRE.md) replaces the primary replay composition with observation/reference investigation, source-linked first-detectability/evidence/outcome chapters and explicit cursor/pinned times.23 focused chapter/Ghost tests and5 affected actual-App tests passed; TypeScript/changed-file lint/format and registry projection passed. Actual desktop,390px mobile,820px tablet, keyboard, fallback and API-process-outage cached review checked. Four original QA table hashes unchanged. This is a Level3 implemented slice; broader four-flagship transformation and Checkpoint A remain PARTIAL. Six evidence-backed research documents are linked from the research roadmap; future capabilities stay labeled as designs. Full unchanged suites/build not rerun under current testing policy.

@@ -43,6 +43,35 @@ before(async () => {
     cockpit,
     `import React from 'react';export default function Cockpit(p){return React.createElement('section',null,React.createElement('button',{onClick:()=>p.onAction({k:'designate',track:'T2'})},'Submit VR designation'),React.createElement('button',{onClick:p.onClose},'Close mock cockpit'));}`,
   );
+  // Keep production theatre composition; substitute its WebGL surface only.
+  const theatre = join(compiledDirectory, "theatre.mjs");
+  const theatreSource = await readFile(
+    join(sourceDirectory, "ReviewTheatre.tsx"),
+    "utf8",
+  );
+  await writeFile(
+    theatre,
+    ts
+      .transpileModule(theatreSource, {
+        compilerOptions: {
+          module: ts.ModuleKind.ESNext,
+          target: ts.ScriptTarget.ES2022,
+          jsx: ts.JsxEmit.ReactJSX,
+        },
+      })
+      .outputText.replace(
+        /from\s+(["'])(\.\/[^"']+)\1/g,
+        (_match, _quote, specifier: string) => {
+          let dependency = resolve(sourceDirectory, specifier);
+          if (specifier === "./LazyScene") dependency = renderer;
+          else
+            dependency = [dependency + ".ts", dependency + ".tsx"].find(
+              existsSync,
+            )!;
+          return `from ${JSON.stringify(pathToFileURL(dependency).href)}`;
+        },
+      ),
+  );
   const source = (
     await readFile(join(sourceDirectory, "App.tsx"), "utf8")
   ).replace(
@@ -62,7 +91,8 @@ before(async () => {
       /from\s+(["'])(\.\/[^"']+)\1/g,
       (_match, _quote, specifier: string) => {
         let dependency = resolve(sourceDirectory, specifier);
-        if (specifier === "./LazyScene") dependency = renderer;
+        if (specifier === "./ReviewTheatre") dependency = theatre;
+        else if (specifier === "./LazyScene") dependency = renderer;
         else if (specifier === "./FusionPanel") dependency = fusion;
         else
           dependency = [dependency + ".ts", dependency + ".tsx"].find(
@@ -700,11 +730,29 @@ test("Actual App presentation-only FPS/camera changes reuse replay snapshot whil
     const original = sceneSnapshots.at(-1)!;
     assert.ok(original);
     await click(document, "Headless renderer FPS callback");
-    await click(document, "OBSERVER");
     assert.equal(
       sceneSnapshots.at(-1),
       original,
-      "Presentation updates do not invoke engine replay again",
+      "Modeled-view FPS changes preserve the reconstructed frame",
+    );
+    await click(document, "Reference world");
+    const reference = sceneSnapshots.at(-1)!;
+    const camera = document.querySelector<HTMLSelectElement>(
+      '[aria-label="Reference camera"]',
+    )!;
+    await act(async () => {
+      Object.getOwnPropertyDescriptor(
+        document.defaultView!.HTMLSelectElement.prototype,
+        "value",
+      )!.set!.call(camera, "observer");
+      camera.dispatchEvent(
+        new document.defaultView!.Event("change", { bubbles: true }),
+      );
+    });
+    assert.equal(
+      sceneSnapshots.at(-1),
+      reference,
+      "Reference camera updates do not invoke engine replay again",
     );
     const range = document.querySelector<HTMLInputElement>(
       '[aria-label="Replay time"]',

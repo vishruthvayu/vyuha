@@ -1,0 +1,13 @@
+✔ Actual App completion persists verified evidence without stealing a subsequently selected review (940.098917ms)
+✔ Actual App retry-complete persists verified evidence without stealing a subsequently selected review (193.049459ms)
+✔ Actual App retry-existing persists verified evidence without stealing a subsequently selected review (101.482708ms)
+✔ Actual App presentation-only FPS/camera changes reuse replay snapshot while a seek reconstructs (56.55825ms)
+✔ Actual App restored draft locks evidence until its own initialized replay and ignores stale worker ownership (240.858833ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3188.226375

@@ -1,0 +1,19 @@
+✔ cursor projection uses public channels and trainee declaration, never canonical truth (10.17525ms)
+✔ future, mismatched and missing modern reports fail closed without truth fallback (0.702625ms)
+✔ unavailable channels cannot expose contacts; no IFF reply is never hostile evidence (0.65475ms)
+✔ legacy reports disclose absent provenance and never synthesize RF or IFF truth (0.572375ms)
+✔ decision alignment includes the same-tick action boundary and absent actions (0.354708ms)
+✔ real frozen v0.4 reconstruction supplies current observation timestamps without changing scores/history (82.780208ms)
+✔ missing-action review time never masquerades as its first-observation evidence time (0.453334ms)
+✔ modeled renderer receives no future optical geometry, broken legacy fallback or invalid clutter (1.067375ms)
+✔ theatre starts in modeled sensor view; reference/EO transitions preserve time, contact and source (536.621625ms)
+✔ divergent playhead and missing-action evidence disclose both times and seek actual stored evidence (71.333834ms)
+✔ bounded chronological rail retains all decisions through paging and populated semantics pass axe (590.232208ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4770.645125
