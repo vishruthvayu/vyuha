@@ -1,0 +1,31 @@
+✔ Terrain presentation keeps every frozen bound/height exact and never adds a protruding roof volume (3.6675ms)
+✔ Terrain translucency requires explicit reference truth; a live preset cannot make occluders transparent (0.512375ms)
+✔ Roof/material detail uses bounded24-vertex colors rather than extra terrain geometry (1.887459ms)
+✔ Every live camera preset and reference follow/observer preserves existing cameraPose semantics exactly (2.0895ms)
+✔ Explicit after-review overview fits only its supplied active scope at desktop/mobile aspects without altering records or scores (12.561083ms)
+✔ Camera scope still follows observation visibility and detection-only glyph uncertainty; hidden truth cannot enter live framing (1.077ms)
+✔ Review fitting retains all live/observer/follow range boundaries and avoids portrait clipping only for explicit overview truth (0.97175ms)
+✔ briefing strips all roster, clutter, messages and response evidence without changing authoritative snapshot (5.211375ms)
+✔ authored arrival is bounded, roster-independent and stationary for reduced motion (1.105708ms)
+✔ briefing offers one explicit phase-correct action and discloses non-evidentiary scenery (22.114667ms)
+✔ all live geometric views hide never-observed and radar-only contacts (1.64875ms)
+✔ current optical observation permits geometry without historical detection assumptions (0.176291ms)
+✔ bounded hold freezes observed geometry and never follows hidden current coordinates (0.157ms)
+✔ failure, inactive or absent contacts clear held observations immediately (0.172291ms)
+✔ session/scenario key, backward seek, long jump and channel changes cannot carry memory (0.175ms)
+✔ a reset at tick zero clears a same-tick prior observation even before a new key arrives (0.098292ms)
+✔ follow and overview framing use only observed geometry (0.275625ms)
+✔ reference truth is explicit, labelled and does not seed trainee visibility memory (13.224083ms)
+✔ presentation gating never changes snapshots or scoring inputs (0.167ms)
+✔ v0.4 DAY TV uses EO while thermal and infrared-styled night use IR (1.24725ms)
+✔ v0.4 detection does not expose bird/quad/fixed-wing truth geometry before recognition (0.285916ms)
+✔ v0.4 unavailable channel clears held geometry immediately despite legacy thermal flag (0.222666ms)
+✔ v0.4 reference truth intentionally bypasses observation masking and is opt-in (0.20575ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1370.157542

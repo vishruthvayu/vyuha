@@ -1,0 +1,198 @@
+{
+  "scope": "Integrated TrainingGround simulation-station development milestone; finalreleaseacceptanceopen",
+  "date": "2026-10-25",
+  "branch": "feature/vyuha-next-generation",
+  "parent_commit": "147ff45a279779453b5b5fa5987b2d0d4744fa4c",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "93f5e36512c6c7e3abb0431357efdce38d4bff6456a63a43e314eadafd7d8ad2",
+  "checks": {
+    "affected_frontend_tests": {
+      "passed": 73,
+      "failed": 0,
+      "seconds": 7.257858959
+    },
+    "selected_world_VR_compatibility": {
+      "passed": 9,
+      "failed": 0,
+      "seconds": 1.954154458
+    },
+    "final_modal_a11y_followup_subset": {
+      "passed": 3,
+      "failed": 0,
+      "seconds": 2.324059708
+    },
+    "typescript": "PASS",
+    "changed_file_lint": "PASS",
+    "changed_file_format": "PASS",
+    "registry_projection": "PASS",
+    "browser": "PASS FOR RECORDED SCOPE",
+    "matched_performance": "All60medianFPS; firstcandidateworkerreadingshigher;repeatnearbaseline;nogeneralimprovementclaim"
+  },
+  "not_rerun": [
+    "completebackend/frontend",
+    "fullparity/history",
+    "productionbuild",
+    "Docker",
+    "cleancloneinstallation",
+    "fullbrowseracceptance",
+    "physicalnetwork/XR/platformtests"
+  ],
+  "artifacts": [
+    {
+      "path": "docs/next-generation/training-ground/evidence/browser-receipt.json",
+      "sha256": "2029a9151e0d8d1c99cd746eddbcab1541663c6dafd56eb38ed61638af0ea9b5"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/performance-comparison.json",
+      "sha256": "6f924a4bbf64cedda2646d7cc79e1d18226ca30fb890eb8e2ca8e3e1d1b1f68b"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-active-decision.jpg",
+      "sha256": "fa6258f1f79fd0f0722bb9f19255a84710ce06580292f7afbeb607969a3647a0"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-after-world.jpg",
+      "sha256": "415a4c024e1bb14bcd7952adcdbe46ce3c8635aeffff3b9157e44128c5339cd7"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-app-academy-followup.txt",
+      "sha256": "2343bd944c60618ea4dc140a8061c28cf3b9c9783e7d2f8491728add11c4f930"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-app-followup.txt",
+      "sha256": "3daf25581d0bf2e3dd2fc626c3971d5674669a0a8b6b4a665f20145cebadc486"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-app-integration-initial.txt",
+      "sha256": "cae444458b0779935721ffcb4317b815584d35e77ec2f774e3d99c9343833f2f"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-before-entry.jpg",
+      "sha256": "4e444f7df66fe180222dbef4c5f2c80733ee23ae0d9247a4d715b02d60ea67d4"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-before-world.jpg",
+      "sha256": "a40a42f673b459c362fb0ef6096221c4747ea9c2139aaf9925a977d19d55bb94"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-deck-a11y-initial.txt",
+      "sha256": "d2e1670613b00827abd017cd3dec448f1f3cf7c1cfb77a0d0e525fdf63d26f48"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-deck-a11y.txt",
+      "sha256": "1df98da881670e213af7acb2c339f2f4cf8cebffe53e6287c9aa47fa421b10b8"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-deck-tests.txt",
+      "sha256": "13327e72bb739341eef5e1c70fa14b51a5f98ca96720cd16a0637480deee57ca"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-entry-candidate.jpg",
+      "sha256": "99c5b75e262e6a0e2350bd9ae1713b8ebceefd46cf8d495d12bc88f6369892b0"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-entry-day-candidate.jpg",
+      "sha256": "47ac1c6d212b396843d9108813a9bd169689c9eb685dc704743bb76c4606959e"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-entry-final-desktop.jpg",
+      "sha256": "507684d0890bd637483689471908fa6f0933ef29c3a254799fd3ff0970966d04"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-fallback-ready.jpg",
+      "sha256": "8bb2d297df06e24dae8f9f506cde2611025b9d3838d6ea65004804a17a6705a2"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-final-targeted.txt",
+      "sha256": "ce4d9bc5454f42e78e762cdd3da741a702bc7ae2f7e2129da28fbcca944975ff"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-focused-initial.txt",
+      "sha256": "14e7af3e123e14b6d564de871771ebb0bc3a07fd151863d4a0f4148934fb94f7"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-format-final.txt",
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-frozen-briefing.jpg",
+      "sha256": "02247f2513c30a4636aa9680b3fb031b15a1ad847fe6a086974aef5eeef064ca"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-lint-final.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-mobile-entry.jpg",
+      "sha256": "7c44742ff41774b25951d01ff3c2ab5575a864ba4f6ba6d90d7fc038d9d05326"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-mobile-final.jpg",
+      "sha256": "7c65382eb3688dd14ccfb3a9e97e01b144fb13e999111904253581041a336289"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-night-eo.jpg",
+      "sha256": "708b4105ad1afdd62608111657b2d9a563e3379477ae34846732b1592769fa11"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-night-ir.jpg",
+      "sha256": "4a70d90ab0a532ff15de5d98df5e02f88f00f393ccad7cf547ec0c6a8c35cddd"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-night-thermal-amber.jpg",
+      "sha256": "f1c2621143901842b39ceb1e6a1b5db0cd89eb8a3d6843b5fdc147895ec2f4cb"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-night-thermal-black.jpg",
+      "sha256": "cf37fc8a20f35fbcb5b895a47c2edfc66f25497700d1701cf00e35b3c65fcb3b"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-night-thermal-white.jpg",
+      "sha256": "c23bfda611c82d0243c14c34811100b4b152693a17da3b7156fcca75794bfe8b"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-registry.txt",
+      "sha256": "2665298aae00a36d2b8f0c019b1113b33ac2be8a5ac0c442639443266afd115e"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-response-receipt.jpg",
+      "sha256": "9bc42de7ba3b9a0d0e6ad26c413724648ceeede14b6eb66f5994a28e37bc61d7"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-station-paused.jpg",
+      "sha256": "5911090908915840e9febf000e4f8c45d8f3a52ef0c4895643d40d7d84b78d2c"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-tablet-final.jpg",
+      "sha256": "9751f230f48c0cd87890972ea35920aa274907d37a88e63ffa1b97c8c8ea6e27"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-types-final.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-ui-world.txt",
+      "sha256": "32780778a7db1b54fddee8e8497f7f343398a687b3a0c729b1635a8837acf762"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-verified-debrief.jpg",
+      "sha256": "01b815a0e0696358b95e9c1b32948c9247a88bf0a275a608148a62745e7823f8"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-world-after-200-repeat.json",
+      "sha256": "af0d860dcd0ae4ac0372e4fbcc822d075e4c1cb7d6c10433552b6e6aa9757ff8"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-world-after-200.json",
+      "sha256": "51ef0625ddc4b33768591a50d7ab097253a79ffc6142d06c81fe9ff571feaa81"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-world-before-200.json",
+      "sha256": "5afb1210b2d6a0368210206acdbd7fc59fc79dfe9ed182838ae5c4fe92ce6b42"
+    },
+    {
+      "path": "docs/next-generation/training-ground/evidence/vyuha-training-world-vr-compatibility.txt",
+      "sha256": "b70c4e43d8fc54f99e65ba89089557ec4e7ea9774c6b79e2a0ed43ef330ff7aa"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "scope": "Sequential exploratory dev-preview comparison, not controlled statistical performance qualification",
+  "matched_fields": {
+    "engine_version": "vyuha-0.4.0",
+    "world": "urban_outpost",
+    "night": false,
+    "vision": "day",
+    "contacts": 200,
+    "graphics": "medium",
+    "auto_quality": false,
+    "roster_mode": "retained-slow-synthetic",
+    "requested_seconds": 20,
+    "viewport_at_run": {
+      "css_width": 1280,
+      "css_height": 720,
+      "device_pixel_ratio": 2,
+      "visual_scale": 1
+    },
+    "camera_preset": "trainee",
+    "texture_preparation": "synchronous"
+  },
+  "canvas_css": {
+    "width": 1203.203125,
+    "height": 400
+  },
+  "device": "Owner-identified MacBook Air M1; OS hardware query denied, RAM not reported. Browser UA is not hardware certification.",
+  "runs": [
+    {
+      "name": "before",
+      "source": {
+        "working_tree_source_dirty": false,
+        "commit": "147ff45a279779453b5b5fa5987b2d0d4744fa4c",
+        "source_hash": "428af487f864393e1be190af25d4a13737d85f5b83e1a52ca737ca32dbc75ac0"
+      },
+      "median_fps": 60,
+      "fps_min": 60,
+      "fps_max": 60,
+      "sim_median_ms": 0.5,
+      "sim_p95_ms": 1,
+      "ticks": 599,
+      "timing_samples": 599
+    },
+    {
+      "name": "candidate",
+      "source": {
+        "working_tree_source_dirty": true,
+        "commit": "147ff45a279779453b5b5fa5987b2d0d4744fa4c",
+        "source_hash": "93f5e36512c6c7e3abb0431357efdce38d4bff6456a63a43e314eadafd7d8ad2"
+      },
+      "median_fps": 60,
+      "fps_min": 55,
+      "fps_max": 61,
+      "sim_median_ms": 0.7999999970197678,
+      "sim_p95_ms": 5.700000002980232,
+      "ticks": 597,
+      "timing_samples": 597
+    },
+    {
+      "name": "candidate-repeat",
+      "source": {
+        "working_tree_source_dirty": true,
+        "commit": "147ff45a279779453b5b5fa5987b2d0d4744fa4c",
+        "source_hash": "93f5e36512c6c7e3abb0431357efdce38d4bff6456a63a43e314eadafd7d8ad2"
+      },
+      "median_fps": 60,
+      "fps_min": 60,
+      "fps_max": 60,
+      "sim_median_ms": 0.5,
+      "sim_p95_ms": 0.7000000029802322,
+      "ticks": 600,
+      "timing_samples": 600
+    }
+  ],
+  "interpretation": "All medians60FPS and all retained200. First candidate worker timings higher; repeat near baseline. No causal speedup or blanket non-regression claim. Frame-time percentiles/GPU memory/long soak/XR were not measured in this matched pair."
+}

@@ -1,4 +1,5 @@
 import { diagnosticFrame } from "./diagnostics";
+import { arrivalCamera, briefingSnapshot } from "./training-presentation";
 import {
   Component,
   useCallback,
@@ -90,6 +91,8 @@ function CameraRig({
   opticalZoom = 1,
   reducedMotion = false,
   onMetrics,
+  briefing = false,
+  terrain,
 }: {
   onFps: (n: number) => void;
   preset?: CameraPreset;
@@ -106,6 +109,8 @@ function CameraRig({
   opticalZoom?: number;
   reducedMotion?: boolean;
   onMetrics?: (metrics: RendererMetrics) => void;
+  briefing?: boolean;
+  terrain?: string;
 }) {
   const { camera, size, gl } = useThree();
   const frameMeter = useRef(new RenderFrameMeter());
@@ -120,6 +125,8 @@ function CameraRig({
   const goal = useMemo(() => new THREE.Vector3(), []);
   const goalPosition = useMemo(() => new THREE.Vector3(), []);
   const origin = useMemo(() => new THREE.Vector3(), []);
+  const arrivalTime = useRef(0);
+  const priorBriefing = useRef(briefing);
   const pose = useMemo(
     () =>
       preset
@@ -135,18 +142,40 @@ function CameraRig({
   );
   useFrame(({ clock }, dt) => {
     diagnosticFrame(dt * 1000);
+    const cutToSensor = priorBriefing.current && !briefing;
+    if (!priorBriefing.current && briefing) arrivalTime.current = 0;
+    priorBriefing.current = briefing;
+    if (briefing) arrivalTime.current += Math.min(dt, 0.1);
     if (camera instanceof THREE.PerspectiveCamera) {
-      const desiredFov = opticalFov(preset ? 52 : 38, opticalZoom);
+      const desiredFov = opticalFov(
+        briefing ? 54 : preset ? 52 : 38,
+        briefing ? 1 : opticalZoom,
+      );
       if (Math.abs(camera.fov - desiredFov) > 0.001) {
-        camera.fov = reducedMotion
-          ? desiredFov
-          : THREE.MathUtils.damp(camera.fov, desiredFov, 8, Math.min(dt, 0.25));
+        camera.fov =
+          reducedMotion || cutToSensor
+            ? desiredFov
+            : THREE.MathUtils.damp(
+                camera.fov,
+                desiredFov,
+                8,
+                Math.min(dt, 0.25),
+              );
         camera.updateProjectionMatrix();
       }
     }
     const v = view.current;
     let mode: CameraMode;
-    if (preset && pose) {
+    if (briefing) {
+      const arrival = arrivalCamera(
+        terrain,
+        arrivalTime.current,
+        reducedMotion,
+      );
+      mode = "preset";
+      goal.set(...arrival.aim);
+      goalPosition.set(...arrival.position);
+    } else if (preset && pose) {
       mode = "preset";
       goal.set(...pose.aim);
       goalPosition.set(...pose.position);
@@ -178,6 +207,12 @@ function CameraRig({
       (!Number.isFinite(v.cue.x) ||
         goal.clone().sub(origin).angleTo(v.cue.clone().sub(origin)) >
           THREE.MathUtils.degToRad(1.5));
+    if (cutToSensor) {
+      // Never spend scored observation time flying from an external briefing camera.
+      camera.position.copy(goalPosition);
+      aim.current.copy(goal);
+      v.mode = "";
+    }
     const changed = mode !== v.mode || selectedId !== v.id || cueJump;
     if (changed) {
       const duration =
@@ -195,7 +230,7 @@ function CameraRig({
       v.id = selectedId;
       if (mode === "cue") v.cue.copy(goal);
     }
-    if (reducedMotion) {
+    if (reducedMotion || briefing || cutToSensor) {
       aim.current.copy(goal);
       camera.position.copy(goalPosition);
     } else {
@@ -351,6 +386,7 @@ function World({
   opticalZoom,
   reducedMotion = false,
   onMetrics,
+  presentation,
   selectedId = null,
   cue,
   inspect,
@@ -380,6 +416,7 @@ function World({
   opticalZoom?: number;
   reducedMotion?: boolean;
   onMetrics?: (metrics: RendererMetrics) => void;
+  presentation?: "briefing" | "observation";
 }) {
   const { camera, size } = useThree();
   const envelope = sceneReviewEnvelope(
@@ -444,6 +481,8 @@ function World({
         reducedMotion={reducedMotion}
       />
       <CameraRig
+        briefing={presentation === "briefing"}
+        terrain={terrain}
         opticalZoom={opticalZoom}
         reducedMotion={reducedMotion}
         onMetrics={onMetrics}
@@ -486,6 +525,8 @@ function World({
   );
 }
 export type SceneProps = {
+  /** Briefing renders public environment only, without any scenario contacts. */
+  presentation?: "briefing" | "observation";
   state: Snapshot;
   vision: Vision;
   selected: string | null;
@@ -512,21 +553,24 @@ export type SceneProps = {
 };
 export function Scene(props: SceneProps) {
   const visibility = useRef(new ObservationVisibility());
-  const tracks = visibility.current.tracks(props.state, props.vision, {
-    key: props.visibilityKey ?? "legacy-scene",
-    groundTruth: props.groundTruth,
+  const briefing = props.presentation === "briefing";
+  const source = briefing ? briefingSnapshot(props.state) : props.state;
+  const tracks = visibility.current.tracks(source, props.vision, {
+    key: `${props.visibilityKey ?? "legacy-scene"}:${briefing ? "briefing" : "observation"}`,
+    groundTruth: !briefing && props.groundTruth,
     opticalAvailable: props.opticalAvailable,
   });
-  const observedState = { ...props.state, tracks };
+  const observedState = { ...source, tracks };
   const finale =
     props.engineVersion === SENSOR_VERSION ||
     props.terrainBoxes !== undefined ||
     props.state.tracks.some((t) => t.observation?.version === SENSOR_VERSION);
   // Camera framing, follow selection and overview extent must use the same evidence
   // as the meshes. An unobserved selection cannot point the camera at hidden truth.
-  const selected = tracks.some((t) => t.id === props.selected)
-    ? props.selected
-    : null;
+  const selected =
+    !briefing && tracks.some((t) => t.id === props.selected)
+      ? props.selected
+      : null;
   // Close-up only when a camera resolves the shape (recognise / identify) and
   // only in the live sensor view, never in reference-truth review.
   const focus = tracks.find((t) => t.id === selected);
@@ -577,13 +621,14 @@ export function Scene(props: SceneProps) {
           {...props}
           state={observedState}
           selected={selected}
-          selectedId={props.selected}
+          selectedId={briefing ? null : props.selected}
+          cue={briefing ? null : props.cue}
           inspect={inspect}
           inspectLabel={inspectLabel}
           inspectFrame={inspectFrame}
           finale={finale}
-          referenceTruth={props.groundTruth === true}
-          contextKey={`${props.visibilityKey ?? "legacy-scene"}:${props.vision}:${props.groundTruth === true}`}
+          referenceTruth={!briefing && props.groundTruth === true}
+          contextKey={`${props.visibilityKey ?? "legacy-scene"}:${props.vision}:${!briefing && props.groundTruth === true}:${briefing}`}
         />
       </Canvas>
       {inspect && (
@@ -613,7 +658,7 @@ export function Scene(props: SceneProps) {
           lineHeight: 1.3,
         }}
       />
-      {props.groundTruth === true && (
+      {!briefing && props.groundTruth === true && (
         <div
           className="view-annotation"
           role="note"

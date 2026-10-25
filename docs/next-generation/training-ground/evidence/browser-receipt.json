@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-25",
+  "scope": "Actual Mac in-app browser using disposable QA DB; no physical device/headset qualification",
+  "entry": "Contact-free real3D; explicit Prepare thenStart; daylight orientation distinguished from frozenmission",
+  "live": [
+    "oneCanvas",
+    "world930x574/decision350x406 at1280x720",
+    "no page scroll onStart",
+    "reportedT4selection",
+    "accepteddesignation",
+    "explicitnativeclassificationradios",
+    "acceptedclassification",
+    "Holdmonitoraccepted",
+    "serververifiedGhostscore0"
+  ],
+  "responsive": {
+    "phone_css": [
+      390,
+      844
+    ],
+    "phone_body_width": 390,
+    "tablet_css": [
+      820,
+      1180
+    ],
+    "tablet_body_width": 820,
+    "visual_scale": 1
+  },
+  "mission_controls": [
+    "keyboardEscape",
+    "focusreturned",
+    "inertisolation",
+    "initrefusal andinstructorresume tested"
+  ],
+  "fallback": {
+    "phase": "ready",
+    "canvas_count": 0,
+    "reported_radar_contacts": 0
+  },
+  "optics": [
+    "ruralnightthermalwhite",
+    "thermalblack",
+    "thermalamber",
+    "IRstyle",
+    "nightEO",
+    "returntothermal"
+  ],
+  "renderer_console_errors_in_optics_check": [],
+  "not_claimed": [
+    "correctoperatorreasoning",
+    "humanlearninggain",
+    "fulla11yconformance",
+    "physicalphone",
+    "physicalheadset",
+    "productionofflinequalification"
+  ]
+}

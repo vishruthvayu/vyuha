@@ -1,0 +1,716 @@
+/* Simulation-first composition. Existing evidence and accepted-action components
+   keep ownership; one world canvas remains mounted across briefing and live. */
+.flight-shell > .topbar {
+  display: none;
+}
+.flight-shell .immersive-training {
+  --deck-rail: 300px;
+  padding: 0;
+  width: 100%;
+  max-width: none;
+  position: relative;
+  background: #080d11;
+}
+.flight-shell .deck-workspace-heading {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.flight-shell .immersive-training > .sync-status {
+  position: absolute;
+  top: 4px;
+  left: 20px;
+  z-index: 8;
+  margin: 0;
+  font:
+    9px/1.5 ui-monospace,
+    monospace;
+  color: #b4c9bf;
+}
+.flight-shell .training-deck {
+  position: relative;
+  min-height: calc(100svh - 56px);
+  isolation: isolate;
+}
+.flight-shell .deck-command-rail {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 23px 20px 10px;
+  position: relative;
+  z-index: 7;
+  background: linear-gradient(#0a1119f5, #0b141dd9);
+  border-bottom: 1px solid #728d9240;
+}
+.flight-shell .deck-command-rail .mission-bar {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  gap: 16px;
+  min-width: 0;
+  box-shadow: none;
+}
+.flight-shell .deck-command-rail .mission-name {
+  min-width: 0;
+  flex: 1;
+}
+.flight-shell .deck-command-rail .mission-name strong {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 40ch;
+}
+.flight-shell .deck-command-rail .mission-name div > span {
+  font-size: 10px;
+}
+.flight-shell .deck-command-rail .mission-number,
+.flight-shell .deck-command-rail .mission-ready-hint,
+.flight-shell .deck-command-rail .mission-callsign {
+  display: none;
+}
+.flight-shell .deck-command-rail .mission-facts {
+  flex: 0;
+  gap: 18px;
+}
+.flight-shell .deck-command-rail .mission-facts small {
+  font-size: 8px;
+  margin-bottom: 3px;
+}
+.flight-shell .deck-command-rail .mission-facts > span {
+  font-size: 11px;
+}
+.flight-shell .deck-command-rail button {
+  min-height: 36px;
+}
+.flight-shell .immersive-training .training-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--deck-rail);
+  grid-template-areas: "world instruments" "decision evidence";
+  align-items: stretch;
+  gap: 0;
+  min-height: calc(100svh - 132px);
+}
+.flight-shell .immersive-training .sensor-workspace {
+  grid-area: world;
+  position: relative;
+  display: block;
+  height: calc(100svh - 132px);
+  min-height: 480px;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+  background: #080d11;
+}
+.flight-shell .immersive-training .sensor-workspace > .panel-header {
+  position: absolute;
+  z-index: 5;
+  top: 12px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  min-height: 42px;
+  padding: 6px 10px;
+  background: #0a1622d9;
+  border: 1px solid #829b9f50;
+  border-radius: 6px;
+  backdrop-filter: blur(8px);
+}
+.flight-shell .immersive-training .sensor-workspace > .scene-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  background: #17232a;
+}
+.flight-shell .immersive-training .sensor-workspace > .radar-panel {
+  position: absolute;
+  z-index: 5;
+  left: 16px;
+  bottom: 56px;
+  width: 190px;
+  max-height: 230px;
+  overflow: hidden;
+  background: #07121de8;
+  border-color: #7e9d9b66;
+  border-radius: 6px;
+  box-shadow: 0 8px 30px #0005;
+}
+.flight-shell .immersive-training .radar-panel .panel-header {
+  min-height: 30px;
+  padding: 8px 10px;
+}
+.flight-shell .immersive-training .radar-panel .panel-header strong {
+  font-size: 10px;
+}
+.flight-shell .immersive-training .radar-panel .radar {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+}
+.flight-shell .immersive-training .scene-toolbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  min-height: 40px;
+  padding: 8px 16px;
+  background: #0a1520ed;
+  border-top: 1px solid #8eaca74d;
+  border-bottom: 0;
+}
+.flight-shell .immersive-training .right-panels {
+  grid-area: instruments;
+  position: relative;
+  z-index: 4;
+  min-width: 0;
+  background: #101b24;
+  border-left: 1px solid #65838366;
+  height: calc(100svh - 132px);
+  min-height: 480px;
+  overflow: auto;
+  padding: 14px;
+}
+.flight-shell .immersive-training .contacts-panel {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.flight-shell .immersive-training .contacts-panel .panel-header {
+  padding: 3px 0 14px;
+}
+.flight-shell .immersive-training .contact-list {
+  max-height: none;
+}
+.flight-shell .immersive-training .contact-item {
+  min-height: 70px;
+  background: #192934;
+  margin-top: 8px;
+  border: 1px solid #47606d66;
+  border-radius: 5px;
+}
+.flight-shell .immersive-training .contact-item.selected {
+  background: #243e48;
+  border-color: #bddac2;
+  box-shadow: inset 3px 0 #bedfc6;
+}
+.flight-shell .immersive-training .decision-workspace {
+  grid-area: decision;
+  position: relative;
+  z-index: 4;
+  margin: 0;
+  border-radius: 0;
+  background: #111f2b;
+  border: 0;
+  border-top: 1px solid #7f9c9c66;
+  padding: 12px 18px;
+}
+.flight-shell .immersive-training .decision-evidence {
+  grid-area: evidence;
+  background: #101b24;
+  border-left: 1px solid #65838366;
+  border-top: 1px solid #7f9c9c66;
+  border-radius: 0;
+  padding: 12px;
+  max-height: 360px;
+  overflow: auto;
+}
+.flight-shell .immersive-training .curriculum-banner {
+  grid-column: 1/-1;
+  order: 5;
+  margin: 0;
+  border-radius: 0;
+}
+.flight-shell .immersive-training .event-strip {
+  margin: 0;
+  padding: 10px 20px;
+  border-radius: 0;
+  background: #0b131c;
+  font-size: 10px;
+}
+.flight-shell .immersive-training > .footnote {
+  padding: 8px 20px;
+  margin: 0;
+  font-size: 10px;
+}
+.flight-shell .immersive-training[data-phase="ready"] .training-grid {
+  display: block;
+}
+.flight-shell .immersive-training[data-phase="ready"] .sensor-workspace {
+  height: calc(100svh - 132px);
+  min-height: 540px;
+}
+.flight-shell .immersive-training[data-phase="ready"] .right-panels,
+.flight-shell .immersive-training[data-phase="ready"] .decision-workspace,
+.flight-shell .immersive-training[data-phase="ready"] .decision-evidence,
+.flight-shell
+  .immersive-training[data-phase="ready"]
+  .sensor-workspace
+  > .panel-header,
+.flight-shell .immersive-training[data-phase="ready"] .radar-panel {
+  display: none;
+}
+.flight-shell .immersive-training[data-phase="ready"] .scene-toolbar {
+  justify-content: flex-end;
+}
+.flight-shell
+  .immersive-training[data-phase="ready"]
+  .scene-toolbar
+  .sensor-badges {
+  display: none;
+}
+.flight-shell .immersive-training .mission-briefing.training-welcome {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  padding: 48px clamp(24px, 5vw, 80px) 80px;
+  background:
+    linear-gradient(90deg, #06101bde 0%, #0b142483 42%, transparent 78%),
+    linear-gradient(0deg, #07111be6, transparent 70%);
+  border: 0;
+  border-radius: 0;
+  min-height: 0;
+  overflow: auto;
+}
+.flight-shell .mission-briefing .briefing-copy {
+  max-width: 540px;
+}
+.flight-shell .mission-briefing h2 {
+  font-family: var(--font-display, Georgia, serif);
+  color: #f4f0e5;
+  font-size: clamp(36px, 4.7vw, 68px);
+  line-height: 1.06;
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  margin: 12px 0 20px;
+  text-wrap: balance;
+}
+.flight-shell .mission-briefing .briefing-copy > p:not(.eyebrow) {
+  max-width: 47ch;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #c7d5dd;
+}
+.flight-shell .mission-briefing .briefing-launch {
+  margin-top: 22px;
+  min-height: 48px;
+  padding: 14px 22px;
+  background: #d7e8c5;
+  color: #102326;
+  border: 1px solid #eff8e4;
+  font-size: 14px;
+  box-shadow: 0 8px 32px #0005;
+}
+.flight-shell .mission-briefing .briefing-integrity {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font:
+    10px ui-monospace,
+    monospace;
+  color: #b4c9cb;
+  margin-top: 16px;
+}
+.flight-shell .mission-briefing .preparation-context {
+  margin-top: 12px;
+  font-size: 10px !important;
+  color: #a9c1c9 !important;
+}
+.flight-shell .mission-briefing .briefing-journey {
+  position: absolute;
+  right: 30px;
+  bottom: 70px;
+  list-style: none;
+  display: grid;
+  gap: 18px;
+  padding: 0;
+  margin: 0;
+}
+.flight-shell .mission-briefing .briefing-journey li {
+  display: flex;
+  gap: 14px;
+  font:
+    11px ui-monospace,
+    monospace;
+  color: #d5e4e4;
+}
+.flight-shell .mission-briefing .briefing-journey b {
+  color: #b0d1bc;
+}
+.flight-shell .deck-modal-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+  background: #02080fc2;
+  backdrop-filter: blur(5px);
+}
+.flight-shell .deck-settings-dialog {
+  width: min(560px, 100%);
+  max-height: 100svh;
+  overflow: auto;
+  background: #13212b;
+  color: #e6ece9;
+  padding: 28px;
+  border-left: 1px solid #7f9d99;
+  box-shadow: -25px 0 80px #0007;
+}
+.flight-shell .deck-settings-dialog > header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.flight-shell .deck-settings-dialog .setup-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+}
+.flight-shell .deck-settings-dialog .setup-bar input,
+.flight-shell .deck-settings-dialog .setup-bar select {
+  width: 100%;
+}
+.flight-shell .deck-settings-dialog .vr-launch {
+  display: grid;
+  gap: 14px;
+  margin-top: 25px;
+}
+.flight-shell .training-deck button:focus-visible,
+.flight-shell .training-deck summary:focus-visible,
+.flight-shell .training-deck a:focus-visible {
+  outline: 3px solid #d4edc8;
+  outline-offset: 3px;
+}
+@media (min-width: 1500px) {
+  .flight-shell .immersive-training {
+    --deck-rail: 340px;
+  }
+  .flight-shell .immersive-training .sensor-workspace,
+  .flight-shell .immersive-training .right-panels {
+    min-height: 580px;
+  }
+}
+@media (max-width: 1000px) {
+  .flight-shell .immersive-training {
+    --deck-rail: 250px;
+  }
+  .flight-shell .deck-command-rail .mission-facts > span:first-child {
+    display: none;
+  }
+  .flight-shell .deck-command-rail {
+    gap: 8px;
+    padding-inline: 12px;
+  }
+  .flight-shell .deck-command-rail .mission-actions .button {
+    padding-inline: 9px;
+  }
+  .flight-shell .mission-briefing .briefing-journey {
+    display: none;
+  }
+  .flight-shell
+    .immersive-training
+    .sensor-workspace
+    > .panel-header
+    > div
+    > strong {
+    font-size: 10px;
+  }
+  .flight-shell .immersive-training .radar-panel {
+    width: 160px;
+  }
+}
+@media (max-width: 740px) {
+  .flight-shell .deck-command-rail {
+    align-items: center;
+    padding: 25px 12px 12px;
+    flex-wrap: wrap;
+  }
+  .flight-shell .deck-command-rail .mission-bar {
+    flex-wrap: wrap;
+    gap: 8px;
+    flex-basis: 100%;
+  }
+  .flight-shell .deck-command-rail .mission-name {
+    order: 0;
+  }
+  .flight-shell .deck-command-rail .mission-phase {
+    order: 1;
+  }
+  .flight-shell .deck-command-rail .mission-facts {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .flight-shell .deck-command-rail .mission-actions {
+    order: 2;
+  }
+  .flight-shell .deck-command-rail > .button {
+    position: absolute;
+    right: 12px;
+    top: 6px;
+    min-height: 30px;
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+  .flight-shell .deck-command-rail .mission-facts > span:first-child {
+    display: block;
+  }
+  .flight-shell .deck-command-rail .mission-name strong {
+    white-space: normal;
+    font-size: 12px;
+    max-width: 26ch;
+  }
+  .flight-shell .immersive-training .training-grid {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .flight-shell .immersive-training .sensor-workspace {
+    height: 58svh;
+    min-height: 390px;
+    flex-shrink: 0;
+  }
+  .flight-shell .immersive-training .right-panels {
+    height: auto;
+    min-height: 0;
+    max-height: 240px;
+    border-left: 0;
+    border-top: 1px solid #65838366;
+    padding: 12px;
+  }
+  .flight-shell .immersive-training .contact-list {
+    display: flex;
+    gap: 8px;
+    overflow: auto;
+  }
+  .flight-shell .immersive-training .contact-item {
+    min-width: 230px;
+    margin: 0;
+  }
+  .flight-shell .immersive-training .contacts-panel .footnote {
+    font-size: 10px;
+  }
+  .flight-shell .immersive-training .decision-workspace {
+    order: 2;
+    padding: 12px;
+  }
+  .flight-shell .immersive-training .decision-evidence {
+    order: 3;
+    max-height: none;
+    border-left: 0;
+  }
+  .flight-shell .immersive-training .sensor-workspace > .panel-header {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    flex-wrap: wrap;
+  }
+  .flight-shell .immersive-training .radar-panel {
+    width: 130px;
+    bottom: 48px;
+    left: 8px;
+  }
+  .flight-shell .immersive-training .radar-panel .panel-header {
+    padding: 5px;
+  }
+  .flight-shell .immersive-training .radar-panel .panel-header > div > svg {
+    display: none;
+  }
+  .flight-shell .immersive-training .radar-panel .panel-header strong {
+    font-size: 9px;
+  }
+  .flight-shell .immersive-training .scene-toolbar {
+    padding: 8px;
+    font-size: 9px;
+  }
+  .flight-shell .immersive-training .mission-briefing.training-welcome {
+    padding: 25px 22px 70px;
+    align-items: center;
+    overflow: auto;
+  }
+  .flight-shell .mission-briefing h2 {
+    font-size: 38px;
+  }
+  .flight-shell .mission-briefing .briefing-copy > p:not(.eyebrow) {
+    font-size: 12px;
+  }
+  .flight-shell .immersive-training[data-phase="ready"] .sensor-workspace {
+    height: calc(100svh - 170px);
+    min-height: 550px;
+  }
+  .flight-shell .mission-briefing .briefing-integrity {
+    font-size: 9px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flight-shell .training-deck * {
+    scroll-behavior: auto !important;
+  }
+  .flight-shell .training-deck .mission-phase-dot {
+    animation: none;
+  }
+}
+.flight-shell .deck-command-rail > .vr-launch {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  flex: none;
+}
+.flight-shell .deck-command-rail > .vr-launch a {
+  display: none;
+}
+.flight-shell .deck-command-rail > .vr-launch button {
+  font-size: 0;
+  min-width: 40px;
+  padding: 8px;
+}
+.flight-shell .deck-command-rail > .vr-launch button::before {
+  content: "VR";
+  font:
+    12px ui-monospace,
+    monospace;
+}
+.flight-shell .immersive-training .mission-briefing.training-welcome {
+  flex-direction: row;
+  justify-content: flex-start;
+  text-align: left;
+  animation: none;
+}
+.flight-shell .mission-briefing.training-welcome::before,
+.flight-shell .mission-briefing.training-welcome::after {
+  display: none;
+  content: none;
+}
+.flight-shell .deck-control-notice:empty {
+  display: none;
+}
+.flight-shell .deck-control-notice:not(:empty) {
+  padding: 8px 20px;
+  background: #163347;
+  color: #e3edf2;
+  font-size: 12px;
+}
+/* Active station: the world spans the viewport, with decisions in a stable
+   adjacent instrument port rather than below the fold. */
+@media (min-width: 1001px) {
+  .flight-shell .immersive-training {
+    overflow-anchor: none;
+    height: auto;
+    overflow: visible;
+    display: block;
+  }
+  .flight-shell .immersive-training:not([data-phase="ready"]) .training-grid {
+    --deck-port: 350px;
+    height: calc(100svh - 146px);
+    min-height: 450px;
+    grid-template-columns: minmax(0, 1fr) var(--deck-port);
+    grid-template-rows: minmax(0, 1fr) 168px;
+    grid-template-areas: "world decision" "world evidence";
+  }
+  .flight-shell
+    .immersive-training:not([data-phase="ready"])
+    .sensor-workspace {
+    height: 100%;
+    min-height: 0;
+  }
+  .flight-shell .immersive-training:not([data-phase="ready"]) .right-panels {
+    position: absolute;
+    top: 70px;
+    right: calc(var(--deck-port) + 12px);
+    width: 205px;
+    max-height: 205px;
+    height: auto;
+    min-height: 0;
+    padding: 10px;
+    border: 1px solid #7b969570;
+    border-radius: 6px;
+    background: #0b1722eb;
+  }
+  .flight-shell
+    .immersive-training:not([data-phase="ready"])
+    .contacts-panel
+    .footnote {
+    display: none;
+  }
+  .flight-shell .immersive-training:not([data-phase="ready"]) .contact-item {
+    min-height: 52px;
+    padding: 9px;
+  }
+  .flight-shell
+    .immersive-training:not([data-phase="ready"])
+    .contact-item
+    small {
+    font-size: 10px;
+  }
+  .flight-shell
+    .immersive-training:not([data-phase="ready"])
+    .decision-workspace {
+    min-height: 0;
+    height: 100%;
+    overflow: auto;
+    padding: 10px;
+    border-left: 1px solid #65838366;
+  }
+  .flight-shell
+    .immersive-training:not([data-phase="ready"])
+    .decision-evidence {
+    min-height: 0;
+    height: 100%;
+    max-height: none;
+  }
+  .flight-shell .immersive-training .curriculum-banner {
+    grid-row: 3;
+  }
+}
+/* Override the earlier desktop status rail's bottom anchoring. Status text is
+   never an invisible hit target over the simulation controls. */
+.flight-shell .immersive-training.drill-page > .sync-status {
+  bottom: auto;
+  right: auto;
+  height: auto;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  pointer-events: none;
+}
+@media (max-width: 740px) {
+  .flight-shell .immersive-training.drill-page > .sync-status {
+    left: 12px;
+    max-width: calc(100% - 150px);
+    font-size: 8px;
+    line-height: 1.4;
+  }
+  .flight-shell .deck-command-rail {
+    padding-top: 40px;
+  }
+  .flight-shell .deck-command-rail > .vr-launch {
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+  }
+  .flight-shell .deck-command-rail .mission-facts {
+    padding-right: 46px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .flight-shell .deck-command-rail .mission-facts > span {
+    font-size: 10px;
+  }
+  .flight-shell .deck-command-rail .mission-facts > span small {
+    font-size: 7px;
+  }
+}

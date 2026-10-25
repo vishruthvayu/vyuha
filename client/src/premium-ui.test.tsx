@@ -127,9 +127,9 @@ test("preparation stage: one primary action and an editorial headline", async ()
   const { renderToStaticMarkup } = await import("react-dom/server");
   const { TrainingWelcome } = await import("./TrainingWelcome");
   const html = renderToStaticMarkup(<TrainingWelcome onPrepare={() => {}} />);
-  assert.equal((html.match(/class="button primary"/g) ?? []).length, 1);
-  assert.match(html, /<h2 class="display">/);
-  assert.match(html, /<em>Own the decision\.<\/em>/);
+  assert.equal((html.match(/<button /g) ?? []).length, 1);
+  assert.match(html, /<h2>/);
+  assert.match(html, /Enter the observation station\./);
 });
 
 test("drill settings are open by default so scenario choice is discoverable", async () => {
@@ -303,6 +303,6 @@ test("opening landscape ships locally with its provenance, and the art stays dec
   const { TrainingWelcome } = await import("./TrainingWelcome");
   assert.match(
     renderToStaticMarkup(<TrainingWelcome />),
-    /Illustrative landscape · not a sensor view/,
+    /Orientation scenery · your frozen exercise loads after preparation/,
   );
 });

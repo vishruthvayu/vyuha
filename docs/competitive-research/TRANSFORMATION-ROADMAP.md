@@ -144,3 +144,6 @@ The first Level3 Theatre slice is integrated and focused-tested: primary scene-l
 
 
 The next integrated Level3 learning-journey slice is also implemented: five competency routes through supported/faded practice and item/form-bound independent assessment, linked from verified Ghost evidence and back through the actual simulator. See [scope and browser acceptance](../next-generation/checkpoint-a/ACADEMY-JOURNEY.md). It reuses frozen lesson content and does not constitute the proposed fitted instructional runtime or demonstrated learning improvement.
+
+
+25October2026: [Training Ground simulation station](../next-generation/training-ground/ACCEPTANCE.md) is now an implemented development slice: actual3D briefing, persistent observation stage, native instrument/action hierarchy and coherent bounded sky lighting. Existing simulation/scoring versions remain unchanged. This does not implement the proposed active-query/delivery contract, new environment content pack or fitted instructional runtime.

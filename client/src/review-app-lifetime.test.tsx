@@ -645,7 +645,9 @@ async function mounted(
 }
 const click = async (document: Document, text: string) => {
   const button = [...document.querySelectorAll("button")].find(
-    (candidate) => candidate.textContent?.trim() === text,
+    (candidate) =>
+      candidate.textContent?.trim() === text ||
+      candidate.getAttribute("aria-label") === text,
   );
   assert.ok(button, `Missing button ${text}`);
   await act(async () => button.click());
@@ -1091,11 +1093,13 @@ test("Actual App waits for the Academy ticket and persists assessment context wi
         release();
         await new Promise((r) => setTimeout(r, 20));
       });
+      await click(document, "Mission controls");
       const seedInput = document.querySelector<HTMLInputElement>(
         'input[type="number"]',
       )!;
       assert.equal(seedInput.disabled, true);
       assert.equal(seedInput.value, "7");
+      await click(document, "Close mission controls");
       await click(document, "Start adaptive drill");
       await act(async () => {
         await new Promise((r) => setTimeout(r, 20));

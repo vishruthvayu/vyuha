@@ -15,10 +15,10 @@ test("fresh training defaults to adaptive while explicit legacy/library links re
 });
 test("unprepared adaptive entry describes a real preparation step without fabricated observations or success prediction", () => {
   const html = renderToStaticMarkup(<TrainingWelcome />);
-  assert.match(html, /Prepare an adaptive raid/);
-  assert.match(html, /recorded skill evidence/);
+  assert.match(html, /synthetic environment/);
+  assert.match(html, /sensor picture/);
   assert.doesNotMatch(html, /60 fps|100%|live contact|70% success/);
-  assert.match(html, /legacy or saved exercise/);
+  assert.match(html, /frozen exercise loads after preparation/);
 });
 test("separated drill setup preserves legacy access, frozen callsign ownership and empty-library recovery", () => {
   const noop = () => {};

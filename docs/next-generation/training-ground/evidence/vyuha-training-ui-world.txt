@@ -1,0 +1,38 @@
+✔ decision dock and contact evidence are separate labelled regions (88.00575ms)
+✔ premium layer never loads a remote asset (0.764833ms)
+✔ bundled fonts ship with their licences (0.439125ms)
+✔ every premium stylesheet with motion honours reduced motion (0.52375ms)
+✔ premium layer is imported after the legacy stylesheets (0.683875ms)
+✔ preparation stage: illustration is decorative and carries no contacts or readings (36.06125ms)
+✔ preparation stage: one primary action and an editorial headline (88.958833ms)
+✔ drill settings are open by default so scenario choice is discoverable (13.831875ms)
+✔ review section navigator: plain anchors, one current location, no observer required (3.040459ms)
+✔ review section navigator mounts where IntersectionObserver is unavailable (19.357583ms)
+✔ instructor roster puts live sessions first and keeps history last (23.598ms)
+✔ crew scope scales to the farthest reported contact and marks shared stages (10.60775ms)
+✔ scenario × skill shading is a CSS variable, and empty cells are marked rather than coloured (3.793959ms)
+✔ opening landscape ships locally with its provenance, and the art stays decorative (1.852833ms)
+✔ fresh training defaults to adaptive while explicit legacy/library links remain supported (1.988083ms)
+✔ unprepared adaptive entry describes a real preparation step without fabricated observations or success prediction (17.267084ms)
+✔ separated drill setup preserves legacy access, frozen callsign ownership and empty-library recovery (4.88775ms)
+✔ saved Finale scenario labels do not invent legacy doctrine or undefined metadata (21.750375ms)
+✔ new seed wraps the maximum allowed unsigned seed without creating an invalid request (0.367583ms)
+✔ pending preparation locks every mutable scenario input until its request finishes (21.9525ms)
+✔ constant environment produces analytic pi-times-radiance diffuse irradiance (12.858584ms)
+✔ directional environment reproduces the cosine-convolved linear field (12.49775ms)
+✔ yaw rotates the irradiance field without changing its energy (8.773583ms)
+✔ mirrored environment coordinates agree with both photographed sky sun metadata (0.373208ms)
+✔ sample work is bounded and rejects non-finite dimensions/yaw (0.738041ms)
+✔ authored probes replace a declared fill share and leave existing PMREM intensity unchanged (3.88125ms)
+✔ extreme directional fields stay nonnegative and inside analytic irradiance budget (9.902959ms)
+✔ fallback and thermal/IR modes retain original light policy with no probe contribution (0.45175ms)
+✔ profile caches are immutable and projected/probe values have independent ownership (4.93525ms)
+✔ scene cleanup restores prior fog, environment, intensity, rotation and clear state (1.729792ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3786.384375

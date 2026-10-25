@@ -51,6 +51,15 @@ import {
 } from "./thermal";
 import { createTerrainGeometry, type TerrainKind } from "./terrain";
 import { displayVisibility } from "./displayVisibility";
+import {
+  SKY_PROBE_WIDTH,
+  SKY_PROBE_HEIGHT,
+  worldLightingProfile,
+  worldLightingState,
+  projectSkyRadiance,
+  boundedSkyProbe,
+  preserveSceneLighting,
+} from "./world-lighting";
 
 export const LAYER_WORLD = 0;
 export const LAYER_CONTACTS = 1;
@@ -633,13 +642,14 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
 
   // Sky dome and sun.
   const sun = SKY.meta.skies["sky-day"].sun.direction as number[];
-  const skyYaw = -2.35; // rotate the photographed sky so the sun stands south-west
+  const lightingProfile = worldLightingProfile(terrain);
+  const skyYaw = lightingProfile.skyYaw;
   const sunDirection = useMemo(
     () =>
       new THREE.Vector3(sun[0], sun[1], sun[2])
         .applyAxisAngle(new THREE.Vector3(0, 1, 0), skyYaw)
         .normalize(),
-    [sun],
+    [sun, skyYaw],
   );
   const skyGeometry = useMemo(() => {
     const below = (SKY.meta.below_horizon_deg * Math.PI) / 180;
@@ -654,7 +664,7 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     );
     g.rotateY(skyYaw);
     return g;
-  }, []);
+  }, [skyYaw]);
   const skyMaterials = useMemo(() => {
     for (const t of [skyDay, skyNight]) {
       t.colorSpace = THREE.SRGBColorSpace;
@@ -703,13 +713,37 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
       g.fillStyle = ground;
       g.fillRect(0, 0, 512, 256);
       const rows = (256 * (90 + SKY.meta.below_horizon_deg)) / 180;
+      // SphereGeometry's U runs opposite to the equirectangular lookup used by
+      // PMREM. Mirror once so sky, diffuse probe and reflections share azimuth.
+      g.save();
+      g.translate(512, 0);
+      g.scale(-1, 1);
       g.drawImage(t.image as CanvasImageSource, 0, 0, 512, rows);
+      g.restore();
+      let radiance: THREE.SphericalHarmonics3 | null = null;
+      try {
+        const sample = document.createElement("canvas");
+        sample.width = SKY_PROBE_WIDTH;
+        sample.height = SKY_PROBE_HEIGHT;
+        const pixels = sample.getContext("2d", { willReadFrequently: true });
+        if (pixels) {
+          pixels.drawImage(c, 0, 0, sample.width, sample.height);
+          radiance = projectSkyRadiance(
+            pixels.getImageData(0, 0, sample.width, sample.height).data,
+            sample.width,
+            sample.height,
+            skyYaw,
+          );
+        }
+      } catch {
+        // Local/offline canvas read failure keeps the original hemi+ambient fill.
+      }
       const full = new THREE.CanvasTexture(c);
       full.colorSpace = THREE.SRGBColorSpace;
       full.mapping = THREE.EquirectangularReflectionMapping;
       const rt = pmrem.fromEquirectangular(full);
       full.dispose();
-      return rt;
+      return { texture: rt.texture, dispose: () => rt.dispose(), radiance };
     };
     const maps = {
       day: make(skyDay, "#6e6150"),
@@ -718,7 +752,7 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     pmrem.dispose();
     finish();
     return maps;
-  }, [gl, skyDay, skyNight]);
+  }, [gl, skyDay, skyNight, skyYaw]);
   useEffect(
     () => () => {
       envMaps.day.dispose();
@@ -731,6 +765,19 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
   useEffect(() => () => twins.dispose(), [twins]);
   const sunRef = useRef<THREE.DirectionalLight>(null);
   const hemiRef = useRef<THREE.HemisphereLight>(null);
+  const ambientRef = useRef<THREE.AmbientLight>(null);
+  const diffuseProbes = useMemo(
+    () => ({
+      day: boundedSkyProbe(envMaps.day.radiance, lightingProfile.day),
+      night: boundedSkyProbe(envMaps.night.radiance, lightingProfile.night),
+    }),
+    [envMaps, lightingProfile],
+  );
+  const skyProbe = useMemo(() => {
+    const probe = new THREE.LightProbe(undefined, 0);
+    probe.layers.enableAll();
+    return probe;
+  }, []);
 
   const mode: Mode = useMemo(
     () => ({
@@ -745,11 +792,29 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     [props.night, props.vision, props.palette],
   );
 
+  useLayoutEffect(() => {
+    const restore = preserveSceneLighting(scene, gl);
+    return () => {
+      skyProbe.intensity = 0;
+      skyProbe.sh.zero();
+      restore();
+    };
+  }, [scene, gl, skyProbe]);
+
   // Apply the display mode: thermal twins, emissive night lighting, fog, sky,
   // environment lighting. No material is rebuilt, so switching never recompiles
   // after the first warm-up (see the effect below).
   useLayoutEffect(() => {
     const thermal = mode.thermal;
+    const diffuse = mode.night ? diffuseProbes.night : diffuseProbes.day;
+    const lighting = worldLightingState(
+      lightingProfile,
+      mode.night,
+      !!thermal,
+      diffuse !== null,
+    );
+    if (diffuse) skyProbe.sh.copy(diffuse);
+    skyProbe.intensity = lighting.probeIntensity;
     for (const s of built.swappable) {
       s.mesh.material = thermal ? twins.get(s.eo, s.cls) : s.eo;
       if (!thermal && s.eo instanceof THREE.MeshStandardMaterial) {
@@ -810,17 +875,19 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
       : mode.night
         ? envMaps.night.texture
         : envMaps.day.texture;
-    scene.environmentIntensity = mode.night ? 0.25 : 0.65;
+    scene.environmentIntensity = lighting.environment;
+    scene.environmentRotation.set(0, skyYaw, 0);
     if (sunRef.current) {
-      sunRef.current.intensity = thermal ? 0 : mode.night ? 0.12 : 2.6;
-      sunRef.current.color.set(mode.night ? "#9fb4d6" : "#fff2dc");
+      sunRef.current.intensity = lighting.sun;
+      sunRef.current.color.set(lighting.sunColor);
       sunRef.current.castShadow = !thermal && !mode.night && quality !== "low";
     }
     if (hemiRef.current) {
-      hemiRef.current.intensity = thermal ? 0 : mode.night ? 0.06 : 0.55;
-      hemiRef.current.color.set(mode.night ? "#33445e" : "#d6e2ec");
-      hemiRef.current.groundColor.set(mode.night ? "#0e0d0b" : "#5d5240");
+      hemiRef.current.intensity = thermal ? 0 : lighting.hemisphere;
+      hemiRef.current.color.set(lighting.skyColor);
+      hemiRef.current.groundColor.set(lighting.groundColor);
     }
+    if (ambientRef.current) ambientRef.current.intensity = lighting.ambient;
     gl.shadowMap.needsUpdate = true;
   }, [
     built,
@@ -833,14 +900,11 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     props.fog,
     props.translucentOccluders,
     quality,
+    lightingProfile,
+    diffuseProbes,
+    skyProbe,
+    skyYaw,
   ]);
-  useEffect(
-    () => () => {
-      scene.fog = null;
-      scene.environment = null;
-    },
-    [scene],
-  );
 
   // Warm up every material variant once, so the first sensor switch does not
   // compile shaders mid-exercise (baseline A6).
@@ -894,7 +958,12 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
         args={["#d6e2ec", "#5d5240", 0.55]}
         onUpdate={(l) => l.layers.enableAll()}
       />
-      <ambientLight intensity={0.06} onUpdate={(l) => l.layers.enableAll()} />
+      <ambientLight
+        ref={ambientRef}
+        intensity={0.06}
+        onUpdate={(l) => l.layers.enableAll()}
+      />
+      <primitive object={skyProbe} />
       <directionalLight
         ref={sunRef}
         position={sunDirection.clone().multiplyScalar(400).toArray()}

@@ -1,0 +1,11 @@
+✔ mission controls isolate focus, close with Escape, and retain one mounted world across phases (575.685708ms)
+✔ an uninitialized exercise cannot be hidden by an unacknowledged pause request (14.901667ms)
+✔ instructor resume closes paused mission controls without overriding the command (28.4385ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2324.059708

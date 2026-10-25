@@ -1,0 +1,67 @@
+✔ Actual App completion persists verified evidence without stealing a subsequently selected review (4018.33525ms)
+✔ Actual App retry-complete persists verified evidence without stealing a subsequently selected review (1224.153584ms)
+✔ Actual App retry-existing persists verified evidence without stealing a subsequently selected review (1227.714541ms)
+✔ Actual App completion notes keeps the score verified and exposes annotation availability immediately (1150.191708ms)
+✔ Actual App completion notes-failed keeps the score verified and exposes annotation availability immediately (790.108917ms)
+✔ Actual App presentation-only FPS/camera changes reuse replay snapshot while a seek reconstructs (183.818375ms)
+✔ Actual App restored draft locks evidence until its own initialized replay and ignores stale worker ownership (506.528084ms)
+✔ Actual App ignores an older accepted acknowledgment while a different classification is pending (491.673167ms)
+✔ Actual App ignores an older rejected acknowledgment while a different classification is pending (210.486583ms)
+✖ Actual App freezes browser Fusion attribution across a delayed cross-modality acknowledgment (90.101583ms)
+✖ Actual App freezes VR Fusion attribution across a delayed cross-modality acknowledgment (293.257375ms)
+✖ Actual App waits for the Academy ticket and persists assessment context without default hints (192.256334ms)
+✔ Actual App distinguishes learning-rejected without starting or saving a refused curriculum (185.672916ms)
+✔ Actual App distinguishes learning-invalid without starting or saving a refused curriculum (92.941875ms)
+✔ Actual App distinguishes learning-network without starting or saving a refused curriculum (100.500167ms)
+✔ Actual App preserves safe legacy behavior for legacy-rejected (65.7935ms)
+✔ Actual App preserves safe legacy behavior for legacy-network (76.537459ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 14
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15024.825459
+
+✖ failing tests:
+
+test at src/review-app-lifetime.test.tsx:1:23284
+✖ Actual App freezes browser Fusion attribution across a delayed cross-modality acknowledgment (90.101583ms)
+  AssertionError [ERR_ASSERTION]: Missing button Open VR observation cockpit
+      at click (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:650:10)
+      at <anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:1028:15)
+      at async mounted (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:596:5)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at src/review-app-lifetime.test.tsx:1:23284
+✖ Actual App freezes VR Fusion attribution across a delayed cross-modality acknowledgment (293.257375ms)
+  AssertionError [ERR_ASSERTION]: Missing button Open VR observation cockpit
+      at click (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:650:10)
+      at <anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:1028:15)
+      at async mounted (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:596:5)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at src/review-app-lifetime.test.tsx:1:25139
+✖ Actual App waits for the Academy ticket and persists assessment context without default hints (192.256334ms)
+  TypeError: Cannot read properties of null (reading 'disabled')
+      at <anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:1097:30)
+      at async mounted (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/review-app-lifetime.test.tsx:596:5)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)

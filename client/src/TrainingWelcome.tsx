@@ -1,63 +1,76 @@
-import { Crosshair, ScanEye, ShieldCheck, Waypoints } from "lucide-react";
-import { PreparationTerrain } from "./PreparationTerrain";
+import { ArrowRight, ShieldCheck } from "lucide-react";
+/** A briefing over contact-free world scenery. Preparation and Start are still
+ * explicit App transactions, never actions caused by camera animation. */
 export function TrainingWelcome({
   onPrepare,
   busy = false,
-}: { onPrepare?: () => void; busy?: boolean } = {}) {
+  prepared = false,
+  title = "Enter the observation station.",
+  label = "Prepare adaptive drill",
+  duration,
+  contacts,
+}: {
+  onPrepare?: () => void;
+  busy?: boolean;
+  prepared?: boolean;
+  title?: string;
+  label?: string;
+  duration?: number;
+  contacts?: number;
+} = {}) {
   return (
-    <div className="training-welcome">
-      <PreparationTerrain />
-      <div className="preparation-story">
-        <p className="eyebrow">Adaptive decision training</p>
-        <h2 className="display">
-          Read the picture.
-          <br />
-          <em>Own the decision.</em>
-        </h2>
-        <p>
-          Prepare an adaptive raid built around your recorded skill evidence.
-          Your sensor picture determines what you can act on.
+    <div className="training-welcome mission-briefing">
+      <div className="briefing-copy">
+        <p className="eyebrow">
+          {prepared ? "MISSION BRIEFING · READY" : "VYUHA / SYNTHETIC TRAINING"}
         </p>
+        <h2>{title}</h2>
+        <p>
+          {prepared
+            ? "Observe the available cues. Designate, identify and choose your own response. Not every contact is a threat."
+            : "Step into a synthetic environment. Read the sensor picture, investigate uncertainty and make the decision."}
+        </p>
+        {prepared && (
+          <p className="briefing-facts">
+            {contacts !== undefined ? `${contacts} contacts · ` : ""}
+            {duration !== undefined ? `${duration} seconds · ` : ""}Frozen
+            exercise
+          </p>
+        )}
         {onPrepare && (
           <button
-            className="button primary"
+            className="button primary briefing-launch"
             disabled={busy}
             onClick={onPrepare}
           >
-            {busy ? "Preparing your exercise…" : "Prepare adaptive drill"}
+            {busy ? "Preparing your exercise…" : label}
+            <ArrowRight size={18} aria-hidden="true" />
           </button>
         )}
+        <span className="briefing-integrity">
+          <ShieldCheck size={14} aria-hidden="true" />
+          Simulation time starts only with Start.
+        </span>
         <p className="preparation-context">
-          Illustrative landscape · not a sensor view. Your frozen exercise loads
-          after preparation.
+          {prepared
+            ? "Contact-free environment preview · not sensor evidence"
+            : "Orientation scenery · your frozen exercise loads after preparation"}
         </p>
       </div>
-      <ol className="training-loop">
+      <ol className="briefing-journey" aria-label="Training journey">
         <li>
-          <ScanEye aria-hidden="true" />
-          <strong>Observe</strong>
-          <span>Read current sensor cues</span>
+          <b>01</b>Observe
         </li>
         <li>
-          <Crosshair aria-hidden="true" />
-          <strong>Decide</strong>
-          <span>Designate, identify, respond</span>
+          <b>02</b>Investigate
         </li>
         <li>
-          <ShieldCheck aria-hidden="true" />
-          <strong>Verify</strong>
-          <span>Server reconstructs your decisions</span>
+          <b>03</b>Decide
         </li>
         <li>
-          <Waypoints aria-hidden="true" />
-          <strong>Adapt</strong>
-          <span>Review the evidence and train again</span>
+          <b>04</b>Reconstruct
         </li>
       </ol>
-      <p className="footnote">
-        Choose a legacy or saved exercise in Drill settings. Training estimates
-        are illustrative; they do not certify operational competence.
-      </p>
     </div>
   );
 }
