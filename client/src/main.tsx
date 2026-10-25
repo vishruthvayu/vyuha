@@ -10,6 +10,7 @@ import "./vr.css";
 import "./next-generation.css";
 import "./academy-journey.css";
 import "./training-deck.css";
+import "./optical-station.css";
 import "./premium/premium.css";
 import WorkspaceBoundary from "./WorkspaceBoundary";
 import { LoadingWorkspace } from "./UI";

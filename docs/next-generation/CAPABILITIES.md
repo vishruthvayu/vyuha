@@ -4,7 +4,7 @@ Source: `server/config/capabilities-v1.json`. Generate with `scripts/check_capab
 
 | Capability | Implementation | Workflow | Source |
 |---|---|---|---|
-| Versioned deterministic browser/VR training | IMPLEMENTED | `/` | `server/engine.py`, `client/src/sim.worker.ts`, `client/src/TrainingDeck.tsx`, `client/src/training-presentation.ts`, `client/src/Scene.tsx`, `client/src/world/world-lighting.ts` |
+| Versioned deterministic browser/VR training | IMPLEMENTED | `/` | `server/engine.py`, `client/src/sim.worker.ts`, `client/src/TrainingDeck.tsx`, `client/src/training-presentation.ts`, `client/src/Scene.tsx`, `client/src/world/world-lighting.ts`, `client/src/OpticalStation.tsx`, `client/src/optical-station.ts`, `client/src/inquiry-evidence.ts` |
 | Server-verified Ghost and immutable replay | IMPLEMENTED | `/?view=aar` | `server/review.py`, `client/src/Ghost.tsx`, `client/src/ReviewTheatre.tsx`, `client/src/review-frame.ts` |
 | Role-attributed Crew and reconnection | IMPLEMENTED | `/crew` | `server/crew.py`, `client/src/Crew.tsx` |
 | Dispatch-bound Fusion advice receipts | IMPLEMENTED | `/` | `server/fusion.py`, `client/src/action-evidence.ts` |

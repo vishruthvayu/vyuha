@@ -1,3 +1,9 @@
+import {
+  aimPoint,
+  reportedAim,
+  liveManualAim,
+  type OpticalAim,
+} from "./optical-station";
 import { diagnosticFrame } from "./diagnostics";
 import { arrivalCamera, briefingSnapshot } from "./training-presentation";
 import {
@@ -93,6 +99,8 @@ function CameraRig({
   onMetrics,
   briefing = false,
   terrain,
+  manualAim,
+  onCameraAim,
 }: {
   onFps: (n: number) => void;
   preset?: CameraPreset;
@@ -111,6 +119,8 @@ function CameraRig({
   onMetrics?: (metrics: RendererMetrics) => void;
   briefing?: boolean;
   terrain?: string;
+  manualAim?: OpticalAim | null;
+  onCameraAim?: (aim: OpticalAim) => void;
 }) {
   const { camera, size, gl } = useThree();
   const frameMeter = useRef(new RenderFrameMeter());
@@ -127,6 +137,8 @@ function CameraRig({
   const origin = useMemo(() => new THREE.Vector3(), []);
   const arrivalTime = useRef(0);
   const priorBriefing = useRef(briefing);
+  const lastAimReport = useRef(-Infinity);
+  const direction = useMemo(() => new THREE.Vector3(), []);
   const pose = useMemo(
     () =>
       preset
@@ -195,15 +207,19 @@ function CameraRig({
       );
       goalPosition.copy(origin);
       const shown = selected ? poses.pose(selected) : undefined;
-      mode = liveCameraMode(!!shown, selectedId, cue);
-      if (shown) goal.set(shown.displayX, shown.displayY, shown.displayZ);
+      const manual = manualAim
+        ? aimPoint({ x: origin.x, z: origin.z, altitude: origin.y }, manualAim)
+        : null;
+      mode = manual ? "manual" : liveCameraMode(!!shown, selectedId, cue);
+      if (manual) goal.set(manual.x, manual.altitude, manual.z);
+      else if (shown) goal.set(shown.displayX, shown.displayY, shown.displayZ);
       else if (mode === "cue" && cue) goal.set(cue.x, cue.altitude, cue.z);
       else if (mode === "hold") goal.copy(aim.current);
       else goal.set(finale ? 0 : 40, 18, finale ? 1500 : 150);
     }
     // A cue that jumps (a radar sweep) re-slews; small IR/EO updates are followed.
     const cueJump =
-      mode === "cue" &&
+      (mode === "cue" || mode === "manual") &&
       (!Number.isFinite(v.cue.x) ||
         goal.clone().sub(origin).angleTo(v.cue.clone().sub(origin)) >
           THREE.MathUtils.degToRad(1.5));
@@ -228,7 +244,7 @@ function CameraRig({
       v.positionBlend.start(camera.position, mode === "preset" ? 0.8 : 0.01);
       v.mode = mode;
       v.id = selectedId;
-      if (mode === "cue") v.cue.copy(goal);
+      if (mode === "cue" || mode === "manual") v.cue.copy(goal);
     }
     if (reducedMotion || briefing || cutToSensor) {
       aim.current.copy(goal);
@@ -247,6 +263,25 @@ function CameraRig({
       else camera.position.copy(goalPosition);
     }
     camera.lookAt(aim.current);
+    if (
+      onCameraAim &&
+      !briefing &&
+      !preset &&
+      !referenceTruth &&
+      clock.elapsedTime - lastAimReport.current >= 0.2
+    ) {
+      lastAimReport.current = clock.elapsedTime;
+      camera.getWorldDirection(direction);
+      const displayed = reportedAim(
+        {
+          x: origin.x + direction.x,
+          z: origin.z + direction.z,
+          altitude: origin.y + direction.y,
+        },
+        { x: origin.x, z: origin.z, altitude: origin.y },
+      );
+      if (displayed) onCameraAim(displayed);
+    }
     const fps = frameMeter.current.sample(clock.elapsedTime);
     if (fps !== null) {
       onFps(fps);
@@ -389,6 +424,8 @@ function World({
   presentation,
   selectedId = null,
   cue,
+  manualAim,
+  onCameraAim,
   inspect,
   inspectLabel,
   inspectFrame,
@@ -398,6 +435,8 @@ function World({
   selected: string | null;
   selectedId?: string | null;
   cue?: SensorPosition | null;
+  manualAim?: OpticalAim | null;
+  onCameraAim?: (aim: OpticalAim) => void;
   /** Sensor-limited close-up of the selected contact (live view only). */
   inspect?: { shape: RenderShape; channel: "eo" | "ir" } | null;
   inspectLabel?: RefObject<HTMLDivElement | null>;
@@ -488,6 +527,8 @@ function World({
         onMetrics={onMetrics}
         selectedId={selectedId}
         cue={selected ? null : cue}
+        manualAim={manualAim}
+        onCameraAim={onCameraAim}
         poses={poses}
         onFps={onFps}
         preset={cameraPreset}
@@ -497,7 +538,9 @@ function World({
         sensorOrigin={sensorOrigin}
         referenceTruth={referenceTruth}
       />
-      {!cameraPreset && selectedId && !selected && <CueMarker cue={cue} />}
+      {!cameraPreset && !manualAim && selectedId && !selected && (
+        <CueMarker cue={cue} />
+      )}
       <InspectionPass
         displayKey={`${contextKey}:${palette}:${state.night}:${quality}:${fog}`}
         poses={poses}
@@ -548,6 +591,8 @@ export type SceneProps = {
   /** Latest reported position of the selected contact from any sensor (radar,
    * EO or IR). The live camera slews to it when no camera observes the contact. */
   cue?: SensorPosition | null;
+  manualAim?: OpticalAim | null;
+  onCameraAim?: (aim: OpticalAim) => void;
   reducedMotion?: boolean;
   onMetrics?: (metrics: RendererMetrics) => void;
 };
@@ -577,9 +622,15 @@ export function Scene(props: SceneProps) {
   const level = focus
     ? (focus.visual_level ?? (focus.thermal ? "recognise" : "none"))
     : "none";
+  const manualAim = liveManualAim(props.manualAim, {
+    briefing,
+    preset: !!props.cameraPreset,
+    referenceTruth: props.groundTruth === true,
+  });
   const inspect =
     focus &&
     !props.cameraPreset &&
+    !manualAim &&
     props.groundTruth !== true &&
     (level === "recognise" || level === "identify")
       ? {
@@ -623,6 +674,7 @@ export function Scene(props: SceneProps) {
           selected={selected}
           selectedId={briefing ? null : props.selected}
           cue={briefing ? null : props.cue}
+          manualAim={manualAim}
           inspect={inspect}
           inspectLabel={inspectLabel}
           inspectFrame={inspectFrame}

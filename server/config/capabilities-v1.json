@@ -13,12 +13,15 @@
         "client/src/TrainingDeck.tsx",
         "client/src/training-presentation.ts",
         "client/src/Scene.tsx",
-        "client/src/world/world-lighting.ts"
+        "client/src/world/world-lighting.ts",
+        "client/src/OpticalStation.tsx",
+        "client/src/optical-station.ts",
+        "client/src/inquiry-evidence.ts"
       ],
       "evidence_ids": [
         "baseline-2026-10-22"
       ],
-      "limitations": "Illustrative training functionality; no operational certification."
+      "limitations": "Illustrative training functionality; no operational certification. Browser optical pointing and A/B report comparison are local presentation tools, not new sensor acquisition, accepted evidence or graded learning outcomes."
     },
     {
       "id": "ghost-review",

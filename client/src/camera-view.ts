@@ -1,7 +1,8 @@
 import * as THREE from "three";
 import type { SensorPosition } from "./sensors-v2";
 
-export type CameraMode = "track" | "cue" | "hold" | "sector" | "preset";
+export type CameraMode =
+  "track" | "cue" | "hold" | "sector" | "preset" | "manual";
 /** Where the live sensor camera points. Evidence only:
  *  - "track": a camera observes the selected contact and its model is drawn;
  *  - "cue": no camera observes it, but some sensor (usually radar) reports it;

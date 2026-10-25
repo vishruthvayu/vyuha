@@ -1,3 +1,4 @@
+import { OpticalStation } from "./OpticalStation";
 import { TrainingDeck } from "./TrainingDeck";
 import { briefingSnapshot } from "./training-presentation";
 import ReviewTheatre from "./ReviewTheatre";
@@ -1946,24 +1947,6 @@ export default function App({
                               Graphics settings change rendering only;
                               simulation stays at 30 Hz.
                             </small>
-                            <label>
-                              Display magnification · {opticalZoom}×
-                              <input
-                                type="range"
-                                aria-label="Display magnification"
-                                min="1"
-                                max="6"
-                                step="1"
-                                value={opticalZoom}
-                                onChange={(event) =>
-                                  setOpticalZoom(Number(event.target.value))
-                                }
-                              />
-                            </label>
-                            <small>
-                              Display crop only; sensor ranges and evidence are
-                              unchanged.
-                            </small>
                             <LocalAudio
                               state={state}
                               fog={scenario.fog}
@@ -2015,166 +1998,205 @@ export default function App({
                         ))}
                       </div>
                     </div>
-                    <div
-                      className={`scene-container ${vision} ${tactical ? "tactical-mode" : ""}`}
+                    <OpticalStation
+                      scopeId={`${scenario.id}:${sessionRef.current ?? "preview"}:${trainee}:${workerScope.current}`}
+                      enabled={phase === "running" || phase === "paused"}
+                      tactical={tactical}
+                      selected={selected}
+                      observation={target?.observation}
+                      cue={
+                        opticalPosition ??
+                        (target
+                          ? {
+                              x: target.x,
+                              z: target.z,
+                              altitude: target.altitude,
+                            }
+                          : null)
+                      }
+                      origin={
+                        scenario.engine_version === "vyuha-0.4.0" ||
+                        scenario.version === 2
+                          ? { x: 0, z: 0, altitude: 2 }
+                          : { x: 0, z: 4, altitude: 14 }
+                      }
+                      tick={state.tick}
+                      vision={vision}
+                      zoom={opticalZoom}
+                      onZoom={setOpticalZoom}
                     >
-                      {phase === "restoring" ? (
-                        <div className="render-fallback" role="status">
-                          <p>Reconstructing the saved sensor evidence…</p>
-                        </div>
-                      ) : tactical ? (
-                        <Radar
-                          state={
-                            phase === "ready" ? briefingSnapshot(state) : state
-                          }
-                          selected={selected}
-                          onSelect={choose}
-                          large
-                        />
-                      ) : (
-                        <Scene
-                          presentation={
-                            phase === "ready" ? "briefing" : "observation"
-                          }
-                          opticalZoom={opticalZoom}
-                          cue={
-                            target
-                              ? {
-                                  x: target.x,
-                                  z: target.z,
-                                  altitude: target.altitude,
-                                }
-                              : null
-                          }
-                          terrainBoxes={scenario.terrain_boxes}
-                          engineVersion={scenario.engine_version}
-                          visibilityKey={`${scenario.id}:${sessionRef.current || "preview"}`}
-                          state={
-                            phase === "ready" &&
-                            mode === "adaptive" &&
-                            !prepared
-                              ? { ...state, night: false }
-                              : state
-                          }
-                          selected={selected}
-                          vision={phase === "ready" ? "day" : vision}
-                          onFps={renderFps}
-                          palette={palette}
-                          terrain={scenario.terrain_id ?? "urban_outpost"}
-                          quality={quality}
-                          fog={scenario.fog}
-                          fallback={
-                            <div className="render-fallback">
-                              <p>
-                                3D rendering is unavailable on this browser.
-                              </p>
-                              <button
-                                className="button primary"
-                                onClick={() => setTactical(true)}
-                              >
-                                Use tactical view
-                              </button>
+                      {({ manualAim, onCameraAim }) => (
+                        <div
+                          className={`scene-container ${vision} ${tactical ? "tactical-mode" : ""}`}
+                        >
+                          {phase === "restoring" ? (
+                            <div className="render-fallback" role="status">
+                              <p>Reconstructing the saved sensor evidence…</p>
                             </div>
-                          }
-                        />
-                      )}
-                      {!tactical &&
-                        phase !== "restoring" &&
-                        phase !== "ready" && (
-                          <>
-                            <div className="view-annotation top-left">
-                              {vision === "thermal"
-                                ? `${palettes[palette].label} / EO-IR`
-                                : vision === "day"
-                                  ? "DAY TV / OPTICAL"
-                                  : scenario.version === 2
-                                    ? "IR NIGHT DISPLAY / ILLUSTRATIVE"
-                                    : "NIGHT VISION / SIMULATED"}
-                              <span>
-                                {!selected
-                                  ? "OBSERVATION SECTOR"
-                                  : opticalPosition
-                                    ? `TRACKING ${selected}`
-                                    : target
-                                      ? `${selected} · CUED BY ${target.observation?.radar.position ? "RADAR" : "SENSOR REPORT"} · NOT SEEN BY THIS CAMERA`
-                                      : `${selected} · NO CURRENT REPORT · HOLDING BEARING`}
-                              </span>
-                            </div>
-                            {vision === "day" &&
-                              state.tracks.some(
-                                (t) =>
-                                  t.active &&
-                                  t.observation?.eo.available === false,
-                              ) && (
-                                <div
-                                  className="view-annotation view-unavailable"
-                                  role="note"
-                                >
-                                  DAY TV HAS NO PICTURE
+                          ) : tactical ? (
+                            <Radar
+                              state={
+                                phase === "ready"
+                                  ? briefingSnapshot(state)
+                                  : state
+                              }
+                              selected={selected}
+                              onSelect={choose}
+                              large
+                            />
+                          ) : (
+                            <Scene
+                              presentation={
+                                phase === "ready" ? "briefing" : "observation"
+                              }
+                              opticalZoom={opticalZoom}
+                              manualAim={manualAim}
+                              onCameraAim={onCameraAim}
+                              cue={
+                                target
+                                  ? {
+                                      x: target.x,
+                                      z: target.z,
+                                      altitude: target.altitude,
+                                    }
+                                  : null
+                              }
+                              terrainBoxes={scenario.terrain_boxes}
+                              engineVersion={scenario.engine_version}
+                              visibilityKey={`${scenario.id}:${sessionRef.current || "preview"}`}
+                              state={
+                                phase === "ready" &&
+                                mode === "adaptive" &&
+                                !prepared
+                                  ? { ...state, night: false }
+                                  : state
+                              }
+                              selected={selected}
+                              vision={phase === "ready" ? "day" : vision}
+                              onFps={renderFps}
+                              palette={palette}
+                              terrain={scenario.terrain_id ?? "urban_outpost"}
+                              quality={quality}
+                              fog={scenario.fog}
+                              fallback={
+                                <div className="render-fallback">
+                                  <p>
+                                    3D rendering is unavailable on this browser.
+                                  </p>
+                                  <button
+                                    className="button primary"
+                                    onClick={() => setTactical(true)}
+                                  >
+                                    Use tactical view
+                                  </button>
+                                </div>
+                              }
+                            />
+                          )}
+                          {!tactical &&
+                            phase !== "restoring" &&
+                            phase !== "ready" && (
+                              <>
+                                <div className="view-annotation top-left">
+                                  {vision === "thermal"
+                                    ? `${palettes[palette].label} / EO-IR`
+                                    : vision === "day"
+                                      ? "DAY TV / OPTICAL"
+                                      : scenario.version === 2
+                                        ? "IR NIGHT DISPLAY / ILLUSTRATIVE"
+                                        : "NIGHT VISION / SIMULATED"}
                                   <span>
-                                    Night or sensor fault · use THERMAL or IR
+                                    {manualAim
+                                      ? "MANUAL SCAN · SELECTION DOES NOT STEER CAMERA"
+                                      : !selected
+                                        ? "OBSERVATION SECTOR"
+                                        : opticalPosition
+                                          ? `TRACKING ${selected}`
+                                          : target
+                                            ? `${selected} · CUED BY ${target.observation?.radar.position ? "RADAR" : "SENSOR REPORT"} · NOT SEEN BY THIS CAMERA`
+                                            : `${selected} · NO CURRENT REPORT · HOLDING BEARING`}
                                   </span>
                                 </div>
-                              )}
-                            <div className="crosshair">
-                              <span />
-                              <span />
+                                {vision === "day" &&
+                                  state.tracks.some(
+                                    (t) =>
+                                      t.active &&
+                                      t.observation?.eo.available === false,
+                                  ) && (
+                                    <div
+                                      className="view-annotation view-unavailable"
+                                      role="note"
+                                    >
+                                      DAY TV HAS NO PICTURE
+                                      <span>
+                                        Night or sensor fault · use THERMAL or
+                                        IR
+                                      </span>
+                                    </div>
+                                  )}
+                                <div className="crosshair">
+                                  <span />
+                                  <span />
+                                </div>
+                                <div className="camera-corners" />
+                                <div className="view-annotation bottom-left">
+                                  {scenario.terrain_id === "rural_forward_base"
+                                    ? "RURAL FORWARD BASE"
+                                    : "URBAN OUTPOST"}
+                                  <span>
+                                    {manualAim
+                                      ? `AZ ${manualAim.azimuthDeg.toFixed(1)}° · EL ${manualAim.elevationDeg.toFixed(1)}° · FIXED SENSOR ORIGIN`
+                                      : selected && (opticalPosition ?? target)
+                                        ? `${opticalPosition ? "" : "CUE "}BEARING ${Math.round(((Math.atan2((opticalPosition ?? target)!.x, (opticalPosition ?? target)!.z) * 180) / Math.PI + 360) % 360)}° · ALT ${Math.round((opticalPosition ?? target)!.altitude)} m`
+                                        : selected
+                                          ? "Holding last bearing"
+                                          : "Select a radar contact to focus the camera"}
+                                  </span>
+                                </div>
+                                <div className="view-annotation bottom-right">
+                                  {state.night ? "NIGHT" : "DAY"}
+                                  <span>SIMULATED SENSOR VIEW</span>
+                                </div>
+                              </>
+                            )}
+                          {phase === "ready" && (
+                            <TrainingWelcome
+                              onPrepare={() => void start()}
+                              busy={busy}
+                              prepared={mode !== "adaptive" || !!prepared}
+                              title={
+                                mode === "adaptive" && !prepared
+                                  ? "Enter the observation station."
+                                  : (prepared?.title ?? scenario.title)
+                              }
+                              label={
+                                mode === "adaptive"
+                                  ? prepared
+                                    ? "Start adaptive drill"
+                                    : "Prepare adaptive drill"
+                                  : "Begin exercise"
+                              }
+                              duration={scenario.duration}
+                              contacts={
+                                mode === "adaptive"
+                                  ? prepared?.tracks.length
+                                  : mode === "library"
+                                    ? library.find((s) => s.id === libraryId)
+                                        ?.tracks.length
+                                    : 8
+                              }
+                            />
+                          )}
+                          {phase === "paused" && (
+                            <div className="pause-overlay">
+                              <Pause size={24} />
+                              <h2>Exercise paused</h2>
+                              <p>Use Resume in the exercise controls above.</p>
                             </div>
-                            <div className="camera-corners" />
-                            <div className="view-annotation bottom-left">
-                              {scenario.terrain_id === "rural_forward_base"
-                                ? "RURAL FORWARD BASE"
-                                : "URBAN OUTPOST"}
-                              <span>
-                                {selected && (opticalPosition ?? target)
-                                  ? `${opticalPosition ? "" : "CUE "}BEARING ${Math.round(((Math.atan2((opticalPosition ?? target)!.x, (opticalPosition ?? target)!.z) * 180) / Math.PI + 360) % 360)}° · ALT ${Math.round((opticalPosition ?? target)!.altitude)} m`
-                                  : selected
-                                    ? "Holding last bearing"
-                                    : "Select a radar contact to focus the camera"}
-                              </span>
-                            </div>
-                            <div className="view-annotation bottom-right">
-                              {state.night ? "NIGHT" : "DAY"}
-                              <span>SIMULATED SENSOR VIEW</span>
-                            </div>
-                          </>
-                        )}
-                      {phase === "ready" && (
-                        <TrainingWelcome
-                          onPrepare={() => void start()}
-                          busy={busy}
-                          prepared={mode !== "adaptive" || !!prepared}
-                          title={
-                            mode === "adaptive" && !prepared
-                              ? "Enter the observation station."
-                              : (prepared?.title ?? scenario.title)
-                          }
-                          label={
-                            mode === "adaptive"
-                              ? prepared
-                                ? "Start adaptive drill"
-                                : "Prepare adaptive drill"
-                              : "Begin exercise"
-                          }
-                          duration={scenario.duration}
-                          contacts={
-                            mode === "adaptive"
-                              ? prepared?.tracks.length
-                              : mode === "library"
-                                ? library.find((s) => s.id === libraryId)
-                                    ?.tracks.length
-                                : 8
-                          }
-                        />
-                      )}
-                      {phase === "paused" && (
-                        <div className="pause-overlay">
-                          <Pause size={24} />
-                          <h2>Exercise paused</h2>
-                          <p>Use Resume in the exercise controls above.</p>
+                          )}
                         </div>
                       )}
-                    </div>
+                    </OpticalStation>
                     <section className="panel radar-panel">
                       <div className="panel-header">
                         <div>

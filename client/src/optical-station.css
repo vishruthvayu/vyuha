@@ -1,0 +1,291 @@
+/* One sensor-origin world, with controls and a time-labelled investigation deck. */
+.flight-shell .immersive-training .optical-console {
+  position: absolute;
+  z-index: 6;
+  left: 220px;
+  right: 16px;
+  bottom: 51px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  padding: 10px 12px;
+  background: #071622f2;
+  color: #e5f1ed;
+  border: 1px solid #789a9b85;
+  border-radius: 7px;
+  box-shadow: 0 10px 35px #0005;
+}
+.flight-shell .optical-mode {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  width: 100%;
+  font:
+    10px ui-monospace,
+    monospace;
+  color: #cbe7dc;
+}
+.flight-shell .optical-mode > span {
+  margin-left: auto;
+}
+.flight-shell .optical-slew,
+.flight-shell .optical-capture,
+.flight-shell .inquiry-actions {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.flight-shell .optical-console button,
+.flight-shell .inquiry-bench button {
+  min-height: 36px;
+  border: 1px solid #708e9c;
+  border-radius: 4px;
+  padding: 7px 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #1b3342;
+  color: #f0f5ef;
+  font-size: 11px;
+  cursor: pointer;
+}
+.flight-shell .optical-console button:disabled,
+.flight-shell .inquiry-bench button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.flight-shell .optical-console button:focus-visible,
+.flight-shell .inquiry-bench button:focus-visible,
+.flight-shell .optical-console input:focus-visible {
+  outline: 3px solid #d5eebc;
+  outline-offset: 3px;
+}
+.flight-shell .optical-zoom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font:
+    10px ui-monospace,
+    monospace;
+}
+.flight-shell .optical-zoom input {
+  width: 88px;
+  min-width: 0;
+  accent-color: #d5eebc;
+}
+.flight-shell .optical-zoom small {
+  font-size: 9px;
+  color: #b1c5ce;
+}
+.flight-shell .optical-integrity,
+.flight-shell .optical-notice {
+  width: 100%;
+  margin: 0;
+  font-size: 9px;
+  line-height: 1.5;
+  color: #bdd2d4;
+}
+.flight-shell .optical-notice:empty {
+  display: none;
+}
+.flight-shell .immersive-training .inquiry-bench {
+  position: absolute;
+  z-index: 8;
+  top: 68px;
+  bottom: 52px;
+  left: 16px;
+  right: 16px;
+  padding: 18px;
+  overflow: auto;
+  background: #0c1b27f7;
+  color: #dce9e5;
+  border: 1px solid #a9c5ba;
+  border-radius: 8px;
+  box-shadow: 0 15px 65px #0009;
+}
+.flight-shell .inquiry-bench > header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: start;
+}
+.flight-shell .inquiry-bench h2 {
+  font: 25px/1.2 var(--font-display, Georgia, serif);
+  margin: 8px 0 12px;
+  color: #e8f2df;
+}
+.flight-shell .inquiry-bench p {
+  font-size: 11px;
+  line-height: 1.6;
+  max-width: 85ch;
+}
+.flight-shell .inquiry-bench .eyebrow {
+  color: #b9d6c7;
+  font-size: 9px;
+  letter-spacing: 0.13em;
+}
+.flight-shell .inquiry-grid {
+  display: grid;
+  margin: 16px 0;
+  border: 1px solid #5f7d8b;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.flight-shell .inquiry-row {
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr) minmax(0, 1fr);
+}
+.flight-shell .inquiry-row > * {
+  padding: 10px;
+  min-width: 0;
+  border-right: 1px solid #466371;
+  border-bottom: 1px solid #466371;
+}
+.flight-shell .inquiry-row > :last-child {
+  border-right: 0;
+}
+.flight-shell .inquiry-row > strong {
+  font:
+    10px ui-monospace,
+    monospace;
+  color: #bdd9d5;
+}
+.flight-shell .inquiry-head {
+  background: #213744;
+  font-size: 11px;
+}
+.flight-shell .inquiry-head span,
+.flight-shell .inquiry-head small {
+  display: block;
+  font-weight: 400;
+  margin-top: 4px;
+  font-size: 10px;
+}
+.flight-shell .inquiry-reading {
+  display: grid;
+  gap: 5px;
+  overflow-wrap: anywhere;
+}
+.flight-shell .inquiry-reading strong {
+  font-size: 12px;
+  color: #e3eedb;
+  text-transform: capitalize;
+}
+.flight-shell .inquiry-reading span,
+.flight-shell .inquiry-empty {
+  font:
+    10px/1.5 ui-monospace,
+    monospace;
+  color: #c2d6dc;
+}
+.flight-shell .inquiry-reading small {
+  color: #b6cbd3;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.flight-shell .inquiry-reading.unavailable strong,
+.flight-shell .inquiry-reading.invalid strong,
+.flight-shell .inquiry-reading.undated strong {
+  color: #f4d3a8;
+}
+.flight-shell .inquiry-reasoning {
+  background: #1b3340;
+  border-left: 3px solid #c7deba;
+  padding: 12px;
+}
+.flight-shell .inquiry-reasoning > strong {
+  font-size: 12px;
+}
+.flight-shell .inquiry-reasoning ul {
+  margin: 7px 0 0;
+  padding-left: 16px;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.flight-shell .inquiry-warning {
+  color: #f4d3a8;
+}
+@media (max-width: 1000px) {
+  .flight-shell .immersive-training .optical-console {
+    left: 186px;
+    right: 8px;
+    bottom: 49px;
+    padding: 8px;
+    gap: 6px;
+  }
+  .flight-shell .optical-zoom small {
+    display: none;
+  }
+}
+@media (max-width: 740px) {
+  .flight-shell .immersive-training .sensor-workspace:has(.optical-console) {
+    margin-bottom: 240px;
+  }
+  .flight-shell .immersive-training .optical-console {
+    top: 100%;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+    padding: 12px;
+    min-height: 180px;
+  }
+  .flight-shell .optical-console button {
+    min-height: 40px;
+  }
+  .flight-shell .optical-mode {
+    font-size: 10px;
+  }
+  .flight-shell .optical-zoom {
+    margin-left: 3px;
+  }
+  .flight-shell .optical-zoom small {
+    display: inline;
+  }
+  .flight-shell .immersive-training .inquiry-bench {
+    inset: 65px 5px 5px;
+    padding: 12px;
+  }
+  .flight-shell .inquiry-row {
+    grid-template-columns: 40px minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .flight-shell .inquiry-row > * {
+    padding: 7px 5px;
+  }
+  .flight-shell .inquiry-bench h2 {
+    font-size: 21px;
+  }
+  .flight-shell .inquiry-reading small {
+    font-size: 9px;
+  }
+}
+.flight-shell .inquiry-bench p {
+  font-size: 12px;
+}
+.flight-shell .inquiry-reading strong {
+  font-size: 14px;
+}
+.flight-shell .inquiry-reading span,
+.flight-shell .inquiry-empty {
+  font-size: 11px;
+}
+.flight-shell .inquiry-reading small {
+  font-size: 11px;
+}
+.flight-shell .inquiry-head span,
+.flight-shell .inquiry-head small {
+  font-size: 11px;
+}
+@media (max-width: 740px) {
+  .flight-shell .inquiry-row {
+    grid-template-columns: 42px minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .flight-shell .inquiry-reading strong {
+    font-size: 12px;
+  }
+  .flight-shell .inquiry-reading small {
+    font-size: 10px;
+  }
+}

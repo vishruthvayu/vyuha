@@ -147,3 +147,5 @@ The next integrated Level3 learning-journey slice is also implemented: five comp
 
 
 25October2026: [Training Ground simulation station](../next-generation/training-ground/ACCEPTANCE.md) is now an implemented development slice: actual3D briefing, persistent observation stage, native instrument/action hierarchy and coherent bounded sky lighting. Existing simulation/scoring versions remain unchanged. This does not implement the proposed active-query/delivery contract, new environment content pack or fitted instructional runtime.
+
+25 October 2026 continuation: the Optical Investigation Station adds browser manual scan/reacquisition and scoped A/B channel-report comparison in the live station. See `docs/next-generation/optical-station/ACCEPTANCE.md` for source-pinned targeted acceptance when sealed. This is a Level 3 presentation/investigation upgrade. It does not implement the proposed versioned evidence-request/delivery engine or establish improved learning. New research in `ACTIVE-INQUIRY-NEXT.md` and `WORLD-NEXT-TECHNIQUES.md` separates implemented behavior from the next environment/mission contracts.
