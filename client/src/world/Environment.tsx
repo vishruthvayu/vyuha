@@ -8,7 +8,13 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import type { ThermalPalette } from "../presentation";
 import type { Quality } from "../quality";
-import type { TerrainBox } from "../sensors-v2";
+import {
+  sensorConfiguration,
+  type TerrainBox,
+  type SensorConfig,
+  type SensorPosition,
+} from "../sensors-v2";
+import { worldPresentationEnvelope } from "./world-envelope";
 import { FOLIAGE, PROP_URLS, SKY, TEXTURE_URLS } from "./assets";
 import {
   Batches,
@@ -50,7 +56,7 @@ import {
   type ThermalClassName,
 } from "./thermal";
 import { createTerrainGeometry, type TerrainKind } from "./terrain";
-import { displayVisibility } from "./displayVisibility";
+import { displayFogDensity } from "./displayVisibility";
 import {
   SKY_PROBE_WIDTH,
   SKY_PROBE_HEIGHT,
@@ -268,6 +274,8 @@ type Built = {
 };
 
 export type EnvironmentProps = {
+  sensorConfig?: Partial<SensorConfig>;
+  sensorOrigin?: SensorPosition;
   terrain: TerrainKind;
   boxes: readonly TerrainBox[];
   /** Pre-0.4 scenarios have no authoritative boxes; scenery is decorative only. */
@@ -285,6 +293,18 @@ export type EnvironmentProps = {
 
 export const Environment = memo(function Environment(props: EnvironmentProps) {
   const { terrain, boxes, legacy, quality } = props;
+  const parameters = useMemo(
+    () => sensorConfiguration(props.sensorConfig),
+    [props.sensorConfig],
+  );
+  const worldEnvelope = useMemo(
+    () => worldPresentationEnvelope(parameters, props.sensorOrigin),
+    [parameters, props.sensorOrigin],
+  );
+  if (!worldEnvelope.supported)
+    throw new RangeError(
+      "Sensor view exceeds the supported local world envelope",
+    );
   // Resolve every later asset read before allocating procedural textures. An
   // initial suspension discards memo caches; constructing first repeated this
   // expensive work on each GLTF/sky loading retry.
@@ -350,7 +370,11 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
       textures.white,
     );
     const terrainMesh = new THREE.Mesh(
-      createTerrainGeometry(terrain, quality === "low" ? 0.6 : 1),
+      createTerrainGeometry(
+        terrain,
+        quality === "low" ? 0.6 : 1,
+        worldEnvelope.flatRadius,
+      ),
       ground,
     );
     terrainMesh.receiveShadow = shadows;
@@ -604,7 +628,15 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
         });
       },
     };
-  }, [textures, quality, terrain, layout, boxes, props3d]);
+  }, [
+    textures,
+    quality,
+    terrain,
+    layout,
+    boxes,
+    props3d,
+    worldEnvelope.flatRadius,
+  ]);
   useEffect(() => () => built.dispose(), [built]);
 
   // Radar head: rotates once per sweep (logical time), cosmetic only.
@@ -855,8 +887,7 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
       sky.material = thermal ? twins.get(eo, "sky") : eo;
     }
     twins.update(mode);
-    const visibility = displayVisibility(props.fog) * (thermal ? 1 / 0.45 : 1);
-    const density = 1.6 / visibility;
+    const density = displayFogDensity(props.fog, !!thermal, parameters);
     const fogColor = thermal
       ? thermalColor(
           displayThermal(
@@ -898,6 +929,7 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     scene,
     gl,
     props.fog,
+    parameters,
     props.translucentOccluders,
     quality,
     lightingProfile,

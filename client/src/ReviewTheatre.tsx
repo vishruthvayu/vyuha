@@ -225,6 +225,7 @@ export default function ReviewTheatre(props: Props) {
                 palette="white"
                 quality={props.quality}
                 terrain={record.scenario.terrain_id}
+                sensorConfig={record.scenario.sensor_config}
                 terrainBoxes={record.scenario.terrain_boxes}
                 engineVersion={record.scenario.engine_version}
                 fog={record.scenario.fog}

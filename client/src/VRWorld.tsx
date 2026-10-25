@@ -64,6 +64,7 @@ export function VRWorld({
   return (
     <group ref={root} name="observed-xr-world">
       <Environment
+        sensorConfig={scenario.sensor_config}
         terrain={terrain}
         boxes={boxes}
         legacy={!modernSensors(scenario)}

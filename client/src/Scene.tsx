@@ -29,6 +29,7 @@ import {
   SENSOR_VERSION,
   type TerrainBox,
   type SensorPosition,
+  type SensorConfig,
 } from "./sensors-v2";
 import { sceneCameraPose, sceneReviewEnvelope } from "./scene-presentation";
 import { ContactRenderer } from "./ContactRenderer";
@@ -55,6 +56,7 @@ import {
 } from "./world/Environment";
 import { SceneryObstruction, sceneryObstacles } from "./world/obstruction";
 import { facilityLayout, withoutBoxes } from "./world/layout";
+import { worldPresentationEnvelope } from "./world/world-envelope";
 export type { Vision } from "./visibility";
 export type RendererMetrics = {
   scope: "previous WebGL frame";
@@ -416,6 +418,7 @@ function World({
   finale = false,
   terrainBoxes,
   sensorOrigin,
+  sensorConfig,
   referenceTruth = false,
   contextKey,
   opticalZoom,
@@ -450,6 +453,7 @@ function World({
   finale?: boolean;
   terrainBoxes?: TerrainBox[];
   sensorOrigin?: SensorPosition;
+  sensorConfig?: Partial<SensorConfig>;
   referenceTruth?: boolean;
   contextKey: string;
   opticalZoom?: number;
@@ -458,6 +462,10 @@ function World({
   presentation?: "briefing" | "observation";
 }) {
   const { camera, size } = useThree();
+  const worldEnvelope = useMemo(
+    () => worldPresentationEnvelope(sensorConfig, sensorOrigin),
+    [sensorConfig, sensorOrigin],
+  );
   const envelope = sceneReviewEnvelope(
     state.tracks,
     selected,
@@ -466,7 +474,7 @@ function World({
     size.width / Math.max(1, size.height),
     {
       // The sky dome (15 km) and the far terrain ring need a long far plane.
-      far: 20000,
+      far: worldEnvelope.farClip,
       fogNear: 0,
       fogFar: 0,
     },
@@ -501,6 +509,8 @@ function World({
       <LayeredRender />
       <Environment
         terrain={world}
+        sensorConfig={sensorConfig}
+        sensorOrigin={sensorOrigin}
         boxes={boxes}
         legacy={!finale}
         night={state.night}
@@ -542,6 +552,7 @@ function World({
         <CueMarker cue={cue} />
       )}
       <InspectionPass
+        sensorConfig={sensorConfig}
         displayKey={`${contextKey}:${palette}:${state.night}:${quality}:${fog}`}
         poses={poses}
         selected={selected}
@@ -585,6 +596,7 @@ export type SceneProps = {
   opticalAvailable?: boolean;
   terrainBoxes?: TerrainBox[];
   sensorOrigin?: SensorPosition;
+  sensorConfig?: Partial<SensorConfig>;
   engineVersion?: string;
   /** Display crop only; does not change sensor range, resolution or origin. */
   opticalZoom?: number;
@@ -638,8 +650,16 @@ export function Scene(props: SceneProps) {
           channel: (props.vision === "day" ? "eo" : "ir") as "eo" | "ir",
         }
       : null;
+  const configuredWorld = useMemo(() => {
+    try {
+      return worldPresentationEnvelope(props.sensorConfig, props.sensorOrigin);
+    } catch {
+      return null;
+    }
+  }, [props.sensorConfig, props.sensorOrigin]);
   const inspectLabel = useRef<HTMLDivElement>(null);
   const inspectFrame = useRef<HTMLDivElement>(null);
+  if (!configuredWorld?.supported) return <>{props.fallback}</>;
   return (
     <Boundary fallback={props.fallback}>
       <Canvas
@@ -661,7 +681,7 @@ export function Scene(props: SceneProps) {
               ],
           fov: props.cameraPreset ? 52 : 38,
           near: props.cameraPreset ? 1 : 0.5,
-          far: 20000,
+          far: configuredWorld.farClip,
         }}
         gl={{
           antialias: props.quality !== "low",

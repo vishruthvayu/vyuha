@@ -2,9 +2,9 @@ import * as THREE from "three";
 
 /** Visual terrain. The sensor model treats the ground as a flat plane at y = 0
  * plus the scenario's authoritative boxes, so the visual ground is exactly flat
- * inside FLAT_RADIUS. That radius exceeds the longest optical range (EO 1500 m,
- * IR 1200 m), so relief is always *behind* every contact a camera can draw and
- * can never hide one or suggest occlusion the sensor does not model. */
+ * inside the configured presentation envelope. FLAT_RADIUS preserves the frozen
+ * default. A caller with sensor overrides must supply the derived larger radius;
+ * decorative relief must remain beyond every permitted optical observation. */
 export const FLAT_RADIUS = 1700;
 export const TERRAIN_RADIUS = 14000;
 export type TerrainKind = "urban_outpost" | "rural_forward_base";
@@ -46,11 +46,16 @@ const smooth = (a: number, b: number, x: number) => {
   return t * t * (3 - 2 * t);
 };
 /** Height in metres. Exactly 0 inside FLAT_RADIUS. */
-export function terrainHeight(x: number, z: number, kind: TerrainKind) {
+export function terrainHeight(
+  x: number,
+  z: number,
+  kind: TerrainKind,
+  flatRadius = FLAT_RADIUS,
+) {
   const r = Math.hypot(x, z);
   // Small tolerance: vertices built on the flat-disc rim must be exactly flat.
-  if (r <= FLAT_RADIUS + 1e-6) return 0;
-  const rise = smooth(FLAT_RADIUS, FLAT_RADIUS + 2600, r);
+  if (r <= flatRadius + 1e-6) return 0;
+  const rise = smooth(flatRadius, flatRadius + 2600, r);
   const n = fbm(x / 1900 + 11, z / 1900 - 7, 5);
   if (kind === "rural_forward_base") {
     // Rolling plain, then a broken ridge line on the far horizon.
@@ -64,13 +69,22 @@ export function terrainHeight(x: number, z: number, kind: TerrainKind) {
 }
 
 /** Polar terrain mesh: a flat disc plus rings that grow outward in spacing. */
-export function createTerrainGeometry(kind: TerrainKind, detail: number) {
+export function createTerrainGeometry(
+  kind: TerrainKind,
+  detail: number,
+  flatRadius = FLAT_RADIUS,
+) {
+  if (
+    !Number.isFinite(flatRadius) ||
+    flatRadius < FLAT_RADIUS ||
+    flatRadius > TERRAIN_RADIUS
+  )
+    throw new RangeError("Unsupported visual terrain flat radius");
   const radial = Math.max(48, Math.round(96 * detail));
   const rings: number[] = [0];
   const flatRings = 4;
-  for (let i = 1; i <= flatRings; i++)
-    rings.push((FLAT_RADIUS * i) / flatRings);
-  let r = FLAT_RADIUS;
+  for (let i = 1; i <= flatRings; i++) rings.push((flatRadius * i) / flatRings);
+  let r = flatRadius;
   while (r < TERRAIN_RADIUS) {
     r = Math.min(TERRAIN_RADIUS, r + Math.max(90, r * (0.11 / detail)));
     rings.push(r);
@@ -83,7 +97,7 @@ export function createTerrainGeometry(kind: TerrainKind, detail: number) {
       const a = (s / radial) * Math.PI * 2;
       const x = Math.sin(a) * rings[ring],
         z = Math.cos(a) * rings[ring];
-      positions.push(x, terrainHeight(x, z, kind), z);
+      positions.push(x, terrainHeight(x, z, kind, flatRadius), z);
     }
   }
   // Counter-clockwise seen from above, so faces (and normals) point up.

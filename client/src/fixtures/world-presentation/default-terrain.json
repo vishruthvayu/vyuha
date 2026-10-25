@@ -1,0 +1,26 @@
+{
+  "source_commit": "7729c40",
+  "three": "0.180.0",
+  "geometries": {
+    "urban_outpost:0.6": {
+      "digest": "0104f7d54dc744b359c8aeb060c0a0573c731055907e640c0f1052011756214d",
+      "vertices": 987,
+      "indices": 5742
+    },
+    "urban_outpost:1": {
+      "digest": "77f48a3cff2d09f9c5512614d859a18d21ac430888c1cdbea84f369661352502",
+      "vertices": 2401,
+      "indices": 14112
+    },
+    "rural_forward_base:0.6": {
+      "digest": "0fec9f39ba2e3142ba2b9247170065e88545882dc4e577ef3cb3ac6c47afbf2b",
+      "vertices": 987,
+      "indices": 5742
+    },
+    "rural_forward_base:1": {
+      "digest": "0d5618205a65b5db68bc02a21ce13d83d48c20e56cb77e08c2dd7365adbfd7a1",
+      "vertices": 2401,
+      "indices": 14112
+    }
+  }
+}

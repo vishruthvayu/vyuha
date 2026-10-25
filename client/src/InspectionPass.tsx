@@ -4,7 +4,11 @@ import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { AIRFRAME_SPAN } from "./airframe-geometry";
 import type { ObservedPoseBuffer, RenderShape } from "./render-contacts";
-import { defaultSensorConfig } from "./sensors-v2";
+import {
+  defaultSensorConfig,
+  sensorConfiguration,
+  type SensorConfig,
+} from "./sensors-v2";
 import type { SceneryObstruction } from "./world/obstruction";
 
 /** How many sensor pixels the selected contact covers at its observed range:
@@ -13,11 +17,12 @@ export function pixelsOnTarget(
   shape: RenderShape,
   range: number,
   channel: "eo" | "ir",
+  config: Pick<
+    SensorConfig,
+    "eo_ifov_rad" | "ir_ifov_rad"
+  > = defaultSensorConfig,
 ) {
-  const ifov =
-    channel === "eo"
-      ? defaultSensorConfig.eo_ifov_rad
-      : defaultSensorConfig.ir_ifov_rad;
+  const ifov = channel === "eo" ? config.eo_ifov_rad : config.ir_ifov_rad;
   return AIRFRAME_SPAN[shape] / (Math.max(1, range) * ifov);
 }
 /** Inset resolution so the target fills FILL of the inset width at the sensor's
@@ -56,7 +61,9 @@ export function InspectionPass({
   obstruction,
   displayKey,
   frame,
+  sensorConfig,
 }: {
+  sensorConfig?: Partial<SensorConfig>;
   frame?: RefObject<HTMLDivElement | null>;
   displayKey: string;
   poses: ObservedPoseBuffer;
@@ -71,6 +78,14 @@ export function InspectionPass({
   obstruction?: SceneryObstruction;
 }) {
   const { gl, scene, camera, size } = useThree();
+  const parameters = useMemo(
+    () => sensorConfiguration(sensorConfig),
+    [sensorConfig],
+  );
+  const configurationKey = useMemo(
+    () => JSON.stringify(parameters),
+    [parameters],
+  );
   // A sensor pixel integrates the scene over its footprint: render at 4× the
   // sensor resolution, box-filter down (mipmapped minification), then show the
   // sensor-resolution image enlarged with nearest-neighbour sampling.
@@ -162,9 +177,9 @@ export function InspectionPass({
       if (border.style.width !== extent)
         border.style.width = border.style.height = extent;
     }
-    const pixels = pixelsOnTarget(shape, range, channel);
+    const pixels = pixelsOnTarget(shape, range, channel, parameters);
     const res = inspectionResolution(pixels);
-    const key = `${displayKey}:${selected}:${shape}:${channel}:${res}:${camera.position.x}:${camera.position.y}:${camera.position.z}`;
+    const key = `${displayKey}:${selected}:${shape}:${channel}:${res}:${configurationKey}:${camera.position.x}:${camera.position.y}:${camera.position.z}`;
     if (cadence.refresh(clock.elapsedTime, key)) {
       if (target.width !== res) {
         target.setSize(res, res);

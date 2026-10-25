@@ -2061,6 +2061,7 @@ export default function App({
                                     }
                                   : null
                               }
+                              sensorConfig={scenario.sensor_config}
                               terrainBoxes={scenario.terrain_boxes}
                               engineVersion={scenario.engine_version}
                               visibilityKey={`${scenario.id}:${sessionRef.current || "preview"}`}
