@@ -194,5 +194,8 @@
       "path": "docs/next-generation/training-ground/evidence/vyuha-training-world-vr-compatibility.txt",
       "sha256": "b70c4e43d8fc54f99e65ba89089557ec4e7ea9774c6b79e2a0ed43ef330ff7aa"
     }
-  ]
+  ],
+  "runtime_commit": "0ad89f46ccca8313c1ab79b087f1b83f112e0767",
+  "clean_git_archive_source_hash": "93f5e36512c6c7e3abb0431357efdce38d4bff6456a63a43e314eadafd7d8ad2",
+  "artifact_and_archive_hashes_verified": true
 }
