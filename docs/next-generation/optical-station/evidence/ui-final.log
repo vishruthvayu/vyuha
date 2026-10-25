@@ -1,0 +1,21 @@
+✔ manual scan survives contact selection, explicitly reacquires, and preserves one world through phases (224.1135ms)
+✔ local capture pins exact sample times while live changes; another contact and session never inherit it (53.854917ms)
+✔ tactical view offers the evidence workflow without manual 3D controls (25.061625ms)
+✔ a future observation cannot enter the visible notebook (18.299291ms)
+✔ entering manual scan uses displayed held bearing, not a vanished report or default sector (22.285541ms)
+✔ pan arrows are scoped to the focused control group; comparison table has accessible structure (425.803041ms)
+✖ src/optical-station-ui.test.tsx (102802.950584ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 1
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 102811.092792
+
+✖ failing tests:
+
+test at src/optical-station-ui.test.tsx:1:1
+✖ src/optical-station-ui.test.tsx (102802.950584ms)
+  'Promise resolution is still pending but the event loop has already resolved'

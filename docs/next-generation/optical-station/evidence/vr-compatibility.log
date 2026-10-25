@@ -1,0 +1,13 @@
+✔ VR projects only current observed position and generic shape under adversarial hidden truth (7.612625ms)
+✔ VR missing v2 observations and bearing-only evidence never fall back to true geometry (0.995125ms)
+✔ VR optical loss holds only frozen observation for six ticks, failed channels clear immediately (0.51525ms)
+✔ VR ordinary payloads retain identical worker-style replay and scoring (853.493834ms)
+✔ XR lifecycle pauses on visibility loss and exit, supports clean re-entry (0.703291ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1350.2645
