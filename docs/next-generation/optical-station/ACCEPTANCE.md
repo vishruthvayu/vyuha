@@ -44,7 +44,7 @@ Independent optics review identified manual-entry jumps from held/slewing views 
 
 Loopback development application, disposable QA database, synthetic callsign ACADEMY-BROWSER:
 
-- Restored a queued drill twice. Each restore started with a fresh local notebook/manual view.
+- Restored an unfinished locally saved drill twice. Each restore started with a fresh local notebook/manual view.
 - Selected T2, used focused keyboard pan, reacquired its report and switched EO/IR while manually scanning. Manual mode did not display an off-axis close-up.
 - Final-source capture A:45.27 s; EO/IR sample45.20, radar sample45.00. Capture B:56.30 s; optical sample56.30, radar sample56.00. A stayed unchanged. Comparison showed11.03 s and the IR-level change. RF/IFF sample times stayed unrecorded.
 - Returned to the original decision port; explicit type/identity choices and designation45.57/classification56.13 were accepted. The drill completed naturally at90.00 and Ghost displayed **Server verified**. Its0/100 result reflects missed/incorrect synthetic decisions; this verifies the workflow, not expert reasoning or learning.
@@ -66,3 +66,5 @@ One20-second fixed-Medium200-contact retained urban/day/trainee-camera pair in t
 The archived baseline has no Git/venv metadata, so its raw build-provenance fields remain honestly unavailable. Its full source archive was independently hashed to93f5e36512c6c7e3abb0431357efdce38d4bff6456a63a43e314eadafd7d8ad2. An initial duplicate-React issue in the shared-cache temporary Vite harness was corrected with an isolated cache/resolver before measuring; no application defect/fix is claimed. Candidate raw JSON self-identifies clean7729c40/55bbb4f source.
 
 The final UI workflows used full source hashd3be70b; subsequent capability-registry metadata changes produced55bbb4f. All browser implementation files were unchanged and are byte-identical to7729c40. This mapping is explicit; unchanged valid evidence is reused rather than relabelled as a new whole-system run.
+
+Subsequent scoped implementation: [configuration-aware optics](../configured-optics/ACCEPTANCE.md), runtimeab92f69, promotes world-envelope/configuration plumbing. The7729c40 measurements above remain pinned historical evidence, not new-source performance acceptance.

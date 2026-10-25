@@ -1,0 +1,10 @@
+{
+  "client/src/world/materials.ts": "83ddc42f768d2b08bfe9d48cceeefc257545968eef9675a33d8ea961f359639f",
+  "client/src/world/thermal.ts": "369928385f7bca1383be1ffc0917d9bf645348750edd1a57e80a512dbca68e2e",
+  "client/src/world/world-lighting.ts": "ae2ac2554442713603643cdd7e05b3c0da7a668e6665011acbdae191df5f99b9",
+  "client/src/world/kit.ts": "0e470dc100daf632aa1bb4d76b0db6d4d0908c920d3cfe59d7cbb8e5f814ede8",
+  "client/src/airframe-geometry.ts": "50f3cc7dfab35038a03685e292980b170c19746c1ef1e4b083e14a5de9612a4e",
+  "client/src/ContactRenderer.tsx": "bd93c6a50f5c20d6d136a73b78ef7cf9343756c5c50a2323b0ffce7062b2bcc2",
+  "client/src/sensors-v2.ts": "61a22919e30a58df5d7042d64f0053b1670792342a8d697cc9d9c5de5a882ea0",
+  "client/src/sim.ts": "1cd50128f61d925abb0156c9870378168780b6c61c4cab9b1a7466d834afdf98"
+}

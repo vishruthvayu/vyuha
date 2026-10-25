@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {createTerrainGeometry} from './src/world/terrain.ts';
+import {worldPresentationEnvelope} from './src/world/world-envelope.ts';
+const distanceToSegment=(a,b)=>{const dx=b[0]-a[0],dz=b[1]-a[1],t=Math.max(0,Math.min(1,-(a[0]*dx+a[1]*dz)/(dx*dx+dz*dz||1)));return Math.hypot(a[0]+t*dx,a[1]+t*dz);};
+const cross=(a,b)=>a[0]*b[1]-a[1]*b[0];
+const triangleDistance=(a,b,c)=>{const signs=[cross(a,b),cross(b,c),cross(c,a)],area=signs.reduce((s,v)=>s+v,0);return Math.abs(area)>1e-8&&(!signs.some(v=>v<0)||!signs.some(v=>v>0))?0:Math.min(distanceToSegment(a,b),distanceToSegment(b,c),distanceToSegment(c,a));};
+const results=[];
+for(const terrain of ['urban_outpost','rural_forward_base'])for(const detail of [.6,1])for(const [config,origin] of [[undefined,{x:0,z:0,altitude:2}],[{eo_max_range_m:10000,ir_max_range_m:10000},{x:300,z:400,altitude:2}]]){
+ const envelope=worldPresentationEnvelope(config,origin),g=createTerrainGeometry(terrain,detail,envelope.flatRadius),p=g.getAttribute('position'),ix=g.getIndex();let minimum=Infinity,reliefTriangles=0;
+ for(let i=0;i<ix.count;i+=3){const ids=[ix.getX(i),ix.getX(i+1),ix.getX(i+2)];if(!ids.some(j=>Math.abs(p.getY(j))>1e-6))continue;reliefTriangles++;const vertices=ids.map(j=>[p.getX(j),p.getZ(j)]);minimum=Math.min(minimum,triangleDistance(...vertices));}
+ assert.ok(reliefTriangles>0);assert.ok(minimum>envelope.opticalFootprintRadius,`${terrain}/${detail} relief intrudes into optical footprint`);results.push({terrain,detail,flatRadius:envelope.flatRadius,opticalFootprintRadius:envelope.opticalFootprintRadius,nearestReliefTriangle:minimum,reliefTriangles});g.dispose();
+}
+console.log(JSON.stringify({check:'Actual relief triangles stay outside the full permitted optical footprint, including flat-ring chords',cases:results.length,passed:true,results},null,2));

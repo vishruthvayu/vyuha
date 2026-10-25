@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-25",
+  "runtime_commit": "ab92f691168dbf0a48c5040db4b55873fd1263aa",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "2c8642fc99be9c4cc53394e5ec12810ecd25e1b2bcab570a17d7cf420d3780a9",
+  "scope": "Configuration-aware presentation; development acceptance only",
+  "tests": {
+    "integrated": {
+      "passed": 29,
+      "failed": 0,
+      "seconds": 3.905797
+    },
+    "world_compatibility": {
+      "passed": 4,
+      "failed": 0,
+      "seconds": 0.485032042
+    },
+    "unique_selected": 33,
+    "geometry_cases": 8,
+    "types": "PASS",
+    "changed_lint": "PASS",
+    "changed_format": "PASS",
+    "full_suites": "NOT RERUN"
+  },
+  "independent_review": "Source review found no blocker in implemented supported paths; not a final audit score",
+  "physical_validation": "PENDING",
+  "performance": "Earlier default measurements remain pinned7729c40; no new timing claim",
+  "artifacts": {
+    "evidence/browser-receipt.json": {
+      "sha256": "826c30db69b6ad81f138be3bc9f91118c2fb41be06d9f950e03847a376f12160",
+      "bytes": 1634
+    },
+    "evidence/check-relief-footprint.mjs.txt": {
+      "sha256": "084b928b96ecc8b9032b46ab4f342d85fe9663b04052f397fdef38981622fea3",
+      "bytes": 1861
+    },
+    "evidence/configured-eo-paused.jpg": {
+      "sha256": "39d69639e8b00f5dc960fead710a8110de6bc98a206e43732515765800c5a97f",
+      "bytes": 46063
+    },
+    "evidence/configured-ghost-eo.jpg": {
+      "sha256": "e3de876a3a7cf37122732a5627af5a046a248aea1c24bcb9e7188c91564c72bc",
+      "bytes": 57657
+    },
+    "evidence/configured-ir-paused.jpg": {
+      "sha256": "9fa1a535aa83d063a781be0aa494541f69f6e7512d40338fff2a080264bcfa01",
+      "bytes": 43119
+    },
+    "evidence/configured-manual.jpg": {
+      "sha256": "2a5480475e2d91943741b1f1274918e3f58a292d79dfa568c3afab70774b585b",
+      "bytes": 35873
+    },
+    "evidence/integrated-targeted.log": {
+      "sha256": "248e4e9c252149390d5a38a26a3d922c3601f2c1cdea01ff2f75f43406d12292",
+      "bytes": 2984
+    },
+    "evidence/integration-file-hashes.json": {
+      "sha256": "68f92b23d55b6e766dd5e9c817e6577129340cd889e58e37e5ec8c085e3ea505",
+      "bytes": 2581
+    },
+    "evidence/prepare-qa-fixture.py.txt": {
+      "sha256": "1f517774aa6b6d97f4e43e682e9bd7710fdb1fe0c1baa7284e7af9c2c67da234",
+      "bytes": 1987
+    },
+    "evidence/qa-configured-world.json": {
+      "sha256": "4eb4f85b4cb3ea06e1a96e97d2eae8170a5e58c885658b34a32257578c271544",
+      "bytes": 7553
+    },
+    "evidence/relief-footprint.json": {
+      "sha256": "72726ca56e569c87200ac5f6caddd2c1bcea823bb541208c9a06003c9a4f5f69",
+      "bytes": 1890
+    },
+    "evidence/unchanged-source-hashes.json": {
+      "sha256": "1b11f51f11205f84b16d84ffa2ce77d814cfc27215ca679619eda77122c617be",
+      "bytes": 810
+    },
+    "evidence/world-compatibility.log": {
+      "sha256": "eb1de29920325fd7f0b36c6265ada43f6f59c2ec6afcffb55a97ccf986bb0f96",
+      "bytes": 517
+    }
+  }
+}

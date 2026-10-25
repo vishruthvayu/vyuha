@@ -1,0 +1,53 @@
+{
+  "base_runtime_commit": "7729c406c1ac3e714065617fc4890d569b50eff8",
+  "files": {
+    "client/src/App.tsx": {
+      "before_sha256": "ec7335436d8efd31ef4c4e01cfdb8d7198bc3a8bfb1d9695c378626f141ac2f5",
+      "after_sha256": "9e62c1e4a5fa2f002306849b289938bf83ce267f39896ea9e74fddc11002d852"
+    },
+    "client/src/ReviewTheatre.tsx": {
+      "before_sha256": "a01419e2b02bc6fd8b194cd53b6c24bb867a57c1cd208acd6453d3334d572a41",
+      "after_sha256": "4577b75b3c70f8d43c8ebfa279768fefc2a63682f85c82e6619a3a007c3b3a49"
+    },
+    "client/src/Scene.tsx": {
+      "before_sha256": "c62588e6d4c89558948ef2e447d44ba0471dbda12b948a62426c2340e2a91335",
+      "after_sha256": "c12fb0cc6647bf5594884f416d970efab39711639017dcad8f34cc339dd83ab3"
+    },
+    "client/src/VRWorld.tsx": {
+      "before_sha256": "acd7b79c5d2bd7044bcaf16cf97584ad45e825df6bee99bb348797ac324a7b2e",
+      "after_sha256": "e75e2a9dce80d23f566eb3787c09c7438b36cc44048d9cf4d449e3378aeaa90c"
+    },
+    "client/src/InspectionPass.tsx": {
+      "before_sha256": "f43c2e4db08acff329ac265d9434de0ce2bb698756d58eb848d9f73361422a33",
+      "after_sha256": "d3f34dcf55ffdaeebbf2b823b9b6a1c871fcbef781248e5b030531e100490c36"
+    },
+    "client/src/world/Environment.tsx": {
+      "before_sha256": "75e58181ba6a452bd8b08eadb44d66518cb9f57c9ebb3b8c5935427cd63f377a",
+      "after_sha256": "4a038e9c8d6f1324163e60232d115be97adfd4028c5590cd9e8709821da57b69"
+    },
+    "client/src/world/displayVisibility.ts": {
+      "before_sha256": "ba6cd45d620f4c45a0e379c096e42b6c0400e746f4b014b020b542be9f04f17f",
+      "after_sha256": "bcb818b010e1c6a901a44de71d61655457a0a4455a11f4e105f57483336a553b"
+    },
+    "client/src/world/terrain.ts": {
+      "before_sha256": "b56cd2bc357f07922dca398b9a80eeb992c88c1cb622d2a1af60bf50b4a23290",
+      "after_sha256": "a2946e02eedc85ba8a9638dd9733e2552356514a4c6b0c5615a0c21863438b16"
+    },
+    "client/src/world/world-envelope.ts": {
+      "before_sha256": null,
+      "after_sha256": "10e11aaed9f0a3a740bc9773533dd38ce3dca00dd34456454a26bad2473b1ddf"
+    },
+    "client/src/world-envelope.test.ts": {
+      "before_sha256": null,
+      "after_sha256": "6199984704f8851a1dff2acccae4ecf11d2ff9c8557151650e7cff28fa8f8fd5"
+    },
+    "client/src/world-config-flow.test.tsx": {
+      "before_sha256": null,
+      "after_sha256": "97e2f536418c2b475522a4113f1e9985086c3a6d5ebf92132d5add130ade4c70"
+    },
+    "client/src/fixtures/world-presentation/default-terrain.json": {
+      "before_sha256": null,
+      "after_sha256": "bafd6e4ae28a11dd503b90ce7cf747cd88c18a0e6bde93146e91a11d465ece16"
+    }
+  }
+}

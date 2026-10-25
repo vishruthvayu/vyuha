@@ -1,0 +1,44 @@
+{
+  "runtime_commit": "ab92f691168dbf0a48c5040db4b55873fd1263aa",
+  "source_hash": "2c8642fc99be9c4cc53394e5ec12810ecd25e1b2bcab570a17d7cf420d3780a9",
+  "fixture": {
+    "id": "raid_d5a06054f4cdb59e68dfe83d",
+    "seed": 67475,
+    "label": "QA configured optics 10 km",
+    "provisioning": "New content-addressed fixture rows in disposable QA DB only; seed script retained; not authoring-UI/authentication acceptance",
+    "sensor_overrides": {
+      "eo_max_range_m": 10000,
+      "ir_max_range_m": 8000,
+      "eo_ifov_rad": 0.0003,
+      "ir_ifov_rad": 7e-05,
+      "clear_visibility_m": 30000,
+      "dense_visibility_m": 500,
+      "ir_fog_factor": 0.8
+    }
+  },
+  "browser_workflow": [
+    "Selected Scripted/Library in actual Mission controls",
+    "Started and paused normal server session",
+    "Selected reported T2, observed EO14px and IR58px at201m",
+    "Local Capture A, manual scan, confirmed inset hidden",
+    "Ended at tick36, server verified0/100",
+    "In Ghost sought recorded end tick36 and EO caption remained14px"
+  ],
+  "session": {
+    "id": "7a556cc2-6d9c-41aa-9838-37635259d045",
+    "scenario_id": "raid_d5a06054f4cdb59e68dfe83d",
+    "status": "completed",
+    "execution_tick": 36,
+    "end_tick": 2700,
+    "score": 0,
+    "accepted_actions": 0
+  },
+  "viewport_css": [
+    1280,
+    720
+  ],
+  "browser_zoom": "IAB90percent/DPR0.9",
+  "native_headset": "PENDING",
+  "performance": "No fresh configured workload benchmark; earlier default benchmark remains pinned to7729c40",
+  "review": "Independent source review found no blockers in implemented supported paths; not a whole-product audit score"
+}

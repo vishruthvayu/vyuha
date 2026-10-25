@@ -1,0 +1,37 @@
+✔ the close-up resolution is the sensor's own pixel count on target (1.814875ms)
+✔ attitude cues come only from the displayed path and stay bounded (33.492042ms)
+✔ after-action review markers are a hollow ring with a dark rim (1.734292ms)
+✔ behind-scenery marker is a hollow diamond and the far marker a soft round blob (2.564375ms)
+✔ inspection inset leaves the main sight centre clear across phone and workstation canvases (1.192292ms)
+✔ actual browser Scene forwards frozen configuration to both environment and sensor-limited inspection (733.733041ms)
+✔ actual XR world forwards the same scenario configuration without adding browser inspection (13.982916ms)
+✔ actual reconstruction theatre preserves source sensor configuration when creating its modeled scene (46.983167ms)
+✔ default scenario retains the exact existing world clearance (2.121042ms)
+✔ full configured optical sphere fits inside the required flat disc for offset origins (1.045417ms)
+✔ large valid origins require explicit world expansion and cannot authorize relief (0.212042ms)
+✔ origin altitude cannot falsely shrink the conservative horizontal footprint (0.192708ms)
+✔ invalid configuration/origins fail explicitly instead of manufacturing default safety (0.780708ms)
+✔ envelope owns immutable copies and never mutates accepted scenario configuration (0.223458ms)
+✔ frozen default terrain vertex, normal and index buffers retain their exact prior hashes (48.5265ms)
+✔ configured terrain is flat throughout extended/offset optical footprints and retains outer relief (6.455375ms)
+✔ default display haze retains the exact prior interpolation/density and overrides follow declared values (0.71025ms)
+✔ inspection uses frozen EO/IR IFOV without mistaking display zoom for new resolution (0.706166ms)
+✔ far clip encloses the sky from supported offset origins; oversized public views fall back explicitly (15.329834ms)
+✔ constant environment produces analytic pi-times-radiance diffuse irradiance (18.504125ms)
+✔ directional environment reproduces the cosine-convolved linear field (13.240084ms)
+✔ yaw rotates the irradiance field without changing its energy (67.068791ms)
+✔ mirrored environment coordinates agree with both photographed sky sun metadata (2.303334ms)
+✔ sample work is bounded and rejects non-finite dimensions/yaw (4.65725ms)
+✔ authored probes replace a declared fill share and leave existing PMREM intensity unchanged (17.632917ms)
+✔ extreme directional fields stay nonnegative and inside analytic irradiance budget (22.21775ms)
+✔ fallback and thermal/IR modes retain original light policy with no probe contribution (0.448083ms)
+✔ profile caches are immutable and projected/probe values have independent ownership (6.147292ms)
+✔ scene cleanup restores prior fog, environment, intensity, rotation and clear state (1.633375ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3905.797

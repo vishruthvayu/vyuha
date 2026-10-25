@@ -107,3 +107,8 @@ New owner mission raises strategic emphasis to levels3–5 product transformatio
 ## Optical Investigation Station —25 October2026
 
 [Integrated optics](../optical-station/ACCEPTANCE.md), runtime7729c40: fixed-origin manual scan/reacquisition, retained pointing across channel/contact changes and immutable time-labelled A/B channel-report comparison in live Training. Capture/report/sample boundaries remain distinct; local ungraded captures do not enter accepted actions/Fusion/scoring.62affected tests + final7UI checks (6overlap) +5XR checks =68distinct targeted tests; types/changed-filelint/format/registry passed. Actual restored-session pan/capture/classification→server-verified0/100Ghost checked, plus390/820/1280CSS responsive/nohorizontaloverflow. IABzoom90%disclosed. Matched retained200baseline/candidate both60medianFPS; no speedup/learning/physical-device claim. Full unchanged suites/build not rerun; no RC/tag created. Next major world architecture remains in progress, with unintegrated support prototypes preserved separately.
+
+
+## Configured optics foundation —25 October2026
+
+[Runtimeab92f69](../configured-optics/ACCEPTANCE.md) forwards frozen sensor parameters through Training/Ghost/XR; close-up IFOV, visual haze and conservative terrain bounds honor public config.33targeted integrated checks plus8actual-triangle geometry cases passed; default terrain buffers/fog math match prior runtime exactly. A QA-only10km-range scenario ran through real Library/start/pause/EO14px/IR58px/manual scan→early server-verifiedGhost, retaining configured sampling. No new environment kit, custom-authoringUI, physicalsensor calibration, performance gain or release acceptance is claimed. Authoritative engine/scoring/actions remain unchanged.

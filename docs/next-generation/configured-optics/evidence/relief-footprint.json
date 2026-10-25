@@ -1,0 +1,71 @@
+{
+  "check": "Actual relief triangles stay outside the full permitted optical footprint, including flat-ring chords",
+  "cases": 8,
+  "passed": true,
+  "results": [
+    {
+      "terrain": "urban_outpost",
+      "detail": 0.6,
+      "flatRadius": 1700,
+      "opticalFootprintRadius": 1500,
+      "nearestReliefTriangle": 1697.5067763690354,
+      "reliefTriangles": 1508
+    },
+    {
+      "terrain": "urban_outpost",
+      "detail": 0.6,
+      "flatRadius": 10700,
+      "opticalFootprintRadius": 10500,
+      "nearestReliefTriangle": 10684.307260695434,
+      "reliefTriangles": 232
+    },
+    {
+      "terrain": "urban_outpost",
+      "detail": 1,
+      "flatRadius": 1700,
+      "opticalFootprintRadius": 1500,
+      "nearestReliefTriangle": 1699.0897634255673,
+      "reliefTriangles": 4032
+    },
+    {
+      "terrain": "urban_outpost",
+      "detail": 1,
+      "flatRadius": 10700,
+      "opticalFootprintRadius": 10500,
+      "nearestReliefTriangle": 10694.270795387973,
+      "reliefTriangles": 576
+    },
+    {
+      "terrain": "rural_forward_base",
+      "detail": 0.6,
+      "flatRadius": 1700,
+      "opticalFootprintRadius": 1500,
+      "nearestReliefTriangle": 1697.5067763690354,
+      "reliefTriangles": 1508
+    },
+    {
+      "terrain": "rural_forward_base",
+      "detail": 0.6,
+      "flatRadius": 10700,
+      "opticalFootprintRadius": 10500,
+      "nearestReliefTriangle": 10684.307260695434,
+      "reliefTriangles": 232
+    },
+    {
+      "terrain": "rural_forward_base",
+      "detail": 1,
+      "flatRadius": 1700,
+      "opticalFootprintRadius": 1500,
+      "nearestReliefTriangle": 1699.0897634255673,
+      "reliefTriangles": 4032
+    },
+    {
+      "terrain": "rural_forward_base",
+      "detail": 1,
+      "flatRadius": 10700,
+      "opticalFootprintRadius": 10500,
+      "nearestReliefTriangle": 10694.270795387973,
+      "reliefTriangles": 576
+    }
+  ]
+}

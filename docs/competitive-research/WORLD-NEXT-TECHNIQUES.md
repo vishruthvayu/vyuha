@@ -44,3 +44,7 @@ Safe integration: optional flat-radius inputs in `terrainHeight`/`createTerrainG
 5. Measure cold/repeat preparation, first long frame, sustained intervals, draw/triangle/resource budgets under a matched named-device workload. Retain slower/inconclusive runs. Browser/XR qualify separately.
 
 Authored world, instrument interactions and task-aware qualification can form a major subsystem upgrade. A helper, shader or new screenshot alone cannot.
+
+## Subsequent implementation —25 October2026
+
+[Configured optics acceptance](../next-generation/configured-optics/ACCEPTANCE.md), runtimeab92f69, now integrates the public range envelope, IFOV/visibility forwarding and fail-closed local-world bounds through Training/Ghost/XR.33targeted checks and actual custom-library→server-verifiedGhost behavior are recorded separately. This closes the configuration-plumbing gap for supported paths; the authored kit, perceptual oracle, expanded worlds, physical XR and override-performance qualification remain unimplemented/unvalidated. Earlier staging results above retain their original scope.

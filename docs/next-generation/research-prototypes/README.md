@@ -6,3 +6,7 @@
 - `world-envelope/`: public-config range/origin envelope prototype. Agent staging tests passed6 cases, but no production scene integration was performed for the Optical Station. See the next-world research memo. A helper does not itself change terrain, IFOV, haze, sky clipping or XR.
 
 Promote support code only through an explicit integration with focused compatibility evidence. Their presence is neither a release gate waiver nor a claim of a new world kit or active-query engine.
+
+## Subsequent promotion
+
+Runtimeab92f69 integrates an evolved world-envelope/configuration contract, documented in [configured optics](../configured-optics/ACCEPTANCE.md). The `.txt` snapshot remains historical prototype evidence, not the source to import. Renderer-readiness is still unintegrated. Neither promotion means a new authored world or completed active-evidence engine.
