@@ -1,0 +1,101 @@
+{
+  "baseline_commit": "91ac28d2e6699e7d78d750068b9dce9d9dcea009",
+  "baseline_source_hash": "93f5e36512c6c7e3abb0431357efdce38d4bff6456a63a43e314eadafd7d8ad2",
+  "candidate_source": {
+    "working_tree_source_dirty": false,
+    "commit": "7729c406c1ac3e714065617fc4890d569b50eff8",
+    "source_hash": "55bbb4f809837b7ab0fcdefdecae87f17e03892ed2361d2ff36995ff763d9ed2"
+  },
+  "matched_fields": {
+    "reproduction_path": "/system/benchmark?diagnostics=1&texturePreparation=synchronous&engine=finale&contacts=200&seconds=20&retained=1&graphics=medium&auto=0&world=urban_outpost&night=0&view=day&palette=white&camera=trainee",
+    "viewport_at_run": {
+      "css_width": 1280,
+      "css_height": 720,
+      "device_pixel_ratio": 0.8999999761581421,
+      "visual_scale": 1
+    },
+    "roster_mode": "retained-slow-synthetic",
+    "requested_seconds": 20,
+    "engine_version": "vyuha-0.4.0",
+    "vision": "day",
+    "world": "urban_outpost",
+    "night": false,
+    "thermal_palette": "white",
+    "camera_preset": "trainee",
+    "contacts": 200,
+    "graphics": "medium",
+    "auto_quality": false
+  },
+  "baseline_provenance_note": "Raw benchmark has unavailable provenance because baseline was a git archive with no .git/.venv. Archive was independently hashed with original server.evidence.source_hash; the exact verified hash is recorded below, not patched into raw samples.",
+  "baseline_verified_archive_source_hash": "93f5e36512c6c7e3abb0431357efdce38d4bff6456a63a43e314eadafd7d8ad2",
+  "runs": [
+    {
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0.6000000089406967,
+      "p95_sim_tick_ms": 3.0999999940395355,
+      "fps_samples": [
+        59,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        58,
+        60,
+        61,
+        56,
+        59,
+        61,
+        60,
+        60,
+        60,
+        60,
+        60
+      ],
+      "simulation_tick": 599,
+      "simulation_tick_samples": 599,
+      "minimum_active_contacts": 200,
+      "timing_samples_complete": true,
+      "clock_dropped_ms": 0,
+      "visibility_interruptions": 0
+    },
+    {
+      "median_render_fps": 60,
+      "median_sim_tick_ms": 0.5,
+      "p95_sim_tick_ms": 0.8999999910593033,
+      "fps_samples": [
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60
+      ],
+      "simulation_tick": 599,
+      "simulation_tick_samples": 599,
+      "minimum_active_contacts": 200,
+      "timing_samples_complete": true,
+      "clock_dropped_ms": 0,
+      "visibility_interruptions": 0
+    }
+  ],
+  "interpretation": "Both ran at60medianFPS. Worker timings vary and are not attributed to optics. This is one paired20s synthetic baseline/candidate observation, not a speedup, GPU frame-time, input-latency, manual-comparison workload, cold-start, memory/long-soak or headset qualification.",
+  "browser_limit": "IAB90percentzoom/DPR0.9; owner-identifiedMacBookAirM1, RAMunreported. Not compared with earlier Chrome/DPR2 runs.",
+  "harness_note": "Initial archived preview encountered duplicateReact due shared Vite cache/node_modules symlink. Isolated cache and resolver dedupe fixed the harness before measuring. No application fix/test result claimed from this."
+}

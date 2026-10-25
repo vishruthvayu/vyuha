@@ -1,0 +1,305 @@
+{
+  "reproduction_path": "/system/benchmark?diagnostics=1&texturePreparation=synchronous&engine=finale&contacts=200&seconds=20&retained=1&graphics=medium&auto=0&world=urban_outpost&night=0&view=day&palette=white&camera=trainee",
+  "schema_version": 7,
+  "texture_preparation": "synchronous",
+  "source": {
+    "commit": "unavailable",
+    "source_hash": "unavailable",
+    "working_tree_source_dirty": true
+  },
+  "viewport_at_run": {
+    "css_width": 1280,
+    "css_height": 720,
+    "device_pixel_ratio": 0.8999999761581421,
+    "visual_scale": 1
+  },
+  "timing_samples_complete": true,
+  "visibility_interruptions": 0,
+  "foreground_only": true,
+  "clock_dropped_ms": 0,
+  "measurement_issue": null,
+  "roster_mode": "retained-slow-synthetic",
+  "workload_samples": [
+    {
+      "seconds": 0.26059999999403954,
+      "tick": 6,
+      "active_contacts": 200,
+      "logical_lag_ms": 60.599999994039536,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 1.0105999999940396,
+      "tick": 27,
+      "active_contacts": 200,
+      "logical_lag_ms": 110.59999999403965,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 2.0100999999940394,
+      "tick": 57,
+      "active_contacts": 200,
+      "logical_lag_ms": 110.09999999403954,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 3.0100999999940394,
+      "tick": 87,
+      "active_contacts": 200,
+      "logical_lag_ms": 110.09999999403954,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 4.01020000000298,
+      "tick": 117,
+      "active_contacts": 200,
+      "logical_lag_ms": 110.20000000298023,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 5.01009999999404,
+      "tick": 147,
+      "active_contacts": 200,
+      "logical_lag_ms": 110.09999999403954,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 6.0095,
+      "tick": 177,
+      "active_contacts": 200,
+      "logical_lag_ms": 109.5,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 7.0095,
+      "tick": 207,
+      "active_contacts": 200,
+      "logical_lag_ms": 109.5,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 8.00979999999702,
+      "tick": 237,
+      "active_contacts": 200,
+      "logical_lag_ms": 109.79999999701977,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 9.00990000000596,
+      "tick": 267,
+      "active_contacts": 200,
+      "logical_lag_ms": 109.90000000596046,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 10.010599999994039,
+      "tick": 297,
+      "active_contacts": 200,
+      "logical_lag_ms": 110.59999999403954,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 11.01,
+      "tick": 327,
+      "active_contacts": 200,
+      "logical_lag_ms": 110,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 12.0095,
+      "tick": 357,
+      "active_contacts": 200,
+      "logical_lag_ms": 109.5,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 13.00990000000596,
+      "tick": 387,
+      "active_contacts": 200,
+      "logical_lag_ms": 109.90000000596046,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 14.00990000000596,
+      "tick": 417,
+      "active_contacts": 200,
+      "logical_lag_ms": 109.90000000596046,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 15.010599999994039,
+      "tick": 447,
+      "active_contacts": 200,
+      "logical_lag_ms": 110.59999999403954,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 16.01009999999404,
+      "tick": 477,
+      "active_contacts": 200,
+      "logical_lag_ms": 110.09999999403954,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 17.01070000000298,
+      "tick": 507,
+      "active_contacts": 200,
+      "logical_lag_ms": 110.70000000298023,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 18.01059999999404,
+      "tick": 537,
+      "active_contacts": 200,
+      "logical_lag_ms": 110.59999999403954,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 19.00979999999702,
+      "tick": 567,
+      "active_contacts": 200,
+      "logical_lag_ms": 109.79999999701977,
+      "rendered_contacts": 199
+    },
+    {
+      "seconds": 20.00959999999404,
+      "tick": 597,
+      "active_contacts": 200,
+      "logical_lag_ms": 109.59999999403954,
+      "rendered_contacts": 199
+    }
+  ],
+  "minimum_active_contacts": 200,
+  "logical_lag_scope": "Elapsed wall time minus delivered logical ticks since Run, including initialization and bounded scheduling stalls. Background runs are not foreground qualification.",
+  "requested_seconds": 20,
+  "simulation_tick": 599,
+  "simulation_tick_samples": 599,
+  "heap_samples": [
+    {
+      "seconds": 0,
+      "used_js_heap_bytes": 128947853
+    },
+    {
+      "seconds": 1,
+      "used_js_heap_bytes": 139301789
+    },
+    {
+      "seconds": 2,
+      "used_js_heap_bytes": 131856705
+    },
+    {
+      "seconds": 3,
+      "used_js_heap_bytes": 134606757
+    },
+    {
+      "seconds": 4,
+      "used_js_heap_bytes": 163250065
+    },
+    {
+      "seconds": 5,
+      "used_js_heap_bytes": 155552761
+    },
+    {
+      "seconds": 6,
+      "used_js_heap_bytes": 171031853
+    },
+    {
+      "seconds": 7,
+      "used_js_heap_bytes": 169864801
+    },
+    {
+      "seconds": 8,
+      "used_js_heap_bytes": 181668749
+    },
+    {
+      "seconds": 9,
+      "used_js_heap_bytes": 177362121
+    },
+    {
+      "seconds": 10,
+      "used_js_heap_bytes": 192341037
+    },
+    {
+      "seconds": 11,
+      "used_js_heap_bytes": 197955017
+    },
+    {
+      "seconds": 12,
+      "used_js_heap_bytes": 190096533
+    },
+    {
+      "seconds": 13,
+      "used_js_heap_bytes": 199370533
+    },
+    {
+      "seconds": 14,
+      "used_js_heap_bytes": 210958217
+    },
+    {
+      "seconds": 15,
+      "used_js_heap_bytes": 203191889
+    },
+    {
+      "seconds": 16,
+      "used_js_heap_bytes": 101971863
+    },
+    {
+      "seconds": 17,
+      "used_js_heap_bytes": 122029363
+    },
+    {
+      "seconds": 18,
+      "used_js_heap_bytes": 116721779
+    },
+    {
+      "seconds": 19,
+      "used_js_heap_bytes": 143115683
+    },
+    {
+      "seconds": 20,
+      "used_js_heap_bytes": 138010875
+    }
+  ],
+  "heap_scope": "Browser-reported main-page JS heap only; may be coarse or unavailable; excludes Worker, GPU and total process memory",
+  "engine_version": "vyuha-0.4.0",
+  "workload": "synthetic simultaneous-contact stress fixture; not a solvable Raid Composer exercise",
+  "vision": "day",
+  "world": "urban_outpost",
+  "night": false,
+  "thermal_palette": "white",
+  "camera_preset": "trainee",
+  "hardware_class": "MacBook Air M1 (owner identified); Codex IAB",
+  "ram_gib": "",
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+  "contacts": 200,
+  "graphics": "medium",
+  "auto_quality": false,
+  "seconds": 20,
+  "fps_samples": [
+    59,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    58,
+    60,
+    61,
+    56,
+    59,
+    61,
+    60,
+    60,
+    60,
+    60,
+    60
+  ],
+  "median_render_fps": 60,
+  "median_sim_tick_ms": 0.6000000089406967,
+  "p95_sim_tick_ms": 3.0999999940395355,
+  "logical_cores": 8,
+  "js_heap_bytes": 138010875,
+  "note": "WebGL frame callbacks measured while running, not device certification. Auto mode may combine quality tiers. Simulation runs at 30 Hz with bounded stall handling; no scoring fidelity reductions."
+}

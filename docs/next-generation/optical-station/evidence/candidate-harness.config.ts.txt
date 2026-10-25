@@ -1,0 +1,2 @@
+import base from '/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/vite.config.ts';
+export default {...base, root:'/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client', server:{...base.server, port:8040, strictPort:true,proxy:{"/api":"http://127.0.0.1:8042"}}};

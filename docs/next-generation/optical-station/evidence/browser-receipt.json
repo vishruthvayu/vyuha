@@ -1,0 +1,52 @@
+{
+  "runtime_commit": "7729c406c1ac3e714065617fc4890d569b50eff8",
+  "browser_client_files_equivalent_to_runtime": true,
+  "full_source_hash_at_final_ui_checks": "d3be70b22123c8c64a79667770ca3c2d2e796f300819005140895563bdac1461",
+  "later_source_change": "Capability registry source/limitation metadata and generated projection only; browser implementation files unchanged before7729c40. Benchmark self-stamps clean7729c40 source55bbb4f.",
+  "session": {
+    "id": "96c34b60-71db-41a2-81c1-fe471c585827",
+    "scenario_id": "raid_d73527bd6a9eb438fa543730",
+    "status": "completed",
+    "execution_tick": 2700,
+    "score": 0
+  },
+  "capture_a": {
+    "capture_tick": 1358,
+    "capture_seconds": 45.27,
+    "optical_sample_seconds": 45.2,
+    "radar_sample_seconds": 45.0
+  },
+  "capture_b": {
+    "capture_seconds": 56.3,
+    "optical_sample_seconds": 56.3,
+    "radar_sample_seconds": 56.0
+  },
+  "observed_actions": [
+    "designation45.57",
+    "classification56.13"
+  ],
+  "result": "Server verified;0/100 workflow exercise, no learning/expert-performance claim",
+  "responsive_css_sizes": [
+    [
+      1280,
+      720
+    ],
+    [
+      820,
+      900
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "zoom": "90percent;CSS viewport explicitly measured, not100percentqualification",
+  "physical_testing": "NOT PERFORMED",
+  "local_notebook": "Ungraded/notpersisted/noaccepted-action/Fusion/score writes",
+  "accepted_action_count": 2,
+  "accepted_action_kinds": [
+    "designate",
+    "classify"
+  ],
+  "accepted_actions_sha256": "e2a2af489fbafe81a9dca925bec1e3aebcc8732b8a695493859bca128cbd78a7"
+}

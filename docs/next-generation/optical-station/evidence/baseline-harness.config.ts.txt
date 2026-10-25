@@ -1,0 +1,2 @@
+import base from '/private/tmp/vyuha-optics-baseline/client/vite.config.ts';
+export default {...base,root:'/private/tmp/vyuha-optics-baseline/client',cacheDir:'/private/tmp/vyuha-optics-baseline-cache',resolve:{...base.resolve,dedupe:['react','react-dom','three','@react-three/fiber']},server:{...base.server,port:8044,strictPort:true,proxy:{'/api':'http://127.0.0.1:8042'}}};

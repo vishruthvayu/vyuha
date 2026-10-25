@@ -1,0 +1,195 @@
+import type { Quality } from "./quality";
+
+/** Local presentation identity only. Keys must describe the concrete frozen
+ * preparation, scenario and public world/display inputs, never frame time.
+ * This contract is not persisted or sent to the simulation worker/server. */
+export type RenderPreparationContext = Readonly<{
+  preparationKey: string;
+  scenarioKey: string;
+  worldKey: string;
+  quality: Quality;
+  modeKey: string;
+}>;
+export type ReadinessPolicy = Readonly<{ allowTactical?: boolean }>;
+/** In-memory identities, not serializable authorization credentials. A copy
+ * with identical fields is deliberately NOT the same request or mount lease. */
+export type RenderPreparationRequest = Readonly<{
+  context: RenderPreparationContext;
+  key: string;
+}>;
+export type RendererMountLease = Readonly<{
+  request: RenderPreparationRequest;
+}>;
+export type RendererReadinessPhase =
+  | "idle"
+  | "waiting"
+  | "rendering"
+  | "ready"
+  | "failed"
+  | "unmounted"
+  | "tactical";
+export type RendererFailureReason = "render-error" | "context-lost";
+
+export function renderPreparationKey(
+  context: RenderPreparationContext,
+): string {
+  for (const value of [
+    context.preparationKey,
+    context.scenarioKey,
+    context.worldKey,
+    context.modeKey,
+  ])
+    if (typeof value !== "string" || !value.trim())
+      throw new RangeError(
+        "Renderer readiness requires a nonempty context identity",
+      );
+  if (!["high", "medium", "low", "tactical"].includes(context.quality))
+    throw new RangeError("Invalid renderer readiness quality");
+  // Tuple encoding avoids collisions from delimiters inside caller-owned keys.
+  return JSON.stringify([
+    context.preparationKey,
+    context.scenarioKey,
+    context.worldKey,
+    context.quality,
+    context.modeKey,
+  ]);
+}
+
+/** Deterministic, effect-free state machine. It owns no timers, renderer,
+ * actions, simulation clock, React state, browser API or global cache.
+ * The caller alone certifies that completeFrame follows all local world passes.
+ * Readiness describes frame submission, not GPU completion/headset acceptance. */
+export class RendererReadinessGate {
+  private request: RenderPreparationRequest | null = null;
+  private lease: RendererMountLease | null = null;
+  private phase: RendererReadinessPhase = "idle";
+  private allowTactical = false;
+  private failureReason: RendererFailureReason | null = null;
+
+  /** Idempotent for a rerender of the same preparation/context/policy, including
+   * failures. A failed preparation does not retry merely because React renders. */
+  prepare(context: RenderPreparationContext, policy: ReadinessPolicy = {}) {
+    const key = renderPreparationKey(context);
+    const tactical = policy.allowTactical === true;
+    if (this.request?.key === key && this.allowTactical === tactical)
+      return this.request;
+    return this.begin(context, key, tactical);
+  }
+
+  /** Explicit retry/restoration creates a fresh identity even for identical
+   * context facts; all previously issued callbacks/leases become stale. */
+  retry(context: RenderPreparationContext, policy: ReadinessPolicy = {}) {
+    return this.begin(
+      context,
+      renderPreparationKey(context),
+      policy.allowTactical === true,
+    );
+  }
+
+  /** Call for the actual committed World lifecycle. A replacement mount revokes
+   * earlier readiness immediately, and needs its own completed-frame receipt.
+   * Failure requires explicit retry; tactical never accepts a WebGL receipt. */
+  mount(request: RenderPreparationRequest): RendererMountLease | null {
+    if (
+      request !== this.request ||
+      this.phase === "failed" ||
+      request.context.quality === "tactical"
+    )
+      return null;
+    this.lease = Object.freeze({ request });
+    this.phase = "rendering";
+    this.failureReason = null;
+    return this.lease;
+  }
+
+  /** One acknowledgement per lease. Capture this lease in the committed
+   * reporter; do not read a newer lease from a mutable ref in an old callback. */
+  completeFrame(lease: RendererMountLease): boolean {
+    if (!this.owns(lease) || this.phase !== "rendering") return false;
+    this.phase = "ready";
+    return true;
+  }
+
+  /** Failure after readiness revokes it too. A late frame cannot undo failure. */
+  fail(
+    lease: RendererMountLease,
+    reason: RendererFailureReason = "render-error",
+  ): boolean {
+    if (!this.owns(lease) || !["rendering", "ready"].includes(this.phase))
+      return false;
+    this.phase = "failed";
+    this.failureReason = reason;
+    return true;
+  }
+
+  /** This only revokes local readiness. It never pauses or changes a live drill. */
+  unmount(lease: RendererMountLease): boolean {
+    if (!this.owns(lease) || !["rendering", "ready"].includes(this.phase))
+      return false;
+    this.lease = null;
+    this.phase = "unmounted";
+    return true;
+  }
+
+  invalidate(): void {
+    this.request = null;
+    this.lease = null;
+    this.phase = "idle";
+    this.allowTactical = false;
+    this.failureReason = null;
+  }
+
+  /** Synchronous guard at every Start entry point, not just a disabled button.
+   * The caller supplies CURRENT context; stale UI state cannot authorize it. */
+  canStart(context: RenderPreparationContext): boolean {
+    let key: string;
+    try {
+      key = renderPreparationKey(context);
+    } catch {
+      return false;
+    }
+    if (key !== this.request?.key) return false;
+    return (
+      this.phase === "ready" ||
+      (this.phase === "tactical" &&
+        this.allowTactical &&
+        context.quality === "tactical")
+    );
+  }
+
+  snapshot() {
+    return Object.freeze({
+      phase: this.phase,
+      request: this.request,
+      lease: this.lease,
+      context: this.request?.context ?? null,
+      failureReason: this.failureReason,
+    });
+  }
+
+  private begin(
+    context: RenderPreparationContext,
+    key: string,
+    allowTactical: boolean,
+  ) {
+    // Snapshot only declared scalar facts; caller mutation cannot rewrite a job.
+    const snapshot = Object.freeze({
+      preparationKey: context.preparationKey,
+      scenarioKey: context.scenarioKey,
+      worldKey: context.worldKey,
+      quality: context.quality,
+      modeKey: context.modeKey,
+    });
+    this.request = Object.freeze({ context: snapshot, key });
+    this.lease = null;
+    this.allowTactical = allowTactical;
+    this.phase =
+      allowTactical && snapshot.quality === "tactical" ? "tactical" : "waiting";
+    this.failureReason = null;
+    return this.request;
+  }
+
+  private owns(lease: RendererMountLease) {
+    return lease === this.lease && lease.request === this.request;
+  }
+}

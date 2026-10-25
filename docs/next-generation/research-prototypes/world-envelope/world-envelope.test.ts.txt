@@ -1,0 +1,98 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {
+  worldPresentationEnvelope,
+  WORLD_EVIDENCE_MARGIN_M,
+} from "./world/world-envelope";
+
+test("default scenario retains the exact existing world clearance", () => {
+  const envelope = worldPresentationEnvelope();
+  assert.equal(envelope.flatRadius, 1700);
+  assert.equal(envelope.maximumOpticalRange, 1500);
+  assert.equal(envelope.opticalFootprintRadius, 1500);
+  assert.equal(envelope.hasRelief, true);
+  assert.equal(envelope.requiresExpandedWorld, false);
+});
+
+test("full configured optical sphere fits inside the required flat disc for offset origins", () => {
+  for (const origin of [
+    { x: 0, z: 0, altitude: 2 },
+    { x: 300, z: 400, altitude: 100 },
+    { x: -700, z: -2400, altitude: -5 },
+  ])
+    for (const [eo, ir] of [
+      [50, 50],
+      [1500, 1200],
+      [10000, 10000],
+    ]) {
+      const envelope = worldPresentationEnvelope(
+        { eo_max_range_m: eo, ir_max_range_m: ir },
+        origin,
+      );
+      const range = Math.max(eo, ir);
+      for (let angle = 0; angle < Math.PI * 2; angle += 0.13) {
+        const x = origin.x + Math.sin(angle) * range;
+        const z = origin.z + Math.cos(angle) * range;
+        assert.ok(
+          Math.hypot(x, z) + WORLD_EVIDENCE_MARGIN_M <=
+            envelope.flatRadius + 1e-8,
+        );
+      }
+    }
+});
+
+test("large valid origins require explicit world expansion and cannot authorize relief", () => {
+  const envelope = worldPresentationEnvelope(
+    { eo_max_range_m: 10000 },
+    { x: 9000, z: 12000, altitude: 2 },
+  );
+  assert.equal(envelope.flatRadius, 25200);
+  assert.equal(envelope.hasRelief, false);
+  assert.equal(envelope.requiresExpandedWorld, true);
+});
+
+test("origin altitude cannot falsely shrink the conservative horizontal footprint", () => {
+  const a = worldPresentationEnvelope(undefined, { x: 3, z: 4, altitude: 2 });
+  const b = worldPresentationEnvelope(undefined, {
+    x: 3,
+    z: 4,
+    altitude: 9000,
+  });
+  assert.equal(a.opticalFootprintRadius, b.opticalFootprintRadius);
+  assert.equal(a.flatRadius, b.flatRadius);
+});
+
+test("invalid configuration/origins fail explicitly instead of manufacturing default safety", () => {
+  for (const n of [NaN, Infinity, -Infinity])
+    for (const axis of ["x", "z", "altitude"] as const)
+      assert.throws(() =>
+        worldPresentationEnvelope(undefined, {
+          x: 0,
+          z: 0,
+          altitude: 2,
+          [axis]: n,
+        }),
+      );
+  for (const range of [NaN, Infinity, 0, 10001])
+    assert.throws(() => worldPresentationEnvelope({ eo_max_range_m: range }));
+  assert.throws(() =>
+    worldPresentationEnvelope(undefined, {
+      x: Number.MAX_VALUE,
+      z: Number.MAX_VALUE,
+      altitude: 2,
+    }),
+  );
+});
+
+test("envelope owns immutable copies and never mutates accepted scenario configuration", () => {
+  const origin = { x: 300, z: 400, altitude: 2 };
+  const config = { eo_max_range_m: 3000 };
+  const envelope = worldPresentationEnvelope(config, origin);
+  origin.x = 999;
+  config.eo_max_range_m = 5000;
+  assert.equal(envelope.sensorOrigin.x, 300);
+  assert.equal(envelope.maximumOpticalRange, 3000);
+  assert.ok(Object.isFrozen(envelope));
+  assert.ok(Object.isFrozen(envelope.sensorOrigin));
+  assert.equal(Reflect.set(envelope, "flatRadius", 0), false);
+});

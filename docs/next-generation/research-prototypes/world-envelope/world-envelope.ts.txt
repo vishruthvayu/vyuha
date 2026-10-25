@@ -1,0 +1,64 @@
+import {
+  sensorConfiguration,
+  type SensorConfig,
+  type SensorPosition,
+} from "../sensors-v2";
+import { FLAT_RADIUS, TERRAIN_RADIUS } from "./terrain";
+
+/** Presentation clearance only. This does not change sensor observations,
+ * terrain boxes, scoring, or the accepted simulation state. */
+export const WORLD_EVIDENCE_MARGIN_M = 200;
+
+export type WorldPresentationEnvelope = Readonly<{
+  version: "world-envelope-v1";
+  sensorOrigin: Readonly<SensorPosition>;
+  maximumOpticalRange: number;
+  /** Bounds the horizontal projection of the complete optical observation sphere. */
+  opticalFootprintRadius: number;
+  /** Optional terrain renderer input: ground must remain flat up to this radius. */
+  flatRadius: number;
+  terrainRadius: number;
+  /** A non-flat portion can exist in the current fixed-radius terrain mesh. */
+  hasRelief: boolean;
+  /** The old world mesh cannot cover the full optical footprint. A caller must
+   * expand/recenter its world or explicitly retain a limited presentation. */
+  requiresExpandedWorld: boolean;
+}>;
+
+/** The frozen default flat disc remains exactly 1700 m. Valid long-range sensor
+ * overrides and offset origins expand its required clearance. Derive this from
+ * public scenario configuration, never from a hidden contact roster. */
+export function worldPresentationEnvelope(
+  config?: Partial<SensorConfig>,
+  sensorOrigin: SensorPosition = { x: 0, z: 0, altitude: 2 },
+): WorldPresentationEnvelope {
+  if (
+    ![sensorOrigin.x, sensorOrigin.z, sensorOrigin.altitude].every(
+      (n) => typeof n === "number" && Number.isFinite(n),
+    )
+  )
+    throw new RangeError("World sensor origin must be finite");
+  const parameters = sensorConfiguration(config);
+  const maximumOpticalRange = Math.max(
+    parameters.eo_max_range_m,
+    parameters.ir_max_range_m,
+  );
+  const opticalFootprintRadius =
+    Math.hypot(sensorOrigin.x, sensorOrigin.z) + maximumOpticalRange;
+  if (!Number.isFinite(opticalFootprintRadius))
+    throw new RangeError("World optical footprint must be finite");
+  const flatRadius = Math.max(
+    FLAT_RADIUS,
+    opticalFootprintRadius + WORLD_EVIDENCE_MARGIN_M,
+  );
+  return Object.freeze({
+    version: "world-envelope-v1",
+    sensorOrigin: Object.freeze({ ...sensorOrigin }),
+    maximumOpticalRange,
+    opticalFootprintRadius,
+    flatRadius,
+    terrainRadius: TERRAIN_RADIUS,
+    hasRelief: flatRadius < TERRAIN_RADIUS,
+    requiresExpandedWorld: opticalFootprintRadius > TERRAIN_RADIUS,
+  });
+}

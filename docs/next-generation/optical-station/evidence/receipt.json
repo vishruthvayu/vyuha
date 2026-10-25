@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-25",
+  "scope": "Optical Investigation Station development slice; not full-system/release acceptance",
+  "status": "TARGETED_ACCEPTANCE_PASSED",
+  "runtime_commit": "7729c406c1ac3e714065617fc4890d569b50eff8",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "55bbb4f809837b7ab0fcdefdecae87f17e03892ed2361d2ff36995ff763d9ed2",
+  "preserved_baseline_commit": "91ac28d2e6699e7d78d750068b9dce9d9dcea009",
+  "tests": {
+    "combined_affected": {
+      "passed": 62,
+      "failed": 0,
+      "seconds": 11.617949917,
+      "phase": "before final focus/scroll correction"
+    },
+    "final_changed_ui": {
+      "passed": 7,
+      "failed": 0,
+      "seconds": 4.178084209,
+      "overlap_with_combined": 6
+    },
+    "xr_selection": {
+      "passed": 5,
+      "failed": 0,
+      "seconds": 1.3502645
+    },
+    "distinct_selected_tests": 68,
+    "full_suites_repeated": false,
+    "types": "PASS",
+    "changed_file_lint": "PASS",
+    "changed_file_format": "PASS",
+    "capability_registry": "PASS14capabilities48recommendations"
+  },
+  "limitations": [
+    "Local ungraded reports are not accepted actions or new evidence-acquisition engine",
+    "No human learning/fidelity/calibration claim",
+    "No physical platform/headset/phone/HTTPS/WAN acceptance",
+    "IAB90percentzoom;100percentzoom notqualified",
+    "One20s matched synthetic benchmark; no general speedup/latency/cold-start/long-soak/GPU/headset claim"
+  ],
+  "browser_file_sha256": {
+    "client/src/App.tsx": "ec7335436d8efd31ef4c4e01cfdb8d7198bc3a8bfb1d9695c378626f141ac2f5",
+    "client/src/Scene.tsx": "c62588e6d4c89558948ef2e447d44ba0471dbda12b948a62426c2340e2a91335",
+    "client/src/OpticalStation.tsx": "101a554b5dad00c3d793fa8527170ed9329026c2cf2176b4c932f189f588ee6e",
+    "client/src/optical-station.ts": "8fd902cc91a85ddcd3763088f7bbc52e3445a267faaa40c6ec632a6e473eceeb",
+    "client/src/inquiry-evidence.ts": "d9705411b00f78b124bf5d53b6f35f06ed9cd042318cacba135d40ef43bd9406",
+    "client/src/optical-station.css": "2c0f19f043db3dfa61318878d1f4b29e7606956192e1a8233e861be3aabe0ecd"
+  },
+  "artifacts": {
+    "evidence/baseline-200.json": {
+      "sha256": "6170e6857bced7147bc12e0e53ab9d949d260565c4182b43d85fa879907f301b",
+      "bytes": 7403
+    },
+    "evidence/baseline-harness.config.ts.txt": {
+      "sha256": "92a9506de6700a704f62ba408a1f6f424466ab5e04f9f36d6823ddd907f7b723",
+      "bytes": 377
+    },
+    "evidence/before-active.jpg": {
+      "sha256": "3c208f0b2b6ccc70161502ce58cd16bec83bc9c3914703433be02f1a627321fd",
+      "bytes": 35395
+    },
+    "evidence/browser-receipt.json": {
+      "sha256": "d9e53b24d29e4e017297278d32118da34c3b813dd83e6bae109eb333d2b7be72",
+      "bytes": 1605
+    },
+    "evidence/candidate-200.json": {
+      "sha256": "f032557eaa3b7b3a25ad3580ba0c8046f21b3ffa1c78a1811fe4263a44a77acc",
+      "bytes": 7420
+    },
+    "evidence/candidate-harness.config.ts.txt": {
+      "sha256": "2ded1ed8f553b9afd56b9c7cd39f64e06adbcdb369ccf08f6f378c08576eca47",
+      "bytes": 365
+    },
+    "evidence/compare-initial-desktop.jpg": {
+      "sha256": "dd7c3599c9182d1e295fc3b60ccc9cfeeb6e38992d0afddd2de91c567c1205cf",
+      "bytes": 45641
+    },
+    "evidence/compare-live-times-desktop.jpg": {
+      "sha256": "42353374ae8ce5ab94a15fdfbd344c03756e9db98b9045dcef2f3fe05fba034a",
+      "bytes": 58895
+    },
+    "evidence/compare-mobile.jpg": {
+      "sha256": "0cbd2faa2782f25897ab8a5f55c082e03670f1df671a06cf5a77fb6bd34f0acd",
+      "bytes": 33804
+    },
+    "evidence/final-compare-desktop.jpg": {
+      "sha256": "597a49503a9bfa87abab4aa0eda8c1829918982b29e5a9ca911b292b1184fddb",
+      "bytes": 42591
+    },
+    "evidence/final-compare-mobile.jpg": {
+      "sha256": "98b3d4aec086be684e456bf643cfffec128af4ac0f5e7bd92267d187de1e6085",
+      "bytes": 42308
+    },
+    "evidence/final-compare-tablet.jpg": {
+      "sha256": "a539aa1fbc7a2922d836be2e5322aedde3f88bd93433a38b7f7c395a3e7eedb3",
+      "bytes": 57934
+    },
+    "evidence/final-live-manual-thermal.jpg": {
+      "sha256": "5427a0041d3eeb8e9cbe5dfbf14427930a0130a6500ba5d765e94eaa6e7b340d",
+      "bytes": 48005
+    },
+    "evidence/focused-tests.log": {
+      "sha256": "c2d11c91ce97b51b74fc2f46b2714067fb6c333677b1e557d91761e74762ca21",
+      "bytes": 6669
+    },
+    "evidence/performance-comparison.json": {
+      "sha256": "87f35b73327245190ef1b7019dc52ff2c19340355a2a75e79cc8f84af7563c68",
+      "bytes": 3387
+    },
+    "evidence/ui-final-corrected.log": {
+      "sha256": "13c64999f6a251aec9a7888a948b75ed35b679e378c1287365163166ed7b86ca",
+      "bytes": 837
+    },
+    "evidence/ui-final.log": {
+      "sha256": "8106b2a7870c7c6470e20ff6b066fe4cb809d4c9c36d7006976b51963f0b5e6b",
+      "bytes": 993
+    },
+    "evidence/ui-followup.log": {
+      "sha256": "91bfe87f1f0b63c1e9d05a64f4cc79c11b89d4863493c5ccb4b4001770c6e11a",
+      "bytes": 736
+    },
+    "evidence/vr-compatibility.log": {
+      "sha256": "19106f110552ccac3d2a0ba95cdd766caf0c4ba50277bb6aa8126f3486de3b0b",
+      "bytes": 616
+    }
+  }
+}

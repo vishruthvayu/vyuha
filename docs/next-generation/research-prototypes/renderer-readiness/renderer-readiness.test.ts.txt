@@ -1,0 +1,233 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {
+  RendererReadinessGate,
+  renderPreparationKey,
+  type RenderPreparationContext,
+} from "./renderer-readiness";
+
+const context: RenderPreparationContext = {
+  preparationKey: "academy-preparation-A",
+  scenarioKey: "scenario-A@engine0.4:fingerprint-A",
+  worldKey: "urban:boxes-A:sky-light-v1:origin-A",
+  quality: "medium",
+  modeKey: "briefing:day:white:night0:fog0.2",
+};
+function mounted(gate = new RendererReadinessGate(), value = context) {
+  const request = gate.prepare(value);
+  const lease = gate.mount(request)!;
+  assert.ok(lease);
+  return { gate, request, lease };
+}
+
+test("pending and mounting are not ready; first completed frame acknowledges only once", () => {
+  const gate = new RendererReadinessGate();
+  assert.equal(gate.snapshot().phase, "idle");
+  const request = gate.prepare(context);
+  assert.equal(gate.canStart(context), false);
+  assert.equal(gate.snapshot().phase, "waiting");
+  const lease = gate.mount(request)!;
+  assert.equal(gate.snapshot().phase, "rendering");
+  assert.equal(gate.canStart(context), false);
+  assert.equal(gate.completeFrame(lease), true);
+  assert.equal(gate.canStart(context), true);
+  assert.equal(gate.completeFrame(lease), false);
+  assert.equal(gate.canStart(context), true);
+});
+
+test("preparation snapshots are immutable and rerenders reuse the same request", () => {
+  const mutable = { ...context };
+  const { gate, request, lease } = mounted(undefined, mutable);
+  assert.equal(gate.prepare({ ...context }), request);
+  assert.ok(
+    Object.isFrozen(request) &&
+      Object.isFrozen(request.context) &&
+      Object.isFrozen(lease),
+  );
+  mutable.modeKey = "different";
+  assert.equal(request.context.modeKey, context.modeKey);
+  assert.equal(Reflect.set(request.context, "scenarioKey", "rewritten"), false);
+  gate.completeFrame(lease);
+  assert.equal(gate.canStart(context), true);
+  assert.equal(gate.canStart(mutable), false);
+  assert.equal(gate.prepare(context), request);
+  assert.equal(gate.canStart(context), true);
+});
+
+for (const [field, value] of [
+  ["preparationKey", "next-preparation"],
+  ["scenarioKey", "other-scenario"],
+  ["worldKey", "other-terrain-boxes-lighting-origin"],
+  ["quality", "high"],
+  ["modeKey", "observation:thermal:black:night1:fog0.5"],
+] as const)
+  test(`exact changed ${field} invalidates current and late receipts`, () => {
+    const { gate, lease } = mounted();
+    gate.completeFrame(lease);
+    const next = { ...context, [field]: value };
+    assert.equal(gate.canStart(next), false); // synchronous guard before a rerender
+    const request = gate.prepare(next);
+    assert.equal(gate.canStart(next), false);
+    assert.equal(gate.completeFrame(lease), false);
+    assert.equal(gate.fail(lease), false);
+    assert.equal(gate.unmount(lease), false);
+    assert.equal(gate.snapshot().phase, "waiting");
+    const fresh = gate.mount(request)!;
+    gate.completeFrame(fresh);
+    assert.equal(gate.canStart(next), true);
+    assert.equal(gate.canStart(context), false);
+  });
+
+test("returning to identical earlier facts cannot reuse the earlier acknowledgement", () => {
+  const { gate, lease, request } = mounted();
+  gate.completeFrame(lease);
+  gate.prepare({ ...context, scenarioKey: "temporary-scenario" });
+  const current = gate.prepare(context);
+  assert.notEqual(current, request);
+  assert.equal(gate.canStart(context), false);
+  assert.equal(gate.completeFrame(lease), false);
+  const newLease = gate.mount(current)!;
+  assert.equal(gate.completeFrame(newLease), true);
+});
+
+test("replacement mount revokes readiness and ignores older mount cleanup/failure", () => {
+  const { gate, lease, request } = mounted();
+  gate.completeFrame(lease);
+  const replacement = gate.mount(request)!;
+  assert.notEqual(replacement, lease);
+  assert.equal(gate.canStart(context), false);
+  assert.equal(gate.unmount(lease), false);
+  assert.equal(gate.fail(lease), false);
+  assert.equal(gate.completeFrame(lease), false);
+  assert.equal(gate.snapshot().phase, "rendering");
+  assert.equal(gate.completeFrame(replacement), true);
+  assert.equal(gate.canStart(context), true);
+});
+
+test("failure is terminal for its preparation until explicit retry", () => {
+  const { gate, request, lease } = mounted();
+  assert.equal(gate.fail(lease), true);
+  assert.equal(gate.snapshot().failureReason, "render-error");
+  assert.equal(gate.completeFrame(lease), false);
+  assert.equal(gate.canStart(context), false);
+  assert.equal(gate.prepare(context), request);
+  assert.equal(gate.mount(request), null);
+  assert.equal(gate.unmount(lease), false);
+  assert.equal(gate.snapshot().phase, "failed");
+  const retry = gate.retry(context);
+  assert.notEqual(retry, request);
+  assert.equal(gate.mount(request), null);
+  const current = gate.mount(retry)!;
+  assert.equal(gate.completeFrame(lease), false);
+  assert.equal(gate.completeFrame(current), true);
+  assert.equal(gate.canStart(context), true);
+});
+
+test("context loss revokes already-ready state and cannot contaminate restoration", () => {
+  const { gate, request, lease } = mounted();
+  gate.completeFrame(lease);
+  assert.equal(gate.fail(lease, "context-lost"), true);
+  assert.equal(gate.snapshot().failureReason, "context-lost");
+  assert.equal(gate.canStart(context), false);
+  assert.equal(gate.completeFrame(lease), false);
+  const restored = gate.retry(context);
+  assert.notEqual(restored, request);
+  const fresh = gate.mount(restored)!;
+  gate.completeFrame(fresh);
+  assert.equal(gate.fail(lease, "context-lost"), false);
+  assert.equal(gate.unmount(lease), false);
+  assert.equal(gate.canStart(context), true);
+  assert.equal(gate.snapshot().failureReason, null);
+});
+
+for (const initiallyReady of [false, true])
+  test(`unmount revokes ${initiallyReady ? "ready" : "pending"} frame ownership; remount needs a fresh frame`, () => {
+    const { gate, lease, request } = mounted();
+    if (initiallyReady) gate.completeFrame(lease);
+    assert.equal(gate.unmount(lease), true);
+    assert.equal(gate.canStart(context), false);
+    assert.equal(gate.completeFrame(lease), false);
+    assert.equal(gate.fail(lease), false);
+    const fresh = gate.mount(request)!; // StrictMode/remount lifecycle
+    assert.notEqual(fresh, lease);
+    assert.equal(gate.canStart(context), false);
+    assert.equal(gate.completeFrame(fresh), true);
+  });
+
+test("explicit retry revokes even a successful same-context request", () => {
+  const { gate, lease, request } = mounted();
+  gate.completeFrame(lease);
+  const retry = gate.retry(context);
+  assert.notEqual(retry, request);
+  assert.equal(gate.canStart(context), false);
+  assert.equal(gate.completeFrame(lease), false);
+});
+
+test("copied tokens and another gate's identical-context receipts are never accepted", () => {
+  const a = mounted(),
+    b = mounted();
+  assert.equal(a.gate.mount({ ...a.request }), null);
+  assert.equal(a.gate.completeFrame({ ...a.lease }), false);
+  assert.equal(a.gate.completeFrame(b.lease), false);
+  assert.equal(a.gate.fail(b.lease), false);
+  assert.equal(a.gate.unmount(b.lease), false);
+  assert.equal(a.gate.canStart(context), false);
+  assert.equal(a.gate.completeFrame(a.lease), true);
+});
+
+test("tactical bypass requires explicit policy and exact tactical context", () => {
+  const { gate, lease } = mounted();
+  const tactical = { ...context, quality: "tactical" as const };
+  const blocked = gate.prepare(tactical);
+  assert.equal(gate.canStart(tactical), false);
+  assert.equal(gate.mount(blocked), null);
+  const bypass = gate.prepare(tactical, { allowTactical: true });
+  assert.notEqual(bypass, blocked);
+  assert.equal(gate.snapshot().phase, "tactical");
+  assert.equal(gate.canStart(tactical), true);
+  assert.equal(gate.canStart(context), false);
+  assert.equal(gate.completeFrame(lease), false);
+  assert.equal(gate.fail(lease), false);
+  assert.equal(gate.unmount(lease), false);
+  gate.prepare(tactical, { allowTactical: false });
+  assert.equal(gate.canStart(tactical), false);
+  gate.prepare(context, { allowTactical: true });
+  assert.equal(gate.canStart(context), false); // no implicit bypass for failed/unready WebGL
+});
+
+test("invalidation revokes every old receipt even if same context is prepared again", () => {
+  const { gate, lease, request } = mounted();
+  gate.completeFrame(lease);
+  gate.invalidate();
+  assert.equal(gate.canStart(context), false);
+  assert.equal(gate.snapshot().phase, "idle");
+  assert.equal(gate.snapshot().request, null);
+  assert.equal(gate.snapshot().lease, null);
+  assert.equal(gate.completeFrame(lease), false);
+  const next = gate.prepare(context);
+  assert.notEqual(next, request);
+  assert.equal(gate.completeFrame(lease), false);
+});
+
+test("tuple keys avoid delimiter collisions and invalid current context fails closed", () => {
+  const a = { ...context, preparationKey: "a:b", scenarioKey: "c" };
+  const b = { ...context, preparationKey: "a", scenarioKey: "b:c" };
+  assert.notEqual(renderPreparationKey(a), renderPreparationKey(b));
+  const { gate, lease } = mounted();
+  gate.completeFrame(lease);
+  for (const invalid of [
+    { ...context, preparationKey: " " },
+    { ...context, scenarioKey: "" },
+    { ...context, worldKey: "" },
+    { ...context, modeKey: "" },
+    { ...context, quality: "ultra" },
+  ]) {
+    assert.throws(
+      () => gate.prepare(invalid as RenderPreparationContext),
+      RangeError,
+    );
+    assert.equal(gate.canStart(invalid as RenderPreparationContext), false);
+  }
+  assert.equal(gate.canStart(context), true);
+  assert.ok(Object.isFrozen(gate.snapshot()));
+});
