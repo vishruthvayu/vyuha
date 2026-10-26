@@ -1,0 +1,71 @@
+{
+  "runtime_commit": "ca10cc2fb2e09488e463246f751436054290e0d1",
+  "source_hash": "a1754e4707d41965a1b700e7d2137916e05e095327a819d59f44c58a3075b40a",
+  "qa_fixture": "raid_a905818e6af71954d933860a",
+  "scope": "Disposable loopback QA database only; seeded fixture is not authoring/auth acceptance",
+  "sessions": [
+    {
+      "id": "6ae1429d-52f2-42c6-be95-0afbe5974e65",
+      "execution_tick": 863,
+      "end_tick": 2700,
+      "status": "completed",
+      "score": 0,
+      "passed": false,
+      "stored_action_batches": []
+    },
+    {
+      "id": "d1a29d0a-90f0-4e85-a903-31535dd2c68b",
+      "execution_tick": 2503,
+      "end_tick": 2700,
+      "status": "completed",
+      "score": 0,
+      "passed": false,
+      "stored_action_batches": [
+        [
+          {
+            "k": "designate",
+            "order": 0,
+            "tick": 967,
+            "track": "T2"
+          }
+        ],
+        [
+          {
+            "identity": "friendly",
+            "k": "classify",
+            "kind": "quad",
+            "order": 1,
+            "tick": 1276,
+            "track": "T2"
+          }
+        ],
+        [
+          {
+            "effector": "hold",
+            "k": "engage",
+            "order": 2,
+            "tick": 2099,
+            "track": "T2"
+          }
+        ]
+      ]
+    }
+  ],
+  "checks": [
+    "Library selection/public contact-free arrival",
+    "Live contact selection, pause/resume, EO27px/IR18px at250m",
+    "Explicit designation/classification and Hold accepted in second session",
+    "Manual scan and thermal switching",
+    "Server-verified completed0/100Ghost; hostile deliberately ignored",
+    "Modeled replay T+0: authored terminal produces VIEW BLOCKED BY SCENERY and observed-position diamond",
+    "390px and820pxCSS Ghost canvas, no horizontal overflow",
+    "No candidate browser console warn/error observed in sampled logs"
+  ],
+  "limitations": [
+    "90% IABzoom; no100%font readability acceptance",
+    "Live obstruction probe paused after orbit moved clear; live-blocked.jpg is not proof of blocked status",
+    "Blocked state demonstrated at replayT+0 in ghost-blocked.jpg",
+    "Windows/Linux/Android/headset/trustedHTTPS/WAN-off not retested",
+    "No participant learning or sensor calibration claim"
+  ]
+}

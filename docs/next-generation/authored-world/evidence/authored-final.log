@@ -1,0 +1,35 @@
+✔ terminal preserves the behind-scenery marker through rotated solid cores (5.66075ms)
+✔ logisticsShed preserves the behind-scenery marker through rotated solid cores (1.138208ms)
+✔ water-tower support space stays open while the raised tank retains a marker (0.300834ms)
+✔ authored quarter is a complete deterministic composition with bounded merged geometry (2870.000125ms)
+✔ authored extents respect arbitrary authoritative boxes and the sensor clearing (1.8555ms)
+✔ presentation version does not turn decorative scenery into sensor geometry (2.896ms)
+✔ rural streetscape remains empty and urban markings remain one merged static facility (23.645708ms)
+✔ contact shading only uses static foundations on flat visual ground, at one draw batch per world (60.861833ms)
+✔ authored logistics kit stays inside declared metric bounds, including roof plant (210.388375ms)
+✔ all authored surfaces have finite metric UVs, normalized normals, and thermal classes (58.346375ms)
+✔ authored geometry is deterministic and six buildings remain within the static geometry budget (116.342ms)
+✔ shed roof has real rising planes spanning each clerestory tooth (10.468625ms)
+✔ invalid authored envelopes fail before geometry allocation (0.905708ms)
+✔ authored objects append to an existing batch and preserve shared material merging (11.039542ms)
+✔ visual ground is exactly the sensor model's flat plane within optical range (57.833ms)
+✔ decorative scenery keeps clear of authoritative occluders and of the sensor's eye line (39.546792ms)
+✔ occluder dressing never extends outside its box (visual occlusion within sensor occlusion) (633.3315ms)
+✔ the facility merges into a handful of draw calls with every material thermally classified (1043.507542ms)
+✔ city block dressing keeps every vertex inside its box for any box shape, and towers carry balconies (3789.125791ms)
+✔ HESCO cells bulge between seams with the fill recessed under the mesh rim (3.336833ms)
+✔ the perimeter concertina coil stays within its triangle budget and on the outriggers (48.503791ms)
+✔ both hangar end walls are framed, with a personnel door and louvred vents on the rear (7.090084ms)
+✔ the procedural kit is deterministic (638.26775ms)
+✔ thermal display is an illustrative, bounded mapping with hot sources saturating (2.183541ms)
+✔ day sun heating warms faces turned to the sun, cools the shaded side, and stops at night (0.647541ms)
+✔ display haze follows the scenario fog monotonically between clear and dense (0.323917ms)
+✔ scenery line-of-sight: buildings and canopies block, open sky and grazing edges do not (10.9315ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8160.261666

@@ -112,3 +112,7 @@ New owner mission raises strategic emphasis to levels3–5 product transformatio
 ## Configured optics foundation —25 October2026
 
 [Runtimeab92f69](../configured-optics/ACCEPTANCE.md) forwards frozen sensor parameters through Training/Ghost/XR; close-up IFOV, visual haze and conservative terrain bounds honor public config.33targeted integrated checks plus8actual-triangle geometry cases passed; default terrain buffers/fog math match prior runtime exactly. A QA-only10km-range scenario ran through real Library/start/pause/EO14px/IR58px/manual scan→early server-verifiedGhost, retaining configured sampling. No new environment kit, custom-authoringUI, physicalsensor calibration, performance gain or release acceptance is claimed. Authoritative engine/scoring/actions remain unchanged.
+
+## Authored urban world —26 October2026
+
+[Logistics Quarter](../authored-world/ACCEPTANCE.md), runtimeca10cc2: five authored terminal/shed/tower structures, twelve skyline buildings, courts/avenues and metric streetscape share15facility material batches. Presentation-only obstruction mapping corrected across sharedbrowser/XR consumers.61distinct focused checks; TypeScript/lint/format; actual accepted designation/classification/Hold andserver-verifiedGhost;390/820CSS review checked.200-contact median60FPS onreportedM1; firstinitial18FPSbin andlargergeometrycost explicitly retained, not a startup improvement. Active-observation engine remainsresearch-only. No full unchanged regressions/build/physical/RC acceptance claimed; completedoptics/Theatre/Academy preserved.

@@ -1,0 +1,29 @@
+{
+  "scope": "Single CPU geometry construction, no textures, authoritative box dressing, GPU, contacts, vegetation or props. Not full-world draw calls or total memory. Timing includes JIT/order bias; no speed claim.",
+  "rows": [
+    {
+      "name": "legacy urban",
+      "placements": 409,
+      "triangles": 64910,
+      "material_batches": 15,
+      "attribute_bytes": 8568120,
+      "one_cpu_build_ms": 333.535584
+    },
+    {
+      "name": "logistics quarter",
+      "placements": 468,
+      "triangles": 155368,
+      "material_batches": 15,
+      "attribute_bytes": 20508576,
+      "one_cpu_build_ms": 422.121041
+    },
+    {
+      "name": "rural",
+      "placements": 945,
+      "triangles": 64114,
+      "material_batches": 15,
+      "attribute_bytes": 8463048,
+      "one_cpu_build_ms": 173.093167
+    }
+  ]
+}

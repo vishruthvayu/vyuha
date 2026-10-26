@@ -1,0 +1,26 @@
+import copy,hashlib,json,sqlite3
+from datetime import datetime,timezone
+from pathlib import Path
+from server.raid_v2 import compose_raid,validate_raid,feature_signature,raid_id
+request=dict(schema_version=2,seed=67476,duration=90,name='QA authored urban quarter',difficulty='foundational',terrain='urban',night=False,fog=.15,mix=['hostile_quad','friendly_uav'],family='DIRECT')
+s=compose_raid(request)
+s['sensor_config']['optical_reliability']=1.
+# A deliberately slow, close background object supports bounded UI inspection;
+# no hostile response opportunity or historical scenario is modified.
+t=next(t for t in s['tracks'] if t['identity']=='friendly')
+t.update(spawn=0,bearing=316,distance=250,speed=1.,altitude=15)
+s['raid']['signature']=feature_signature(s)
+s['raid']['fingerprint']=hashlib.sha256(json.dumps(s['raid']['signature'],separators=(',',':')).encode()).hexdigest()[:24]
+s['raid']['validation']=validate_raid(s)
+s['id']=raid_id(s)
+text=json.dumps(s,sort_keys=True,separators=(',',':'),allow_nan=False)
+qa=Path('/private/tmp/vyuha-next-generation-qa/unit.db')
+assert qa.is_file()
+with sqlite3.connect(qa) as c:
+ c.execute('BEGIN IMMEDIATE')
+ old=c.execute('select spec from scenarios where id=?',(s['id'],)).fetchone()
+ assert not old or json.loads(old[0])==s
+ c.execute('INSERT OR IGNORE INTO scenarios(id,spec) VALUES (?,?)',(s['id'],text))
+ c.execute('INSERT OR IGNORE INTO scenario_library(id,created_at,body) VALUES (?,?,?)',(s['id'],datetime.now(timezone.utc).isoformat(),json.dumps(dict(qa_fixture=True,request=request,note='Seeded disposable QA fixture, not a custom-sensor authoring UI or operator-auth test'))))
+Path('docs/next-generation/authored-world/evidence/qa-urban-world.json').write_text(json.dumps(s,indent=2)+'\n')
+print('Added new immutable QA-only fixture',s['id'],'friendly reported object',t['id'])

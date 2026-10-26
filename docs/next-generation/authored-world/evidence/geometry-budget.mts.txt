@@ -1,0 +1,13 @@
+import { facilityLayout,legacyUrbanOutpost } from './src/world/layout.ts';
+import { buildFacility } from './src/world/kit.ts';
+import {addLogisticsArchitecture,isAuthoredStructure} from './src/world/logistics-kit.ts';
+import {addStreetscape} from './src/world/streetscape.ts';
+const rows=[];
+for(const [name,layout,authored] of [['legacy urban',legacyUrbanOutpost(),false],['logistics quarter',facilityLayout('urban_outpost'),true],['rural',facilityLayout('rural_forward_base'),false]] as const) {
+ const start=performance.now();const b=buildFacility(layout.placements,layout.lines);
+ if(authored){addLogisticsArchitecture(b,layout.placements.filter(isAuthoredStructure));addStreetscape(b,layout);}
+ const gs=b.merged();let bytes=0,triangles=0;
+ for(const g of gs.values()){triangles+=g.getAttribute('position').count/3;for(const a of Object.values(g.attributes))bytes+=a.array.byteLength;g.dispose();}
+ rows.push({name,placements:layout.placements.length,triangles,material_batches:gs.size,attribute_bytes:bytes,one_cpu_build_ms:performance.now()-start});
+}
+console.log(JSON.stringify({scope:'Single CPU geometry construction, no textures, authoritative box dressing, GPU, contacts, vegetation or props. Not full-world draw calls or total memory. Timing includes JIT/order bias; no speed claim.',rows},null,2));

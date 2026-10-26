@@ -1,0 +1,28 @@
+✔ the close-up resolution is the sensor's own pixel count on target (2.124167ms)
+✔ attitude cues come only from the displayed path and stay bounded (21.500125ms)
+✔ after-action review markers are a hollow ring with a dark rim (1.669666ms)
+✔ behind-scenery marker is a hollow diamond and the far marker a soft round blob (1.798291ms)
+✔ inspection inset leaves the main sight centre clear across phone and workstation canvases (0.668542ms)
+✔ close-up cache caps refreshes at 30 Hz while context changes and reappearance invalidate immediately (2.647458ms)
+✔ only live instance data is uploaded and zero-count transitions do not upload reserved capacity (4.698291ms)
+✔ VR projects only current observed position and generic shape under adversarial hidden truth (6.939166ms)
+✔ VR missing v2 observations and bearing-only evidence never fall back to true geometry (1.443333ms)
+✔ VR optical loss holds only frozen observation for six ticks, failed channels clear immediately (0.690166ms)
+✔ VR mirrors browser disabled gates and retains warned resource/cooldown/restriction attempts (2.137334ms)
+✔ VR second confirmation invalidates contact/session/phase/timeout/availability changes (0.332875ms)
+✔ VR ordinary payloads retain identical worker-style replay and scoring (1175.620667ms)
+✔ capability checks distinguish insecure, absent, rejected and supported WebXR (0.306208ms)
+✔ XR lifecycle pauses on visibility loss and exit, supports clean re-entry (0.591166ms)
+✔ XR denial and renderer attachment failure do not leave an active session (0.606791ms)
+✔ pending session request is ended if cockpit unmounts; concurrent requests are suppressed (0.226209ms)
+✔ session ending during renderer attachment never publishes an active cockpit (0.174834ms)
+✔ immersive input accepts tracked controllers, rejects gaze and hands (0.096ms)
+✔ VR requires explicit type/identity choices and distinguishes styled IR night from separate NV hardware (0.348084ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2095.266417
