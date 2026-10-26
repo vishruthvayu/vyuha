@@ -1,0 +1,10 @@
+{
+  "version": "learning-catalog-registry-v1",
+  "catalogs": [
+    {
+      "sha256": "5abe5c7920a40c989546bc59abf77c4cb6430f0cd8a8af5dca2a361ac977d345",
+      "contract": "learning-v1",
+      "file": "learning-catalogs/5abe5c7920a40c989546bc59abf77c4cb6430f0cd8a8af5dca2a361ac977d345.json"
+    }
+  ]
+}

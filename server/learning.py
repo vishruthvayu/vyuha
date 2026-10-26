@@ -15,6 +15,7 @@ from pydantic import Field
 from . import storage
 from .models import StrictModel
 from .raid_v2 import compose_raid
+from .learning_catalogs import catalog_by_hash, current_catalog
 
 router = APIRouter(prefix='/api/v1/learning', tags=['Curriculum and competency evidence'])
 CATALOG = Path(__file__).parent/'config/learning-v1.json'
@@ -22,8 +23,7 @@ CONTRACT = 'competency-evidence-v1'
 
 
 def catalog():
-    raw = CATALOG.read_bytes()
-    return json.loads(raw), hashlib.sha256(raw).hexdigest()
+    return current_catalog(CATALOG)
 
 
 def ensure_schema(db):
@@ -73,10 +73,8 @@ class PrepareLearning(StrictModel):
 
 
 def item_for(context):
-    data, digest = catalog()
     ctx = context if isinstance(context,LearningContext) else LearningContext.model_validate(context)
-    if ctx.catalog_hash != digest:
-        raise ValueError('Unknown frozen curriculum catalog; do not reinterpret old evidence')
+    data, _ = catalog_by_hash(ctx.catalog_hash, ctx.version)
     item = next((x for x in data['items'] if x['id']==ctx.item_id),None)
     if not item or item['audience']!='individual':
         raise ValueError('Unknown individual curriculum item')
@@ -107,7 +105,7 @@ def is_practice(db, sid):
 
 def evidence_for(review, context):
     """Pure projection; never edits review, score, action history or Beta profiles."""
-    ctx=LearningContext.model_validate(context);item=item_for(ctx);data,_=catalog()
+    ctx=LearningContext.model_validate(context);item=item_for(ctx);data,_=catalog_by_hash(ctx.catalog_hash, ctx.version)
     observations=[];seen=set()
     for comp in data['competencies']:
         if comp['scope']!='individual':continue
