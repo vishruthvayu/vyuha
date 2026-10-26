@@ -5,6 +5,9 @@ import type { TerrainKind } from "./terrain";
 export function worldManifest(terrain: TerrainKind) {
   return Object.freeze({
     schema: "vyuha-presentation-world-v1",
+    surfacePipeline: "metric-surface-radiance-v1",
+    surfacePolicy:
+      "EO Medium/High dielectric; Low/IR frozen compatibility paths",
     id: terrain === "urban_outpost" ? "logistics-quarter" : "forward-base",
     revision: terrain === "urban_outpost" ? 2 : 1,
     source:

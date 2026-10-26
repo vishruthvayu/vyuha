@@ -1,0 +1,46 @@
+{
+  "baseline": "f1714e0",
+  "three": "180",
+  "rows": {
+    "urban_outpost:low:eo": {
+      "shader_sha256": "f34e3aa76c9f13ab3a89ddb0d096aebb00401a1734c1860d916ff7385acb9556",
+      "program_key": "vyuha-ground-low-eo",
+      "type": "MeshLambertMaterial"
+    },
+    "urban_outpost:low:ir": {
+      "shader_sha256": "3283bc4e2facf86038a0e78b6ada34601f00f96e3217becc741f5db2ba932898",
+      "program_key": "vyuha-ground-low-ir",
+      "type": "MeshBasicMaterial"
+    },
+    "urban_outpost:medium:ir": {
+      "shader_sha256": "3283bc4e2facf86038a0e78b6ada34601f00f96e3217becc741f5db2ba932898",
+      "program_key": "vyuha-ground-medium-ir",
+      "type": "MeshBasicMaterial"
+    },
+    "urban_outpost:high:ir": {
+      "shader_sha256": "3283bc4e2facf86038a0e78b6ada34601f00f96e3217becc741f5db2ba932898",
+      "program_key": "vyuha-ground-high-ir",
+      "type": "MeshBasicMaterial"
+    },
+    "rural_forward_base:low:eo": {
+      "shader_sha256": "f34e3aa76c9f13ab3a89ddb0d096aebb00401a1734c1860d916ff7385acb9556",
+      "program_key": "vyuha-ground-low-eo",
+      "type": "MeshLambertMaterial"
+    },
+    "rural_forward_base:low:ir": {
+      "shader_sha256": "3283bc4e2facf86038a0e78b6ada34601f00f96e3217becc741f5db2ba932898",
+      "program_key": "vyuha-ground-low-ir",
+      "type": "MeshBasicMaterial"
+    },
+    "rural_forward_base:medium:ir": {
+      "shader_sha256": "3283bc4e2facf86038a0e78b6ada34601f00f96e3217becc741f5db2ba932898",
+      "program_key": "vyuha-ground-medium-ir",
+      "type": "MeshBasicMaterial"
+    },
+    "rural_forward_base:high:ir": {
+      "shader_sha256": "3283bc4e2facf86038a0e78b6ada34601f00f96e3217becc741f5db2ba932898",
+      "program_key": "vyuha-ground-high-ir",
+      "type": "MeshBasicMaterial"
+    }
+  }
+}

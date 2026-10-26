@@ -954,6 +954,9 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     const warm = new THREE.Scene();
     const quadG = new THREE.PlaneGeometry(1, 1);
     const all = [
+      // Include the actual EO ground variant, not only its thermal twin.
+      (built.group.getObjectByName("terrain") as THREE.Mesh).userData
+        .eoMaterial as THREE.Material,
       ...built.swappable.map((s) => s.eo),
       ...built.swappable.map((s) => twins.get(s.eo, s.cls)),
       (built.group.getObjectByName("terrain") as THREE.Mesh).userData

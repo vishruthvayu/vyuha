@@ -1,4 +1,9 @@
 import * as THREE from "three";
+import {
+  applySurfaceRadiance,
+  surfaceRadiancePolicy,
+  surfaceRadianceUniforms,
+} from "./surface-radiance";
 import type { ThermalPalette } from "../presentation";
 import type { Quality } from "../quality";
 import type { MaterialKey } from "./kit";
@@ -199,11 +204,18 @@ export function createGroundMaterial(
   thermal: boolean,
 ) {
   const rural = terrain === "rural_forward_base";
-  // Lambert, not PBR: at roughness ~1 the ground looks the same, and it skips
-  // image-based lighting on the half of the screen the ground covers.
-  const material: THREE.MeshLambertMaterial | THREE.MeshBasicMaterial = thermal
+  const policy = surfaceRadiancePolicy(quality, thermal);
+  // Low/IR retain their previous shaders. Medium/High use the existing sky
+  // environment and roughness/normal data through standard dielectric lighting.
+  const material = thermal
     ? new THREE.MeshBasicMaterial({ color: "#ffffff", toneMapped: false })
-    : new THREE.MeshLambertMaterial({ color: "#ffffff" });
+    : policy.physical
+      ? new THREE.MeshStandardMaterial({
+          color: "#ffffff",
+          roughness: 0.96,
+          metalness: 0,
+        })
+      : new THREE.MeshLambertMaterial({ color: "#ffffff" });
   const uniforms = {
     tNear: { value: t.groundDry.albedo },
     tNearN: { value: t.groundDry.normal ?? t.white },
@@ -223,6 +235,14 @@ export function createGroundMaterial(
     ...thermalUniforms(),
     uThermal: { value: thermal ? 1 : 0 },
   };
+  if (policy.physical) {
+    Object.assign(uniforms, surfaceRadianceUniforms(t));
+    uniforms.uNormal.value = policy.normalStrength;
+    (
+      uniforms as typeof uniforms & ReturnType<typeof surfaceRadianceUniforms>
+    ).uSurfaceNormalDistance.value.set(policy.normalNear, policy.normalFar);
+  }
+  material.userData.surfacePolicy = policy;
   material.userData.groundUniforms = uniforms;
   material.onBeforeCompile = (shader) => {
     Object.assign(shader.uniforms, uniforms);
@@ -311,7 +331,9 @@ export function createGroundMaterial(
       )
       .replace(
         "#include <normal_fragment_maps>",
-        /* glsl */ `
+        policy.physical
+          ? "#include <normal_fragment_maps>"
+          : /* glsl */ `
         {
           float fade = uNormal * (1.0 - smoothstep(60.0, 260.0, length(vGroundWorld - cameraPosition)));
           if (fade > 0.001) {
@@ -323,11 +345,16 @@ export function createGroundMaterial(
       )
       .replace(
         "#include <roughnessmap_fragment>",
-        "float roughnessFactor = 0.96;",
+        policy.physical
+          ? "#include <roughnessmap_fragment>"
+          : "float roughnessFactor = 0.96;",
       );
+    if (policy.physical) applySurfaceRadiance(shader);
   };
   material.customProgramCacheKey = () =>
-    `vyuha-ground-${quality}-${thermal ? "ir" : "eo"}`;
+    policy.physical
+      ? `vyuha-ground-radiance-v1-${quality}`
+      : `vyuha-ground-${quality}-${thermal ? "ir" : "eo"}`;
   return material;
 }
 
