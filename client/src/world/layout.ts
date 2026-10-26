@@ -1,3 +1,4 @@
+import type { AuthoredStructure } from "./logistics-kit";
 import type { TerrainBox } from "../sensors-v2";
 import { FLAT_RADIUS, fbm, type TerrainKind } from "./terrain";
 
@@ -17,6 +18,7 @@ export type PropModel =
 export type Species =
   "tree-jacaranda" | "tree-island" | "shrub-rooibos" | "shrub-broad";
 export type Placement =
+  | AuthoredStructure
   | { kind: "bunker"; x: number; z: number; rot: number }
   | { kind: "sensorMast"; x: number; z: number }
   | {
@@ -181,7 +183,7 @@ const COMMON_CORE = (placements: Placement[], lines: Line[]) => {
   });
 };
 
-function urbanOutpost(): FacilityLayout {
+export function legacyUrbanOutpost(): FacilityLayout {
   const placements: Placement[] = [];
   const lines: Line[] = [];
   const compound = rect(-92, -64, 92, 74);
@@ -397,6 +399,188 @@ function urbanOutpost(): FacilityLayout {
     },
   ];
   scatter(placements, surfaces, compound, "urban_outpost", 22);
+  return { terrain: "urban_outpost", placements, lines, surfaces, compound };
+}
+
+/** Original authored Logistics Quarter, presentation revision 2. Roads establish
+ * land use and visual bearings; neither buildings nor markings are sensor truth. */
+function urbanOutpost(): FacilityLayout {
+  const placements: Placement[] = [];
+  const lines: Line[] = [];
+  const compound = rect(-152, -106, 154, 168);
+  COMMON_CORE(placements, lines);
+  placements.push(
+    { kind: "radarMast", x: 17, z: 9, h: 11 },
+    { kind: "commsMast", x: -21, z: -26, h: 22 },
+    { kind: "terminal", x: -68, z: 70, rot: Math.PI, w: 68, d: 24, h: 15 },
+    { kind: "logisticsShed", x: 80, z: 96, rot: Math.PI, w: 48, d: 54, h: 14 },
+    {
+      kind: "logisticsShed",
+      x: 101,
+      z: -56,
+      rot: Math.PI / 2,
+      w: 42,
+      d: 34,
+      h: 12,
+    },
+    { kind: "waterTower", x: -126, z: 132, rot: 0, w: 16, d: 16, h: 32 },
+    {
+      kind: "terminal",
+      x: -122,
+      z: -52,
+      rot: Math.PI / 2,
+      w: 32,
+      d: 17,
+      h: 10,
+    },
+    { kind: "gatehouse", x: 12, z: -96, rot: 0 },
+    { kind: "boom", x: 0, z: -106, rot: 0, length: 9 },
+    { kind: "helipad", x: 66, z: 30, size: 25 },
+    { kind: "genset", x: 123, z: 134, rot: Math.PI / 2 },
+    { kind: "fuelTank", x: 136, z: 134, rot: 0 },
+  );
+  // A service court reads as one place, rather than unrelated scattered props.
+  for (let i = 0; i < 6; i++) {
+    placements.push({
+      kind: "container",
+      x: 58 + i * 7.2,
+      z: -83,
+      rot: Math.PI / 2,
+      tint: i % 4,
+      level: 0,
+    });
+    placements.push({
+      kind: "prop",
+      model: "covered-car",
+      x: -80 + i * 4,
+      z: 38,
+      rot: 0,
+      scale: 1,
+    });
+  }
+  for (const [x, z] of [
+    [-105, 35],
+    [-38, 35],
+    [38, 65],
+    [116, 65],
+    [-140, -92],
+    [142, -92],
+    [-142, 153],
+    [141, 153],
+  ] as XZ[])
+    placements.push({ kind: "lightPole", x, z, rot: Math.atan2(-x, -z) });
+  // An inhabited urban fringe beyond the campus, broken into street-facing blocks.
+  for (let row = 0; row < 2; row++)
+    for (let i = 0; i < 6; i++) {
+      const x = -450 + i * 128;
+      placements.push({
+        kind: "building",
+        x,
+        z: 520 + row * 135,
+        rot: 0,
+        w: 32 + (i % 3) * 7,
+        d: 22 + (i % 2) * 8,
+        floors: 2 + ((i + row) % 3),
+        finish: i % 2 ? "plaster" : "concrete",
+      });
+    }
+  lines.push({
+    kind: "fence",
+    path: [
+      [-16, -106],
+      [-152, -106],
+      [-152, 168],
+      [154, 168],
+      [154, -106],
+      [16, -106],
+    ],
+  });
+  lines.push({
+    kind: "hesco",
+    path: [
+      [116, 121],
+      [146, 121],
+      [146, 149],
+    ],
+  });
+  const surfaces: Surface[] = [
+    {
+      kind: "asphalt",
+      width: 12,
+      path: [
+        [-1600, -158],
+        [-420, -158],
+        [0, -158],
+        [500, -158],
+        [1600, -158],
+      ],
+    },
+    {
+      kind: "asphalt",
+      width: 9,
+      path: [
+        [0, -158],
+        [0, -100],
+        [0, 25],
+        [0, 145],
+      ],
+    },
+    {
+      kind: "asphalt",
+      width: 8,
+      path: [
+        [-136, 15],
+        [0, 15],
+        [136, 15],
+      ],
+    },
+    {
+      kind: "asphalt",
+      width: 8,
+      path: [
+        [136, -90],
+        [136, 15],
+        [136, 154],
+        [-136, 154],
+        [-136, 15],
+        [-136, -90],
+      ],
+    },
+    { kind: "concrete", path: rect(-106, 30, -30, 55) },
+    { kind: "concrete", path: rect(45, 51, 115, 65) },
+    { kind: "concrete", path: rect(42, -100, 122, -30) },
+    { kind: "concrete", path: rect(-8, -16, 8, 2) },
+    { kind: "gravel", path: compound },
+    { kind: "grass", path: rect(-115, 92, -28, 146) },
+    {
+      kind: "asphalt",
+      width: 7,
+      path: [
+        [-700, -262],
+        [650, -262],
+      ],
+    },
+    {
+      kind: "asphalt",
+      width: 7,
+      path: [
+        [-700, -400],
+        [650, -400],
+      ],
+    },
+  ];
+  // Deliberate avenue planting, outside the sensor clearing and carriageways.
+  for (let i = 0; i < 9; i++)
+    for (const z of [-180, -136])
+      placements.push({
+        kind: "plant",
+        species: "tree-jacaranda",
+        x: -300 + i * 75,
+        z,
+        rot: i * 0.73,
+        scale: 0.46,
+      });
+  scatter(placements, surfaces, compound, "urban_outpost", 26);
   return { terrain: "urban_outpost", placements, lines, surfaces, compound };
 }
 
@@ -646,7 +830,18 @@ export function withoutBoxes(
   return {
     ...layout,
     placements: layout.placements.filter(
-      (p) => !boxes.some((b) => inBox([p.x, p.z], b, 12)),
+      (p) =>
+        !boxes.some((b) => {
+          const authored =
+            p.kind === "terminal" ||
+            p.kind === "logisticsShed" ||
+            p.kind === "waterTower";
+          return inBox(
+            [p.x, p.z],
+            b,
+            authored ? Math.hypot(p.w, p.d) / 2 + 13 : 12,
+          );
+        }),
     ),
   };
 }
@@ -654,6 +849,10 @@ export function withoutBoxes(
 /** Approximate top height of a placement, used by layout tests. */
 export function placementHeight(p: Placement) {
   switch (p.kind) {
+    case "terminal":
+    case "logisticsShed":
+    case "waterTower":
+      return p.h;
     case "bunker":
       return 1.04;
     case "sensorMast":

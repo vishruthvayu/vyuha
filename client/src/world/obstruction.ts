@@ -34,6 +34,17 @@ const box = (
 
 function placementObstacle(p: Placement): Obstacle | null {
   switch (p.kind) {
+    case "terminal":
+      return box(p, p.w / 2 - 1, p.d / 2 - 2, 0.22, p.h - 1.1);
+    case "logisticsShed":
+      // Only the solid core below the sawtooth eaves; not the open roof silhouette.
+      return box(p, p.w / 2 - 0.3, p.d / 2 - 0.3, 0, p.h * 0.72);
+    case "waterTower": {
+      // Inscribed tank core; open support legs must not become a solid wall.
+      const radius = Math.min(p.w, p.d) * 0.42;
+      const floor = p.h * 0.78 - 0.2;
+      return box(p, radius * 0.45, radius * 0.45, floor, p.h - 0.2);
+    }
     case "building":
       return box(p, p.w * 0.47, p.d * 0.47, 0, p.floors * 3.4 + 0.4);
     case "house":

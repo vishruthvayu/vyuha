@@ -16,6 +16,9 @@ export function foundations(layout: FacilityLayout): Foundation[] {
     let w = 0,
       d = 0;
     switch (p.kind) {
+      case "terminal":
+      case "logisticsShed":
+      case "waterTower":
       case "building":
       case "house":
         w = p.w;

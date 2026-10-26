@@ -1,3 +1,6 @@
+import { addLogisticsArchitecture, isAuthoredStructure } from "./logistics-kit";
+import { addStreetscape } from "./streetscape";
+import { worldManifest } from "./world-manifest";
 import { diagnosticSpan } from "../diagnostics";
 import { splatResources } from "./splat-preparation";
 import { texturePreparationMode } from "./texture-preparation-mode";
@@ -326,6 +329,7 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     const finish = diagnosticSpan("world_build");
     const group = new THREE.Group();
     group.name = "vyuha-environment";
+    group.userData.presentationWorld = worldManifest(terrain);
     const swappable: Built["swappable"] = [];
     const disposables: { dispose: () => void }[] = [];
     const kit = createKitMaterials(textures, quality);
@@ -441,6 +445,11 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     }
     // Facility architecture: one merged mesh per material.
     const facility = buildFacility(layout.placements, layout.lines);
+    addLogisticsArchitecture(
+      facility,
+      layout.placements.filter(isAuthoredStructure),
+    );
+    addStreetscape(facility, layout);
     for (const [key, geometry] of facility.merged())
       addMesh(geometry, kit[key], MATERIAL_THERMAL[key], {
         cast: key !== "fence" && key !== "marking",

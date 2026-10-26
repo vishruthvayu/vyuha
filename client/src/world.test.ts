@@ -8,6 +8,7 @@ import {
 } from "./world/terrain";
 import {
   SENSOR_CLEARING,
+  legacyUrbanOutpost,
   facilityLayout,
   placementHeight,
   withoutBoxes,
@@ -246,9 +247,9 @@ test("HESCO cells bulge between seams with the fill recessed under the mesh rim"
 });
 
 test("the perimeter concertina coil stays within its triangle budget and on the outriggers", () => {
-  const fence = facilityLayout("urban_outpost").lines.find(
-    (l) => l.kind === "fence",
-  )!;
+  // Preserve the exact original perimeter fixture and its original 25k budget.
+  // The expanded authored quarter is separately bounded as one complete facility.
+  const fence = legacyUrbanOutpost().lines.find((l) => l.kind === "fence")!;
   const b = new Batches();
   let length = 0;
   fence.path.slice(1).forEach(([x1, z1], i) => {
