@@ -20,7 +20,6 @@
   "physical": "PENDING",
   "release": "NOT CREATED",
   "performance": "60medianFPS with lowerinitial/warmbins disclosed; no speedup/startup qualification",
-  "open_navigation_probe": "Pinned review Next drill returned to review once; focused reproduction remains pending",
   "artifacts": {
     "evidence/active-eo.jpg": {
       "sha256": "b4d42a1028892efba0ea53f3ee2f11bdcbd952428c1373ead4a70c43e945259b",
@@ -137,6 +136,18 @@
     "evidence/targeted-world.log": {
       "sha256": "3f0faf8f80774728b5152c14b20acde98d1ed6a29d8948cbd910fcf7e148afc8",
       "bytes": 4248
+    },
+    "evidence/navigation-ownership.log": {
+      "sha256": "b46ca699c185c2ff2b0686afe38b30df8d605e6199ee1b60bb05a260def4a962",
+      "bytes": 581
     }
+  },
+  "navigation_follow_up": {
+    "validation_commit": "c8ebd683bf19cf6666c9925cc0ac03a77425253c",
+    "validation_source_hash": "1e4f24386affe1a44b9393526c603c2c3785e89275685f46ac7452ddff365b72",
+    "source_changes": "Test fixture only; no production change",
+    "result": "4 targeted ownership checks passed,0failed,5.43878575s",
+    "probe": "NOT REPRODUCED; browser Next drill returned to preparation. No fix claimed",
+    "cumulative_distinct_selected": 65
   }
 }

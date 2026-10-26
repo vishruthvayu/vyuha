@@ -1,0 +1,12 @@
+✔ Actual App completion persists verified evidence without stealing a subsequently selected review (1446.2295ms)
+✔ Actual App retry-complete persists verified evidence without stealing a subsequently selected review (243.662541ms)
+✔ Actual App retry-existing persists verified evidence without stealing a subsequently selected review (122.424875ms)
+✔ Actual App Next drill revokes a pending pinned-review load without changing stored evidence (254.155083ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5438.78575

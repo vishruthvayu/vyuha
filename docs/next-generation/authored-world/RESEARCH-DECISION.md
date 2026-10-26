@@ -8,7 +8,7 @@ References inspected:
 
 - [Epic Level Instancing](https://dev.epicgames.com/documentation/en-us/unreal-engine/level-instancing-in-unreal-engine): coherent reusable arrangements and packed static assemblies. VYUHA inference: author recognizable places, append geometry into shared batches. No Unreal content or code imported.
 - [Three: Optimize Lots of Objects](https://threejs.org/manual/pages/optimize-lots-of-objects.html): merging static geometry can reduce draw calls. This does not itself prove speed; matched browser workloads are recorded separately.
-- [Three MeshStandardMaterial](https://threejs.org/docs/pages/MeshStandardMaterial.html): metallic/roughness PBR, environment illumination and material maps. Retain the existing calibrated-for-display lighting pipeline rather than retune contact contrast to make a screenshot brighter. VYUHA is not empirically sensor calibrated.
+- [Three MeshStandardMaterial](https://threejs.org/docs/pages/MeshStandardMaterial.html): metallic/roughness PBR, environment illumination and material maps. Retain the existing sky-derived display lighting pipeline rather than retune contact contrast to make a screenshot brighter. VYUHA is not empirically sensor calibrated.
 
 Implemented scope: one complete urban presentation composition, original procedural kit, streetscape and public manifest. Existing sky/probe, relief, fog, airframes and sensor visibility remain unchanged. No cosmetic rain, dust, bloom, moving vehicles or displaced near terrain: these could obscure tiny contacts or suggest modeled cues without authoritative support. Rural world remains unchanged.
 
