@@ -1,0 +1,13 @@
+✔ Low and all illustrative IR ground shaders retain exact frozen programs (3.886375ms)
+✔ Medium and High use a bounded dielectric ground model with existing linear map data (3.783875ms)
+✔ missing normal and roughness data stays neutral rather than sampling white as a tilted normal (0.71075ms)
+✔ sensor palette updates preserve ground resources and do not turn a crop into geometry (0.871084ms)
+✔ policy separates tiers and EO ground participates in existing shader preparation (0.812875ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 739.401959

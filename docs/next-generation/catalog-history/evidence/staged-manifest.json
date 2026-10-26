@@ -1,0 +1,49 @@
+{
+  "staged_from": "f1714e0",
+  "scope": "Immutable learning-v1 catalog snapshots and lookup; no new content/engine version or frontend",
+  "files": {
+    "server/learning.py": {
+      "before_sha256": "72131dd290798314b3e96823b67e66558d3157656472c03f055a69e39079fa65",
+      "after_sha256": "c1fc5177d787d3e7fd81c2ef33d6872df37670485fca67e8296861f98a492bda",
+      "after_bytes": 16243
+    },
+    "server/learning_catalogs.py": {
+      "before_sha256": null,
+      "after_sha256": "6a910721ca34c59633ad8398855fe087f838312112e653c754f8ba4cc6d0928e",
+      "after_bytes": 4343
+    },
+    "server/config/learning-catalogs-v1.json": {
+      "before_sha256": null,
+      "after_sha256": "b1f7a5a4b1da3d8b0b2de6eab05491632fe0478b4012163c5313d8ae3d1bed21",
+      "after_bytes": 302
+    },
+    "server/config/learning-catalogs/5abe5c7920a40c989546bc59abf77c4cb6430f0cd8a8af5dca2a361ac977d345.json": {
+      "before_sha256": null,
+      "after_sha256": "5abe5c7920a40c989546bc59abf77c4cb6430f0cd8a8af5dca2a361ac977d345",
+      "after_bytes": 59143
+    },
+    "server/tests/test_learning_catalogs.py": {
+      "before_sha256": null,
+      "after_sha256": "2af3b0c09367efe825a696c8f97b6b6965c226c083fd9fe21f0859a4b4b799a8",
+      "after_bytes": 7673
+    }
+  },
+  "new_tests": {
+    "passed": 12,
+    "failed": 0,
+    "seconds": 4.61
+  },
+  "affected_existing": {
+    "passed": 30,
+    "failed": 0,
+    "seconds": 36.8
+  },
+  "warning": "Existing Starlette/httpx deprecation warning in both selections",
+  "limitations": [
+    "Staged acceptance only; root source/evidence binding required after integration.",
+    "Current default catalog remains exact unchangedlearning-v1.",
+    "New context versions/competency schemas/protocol migration not admitted by this groundwork.",
+    "controlled_study phase transition still explicitly rejects current catalog drift; expanding that policy requires its own versioning work.",
+    "No browser/presentation/learning-gain/full-release acceptance."
+  ]
+}

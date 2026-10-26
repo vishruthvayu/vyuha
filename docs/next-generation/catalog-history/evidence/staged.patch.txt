@@ -1,0 +1,2032 @@
+--- a/server/learning.py
++++ b/server/learning.py
+@@ -15,6 +15,7 @@
+ from . import storage
+ from .models import StrictModel
+ from .raid_v2 import compose_raid
++from .learning_catalogs import catalog_by_hash, current_catalog
+ 
+ router = APIRouter(prefix='/api/v1/learning', tags=['Curriculum and competency evidence'])
+ CATALOG = Path(__file__).parent/'config/learning-v1.json'
+@@ -22,8 +23,7 @@
+ 
+ 
+ def catalog():
+-    raw = CATALOG.read_bytes()
+-    return json.loads(raw), hashlib.sha256(raw).hexdigest()
++    return current_catalog(CATALOG)
+ 
+ 
+ def ensure_schema(db):
+@@ -73,10 +73,8 @@
+ 
+ 
+ def item_for(context):
+-    data, digest = catalog()
+     ctx = context if isinstance(context,LearningContext) else LearningContext.model_validate(context)
+-    if ctx.catalog_hash != digest:
+-        raise ValueError('Unknown frozen curriculum catalog; do not reinterpret old evidence')
++    data, _ = catalog_by_hash(ctx.catalog_hash, ctx.version)
+     item = next((x for x in data['items'] if x['id']==ctx.item_id),None)
+     if not item or item['audience']!='individual':
+         raise ValueError('Unknown individual curriculum item')
+@@ -107,7 +105,7 @@
+ 
+ def evidence_for(review, context):
+     """Pure projection; never edits review, score, action history or Beta profiles."""
+-    ctx=LearningContext.model_validate(context);item=item_for(ctx);data,_=catalog()
++    ctx=LearningContext.model_validate(context);item=item_for(ctx);data,_=catalog_by_hash(ctx.catalog_hash, ctx.version)
+     observations=[];seen=set()
+     for comp in data['competencies']:
+         if comp['scope']!='individual':continue
+--- /dev/null
++++ b/server/learning_catalogs.py
+@@ -0,0 +1,92 @@
++"""Approved immutable curriculum snapshots, resolved by their exact byte hash.
++
++The registry is bundled source configuration, never a trainee-supplied path or
++an imported bundle. Unknown versions/hashes and edited snapshots fail closed.
++Current curriculum selection remains learning.CATALOG; historical resolution is
++independent from that current pointer. No mutable JSON objects are cached.
++"""
++import hashlib
++import json
++import re
++from pathlib import Path
++
++REGISTRY = Path(__file__).parent / 'config' / 'learning-catalogs-v1.json'
++SUPPORTED_CONTRACTS = frozenset({'learning-v1'})
++MAX_SNAPSHOTS = 32
++MAX_CATALOG_BYTES = 2_000_000
++_UNKNOWN = 'Unknown frozen curriculum catalog; do not reinterpret old evidence'
++
++
++def _registry():
++    try:
++        if REGISTRY.stat().st_size > 32768:
++            raise ValueError('Curriculum catalog registry exceeds bounded size')
++        data = json.loads(REGISTRY.read_bytes())
++    except (OSError, json.JSONDecodeError) as error:
++        raise ValueError('Curriculum catalog registry is unavailable') from error
++    if (type(data) is not dict or set(data) != {'version', 'catalogs'}
++            or data['version'] != 'learning-catalog-registry-v1'
++            or type(data['catalogs']) is not list
++            or not 1 <= len(data['catalogs']) <= MAX_SNAPSHOTS):
++        raise ValueError('Invalid curriculum catalog registry')
++    result = {}
++    root = REGISTRY.parent.resolve()
++    for entry in data['catalogs']:
++        if (type(entry) is not dict or set(entry) != {'sha256', 'contract', 'file'}
++                or type(entry['sha256']) is not str
++                or not re.fullmatch(r'[a-f0-9]{64}', entry['sha256'])
++                or type(entry['contract']) is not str
++                or entry['contract'] not in SUPPORTED_CONTRACTS
++                or type(entry['file']) is not str
++                or entry['file'] != f"learning-catalogs/{entry['sha256']}.json"
++                or entry['sha256'] in result):
++            raise ValueError('Invalid curriculum catalog registry entry')
++        snapshot = (root / entry['file']).resolve()
++        if not snapshot.is_relative_to(root / 'learning-catalogs'):
++            raise ValueError('Curriculum catalog snapshot leaves the bundled registry')
++        result[entry['sha256']] = (entry['contract'], snapshot)
++    return result
++
++
++def catalog_by_hash(digest: str, contract: str = 'learning-v1'):
++    """Return a fresh catalog object only for an explicitly registered contract/hash.
++
++    A self-consistent uploaded catalog is not sufficient: its hash must be in
++    the bundled allowlist. The actual file bytes must match it on every read.
++    """
++    if (type(digest) is not str or not re.fullmatch(r'[a-f0-9]{64}', digest)
++            or type(contract) is not str or contract not in SUPPORTED_CONTRACTS):
++        raise ValueError(_UNKNOWN)
++    entry = _registry().get(digest)
++    if entry is None or entry[0] != contract:
++        raise ValueError(_UNKNOWN)
++    try:
++        path = entry[1]
++        if not 1 <= path.stat().st_size <= MAX_CATALOG_BYTES:
++            raise ValueError('Frozen curriculum catalog exceeds bounded size')
++        raw = path.read_bytes()
++    except OSError as error:
++        raise ValueError('Frozen curriculum catalog is unavailable') from error
++    if hashlib.sha256(raw).hexdigest() != digest:
++        raise ValueError('Frozen curriculum catalog content hash mismatch')
++    try:
++        data = json.loads(raw)
++    except json.JSONDecodeError as error:
++        raise ValueError('Frozen curriculum catalog is invalid JSON') from error
++    if (type(data) is not dict or data.get('schema_version') != 1
++            or data.get('version') != contract
++            or type(data.get('competencies')) is not list
++            or type(data.get('items')) is not list):
++        raise ValueError('Frozen curriculum catalog contract mismatch')
++    return data, digest
++
++
++def current_catalog(path: Path):
++    """Validate the existing current pointer against the approved snapshots."""
++    try:
++        if not 1 <= path.stat().st_size <= MAX_CATALOG_BYTES:
++            raise ValueError('Current curriculum catalog exceeds bounded size')
++        digest = hashlib.sha256(path.read_bytes()).hexdigest()
++    except OSError as error:
++        raise ValueError('Current curriculum catalog is unavailable') from error
++    return catalog_by_hash(digest)
+--- /dev/null
++++ b/server/config/learning-catalogs-v1.json
+@@ -0,0 +1,10 @@
++{
++  "version": "learning-catalog-registry-v1",
++  "catalogs": [
++    {
++      "sha256": "5abe5c7920a40c989546bc59abf77c4cb6430f0cd8a8af5dca2a361ac977d345",
++      "contract": "learning-v1",
++      "file": "learning-catalogs/5abe5c7920a40c989546bc59abf77c4cb6430f0cd8a8af5dca2a361ac977d345.json"
++    }
++  ]
++}
+--- /dev/null
++++ b/server/config/learning-catalogs/5abe5c7920a40c989546bc59abf77c4cb6430f0cd8a8af5dca2a361ac977d345.json
+@@ -0,0 +1,1724 @@
++{
++  "schema_version": 1,
++  "version": "learning-v1",
++  "competencies": [
++    {
++      "id": "C01",
++      "title": "Observation acquisition",
++      "claim": "Detect and designate an observable contact without treating unknown evidence as absence.",
++      "scope": "individual",
++      "decision_kinds": [
++        "detection"
++      ],
++      "limitation": "Scenario-bound evidence; not calibrated proficiency or operational readiness."
++    },
++    {
++      "id": "C02",
++      "title": "Evidence-based classification",
++      "claim": "Distinguish supported classification from information the sensors cannot resolve.",
++      "scope": "individual",
++      "decision_kinds": [
++        "classification_iff"
++      ],
++      "limitation": "Scenario-bound evidence; not calibrated proficiency or operational readiness."
++    },
++    {
++      "id": "C03",
++      "title": "Restraint under uncertainty",
++      "claim": "Hold or monitor when the available evidence does not justify an active response.",
++      "scope": "individual",
++      "decision_kinds": [
++        "engagement"
++      ],
++      "limitation": "Scenario-bound evidence; not calibrated proficiency or operational readiness.",
++      "effector": "hold"
++    },
++    {
++      "id": "C04",
++      "title": "Response reasoning",
++      "claim": "Choose a permitted illustrative response using available evidence and constraints.",
++      "scope": "individual",
++      "decision_kinds": [
++        "engagement"
++      ],
++      "limitation": "Scenario-bound evidence; not calibrated proficiency or operational readiness.",
++      "effector": "active"
++    },
++    {
++      "id": "C05",
++      "title": "Degraded evidence handling",
++      "claim": "Interpret and respond to the evidence actually available during a sensor degradation.",
++      "scope": "individual",
++      "decision_kinds": [
++        "classification_iff",
++        "engagement"
++      ],
++      "limitation": "Scenario-bound evidence; not calibrated proficiency or operational readiness.",
++      "requires_degraded": true
++    },
++    {
++      "id": "C06",
++      "title": "Crew coordination",
++      "claim": "Communicate and acknowledge evidence with role attribution.",
++      "scope": "crew",
++      "decision_kinds": [
++        "handoff"
++      ],
++      "limitation": "Scenario-bound evidence; not calibrated proficiency or operational readiness."
++    }
++  ],
++  "items": [
++    {
++      "id": "C01_PRACTICE_A",
++      "title": "Observation acquisition: practice A",
++      "competency_id": "C01",
++      "pool": "practice",
++      "form": null,
++      "assistance": "full",
++      "audience": "individual",
++      "objective": "Detect and designate an observable contact without treating unknown evidence as absence.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "foundational",
++        "focus": "detection",
++        "family": "DIRECT",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 3,
++        "mix": [
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C01_PRACTICE_B",
++      "title": "Observation acquisition: practice B",
++      "competency_id": "C01",
++      "pool": "practice",
++      "form": null,
++      "assistance": "faded",
++      "audience": "individual",
++      "objective": "Detect and designate an observable contact without treating unknown evidence as absence.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "foundational",
++        "focus": "detection",
++        "family": "DIRECT",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 3,
++        "mix": [
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C01_BASELINE-A_A",
++      "title": "Observation acquisition: assessment A",
++      "competency_id": "C01",
++      "pool": "assessment",
++      "form": "baseline-a",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Detect and designate an observable contact without treating unknown evidence as absence.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "detection",
++        "family": "DIRECT",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C01_BASELINE-A_B",
++      "title": "Observation acquisition: assessment B",
++      "competency_id": "C01",
++      "pool": "assessment",
++      "form": "baseline-a",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Detect and designate an observable contact without treating unknown evidence as absence.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "detection",
++        "family": "DIRECT",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C01_IMMEDIATE-B_A",
++      "title": "Observation acquisition: assessment A",
++      "competency_id": "C01",
++      "pool": "assessment",
++      "form": "immediate-b",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Detect and designate an observable contact without treating unknown evidence as absence.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "detection",
++        "family": "STAGGERED_WAVES",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C01_IMMEDIATE-B_B",
++      "title": "Observation acquisition: assessment B",
++      "competency_id": "C01",
++      "pool": "assessment",
++      "form": "immediate-b",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Detect and designate an observable contact without treating unknown evidence as absence.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "detection",
++        "family": "STAGGERED_WAVES",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C01_RETENTION-C_A",
++      "title": "Observation acquisition: assessment A",
++      "competency_id": "C01",
++      "pool": "assessment",
++      "form": "retention-c",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Detect and designate an observable contact without treating unknown evidence as absence.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "detection",
++        "family": "PROBE_AND_RETREAT",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C01_RETENTION-C_B",
++      "title": "Observation acquisition: assessment B",
++      "competency_id": "C01",
++      "pool": "assessment",
++      "form": "retention-c",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Detect and designate an observable contact without treating unknown evidence as absence.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "detection",
++        "family": "PROBE_AND_RETREAT",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C01_TRANSFER-D_A",
++      "title": "Observation acquisition: assessment A",
++      "competency_id": "C01",
++      "pool": "assessment",
++      "form": "transfer-d",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Detect and designate an observable contact without treating unknown evidence as absence.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "detection",
++        "family": "BLIND_SECTOR",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C01_TRANSFER-D_B",
++      "title": "Observation acquisition: assessment B",
++      "competency_id": "C01",
++      "pool": "assessment",
++      "form": "transfer-d",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Detect and designate an observable contact without treating unknown evidence as absence.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "detection",
++        "family": "BLIND_SECTOR",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C02_PRACTICE_A",
++      "title": "Evidence-based classification: practice A",
++      "competency_id": "C02",
++      "pool": "practice",
++      "form": null,
++      "assistance": "full",
++      "audience": "individual",
++      "objective": "Distinguish supported classification from information the sensors cannot resolve.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "foundational",
++        "focus": "classification_iff",
++        "family": "STAGGERED_WAVES",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 3,
++        "mix": [
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C02_PRACTICE_B",
++      "title": "Evidence-based classification: practice B",
++      "competency_id": "C02",
++      "pool": "practice",
++      "form": null,
++      "assistance": "faded",
++      "audience": "individual",
++      "objective": "Distinguish supported classification from information the sensors cannot resolve.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "foundational",
++        "focus": "classification_iff",
++        "family": "STAGGERED_WAVES",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 3,
++        "mix": [
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C02_BASELINE-A_A",
++      "title": "Evidence-based classification: assessment A",
++      "competency_id": "C02",
++      "pool": "assessment",
++      "form": "baseline-a",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Distinguish supported classification from information the sensors cannot resolve.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "classification_iff",
++        "family": "DIRECT",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C02_BASELINE-A_B",
++      "title": "Evidence-based classification: assessment B",
++      "competency_id": "C02",
++      "pool": "assessment",
++      "form": "baseline-a",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Distinguish supported classification from information the sensors cannot resolve.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "classification_iff",
++        "family": "DIRECT",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C02_IMMEDIATE-B_A",
++      "title": "Evidence-based classification: assessment A",
++      "competency_id": "C02",
++      "pool": "assessment",
++      "form": "immediate-b",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Distinguish supported classification from information the sensors cannot resolve.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "classification_iff",
++        "family": "STAGGERED_WAVES",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C02_IMMEDIATE-B_B",
++      "title": "Evidence-based classification: assessment B",
++      "competency_id": "C02",
++      "pool": "assessment",
++      "form": "immediate-b",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Distinguish supported classification from information the sensors cannot resolve.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "classification_iff",
++        "family": "STAGGERED_WAVES",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C02_RETENTION-C_A",
++      "title": "Evidence-based classification: assessment A",
++      "competency_id": "C02",
++      "pool": "assessment",
++      "form": "retention-c",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Distinguish supported classification from information the sensors cannot resolve.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "classification_iff",
++        "family": "PROBE_AND_RETREAT",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C02_RETENTION-C_B",
++      "title": "Evidence-based classification: assessment B",
++      "competency_id": "C02",
++      "pool": "assessment",
++      "form": "retention-c",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Distinguish supported classification from information the sensors cannot resolve.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "classification_iff",
++        "family": "PROBE_AND_RETREAT",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C02_TRANSFER-D_A",
++      "title": "Evidence-based classification: assessment A",
++      "competency_id": "C02",
++      "pool": "assessment",
++      "form": "transfer-d",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Distinguish supported classification from information the sensors cannot resolve.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "classification_iff",
++        "family": "BLIND_SECTOR",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C02_TRANSFER-D_B",
++      "title": "Evidence-based classification: assessment B",
++      "competency_id": "C02",
++      "pool": "assessment",
++      "form": "transfer-d",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Distinguish supported classification from information the sensors cannot resolve.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "classification_iff",
++        "family": "BLIND_SECTOR",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C03_PRACTICE_A",
++      "title": "Restraint under uncertainty: practice A",
++      "competency_id": "C03",
++      "pool": "practice",
++      "form": null,
++      "assistance": "full",
++      "audience": "individual",
++      "objective": "Hold or monitor when the available evidence does not justify an active response.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "foundational",
++        "focus": "effector_choice",
++        "family": "PROBE_AND_RETREAT",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 3,
++        "mix": [
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C03_PRACTICE_B",
++      "title": "Restraint under uncertainty: practice B",
++      "competency_id": "C03",
++      "pool": "practice",
++      "form": null,
++      "assistance": "faded",
++      "audience": "individual",
++      "objective": "Hold or monitor when the available evidence does not justify an active response.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "foundational",
++        "focus": "effector_choice",
++        "family": "PROBE_AND_RETREAT",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 3,
++        "mix": [
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C03_BASELINE-A_A",
++      "title": "Restraint under uncertainty: assessment A",
++      "competency_id": "C03",
++      "pool": "assessment",
++      "form": "baseline-a",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Hold or monitor when the available evidence does not justify an active response.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "effector_choice",
++        "family": "DIRECT",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C03_BASELINE-A_B",
++      "title": "Restraint under uncertainty: assessment B",
++      "competency_id": "C03",
++      "pool": "assessment",
++      "form": "baseline-a",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Hold or monitor when the available evidence does not justify an active response.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "effector_choice",
++        "family": "DIRECT",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C03_IMMEDIATE-B_A",
++      "title": "Restraint under uncertainty: assessment A",
++      "competency_id": "C03",
++      "pool": "assessment",
++      "form": "immediate-b",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Hold or monitor when the available evidence does not justify an active response.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "effector_choice",
++        "family": "STAGGERED_WAVES",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C03_IMMEDIATE-B_B",
++      "title": "Restraint under uncertainty: assessment B",
++      "competency_id": "C03",
++      "pool": "assessment",
++      "form": "immediate-b",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Hold or monitor when the available evidence does not justify an active response.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "effector_choice",
++        "family": "STAGGERED_WAVES",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C03_RETENTION-C_A",
++      "title": "Restraint under uncertainty: assessment A",
++      "competency_id": "C03",
++      "pool": "assessment",
++      "form": "retention-c",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Hold or monitor when the available evidence does not justify an active response.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "effector_choice",
++        "family": "PROBE_AND_RETREAT",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C03_RETENTION-C_B",
++      "title": "Restraint under uncertainty: assessment B",
++      "competency_id": "C03",
++      "pool": "assessment",
++      "form": "retention-c",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Hold or monitor when the available evidence does not justify an active response.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "effector_choice",
++        "family": "PROBE_AND_RETREAT",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C03_TRANSFER-D_A",
++      "title": "Restraint under uncertainty: assessment A",
++      "competency_id": "C03",
++      "pool": "assessment",
++      "form": "transfer-d",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Hold or monitor when the available evidence does not justify an active response.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "effector_choice",
++        "family": "BLIND_SECTOR",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C03_TRANSFER-D_B",
++      "title": "Restraint under uncertainty: assessment B",
++      "competency_id": "C03",
++      "pool": "assessment",
++      "form": "transfer-d",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Hold or monitor when the available evidence does not justify an active response.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "effector_choice",
++        "family": "BLIND_SECTOR",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C04_PRACTICE_A",
++      "title": "Response reasoning: practice A",
++      "competency_id": "C04",
++      "pool": "practice",
++      "form": null,
++      "assistance": "full",
++      "audience": "individual",
++      "objective": "Choose a permitted illustrative response using available evidence and constraints.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "foundational",
++        "focus": "effector_choice",
++        "family": "DIRECT",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 3,
++        "mix": [
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C04_PRACTICE_B",
++      "title": "Response reasoning: practice B",
++      "competency_id": "C04",
++      "pool": "practice",
++      "form": null,
++      "assistance": "faded",
++      "audience": "individual",
++      "objective": "Choose a permitted illustrative response using available evidence and constraints.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "foundational",
++        "focus": "effector_choice",
++        "family": "DIRECT",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 3,
++        "mix": [
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C04_BASELINE-A_A",
++      "title": "Response reasoning: assessment A",
++      "competency_id": "C04",
++      "pool": "assessment",
++      "form": "baseline-a",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Choose a permitted illustrative response using available evidence and constraints.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "effector_choice",
++        "family": "DIRECT",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C04_BASELINE-A_B",
++      "title": "Response reasoning: assessment B",
++      "competency_id": "C04",
++      "pool": "assessment",
++      "form": "baseline-a",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Choose a permitted illustrative response using available evidence and constraints.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "effector_choice",
++        "family": "DIRECT",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C04_IMMEDIATE-B_A",
++      "title": "Response reasoning: assessment A",
++      "competency_id": "C04",
++      "pool": "assessment",
++      "form": "immediate-b",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Choose a permitted illustrative response using available evidence and constraints.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "effector_choice",
++        "family": "STAGGERED_WAVES",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C04_IMMEDIATE-B_B",
++      "title": "Response reasoning: assessment B",
++      "competency_id": "C04",
++      "pool": "assessment",
++      "form": "immediate-b",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Choose a permitted illustrative response using available evidence and constraints.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "effector_choice",
++        "family": "STAGGERED_WAVES",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C04_RETENTION-C_A",
++      "title": "Response reasoning: assessment A",
++      "competency_id": "C04",
++      "pool": "assessment",
++      "form": "retention-c",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Choose a permitted illustrative response using available evidence and constraints.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "effector_choice",
++        "family": "PROBE_AND_RETREAT",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C04_RETENTION-C_B",
++      "title": "Response reasoning: assessment B",
++      "competency_id": "C04",
++      "pool": "assessment",
++      "form": "retention-c",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Choose a permitted illustrative response using available evidence and constraints.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "effector_choice",
++        "family": "PROBE_AND_RETREAT",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C04_TRANSFER-D_A",
++      "title": "Response reasoning: assessment A",
++      "competency_id": "C04",
++      "pool": "assessment",
++      "form": "transfer-d",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Choose a permitted illustrative response using available evidence and constraints.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "effector_choice",
++        "family": "BLIND_SECTOR",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C04_TRANSFER-D_B",
++      "title": "Response reasoning: assessment B",
++      "competency_id": "C04",
++      "pool": "assessment",
++      "form": "transfer-d",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Choose a permitted illustrative response using available evidence and constraints.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "effector_choice",
++        "family": "BLIND_SECTOR",
++        "terrain": "rural",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C05_PRACTICE_A",
++      "title": "Degraded evidence handling: practice A",
++      "competency_id": "C05",
++      "pool": "practice",
++      "form": null,
++      "assistance": "full",
++      "audience": "individual",
++      "objective": "Interpret and respond to the evidence actually available during a sensor degradation.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "foundational",
++        "focus": "degraded_sensor_response",
++        "family": "BLIND_SECTOR",
++        "terrain": "urban",
++        "night": true,
++        "fog": 0.35,
++        "contacts": 3,
++        "mix": [
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C05_PRACTICE_B",
++      "title": "Degraded evidence handling: practice B",
++      "competency_id": "C05",
++      "pool": "practice",
++      "form": null,
++      "assistance": "faded",
++      "audience": "individual",
++      "objective": "Interpret and respond to the evidence actually available during a sensor degradation.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "foundational",
++        "focus": "degraded_sensor_response",
++        "family": "BLIND_SECTOR",
++        "terrain": "urban",
++        "night": true,
++        "fog": 0.35,
++        "contacts": 3,
++        "mix": [
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C05_BASELINE-A_A",
++      "title": "Degraded evidence handling: assessment A",
++      "competency_id": "C05",
++      "pool": "assessment",
++      "form": "baseline-a",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Interpret and respond to the evidence actually available during a sensor degradation.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "degraded_sensor_response",
++        "family": "DIRECT",
++        "terrain": "urban",
++        "night": true,
++        "fog": 0.35,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C05_BASELINE-A_B",
++      "title": "Degraded evidence handling: assessment B",
++      "competency_id": "C05",
++      "pool": "assessment",
++      "form": "baseline-a",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Interpret and respond to the evidence actually available during a sensor degradation.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "degraded_sensor_response",
++        "family": "DIRECT",
++        "terrain": "rural",
++        "night": true,
++        "fog": 0.35,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C05_IMMEDIATE-B_A",
++      "title": "Degraded evidence handling: assessment A",
++      "competency_id": "C05",
++      "pool": "assessment",
++      "form": "immediate-b",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Interpret and respond to the evidence actually available during a sensor degradation.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "degraded_sensor_response",
++        "family": "STAGGERED_WAVES",
++        "terrain": "urban",
++        "night": true,
++        "fog": 0.35,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C05_IMMEDIATE-B_B",
++      "title": "Degraded evidence handling: assessment B",
++      "competency_id": "C05",
++      "pool": "assessment",
++      "form": "immediate-b",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Interpret and respond to the evidence actually available during a sensor degradation.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "degraded_sensor_response",
++        "family": "STAGGERED_WAVES",
++        "terrain": "rural",
++        "night": true,
++        "fog": 0.35,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C05_RETENTION-C_A",
++      "title": "Degraded evidence handling: assessment A",
++      "competency_id": "C05",
++      "pool": "assessment",
++      "form": "retention-c",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Interpret and respond to the evidence actually available during a sensor degradation.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "degraded_sensor_response",
++        "family": "PROBE_AND_RETREAT",
++        "terrain": "urban",
++        "night": true,
++        "fog": 0.35,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C05_RETENTION-C_B",
++      "title": "Degraded evidence handling: assessment B",
++      "competency_id": "C05",
++      "pool": "assessment",
++      "form": "retention-c",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Interpret and respond to the evidence actually available during a sensor degradation.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "degraded_sensor_response",
++        "family": "PROBE_AND_RETREAT",
++        "terrain": "rural",
++        "night": true,
++        "fog": 0.35,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C05_TRANSFER-D_A",
++      "title": "Degraded evidence handling: assessment A",
++      "competency_id": "C05",
++      "pool": "assessment",
++      "form": "transfer-d",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Interpret and respond to the evidence actually available during a sensor degradation.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "degraded_sensor_response",
++        "family": "BLIND_SECTOR",
++        "terrain": "rural",
++        "night": true,
++        "fog": 0.35,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C05_TRANSFER-D_B",
++      "title": "Degraded evidence handling: assessment B",
++      "competency_id": "C05",
++      "pool": "assessment",
++      "form": "transfer-d",
++      "assistance": "none",
++      "audience": "individual",
++      "objective": "Interpret and respond to the evidence actually available during a sensor degradation.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "standard",
++        "focus": "degraded_sensor_response",
++        "family": "BLIND_SECTOR",
++        "terrain": "rural",
++        "night": true,
++        "fog": 0.35,
++        "contacts": 4,
++        "mix": [
++          "hostile_quad",
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C06_PRACTICE_A",
++      "title": "Crew coordination: practice A",
++      "competency_id": "C06",
++      "pool": "practice",
++      "form": null,
++      "assistance": "full",
++      "audience": "crew",
++      "objective": "Communicate and acknowledge evidence with role attribution.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "foundational",
++        "focus": "effector_choice",
++        "family": "DIRECT",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 3,
++        "mix": [
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    },
++    {
++      "id": "C06_PRACTICE_B",
++      "title": "Crew coordination: practice B",
++      "competency_id": "C06",
++      "pool": "practice",
++      "form": null,
++      "assistance": "faded",
++      "audience": "crew",
++      "objective": "Communicate and acknowledge evidence with role attribution.",
++      "instructions": [
++        "Select an observed contact; retain uncertainty when evidence is insufficient.",
++        "Make your own designation, classification and response choices.",
++        "After completion, inspect the verified evidence and explain one choice."
++      ],
++      "reflection": "Which observation supported your choice, and what remained uncertain?",
++      "scenario": {
++        "duration": 60,
++        "difficulty": "foundational",
++        "focus": "effector_choice",
++        "family": "DIRECT",
++        "terrain": "urban",
++        "night": false,
++        "fog": 0.1,
++        "contacts": 3,
++        "mix": [
++          "hostile_quad",
++          "friendly_uav",
++          "bird"
++        ]
++      }
++    }
++  ]
++}
+--- /dev/null
++++ b/server/tests/test_learning_catalogs.py
+@@ -0,0 +1,153 @@
++"""Catalog provenance/compatibility only; no new curriculum or human learning claim."""
++import copy
++import hashlib
++import json
++from pathlib import Path
++
++import pytest
++
++from server import learning, learning_catalogs as registry, storage
++from server.learning import LearningContext, PrepareLearning
++from server.tests.test_api import client
++from server.tests.test_learning import joined, prepared, launch, finished
++
++FROZEN_HASH = '5abe5c7920a40c989546bc59abf77c4cb6430f0cd8a8af5dca2a361ac977d345'
++
++
++def context(data, digest):
++    state = {'competencies': {c['id']: dict(correct=0, incorrect=0, unassessable=0, assessed_sessions=0)
++                            for c in data['competencies'] if c['scope'] == 'individual'}, 'recent_items': []}
++    req = PrepareLearning(request_id='catalog-fixture', trainee='QA', mode='practice', item_id='C01_PRACTICE_A', seed=7)
++    item, selection = learning.choose_item(data, state, req)
++    return LearningContext(catalog_hash=digest, item_id=item['id'], mode=req.mode,
++                           assistance=item['assistance'], seed=7, selection=selection).model_dump()
++
++
++def change_current(monkeypatch, tmp_path):
++    """Two explicitly registered catalogs for one unchanged learning-v1 contract.
++
++    Only title/objective change in the synthetic test catalog; this is not
++    new production content or an assertion that schema-v2 is now supported.
++    """
++    data, old_hash = learning.catalog()
++    raw = learning.CATALOG.read_bytes()
++    newer = copy.deepcopy(data)
++    next(i for i in newer['items'] if i['id'] == 'C01_PRACTICE_A').update(
++        title='Synthetic new current lesson', objective='Synthetic changed objective')
++    new_raw = json.dumps(newer, sort_keys=True).encode()
++    new_hash = hashlib.sha256(new_raw).hexdigest()
++    folder = tmp_path / 'learning-catalogs'
++    folder.mkdir()
++    (folder / (old_hash + '.json')).write_bytes(raw)
++    (folder / (new_hash + '.json')).write_bytes(new_raw)
++    index = tmp_path / 'learning-catalogs-v1.json'
++    index.write_text(json.dumps(dict(version='learning-catalog-registry-v1', catalogs=[
++        dict(sha256=h, contract='learning-v1', file=f'learning-catalogs/{h}.json')
++        for h in [old_hash, new_hash]])))
++    current = tmp_path / 'current.json'
++    current.write_bytes(new_raw)
++    monkeypatch.setattr(registry, 'REGISTRY', index)
++    monkeypatch.setattr(learning, 'CATALOG', current)
++    return data, old_hash, newer, new_hash
++
++
++def test_bundled_snapshot_is_exact_original_bytes_and_current_default_unchanged():
++    raw = learning.CATALOG.read_bytes()
++    assert hashlib.sha256(raw).hexdigest() == FROZEN_HASH
++    snapshot = registry.REGISTRY.parent / 'learning-catalogs' / (FROZEN_HASH + '.json')
++    assert snapshot.read_bytes() == raw
++    assert learning.catalog() == registry.catalog_by_hash(FROZEN_HASH)
++    assert len(learning.catalog()[0]['items']) == 52
++
++
++def test_old_context_compiles_identically_after_current_catalog_changes(monkeypatch, tmp_path):
++    data, digest = learning.catalog()
++    ctx = context(data, digest)
++    before = copy.deepcopy(ctx)
++    compiled = learning.compile_item(ctx)
++    _, old_hash, newer, new_hash = change_current(monkeypatch, tmp_path)
++    assert learning.catalog() == (newer, new_hash)
++    assert learning.item_for(ctx)['title'] != 'Synthetic new current lesson'
++    assert learning.compile_item(ctx) == compiled
++    new_ctx = context(newer, new_hash)
++    assert learning.item_for(new_ctx)['title'] == 'Synthetic new current lesson'
++    assert learning.compile_item(new_ctx)['title'] == 'Synthetic new current lesson'
++    assert registry.catalog_by_hash(old_hash)[0] == data
++    assert ctx == before
++
++
++def test_completed_evidence_and_history_remain_identical_after_current_change(client, monkeypatch, tmp_path):
++    tid = joined(client, 'HISTORICAL-CATALOG')
++    prep = prepared(client, tid)
++    sid, review = finished(client, prep, tid)
++    with storage.connect() as db:
++        original_attempt = dict(db.execute('SELECT * FROM learning_attempts WHERE session_id=?', (sid,)).fetchone())
++        original_session = dict(db.execute('SELECT * FROM sessions WHERE id=?', (sid,)).fetchone())
++    expected = learning.evidence_for(review, prep['context'])
++    change_current(monkeypatch, tmp_path)
++    assert learning.evidence_for(review, prep['context']) == expected
++    assert client.get(f'/api/v1/sessions/{sid}/aar').json() == review
++    with storage.connect() as db:
++        learning.complete_attempt(db, sid, review)
++        assert dict(db.execute('SELECT * FROM learning_attempts WHERE session_id=?', (sid,)).fetchone()) == original_attempt
++        assert dict(db.execute('SELECT * FROM sessions WHERE id=?', (sid,)).fetchone()) == original_session
++
++
++def test_prepared_old_catalog_still_launches_with_owner_checks_after_current_change(client, monkeypatch, tmp_path):
++    tid = joined(client, 'OLD-PREPARATION')
++    prep = prepared(client, tid)
++    change_current(monkeypatch, tmp_path)
++    other = joined(client, 'WRONG-OWNER')
++    assert client.get(f"/api/v1/learning/preparations/{prep['preparation_id']}?trainee={other}").status_code == 404
++    assert client.post('/api/v1/sessions', json=dict(scenario_id=prep['scenario']['id'], trainee=other,
++                                                   learning_preparation=prep['preparation_id'])).status_code == 422
++    assert launch(client, prep, tid)
++    assert client.get(f"/api/v1/learning/preparations/{prep['preparation_id']}?trainee={tid}").json()['context'] == prep['context']
++
++
++@pytest.mark.parametrize('digest', ['0' * 64, '../learning-v1.json', 'A' * 64, None])
++def test_unknown_or_malformed_digest_cannot_fall_back_to_current(digest):
++    with pytest.raises(ValueError, match='Unknown frozen curriculum catalog'):
++        registry.catalog_by_hash(digest)
++
++
++def test_registered_snapshot_tampering_is_detected_even_after_a_successful_read(monkeypatch, tmp_path):
++    _, old, _, _ = change_current(monkeypatch, tmp_path)
++    registry.catalog_by_hash(old)
++    path = tmp_path / 'learning-catalogs' / (old + '.json')
++    path.write_bytes(path.read_bytes() + b' ')
++    with pytest.raises(ValueError, match='content hash mismatch'):
++        registry.catalog_by_hash(old)
++
++
++def test_returned_catalog_is_a_fresh_object_not_mutable_shared_state():
++    data, digest = registry.catalog_by_hash(FROZEN_HASH)
++    data['items'][0]['title'] = 'Mutated reader copy'
++    assert registry.catalog_by_hash(digest)[0]['items'][0]['title'] != 'Mutated reader copy'
++
++
++def test_registry_path_escape_duplicate_and_contract_mismatch_fail_closed(monkeypatch, tmp_path):
++    _, old, _, _ = change_current(monkeypatch, tmp_path)
++    path = registry.REGISTRY
++    original = json.loads(path.read_text())
++    bad = copy.deepcopy(original)
++    bad['catalogs'][0]['file'] = '../learning-v1.json'
++    path.write_text(json.dumps(bad))
++    with pytest.raises(ValueError, match='registry entry'):
++        registry.catalog_by_hash(old)
++    bad = copy.deepcopy(original)
++    bad['catalogs'].append(copy.deepcopy(bad['catalogs'][0]))
++    path.write_text(json.dumps(bad))
++    with pytest.raises(ValueError, match='registry entry'):
++        registry.catalog_by_hash(old)
++    path.write_text(json.dumps(original))
++    with pytest.raises(ValueError, match='Unknown frozen curriculum catalog'):
++        registry.catalog_by_hash(old, 'learning-v2')
++
++
++def test_current_pointer_drift_requires_explicit_registration(monkeypatch, tmp_path):
++    current = tmp_path / 'unregistered-current.json'
++    current.write_bytes(learning.CATALOG.read_bytes() + b' ')
++    monkeypatch.setattr(learning, 'CATALOG', current)
++    with pytest.raises(ValueError, match='Unknown frozen curriculum catalog'):
++        learning.catalog()

@@ -1,0 +1,35 @@
+✔ Low and all illustrative IR ground shaders retain exact frozen programs (3.79775ms)
+✔ Medium and High use a bounded dielectric ground model with existing linear map data (2.376042ms)
+✔ missing normal and roughness data stays neutral rather than sampling white as a tilted normal (0.44825ms)
+✔ sensor palette updates preserve ground resources and do not turn a crop into geometry (0.405375ms)
+✔ policy separates tiers and EO ground participates in existing shader preparation (0.508666ms)
+✔ a missing overlay normal replaces dry detail with a flat layer rather than inheriting the wrong surface (0.641584ms)
+✔ default scenario retains the exact existing world clearance (0.862583ms)
+✔ full configured optical sphere fits inside the required flat disc for offset origins (0.531917ms)
+✔ large valid origins require explicit world expansion and cannot authorize relief (0.108625ms)
+✔ origin altitude cannot falsely shrink the conservative horizontal footprint (0.107875ms)
+✔ invalid configuration/origins fail explicitly instead of manufacturing default safety (0.403917ms)
+✔ envelope owns immutable copies and never mutates accepted scenario configuration (0.11875ms)
+✔ frozen default terrain vertex, normal and index buffers retain their exact prior hashes (21.217917ms)
+✔ configured terrain is flat throughout extended/offset optical footprints and retains outer relief (1.389ms)
+✔ default display haze retains the exact prior interpolation/density and overrides follow declared values (0.2425ms)
+✔ inspection uses frozen EO/IR IFOV without mistaking display zoom for new resolution (0.226542ms)
+✔ far clip encloses the sky from supported offset origins; oversized public views fall back explicitly (6.922625ms)
+✔ constant environment produces analytic pi-times-radiance diffuse irradiance (8.802542ms)
+✔ directional environment reproduces the cosine-convolved linear field (11.865292ms)
+✔ yaw rotates the irradiance field without changing its energy (10.923292ms)
+✔ mirrored environment coordinates agree with both photographed sky sun metadata (0.5045ms)
+✔ sample work is bounded and rejects non-finite dimensions/yaw (1.344291ms)
+✔ authored probes replace a declared fill share and leave existing PMREM intensity unchanged (3.990292ms)
+✔ extreme directional fields stay nonnegative and inside analytic irradiance budget (9.276834ms)
+✔ fallback and thermal/IR modes retain original light policy with no probe contribution (0.618458ms)
+✔ profile caches are immutable and projected/probe values have independent ownership (5.487709ms)
+✔ scene cleanup restores prior fog, environment, intensity, rotation and clear state (2.149209ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 922.009667
