@@ -43,6 +43,7 @@ type Context = {
   trainee: string;
   reviewHash: string;
   onInspectDecision?: (id: string) => void;
+  readOnly?: boolean;
 };
 type Pending = { request_id: string; question_id: string; choice: Choice };
 type Draft = { start_id: string; pending?: Pending };
@@ -146,15 +147,23 @@ const flag = (available: boolean, value: boolean | null) =>
 export default function EvidenceInvestigation(context: Context) {
   return (
     <InvestigationWorkspace
-      key={`${context.sessionId}:${context.trainee}:${context.reviewHash}`}
+      key={`${context.sessionId}:${context.trainee}:${context.reviewHash}:${context.readOnly ? "officer" : "learner"}`}
       {...context}
     />
   );
 }
 function InvestigationWorkspace(context: Context) {
-  const { sessionId, trainee, reviewHash, onInspectDecision } = context;
+  const {
+    sessionId,
+    trainee,
+    reviewHash,
+    onInspectDecision,
+    readOnly = false,
+  } = context;
   const key = `vyuha-investigation-v1:${sessionId}:${trainee}:${reviewHash}`;
-  const draft = useRef(initialDraft(key));
+  const draft = useRef(
+    readOnly ? ({ start_id: newId() } as Draft) : initialDraft(key),
+  );
   const [report, setReport] = useState<Envelope | null>(null);
   const [index, setIndex] = useState(0);
   const [selection, setSelection] = useState<Choice | "">("");
@@ -176,6 +185,7 @@ function InvestigationWorkspace(context: Context) {
   }, [index, report?.mission_id]);
   function preserve(next: Draft) {
     draft.current = next;
+    if (readOnly) return;
     try {
       localStorage.setItem(key, JSON.stringify(next));
       setDraftIssue("");
@@ -237,10 +247,12 @@ function InvestigationWorkspace(context: Context) {
     preserve(draft.current);
     try {
       const next = await api<Envelope>(
-        recover
-          ? `${path}?trainee=${encodeURIComponent(trainee)}`
-          : `${path}/start`,
-        recover
+        readOnly
+          ? `/instructor/sessions/${encodeURIComponent(sessionId)}/investigation`
+          : recover
+            ? `${path}?trainee=${encodeURIComponent(trainee)}`
+            : `${path}/start`,
+        recover || readOnly
           ? undefined
           : {
               request_id: draft.current.start_id,
@@ -262,6 +274,7 @@ function InvestigationWorkspace(context: Context) {
     }
   }
   async function save() {
+    if (readOnly) return;
     const question = report?.questions[index];
     if (
       busy ||
@@ -328,42 +341,54 @@ function InvestigationWorkspace(context: Context) {
       aria-label="Evidence investigation"
     >
       <header>
-        <p className="eyebrow">Post-exercise reasoning practice</p>
+        <p className="eyebrow">
+          {readOnly
+            ? "Officer review · recorded reasoning"
+            : "Post-exercise reasoning practice"}
+        </p>
         <h4 ref={heading} tabIndex={-1}>
           {question
             ? `Case ${index + 1} of ${report!.questions.length}`
             : "What does the evidence establish?"}
         </h4>
         <p>
-          Revisit the reports behind your decisions. Separate a supported
-          conclusion from one the available cues cannot establish.
+          {readOnly
+            ? "Inspect the learner's frozen reports and first recorded answers. This view cannot create a mission or change an answer."
+            : "Revisit the reports behind your decisions. Separate a supported conclusion from one the available cues cannot establish."}
         </p>
       </header>
       {!report && (
         <button className="button" disabled={busy} onClick={() => void load()}>
-          Open evidence investigation
+          {readOnly
+            ? "Review learner investigation"
+            : "Open evidence investigation"}
         </button>
       )}
       {busy && (
         <p role="status">
-          {report
-            ? "Confirming your answer on the unit server…"
-            : "Reconstructing the original verified reports…"}
+          {readOnly
+            ? "Loading recorded investigation…"
+            : report
+              ? "Confirming your answer on the unit server…"
+              : "Reconstructing the original verified reports…"}
         </p>
       )}
       {error && (
         <div role="alert">
           <p>{error}</p>
           <p>
-            Original score and evidence are unchanged. Any unconfirmed answer is
-            retained.
+            {readOnly
+              ? "Read-only review is unavailable. Original score and evidence are unchanged."
+              : "Original score and evidence are unchanged. Any unconfirmed answer is retained."}
           </p>
           <button
             className="button subtle"
             disabled={busy}
             onClick={() => void load(true)}
           >
-            Recover saved investigation
+            {readOnly
+              ? "Reload recorded investigation"
+              : "Recover saved investigation"}
           </button>
         </div>
       )}
@@ -463,7 +488,7 @@ function InvestigationWorkspace(context: Context) {
             </div>
             <div className="investigation-reasoning">
               <fieldset
-                disabled={busy || !!answer || !!pending}
+                disabled={readOnly || busy || !!answer || !!pending}
                 aria-labelledby={labelId}
               >
                 <legend>Does this report support the statement?</legend>
@@ -483,7 +508,10 @@ function InvestigationWorkspace(context: Context) {
                   </label>
                 ))}
               </fieldset>
-              {!answer && (
+              {!answer && readOnly && (
+                <p>No first answer has been recorded for this case.</p>
+              )}
+              {!answer && !readOnly && (
                 <button
                   className="button"
                   disabled={busy || (!selection && !pending)}
@@ -532,9 +560,11 @@ function InvestigationWorkspace(context: Context) {
                 These are post-exercise reasoning responses, not a mastery score
                 or evidence of improved learning.
               </p>
-              <a href="/academy?competency=C02">
-                Continue evidence practice in Academy
-              </a>
+              {!readOnly && (
+                <a href="/academy?competency=C02">
+                  Continue evidence practice in Academy
+                </a>
+              )}
             </div>
           )}
           <p className="footnote">{report!.note}</p>

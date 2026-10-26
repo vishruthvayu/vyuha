@@ -284,4 +284,18 @@ test("Ghost exposes reflection only to the joined owner of verified individual l
     );
   }
   assert.equal(JSON.stringify(r), before);
+  const officer = renderToStaticMarkup(
+    <GhostPanel
+      record={r}
+      viewerTrainee="T_A"
+      officerReview
+      selectedId={null}
+      onChoose={() => {}}
+    />,
+  );
+  assert.match(officer, /Review learner investigation/);
+  assert.doesNotMatch(
+    officer,
+    /Open evidence investigation|Reflect on your decision/,
+  );
 });

@@ -137,6 +137,7 @@ export function EvidenceView({ review: r }: { review: DecisionReview }) {
 export function GhostPanel({
   record,
   viewerTrainee,
+  officerReview = false,
   selectedId,
   onChoose,
   onJump,
@@ -144,6 +145,7 @@ export function GhostPanel({
 }: {
   record: TrainingRecord;
   viewerTrainee?: string;
+  officerReview?: boolean;
   onReload?: () => void;
   selectedId: string | null;
   onChoose: (
@@ -188,7 +190,12 @@ export function GhostPanel({
             }
           }}
           learner={
-            viewerTrainee === record.trainee
+            !officerReview && viewerTrainee === record.trainee
+              ? { sessionId: record.id, trainee: record.trainee }
+              : undefined
+          }
+          reviewer={
+            officerReview
               ? { sessionId: record.id, trainee: record.trainee }
               : undefined
           }

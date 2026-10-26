@@ -43,6 +43,60 @@ const receipt = (body: Record<string, unknown>) => ({
   matches_report: true,
   explanation: "Only this report supports the conclusion.",
 });
+
+test("officer review uses protected GET only and cannot consume or alter a learner's pending draft", () =>
+  mounted(async (q) => {
+    await q.click("Open evidence investigation");
+    await q.release(0, mission());
+    await q.choose(0);
+    await q.click("Record answer");
+    await act(async () =>
+      q.pending[1].reject(new TypeError("Synthetic lost response")),
+    );
+    const draftBefore = localStorage.getItem(localStorage.key(0)!);
+    await q.render("A", true);
+    await q.click("Review learner investigation");
+    assert.match(q.pending[2].url, /\/instructor\/sessions\/A\/investigation$/);
+    assert.equal(q.pending[2].body, null);
+    await q.release(2, mission());
+    assert.equal(q.document.querySelector("fieldset")!.disabled, true);
+    assert.match(
+      q.document.body.textContent!,
+      /No first answer has been recorded/,
+    );
+    assert.doesNotMatch(
+      q.document.body.textContent!,
+      /Record answer|Retry exact answer/,
+    );
+    assert.equal(localStorage.getItem(localStorage.key(0)!), draftBefore);
+    await q.click("Inspect original moment");
+    assert.deepEqual(q.inspected, ["d_1"]);
+    await q.render("A");
+    await q.click("Open evidence investigation");
+    await q.release(3, mission());
+    await q.click("Retry exact answer");
+    assert.deepEqual(q.pending[4].body, q.pending[1].body);
+    await q.release(4, mission("A", [receipt(q.pending[4].body!)]));
+  }));
+
+test("officer missing-mission and sign-in errors never start an investigation or write a draft", () =>
+  mounted(async (q) => {
+    await q.render("A", true);
+    await q.click("Review learner investigation");
+    await q.release(
+      0,
+      {
+        detail: "The learner has not started an investigation for this session",
+      },
+      404,
+    );
+    assert.match(q.document.body.textContent!, /learner has not started/);
+    await q.click("Reload recorded investigation");
+    await q.release(1, { detail: "Officer sign-in required" }, 401);
+    assert.match(q.document.body.textContent!, /Officer sign-in required/);
+    assert.ok(q.pending.every((request) => request.body === null));
+    assert.equal(localStorage.length, 0);
+  }));
 async function mounted(
   body: (q: {
     document: Document;
@@ -52,7 +106,7 @@ async function mounted(
       resolve: (r: Response) => void;
       reject: (e: Error) => void;
     }[];
-    render: (s: string) => Promise<void>;
+    render: (s: string, readOnly?: boolean) => Promise<void>;
     click: (text: string) => Promise<void>;
     choose: (i: number) => Promise<void>;
     release: (i: number, value: unknown, status?: number) => Promise<void>;
@@ -97,11 +151,12 @@ async function mounted(
   const { createRoot } = await import("react-dom/client");
   const root = createRoot(dom.window.document.getElementById("root")!);
   const inspected: string[] = [];
-  const render = async (s: string) => {
+  const render = async (s: string, readOnly = false) => {
     await act(async () =>
       root.render(
         <EvidenceInvestigation
           {...context(s)}
+          readOnly={readOnly}
           onInspectDecision={(id) => inspected.push(id)}
         />,
       ),

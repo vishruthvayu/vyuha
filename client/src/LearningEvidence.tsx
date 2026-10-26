@@ -31,10 +31,12 @@ export function LearningBanner({
 export function LearningEvidence({
   review,
   learner,
+  reviewer,
   onInspectDecision,
 }: {
   review: LearningReview;
   learner?: { sessionId: string; trainee: string };
+  reviewer?: { sessionId: string; trainee: string };
   onInspectDecision?: (id: string) => void;
 }) {
   const e = review.evidence;
@@ -51,9 +53,10 @@ export function LearningEvidence({
           ? "Scenario-bound assessment observations"
           : "Practice only · excluded from individual assessment"}
       </p>
-      {learner && (
+      {(learner || reviewer) && (
         <EvidenceInvestigation
-          {...learner}
+          {...(learner ?? reviewer!)}
+          readOnly={!learner}
           reviewHash={e.original_review_hash}
           onInspectDecision={onInspectDecision}
         />

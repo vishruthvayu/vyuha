@@ -2781,6 +2781,7 @@ export default function App({
                   }}
                   inspector={
                     <GhostPanel
+                      officerReview={reviewOnly}
                       viewerTrainee={trainee}
                       record={current}
                       onJump={focusReplay}

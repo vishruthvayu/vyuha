@@ -202,3 +202,26 @@ def test_corrupt_reconstructed_review_cannot_freeze_new_mission(client, monkeypa
     assert client.post(path(sid) + '/start', json=body).status_code == 409
     with storage.connect() as db:
         assert db.execute('SELECT COUNT(*) FROM learning_investigations').fetchone()[0] == 0
+
+
+def test_officer_get_is_authenticated_read_only_and_does_not_start_a_missing_mission(client):
+    tid, sid, _, body = complete(client)
+    url = f'/api/v1/instructor/sessions/{sid}/investigation'
+    auth = client.headers['Authorization']
+    assert client.get(url).status_code == 404
+    with storage.connect() as db:
+        assert db.execute('SELECT COUNT(*) FROM learning_investigations').fetchone()[0] == 0
+    mission = start(client, sid, body)
+    saved = client.post(path(sid) + '/answers', json=answer_body(body, mission)).json()
+    before = original_rows()
+    assert client.get(url).json() == saved
+    assert client.post(url, json=answer_body(body, mission, 1)).status_code == 405
+    client.headers.clear()
+    assert client.get(url).status_code == 401
+    client.headers['Authorization'] = 'Bearer invalid-token'
+    assert client.get(url).status_code == 401
+    client.headers['Authorization'] = auth
+    assert client.get(url).json() == saved
+    assert original_rows() == before
+    with storage.connect() as db:
+        assert db.execute('SELECT COUNT(*) FROM learning_investigation_answers').fetchone()[0] == 1

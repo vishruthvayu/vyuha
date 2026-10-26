@@ -27,6 +27,8 @@ NOTE = ('Post-exercise report reasoning only, not active evidence acquisition, p
         'annotations; an original server backup preserves them.')
 router = APIRouter(prefix='/api/v1/learning/sessions/{session_id}/investigation',
                    tags=['Post-exercise evidence investigation'])
+officer_router = APIRouter(prefix='/api/v1/instructor/sessions/{session_id}/investigation',
+                           tags=['Officer evidence investigation review'])
 
 
 def ensure_schema(db):
@@ -216,6 +218,21 @@ def get_investigation(session_id: str, trainee: str = Query(min_length=1, max_le
         spec = load_mission(db, session_id, trainee, review_hash)
         if spec is None:
             raise HTTPException(404, 'No investigation has been started for this session')
+        return response(db, spec)
+
+
+@officer_router.get('')
+def officer_investigation(session_id: str):
+    """Read only. The instructor path is protected by the existing auth middleware."""
+    with storage.connect() as db:
+        db.execute('BEGIN')
+        owner = db.execute('SELECT trainee FROM sessions WHERE id=?', (session_id,)).fetchone()
+        if owner is None:
+            raise HTTPException(404, 'Learning session not found')
+        actual = eligible_evidence(db, session_id, owner['trainee'])
+        spec = load_mission(db, session_id, owner['trainee'], actual)
+        if spec is None:
+            raise HTTPException(404, 'The learner has not started an investigation for this session')
         return response(db, spec)
 
 
