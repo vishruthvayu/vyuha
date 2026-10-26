@@ -281,6 +281,7 @@ function memoryDatabase(
   };
 }
 type Mode =
+  | "next-review"
   | "completion"
   | "retry-complete"
   | "retry-existing"
@@ -320,7 +321,7 @@ async function mounted(
     emitWorker: (data: object) => void;
   }) => Promise<void>,
 ) {
-  const initial = record("A", mode === "memo");
+  const initial = record("A", mode === "memo" || mode === "next-review");
   if (mode.startsWith("retry"))
     initial.fusionExposures = [
       {
@@ -345,7 +346,7 @@ async function mounted(
     context: { before_order: 0 },
   });
   const dom = new JSDOM('<!doctype html><body><div id="root"></div></body>', {
-    url: `http://qa.local/${mode.startsWith("learning") ? "?mode=adaptive&learning=prepared-learning" : mode.startsWith("retry") || mode === "memo" ? "?view=aar&session=A" : "?mode=scripted"}`,
+    url: `http://qa.local/${mode.startsWith("learning") ? "?mode=adaptive&learning=prepared-learning" : mode.startsWith("retry") || mode === "memo" || mode === "next-review" ? "?view=aar&session=A" : "?mode=scripted"}`,
     pretendToBeVisual: true,
   });
   const workers: { onmessage?: (event: { data: unknown }) => void }[] = [];
@@ -408,7 +409,7 @@ async function mounted(
   }
   let release = () => {},
     pending = false,
-    completed = mode === "memo",
+    completed = mode === "memo" || mode === "next-review",
     readsA = 0;
   const frozenB = structuredClone(savedRecords.get("B")!);
   const consoleError = console.error;
@@ -503,7 +504,10 @@ async function mounted(
     }
     if (url === "/sessions/A/aar") {
       readsA++;
-      if (mode === "retry-existing" && readsA === 2) {
+      if (
+        (mode === "retry-existing" || mode === "next-review") &&
+        readsA === 2
+      ) {
         pending = true;
         await new Promise<void>((resolve) => {
           release = resolve;
@@ -1194,3 +1198,35 @@ for (const mode of ["legacy-rejected", "legacy-network"] as const) {
       }
     }));
 }
+
+test("Actual App Next drill revokes a pending pinned-review load without changing stored evidence", () =>
+  mounted(
+    "next-review",
+    async ({ document, saved, waitForPending, release }) => {
+      const before = structuredClone([...saved]);
+      const w = document.defaultView!;
+      // The current review stays visible while its URL starts another owned load.
+      await act(async () => {
+        w.history.pushState(null, "", "/?view=aar&session=A&probe=next-drill");
+        w.dispatchEvent(new w.PopStateEvent("popstate"));
+      });
+      await waitForPending();
+      await click(document, "Next drill");
+      assert.ok(!document.querySelector(".aar-summary"));
+      await act(async () => {
+        release();
+        await new Promise((resolve) => setTimeout(resolve, 20));
+      });
+      assert.ok(
+        !document.querySelector(".aar-summary"),
+        "Late pinned review cannot reopen after Next drill",
+      );
+      assert.match(document.body.textContent!, /Prepare adaptive drill/);
+      assert.equal(new URL(w.location.href).searchParams.get("session"), null);
+      assert.deepEqual(
+        [...saved],
+        before,
+        "Navigation does not rewrite original training evidence",
+      );
+    },
+  ));
