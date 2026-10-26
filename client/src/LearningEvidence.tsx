@@ -1,4 +1,5 @@
 import LearnerReflection from "./LearnerReflection";
+import EvidenceInvestigation from "./EvidenceInvestigation";
 import type { LearningPreparation, LearningReview } from "./learning";
 import { learningModeLabel } from "./learning";
 export function LearningBanner({
@@ -30,9 +31,11 @@ export function LearningBanner({
 export function LearningEvidence({
   review,
   learner,
+  onInspectDecision,
 }: {
   review: LearningReview;
   learner?: { sessionId: string; trainee: string };
+  onInspectDecision?: (id: string) => void;
 }) {
   const e = review.evidence;
   if (!e)
@@ -48,6 +51,13 @@ export function LearningEvidence({
           ? "Scenario-bound assessment observations"
           : "Practice only · excluded from individual assessment"}
       </p>
+      {learner && (
+        <EvidenceInvestigation
+          {...learner}
+          reviewHash={e.original_review_hash}
+          onInspectDecision={onInspectDecision}
+        />
+      )}
       <div
         className="table-scroll"
         role="region"

@@ -151,3 +151,30 @@ def test_current_pointer_drift_requires_explicit_registration(monkeypatch, tmp_p
     monkeypatch.setattr(learning, 'CATALOG', current)
     with pytest.raises(ValueError, match='Unknown frozen curriculum catalog'):
         learning.catalog()
+
+
+@pytest.mark.parametrize('mode', ['practice', 'assessment'])
+def test_old_catalog_transfer_restores_exact_evidence_after_current_changes(client, monkeypatch, tmp_path, mode):
+    """Portable reconstruction consults the frozen catalog, not current content."""
+    from server.tests.test_learning import KEY
+    monkeypatch.setenv('VYUHA_BUNDLE_SECRET', KEY)
+    tid = joined(client, 'HISTORICAL-TRANSFER')
+    prep = prepared(client, tid, mode, **({'form': 'baseline-a'} if mode == 'assessment' else {}))
+    sid, review = finished(client, prep, tid)
+    exported = client.post('/api/v1/units/local/bundle/export', json={})
+    assert exported.status_code == 200, exported.text
+    bundle = exported.json()
+    change_current(monkeypatch, tmp_path)
+    monkeypatch.setattr(storage, 'DB_PATH', tmp_path / 'restored.db')
+    storage.init()
+    imported = client.post('/api/v1/bundle/import', json=bundle)
+    assert imported.status_code == 200, imported.text
+    restored = client.get(f'/api/v1/sessions/{sid}/aar').json()
+    assert restored['scorecard'] == review['scorecard']
+    assert restored['learning'] == review['learning']
+    assert restored['scenario'] == review['scenario']
+    repeated = client.post('/api/v1/bundle/import', json=bundle)
+    assert repeated.status_code == 200 and repeated.json()['skipped_sessions'] == 1
+    with storage.connect() as db:
+        assert db.execute('SELECT COUNT(*) FROM learning_attempts').fetchone()[0] == 1
+        assert db.execute('SELECT COUNT(*) FROM skill_outcomes').fetchone()[0] == (1 if mode == 'assessment' else 0)

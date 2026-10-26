@@ -11,6 +11,7 @@ import "./next-generation.css";
 import "./academy-journey.css";
 import "./training-deck.css";
 import "./optical-station.css";
+import "./evidence-investigation.css";
 import "./premium/premium.css";
 import WorkspaceBoundary from "./WorkspaceBoundary";
 import { LoadingWorkspace } from "./UI";

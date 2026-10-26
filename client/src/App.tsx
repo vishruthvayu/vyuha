@@ -2786,11 +2786,15 @@ export default function App({
                       onJump={focusReplay}
                       onReload={() => setReviewReload((n) => n + 1)}
                       selectedId={reviewId}
-                      onChoose={(r) => {
+                      onChoose={(r, evidenceMoment) => {
                         setReviewId(r.decision_id);
                         seek(
-                          r.tick,
-                          r.trainee_action ? (r.order ?? undefined) : undefined,
+                          evidenceMoment?.tick ?? r.tick,
+                          evidenceMoment
+                            ? evidenceMoment.beforeOrder
+                            : r.trainee_action
+                              ? (r.order ?? undefined)
+                              : undefined,
                           r.track_id,
                         );
                       }}

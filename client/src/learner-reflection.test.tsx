@@ -278,6 +278,10 @@ test("Ghost exposes reflection only to the joined owner of verified individual l
       />,
     );
     assert.equal(html.includes("Reflect on your decision"), viewer === "T_A");
+    assert.equal(
+      html.includes("Open evidence investigation"),
+      viewer === "T_A",
+    );
   }
   assert.equal(JSON.stringify(r), before);
 });

@@ -117,6 +117,10 @@ export default function AcademyLesson({
               Compare the decision with the server-verified review in Ghost.
             </li>
             <li>
+              Open Evidence investigation to test what the original reports
+              support, then inspect their exact replay moments.
+            </li>
+            <li>
               Record what remained uncertain and what you would check next.
             </li>
           </ol>

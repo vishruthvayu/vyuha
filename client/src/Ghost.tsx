@@ -146,7 +146,10 @@ export function GhostPanel({
   viewerTrainee?: string;
   onReload?: () => void;
   selectedId: string | null;
-  onChoose: (r: DecisionReview) => void;
+  onChoose: (
+    r: DecisionReview,
+    evidenceMoment?: { tick: number; beforeOrder?: number },
+  ) => void;
   onJump?: () => void;
 }) {
   const r = selectedReview(record, selectedId);
@@ -168,6 +171,22 @@ export function GhostPanel({
       {record.verified && record.learning && (
         <LearningEvidence
           review={record.learning}
+          onInspectDecision={(id) => {
+            const decision = record.decision_reviews?.find(
+              (entry) => entry.decision_id === id,
+            );
+            if (decision) {
+              onChoose(decision, {
+                tick: decision.evidence.tick,
+                beforeOrder:
+                  decision.trainee_action &&
+                  decision.evidence.tick === decision.tick
+                    ? (decision.order ?? undefined)
+                    : undefined,
+              });
+              onJump?.();
+            }
+          }}
           learner={
             viewerTrainee === record.trainee
               ? { sessionId: record.id, trainee: record.trainee }
