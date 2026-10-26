@@ -1,0 +1,41 @@
+{
+  "scope": "isolated QA original tables, before answers2\u20134 and after outage/reload/retry; answer1 preceded snapshot",
+  "before": {
+    "hash": "0339f517d15b4022f12f0ab6e76be0a50f073b7500cef326b3084fca59735191",
+    "counts": {
+      "sessions": 14,
+      "chunks": 22,
+      "instructor_commands": 0,
+      "learning_attempts": 4,
+      "skill_profiles": 12,
+      "skill_outcomes": 10
+    }
+  },
+  "after": {
+    "hash": "0339f517d15b4022f12f0ab6e76be0a50f073b7500cef326b3084fca59735191",
+    "counts": {
+      "sessions": 14,
+      "chunks": 22,
+      "instructor_commands": 0,
+      "learning_attempts": 4,
+      "skill_profiles": 12,
+      "skill_outcomes": 10
+    }
+  },
+  "unchanged": true,
+  "frozen_missions": 1,
+  "answers": 4,
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "officer_review_after": {
+    "hash": "0339f517d15b4022f12f0ab6e76be0a50f073b7500cef326b3084fca59735191",
+    "counts": {
+      "sessions": 14,
+      "chunks": 22,
+      "instructor_commands": 0,
+      "learning_attempts": 4,
+      "skill_profiles": 12,
+      "skill_outcomes": 10
+    }
+  },
+  "officer_review_unchanged": true
+}

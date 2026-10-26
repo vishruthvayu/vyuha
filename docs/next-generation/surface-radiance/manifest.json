@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-26T07:41:40.684536+00:00",
+  "runtime_revision": "2f4dfdfefa3ff328791a4ef766a510b0c07bc90e",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_hash": "19b7594c58fb245341d36c8a131aff2a2829fbf6409a705216802281824bccae",
+  "baseline_revision": "f1714e0afbc4015d00f2cd85e9626534fa5f8178",
+  "baseline_source_hash": "1e4f24386affe1a44b9393526c603c2c3785e89275685f46ac7452ddff365b72",
+  "raw_metadata_preserved": true,
+  "disposition": "Retained development material upgrade; not rendering release qualification",
+  "artifacts": [
+    {
+      "path": "docs/next-generation/surface-radiance/STATUS.md",
+      "sha256": "1fe76b15abff414aedd6aad0a87a0a8c7432a65deb27af2fb823d11ef563d9ee"
+    },
+    {
+      "path": "docs/next-generation/surface-radiance/evidence/after-benchmark.jpg",
+      "sha256": "b7a2d3dc9002f5a75ca70b3e8b0881448b6304f6e774e55f124a09cc434fadc8"
+    },
+    {
+      "path": "docs/next-generation/surface-radiance/evidence/baseline-200.json",
+      "sha256": "b7ededf0271375f7d4da1f98103b01776da8fb464a461df46e6b2bf7b17529a8"
+    },
+    {
+      "path": "docs/next-generation/surface-radiance/evidence/baseline-preparation.json",
+      "sha256": "01a58dfc968603998a06ceb57b56a2e2443eeadacda5ad37ea2bc4f03a87b8df"
+    },
+    {
+      "path": "docs/next-generation/surface-radiance/evidence/baseline-run-timings.json",
+      "sha256": "c9384a389d5211fad69d0cbeed854c7e35d8ead4013eab8950cab1ab552ae31c"
+    },
+    {
+      "path": "docs/next-generation/surface-radiance/evidence/before-benchmark.jpg",
+      "sha256": "ad9e22922851e44407ab80a39326023f2d7b9c03a520d700084dcacdf43ec642"
+    },
+    {
+      "path": "docs/next-generation/surface-radiance/evidence/candidate-200.json",
+      "sha256": "2adb1e3594a7ebffd2f6b92d1fd19e035f2253653be24ae6a6f0775f125c3f6c"
+    },
+    {
+      "path": "docs/next-generation/surface-radiance/evidence/candidate-run-timings.json",
+      "sha256": "77254ba1e9ff8542dd4c18004f98f80f2a5bf04e12bcf8435d01f9c6e28638e9"
+    },
+    {
+      "path": "docs/next-generation/surface-radiance/evidence/high-eo.png",
+      "sha256": "e29d3b6f9601e592b7236a942cef8be6b16526d76584cd60f79039b0800d6d46"
+    },
+    {
+      "path": "docs/next-generation/surface-radiance/evidence/low-thermal.png",
+      "sha256": "27771e40f264e4f005d838572c732a063030974dc7ce9f67085f4ef9193dd37d"
+    },
+    {
+      "path": "docs/next-generation/surface-radiance/evidence/near-baseline.jpg",
+      "sha256": "1b259bb5b09acb4136d59cecee2a918d1e5983ea18ea337d55397d50d7c781d8"
+    },
+    {
+      "path": "docs/next-generation/surface-radiance/evidence/near-candidate.jpg",
+      "sha256": "e28e7016451ea5e23f379c1319a606b120fd0a414bff2ed86e056911c15b1e59"
+    },
+    {
+      "path": "docs/next-generation/surface-radiance/evidence/observation-compatibility.log",
+      "sha256": "a7489cf202950cb6d97700ba0486dfe6633b9e4ebbac3f80ec353b663d2cd581"
+    },
+    {
+      "path": "docs/next-generation/surface-radiance/evidence/surface-final-targeted.log",
+      "sha256": "1d99641fb254526d2b7c31342abe6fbb18500c1667ae35cae6c8c46b0c71902b"
+    },
+    {
+      "path": "docs/next-generation/surface-radiance/evidence/surface-targeted.log",
+      "sha256": "ddecc9a37e77820f56c4858235f14e81e3afb6949fb5b09dada75aff3926661d"
+    }
+  ],
+  "limits": [
+    "Modest visual change",
+    "No loaded speedup demonstrated",
+    "Cold startup/shader preparation not isolated",
+    "Main-page heap snapshots differ; Worker/GPU/retained memory cost not isolated",
+    "Near-ground images not pixel matched",
+    "No empirical thermal/physical calibration"
+  ]
+}

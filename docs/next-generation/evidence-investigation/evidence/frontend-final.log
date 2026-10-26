@@ -1,0 +1,41 @@
+✔ real catalog maps five individual journeys and keeps pools, help and Crew distinct (61.478084ms)
+✔ suggestions use positive practice observations, not assessed mastery or unassessable counts (0.706792ms)
+✔ preparation acceptance binds catalogue, selected item, pool and immutable assistance mode (0.594125ms)
+✔ competency-linked journey prepares full, faded and independent tasks explicitly and passes axe (1272.571375ms)
+✔ late preparations cannot restore another stage or identity and preparation never counts as completion (171.905625ms)
+✔ network retry retains the frozen request while a deliberate new attempt gets a new ID (112.006167ms)
+✔ supporting evidence suggests less guidance without switching or granting mastery, refresh preserves choice (86.239708ms)
+✔ sparse assessment forms normalize the visible selection and actual request; invalid route cannot select Crew (68.983584ms)
+✔ initial load and mismatched preparation fail visibly with explicit retry and no accepted launch (61.19625ms)
+✔ guided investigation uses explicit answers, exact replay links and accessible feedback only after recording (1077.810583ms)
+✔ lost answer acknowledgment keeps the exact request, locks choice and recovers on server read (81.855125ms)
+✔ pending answers survive review changes without late responses contaminating the new context (82.279083ms)
+✔ mismatched review or mission receipts never clear a pending answer (62.289125ms)
+✔ a first answer accepted from another device wins over a conflicting local pending draft (63.108042ms)
+✔ malformed or incomplete server answers retain the retry and never show fabricated completion (56.971625ms)
+✔ reflection loads only on request and saves a source-bound optional annotation as plain text (749.456875ms)
+✔ failed network save preserves draft and retries the identical request instead of duplicating it (60.213208ms)
+✔ late save cannot contaminate another review and a lost acknowledgment is recovered from saved history (75.648291ms)
+(node:65119) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ foreign history and missing save acknowledgment fail closed while retaining the current draft (35.79525ms)
+✔ Ghost exposes reflection only to the joined owner of verified individual learning evidence (21.115458ms)
+✔ verified review links only observed known competencies to an explicit course selection (241.844208ms)
+✔ What-if ignores late 200 response after session changes (540.900375ms)
+✔ Fusion review ignores late 200 receipt response after session changes (37.477875ms)
+✔ What-if ignores late 422 response after session changes (83.187625ms)
+✔ Fusion review ignores late 422 receipt response after session changes (43.157917ms)
+✔ Analytics ignores previous-unit failures and avoids an invented default trainee request (110.229792ms)
+✔ Reference comparison rejects a successful response belonging to another session (22.012125ms)
+✔ theatre starts in modeled sensor view; reference/EO transitions preserve time, contact and source (593.60325ms)
+✔ divergent playhead and missing-action evidence disclose both times and seek actual stored evidence (51.521125ms)
+✔ bounded chronological rail retains all decisions through paging and populated semantics pass axe (403.788875ms)
+✔ investigation chapters retain lens and record, use source order and disable unobserved outcomes (60.68825ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6865.891084

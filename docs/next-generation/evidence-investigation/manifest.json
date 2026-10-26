@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-26T07:41:40.684536+00:00",
+  "status": "PASS_FOR_DECLARED_DEVELOPMENT_SCOPE",
+  "runtime_revision": "086b3c6d148d3596379ee63d16f79b9b78c88899",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_hash": "b82ab4af5eaa723becbb59d1d00f0f4744b09eed320dcde8a4e381e22502ab85",
+  "archive_source_matches": true,
+  "artifacts": [
+    {
+      "path": "docs/next-generation/evidence-investigation/STATUS.md",
+      "sha256": "74b3050e2e48044e2d4c24e0bf70c490e6f878131831e934797aa844b963561a"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/backend-officer-final.log",
+      "sha256": "48253a34619cb88d5c63297edc93ac16d9ead2991d1db4af51d28c00c5f012fc"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/backend-targeted.log",
+      "sha256": "1e94f8c74f4b30b247039f3c3cfb0d06f7fb6b76353578dfbb5552a8e61e09bb"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/browser-immutability.json",
+      "sha256": "2ad3a49b831a013a86eaf8b0ec9ad3f54e82d226cad832faabe671b2fb553f20"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/desktop.png",
+      "sha256": "4887c1e3e7f80c0435378a9f4a72b72ff87be679168df23a22f3bfffe939547e"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/frontend-final.log",
+      "sha256": "d939f5605c50d5b61326d1a53d7be86b10604ea77426d31e52cb7cfe671d0b24"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/frontend-integrated.log",
+      "sha256": "093d5d2444d7c98a462566adbef2d8bbb3ba05e63c7cdc053b06e63d4b5f3b35"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/frontend-officer-final.log",
+      "sha256": "c8d3fa54a8a64edc7f49b57c54a4136ec3866a77cdbdccfd143620f468d26357"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/frontend-targeted.log",
+      "sha256": "a2753854ece1e04f2be7417a6884ec34875e96231458c2b906460726e6047463"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/learning-compatibility.log",
+      "sha256": "b0ccd3222413830fd84ecb3e0c0a7dcdf89893b2cb08fcf51f35bbbfad07d826"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/officer-review.txt",
+      "sha256": "f782215282cc21d48b1d7089e1890da80f94c0c4abfd4396c916ac660d1e2915"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/officer.png",
+      "sha256": "16ef6f34180f47bb8c8fe5d16478f5f276f05208a7839c8a9f9bb24d38ebe9e8"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/owner-final.png",
+      "sha256": "920a8c572ffb7829a6e194df745c5e779e36d1e6b87230e36cf936311046dfd6"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/phone-case.png",
+      "sha256": "3a40fb3a2f0a3229c67edb8dc7fd1de4205d2b620c5bd2a8754e4b7686db11eb"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/phone-feedback.png",
+      "sha256": "469baeeb9f9b2b7d554876d261151aadb8846e148d5e966c02e0ef9af34ad50c"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/protected-refs.json",
+      "sha256": "18907637fbd492b126d0a664550d1a6218dd8459214af7cb54e3bb01543f0969"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/replay-link.txt",
+      "sha256": "97713545344cf306fed9d94b8fafd9a0241438ad86e19926a61a7e13e3604cf6"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/server-outage.png",
+      "sha256": "17495f463e5a06f5717fa8613b28b821198e15bfbd154cb7404d67206cbb9d00"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/source-checks.log",
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/source-receipt.json",
+      "sha256": "d780b4063c5db1745a108130e0d0629ec82f485d924de27c7d197e5d009316a8"
+    },
+    {
+      "path": "docs/next-generation/evidence-investigation/evidence/tablet.png",
+      "sha256": "dafc7800d60ae5620a47571ad2fb14d39ae1a6dc5d61973c8d97a11350eccfde"
+    }
+  ],
+  "boundaries": [
+    "Post-exercise passive-report reasoning, not active acquisition",
+    "Existing trusted-LAN trainee identity; officer route requires authentication",
+    "Annotations omitted from ordinary transfer; server backup retains them",
+    "No new score, mastery, empirical learning gain or operational validation",
+    "No release-candidate/full-system acceptance"
+  ],
+  "test_results": {
+    "backend_investigation": {
+      "passed": 10,
+      "failed": 0,
+      "seconds": 13.82
+    },
+    "frontend_affected": {
+      "passed": 33,
+      "failed": 0,
+      "milliseconds": 5888.874917
+    },
+    "reused_catalog_reflection": {
+      "passed": 22,
+      "failed": 0,
+      "seconds": 21.48
+    }
+  },
+  "browser": [
+    "Academy practice -> real observed decisions -> server-verified Ghost",
+    "Explicit answers, delayed feedback, original-moment link and Academy return",
+    "Real QA server stop, pending answer retained through reload, restart and exact retry",
+    "1152x648/768x1024/390x844 CSS; scale1/DPR1; no document overflow",
+    "Authenticated officer review with no answer write controls"
+  ],
+  "not_run": [
+    "Full suites, production build, full parity/history release gate, Docker/clean clone, physical device/HTTPS/WAN/headset qualification"
+  ]
+}

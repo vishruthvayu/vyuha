@@ -1,0 +1,180 @@
+INVESTIGATE THE DECISION
+
+Evidence reconstruction theatre
+
+Reconstruct available observations, then compare them with the reference world.
+
+SERVER VERIFIED
+Evidence-based classification: practice A
+Modeled observations
+Reference world
+T+26.10s · before event order 0
+PINNED EVIDENCE T+26.10s · REVIEW T+26.10s
+IR
+EO
+Radar
+2D fallback
+IR CLOSE-UP · 16 PX ACROSS TARGET · 276 M
+IR · MODELED OBSERVATIONS
+Sensor-origin view · observed geometry only
+60 fps
+T+29.00s
+
+AT THE PLAYHEAD
+
+T+26.10s
+
+Modeled availability reconstructed from the frozen engine. This is not a recording of gaze, viewport or what the trainee actually noticed.
+
+Reported contact
+Choose a reported contact
+T1 · trainee declaration: Unclassified
+T2 · trainee declaration: Unclassified
+T3 · trainee declaration: Unclassified
+RADAR
+confirmed · coasting · 0.10s old
+EO
+identify · multirotor · 0.00s old
+IR
+identify · multirotor · 0.00s old
+RF
+Signal reported
+IFF
+No reply · identity remains uncertain
+Decision time and event boundary aligned
+
+Ghost evidence for T1 was captured at T+26.10s. Review moment: T+26.10s, before event order 0. The scene follows the playhead.
+
+01 · T1
+First modeled detectability
+T+2.00s · before event order 0
+02 · T1
+Decision evidence
+T+26.10s · before event order 0
+03 · T1
+Observed outcome
+Not observed within this recording
+Decision moments
+1–2 of 2
+01 · T+26.10s
+T1 · Designate
+INCORRECT · DETECTION
+02 · T+28.13s
+T1 · Quadcopter / hostile
+CORRECT · CLASSIFICATION IFF
+Decision explanation · pinned evidence and after-exercise reference
+Ghost Expert
+RULE-GROUNDED
+Academy practice evidence
+
+Practice only · excluded from individual assessment
+
+POST-EXERCISE REASONING PRACTICE
+
+Case 4 of 4
+
+Revisit the reports behind your decisions. Separate a supported conclusion from one the available cues cannot establish.
+
+Case 1 · recorded
+Case 2 · recorded
+Case 3 · recorded
+Case 4 · recorded
+
+A working radar report detected this contact at this evidence moment.
+
+ORIGINAL REPORT · T1
+
+T+26.10 s
+Radar return
+Present · normal
+RF link
+Present
+IFF response
+no reply
+Visual cue
+multirotor
+Range
+271 m
+Inspect original moment
+The stored report is pinned to this time. Later evidence and reference truth do not replace it.
+Does this report support the statement?
+Supported by this report
+Not established by this report
+Consistent with this report
+
+The available radar report explicitly records detection. That observation does not identify type or intent.
+
+First answer recorded. Exercise score and assessment evidence are unchanged.
+Investigation responses recorded
+
+These are post-exercise reasoning responses, not a mastery score or evidence of improved learning.
+
+Continue evidence practice in Academy
+
+Post-exercise report reasoning only, not active evidence acquisition, pre-decision thinking, scored training performance or proof of learning gain. Uses the existing trusted-LAN trainee identity; the unit administrator can read the database. Ordinary Data transfer omits these annotations; an original server backup preserves them. This session supplies both a positive report and an insufficient-inference example.
+
+Reconstructed decision evidence · counts, not mastery percentages
+COMPETENCY	SUPPORTED	INCORRECT	UNASSESSABLE	CONTINUE LEARNING
+C01	0	1	0	Explore C01 practice
+C02	0	0	1	Explore C02 practice
+C03	0	0	0	No linked practice evidence
+C04	0	0	0	No linked practice evidence
+C05	0	0	0	No linked practice evidence
+
+Scenario-bound evidence only. No validated proficiency, operational readiness or human learning gain is inferred.
+
+Evidence and frozen selection
+Reflect on your decision
+Decision review
+T1 · T+26.10s · detection · detection late
+T1 · T+28.13s · classification / iff · correct classification
+T1 · T+26.10s
+INCORRECT
+Previous decision
+Next decision
+Jump to selected decision
+
+Decision evidence stays pinned while you move the replay cursor.
+
+AVAILABLE TO TRAINEE
+Radar
+ACTIVE · contact observed
+RF control link
+Detected
+IFF
+No reply · identity unconfirmed
+EO / IR observation
+multirotor silhouette
+Range
+270.5 m
+Restricted sector
+Outside restricted sector
+First detectable
+T+2.00s
+
+Evidence at T+26.10s: immediately before the selected action. IFF no reply does not establish hostility. Quad and FPV share a multirotor silhouette.
+
+YOUR DECISION
+Designate
+EXPECTED DECISION
+Designate
+Based on available evidence
+WHY
+
+This contact first became detectable at T+2.00s. Designation at T+26.10s took 24.10s. Detection credit tapers after three simulation seconds, not after spawn or paused wall-clock time. The IFF panel returned no reply; that alone does not establish hostility.
+
+DETECTION_LATE
+Ground truth after review
+CONSEQUENCE
+
+The contact remained active at the reviewed end; no later observed consequence is asserted.
+
+NO_CONSEQUENCE_YET
+SCORE IMPACT
+Detection: 0 / 25
+
+Final contact node, shared across all attempts. This is not a separate per-action award.
+
+TRAINING SKILL
+
+Detection

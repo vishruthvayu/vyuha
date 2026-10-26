@@ -1,0 +1,21 @@
+✔ guided investigation uses explicit answers, exact replay links and accessible feedback only after recording (738.464541ms)
+✔ lost answer acknowledgment keeps the exact request, locks choice and recovers on server read (63.96075ms)
+✔ pending answers survive review changes without late responses contaminating the new context (65.009208ms)
+✔ mismatched review or mission receipts never clear a pending answer (46.267ms)
+✔ a first answer accepted from another device wins over a conflicting local pending draft (41.20175ms)
+✔ malformed or incomplete server answers retain the retry and never show fabricated completion (33.594167ms)
+✔ reflection loads only on request and saves a source-bound optional annotation as plain text (603.427083ms)
+✔ failed network save preserves draft and retries the identical request instead of duplicating it (37.616125ms)
+✔ late save cannot contaminate another review and a lost acknowledgment is recovered from saved history (63.007834ms)
+(node:62831) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ foreign history and missing save acknowledgment fail closed while retaining the current draft (32.621417ms)
+✔ Ghost exposes reflection only to the joined owner of verified individual learning evidence (20.210375ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3042.316959

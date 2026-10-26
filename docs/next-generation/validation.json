@@ -93,6 +93,51 @@
         }
       ],
       "note": "Integrated curriculum SOFTWARE SLICE ONLY: 746 backend /380 frontend passed; 300 added parity checkpoints across 50 individual items. Actual practice/assessment and empty officer protocol browser walkthrough. Does not accept Checkpoint A, establish performance improvement, human efficacy, empirical form fairness or physical platform/XR/network validation. No release tag."
+    },
+    {
+      "id": "surface-radiance-development-2026-10-26",
+      "status": "PASS",
+      "source_hash": "19b7594c58fb245341d36c8a131aff2a2829fbf6409a705216802281824bccae",
+      "source_revision": "2f4dfdfefa3ff328791a4ef766a510b0c07bc90e",
+      "scopes": [
+        "frontend",
+        "performance",
+        "browser"
+      ],
+      "artifacts": [
+        {
+          "path": "docs/next-generation/surface-radiance/STATUS.md",
+          "sha256": "1fe76b15abff414aedd6aad0a87a0a8c7432a65deb27af2fb823d11ef563d9ee"
+        },
+        {
+          "path": "docs/next-generation/surface-radiance/manifest.json",
+          "sha256": "74e970f922d6d8a64337b2a5261f93e6f52aec0e147a5a625b9b7c9267aa81cf"
+        }
+      ],
+      "note": "Bounded development evidence: Medium/High EO material, unchanged Low/IR shader contracts, matching loaded200-contact Medium comparison.60medianFPS both; framep95 19.4/19.6ms. No speedup/startup/total-memory/physical/full-release claim."
+    },
+    {
+      "id": "evidence-investigation-development-2026-10-26",
+      "status": "PASS",
+      "source_hash": "b82ab4af5eaa723becbb59d1d00f0f4744b09eed320dcde8a4e381e22502ab85",
+      "source_revision": "086b3c6d148d3596379ee63d16f79b9b78c88899",
+      "scopes": [
+        "backend",
+        "frontend",
+        "browser",
+        "security"
+      ],
+      "artifacts": [
+        {
+          "path": "docs/next-generation/evidence-investigation/STATUS.md",
+          "sha256": "74b3050e2e48044e2d4c24e0bf70c490e6f878131831e934797aa844b963561a"
+        },
+        {
+          "path": "docs/next-generation/evidence-investigation/manifest.json",
+          "sha256": "bc6071ea91a41dfffa9c52333b305f13f39283138138a883bc19c76721a904ef"
+        }
+      ],
+      "note": "Scoped development acceptance only: frozen post-exercise report reasoning, owner/Crew isolation, append-only answers, outage/reload/retry, exact replay and protected read-only officer access.10backend/33frontend passed;22unchanged catalog/reflection checks reused. No full release, active acquisition, calibrated mastery or human efficacy claim."
     }
   ]
 }

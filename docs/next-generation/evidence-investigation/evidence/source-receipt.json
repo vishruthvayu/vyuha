@@ -1,0 +1,39 @@
+{
+  "runtime_revision": "086b3c6d148d3596379ee63d16f79b9b78c88899",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_hash": "b82ab4af5eaa723becbb59d1d00f0f4744b09eed320dcde8a4e381e22502ab85",
+  "archive_matches": true,
+  "checks": {
+    "typescript": "PASS",
+    "changed_file_eslint": "PASS",
+    "changed_file_prettier": "PASS",
+    "backend_investigation": {
+      "pass": 10,
+      "fail": 0,
+      "seconds": 13.82
+    },
+    "frontend_affected": {
+      "pass": 33,
+      "fail": 0,
+      "milliseconds": 5888.874917
+    }
+  },
+  "reused_affected_compatibility": {
+    "catalog_and_reflection": {
+      "pass": 22,
+      "fail": 0,
+      "seconds": 21.48,
+      "note": "Executed before officer-only additions; registry/reflection runtime unchanged."
+    }
+  },
+  "not_rerun": [
+    "complete backend",
+    "complete frontend",
+    "full scoring parity",
+    "18/22 historical qualification",
+    "production build",
+    "Docker",
+    "clean clone",
+    "physical platform/XR/HTTPS/WAN qualification"
+  ]
+}

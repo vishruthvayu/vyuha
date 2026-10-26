@@ -1,0 +1,42 @@
+OFFICER REVIEW · RECORDED REASONING
+
+Case 3 of 4
+
+Inspect the learner's frozen reports and first recorded answers. This view cannot create a mission or change an answer.
+
+Case 1 · recorded
+Case 2 · recorded
+Case 3 · recorded
+Case 4 · recorded
+
+This multirotor silhouette uniquely distinguishes a radio-linked quadcopter from a no-RF multirotor.
+
+ORIGINAL REPORT · T1
+
+T+26.10 s
+Radar return
+Present · normal
+RF link
+Present
+IFF response
+no reply
+Visual cue
+multirotor
+Range
+271 m
+Inspect original moment
+The stored report is pinned to this time. Later evidence and reference truth do not replace it.
+Does this report support the statement?
+Supported by this report
+Not established by this report
+Reconsider the evidence boundary
+
+The modeled multirotor silhouette is shared by quadcopters and no-RF multirotors. Shape alone does not establish the control link.
+
+First answer recorded. Exercise score and assessment evidence are unchanged.
+Next case
+Investigation responses recorded
+
+These are post-exercise reasoning responses, not a mastery score or evidence of improved learning.
+
+Post-exercise report reasoning only, not active evidence acquisition, pre-decision thinking, scored training performance or proof of learning gain. Uses the existing trusted-LAN trainee identity; the unit administrator can read the database. Ordinary Data transfer omits these annotations; an original server backup preserves them. This session supplies both a positive report and an insufficient-inference example.
