@@ -179,3 +179,7 @@
 .platform-shell .raid-reference-properties > button {
   margin-bottom: 16px;
 }
+
+.raid-rehearsal h3 {
+  scroll-margin-top: 96px;
+}

@@ -1,4 +1,4 @@
-import { useId, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import {
   buildRaidRehearsal,
   referenceTrackAt,
@@ -7,10 +7,23 @@ import {
 import { KIND_LABEL, type Scenario } from "./types";
 
 /** A compiled reference-world planning view, isolated from trainee observations. */
-export function RaidRehearsal({ scenario }: { scenario: Scenario }) {
+export type ReferenceInspection = {
+  scenarioId: string;
+  trackId: string;
+  tick: number;
+  revision: number;
+};
+export function RaidRehearsal({
+  scenario,
+  inspection,
+}: {
+  scenario: Scenario;
+  inspection?: ReferenceInspection | null;
+}) {
   const [tick, setTick] = useState(0),
     [selected, setSelected] = useState("");
   const id = useId();
+  const heading = useRef<HTMLHeadingElement>(null);
   const result = useMemo(() => {
     try {
       return { model: buildRaidRehearsal(scenario), error: "" };
@@ -19,6 +32,22 @@ export function RaidRehearsal({ scenario }: { scenario: Scenario }) {
     }
   }, [scenario]);
   const model = result.model;
+  useEffect(() => {
+    if (
+      !model ||
+      !inspection ||
+      inspection.scenarioId !== scenario.id ||
+      !Number.isInteger(inspection.tick) ||
+      inspection.tick < 0 ||
+      inspection.tick > model.endTick ||
+      !model.paths.some((p) => p.track.id === inspection.trackId)
+    )
+      return;
+    setTick(inspection.tick);
+    setSelected(inspection.trackId);
+    heading.current?.focus({ preventScroll: true });
+    heading.current?.scrollIntoView?.({ block: "start", behavior: "auto" });
+  }, [inspection, model, scenario.id]);
   if (!model)
     return (
       <p className="raid-rehearsal-unavailable">
@@ -39,7 +68,9 @@ export function RaidRehearsal({ scenario }: { scenario: Scenario }) {
       <header>
         <div>
           <span className="eyebrow">02 / SPATIAL & TEMPORAL REHEARSAL</span>
-          <h3 id={`${id}-heading`}>Inspect the exercise before publishing</h3>
+          <h3 ref={heading} tabIndex={-1} id={`${id}-heading`}>
+            Inspect the exercise before publishing
+          </h3>
         </div>
         <strong className="raid-truth-label">
           AUTHOR REFERENCE · ALL PLANNED CONTACTS
@@ -51,6 +82,14 @@ export function RaidRehearsal({ scenario }: { scenario: Scenario }) {
         or scores. A geometric approach window does not establish trainee
         detectability or human solvability.
       </p>
+      {inspection?.scenarioId === scenario.id &&
+        inspection.trackId === selected &&
+        inspection.tick === at && (
+          <p role="status">
+            Modeled report boundary · {selected} · T+{(at / 30).toFixed(2)}s.
+            Spatial reference only; no trainee action was dispatched.
+          </p>
+        )}
       <div className="raid-rehearsal-workspace">
         <div className="raid-reference-map">
           <svg

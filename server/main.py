@@ -386,11 +386,13 @@ from .recordings import router as recording_router
 from .evaluation import router as evaluation_router
 from .counterfactual import router as counterfactual_router
 from .raid_api import router as raid_router
+from .episode_opportunities import router as episode_opportunity_router
 from .white_cell import router as white_cell_router
 app.include_router(recording_router)
 app.include_router(evaluation_router)
 app.include_router(counterfactual_router)
 app.include_router(raid_router)
+app.include_router(episode_opportunity_router)
 app.include_router(white_cell_router)
 from .director_v2 import router as director_v2_router
 app.include_router(director_v2_router)

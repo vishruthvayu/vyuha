@@ -2,7 +2,8 @@ import { useId, useRef, useState } from "react";
 import { api } from "./storage";
 import { defaultResponseConfig } from "./response-v2";
 import type { Scenario } from "./types";
-import { RaidRehearsal } from "./RaidRehearsal";
+import { RaidRehearsal, type ReferenceInspection } from "./RaidRehearsal";
+import EpisodeOpportunities from "./EpisodeOpportunities";
 import {
   RAID_PROFILES,
   initialRaidRoster,
@@ -27,6 +28,8 @@ export default function RaidStudio({
     [busy, setBusy] = useState(false),
     [saved, setSaved] = useState(false),
     [compiledKey, setCompiledKey] = useState("");
+  const [referenceInspection, setReferenceInspection] =
+    useState<ReferenceInspection | null>(null);
   const [focus, setFocus] = useState("effector_choice");
   const [exactRoster, setExactRoster] = useState(false);
   const [roster, setRoster] = useState<RaidRoster>({ ...initialRaidRoster });
@@ -424,7 +427,22 @@ export default function RaidStudio({
             {scenario.tracks.length} contacts · {scenario.duration}s ·{" "}
             {scenario.raid?.family} · {scenario.engine_version}
           </p>
-          <RaidRehearsal key={scenario.id} scenario={scenario} />
+          <RaidRehearsal
+            key={scenario.id}
+            scenario={scenario}
+            inspection={referenceInspection}
+          />
+          <EpisodeOpportunities
+            scenario={scenario}
+            stale={stale}
+            onInspect={(moment) => {
+              if (stale || moment.scenarioId !== scenario.id) return;
+              setReferenceInspection((current) => ({
+                ...moment,
+                revision: (current?.revision ?? 0) + 1,
+              }));
+            }}
+          />
           {saved && (
             <a className="button subtle" href="/">
               Open training ground
