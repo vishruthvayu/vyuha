@@ -49,7 +49,9 @@ import {
 import { Scene } from "./LazyScene";
 import { ObservationVisibility, type Vision } from "./visibility";
 import { initialTrainingMode, nextTrainingSeed } from "./training-setup";
-import { TrainingWelcome } from "./TrainingWelcome";
+import { readEpisodeBriefing, episodeStartLabel } from "./episode-briefing";
+import { MissionBriefing } from "./MissionBriefing";
+import type { SurveyCommand, SurveyIntent } from "./world-survey";
 import AARHistory from "./AARHistory";
 import { Radar } from "./Radar";
 import { UnitDashboard, type Assignment } from "./Unit";
@@ -80,6 +82,14 @@ import FusionReview from "./FusionReview";
 import ReferenceRun from "./ReferenceRun";
 import ExpertComparison from "./ExpertComparison";
 import { FusionPanel } from "./FusionPanel";
+import SimulationWorkstation from "./SimulationWorkstation";
+import { missionTaskFromReports } from "./mission-frame";
+import {
+  instrumentFor,
+  openInstrument,
+  type InstrumentState,
+  type SimulationInstrument,
+} from "./simulation-instruments";
 import type { FusionAdvice } from "./fusion";
 import type { FusionExposure } from "./types";
 import { simulatedObservations } from "./observations";
@@ -163,6 +173,8 @@ export default function App({
 }) {
   const replayHeading = useRef<HTMLHeadingElement>(null);
   const decisionDock = useRef<HTMLElement>(null);
+  const opticalControlsHost = useRef<HTMLDivElement>(null);
+  const decisionAdviceHost = useRef<HTMLDivElement>(null);
   const [view, setView] = useState<View>(() =>
     workspaceViewFromSearch(window.location.search),
   );
@@ -200,6 +212,13 @@ export default function App({
   }, [vision, phase]);
   const [tactical, setTactical] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
+  const [instrumentState, setInstrumentState] =
+    useState<InstrumentState | null>(null);
+  const [surveyState, setSurveyState] = useState<{
+    scope: string;
+    enabled: boolean;
+    command?: SurveyIntent;
+  } | null>(null);
   const [vrOpen, setVROpen] = useState(false);
   const [feedback, setFeedback] = useState<ActionFeedback | null>(null);
   const feedbackSeq = useRef(0);
@@ -246,6 +265,16 @@ export default function App({
   const learningRef = useRef<LearningPreparation | undefined>(undefined);
   const learningRequest = useRef(0);
   const [learning, setLearning] = useState<LearningPreparation | undefined>();
+  const requestedLearningTicket = new URLSearchParams(
+    window.location.search,
+  ).get("learning");
+  const [learningReload, setLearningReload] = useState(0);
+  const [learningTicketState, setLearningTicketState] = useState<{
+    key: string;
+    status: "loading" | "used" | "error";
+    message: string;
+    sessionId?: string;
+  } | null>(null);
   const saveDraft = (
     id: string,
     actions: Action[],
@@ -342,21 +371,40 @@ export default function App({
     }
   }, [phase, mode, libraryId, library]);
   useEffect(() => {
-    const ticket = new URLSearchParams(window.location.search).get("learning");
+    const ticket = requestedLearningTicket;
     if (!ticket || reviewOnly || phase !== "ready") return;
     let cancelled = false;
     const request = ++learningRequest.current;
+    const key = `${trainee}:${ticket}`;
+    learningRef.current = undefined;
+    setLearning(undefined);
+    setPrepared(null);
+    setLearningTicketState({
+      key,
+      status: "loading",
+      message:
+        "Loading this attempt's frozen lesson and scenario from the original server.",
+    });
     void api<LearningPreparation>(
       `/learning/preparations/${encodeURIComponent(ticket)}?trainee=${encodeURIComponent(trainee)}`,
     )
       .then((p) => {
         if (cancelled || request !== learningRequest.current) return;
-        if (p.session_id) {
-          setNotice(
-            "This Academy attempt already started. Restore its saved draft or prepare a new attempt in Academy.",
+        if (p.preparation_id !== ticket || !p.scenario?.id || !p.context)
+          throw new Error(
+            "The server response does not match the requested frozen attempt.",
           );
+        if (p.session_id) {
+          setLearningTicketState({
+            key,
+            status: "used",
+            sessionId: p.session_id,
+            message:
+              "This Academy attempt has already started. Restore its saved draft to continue, open its original review, or prepare a new attempt in Academy.",
+          });
           return;
         }
+        setLearningTicketState(null);
         learningRef.current = p;
         setLearning(p);
         setMode("adaptive");
@@ -367,15 +415,16 @@ export default function App({
         setSelected(null);
       })
       .catch((e) => {
-        if (!cancelled)
-          setNotice(
-            e instanceof Error ? e.message : "Academy preparation unavailable",
-          );
+        if (!cancelled && request === learningRequest.current) {
+          const message =
+            e instanceof Error ? e.message : "Academy preparation unavailable";
+          setLearningTicketState({ key, status: "error", message });
+        }
       });
     return () => {
       cancelled = true;
     };
-  }, [trainee, phase, reviewOnly]);
+  }, [trainee, phase, reviewOnly, learningReload, requestedLearningTicket]);
   const prepare = async () => {
     learningRequest.current++;
     const url = new URL(window.location.href);
@@ -1054,6 +1103,8 @@ export default function App({
     if (
       new URLSearchParams(window.location.search).has("learning") &&
       (!learningRef.current ||
+        learningRef.current.preparation_id !==
+          new URLSearchParams(window.location.search).get("learning") ||
         mode !== "adaptive" ||
         prepared?.id !== learningRef.current.scenario.id)
     ) {
@@ -1232,10 +1283,82 @@ export default function App({
     });
     setPhase(running ? "paused" : "running");
   };
-  const focusDecision = () => {
-    decisionDock.current?.focus({ preventScroll: true });
-    decisionDock.current?.scrollIntoView({ behavior: "auto", block: "start" });
+  const stationScope = `${scenario.id}:${sessionRef.current || "preview"}:${workerScope.current}`;
+  const stationInstrument = instrumentFor(instrumentState, stationScope);
+  const briefingSurvey =
+    phase === "ready" &&
+    surveyState?.scope === stationScope &&
+    surveyState.enabled;
+  const surveyCommand =
+    surveyState?.scope === stationScope ? surveyState.command : undefined;
+  const setBriefingSurvey = (enabled: boolean) =>
+    setSurveyState({ scope: stationScope, enabled });
+  const commandSurvey = (action: SurveyCommand) =>
+    setSurveyState((current) => ({
+      scope: stationScope,
+      enabled: true,
+      command: {
+        revision:
+          (current?.scope === stationScope
+            ? (current.command?.revision ?? 0)
+            : 0) + 1,
+        action,
+      },
+    }));
+  const activeLearning =
+    learning?.scenario.id === scenario.id &&
+    (!requestedLearningTicket ||
+      learning.preparation_id === requestedLearningTicket)
+      ? learning
+      : undefined;
+  const episodeBriefing = readEpisodeBriefing(activeLearning, scenario.id);
+  const ticketIssue =
+    phase === "ready" &&
+    requestedLearningTicket &&
+    learningTicketState?.key === `${trainee}:${requestedLearningTicket}`
+      ? learningTicketState
+      : null;
+  let missionGuidance: string | null = null;
+  if (
+    view === "drill" &&
+    !vrOpen &&
+    scenario.engine_version === "vyuha-0.4.0" &&
+    (phase === "running" || phase === "paused") &&
+    (learning?.context.assistance ?? (guidance ? "full" : "none")) !== "none"
+  ) {
+    try {
+      missionGuidance = missionTaskFromReports({
+        scope: {
+          attemptId: sessionRef.current || `preview:${scenario.id}`,
+          scenarioId: scenario.id,
+          engineVersion: "vyuha-0.4.0",
+        },
+        tick: state.tick,
+        selected,
+        // Only selected-task guidance is rendered here. Preserve the generic
+        // complete-frame projector for tooling without traversing every receipt.
+        observations: visible.flatMap((t) =>
+          t.id === selected && t.observation ? [t.observation] : [],
+        ),
+        accepted: events.current.filter((a) => a.track === selected),
+        durationTicks: scenario.duration * HZ,
+        worldId: scenario.terrain_id || "urban_outpost",
+        assistance:
+          learning?.context.assistance ?? (guidance ? "full" : "none"),
+        completed: state.done,
+      });
+    } catch {
+      // Guidance fails closed. Original sensor/action controls keep authority.
+    }
+  }
+  const setStationInstrument = (view: SimulationInstrument) => {
+    if (view === stationInstrument) return;
+    // Only the decision instrument presents Fusion beside its action controls.
+    // Already-dispatched evidence remains owned by ActionEvidenceLedger.
+    fusionExposure(null);
+    setInstrumentState(openInstrument(stationScope, view));
   };
+  const focusDecision = () => setStationInstrument("decide");
   const choose = (id: string) => {
     setSelected(id);
   };
@@ -1542,8 +1665,9 @@ export default function App({
       [current, replayTick, replayOrder],
     ) ?? state;
   return (
-    <div className="app-shell">
+    <div className={`app-shell${view === "drill" ? " simulation-shell" : ""}`}>
       <Navigation
+        immersive={view === "drill"}
         view={reviewOnly ? undefined : view}
         reviewCount={records.length}
         onWorkspaceNavigate={reviewOnly ? undefined : navigateWorkspace}
@@ -1587,7 +1711,9 @@ export default function App({
       <main
         id="workspace-content"
         tabIndex={-1}
-        className={view === "drill" ? "flight-shell" : undefined}
+        className={
+          view === "drill" ? "flight-shell mission-simulator" : undefined
+        }
       >
         <header className="topbar">
           <div className="breadcrumb">
@@ -1663,10 +1789,28 @@ export default function App({
                             ? prepared.title
                             : scenario.title}
                       </strong>
-                      <span>
-                        {phase === "ready" && mode === "adaptive" && !prepared
-                          ? "Orientation · daylight scenery · mission not prepared"
-                          : `${scenario.terrain_id === "rural_forward_base" ? "Rural forward base" : "Urban outpost"} · ${(phase === "ready" ? night : state.night) ? "Night" : "Day"} · Mixed contacts`}
+                      <span
+                        className="station-mission-summary"
+                        data-degraded={!online || sync !== "synced"}
+                        title={syncMessage(
+                          online,
+                          sync,
+                          phase === "running" || phase === "paused",
+                        )}
+                      >
+                        <b>
+                          {!online
+                            ? "Server offline · queued locally"
+                            : sync === "synced"
+                              ? "Unit link ready"
+                              : `Unit link · ${sync}`}
+                        </b>
+                        {" · "}
+                        <i>
+                          {phase === "ready" && mode === "adaptive" && !prepared
+                            ? "Orientation · daylight scenery · mission not prepared"
+                            : `${scenario.terrain_id === "rural_forward_base" ? "Rural forward base" : "Urban outpost"} · ${(phase === "ready" ? night : state.night) ? "Night" : "Day"} · Mixed contacts`}
+                        </i>
                       </span>
                     </div>
                   </div>
@@ -1809,6 +1953,7 @@ export default function App({
                       </p>
                     )}
                   </div>
+                  <PerformanceDiagnostics />
                   <a href="/vr-guide.html" target="_blank" rel="noreferrer">
                     Experimental VR / setup guide
                   </a>
@@ -1907,7 +2052,47 @@ export default function App({
                   />
                 </Suspense>
               ) : (
-                <div className="training-grid">
+                <SimulationWorkstation
+                  guidance={missionGuidance}
+                  view={stationInstrument}
+                  onView={setStationInstrument}
+                  phase={phase}
+                  reportCount={contactItems.length}
+                  selected={
+                    selected
+                      ? (() => {
+                          const item = contactItems.find(
+                            ({ track }) => track.id === selected,
+                          );
+                          return {
+                            id: selected,
+                            current: item?.available ?? false,
+                            reportTick: item?.lastTick ?? state.tick,
+                            rangeM: item
+                              ? Math.hypot(item.track.x, item.track.z)
+                              : null,
+                            declaration: item?.track.classification
+                              ? `${KIND_LABEL[item.track.classification]} · ${item.track.declared ?? "identity unconfirmed"}`
+                              : null,
+                            rf: !rfObservation?.available
+                              ? "Unavailable"
+                              : rfObservation.rf_signal
+                                ? "Detected"
+                                : "Not detected",
+                            iff: !rfObservation?.available
+                              ? "Unavailable"
+                              : rfObservation.iff === "friendly_reply"
+                                ? "Friendly reply"
+                                : rfObservation.iff === "registered_civil"
+                                  ? "Registered civil"
+                                  : rfObservation.iff === "no_reply"
+                                    ? "No reply"
+                                    : "Unavailable",
+                          };
+                        })()
+                      : null
+                  }
+                >
                   <section className="sensor-workspace">
                     <div className="panel-header">
                       <div>
@@ -1999,6 +2184,13 @@ export default function App({
                       </div>
                     </div>
                     <OpticalStation
+                      controlsHost={
+                        stationInstrument === "evidence"
+                          ? opticalControlsHost.current
+                          : null
+                      }
+                      onCompareOpen={() => setStationInstrument("observe")}
+                      onCompareClose={() => setStationInstrument("evidence")}
                       scopeId={`${scenario.id}:${sessionRef.current ?? "preview"}:${trainee}:${workerScope.current}`}
                       enabled={phase === "running" || phase === "paused"}
                       tactical={tactical}
@@ -2046,6 +2238,8 @@ export default function App({
                             />
                           ) : (
                             <Scene
+                              briefingSurvey={!!briefingSurvey}
+                              surveyCommand={surveyCommand}
                               presentation={
                                 phase === "ready" ? "briefing" : "observation"
                               }
@@ -2161,21 +2355,87 @@ export default function App({
                               </>
                             )}
                           {phase === "ready" && (
-                            <TrainingWelcome
-                              onPrepare={() => void start()}
-                              busy={busy}
-                              prepared={mode !== "adaptive" || !!prepared}
-                              title={
+                            <MissionBriefing
+                              frozenEpisode={episodeBriefing ?? undefined}
+                              availability={
+                                ticketIssue
+                                  ? {
+                                      status: ticketIssue.status,
+                                      message: ticketIssue.message,
+                                      reviewUrl: ticketIssue.sessionId
+                                        ? `/?view=aar&session=${encodeURIComponent(ticketIssue.sessionId)}`
+                                        : undefined,
+                                    }
+                                  : undefined
+                              }
+                              objective={episodeBriefing?.objective}
+                              instructions={episodeBriefing?.instructions}
+                              briefingUnavailable={
+                                !!activeLearning && !episodeBriefing
+                              }
+                              environmentName={
+                                scenario.terrain_id === "rural_forward_base"
+                                  ? "Rural forward base"
+                                  : "Urban outpost"
+                              }
+                              dayNight={
                                 mode === "adaptive" && !prepared
-                                  ? "Enter the observation station."
-                                  : (prepared?.title ?? scenario.title)
+                                  ? "Daylight orientation · exercise conditions load after preparation"
+                                  : night
+                                    ? "Night · illustrative sensor conditions"
+                                    : "Day · illustrative sensor conditions"
+                              }
+                              assistance={
+                                activeLearning?.context.assistance
+                                  ? `${activeLearning.context.assistance} · frozen learning policy`
+                                  : undefined
+                              }
+                              survey={!!briefingSurvey}
+                              onSurveyChange={setBriefingSurvey}
+                              onSurveyCommand={commandSurvey}
+                              onPrepare={
+                                ticketIssue
+                                  ? ticketIssue.status === "error"
+                                    ? () => setLearningReload((n) => n + 1)
+                                    : undefined
+                                  : () => void start()
+                              }
+                              busy={busy}
+                              prepared={
+                                !ticketIssue &&
+                                (mode !== "adaptive" || !!prepared)
+                              }
+                              title={
+                                ticketIssue
+                                  ? ticketIssue.status === "used"
+                                    ? "This attempt has already started"
+                                    : ticketIssue.status === "error"
+                                      ? "Frozen attempt unavailable"
+                                      : "Loading the frozen Academy attempt"
+                                  : mode === "adaptive" && !prepared
+                                    ? "Enter the observation station."
+                                    : (episodeBriefing?.title ??
+                                      prepared?.title ??
+                                      scenario.title)
                               }
                               label={
-                                mode === "adaptive"
-                                  ? prepared
-                                    ? "Start adaptive drill"
-                                    : "Prepare adaptive drill"
-                                  : "Begin exercise"
+                                ticketIssue
+                                  ? ticketIssue.status === "error"
+                                    ? "Retry frozen attempt"
+                                    : ticketIssue.status === "used"
+                                      ? "Already started"
+                                      : "Loading frozen attempt…"
+                                  : episodeBriefing
+                                    ? episodeStartLabel(episodeBriefing)
+                                    : learning
+                                      ? learning.context.mode === "assessment"
+                                        ? "Start independent assessment"
+                                        : "Start Academy practice"
+                                      : mode === "adaptive"
+                                        ? prepared
+                                          ? "Start adaptive drill"
+                                          : "Prepare adaptive drill"
+                                        : "Begin exercise"
                               }
                               duration={scenario.duration}
                               contacts={
@@ -2198,7 +2458,7 @@ export default function App({
                         </div>
                       )}
                     </OpticalStation>
-                    <section className="panel radar-panel">
+                    <section className="panel radar-panel" tabIndex={-1}>
                       <div className="panel-header">
                         <div>
                           <Radio size={16} />
@@ -2248,7 +2508,7 @@ export default function App({
                       </button>
                     </div>
                   </section>
-                  <aside className="right-panels">
+                  <aside className="right-panels" tabIndex={-1}>
                     <section className="panel contacts-panel">
                       <div className="panel-header">
                         <div>
@@ -2336,7 +2596,10 @@ export default function App({
                         ref={decisionDock}
                         evidence={
                           <>
-                            {" "}
+                            <div
+                              className="station-optical-host"
+                              ref={opticalControlsHost}
+                            />{" "}
                             <section className="panel rf-panel">
                               <div className="panel-header">
                                 <div>
@@ -2403,6 +2666,8 @@ export default function App({
                               scenario.fusion && (
                                 <>
                                   <FusionPanel
+                                    presented={stationInstrument === "decide"}
+                                    controlsHost={decisionAdviceHost.current}
                                     observation={target?.observation}
                                     prior={{
                                       kind: target?.classification,
@@ -2539,10 +2804,14 @@ export default function App({
                           onAct={act}
                           onNext={nextContact}
                         />
+                        <div
+                          className="station-decision-advice"
+                          ref={decisionAdviceHost}
+                        />
                       </DecisionWorkspace>
                     </>
                   )}
-                </div>
+                </SimulationWorkstation>
               )}
             </TrainingDeck>
             {clockNote && (
@@ -2917,7 +3186,7 @@ export default function App({
             </OfficerGate>
           </div>
         )}
-        <PerformanceDiagnostics />
+        {view !== "drill" && <PerformanceDiagnostics />}
       </main>
       {notice && (
         <div className="toast" role="status">

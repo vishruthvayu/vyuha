@@ -91,6 +91,51 @@ def item_for(context):
     return item
 
 
+
+def episode_briefing(context, preparation_id, scenario_id):
+    """Public lesson prose from the exact frozen catalog, never current content.
+
+    This is an additive presentation projection. No new context/scenario/DB
+    field is stored, and it cannot change launch or evaluation semantics.
+    """
+    ctx = context if isinstance(context, LearningContext) else LearningContext.model_validate(context)
+    item = item_for(ctx)
+    def public_text(value, maximum):
+        if type(value) is not str or not value.strip() or len(value) > maximum:
+            raise ValueError('Invalid public episode briefing text')
+        return value
+    if (type(preparation_id) is not str or not 8 <= len(preparation_id) <= 80
+            or type(scenario_id) is not str or not 1 <= len(scenario_id) <= 100):
+        raise ValueError('Invalid episode briefing scope')
+    instructions = item.get('instructions')
+    if type(instructions) is not list or not 1 <= len(instructions) <= 12:
+        raise ValueError('Invalid public episode instructions')
+    competency = item.get('competency_id')
+    if competency not in {'C01', 'C02', 'C03', 'C04', 'C05'}:
+        raise ValueError('Unsupported public episode competency')
+    return dict(version='episode-briefing-v1', preparation_id=preparation_id,
+                scenario_id=scenario_id, catalog_version=ctx.version,
+                catalog_hash=ctx.catalog_hash, item_id=ctx.item_id,
+                competency_id=competency, mode=ctx.mode, assistance=ctx.assistance,
+                title=public_text(item.get('title'), 240),
+                objective=public_text(item.get('objective'), 1000),
+                instructions=[public_text(line, 1000) for line in instructions])
+
+
+def preparation_response(preparation_id, scenario, context, **extra):
+    """Missing/unresolvable prose never reinterprets a historical preparation.
+
+    Returning null leaves the client its explicit generic fallback. Existing
+    authoritative attach/compile validation still governs whether it can run.
+    """
+    try:
+        briefing = episode_briefing(context, preparation_id, scenario.get('id') if type(scenario) is dict else None)
+    except ValueError:
+        briefing = None
+    return dict(preparation_id=preparation_id, scenario=scenario, context=context,
+                briefing=briefing, **extra)
+
+
 def compile_item(context):
     ctx = context if isinstance(context,LearningContext) else LearningContext.model_validate(context)
     item = item_for(ctx)
@@ -235,15 +280,16 @@ def progress(trainee:str):
 def prepare_in_transaction(db, req:PrepareLearning):
     """Prepare against an existing transaction so protocol lifecycle cannot race."""
     from .crew import is_shared_owner
-    data,digest=catalog();body=storage.dumps(req.model_dump())
+    body=storage.dumps(req.model_dump())
     if is_shared_owner(db,req.trainee):raise HTTPException(422,'Shared crew cannot prepare an individual curriculum')
     if not db.execute('SELECT 1 FROM trainees WHERE id=?',(req.trainee,)).fetchone():raise HTTPException(422,'Join a unit before preparing a learning item')
     old=db.execute('SELECT * FROM learning_preparations WHERE id=?',(req.request_id,)).fetchone()
     if old:
         if old['body']!=body:raise HTTPException(409,'Preparation request ID is immutable')
         spec=json.loads(db.execute('SELECT spec FROM scenarios WHERE id=?',(old['scenario_id'],)).fetchone()['spec'])
-        return dict(preparation_id=old['id'],scenario=spec,context=json.loads(old['context']))
+        return preparation_response(old['id'],spec,json.loads(old['context']))
     if db.execute('SELECT COUNT(*) FROM learning_preparations WHERE trainee=?',(req.trainee,)).fetchone()[0]>=1000:raise HTTPException(422,'Curriculum preparation limit reached')
+    data,digest=catalog()
     state=coverage(db,req.trainee)
     try:
         item,selection=choose_item(data,state,req)
@@ -252,7 +298,7 @@ def prepare_in_transaction(db, req:PrepareLearning):
     except ValueError as error:raise HTTPException(422,str(error)) from error
     db.execute('INSERT OR IGNORE INTO scenarios VALUES (?,?)',(spec['id'],storage.dumps(spec)))
     db.execute('INSERT INTO learning_preparations VALUES (?,?,?,?,?,?)',(req.request_id,req.trainee,body,storage.dumps(ctx),spec['id'],datetime.now(timezone.utc).isoformat()))
-    return dict(preparation_id=req.request_id,scenario=spec,context=ctx)
+    return preparation_response(req.request_id,spec,ctx)
 
 
 @router.post('/prepare',status_code=201)
@@ -268,4 +314,4 @@ def get_preparation(preparation:str,trainee:str):
         if not row:raise HTTPException(404,'Learning preparation not found for this trainee')
         spec=json.loads(db.execute('SELECT spec FROM scenarios WHERE id=?',(row['scenario_id'],)).fetchone()['spec'])
         used=db.execute('SELECT session_id FROM learning_attempts WHERE preparation_id=?',(preparation,)).fetchone()
-    return dict(preparation_id=preparation,scenario=spec,context=json.loads(row['context']),session_id=used['session_id'] if used else None)
+    return preparation_response(preparation,spec,json.loads(row['context']),session_id=used['session_id'] if used else None)

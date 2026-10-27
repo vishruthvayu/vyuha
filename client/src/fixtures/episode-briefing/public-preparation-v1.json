@@ -1,0 +1,70 @@
+{
+  "preparation_id": "episode-fixture-01",
+  "scenario": {
+    "id": "raid_d2560fcd1ab742186a1a3c0b"
+  },
+  "context": {
+    "version": "learning-v1",
+    "catalog_hash": "5abe5c7920a40c989546bc59abf77c4cb6430f0cd8a8af5dca2a361ac977d345",
+    "item_id": "C01_PRACTICE_A",
+    "mode": "practice",
+    "assistance": "full",
+    "seed": 7,
+    "selection": {
+      "policy": "direct-item-v1",
+      "coverage": {
+        "C01": {
+          "correct": 0,
+          "incorrect": 0,
+          "unassessable": 0,
+          "assessed_sessions": 0
+        },
+        "C02": {
+          "correct": 0,
+          "incorrect": 0,
+          "unassessable": 0,
+          "assessed_sessions": 0
+        },
+        "C03": {
+          "correct": 0,
+          "incorrect": 0,
+          "unassessable": 0,
+          "assessed_sessions": 0
+        },
+        "C04": {
+          "correct": 0,
+          "incorrect": 0,
+          "unassessable": 0,
+          "assessed_sessions": 0
+        },
+        "C05": {
+          "correct": 0,
+          "incorrect": 0,
+          "unassessable": 0,
+          "assessed_sessions": 0
+        }
+      },
+      "recent_items": [],
+      "candidates": ["C01_PRACTICE_A"],
+      "reason": "Explicit practice item or balanced assessment form; seeded semantic variant. Practice and assessment pools are disjoint."
+    }
+  },
+  "briefing": {
+    "version": "episode-briefing-v1",
+    "preparation_id": "episode-fixture-01",
+    "scenario_id": "raid_d2560fcd1ab742186a1a3c0b",
+    "catalog_version": "learning-v1",
+    "catalog_hash": "5abe5c7920a40c989546bc59abf77c4cb6430f0cd8a8af5dca2a361ac977d345",
+    "item_id": "C01_PRACTICE_A",
+    "competency_id": "C01",
+    "mode": "practice",
+    "assistance": "full",
+    "title": "Observation acquisition: practice A",
+    "objective": "Detect and designate an observable contact without treating unknown evidence as absence.",
+    "instructions": [
+      "Select an observed contact; retain uncertainty when evidence is insufficient.",
+      "Make your own designation, classification and response choices.",
+      "After completion, inspect the verified evidence and explain one choice."
+    ]
+  }
+}

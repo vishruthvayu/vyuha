@@ -1,0 +1,181 @@
+/* Scenario Studio reference-world tools only; no trainee/score styling. */
+.platform-shell .raid-rehearsal {
+  margin-block: 24px;
+  border-block: 1px solid #41585d;
+  padding-block: 24px;
+  min-width: 0;
+}
+.platform-shell .raid-rehearsal > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 16px;
+}
+.platform-shell .raid-rehearsal h3 {
+  margin-block: 8px 16px;
+  font-size: 24px;
+}
+.platform-shell .raid-rehearsal h4 {
+  font-size: 16px;
+  margin: 0 0 12px;
+}
+.platform-shell .raid-rehearsal p {
+  font-size: 14px;
+  line-height: 1.7;
+}
+.platform-shell .raid-truth-label {
+  padding: 10px 12px;
+  border: 1px solid #b3a37c;
+  color: #f0d494;
+  font: 11px/1.6 var(--font-mono, monospace);
+  max-width: 24ch;
+}
+.platform-shell .raid-rehearsal-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.8fr);
+  gap: 24px;
+  margin-top: 24px;
+  align-items: start;
+}
+.platform-shell .raid-reference-map {
+  min-width: 0;
+}
+.platform-shell .raid-reference-map svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 640px;
+  border: 1px solid #526d76;
+  background: #0d1c25;
+}
+.platform-shell .raid-reference-map text {
+  fill: #cfddd9;
+  font: 11px var(--font-mono, monospace);
+}
+.platform-shell .raid-map-caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  margin-block: 10px 20px;
+  font-size: 12px;
+  color: #c3d4d0;
+}
+.platform-shell .raid-rehearsal-transport label {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 14px;
+}
+.platform-shell .raid-rehearsal-transport input {
+  width: 100%;
+  min-height: 44px;
+  accent-color: #e1c78e;
+}
+.platform-shell .raid-rehearsal-transport > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.platform-shell .raid-rehearsal button {
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid #76918d;
+  border-radius: 5px;
+  background: #1a3037;
+  color: #edf1df;
+  font: 500 14px/1.5 var(--font-sans, sans-serif);
+  cursor: pointer;
+}
+.platform-shell .raid-rehearsal button:disabled {
+  color: #a9b8b3;
+  opacity: 0.7;
+  cursor: default;
+}
+.platform-shell .raid-rehearsal :is(button, input):focus-visible {
+  outline: 3px solid #f0d494;
+  outline-offset: 3px;
+}
+.platform-shell .raid-rehearsal-inspector {
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+}
+.platform-shell .raid-rehearsal-inspector section {
+  padding: 16px;
+  background: #10232c;
+  border: 1px solid #415c67;
+  min-width: 0;
+}
+.platform-shell .raid-rehearsal-inspector section > button,
+.platform-shell .raid-reference-roster > button {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+  gap: 10px;
+  margin-block: 6px;
+  flex-wrap: wrap;
+}
+.platform-shell .raid-reference-roster {
+  max-height: 280px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 4px;
+}
+.platform-shell .raid-reference-roster > button[aria-pressed="true"] {
+  border-color: #f0d494;
+  background: #3a392d;
+}
+.platform-shell .raid-rehearsal button small {
+  margin-left: auto;
+  font-size: 12px;
+  color: #c3d4d0;
+}
+.platform-shell .raid-reference-properties dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+.platform-shell .raid-reference-properties dt {
+  color: #b9c8c4;
+  font-size: 12px;
+}
+.platform-shell .raid-reference-properties dd {
+  margin: 5px 0 0;
+  color: #edf1df;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.platform-shell .raid-roster-total {
+  grid-column: 1/-1;
+  margin: 0;
+}
+@media (max-width: 840px) {
+  .platform-shell .raid-rehearsal-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .platform-shell .raid-rehearsal > header {
+    flex-direction: column;
+  }
+  .platform-shell .raid-truth-label {
+    max-width: none;
+  }
+  .platform-shell .raid-reference-map svg {
+    max-height: none;
+  }
+}
+.platform-shell .raid-reference-map [role="button"] {
+  cursor: pointer;
+}
+.platform-shell .raid-reference-map [role="button"]:focus-visible {
+  outline: 3px solid #f0d494;
+}
+.platform-shell .raid-geometric-window {
+  border-left: 2px solid #e1c78e;
+  padding-left: 12px;
+}
+.platform-shell .raid-reference-properties > button {
+  margin-bottom: 16px;
+}

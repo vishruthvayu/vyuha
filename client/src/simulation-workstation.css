@@ -1,0 +1,1172 @@
+/* The simulator's task architecture: one persistent world, deliberate instruments.
+   Scoped after the existing premium layer; other workspaces retain their styles. */
+.mission-navigation[data-immersive="true"] {
+  height: 48px;
+  min-height: 48px;
+  padding-block: 0;
+}
+.mission-navigation[data-immersive="true"] :is(a, button) {
+  min-height: 44px;
+}
+.mission-simulator .immersive-training {
+  --station-chrome: 100px;
+  --station-dock: 94px;
+  --station-side: 420px;
+  padding: 0;
+  height: auto;
+  overflow: visible;
+}
+.mission-simulator .deck-command-rail {
+  height: 52px;
+  min-height: 52px;
+  padding: 0 16px;
+  gap: 10px;
+  background: #0d171c;
+}
+.mission-simulator .deck-command-rail .mission-bar {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+}
+.mission-simulator .deck-command-rail .mission-name {
+  flex: 1;
+  font-family: var(--font-sans, system-ui, sans-serif);
+}
+.mission-simulator .deck-command-rail .mission-name strong {
+  max-width: 30ch;
+  font-size: 14px;
+}
+.mission-simulator .deck-command-rail .mission-name div > span {
+  font-size: 11px;
+}
+.mission-simulator .deck-command-rail .station-mission-summary b {
+  font-weight: 500;
+  color: #c8e0cd;
+}
+.mission-simulator
+  .deck-command-rail
+  .station-mission-summary[data-degraded="true"]
+  b {
+  color: #f1d49a;
+}
+.mission-simulator .deck-command-rail .station-mission-summary i {
+  font-style: normal;
+}
+.mission-simulator .deck-command-rail .mission-facts {
+  gap: 12px;
+}
+.mission-simulator .deck-command-rail .mission-facts > span:first-child {
+  display: none;
+}
+.mission-simulator .deck-command-rail .mission-facts small {
+  display: none;
+}
+.mission-simulator .deck-command-rail .mission-facts > span:nth-child(4) {
+  display: none;
+}
+.mission-simulator .deck-command-rail .mission-facts > span:nth-child(2) {
+  display: none;
+}
+.simulation-shell {
+  --appbar-h: 48px;
+  --mission-navigation-height: 48px;
+}
+.simulation-shell > main {
+  padding-top: 48px;
+}
+.mission-simulator .deck-command-rail .mission-name strong {
+  font-family: var(--font-sans, system-ui, sans-serif);
+}
+.simulation-shell .training-deck > .recovery-banner {
+  position: absolute;
+  top: 64px;
+  right: 18px;
+  z-index: 25;
+  width: min(400px, calc(100% - 36px));
+  margin: 0;
+  padding: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 12px;
+  background: #1b2928f5;
+  border: 1px solid #b7b18c;
+  border-radius: 9px;
+}
+.simulation-shell .training-deck > .recovery-banner button {
+  min-height: 44px;
+  flex-shrink: 0;
+  font-size: 12px;
+}
+.mission-simulator .deck-command-rail .mission-facts b {
+  font:
+    16px/1.5 ui-monospace,
+    monospace;
+}
+.mission-simulator .deck-command-rail button {
+  min-height: 44px;
+}
+.mission-simulator .deck-control-notice:empty {
+  display: none;
+}
+.mission-simulator .immersive-training > .sync-status {
+  top: 57px;
+  left: auto;
+  right: 20px;
+  width: auto;
+  max-width: 45ch;
+  font-size: 10px;
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+}
+.mission-simulator .immersive-training > .event-strip {
+  display: none;
+}
+.mission-simulator .immersive-training > p.footnote {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.mission-simulator .training-deck {
+  min-height: 0;
+}
+.mission-simulator .immersive-training .simulation-workstation {
+  position: relative;
+  isolation: isolate;
+  height: calc(100svh - var(--station-chrome));
+  min-height: 460px;
+  overflow: hidden;
+  background: #111e22;
+  color: #e5eee7;
+}
+.mission-simulator .immersive-training .simulation-workstation .training-grid {
+  display: block;
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .sensor-workspace {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .sensor-workspace
+  > .scene-container {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .sensor-workspace
+  > .panel-header {
+  position: absolute;
+  top: 76px;
+  left: 18px;
+  right: auto;
+  max-width: calc(100% - 36px);
+  padding: 4px;
+  min-height: 44px;
+  background: #101e25ed;
+  border: 1px solid #71968b77;
+  border-radius: 8px;
+  gap: 8px;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .sensor-workspace
+  > .panel-header
+  > div:first-child {
+  display: none;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .sensor-workspace
+  > .panel-header
+  .segmented {
+  gap: 0;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .sensor-workspace
+  > .panel-header
+  :is(button, summary) {
+  min-height: 44px;
+  font-size: 12px;
+}
+.mission-simulator .immersive-training .simulation-workstation .scene-toolbar {
+  position: absolute;
+  left: 18px;
+  right: auto;
+  bottom: calc(var(--station-dock) + 14px);
+  min-height: 32px;
+  width: auto;
+  padding: 4px 10px;
+  font-size: 10px;
+  border: 1px solid #73968966;
+  border-radius: 6px;
+  background: #101d25ed;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .scene-toolbar
+  > div:not(.sensor-badges) {
+  display: none;
+}
+.mission-simulator .immersive-training .simulation-workstation .radar-panel {
+  position: absolute;
+  top: auto;
+  left: 18px;
+  bottom: calc(var(--station-dock) + 56px);
+  width: 176px;
+  max-height: 224px;
+  z-index: 5;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #0c1921f0;
+  border: 1px solid #678d8177;
+  border-radius: 10px;
+  box-shadow: none;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .radar-panel
+  .radar {
+  height: auto;
+  max-height: none;
+  aspect-ratio: 1;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .radar-panel
+  .panel-header {
+  min-height: 32px;
+  padding: 7px 10px;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .optical-console {
+  left: 212px;
+  right: 18px;
+  bottom: calc(var(--station-dock) + 14px);
+  padding: 8px 10px;
+  gap: 6px 10px;
+  border-radius: 8px;
+  max-width: 600px;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .optical-console
+  button {
+  min-height: 44px;
+  font-size: 11px;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .optical-integrity {
+  display: none;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .optical-zoom
+  small {
+  display: none;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .view-annotation.top-left {
+  top: 140px;
+  left: 20px;
+  background: #102028cc;
+  padding: 7px 10px;
+  border-radius: 5px;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .view-annotation.bottom-left {
+  bottom: calc(var(--station-dock) + 165px);
+  left: 212px;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .view-annotation.bottom-right {
+  display: none;
+}
+.station-instrument-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  min-height: 64px;
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: linear-gradient(#102027ed, #102027b3);
+  border-bottom: 1px solid #77998b55;
+}
+.station-phase-context {
+  display: grid;
+  gap: 3px;
+}
+.station-phase-context .eyebrow {
+  color: #b6d3c8;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+.station-phase-context > strong {
+  color: #e9f4ed;
+  font-size: 14px;
+  font-weight: 500;
+}
+.station-instrument-bar nav {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.station-instrument-bar button,
+.station-instrument-heading button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid #7da49866;
+  border-radius: 7px;
+  padding: 10px 12px;
+  min-height: 44px;
+  font-size: 13px;
+  background: #152b30dc;
+  color: #e8f3ea;
+  cursor: pointer;
+}
+.station-instrument-bar button[aria-pressed="true"] {
+  background: #c1d8c7;
+  color: #13291f;
+  border-color: #e0eddf;
+}
+.station-instrument-heading {
+  position: absolute;
+  z-index: 11;
+  right: 18px;
+  top: 76px;
+  width: var(--station-side);
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background: #142a2b;
+  border: 1px solid #72958b;
+  border-bottom: 0;
+  border-radius: 12px 12px 0 0;
+  padding: 10px 14px;
+}
+.station-instrument-heading > div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+.station-instrument-heading span {
+  font:
+    9px/1.3 ui-monospace,
+    monospace;
+  letter-spacing: 0.08em;
+  color: #b9dacc;
+}
+.station-instrument-heading strong {
+  font-size: 13px;
+  color: #e4f0e7;
+}
+.station-instrument-heading button {
+  font-size: 11px;
+  min-width: 44px;
+  padding: 8px;
+  border: 0;
+  background: #233e39;
+}
+.station-instrument-heading button svg {
+  flex-shrink: 0;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  :is(.right-panels, .decision-workspace, .decision-evidence) {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  left: auto;
+  right: 18px;
+  top: 140px;
+  bottom: calc(var(--station-dock) + 14px);
+  height: auto;
+  min-height: 0;
+  width: var(--station-side);
+  max-height: none;
+  padding: 18px;
+  margin: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: #132326fa;
+  border: 1px solid #72958b;
+  border-top: 0;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 14px 45px #0005;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation[data-instrument="reports"]
+  .right-panels {
+  display: block;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation[data-instrument="evidence"]
+  .decision-evidence {
+  display: block;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation[data-instrument="decide"]
+  .decision-workspace {
+  display: block;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation[data-instrument="radar"]
+  .radar-panel {
+  top: 140px;
+  right: 18px;
+  left: auto;
+  bottom: calc(var(--station-dock) + 14px);
+  width: var(--station-side);
+  max-height: none;
+  overflow: auto;
+  border-radius: 0 0 12px 12px;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation[data-instrument="radar"]
+  .radar-panel
+  .radar {
+  width: 100%;
+  height: auto;
+  max-height: calc(100svh - 390px);
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation[data-instrument="radar"]
+  .radar-panel
+  .panel-header {
+  display: none;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation:not([data-instrument="observe"])
+  .optical-console {
+  right: calc(var(--station-side) + 36px);
+  left: 212px;
+  max-width: none;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation:not([data-instrument="observe"])
+  .optical-capture,
+.mission-simulator
+  .immersive-training
+  .simulation-workstation:not([data-instrument="observe"])
+  .optical-zoom
+  small {
+  display: none;
+}
+.mission-simulator .immersive-training .simulation-workstation .contacts-panel {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+.mission-simulator .immersive-training .simulation-workstation .contact-list {
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+.mission-simulator .immersive-training .simulation-workstation .contact-item {
+  width: 100%;
+  min-height: 70px;
+  padding: 12px;
+  margin-top: 8px;
+  font-size: 14px;
+  border-radius: 8px;
+  background: #1c3439;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .contact-item
+  strong {
+  font-size: 15px;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .contact-item
+  small {
+  font-size: 12px;
+  line-height: 1.5;
+}
+.mission-simulator .immersive-training .simulation-workstation .decision-jump {
+  display: none;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .decision-primary {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .decision-workspace
+  :is(button, label, input, select) {
+  font-size: 14px;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .decision-workspace
+  button {
+  min-height: 44px;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .decision-workspace
+  .choice {
+  min-height: 54px;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .decision-workspace
+  .choice
+  strong {
+  font-size: 14px;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .decision-workspace
+  .choice
+  span {
+  font-size: 12px;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .decision-evidence
+  .panel {
+  margin-bottom: 16px;
+  padding: 14px;
+  background: #1a3035;
+  border-color: #486d62;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .decision-evidence
+  p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .decision-evidence
+  .evidence-grid
+  strong {
+  font-size: 18px;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .curriculum-banner {
+  display: none;
+}
+.station-selection-bar {
+  position: absolute;
+  z-index: 12;
+  left: 18px;
+  right: 18px;
+  bottom: 14px;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 16px;
+  background: #102527f5;
+  color: #e9f2e9;
+  border: 1px solid #81a28a;
+  border-radius: 10px;
+  box-shadow: 0 8px 28px #0004;
+}
+.station-selection-id {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 130px;
+}
+.station-selection-id > div {
+  display: grid;
+  gap: 3px;
+}
+.station-selection-id small {
+  color: #bbd4c3;
+  font:
+    9px/1.3 ui-monospace,
+    monospace;
+  letter-spacing: 0.06em;
+}
+.station-selection-id strong {
+  font-size: 20px;
+  font-weight: 500;
+}
+.station-report-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #b2c6b7;
+  flex-shrink: 0;
+}
+.station-report-dot.current {
+  background: #b9e6bf;
+  box-shadow: 0 0 0 4px #b9e6bf1a;
+}
+.station-report-dot.stale {
+  border: 1px dashed #c6d3b9;
+  background: transparent;
+}
+.station-selection-bar dl {
+  display: flex;
+  gap: 20px;
+  margin: 0;
+}
+.station-selection-bar dt {
+  font-size: 10px;
+  color: #bad3c4;
+}
+.station-selection-bar dd {
+  font-size: 13px;
+  margin: 3px 0 0;
+  white-space: nowrap;
+}
+.station-selection-bar > p {
+  font-size: 12px;
+  line-height: 1.5;
+  flex: 1;
+  color: #bbd1c4;
+  max-width: 45ch;
+}
+.station-selection-bar .station-primary-action {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px solid #deead5;
+  border-radius: 7px;
+  padding: 12px 16px;
+  min-height: 44px;
+  background: #c2d9bc;
+  color: #12291c;
+  font-size: 14px;
+  cursor: pointer;
+}
+.simulation-workstation :is(button, section, aside):focus-visible {
+  outline: 3px solid #e1efc9;
+  outline-offset: 3px;
+}
+.mission-simulator .immersive-training .simulation-workstation .pause-overlay {
+  background: transparent;
+  backdrop-filter: none;
+  pointer-events: none;
+  padding-top: 110px;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .pause-overlay
+  h2 {
+  font-family: var(--font-sans);
+  font-size: 24px;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .pause-overlay
+  p {
+  font-size: 13px;
+}
+@media (max-width: 1100px) {
+  .station-phase-context {
+    display: none;
+  }
+  .station-instrument-bar {
+    justify-content: center;
+  }
+  .station-selection-bar > p {
+    display: none;
+  }
+  .mission-simulator .immersive-training {
+    --station-side: 370px;
+  }
+  .mission-simulator
+    .immersive-training
+    .simulation-workstation:not([data-instrument="observe"])
+    .optical-console {
+    left: 18px;
+    right: calc(var(--station-side) + 36px);
+  }
+  .mission-simulator
+    .immersive-training
+    .simulation-workstation:not([data-instrument="observe"])
+    .radar-panel {
+    display: none;
+  }
+  .mission-simulator
+    .immersive-training
+    .simulation-workstation[data-instrument="radar"]
+    .radar-panel {
+    display: block;
+  }
+}
+@media (max-width: 740px) {
+  .mission-simulator
+    .deck-command-rail
+    .mission-name
+    div
+    > .station-mission-summary {
+    display: block;
+    font-size: 10px;
+  }
+  .mission-simulator .deck-command-rail .station-mission-summary i {
+    display: none;
+  }
+  .mission-navigation[data-immersive="true"] .mission-guide-button {
+    display: none;
+  }
+  .mission-simulator .immersive-training {
+    --station-chrome: 132px;
+    --station-dock: 128px;
+    --station-side: calc(100% - 24px);
+  }
+  .mission-simulator .deck-command-rail {
+    height: 84px;
+    min-height: 84px;
+    padding: 5px 12px;
+    gap: 6px;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  .mission-simulator .deck-command-rail .mission-bar {
+    flex-basis: auto;
+    flex-wrap: wrap;
+    gap: 5px 10px;
+  }
+  .mission-simulator .deck-command-rail .mission-name {
+    flex-basis: calc(100% - 80px);
+  }
+  .mission-simulator .deck-command-rail .mission-name strong {
+    font-size: 13px;
+    max-width: 20ch;
+  }
+  .mission-simulator .deck-command-rail .mission-name div > span {
+    display: none;
+  }
+  .mission-simulator .deck-command-rail .mission-facts {
+    width: auto;
+    order: 2;
+  }
+  .mission-simulator .deck-command-rail .mission-phase {
+    order: 1;
+    font-size: 9px;
+    padding: 4px 6px;
+  }
+  .mission-simulator .deck-command-rail .mission-actions {
+    order: 3;
+    gap: 4px;
+  }
+  .mission-simulator .deck-command-rail .mission-actions .button {
+    font-size: 11px;
+    padding: 8px;
+  }
+  .mission-simulator .deck-command-rail .vr-launch {
+    display: none;
+  }
+  .mission-simulator .deck-settings-toggle {
+    width: 44px;
+    padding: 10px;
+    font-size: 0;
+    flex-shrink: 0;
+  }
+  .mission-simulator .deck-settings-toggle svg {
+    width: 18px;
+    height: 18px;
+  }
+  .mission-simulator .immersive-training .simulation-workstation {
+    min-height: 460px;
+  }
+  .station-instrument-bar {
+    min-height: 62px;
+    padding: 6px;
+  }
+  .station-instrument-bar nav {
+    width: 100%;
+    justify-content: space-around;
+    gap: 3px;
+  }
+  .station-instrument-bar button {
+    display: grid;
+    justify-items: center;
+    gap: 3px;
+    padding: 5px 7px;
+    font-size: 10px;
+    min-width: 48px;
+    min-height: 48px;
+  }
+  .station-instrument-bar button svg {
+    width: 16px;
+    height: 16px;
+  }
+  .station-instrument-heading {
+    top: 72px;
+    right: 12px;
+    height: 64px;
+    padding: 9px 12px;
+  }
+  .station-instrument-heading button {
+    max-width: 150px;
+    font-size: 11px;
+  }
+  .mission-simulator
+    .immersive-training
+    .simulation-workstation
+    :is(.right-panels, .decision-workspace, .decision-evidence) {
+    right: 12px;
+    top: 136px;
+    bottom: calc(var(--station-dock) + 12px);
+    padding: 14px;
+  }
+  .mission-simulator
+    .immersive-training
+    .simulation-workstation
+    .sensor-workspace
+    > .panel-header {
+    top: 74px;
+    left: 12px;
+    right: 12px;
+    max-width: none;
+    justify-content: space-between;
+  }
+  .mission-simulator
+    .immersive-training
+    .simulation-workstation:not([data-instrument="observe"])
+    .sensor-workspace
+    > .panel-header {
+    display: none;
+  }
+  .mission-simulator .immersive-training .simulation-workstation .radar-panel {
+    display: none;
+  }
+  .mission-simulator
+    .immersive-training
+    .simulation-workstation[data-instrument="radar"]
+    .radar-panel {
+    display: block;
+    left: auto;
+    top: 136px;
+    right: 12px;
+    bottom: calc(var(--station-dock) + 12px);
+    width: var(--station-side);
+  }
+  .mission-simulator
+    .immersive-training
+    .simulation-workstation[data-instrument="radar"]
+    .radar-panel
+    .radar {
+    max-height: none;
+  }
+  .mission-simulator
+    .immersive-training
+    .simulation-workstation
+    .optical-console {
+    left: 12px;
+    right: 12px;
+    bottom: calc(var(--station-dock) + 12px);
+    max-width: none;
+    padding: 8px;
+  }
+  .mission-simulator
+    .immersive-training
+    .simulation-workstation:not([data-instrument="observe"])
+    .optical-console {
+    display: none;
+  }
+  .mission-simulator
+    .immersive-training
+    .simulation-workstation
+    .optical-console
+    button {
+    min-height: 44px;
+  }
+  .mission-simulator
+    .immersive-training
+    .simulation-workstation
+    .optical-capture {
+    display: none;
+  }
+  .mission-simulator
+    .immersive-training
+    .simulation-workstation
+    .scene-toolbar {
+    display: none;
+  }
+  .mission-simulator
+    .immersive-training
+    .simulation-workstation
+    .view-annotation.top-left {
+    top: 134px;
+    left: 12px;
+    max-width: calc(100% - 24px);
+    font-size: 10px;
+  }
+  .mission-simulator
+    .immersive-training
+    .simulation-workstation
+    .view-annotation.bottom-left {
+    left: 12px;
+    bottom: calc(var(--station-dock) + 155px);
+    font-size: 10px;
+  }
+  .station-selection-bar {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    min-height: 108px;
+    padding: 10px 12px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .station-selection-id {
+    min-width: 0;
+    flex: 1;
+  }
+  .station-selection-id strong {
+    font-size: 18px;
+  }
+  .station-selection-id small {
+    font-size: 8px;
+  }
+  .station-selection-bar dl {
+    gap: 14px;
+    margin-left: auto;
+  }
+  .station-selection-bar dl > div:first-child {
+    display: none;
+  }
+  .station-selection-bar dd {
+    font-size: 11px;
+  }
+  .station-selection-bar .station-primary-action {
+    width: 100%;
+    min-height: 44px;
+    padding: 9px 12px;
+    font-size: 13px;
+  }
+  .station-selection-bar > p {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .simulation-workstation * {
+    scroll-behavior: auto;
+  }
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .station-optical-host
+  .optical-console {
+  position: static;
+  display: flex;
+  width: 100%;
+  max-width: none;
+  margin: 0 0 16px;
+  padding: 12px;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .station-optical-host
+  :is(.optical-capture, .optical-integrity) {
+  display: flex;
+}
+.mission-simulator
+  .immersive-training
+  .simulation-workstation
+  .station-optical-host
+  button {
+  min-height: 44px;
+}
+.mission-simulator .immersive-training .simulation-workstation .inquiry-bench {
+  z-index: 20;
+  top: 76px;
+  bottom: calc(var(--station-dock) + 14px);
+  background: #102326fc;
+}
+
+/* The instrument owns one scrollport. Legacy per-step fixed dashboard heights
+   must not create a second 540px viewport inside this bounded task surface. */
+.simulation-shell .simulation-workstation .decision-primary {
+  padding: 0;
+}
+.simulation-shell .simulation-workstation .guided-body,
+.simulation-shell .simulation-workstation .guided-body > .guided-stage {
+  block-size: auto;
+  min-block-size: 0;
+  overflow: visible;
+}
+.simulation-shell .simulation-workstation .guided-body > .guided-stage {
+  display: none;
+}
+.simulation-shell
+  .simulation-workstation
+  .guided-body
+  > .guided-stage[data-active="true"] {
+  display: flex;
+}
+.simulation-shell .simulation-workstation .guided-coach {
+  min-block-size: 0;
+  max-block-size: none;
+}
+@media (max-width: 740px) {
+  .simulation-shell .immersive-training {
+    --station-chrome: 148px;
+  }
+  .simulation-shell .deck-command-rail {
+    height: 100px;
+    min-height: 100px;
+    padding: 8px 12px;
+  }
+  .simulation-shell .deck-command-rail .mission-bar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "name clock" "actions actions";
+    gap: 6px 8px;
+    flex: 1;
+  }
+  .simulation-shell .deck-command-rail .mission-name {
+    grid-area: name;
+    order: initial;
+  }
+  .simulation-shell .deck-command-rail .mission-name strong {
+    max-width: 100%;
+  }
+  .simulation-shell .deck-command-rail .mission-name .station-mission-summary {
+    display: block;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+  .simulation-shell .deck-command-rail .mission-phase {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .simulation-shell .deck-command-rail .mission-facts {
+    grid-area: clock;
+    order: initial;
+    width: auto;
+  }
+  .simulation-shell .deck-command-rail .mission-facts b {
+    font-size: 14px;
+  }
+  .simulation-shell .deck-command-rail .mission-actions {
+    grid-area: actions;
+    order: initial;
+    display: flex;
+  }
+  .simulation-shell .deck-command-rail .mission-actions button {
+    flex: 1;
+  }
+  .simulation-shell .deck-command-rail .deck-settings-toggle {
+    position: static;
+    width: 44px;
+    min-height: 44px;
+    font-size: 0;
+    padding: 10px;
+    flex: 0 0 44px;
+  }
+}
+
+.simulation-shell > .toast {
+  top: 108px;
+  bottom: auto;
+  left: auto;
+  right: 18px;
+  transform: none;
+  max-width: min(420px, calc(100vw - 36px));
+}
+@media (max-width: 740px) {
+  .simulation-shell > .toast {
+    top: 156px;
+    right: 12px;
+    max-width: calc(100vw - 24px);
+  }
+}

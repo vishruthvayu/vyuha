@@ -1,3 +1,4 @@
+import { createPortal } from "react-dom";
 import {
   useEffect,
   useCallback,
@@ -63,6 +64,9 @@ export function OpticalStation({
   vision,
   zoom,
   onZoom,
+  controlsHost,
+  onCompareOpen,
+  onCompareClose,
 }: {
   children: (view: {
     manualAim: OpticalAim | null;
@@ -79,6 +83,9 @@ export function OpticalStation({
   vision: Vision;
   zoom: number;
   onZoom: (zoom: number) => void;
+  controlsHost?: HTMLElement | null;
+  onCompareOpen?: () => void;
+  onCompareClose?: () => void;
 }) {
   const [manual, setManual] = useState<{
       scopeId: string;
@@ -96,7 +103,10 @@ export function OpticalStation({
       text: string;
     } | null>(null);
   const bench = benchScope === scopeId;
-  const setBench = (open: boolean) => setBenchScope(open ? scopeId : null);
+  const setBench = (open: boolean) => {
+    if (open) onCompareOpen?.();
+    setBenchScope(open ? scopeId : null);
+  };
   const notice = noticeState?.scopeId === scopeId ? noticeState.text : "";
   const setNotice = (text: string) => setNoticeState({ scopeId, text });
   const owner = useRef({ scopeId, selected });
@@ -125,6 +135,7 @@ export function OpticalStation({
   }, [bench, enabled]);
   const closeBench = () => {
     setBench(false);
+    onCompareClose?.();
     compareButton.current?.focus();
   };
   const headingId = useId();
@@ -196,139 +207,140 @@ export function OpticalStation({
       `Capture ${slot.toUpperCase()} saved for ${selected} at ${at(tick)}. Local ungraded report, not a recorded image.`,
     );
   };
+  const controls = enabled && (
+    <section
+      className={`optical-console ${tactical ? "is-tactical" : ""}`}
+      aria-label="Optical investigation station"
+    >
+      {!tactical && (
+        <>
+          <div className="optical-mode">
+            <ScanEye size={15} />
+            <strong>
+              {manualAim
+                ? "MANUAL SCAN"
+                : selected
+                  ? cue
+                    ? "REPORT TRACK"
+                    : "HOLDING BEARING"
+                  : "SECTOR VIEW"}
+            </strong>
+            <span>
+              {manualAim
+                ? `${manualAim.azimuthDeg.toFixed(1)}° / ${manualAim.elevationDeg.toFixed(1)}°`
+                : (selected ?? "No selection")}
+            </span>
+          </div>
+          <div
+            className="optical-slew"
+            role="group"
+            aria-label="Camera pan and tilt"
+            onKeyDown={(event) => {
+              const delta = event.shiftKey ? 10 : 2;
+              const moves: { [key: string]: [number, number] } = {
+                ArrowLeft: [-delta, 0],
+                ArrowRight: [delta, 0],
+                ArrowUp: [0, delta],
+                ArrowDown: [0, -delta],
+              };
+              if (moves[event.key]) {
+                event.preventDefault();
+                move(...moves[event.key]);
+              }
+            }}
+          >
+            <button
+              type="button"
+              aria-label="Pan camera left"
+              onClick={() => move(-5, 0)}
+            >
+              <ArrowLeft size={16} />
+            </button>
+            <button
+              type="button"
+              aria-label="Tilt camera up"
+              onClick={() => move(0, 5)}
+            >
+              <ArrowUp size={16} />
+            </button>
+            <button
+              type="button"
+              aria-label="Tilt camera down"
+              onClick={() => move(0, -5)}
+            >
+              <ArrowDown size={16} />
+            </button>
+            <button
+              type="button"
+              aria-label="Pan camera right"
+              onClick={() => move(5, 0)}
+            >
+              <ArrowRight size={16} />
+            </button>
+            <button
+              type="button"
+              className="optical-reacquire"
+              disabled={!manualAim}
+              onClick={() => {
+                setManual(null);
+                setNotice(
+                  "Automatic view follows only the selected reported position, or holds its last bearing.",
+                );
+              }}
+            >
+              <Crosshair size={15} />
+              {selected ? "Track selected report" : "Return to sector"}
+            </button>
+          </div>
+          <label className="optical-zoom">
+            Crop {zoom}×
+            <input
+              type="range"
+              aria-label="Optical station display crop"
+              min="1"
+              max="6"
+              step="1"
+              value={zoom}
+              onChange={(e) => onZoom(Number(e.target.value))}
+            />
+            <small>
+              {opticalFov(38, zoom).toFixed(1)}° vertical display FOV
+            </small>
+          </label>
+        </>
+      )}
+      <div className="optical-capture">
+        <button
+          type="button"
+          disabled={!selected || !observation}
+          onClick={() => capture(a ? "b" : "a")}
+        >
+          <Bookmark size={15} />
+          {a ? "Capture B" : "Capture A"}
+        </button>
+        <button
+          type="button"
+          ref={compareButton}
+          aria-expanded={bench}
+          onClick={() => setBench(!bench)}
+        >
+          <Columns2 size={15} />
+          Evidence compare
+        </button>
+      </div>
+      <p className="optical-integrity">
+        {vision === "day" ? "EO" : "IR"} display · Pointing and crop do not
+        change sensor sampling or scoring.
+      </p>
+      <p className="optical-notice" role="status">
+        {notice}
+      </p>
+    </section>
+  );
   return (
     <>
       {children({ manualAim, onCameraAim })}
-      {enabled && (
-        <section
-          className={`optical-console ${tactical ? "is-tactical" : ""}`}
-          aria-label="Optical investigation station"
-        >
-          {!tactical && (
-            <>
-              <div className="optical-mode">
-                <ScanEye size={15} />
-                <strong>
-                  {manualAim
-                    ? "MANUAL SCAN"
-                    : selected
-                      ? cue
-                        ? "REPORT TRACK"
-                        : "HOLDING BEARING"
-                      : "SECTOR VIEW"}
-                </strong>
-                <span>
-                  {manualAim
-                    ? `${manualAim.azimuthDeg.toFixed(1)}° / ${manualAim.elevationDeg.toFixed(1)}°`
-                    : (selected ?? "No selection")}
-                </span>
-              </div>
-              <div
-                className="optical-slew"
-                role="group"
-                aria-label="Camera pan and tilt"
-                onKeyDown={(event) => {
-                  const delta = event.shiftKey ? 10 : 2;
-                  const moves: { [key: string]: [number, number] } = {
-                    ArrowLeft: [-delta, 0],
-                    ArrowRight: [delta, 0],
-                    ArrowUp: [0, delta],
-                    ArrowDown: [0, -delta],
-                  };
-                  if (moves[event.key]) {
-                    event.preventDefault();
-                    move(...moves[event.key]);
-                  }
-                }}
-              >
-                <button
-                  type="button"
-                  aria-label="Pan camera left"
-                  onClick={() => move(-5, 0)}
-                >
-                  <ArrowLeft size={16} />
-                </button>
-                <button
-                  type="button"
-                  aria-label="Tilt camera up"
-                  onClick={() => move(0, 5)}
-                >
-                  <ArrowUp size={16} />
-                </button>
-                <button
-                  type="button"
-                  aria-label="Tilt camera down"
-                  onClick={() => move(0, -5)}
-                >
-                  <ArrowDown size={16} />
-                </button>
-                <button
-                  type="button"
-                  aria-label="Pan camera right"
-                  onClick={() => move(5, 0)}
-                >
-                  <ArrowRight size={16} />
-                </button>
-                <button
-                  type="button"
-                  className="optical-reacquire"
-                  disabled={!manualAim}
-                  onClick={() => {
-                    setManual(null);
-                    setNotice(
-                      "Automatic view follows only the selected reported position, or holds its last bearing.",
-                    );
-                  }}
-                >
-                  <Crosshair size={15} />
-                  {selected ? "Track selected report" : "Return to sector"}
-                </button>
-              </div>
-              <label className="optical-zoom">
-                Crop {zoom}×
-                <input
-                  type="range"
-                  aria-label="Optical station display crop"
-                  min="1"
-                  max="6"
-                  step="1"
-                  value={zoom}
-                  onChange={(e) => onZoom(Number(e.target.value))}
-                />
-                <small>
-                  {opticalFov(38, zoom).toFixed(1)}° vertical display FOV
-                </small>
-              </label>
-            </>
-          )}
-          <div className="optical-capture">
-            <button
-              type="button"
-              disabled={!selected || !observation}
-              onClick={() => capture(a ? "b" : "a")}
-            >
-              <Bookmark size={15} />
-              {a ? "Capture B" : "Capture A"}
-            </button>
-            <button
-              type="button"
-              ref={compareButton}
-              aria-expanded={bench}
-              onClick={() => setBench(!bench)}
-            >
-              <Columns2 size={15} />
-              Evidence compare
-            </button>
-          </div>
-          <p className="optical-integrity">
-            {vision === "day" ? "EO" : "IR"} display · Pointing and crop do not
-            change sensor sampling or scoring.
-          </p>
-          <p className="optical-notice" role="status">
-            {notice}
-          </p>
-        </section>
-      )}
+      {controlsHost ? createPortal(controls, controlsHost) : controls}
       {enabled && bench && (
         <aside
           className="inquiry-bench"

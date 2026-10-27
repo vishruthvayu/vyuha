@@ -1,0 +1,153 @@
+.training-bridge {
+  margin-block: 20px;
+  padding: clamp(16px, 2vw, 24px);
+  border: 1px solid #66877e;
+  border-radius: 12px;
+  background: #132a2c;
+  color: #e2eee7;
+}
+.training-bridge h4 {
+  font: 550 clamp(20px, 2vw, 26px)/1.3 var(--font-sans, system-ui, sans-serif);
+  margin: 6px 0 12px;
+  color: #edf2e6;
+}
+.training-bridge h5 {
+  font: 550 16px/1.4 var(--font-sans, system-ui, sans-serif);
+  margin: 0 0 12px;
+  color: #edf2e6;
+}
+.training-bridge p,
+.training-bridge li {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cfddd4;
+}
+.training-bridge .eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  color: #b8d2c5;
+}
+.training-bridge-paths {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block: 20px;
+}
+.training-bridge-paths button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid #73998c;
+  background: #193638;
+  color: #e0eee4;
+}
+.training-bridge-paths button[aria-pressed="true"] {
+  color: #12291e;
+  background: #ccdec6;
+  border-color: #e4eed8;
+}
+.training-bridge-paths span {
+  font-size: 12px;
+}
+.training-bridge-route {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+}
+.training-bridge-route > section {
+  min-width: 0;
+}
+.training-bridge-original {
+  padding-right: 24px;
+  border-right: 1px solid #648174;
+}
+.training-bridge-original ol {
+  list-style: none;
+  margin: 16px 0;
+  padding: 0;
+  max-height: 420px;
+  overflow: auto;
+}
+.training-bridge-original li {
+  padding: 14px 0;
+  border-top: 1px solid #648174;
+}
+.training-bridge-original li > div {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.training-bridge-original strong,
+.training-bridge-original time {
+  overflow-wrap: anywhere;
+}
+.training-bridge-original time {
+  font: 12px/1.5 var(--font-mono, monospace);
+}
+.training-bridge-original small {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #b9cfc1;
+  overflow-wrap: anywhere;
+}
+.training-bridge-next label {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+}
+.training-bridge-next select {
+  min-height: 48px;
+  width: 100%;
+  max-width: 100%;
+  background: #0c2025;
+  color: #eaf0e6;
+  border: 1px solid #8ca79b;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 14px;
+}
+.training-bridge .button {
+  min-height: 44px;
+  white-space: normal;
+  margin-bottom: 8px;
+}
+.training-bridge button:focus-visible,
+.training-bridge a:focus-visible,
+.training-bridge select:focus-visible {
+  outline: 3px solid #e1ecc9;
+  outline-offset: 3px;
+}
+.training-bridge-ready {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid #bbd2ad;
+  border-radius: 8px;
+  background: #1c3831;
+}
+.training-bridge-ready strong {
+  display: block;
+  font-size: 15px;
+  color: #e0ecd1;
+}
+@media (max-width: 840px) {
+  .training-bridge-route {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .training-bridge-original {
+    border-right: 0;
+    padding-right: 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #648174;
+  }
+  .training-bridge-paths {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .training-bridge-paths button {
+    justify-content: flex-start;
+  }
+}

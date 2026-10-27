@@ -9,7 +9,10 @@ export function worldManifest(terrain: TerrainKind) {
     surfacePolicy:
       "EO Medium/High dielectric; Low/IR frozen compatibility paths",
     id: terrain === "urban_outpost" ? "logistics-quarter" : "forward-base",
-    revision: terrain === "urban_outpost" ? 2 : 1,
+    revision: terrain === "urban_outpost" ? 3 : 2,
+    landscapePipeline: "bounded-landscape-identity-v1",
+    landscapePolicy:
+      "Static matte far scenery outside the public optics envelope; not authoritative occlusion",
     source:
       "original procedural architecture; existing locally bundled PBR assets",
     observationGeometry: "scenario terrain_boxes only",

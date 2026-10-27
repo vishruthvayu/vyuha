@@ -205,11 +205,13 @@ export default function Navigation({
   onWorkspaceNavigate,
   footer,
   reviewCount = 0,
+  immersive = false,
 }: {
   view?: WorkspaceView;
   onWorkspaceNavigate?: (item: NavigationItem) => void;
   footer?: ReactNode;
   reviewCount?: number;
+  immersive?: boolean;
 }) {
   const [open, setOpen] = useState(false),
     [help, setHelp] = useState(false),
@@ -295,7 +297,10 @@ export default function Navigation({
       >
         Skip to workspace
       </a>
-      <header className="mission-navigation">
+      <header
+        className="mission-navigation"
+        data-immersive={immersive || undefined}
+      >
         <a
           className="mission-navigation-brand"
           href="/"

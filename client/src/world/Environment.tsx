@@ -1,5 +1,6 @@
 import { addLogisticsArchitecture, isAuthoredStructure } from "./logistics-kit";
 import { addStreetscape } from "./streetscape";
+import { buildLandscapeIdentity } from "./landscape-identity";
 import { worldManifest } from "./world-manifest";
 import { diagnosticSpan } from "../diagnostics";
 import { splatResources } from "./splat-preparation";
@@ -388,6 +389,20 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     terrainMesh.userData.eoMaterial = ground;
     group.add(terrainMesh);
     disposables.push(terrainMesh.geometry);
+    const landscape = buildLandscapeIdentity(
+      terrain,
+      quality,
+      worldEnvelope.flatRadius,
+    );
+    if (landscape) {
+      disposables.push(landscape.material);
+      addMesh(landscape.geometry, landscape.material, "terrainFar", {
+        cast: false,
+        receive: false,
+        name: "landscape-identity",
+      });
+      group.userData.landscapeIdentity = landscape.identity;
+    }
     // Paved surfaces.
     const paved = new Map<MaterialKey, THREE.BufferGeometry[]>();
     for (const s of layout.surfaces) {

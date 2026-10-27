@@ -1,0 +1,277 @@
+/* New briefing composition only. Import after premium styles; no legacy selector changes. */
+.mission-briefing-next {
+  position: absolute;
+  z-index: 8;
+  inset: auto 24px 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 600px) minmax(0, 1fr);
+  gap: 16px;
+  max-height: calc(100% - 48px);
+  color: #e9eee8;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  pointer-events: none;
+}
+.mission-briefing-main,
+.mission-survey-note {
+  grid-column: 1;
+  padding: clamp(18px, 2.4vw, 28px);
+  min-width: 0;
+  min-height: 0;
+  max-height: min(54svh, 460px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  pointer-events: auto;
+  background: #0b1619f5;
+  border: 1px solid #708b8d80;
+  border-radius: 12px;
+  box-shadow: 0 16px 48px #0005;
+}
+.mission-briefing-next .mission-briefing-eyebrow {
+  font: 11px/1.5 var(--font-mono, monospace);
+  letter-spacing: 0.08em;
+  color: #b8d8d1;
+  margin: 0 0 10px;
+}
+.mission-briefing-next h2 {
+  font: 560 clamp(22px, 2.4vw, 32px)/1.2 var(--font-sans, system-ui, sans-serif);
+  color: #f0f1e8;
+  letter-spacing: -0.025em;
+  margin: 0 0 14px;
+}
+.mission-briefing-next p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #c9d7d1;
+  margin: 0;
+}
+.mission-briefing-next .mission-briefing-objective {
+  font-size: 15px;
+  color: #e2e9df;
+  max-width: 64ch;
+}
+.mission-briefing-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 20px;
+  margin: 22px 0;
+}
+.mission-briefing-facts > div {
+  min-width: 0;
+}
+.mission-briefing-facts dt {
+  color: #abc4bb;
+  font-size: 12px;
+  line-height: 1.5;
+  margin-bottom: 3px;
+}
+.mission-briefing-facts dd {
+  margin: 0;
+  color: #eff4ea;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.mission-briefing-constraints {
+  border: 0;
+  margin-block: 18px;
+  padding: 0;
+  background: transparent;
+}
+.mission-briefing-constraints summary {
+  min-height: 44px;
+  display: list-item;
+  padding: 12px 0;
+  color: #d4e7dc;
+  cursor: pointer;
+  font-size: 14px;
+}
+.mission-briefing-constraints ul,
+.mission-briefing-constraints ol {
+  margin: 8px 0 16px;
+  padding-inline-start: 18px;
+  color: #c8d7cf;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.mission-briefing-constraints li + li {
+  margin-top: 8px;
+}
+.mission-survey-toggle,
+.mission-survey-controls button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 14px;
+  color: #dfefe5;
+  background: #1e3532;
+  border: 1px solid #92b7a8;
+  border-radius: 7px;
+  font: 500 14px/1.5 var(--font-sans, system-ui, sans-serif);
+  cursor: pointer;
+}
+.mission-survey-toggle:hover,
+.mission-survey-controls button:hover {
+  background: #2b4b42;
+}
+.mission-survey-note {
+  max-width: 430px;
+}
+.mission-survey-note > .mission-survey-toggle {
+  margin-top: 16px;
+}
+.mission-survey-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.mission-survey-controls button {
+  width: 44px;
+  padding: 10px;
+}
+.mission-launch-bar {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 20px;
+  background: #0a1319f7;
+  border: 1px solid #6c8d8980;
+  border-radius: 10px;
+  pointer-events: auto;
+  min-width: 0;
+}
+.mission-launch-bar > .mission-survey-toggle {
+  flex-shrink: 0;
+}
+.mission-launch-context {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  min-width: 0;
+}
+.mission-launch-context > svg {
+  margin-top: 4px;
+  color: #b8d8c5;
+  flex-shrink: 0;
+}
+.mission-launch-context strong {
+  font-size: 14px;
+  font-weight: 550;
+  color: #e3eadf;
+}
+.mission-launch-context p {
+  font-size: 13px;
+  margin: 4px 0;
+}
+.mission-launch-context small {
+  display: block;
+  color: #afc4ba;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.mission-launch-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 48px;
+  padding: 14px 22px;
+  border-radius: 7px;
+  border: 1px solid #d5e5bf;
+  background: #d5e5bf;
+  color: #142119;
+  font: 600 15px/1.4 var(--font-sans, system-ui, sans-serif);
+  cursor: pointer;
+  flex-shrink: 0;
+  max-width: 100%;
+  white-space: normal;
+}
+.mission-launch-action:hover {
+  background: #e4f1d4;
+}
+.mission-briefing-next button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.mission-briefing-next :is(button, summary, h2):focus-visible {
+  outline: 3px solid #dcf2d6;
+  outline-offset: 4px;
+}
+@media (max-width: 780px) {
+  .mission-briefing-next {
+    inset: auto 12px 12px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    max-height: calc(100% - 24px);
+  }
+  .mission-briefing-main,
+  .mission-survey-note {
+    max-height: min(48svh, 420px);
+    padding: 18px;
+    max-width: none;
+  }
+  .mission-launch-bar {
+    padding: 14px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .mission-launch-action,
+  .mission-launch-bar > .mission-survey-toggle {
+    width: 100%;
+  }
+  .mission-launch-context p {
+    font-size: 13px;
+  }
+}
+@media (max-height: 650px) and (min-width: 781px) {
+  .mission-briefing-main,
+  .mission-survey-note {
+    max-height: 46svh;
+  }
+  .mission-launch-bar {
+    padding-block: 12px;
+  }
+  .mission-launch-context p {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mission-briefing-next *,
+  .mission-briefing-next *::before,
+  .mission-briefing-next *::after {
+    scroll-behavior: auto;
+    transition: none;
+    animation: none;
+  }
+}
+
+.mission-briefing-source {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.mission-briefing-source dd {
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+  color: #e2e9df;
+}
+.mission-attempt-status {
+  padding: 12px;
+  border: 1px solid #afbc93;
+  margin-bottom: 16px;
+}
+.mission-attempt-status a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  text-decoration: underline;
+  margin-right: 16px;
+}
+.mission-briefing-next .mission-briefing-competency {
+  color: #d7e7c1;
+  margin-bottom: 12px;
+  font-size: 13px;
+}

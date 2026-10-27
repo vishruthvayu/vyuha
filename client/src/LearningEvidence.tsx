@@ -1,3 +1,4 @@
+import TrainingBridge from "./TrainingBridge";
 import LearnerReflection from "./LearnerReflection";
 import EvidenceInvestigation from "./EvidenceInvestigation";
 import type { LearningPreparation, LearningReview } from "./learning";
@@ -53,6 +54,13 @@ export function LearningEvidence({
           ? "Scenario-bound assessment observations"
           : "Practice only · excluded from individual assessment"}
       </p>
+      {(learner || reviewer) && (
+        <TrainingBridge
+          review={review}
+          learner={learner}
+          onInspectDecision={onInspectDecision}
+        />
+      )}
       {(learner || reviewer) && (
         <EvidenceInvestigation
           {...(learner ?? reviewer!)}

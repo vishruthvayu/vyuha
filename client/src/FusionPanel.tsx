@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from "react";
+import { createPortal } from "react-dom";
 import {
   fusionAdvice,
   type FusionConfig,
@@ -13,6 +14,8 @@ export type FusionPanelProps = {
   config?: Partial<FusionConfig> | null;
   context: FusionContext;
   onExposure?: (advice: FusionAdvice | null) => void;
+  presented?: boolean;
+  controlsHost?: HTMLElement | null;
 };
 const LABEL = {
   bird: "Bird",
@@ -30,6 +33,8 @@ export function FusionPanel({
   config,
   context,
   onExposure,
+  presented = true,
+  controlsHost,
 }: FusionPanelProps) {
   const result = useMemo(
     () =>
@@ -39,10 +44,10 @@ export function FusionPanel({
     [observation, prior, config, context],
   );
   useEffect(() => {
-    onExposure?.(result);
-  }, [result?.exposure_id, onExposure]);
-  if (!result) return null;
-  return (
+    onExposure?.(presented ? result : null);
+  }, [result?.exposure_id, onExposure, presented]);
+  if (!result || !presented) return null;
+  const panel = (
     <aside
       className="panel fusion-panel"
       aria-label="Fusion training assistant"
@@ -109,5 +114,6 @@ export function FusionPanel({
       </p>
     </aside>
   );
+  return controlsHost ? createPortal(panel, controlsHost) : panel;
 }
 export default FusionPanel;

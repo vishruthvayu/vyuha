@@ -2,6 +2,13 @@ import { useId, useRef, useState } from "react";
 import { api } from "./storage";
 import { defaultResponseConfig } from "./response-v2";
 import type { Scenario } from "./types";
+import { RaidRehearsal } from "./RaidRehearsal";
+import {
+  RAID_PROFILES,
+  initialRaidRoster,
+  rosterMix,
+  type RaidRoster,
+} from "./raid-rehearsal";
 export default function RaidStudio({
   onSaved,
 }: { onSaved?: (scenario: Scenario) => void } = {}) {
@@ -20,6 +27,10 @@ export default function RaidStudio({
     [busy, setBusy] = useState(false),
     [saved, setSaved] = useState(false),
     [compiledKey, setCompiledKey] = useState("");
+  const [focus, setFocus] = useState("effector_choice");
+  const [exactRoster, setExactRoster] = useState(false);
+  const [roster, setRoster] = useState<RaidRoster>({ ...initialRaidRoster });
+  const [sectorDraft, setSectorDraft] = useState("90");
   const [durationError, setDurationError] = useState("");
   const durationInput = useRef<HTMLInputElement>(null);
   const durationErrorId = `${useId()}-duration-error`;
@@ -33,6 +44,10 @@ export default function RaidStudio({
     "Enter a whole-number duration from 60 to 180 seconds.";
   const configurationKey = JSON.stringify({
     delayed,
+    focus,
+    exactRoster,
+    roster,
+    sectorDraft,
     fusionMode,
     seed,
     duration,
@@ -50,6 +65,24 @@ export default function RaidStudio({
       durationInput.current?.focus();
       return;
     }
+    let mix: ReturnType<typeof rosterMix> | null = null;
+    const sector = Number(sectorDraft);
+    try {
+      if (exactRoster) mix = rosterMix(roster);
+      if (
+        family === "BLIND_SECTOR" &&
+        (sectorDraft.trim() === "" ||
+          !Number.isFinite(sector) ||
+          sector < 0 ||
+          sector >= 360)
+      )
+        throw new Error(
+          "Weak-sector bearing must be from 0 up to, but not including, 360 degrees.",
+        );
+    } catch (e) {
+      setError((e as Error).message);
+      return;
+    }
     setBusy(true);
     setError("");
     try {
@@ -64,6 +97,9 @@ export default function RaidStudio({
         night,
         fog,
         family: family || null,
+        focus,
+        mix,
+        weak_sector_deg: family === "BLIND_SECTOR" ? sector : null,
         fusion:
           fusionMode === "off"
             ? null
@@ -105,8 +141,10 @@ export default function RaidStudio({
         </span>
       </div>
       <p>
-        Compile seeded rosters, coordinated formations and motion into a frozen
-        exercise. Values are illustrative training assumptions.
+        Design a repeatable training challenge, compile its synthetic reference
+        world, then rehearse paths and wave timing before publishing. Author
+        reference geometry is separate from the trainee’s available sensor
+        evidence.
       </p>
       <fieldset className="setup-bar raid-controls" disabled={busy}>
         <legend>Raid configuration</legend>
@@ -204,6 +242,32 @@ export default function RaidStudio({
                 ))}
               </select>
             </label>
+            <label>
+              Training objective
+              <select value={focus} onChange={(e) => setFocus(e.target.value)}>
+                <option value="detection">Detection and designation</option>
+                <option value="classification_iff">
+                  Classification and identity evidence
+                </option>
+                <option value="effector_choice">Response selection</option>
+                <option value="degraded_sensor_response">
+                  Degraded-sensor response
+                </option>
+              </select>
+            </label>
+            {family === "BLIND_SECTOR" && (
+              <label>
+                Weak-sector bearing (degrees)
+                <input
+                  type="number"
+                  min={0}
+                  max={359.999}
+                  step="any"
+                  value={sectorDraft}
+                  onChange={(e) => setSectorDraft(e.target.value)}
+                />
+              </label>
+            )}
             <label className="authoring-check">
               <input
                 type="checkbox"
@@ -224,6 +288,50 @@ export default function RaidStudio({
                 <option value="bias">Automation-bias exercise</option>
               </select>
             </label>
+          </div>
+        </div>
+        <div className="authoring-field-group">
+          <h3>Roster composition</h3>
+          <p>
+            Choose exact training opportunities or keep the generator’s seeded
+            roster. Wave capacity and approach constraints are checked by the
+            server.
+          </p>
+          <div className="authoring-field-grid">
+            <label className="authoring-check">
+              <input
+                type="checkbox"
+                checked={exactRoster}
+                onChange={(e) => setExactRoster(e.target.checked)}
+              />
+              Set an exact roster
+            </label>
+            {exactRoster &&
+              RAID_PROFILES.map(([profile, label]) => (
+                <label key={profile}>
+                  {label}
+                  <input
+                    type="number"
+                    min={0}
+                    max={200}
+                    step={1}
+                    value={roster[profile]}
+                    onChange={(e) =>
+                      setRoster((previous) => ({
+                        ...previous,
+                        [profile]: Number(e.target.value),
+                      }))
+                    }
+                  />
+                </label>
+              ))}
+            {exactRoster && (
+              <p className="raid-roster-total" role="status">
+                {Object.values(roster).reduce((sum, count) => sum + count, 0)}{" "}
+                planned contacts · at least two total and one hostile · up to
+                200; feasible workload depends on duration and difficulty.
+              </p>
+            )}
           </div>
         </div>
         <div className="authoring-field-group">
@@ -316,6 +424,7 @@ export default function RaidStudio({
             {scenario.tracks.length} contacts · {scenario.duration}s ·{" "}
             {scenario.raid?.family} · {scenario.engine_version}
           </p>
+          <RaidRehearsal key={scenario.id} scenario={scenario} />
           {saved && (
             <a className="button subtle" href="/">
               Open training ground

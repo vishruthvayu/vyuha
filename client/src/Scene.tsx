@@ -6,6 +6,8 @@ import {
 } from "./optical-station";
 import { diagnosticFrame } from "./diagnostics";
 import { arrivalCamera, briefingSnapshot } from "./training-presentation";
+import { WorldSurveyControls } from "./WorldSurveyControls";
+import type { SurveyIntent } from "./world-survey";
 import {
   Component,
   useCallback,
@@ -100,6 +102,7 @@ function CameraRig({
   reducedMotion = false,
   onMetrics,
   briefing = false,
+  briefingSurvey = false,
   terrain,
   manualAim,
   onCameraAim,
@@ -120,6 +123,7 @@ function CameraRig({
   reducedMotion?: boolean;
   onMetrics?: (metrics: RendererMetrics) => void;
   briefing?: boolean;
+  briefingSurvey?: boolean;
   terrain?: string;
   manualAim?: OpticalAim | null;
   onCameraAim?: (aim: OpticalAim) => void;
@@ -160,129 +164,135 @@ function CameraRig({
     if (!priorBriefing.current && briefing) arrivalTime.current = 0;
     priorBriefing.current = briefing;
     if (briefing) arrivalTime.current += Math.min(dt, 0.1);
-    if (camera instanceof THREE.PerspectiveCamera) {
-      const desiredFov = opticalFov(
-        briefing ? 54 : preset ? 52 : 38,
-        briefing ? 1 : opticalZoom,
-      );
-      if (Math.abs(camera.fov - desiredFov) > 0.001) {
-        camera.fov =
-          reducedMotion || cutToSensor
-            ? desiredFov
-            : THREE.MathUtils.damp(
-                camera.fov,
-                desiredFov,
-                8,
-                Math.min(dt, 0.25),
-              );
-        camera.updateProjectionMatrix();
-      }
-    }
-    const v = view.current;
-    let mode: CameraMode;
-    if (briefing) {
-      const arrival = arrivalCamera(
-        terrain,
-        arrivalTime.current,
-        reducedMotion,
-      );
-      mode = "preset";
-      goal.set(...arrival.aim);
-      goalPosition.set(...arrival.position);
-    } else if (preset && pose) {
-      mode = "preset";
-      goal.set(...pose.aim);
-      goalPosition.set(...pose.position);
-      // Follow and observer framing ride on the displayed pose, so the camera and
-      // the model share one smooth path instead of two different filters.
-      const shown = selected ? poses.pose(selected) : undefined;
-      if (shown && !pose.fallback && pose.effective !== "overview") {
-        goalPosition.sub(goal);
-        goal.set(shown.displayX, shown.displayY, shown.displayZ);
-        goalPosition.add(goal);
-      }
-    } else {
-      origin.set(
-        sensorOrigin?.x ?? 0,
-        sensorOrigin?.altitude ?? (finale ? 2 : 14),
-        sensorOrigin?.z ?? (finale ? 0 : 4),
-      );
-      goalPosition.copy(origin);
-      const shown = selected ? poses.pose(selected) : undefined;
-      const manual = manualAim
-        ? aimPoint({ x: origin.x, z: origin.z, altitude: origin.y }, manualAim)
-        : null;
-      mode = manual ? "manual" : liveCameraMode(!!shown, selectedId, cue);
-      if (manual) goal.set(manual.x, manual.altitude, manual.z);
-      else if (shown) goal.set(shown.displayX, shown.displayY, shown.displayZ);
-      else if (mode === "cue" && cue) goal.set(cue.x, cue.altitude, cue.z);
-      else if (mode === "hold") goal.copy(aim.current);
-      else goal.set(finale ? 0 : 40, 18, finale ? 1500 : 150);
-    }
-    // A cue that jumps (a radar sweep) re-slews; small IR/EO updates are followed.
-    const cueJump =
-      (mode === "cue" || mode === "manual") &&
-      (!Number.isFinite(v.cue.x) ||
-        goal.clone().sub(origin).angleTo(v.cue.clone().sub(origin)) >
-          THREE.MathUtils.degToRad(1.5));
-    if (cutToSensor) {
-      // Never spend scored observation time flying from an external briefing camera.
-      camera.position.copy(goalPosition);
-      aim.current.copy(goal);
-      v.mode = "";
-    }
-    const changed = mode !== v.mode || selectedId !== v.id || cueJump;
-    if (changed) {
-      const duration =
-        mode === "preset"
-          ? 0.8
-          : slewSeconds(
-              aim.current
-                .clone()
-                .sub(goalPosition)
-                .angleTo(goal.clone().sub(goalPosition)),
-            );
-      v.aimBlend.start(aim.current, duration);
-      v.positionBlend.start(camera.position, mode === "preset" ? 0.8 : 0.01);
-      v.mode = mode;
-      v.id = selectedId;
-      if (mode === "cue" || mode === "manual") v.cue.copy(goal);
-    }
-    if (reducedMotion || briefing || cutToSensor) {
-      aim.current.copy(goal);
-      camera.position.copy(goalPosition);
-    } else {
-      if (v.aimBlend.active)
-        v.aimBlend.apply(
-          aim.current,
-          goal,
-          mode === "preset" ? null : goalPosition,
-          dt,
+    if (!(briefing && briefingSurvey)) {
+      if (camera instanceof THREE.PerspectiveCamera) {
+        const desiredFov = opticalFov(
+          briefing ? 54 : preset ? 52 : 38,
+          briefing ? 1 : opticalZoom,
         );
-      else aim.current.copy(goal);
-      if (v.positionBlend.active)
-        v.positionBlend.apply(camera.position, goalPosition, null, dt);
-      else camera.position.copy(goalPosition);
-    }
-    camera.lookAt(aim.current);
-    if (
-      onCameraAim &&
-      !briefing &&
-      !preset &&
-      !referenceTruth &&
-      clock.elapsedTime - lastAimReport.current >= 0.2
-    ) {
-      lastAimReport.current = clock.elapsedTime;
-      camera.getWorldDirection(direction);
-      const displayed = reportedAim(
-        {
-          x: origin.x + direction.x,
-          z: origin.z + direction.z,
-          altitude: origin.y + direction.y,
-        },
-        { x: origin.x, z: origin.z, altitude: origin.y },
-      );
-      if (displayed) onCameraAim(displayed);
+        if (Math.abs(camera.fov - desiredFov) > 0.001) {
+          camera.fov =
+            reducedMotion || cutToSensor
+              ? desiredFov
+              : THREE.MathUtils.damp(
+                  camera.fov,
+                  desiredFov,
+                  8,
+                  Math.min(dt, 0.25),
+                );
+          camera.updateProjectionMatrix();
+        }
+      }
+      const v = view.current;
+      let mode: CameraMode;
+      if (briefing) {
+        const arrival = arrivalCamera(
+          terrain,
+          arrivalTime.current,
+          reducedMotion,
+        );
+        mode = "preset";
+        goal.set(...arrival.aim);
+        goalPosition.set(...arrival.position);
+      } else if (preset && pose) {
+        mode = "preset";
+        goal.set(...pose.aim);
+        goalPosition.set(...pose.position);
+        // Follow and observer framing ride on the displayed pose, so the camera and
+        // the model share one smooth path instead of two different filters.
+        const shown = selected ? poses.pose(selected) : undefined;
+        if (shown && !pose.fallback && pose.effective !== "overview") {
+          goalPosition.sub(goal);
+          goal.set(shown.displayX, shown.displayY, shown.displayZ);
+          goalPosition.add(goal);
+        }
+      } else {
+        origin.set(
+          sensorOrigin?.x ?? 0,
+          sensorOrigin?.altitude ?? (finale ? 2 : 14),
+          sensorOrigin?.z ?? (finale ? 0 : 4),
+        );
+        goalPosition.copy(origin);
+        const shown = selected ? poses.pose(selected) : undefined;
+        const manual = manualAim
+          ? aimPoint(
+              { x: origin.x, z: origin.z, altitude: origin.y },
+              manualAim,
+            )
+          : null;
+        mode = manual ? "manual" : liveCameraMode(!!shown, selectedId, cue);
+        if (manual) goal.set(manual.x, manual.altitude, manual.z);
+        else if (shown)
+          goal.set(shown.displayX, shown.displayY, shown.displayZ);
+        else if (mode === "cue" && cue) goal.set(cue.x, cue.altitude, cue.z);
+        else if (mode === "hold") goal.copy(aim.current);
+        else goal.set(finale ? 0 : 40, 18, finale ? 1500 : 150);
+      }
+      // A cue that jumps (a radar sweep) re-slews; small IR/EO updates are followed.
+      const cueJump =
+        (mode === "cue" || mode === "manual") &&
+        (!Number.isFinite(v.cue.x) ||
+          goal.clone().sub(origin).angleTo(v.cue.clone().sub(origin)) >
+            THREE.MathUtils.degToRad(1.5));
+      if (cutToSensor) {
+        // Never spend scored observation time flying from an external briefing camera.
+        camera.position.copy(goalPosition);
+        aim.current.copy(goal);
+        v.mode = "";
+      }
+      const changed = mode !== v.mode || selectedId !== v.id || cueJump;
+      if (changed) {
+        const duration =
+          mode === "preset"
+            ? 0.8
+            : slewSeconds(
+                aim.current
+                  .clone()
+                  .sub(goalPosition)
+                  .angleTo(goal.clone().sub(goalPosition)),
+              );
+        v.aimBlend.start(aim.current, duration);
+        v.positionBlend.start(camera.position, mode === "preset" ? 0.8 : 0.01);
+        v.mode = mode;
+        v.id = selectedId;
+        if (mode === "cue" || mode === "manual") v.cue.copy(goal);
+      }
+      if (reducedMotion || briefing || cutToSensor) {
+        aim.current.copy(goal);
+        camera.position.copy(goalPosition);
+      } else {
+        if (v.aimBlend.active)
+          v.aimBlend.apply(
+            aim.current,
+            goal,
+            mode === "preset" ? null : goalPosition,
+            dt,
+          );
+        else aim.current.copy(goal);
+        if (v.positionBlend.active)
+          v.positionBlend.apply(camera.position, goalPosition, null, dt);
+        else camera.position.copy(goalPosition);
+      }
+      camera.lookAt(aim.current);
+      if (
+        onCameraAim &&
+        !briefing &&
+        !preset &&
+        !referenceTruth &&
+        clock.elapsedTime - lastAimReport.current >= 0.2
+      ) {
+        lastAimReport.current = clock.elapsedTime;
+        camera.getWorldDirection(direction);
+        const displayed = reportedAim(
+          {
+            x: origin.x + direction.x,
+            z: origin.z + direction.z,
+            altitude: origin.y + direction.y,
+          },
+          { x: origin.x, z: origin.z, altitude: origin.y },
+        );
+        if (displayed) onCameraAim(displayed);
+      }
     }
     const fps = frameMeter.current.sample(clock.elapsedTime);
     if (fps !== null) {
@@ -425,6 +435,8 @@ function World({
   reducedMotion = false,
   onMetrics,
   presentation,
+  briefingSurvey = false,
+  surveyCommand,
   selectedId = null,
   cue,
   manualAim,
@@ -460,6 +472,8 @@ function World({
   reducedMotion?: boolean;
   onMetrics?: (metrics: RendererMetrics) => void;
   presentation?: "briefing" | "observation";
+  briefingSurvey?: boolean;
+  surveyCommand?: SurveyIntent;
 }) {
   const { camera, size } = useThree();
   const worldEnvelope = useMemo(
@@ -530,6 +544,7 @@ function World({
         reducedMotion={reducedMotion}
       />
       <CameraRig
+        briefingSurvey={presentation === "briefing" && briefingSurvey}
         briefing={presentation === "briefing"}
         terrain={terrain}
         opticalZoom={opticalZoom}
@@ -547,6 +562,13 @@ function World({
         finale={finale}
         sensorOrigin={sensorOrigin}
         referenceTruth={referenceTruth}
+      />
+      <WorldSurveyControls
+        enabled={presentation === "briefing" && briefingSurvey}
+        terrain={terrain}
+        reducedMotion={reducedMotion}
+        command={surveyCommand}
+        restorePose={false}
       />
       {!cameraPreset && !manualAim && selectedId && !selected && (
         <CueMarker cue={cue} />
@@ -581,6 +603,8 @@ function World({
 export type SceneProps = {
   /** Briefing renders public environment only, without any scenario contacts. */
   presentation?: "briefing" | "observation";
+  briefingSurvey?: boolean;
+  surveyCommand?: SurveyIntent;
   state: Snapshot;
   vision: Vision;
   selected: string | null;

@@ -17,6 +17,7 @@ async function mounted(
       tactical?: boolean;
       observation?: SensorObservation;
       cue?: boolean;
+      controlsHost?: HTMLElement | null;
     }) => Promise<void>;
     click: (name: string) => Promise<void>;
     view: () => OpticalAim | null;
@@ -81,6 +82,7 @@ async function mounted(
       tactical?: boolean;
       observation?: SensorObservation;
       cue?: boolean;
+      controlsHost?: HTMLElement | null;
     } = {},
   ) => {
     const tick = o.tick ?? 90,
@@ -99,6 +101,7 @@ async function mounted(
           vision="thermal"
           zoom={1}
           onZoom={() => {}}
+          controlsHost={o.controlsHost}
         >
           {(v) => {
             view = v.manualAim;
@@ -135,6 +138,27 @@ async function mounted(
     }
   }
 }
+test("moving optics into the evidence instrument retains one world, camera aim and captured reports", () =>
+  mounted(async (q) => {
+    const host = q.document.createElement("div");
+    q.document.querySelector("main")!.append(host);
+    await q.click("Pan camera right");
+    const aim = q.view();
+    await q.render({ controlsHost: host });
+    assert.ok(host.querySelector(".optical-console"));
+    await q.click("Capture A");
+    assert.match(q.document.body.textContent!, /Captured 3.00s/);
+    await q.render({ controlsHost: null, tick: 150 });
+    assert.equal(host.querySelector(".optical-console"), null);
+    assert.deepEqual(q.view(), aim);
+    assert.match(q.document.body.textContent!, /Captured 3.00s/);
+    assert.equal(q.mounts(), 1);
+    await q.render({ controlsHost: host, tick: 150 });
+    assert.ok(host.querySelector(".optical-console"));
+    await q.click("Capture / replace B");
+    assert.match(q.document.body.textContent!, /Captured 5.00s/);
+    assert.equal(q.mounts(), 1);
+  }));
 test("manual scan survives contact selection, explicitly reacquires, and preserves one world through phases", () =>
   mounted(async (q) => {
     await q.click("Pan camera right");

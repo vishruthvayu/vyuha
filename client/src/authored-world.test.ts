@@ -72,9 +72,10 @@ test("authored extents respect arbitrary authoritative boxes and the sensor clea
 
 test("presentation version does not turn decorative scenery into sensor geometry", () => {
   const m = worldManifest("urban_outpost");
-  assert.equal(m.revision, 2);
+  assert.equal(m.revision, 3);
+  assert.equal(m.landscapePipeline, "bounded-landscape-identity-v1");
   assert.ok(Object.isFrozen(m));
-  assert.equal(worldManifest("rural_forward_base").revision, 1);
+  assert.equal(worldManifest("rural_forward_base").revision, 2);
   const scene = readFileSync(new URL("./Scene.tsx", import.meta.url), "utf8");
   assert.match(
     scene,

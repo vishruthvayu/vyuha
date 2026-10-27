@@ -1,0 +1,126 @@
+{
+  "scope": {
+    "attemptId": "attempt-A",
+    "scenarioId": "scenario-A",
+    "engineVersion": "vyuha-0.4.0"
+  },
+  "options": {
+    "worldId": "urban_outpost:v1",
+    "assistance": "full",
+    "durationTicks": 1800
+  },
+  "cases": [
+    {
+      "id": "find-report",
+      "selection": null,
+      "tick": 60,
+      "reportTick": 60,
+      "sampleTick": 60,
+      "actions": [],
+      "expectedStage": "observe"
+    },
+    {
+      "id": "inspect-report",
+      "selection": "T1",
+      "tick": 60,
+      "reportTick": 60,
+      "sampleTick": 60,
+      "actions": [],
+      "expectedStage": "investigate"
+    },
+    {
+      "id": "designated",
+      "selection": "T1",
+      "tick": 60,
+      "reportTick": 60,
+      "sampleTick": 60,
+      "actions": ["designate"],
+      "expectedStage": "decide"
+    },
+    {
+      "id": "monitor-after-response",
+      "selection": "T1",
+      "tick": 60,
+      "reportTick": 60,
+      "sampleTick": 60,
+      "actions": ["designate", "classify", "engage"],
+      "expectedStage": "decide"
+    },
+    {
+      "id": "ended-reconstruction",
+      "selection": "T1",
+      "tick": 60,
+      "reportTick": 60,
+      "sampleTick": 60,
+      "actions": ["designate"],
+      "completed": true,
+      "expectedStage": "reconstruct"
+    },
+    {
+      "id": "stale-report",
+      "selection": "T1",
+      "tick": 61,
+      "reportTick": 30,
+      "sampleTick": 30,
+      "actions": [],
+      "expectedStage": "observe"
+    },
+    {
+      "id": "age-boundary",
+      "selection": "T1",
+      "tick": 60,
+      "reportTick": 30,
+      "sampleTick": 30,
+      "actions": [],
+      "expectedStage": "investigate"
+    },
+    {
+      "id": "undated",
+      "selection": "T1",
+      "tick": 60,
+      "reportTick": 60,
+      "sampleTick": null,
+      "actions": [],
+      "expectedStage": "observe"
+    },
+    {
+      "id": "unavailable",
+      "selection": "T1",
+      "tick": 60,
+      "reportTick": 60,
+      "sampleTick": null,
+      "unavailable": true,
+      "actions": [],
+      "expectedStage": "observe"
+    },
+    {
+      "id": "faded",
+      "selection": "T1",
+      "tick": 60,
+      "reportTick": 60,
+      "sampleTick": 60,
+      "assistance": "faded",
+      "actions": ["designate"],
+      "expectedStage": "decide"
+    },
+    {
+      "id": "independent-assessment",
+      "selection": "T1",
+      "tick": 60,
+      "reportTick": 60,
+      "sampleTick": 60,
+      "assistance": "none",
+      "actions": ["designate"],
+      "expectedStage": "decide"
+    },
+    {
+      "id": "retained-selection-no-report",
+      "selection": "T9",
+      "tick": 60,
+      "reportTick": 60,
+      "sampleTick": 60,
+      "actions": [],
+      "expectedStage": "observe"
+    }
+  ]
+}
