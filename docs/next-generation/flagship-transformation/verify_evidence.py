@@ -3,6 +3,7 @@ import hashlib
 import json
 from pathlib import Path
 import sys
+import subprocess
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
@@ -13,6 +14,7 @@ manifest = json.loads((HERE / "manifest.json").read_text())
 for item in manifest["artifacts"]:
     p = HERE / item["path"]
     assert p.is_file(), item["path"]
+    subprocess.check_output(["git", "ls-files", "--error-unmatch", p.relative_to(ROOT).as_posix()], cwd=ROOT, stderr=subprocess.DEVNULL)
     assert hashlib.sha256(p.read_bytes()).hexdigest() == item["sha256"], item["path"]
 if "--artifacts-only" not in sys.argv:
     assert source_hash() == manifest["runtime_source_hash"], "Runtime source differs from this receipt; do not reuse it as current acceptance"

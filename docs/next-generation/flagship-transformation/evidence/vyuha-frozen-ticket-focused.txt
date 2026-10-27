@@ -1,0 +1,18 @@
+✔ a public server-frozen lesson reaches the client exactly without mutating its context or preparation (2.33875ms)
+✔ absent briefing and previous preparations remain compatible and never substitute current catalog prose (0.143958ms)
+✔ scope, frozen catalog, mode, assistance and version mismatches fail closed (1.113042ms)
+✔ public field whitelist and bounded readable prose reject hidden data, malformed arrays and coercible objects (0.380083ms)
+✔ independent assessment is explicitly labeled and cannot inherit guided practice assistance (0.15625ms)
+✔ a valid previous lesson never supplies prose to a different live scenario (0.105042ms)
+✔ public scenery survey and keyboard camera controls never dispatch Start, and the primary launch node stays mounted (155.56375ms)
+✔ busy preparation/start guards actions and communicates the actual phase (28.069ms)
+✔ populated briefing and survey expose named keyboard controls and pass structural axe (237.130333ms)
+✔ briefing renders input as text, omits malformed optional facts and has no implicit launch (8.985625ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1547.316792

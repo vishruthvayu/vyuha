@@ -84,7 +84,7 @@
       "bytes": 72359
     },
     {
-      "path": "evidence/vyuha-episode-briefing-integrated-backend.log",
+      "path": "evidence/vyuha-episode-briefing-integrated-backend.txt",
       "sha256": "d826aabaa490ff9e0890d5f2848e79f48482d703a8f92a79d1c9730123f79e03",
       "bytes": 663
     },
@@ -144,12 +144,12 @@
       "bytes": 67329
     },
     {
-      "path": "evidence/vyuha-flagship-final-format.log",
+      "path": "evidence/vyuha-flagship-final-format.txt",
       "sha256": "ae80abe9e278f6bc0f6fa2a7b6f6bc00a4e39837fbeb33b14cdfedfbba16472b",
       "bytes": 2072
     },
     {
-      "path": "evidence/vyuha-flagship-final-lint.log",
+      "path": "evidence/vyuha-flagship-final-lint.txt",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "bytes": 0
     },
@@ -179,17 +179,17 @@
       "bytes": 7433
     },
     {
-      "path": "evidence/vyuha-flagship-sealed-build.log",
+      "path": "evidence/vyuha-flagship-sealed-build.txt",
       "sha256": "5b1f9eb4e0138a81bcc18c433f94ede3a43fabbb6864d7a4c992a44d4c748984",
       "bytes": 6277
     },
     {
-      "path": "evidence/vyuha-flagship-sealed-focused.log",
+      "path": "evidence/vyuha-flagship-sealed-focused.txt",
       "sha256": "264f73944a8b0306ca63d16c7899dd9434be5c4699e03c4a94975d9071305f8f",
       "bytes": 14912
     },
     {
-      "path": "evidence/vyuha-flagship-sealed-lint.log",
+      "path": "evidence/vyuha-flagship-sealed-lint.txt",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "bytes": 0
     },
@@ -204,12 +204,12 @@
       "bytes": 44868
     },
     {
-      "path": "evidence/vyuha-frozen-ticket-final-tsc.log",
+      "path": "evidence/vyuha-frozen-ticket-final-tsc.txt",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "bytes": 0
     },
     {
-      "path": "evidence/vyuha-frozen-ticket-focused.log",
+      "path": "evidence/vyuha-frozen-ticket-focused.txt",
       "sha256": "5597d6522e20dae73961e979aafacec33ad4c43ab0cdb896924b495896e7eae1",
       "bytes": 1202
     },
@@ -270,8 +270,8 @@
     },
     {
       "path": "verify_evidence.py",
-      "sha256": "9445e9f219f6bbecb40f0cd98cee9dea882a5004c4fdec1962cac108cb13985f",
-      "bytes": 1662
+      "sha256": "063f3da869052a082d810721b2e176e7b017444c3673a93659e6bcf1cc35c33b",
+      "bytes": 1817
     }
   ]
 }
