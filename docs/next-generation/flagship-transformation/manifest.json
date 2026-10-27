@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "status": "DEVELOPMENT_CHECKPOINT_NOT_RELEASE_ACCEPTANCE",
+  "runtime_commit": "292551848e55414b8cd1589cd9ab6be2c58486b4",
+  "runtime_source_hash": "f4bed13370bbb2d2fe9199e5645df845bbf27185aa2f663765935e23a2a9b138",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "protected_refs": {
+    "release/v1.0.1": "2ca96105044ad6a14952d74db619e20006c26eca",
+    "integration/vyuha-combined-acceptance": "259c50acdc5373a7971e9885b1232645edf23466",
+    "integration/vyuha-browser-vr-unified": "f5cf3e85314333dce7d6273771a9e139af2c49fa"
+  },
+  "tests": {
+    "focused_frontend": 122,
+    "directly_affected_backend": 34,
+    "typescript": "PASS",
+    "production_build": "PASS;77 offline assets",
+    "full_regression": "NOT RERUN; development-targeted policy"
+  },
+  "matched_performance": {
+    "baseline_receipt": "evidence/vyuha-flagship-baseline-matched-200.json",
+    "candidate_receipt": "evidence/vyuha-flagship-candidate-matched-200.json",
+    "matching_keys": [
+      "viewport_at_run",
+      "reproduction_path",
+      "engine_version",
+      "contacts",
+      "graphics",
+      "auto_quality",
+      "world",
+      "night",
+      "vision",
+      "camera_preset",
+      "roster_mode",
+      "requested_seconds"
+    ],
+    "interpretation": "60/60median FPS; no overall speedup claim; read PERFORMANCE.md"
+  },
+  "original_session_integrity": {
+    "tables": 18,
+    "unchanged": true
+  },
+  "limitations": [
+    "No full release acceptance or RC/tag",
+    "100% browser zoom not established; exact receipt DPR disclosed",
+    "Physical Windows/Linux/Android/headset/LAN HTTPS/WAN-off final-candidate tests not claimed",
+    "No human learning-gain/mastery/transfer claims",
+    "Advisory recency and bounded OrbitControls release listener documented",
+    "Next opportunity-rehearsal slice not included in runtime commit"
+  ],
+  "artifacts": [
+    {
+      "path": "PERFORMANCE.md",
+      "sha256": "be784e219c5f5bb54e5b0a0cf3019c213d7c58b594c23ee78243b6fb71d50092",
+      "bytes": 3138
+    },
+    {
+      "path": "REVIEW.md",
+      "sha256": "10c3f3241b36b2441a01dd3d0ca98efbe6abc5d11596588b68106ef65c3aa3b1",
+      "bytes": 3394
+    },
+    {
+      "path": "STATUS.md",
+      "sha256": "8255b7f2cb51270869927d4644d1a4e35ba1f9d563e37fcf66ab0263092b0b18",
+      "bytes": 6749
+    },
+    {
+      "path": "evidence/vyuha-authored-session-verified.jpg",
+      "sha256": "b44a2b9ae9240f8ba87dc273c66fe1aff079d1c5a2a5221d239b5ad62c85f987",
+      "bytes": 80432
+    },
+    {
+      "path": "evidence/vyuha-authored-training-briefing.txt",
+      "sha256": "afb4a801802710d1b62b6a48422bc0ccb8c6eb9517a2326959b8fdfad62c9d26",
+      "bytes": 500
+    },
+    {
+      "path": "evidence/vyuha-connected-practice-review.txt",
+      "sha256": "12111b397e1372d5b1d87a6ea2bbd69057dd3d5e494fdec71a7a81f6e8ec067d",
+      "bytes": 1877
+    },
+    {
+      "path": "evidence/vyuha-connected-practice-verified.jpg",
+      "sha256": "8680449de6664eafc5849a2e260e5b7d13a978231ceea7a2bb2ae16fc5222875",
+      "bytes": 72359
+    },
+    {
+      "path": "evidence/vyuha-episode-briefing-integrated-backend.log",
+      "sha256": "d826aabaa490ff9e0890d5f2848e79f48482d703a8f92a79d1c9730123f79e03",
+      "bytes": 663
+    },
+    {
+      "path": "evidence/vyuha-final-frozen-episode-identity.jpg",
+      "sha256": "a5d733eb4ad0f94ae9b895289e49dc59665f8bb3d8b6b2ff9abaa7089efd9cb9",
+      "bytes": 82418
+    },
+    {
+      "path": "evidence/vyuha-final-frozen-episode-identity.txt",
+      "sha256": "e04312d5f39f2a10d1c13bf1ce01349548b990a81139336e538e308a26f971da",
+      "bytes": 1004
+    },
+    {
+      "path": "evidence/vyuha-flagship-active-before.jpg",
+      "sha256": "709f0ab86e19cf3b41a42b9e82671aa68fcb6ed187f5ffcfc27245a9fe553732",
+      "bytes": 80940
+    },
+    {
+      "path": "evidence/vyuha-flagship-baseline-200.json",
+      "sha256": "4e60f4a335ac8dee671afc519d2b028b0486a3b18f6eccb33ead818bd9d1d167",
+      "bytes": 7457
+    },
+    {
+      "path": "evidence/vyuha-flagship-baseline-matched-200.json",
+      "sha256": "d33c536ee01b19a7f27f22903c0894cd86e699e3c1cd5ab27d8c95d65fbdfc00",
+      "bytes": 7458
+    },
+    {
+      "path": "evidence/vyuha-flagship-baseline-matched-timings.json",
+      "sha256": "e1012b6433934293ab9a635ac69e1acfb903ab7e4da711aec972c18101312ea3",
+      "bytes": 605203
+    },
+    {
+      "path": "evidence/vyuha-flagship-baseline-timings.json",
+      "sha256": "8987883f4557e13efc98c734d93fd08c7724353dc074eb2bdbcbd8559c477e69",
+      "bytes": 1624991
+    },
+    {
+      "path": "evidence/vyuha-flagship-candidate-200.json",
+      "sha256": "985276add6888494562efd55edcd681c1d2c211ac2ca03ebd47ff5c763e84f76",
+      "bytes": 7222
+    },
+    {
+      "path": "evidence/vyuha-flagship-candidate-matched-200.json",
+      "sha256": "8f1e4762c41c2ca71c8fb57af0c1f6c6abf1699a8c75c2825a20a01b59ad8f10",
+      "bytes": 7391
+    },
+    {
+      "path": "evidence/vyuha-flagship-candidate-matched-timings.json",
+      "sha256": "43e66495d23a3fb10153362217aa5e7ed3bc919cc3fcf5a927e82967486d2605",
+      "bytes": 1165692
+    },
+    {
+      "path": "evidence/vyuha-flagship-entry-before.jpg",
+      "sha256": "e45254745166e752b599ebb65a1891d48c1db8037b9496bf2fc58aeef0292795",
+      "bytes": 67329
+    },
+    {
+      "path": "evidence/vyuha-flagship-final-format.log",
+      "sha256": "ae80abe9e278f6bc0f6fa2a7b6f6bc00a4e39837fbeb33b14cdfedfbba16472b",
+      "bytes": 2072
+    },
+    {
+      "path": "evidence/vyuha-flagship-final-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "evidence/vyuha-flagship-original-evidence-after.json",
+      "sha256": "3bcd69b66169a12ea5dd1f49d25d8b6a239bf8e0816836d172d0e2ab01718152",
+      "bytes": 2466
+    },
+    {
+      "path": "evidence/vyuha-flagship-original-evidence-before.json",
+      "sha256": "3bcd69b66169a12ea5dd1f49d25d8b6a239bf8e0816836d172d0e2ab01718152",
+      "bytes": 2466
+    },
+    {
+      "path": "evidence/vyuha-flagship-pinned-200.json",
+      "sha256": "822d7c8b75fd10b887a71fad4274aa46683e27d873544d31727b48d9396b002c",
+      "bytes": 7339
+    },
+    {
+      "path": "evidence/vyuha-flagship-pinned-timings.json",
+      "sha256": "44a87a5c999454b9f1787479548d67c26da6a0769868e3405424fe28dec97a8c",
+      "bytes": 814109
+    },
+    {
+      "path": "evidence/vyuha-flagship-pinned-warmup-200.json",
+      "sha256": "0545f8c458ee2806fa6d1b8fbe365ce73d9199ee21756c7554c6210ea22e2c34",
+      "bytes": 7433
+    },
+    {
+      "path": "evidence/vyuha-flagship-sealed-build.log",
+      "sha256": "5b1f9eb4e0138a81bcc18c433f94ede3a43fabbb6864d7a4c992a44d4c748984",
+      "bytes": 6277
+    },
+    {
+      "path": "evidence/vyuha-flagship-sealed-focused.log",
+      "sha256": "264f73944a8b0306ca63d16c7899dd9434be5c4699e03c4a94975d9071305f8f",
+      "bytes": 14912
+    },
+    {
+      "path": "evidence/vyuha-flagship-sealed-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "evidence/vyuha-flagship-sealed-selection.json",
+      "sha256": "b651925ba27e353718e8cc706c423a7785f13219813822bd0345c1fa4bdf40fc",
+      "bytes": 599
+    },
+    {
+      "path": "evidence/vyuha-frozen-episode-briefing-mobile.jpg",
+      "sha256": "cfcc2b616aabaf01c1330729829bf040889d46ecc773c6d8f310ea7c2d4506d1",
+      "bytes": 44868
+    },
+    {
+      "path": "evidence/vyuha-frozen-ticket-final-tsc.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "evidence/vyuha-frozen-ticket-focused.log",
+      "sha256": "5597d6522e20dae73961e979aafacec33ad4c43ab0cdb896924b495896e7eae1",
+      "bytes": 1202
+    },
+    {
+      "path": "evidence/vyuha-raid-rehearsal-desktop.jpg",
+      "sha256": "de2cb38de3072047d2001aebe2448c976f2098f3e6f73ee2e01362ddb4cebbdf",
+      "bytes": 78563
+    },
+    {
+      "path": "evidence/vyuha-rejected-ticket-persistent.jpg",
+      "sha256": "af671df4deb5ad7e1383dacea6e8de11ff228dd504b1d7a297b5cb80e5dbd283",
+      "bytes": 72219
+    },
+    {
+      "path": "evidence/vyuha-station-entry-desktop.jpg",
+      "sha256": "4772786bfcfde7b5932ee4c6bd93aac21f1f918ab6f1d6934a73e000dc05d183",
+      "bytes": 87930
+    },
+    {
+      "path": "evidence/vyuha-station-offline-mobile.jpg",
+      "sha256": "5bd0dfd74cf13571f16d71a49929edfea422bfee56dbfa5258405f360d9d7daa",
+      "bytes": 55104
+    },
+    {
+      "path": "evidence/vyuha-station-radar-mobile.jpg",
+      "sha256": "a79410c92c607d54bea2e76e2629893b082c01994d27f48ed84aa8886f22943c",
+      "bytes": 34054
+    },
+    {
+      "path": "evidence/vyuha-used-ticket-persistent.jpg",
+      "sha256": "a0632c40a20bdf7cdbed941cb99577e63c2d38cd3a56d819e2ec527789fc3996",
+      "bytes": 58877
+    },
+    {
+      "path": "research/authoring-handoff.md",
+      "sha256": "017174fcd42cbe86773c07d9c4b4376301a61a3f89b87648318af505130b50cb",
+      "bytes": 4659
+    },
+    {
+      "path": "research/environment-handoff.md",
+      "sha256": "04147c0d2bda514d61720e9219de95a90e0aac13a8115b57d51216a440f48d94",
+      "bytes": 7794
+    },
+    {
+      "path": "research/frozen-briefing-handoff.md",
+      "sha256": "a7170dbc8284fe2d4029f62ecc24a1500ae588180c133f2ee1535bf317da50be",
+      "bytes": 5206
+    },
+    {
+      "path": "research/product-direction.md",
+      "sha256": "a9e9c4c0074540e6110e33c465a412613001561484087be98a48f1dd625d63ab",
+      "bytes": 24566
+    },
+    {
+      "path": "research/training-bridge-handoff.md",
+      "sha256": "c151904c6e34996fa70feca28da913304155017fa1b3c351ca3b04d80cdd8065",
+      "bytes": 5700
+    },
+    {
+      "path": "verify_evidence.py",
+      "sha256": "9445e9f219f6bbecb40f0cd98cee9dea882a5004c4fdec1962cac108cb13985f",
+      "bytes": 1662
+    }
+  ]
+}

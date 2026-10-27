@@ -1,0 +1,53 @@
+Academy practice evidence
+
+Practice only · excluded from individual assessment
+
+ORIGINAL DECISION → RECONSTRUCTION → NEXT EPISODE
+
+Build your next rehearsal from this evidence
+
+Choose a source decision, reconstruct its information boundary, then deliberately prepare a practice episode. This is an explainable navigation aid, not a proficiency model.
+
+C02
+Explore an evidence gap
+C04
+Explore an evidence gap
+C01
+Extend supported practice
+1 · Reconstruct the original moment
+
+Some original decisions could not be assessed from the available evidence. This is an evidence opportunity gap, not an incorrect answer or learner deficit.
+
+Original contact/competency votes: 0 supported · 0 incorrect · 1 unassessable. Repeated decisions are not extra credit.
+
+dec_0001
+T+4.80 s
+
+Unassessable · insufficient observable evidence
+
+Inspect original dec_0001
+Bound to original review 9278f06c91ed. Later evidence does not replace this source.
+2 · Choose a deliberate next episode
+Find current practice episodes
+
+Rehearsal selection never changes original actions, scores, competency votes or individual skill profiles. Assessment and controlled retention/transfer protocols remain separate.
+
+POST-EXERCISE REASONING PRACTICE
+
+What does the evidence establish?
+
+Revisit the reports behind your decisions. Separate a supported conclusion from one the available cues cannot establish.
+
+Open evidence investigation
+Reconstructed decision evidence · counts, not mastery percentages
+COMPETENCY	SUPPORTED	INCORRECT	UNASSESSABLE	CONTINUE LEARNING
+C01	1	0	0	Explore C01 practice
+C02	0	0	1	Explore C02 practice
+C03	0	0	0	No linked practice evidence
+C04	0	0	1	Explore C04 practice
+C05	0	0	0	No linked practice evidence
+
+Scenario-bound evidence only. No validated proficiency, operational readiness or human learning gain is inferred.
+
+Evidence and frozen selection
+Reflect on your decision

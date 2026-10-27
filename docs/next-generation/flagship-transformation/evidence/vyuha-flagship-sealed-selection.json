@@ -1,0 +1,22 @@
+[
+  "simulation-workstation.test.tsx",
+  "mission-briefing.test.tsx",
+  "world-survey.test.ts",
+  "landscape-identity.test.ts",
+  "mission-conductor.test.ts",
+  "mission-frame.test.ts",
+  "episode-briefing.test.ts",
+  "training-bridge.test.tsx",
+  "raid-rehearsal.test.ts",
+  "raid-rehearsal-ui.test.tsx",
+  "optical-station-ui.test.tsx",
+  "action-evidence.test.ts",
+  "fusion.test.tsx",
+  "academy-journey.test.tsx",
+  "learning-review-journey.test.tsx",
+  "training-deck.test.tsx",
+  "training-presentation.test.tsx",
+  "authored-world.test.ts",
+  "navigation.test.tsx",
+  "premium-ui.test.tsx"
+]

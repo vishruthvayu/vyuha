@@ -1,0 +1,77 @@
+{
+  "session": "d968b48e-8824-4a5f-b2c9-4b6ef6a9a940",
+  "tables": {
+    "rapid_answers": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "connected_clients": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "session_unit_stats": {
+      "rows": 1,
+      "sha256": "7dbd7d5c3d02b96ccec5395f20b7483ecc583a9bbb7e31f1cc06f11ec01b7a1a"
+    },
+    "exercise_assignments": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "sessions": {
+      "rows": 1,
+      "sha256": "2b970d2c1a2720d58754bf32165cf89a902641bd999e5ab0f00d8cdf8d5ce3c2"
+    },
+    "skill_outcomes": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "director_history": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "chunks": {
+      "rows": 2,
+      "sha256": "e42ddf6ea9f0c8353724a50bb0faef78408c69ec1bf8c494f8417da75f2cd7bb"
+    },
+    "instructor_commands": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "instructor_notes": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "crews": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "crew_attribution": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fusion_exposures": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "crew_archive": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "learning_attempts": {
+      "rows": 1,
+      "sha256": "a7af94b49d838b7bbb74664456f9c42b6cbd25e34c80bde8a7207fcc2075ba7b"
+    },
+    "learning_reflections": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "learning_investigations": {
+      "rows": 1,
+      "sha256": "81f581f4e6f6bb45e5875d7ac440a93eaa11142e4347dd8fbbfbbed90233cd5a"
+    },
+    "learning_investigation_requests": {
+      "rows": 5,
+      "sha256": "78b7113e036bd1438f63343c38eba4d0610475c8cebf83fd56b24b9d303c3d2f"
+    }
+  }
+}

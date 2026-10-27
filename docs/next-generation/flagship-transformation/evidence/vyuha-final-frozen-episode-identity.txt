@@ -1,0 +1,39 @@
+FROZEN EXERCISE / READY
+
+Evidence-based classification: practice B
+
+C02 · C02_PRACTICE_B
+
+Distinguish supported classification from information the sensors cannot resolve.
+
+Episode instructions
+Select an observed contact; retain uncertainty when evidence is insufficient.
+Make your own designation, classification and response choices.
+After completion, inspect the verified evidence and explain one choice.
+Frozen episode identity
+Catalog version
+learning-v1
+Catalog fingerprint
+5abe5c7920a40c989546bc59abf77c4cb6430f0cd8a8af5dca2a361ac977d345
+Prepared scenario
+raid_038e81e32760cd92fdee0c76
+Preparation
+a07c9f9b-91de-474d-b5e1-f3ccd8788e46
+Environment
+Urban outpost
+Conditions
+Day · illustrative sensor conditions
+Exercise time
+60 seconds
+Planned contacts
+3
+Learning support
+faded · frozen learning policy
+Training boundaries
+Ready for your explicit start
+
+The frozen exercise starts only when you choose Start.
+
+Contact-free scenery · not sensor evidence
+Explore environment
+Start Academy practice
