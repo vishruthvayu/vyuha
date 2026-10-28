@@ -1,0 +1,4 @@
+Browser tab: 1027396728, Title: "VYUHA · Counter-drone trainer", URL: "http://localhost:8050/?view=aar&session=7ee3d567-af2d-41eb-9a59-aa921f8d8e81".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+~					85 text 60 fps
+The focused UI element is 136 button Sample · T+5.80s

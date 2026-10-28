@@ -1,0 +1,151 @@
+Browser tab: 1027396728, Title: "VYUHA · Counter-drone trainer", URL: "http://localhost:8050/?acquisition=1&seed=482914&night=1".
+1 AXWebArea VYUHA · Counter-drone trainer, URL: localhost:8050/?acquisition=1&seed=482914&night=1
+	2 container root
+		4 link Description: Skip to workspace, Value: localhost:8050/?acquisition=1&seed=482914&night=1#workspace-content
+		5 container
+			6 link Description: VYUHA home, Value: localhost:8050/
+			7 container Primary workspaces
+				8 link Description: Training, Help: Training ground, Value: localhost:8050/
+				9 link Description: Review, Value: localhost:8050/?view=aar
+				10 link Description: Crew, Help: Shared crew, Value: localhost:8050/crew
+				11 link Description: Instructor, Help: Instructor console, Value: localhost:8050/instructor
+				12 link Description: Analytics, Help: Training analytics, Value: localhost:8050/analytics
+			13 button Find workspace, Help: Find workspace (Control or Command K)
+			14 button Operator guide
+				15 text Operator 
+				16 text guide
+			17 button (collapsed) Description: Workspaces, Secondary Actions: Expand
+		18 container
+			19 text SERVER OFFLINE · Session continues locally · Events queued · Instructor control unavailable · Internet not required
+			20 text COUNTER-DRONE TRAINING
+			21 heading Training ground, Value: 1
+				22 text Training ground
+			23 text Read the sensors. Identify the contact. Choose your response.
+			24 text Callsign  ACQ-V05-QA
+			25 image
+			26 text EXERCISE /  PAUSED
+			27 container Simulation station
+				28 container
+					29 text PAUSED Active observation — evidence before decision
+					30 container SERVER OFFLINE · Session continues locally · Events queued · Instructor control unavailable
+						31 text Server offline · queued locally  ·  Urban outpost · Night · Mixed contacts
+					62 text 00:11 /  01:30
+					63 button Resume
+						314 image
+						65 text Resume
+					66 button End exercise
+					33 button (disabled) Open VR observation cockpit
+						315 text VR
+						35 text Active observation: VR adapter not yet supported
+					36 pop up button (collapsed) Mission controls, Secondary Actions: Expand
+				37 container Interactive simulation workstation
+					68 container
+						69 text OBSERVATION STATION Exercise paused
+						70 container Simulation instruments
+							71 checkbox Description: Observe world, Value: 1
+							72 checkbox Description: Open radar picture, Value: 0
+							73 checkbox Description: Browse reported contacts, Value: 0
+							74 checkbox Description: Inspect selected evidence, Value: 0
+							75 checkbox Description: Open decision station, Value: 0
+					235 container
+						236 button (collapsed) Observation preferences, Secondary Actions: Expand
+							237 text Observation preferences
+						238 checkbox THERMAL, Value: 1
+						239 checkbox DAY TV, Value: 0
+						240 checkbox IR NIGHT DISPLAY, Value: 0
+						241 container
+							242 text WHITE HOT / EO-IR T1 · CUED BY RADAR · NOT SEEN BY THIS CAMERA
+						243 container
+							244 text URBAN OUTPOST CUE BEARING 255° · ALT 19 m
+						316 container
+							317 image
+							318 heading Exercise paused, Value: 2
+								319 text Exercise paused
+							320 text Use Resume in the exercise controls above.
+						250 container Optical investigation station
+							251 image
+							252 text REPORT TRACK
+							253 text T1
+							254 container Camera pan and tilt
+								255 button Pan camera left
+									256 image
+								257 button Tilt camera up
+									258 image
+								259 button Tilt camera down
+									260 image
+								261 button Pan camera right
+									262 image
+								263 button (disabled) Track selected report
+									264 image
+									265 text Track selected report
+							266 container
+								267 text Crop  1 ×
+								268 slider (settable, integer) Description: Optical station display crop, Value: 1
+							269 text Drag the scene to scan · arrow controls for keyboard · Track selected report to return
+						270 container Active observation instrument
+							271 container
+								272 text SYNTHETIC OPTICS / ENGINE 0.5
+								273 heading Resolve the uncertainty., Value: 2
+									274 text Resolve the uncertainty.
+								275 text Request a cross-check. Inspect what it actually establishes before deciding.
+							276 text OBSERVED SUBJECT
+							277 text T1
+							278 text Radar alias available · optical evidence requires a request
+							279 container Request synthetic optical observation
+								280 button (disabled) Request EO Day optical cross-check
+									281 text Request EO
+									282 text Day optical cross-check
+								283 button (disabled) Request IR Thermal cross-check
+									284 text Request IR
+									285 text Thermal cross-check
+							321 text Exercise paused · logical acquisition time is stopped.
+							322 container
+								323 text ACQUIRING  EO  /  T1 0.9 s until publication
+								324 progress indicator Description: Logical acquisition progress, Value: 10
+								325 text Sample T+ 12.30 s · publication T+ 12.50 s. Selecting another contact does not redirect this request.
+							288 container Released observations for selected contact
+								289 heading RELEASED EVIDENCE, Value: 3
+									290 text RELEASED EVIDENCE
+								291 text No released cross-check for this contact. Missing evidence is not a hostile identity.
+							292 text Evidence is reconstructed by the server. Pointing/crop do not change sampling. Request counts do not earn mastery.
+						293 text RADAR PICTURE
+						294 text NORMAL
+						295 container Radar showing detected contacts around the protected asset
+							296 text N
+							297 text E
+							298 text S
+							299 text W
+							300 text RESTRICTED
+							301 text BASE
+							302 image Schematic radar sweep
+							303 checkbox Description: Select radar contact T1, Value: 1
+								304 text T1
+							326 checkbox Description: Select radar contact T3, Value: 0
+								327 text T3
+							328 text TENTATIVE
+						305 text ILLUSTRATIVE RANGE 3000  m
+						306 container Sensor availability
+							307 text RADAR
+							308 text NORMAL
+							309 text RF
+							310 text NORMAL
+						311 checkbox 2D fallback, Value: 0
+							312 image
+							313 text 2D fallback
+					149 container Selected report context
+						150 text CURRENTLY REPORTED
+						151 text T1
+						223 definition list
+							224 container Range
+								225 text Range
+							226 text 496 m
+							227 container RF link
+								228 text RF link
+							229 text Detected
+							230 container IFF
+								231 text IFF
+							232 text No reply
+						233 text Type and identity remain your decision.
+						234 button Decide on T1
+
+The focused UI element is 63 button Resume

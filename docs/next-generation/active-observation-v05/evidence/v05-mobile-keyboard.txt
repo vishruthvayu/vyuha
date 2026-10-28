@@ -1,0 +1,89 @@
+Browser tab: 1, Title: "VYUHA · Counter-drone trainer", URL: "http://localhost:8050/?acquisition=1&night=0".
+1 AXWebArea VYUHA · Counter-drone trainer, URL: localhost:8050/?acquisition=1&night=0
+	2 container root
+		3 link Description: Skip to workspace, Value: localhost:8050/?acquisition=1&night=0#workspace-content
+		4 container
+			5 link Description: VYUHA home, Value: localhost:8050/
+			6 button Find workspace (Control or Command K)
+			7 button (collapsed) Description: Workspaces, Secondary Actions: Expand
+		8 container
+			9 text SERVER CONNECTED · Sync up to date · Internet not required
+			10 text COUNTER-DRONE TRAINING
+			11 heading Training ground, Value: 1
+				12 text Training ground
+			13 text Read the sensors. Identify the contact. Choose your response.
+			14 text Callsign  ACQ-V05-QA
+			15 image
+			16 text EXERCISE /  PAUSED
+			17 container Simulation station
+				18 container
+					19 text PAUSED Active observation — evidence before decision
+					20 container SERVER CONNECTED · Sync up to date
+						21 text Unit link ready  ·
+					22 text 00:08 /  01:30
+					23 button Resume
+						92 image
+						25 text Resume
+					26 button End exercise
+					27 pop up button (collapsed) Mission controls, Secondary Actions: Expand
+				28 container Interactive simulation workstation
+					29 container Simulation instruments
+						30 checkbox Description: Observe world, Value: 1
+						31 checkbox Description: Open radar picture, Value: 0
+						32 checkbox Description: Browse reported contacts, Value: 0
+						33 checkbox Description: Inspect selected evidence, Value: 0
+						34 checkbox Description: Open decision station, Value: 0
+					35 container
+						36 button (collapsed) Observation preferences, Secondary Actions: Expand
+							37 text Observation preferences
+						38 checkbox THERMAL, Value: 0
+						39 checkbox DAY TV, Value: 1
+						40 checkbox IR NIGHT DISPLAY, Value: 0
+						41 container
+							42 text DAY TV / OPTICAL T1 · CUED BY RADAR · NOT SEEN BY THIS CAMERA
+						43 container
+							44 text URBAN OUTPOST CUE BEARING 335° · ALT 20 m
+						93 container
+							94 image
+							95 heading Exercise paused, Value: 2
+								96 text Exercise paused
+							97 text Use Resume in the exercise controls above.
+						50 container Active observation instrument
+							51 container
+								52 text SYNTHETIC OPTICS / ENGINE 0.5
+								53 heading Resolve the uncertainty., Value: 2
+									54 text Resolve the uncertainty.
+							55 text OBSERVED SUBJECT
+							56 text T1
+							57 text Radar alias available · optical evidence requires a request
+							58 container Request synthetic optical observation
+								59 button (disabled) Request EO Day optical cross-check
+									60 text Request EO
+									61 text Day optical cross-check
+								62 button (disabled) Request IR Thermal cross-check
+									63 text Request IR
+									64 text Thermal cross-check
+							98 text Exercise paused · logical acquisition time is stopped.
+							99 container
+								100 text ACQUIRING  EO  /  T1 1.1 s until publication
+								101 progress indicator Description: Logical acquisition progress, Value: 3
+								102 text Sample T+ 9.70 s · publication T+ 9.90 s. Selecting another contact does not redirect this request.
+							67 container Released observations for selected contact
+								68 heading RELEASED EVIDENCE, Value: 3
+									69 text RELEASED EVIDENCE
+								70 text No released cross-check for this contact. Missing evidence is not a hostile identity.
+							71 text Evidence is reconstructed by the server. Pointing/crop do not change sampling. Request counts do not earn mastery.
+					72 container Selected report context
+						73 text CURRENTLY REPORTED
+						74 text T1
+						84 definition list
+							85 container RF link
+								86 text RF link
+							87 text Detected
+							88 container IFF
+								89 text IFF
+							90 text No reply
+						91 button Decide on T1
+			76 text Training prototype · Illustrative signatures, ranges and responses · Detection timing begins at first working-sensor observation. Development preview.
+
+The focused UI element is 23 button Resume

@@ -1,0 +1,137 @@
+{
+  "method": "Native reconstruction from equal geometry/seed/horizon, alternating order, no actions/commands; optical semantics differ (passive versus gated). Not graphics FPS, isolated machine capacity, or learning efficacy.",
+  "platform": "Darwin",
+  "architecture": "arm64",
+  "source_files": {
+    "server/engine_v2.py": "c88e4e833d88fbe0069a797278adc15fe4318c8b71e78204beb128b580a07d05",
+    "server/engine_v3.py": "1b5dca77cb417ce35876f81a8498429236c88da2d42225ae3f552f782277f24d",
+    "server/optical_task_scheduler.py": "539608876252c1bd20c00ab3ae0e8ea66efb826ac03eeb48d1a38ed35f6cdebf",
+    "server/sensors_v2.py": "d53d7fb14e44485db97961fd7d2426bafb7f54e3c7b9409286f5e828bf99768f"
+  },
+  "results": [
+    {
+      "contacts": 3,
+      "seed": 482913,
+      "duration_s": 90,
+      "actions": 0,
+      "commands": 0,
+      "repeats": 3,
+      "raw": {
+        "v04": [
+          {
+            "wall_s": 1.7144464999996671,
+            "cpu_s": 0.9083130000000001,
+            "end_tick": 2700
+          },
+          {
+            "wall_s": 2.3483497090001038,
+            "cpu_s": 0.886685,
+            "end_tick": 2700
+          },
+          {
+            "wall_s": 2.391032125000038,
+            "cpu_s": 0.9132089999999993,
+            "end_tick": 2700
+          }
+        ],
+        "v05": [
+          {
+            "wall_s": 2.4243344579999757,
+            "cpu_s": 1.571138,
+            "end_tick": 2700
+          },
+          {
+            "wall_s": 9.043852541999968,
+            "cpu_s": 1.827375,
+            "end_tick": 2700
+          },
+          {
+            "wall_s": 3.080146291999881,
+            "cpu_s": 1.5344230000000003,
+            "end_tick": 2700
+          }
+        ]
+      },
+      "summary": {
+        "v04": {
+          "median_wall_s": 2.3483497090001038,
+          "wall_range_s": [
+            1.7144464999996671,
+            2.391032125000038
+          ],
+          "median_cpu_s": 0.9083130000000001
+        },
+        "v05": {
+          "median_wall_s": 3.080146291999881,
+          "wall_range_s": [
+            2.4243344579999757,
+            9.043852541999968
+          ],
+          "median_cpu_s": 1.571138
+        }
+      }
+    },
+    {
+      "contacts": 20,
+      "seed": 482913,
+      "duration_s": 120,
+      "actions": 0,
+      "commands": 0,
+      "repeats": 3,
+      "raw": {
+        "v04": [
+          {
+            "wall_s": 5.217861083999651,
+            "cpu_s": 3.8017660000000006,
+            "end_tick": 3600
+          },
+          {
+            "wall_s": 4.103463458000078,
+            "cpu_s": 3.554090000000002,
+            "end_tick": 3600
+          },
+          {
+            "wall_s": 5.311330875000294,
+            "cpu_s": 3.817097999999998,
+            "end_tick": 3600
+          }
+        ],
+        "v05": [
+          {
+            "wall_s": 9.31178962499962,
+            "cpu_s": 8.012899,
+            "end_tick": 3600
+          },
+          {
+            "wall_s": 7.63143083299974,
+            "cpu_s": 7.243206000000001,
+            "end_tick": 3600
+          },
+          {
+            "wall_s": 6.948064333000275,
+            "cpu_s": 6.535894000000006,
+            "end_tick": 3600
+          }
+        ]
+      },
+      "summary": {
+        "v04": {
+          "median_wall_s": 5.217861083999651,
+          "wall_range_s": [
+            4.103463458000078,
+            5.311330875000294
+          ],
+          "median_cpu_s": 3.8017660000000006
+        },
+        "v05": {
+          "median_wall_s": 7.63143083299974,
+          "wall_range_s": [
+            6.948064333000275,
+            9.31178962499962
+          ],
+          "median_cpu_s": 7.243206000000001
+        }
+      }
+    }
+  ]
+}

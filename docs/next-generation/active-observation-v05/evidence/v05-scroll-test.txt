@@ -1,0 +1,10 @@
+✔ real acquisition UI shows pending then released immutable evidence, blocks double submit and keeps contact scope (133.099583ms)
+✔ an acquisition acknowledgment is labelled as observation intent, not an effector response (0.236667ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1712.378583

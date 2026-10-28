@@ -1,0 +1,4 @@
+37e2339db58000db6e02ed005b42db27c6375feb	refs/heads/feature/vyuha-next-generation
+259c50acdc5373a7971e9885b1232645edf23466	refs/heads/integration/vyuha-combined-acceptance
+2ca96105044ad6a14952d74db619e20006c26eca	refs/heads/release/v1.0.1
+4696b0583238d07eb9fcfcec128a437caf28e17b	refs/tags/v1.0.1

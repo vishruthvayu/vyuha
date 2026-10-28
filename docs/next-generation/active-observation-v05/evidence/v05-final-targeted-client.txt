@@ -1,0 +1,17 @@
+✔ active engine has actual Python/TypeScript request/sample/release/decision parity for day, night, fault and cancellation (2848.138ms)
+✔ active engine fails closed for malformed policy/unknown channels and old engines never accept inspect (1366.405958ms)
+✔ worker restores pending acquisition, respects release order gaps, correlates duplicates and cancels exactly once (2615.316ms)
+✔ review cursor can precede a known future completion boundary without cancelling or crashing (1424.327459ms)
+✔ verified acquisition feedback uses release order and expiry at each decision, never future or stale evidence (25.646209ms)
+✔ real acquisition UI shows pending then released immutable evidence, blocks double submit and keeps contact scope (477.604458ms)
+✔ an acquisition acknowledgment is labelled as observation intent, not an effector response (0.678541ms)
+✔ autonomous reference summary separates original score, own decisions and projected canonical truth (42.324208ms)
+✔ evidence-only result retains conservative label and unknown observed horizon (7.939375ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11211.433

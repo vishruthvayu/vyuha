@@ -1,0 +1,33 @@
+         44134595 function calls (38334259 primitive calls) in 15.694 seconds
+
+   Ordered by: cumulative time
+   List reduced from 71 to 25 due to restriction <25>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.003    0.003   15.694   15.694 <stdin>:6(run)
+     3600    0.007    0.000   15.687    0.004 engine_v1_0_1.py:146(step)
+     3601    0.318    0.000   15.683    0.004 engine_v3.py:79(observe)
+5408553/82845    4.267    0.000    8.579    0.000 copy.py:118(deepcopy)
+557473/82845    1.427    0.000    8.384    0.000 copy.py:217(_deepcopy_dict)
+     3601    0.241    0.000    6.629    0.002 engine_v2.py:34(observe)
+    72020    0.738    0.000    5.345    0.000 sensors_v2.py:205(_observe_sensors)
+   144040    0.592    0.000    2.889    0.000 sensors_v2.py:146(_optical_observation)
+ 13462394    1.852    0.000    1.852    0.000 {method 'get' of 'dict' objects}
+   121205    0.745    0.000    1.575    0.000 sensors_v2.py:80(line_of_sight)
+    72000    0.376    0.000    0.996    0.000 sensors_v2.py:179(_copy_sensor_memory)
+  6671202    0.654    0.000    0.654    0.000 {built-in method builtins.id}
+   275568    0.262    0.000    0.562    0.000 {built-in method builtins.any}
+    59631    0.311    0.000    0.541    0.000 raid_v2.py:130(raid_position)
+   589902    0.279    0.000    0.420    0.000 copy.py:231(_keep_alive)
+  4818651    0.365    0.000    0.365    0.000 copy.py:172(_deepcopy_atomic)
+   128407    0.232    0.000    0.345    0.000 sensors_v2.py:62(validate_environment)
+    10803    0.006    0.000    0.345    0.000 optical_task_scheduler.py:35(snapshot)
+     7203    0.229    0.000    0.329    0.000 sensors_v2.py:43(configuration)
+  1418509    0.323    0.000    0.323    0.000 {built-in method builtins.max}
+  1219507    0.279    0.000    0.279    0.000 {built-in method builtins.min}
+     3601    0.030    0.000    0.229    0.000 sensors_v2.py:279(false_tracks)
+   284309    0.225    0.000    0.225    0.000 sensors_v2.py:36(sample)
+   211390    0.133    0.000    0.223    0.000 sensors_v2.py:135(optical_probability)
+   186943    0.134    0.000    0.197    0.000 sensors_v2.py:107(range_m)
+
+

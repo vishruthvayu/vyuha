@@ -1,0 +1,51 @@
+{
+  "method": "Sequential read-only QA profile HTTP checks after all practice journeys; not a load test",
+  "seconds": [
+    0.0073841670018737204,
+    0.002794457999698352,
+    0.0022346669975377154
+  ],
+  "profile": {
+    "trainee": "T_95bd77cb342c44faa6a17c",
+    "sessions": 0,
+    "skills": {
+      "detection": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "observations": 0,
+        "mean": 0.5,
+        "updated_at": null,
+        "last_session_id": null
+      },
+      "classification_iff": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "observations": 0,
+        "mean": 0.5,
+        "updated_at": null,
+        "last_session_id": null
+      },
+      "effector_choice": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "observations": 0,
+        "mean": 0.5,
+        "updated_at": null,
+        "last_session_id": null
+      },
+      "degraded_sensor_response": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "observations": 0,
+        "mean": 0.5,
+        "updated_at": null,
+        "last_session_id": null
+      }
+    },
+    "outcomes": [],
+    "unprocessed_sessions": [],
+    "prior_alpha": 1.0,
+    "prior_beta": 1.0,
+    "version": "director-v1"
+  }
+}

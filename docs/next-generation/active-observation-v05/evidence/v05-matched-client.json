@@ -1,0 +1,78 @@
+{
+  "baseline_commit": "733c6f8581c164ea287824aa8fda2580094922ac",
+  "method": "Native Node/TypeScript simulation stepping, same frozen scenarios as Python matched run; alternating 5 pairs, identical final snapshots. This does not measure browser frame pacing or GPU time.",
+  "results": [
+    {
+      "contacts": 3,
+      "scenario_sha256": "a10497b51d3f7d23e2d25c835f7f50b308815ce27873273101cbb9a9fa28fc38",
+      "raw": {
+        "baseline": [
+          185.429458,
+          157.05483400000003,
+          156.40312500000005,
+          162.779,
+          170.70729099999994
+        ],
+        "optimized": [
+          133.078417,
+          128.199792,
+          127.08312499999988,
+          130.51558299999988,
+          122.11750000000006
+        ]
+      },
+      "summary": {
+        "baseline": {
+          "median_ms": 162.779,
+          "range_ms": [
+            156.40312500000005,
+            185.429458
+          ]
+        },
+        "optimized": {
+          "median_ms": 128.199792,
+          "range_ms": [
+            122.11750000000006,
+            133.078417
+          ]
+        }
+      }
+    },
+    {
+      "contacts": 20,
+      "scenario_sha256": "5a66f17e1f4bcbc19c41a288529a9d918a9f675ccf693cdc04e5e1cf0343ed10",
+      "raw": {
+        "baseline": [
+          1056.5826250000002,
+          1369.7558749999998,
+          3719.1722500000005,
+          961.1570839999986,
+          957.7633750000005
+        ],
+        "optimized": [
+          671.9061670000001,
+          689.2618329999996,
+          678.2387089999993,
+          701.4681670000009,
+          752.4237919999996
+        ]
+      },
+      "summary": {
+        "baseline": {
+          "median_ms": 1056.5826250000002,
+          "range_ms": [
+            957.7633750000005,
+            3719.1722500000005
+          ]
+        },
+        "optimized": {
+          "median_ms": 689.2618329999996,
+          "range_ms": [
+            671.9061670000001,
+            752.4237919999996
+          ]
+        }
+      }
+    }
+  ]
+}

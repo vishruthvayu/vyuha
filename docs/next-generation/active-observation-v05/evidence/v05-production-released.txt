@@ -1,0 +1,89 @@
+Browser tab: 1, Title: "VYUHA · Counter-drone trainer", URL: "http://localhost:8052/?acquisition=1&night=0".
+0 AXWebArea VYUHA · Counter-drone trainer, URL: localhost:8052/?acquisition=1&night=0
+	1 container root
+		2 link Description: Skip to workspace, Value: localhost:8052/?acquisition=1&night=0#workspace-content
+		3 container
+			4 link Description: VYUHA home, Value: localhost:8052/
+			5 button Find workspace (Control or Command K)
+			6 button (collapsed) Description: Workspaces, Secondary Actions: Expand
+		7 container
+			8 text SERVER CONNECTED · Sync up to date · Internet not required
+			9 text COUNTER-DRONE TRAINING
+			10 heading Training ground, Value: 1
+				11 text Training ground
+			12 text Read the sensors. Identify the contact. Choose your response.
+			13 text Callsign  ACQ-V05-QA
+			14 image
+			15 text EXERCISE /  PAUSED
+			16 container Simulation station
+				17 container
+					18 text PAUSED Active observation — evidence before decision
+					19 container SERVER CONNECTED · Sync up to date
+						20 text Unit link ready  ·
+					21 text 00:05 /  01:30
+					22 button Resume
+						91 image
+						24 text Resume
+					25 button End exercise
+					26 pop up button (collapsed) Mission controls, Secondary Actions: Expand
+				27 container Interactive simulation workstation
+					28 container Simulation instruments
+						29 checkbox Description: Observe world, Value: 1
+						30 checkbox Description: Open radar picture, Value: 0
+						31 checkbox Description: Browse reported contacts, Value: 0
+						32 checkbox Description: Inspect selected evidence, Value: 0
+						33 checkbox Description: Open decision station, Value: 0
+					34 container
+						35 button (collapsed) Observation preferences, Secondary Actions: Expand
+							36 text Observation preferences
+						37 checkbox THERMAL, Value: 0
+						38 checkbox DAY TV, Value: 1
+						39 checkbox IR NIGHT DISPLAY, Value: 0
+						40 container
+							41 text DAY TV / OPTICAL T1 · CUED BY RADAR · NOT SEEN BY THIS CAMERA
+						42 container
+							43 text URBAN OUTPOST CUE BEARING 334° · ALT 20 m
+						92 container
+							93 image
+							94 heading Exercise paused, Value: 2
+								95 text Exercise paused
+							96 text Use Resume in the exercise controls above.
+						49 container Active observation instrument
+							50 container
+								51 text SYNTHETIC OPTICS / ENGINE 0.5
+								52 heading Resolve the uncertainty., Value: 2
+									53 text Resolve the uncertainty.
+							54 text OBSERVED SUBJECT
+							55 text T1
+							56 text Radar alias available · optical evidence requires a request
+							57 container Request synthetic optical observation
+								58 button (disabled) Request EO Day optical cross-check
+									59 text Request EO
+									60 text Day optical cross-check
+								61 button (disabled) Request IR Thermal cross-check
+									62 text Request IR
+									63 text Thermal cross-check
+							97 text Exercise paused · logical acquisition time is stopped.
+							98 text One simulated optical task slot · positive dwell · results may be insufficient or unavailable.
+							66 container Released observations for selected contact
+								67 heading RELEASED EVIDENCE, Value: 3
+									68 text RELEASED EVIDENCE
+								99 container
+									100 container
+										101 text IR  /  T1
+									102 text RELEASED Detection only This result does not establish type or affiliation. Requested  4.13 s · sampled 5.20 s · released  5.40 s · expires  8.40 s
+							70 text Evidence is reconstructed by the server. Pointing/crop do not change sampling. Request counts do not earn mastery.
+					71 container Selected report context
+						72 text CURRENTLY REPORTED
+						73 text T1
+						83 definition list
+							84 container RF link
+								85 text RF link
+							86 text Detected
+							87 container IFF
+								88 text IFF
+							89 text No reply
+						90 button Decide on T1
+			75 text Training prototype · Illustrative signatures, ranges and responses · Detection timing begins at first working-sensor observation. Offline cache ready.
+
+The focused UI element is 22 button Resume

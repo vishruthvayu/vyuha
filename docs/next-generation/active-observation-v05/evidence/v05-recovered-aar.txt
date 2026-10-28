@@ -1,0 +1,467 @@
+Browser tab: 1027396728, Title: "VYUHA · Counter-drone trainer", URL: "http://localhost:8050/?acquisition=1&seed=482914&night=1&view=aar&session=aa312a1c-e59c-4a88-9e9f-979c21c9147b".
+1 AXWebArea VYUHA · Counter-drone trainer, URL: localhost:8050/?acquisition=1&seed=482914&night=1&view=aar&session=aa312a1c-e59c-4a88-9e9f-979c21c9147b
+	2 container root
+		4 link Description: Skip to workspace, Value: localhost:8050/?acquisition=1&seed=482914&night=1&view=aar&session=aa312a1c-e59c-4a88-9e9f-979c21c9147b#workspace-content
+		5 container
+			6 link Description: VYUHA home, Value: localhost:8050/
+			7 container Primary workspaces
+				8 link Description: Training, Help: Training ground, Value: localhost:8050/
+				9 link Description: Review, Value: localhost:8050/?view=aar
+				10 link Description: Crew, Help: Shared crew, Value: localhost:8050/crew
+				11 link Description: Instructor, Help: Instructor console, Value: localhost:8050/instructor
+				12 link Description: Analytics, Help: Training analytics, Value: localhost:8050/analytics
+			13 button Find workspace, Help: Find workspace (Control or Command K)
+			14 button Operator guide
+				15 text Operator 
+				16 text guide
+			17 button (collapsed) Description: Workspaces, Secondary Actions: Expand
+		18 container workspace-content
+			19 container
+				20 text WORKSPACE
+				21 image
+				22 text AFTER-ACTION REVIEW
+				23 image
+				24 text VYUHA server connected
+			25 text LEARN FROM EVERY DECISION
+			26 heading After-action review, Value: 1
+				27 text After-action review
+			28 text A replay of your exercise, with a traceable score and reference response.
+			29 button Export session
+				30 image
+				31 text Export session
+			32 button (collapsed) Exercise history · 3 saved exercises, Secondary Actions: Expand
+				33 text Exercise history · 
+				34 text 3
+				35 text  saved
+				36 text exercises
+			37 container review-verdict
+				38 container
+					39 text 0 / 100
+				40 text REVIEW REQUIRED
+				41 heading 1 threat reached the protected asset. Review response selection., Value: 2
+					42 text 1 threat reached the protected asset. Review response selection.
+				43 container
+					44 text ACQ-V05-QA  ·  Active observation — evidence before decision · Seed  482914
+				45 container
+					249 image
+					47 text Server verified
+				49 button Next drill
+					50 image
+					51 text Next drill
+			52 container
+				53 text RECOGNITION 0% Correct type and identity
+			54 container
+				55 text RESPONSE SELECTION 0% Reference response, fewer errors
+			56 container
+				57 text ASSET IMPACTS 1 1 hostile threats in exercise
+			58 container
+				59 text SAFETY FLAGS 0 Restricted-zone attempts
+			60 container Review sections
+				61 link Description: Verdict, Value: localhost:8050/?acquisition=1&seed=482914&night=1&view=aar&session=aa312a1c-e59c-4a88-9e9f-979c21c9147b#review-verdict
+				62 link Description: Replay & decisions, Value: localhost:8050/?acquisition=1&seed=482914&night=1&view=aar&session=aa312a1c-e59c-4a88-9e9f-979c21c9147b#review-replay
+				63 link Description: Timeline, Value: localhost:8050/?acquisition=1&seed=482914&night=1&view=aar&session=aa312a1c-e59c-4a88-9e9f-979c21c9147b#review-timeline
+				64 link Description: Decision path, Value: localhost:8050/?acquisition=1&seed=482914&night=1&view=aar&session=aa312a1c-e59c-4a88-9e9f-979c21c9147b#review-path
+				65 link Description: Comparison, Value: localhost:8050/?acquisition=1&seed=482914&night=1&view=aar&session=aa312a1c-e59c-4a88-9e9f-979c21c9147b#review-comparison
+				66 link Description: Score breakdown, Value: localhost:8050/?acquisition=1&seed=482914&night=1&view=aar&session=aa312a1c-e59c-4a88-9e9f-979c21c9147b#review-score
+			67 container Evidence reconstruction theatre, ID: review-replay
+				68 container
+					69 text INVESTIGATE THE DECISION
+					70 heading Evidence reconstruction theatre, Value: 2, ID: theatre-heading
+						71 text Evidence reconstruction theatre
+					72 text Reconstruct available observations, then compare them with the reference world. SERVER VERIFIED Active observation — evidence before decision
+				73 container Reconstruction lens
+					74 checkbox Modeled observations, Value: 1
+					75 checkbox Reference world, Value: 0
+					76 text T+0.00s  · after recorded events at this tick
+					250 container
+						251 text PINNED EVIDENCE  T+4.00s  · REVIEW T+12.63s
+				77 container Reconstruction channels
+					78 checkbox IR, Value: 1
+					79 checkbox EO, Value: 0
+					80 checkbox Radar, Value: 0
+					81 checkbox 2D fallback, Value: 0
+				82 container
+					83 text IR · MODELED OBSERVATIONS
+					84 text Sensor-origin view · observed geometry only
+					85 text 60 fps
+				86 button Play replay
+				87 slider (settable, integer) Description: Replay time, Value: 0
+				88 text T+12.63s
+				89 container Evidence at replay cursor
+					90 text AT THE PLAYHEAD
+					91 heading T+0.00s, Value: 3
+						92 text T+0.00s
+					93 text Modeled availability reconstructed from the frozen engine. This is not a recording of gaze, viewport or what the trainee actually noticed.
+					94 container
+						95 text Reported contact
+						96 pop up button (collapsed, settable) Description: Reported contact at cursor, Value: Choose a reported contact, Secondary Actions: Expand
+							97 menu
+								98 (selected) Choose a reported contact
+					99 container
+						100 text T1 has no time-valid report at this playhead. Absence of a report is not proof of an empty sky.
+					252 container
+						253 text Two different moments Ghost evidence for  T1  was captured at T+4.00s . Review moment: T+12.63s . The scene follows the playhead .
+						254 button Inspect pinned evidence moment
+				255 container Verified acquisition reconstruction
+					256 container
+						257 text VERIFIED / ACTIVE OBSERVATION
+						258 heading What information reached the decision?, Value: 2
+							259 text What information reached the decision?
+					260 container
+						261 text 1  accepted requests ·  1  published results. Requests are intentions; availability and shape resolution determine what information was returned.
+					262 container
+						263 text 0  of  0  recorded classification/response decisions had no current released optical detection. This describes missing optical evidence, not intent, wrongness by itself or a mastery score. RF/IFF and other evidence must still be considered.
+					264 content list
+						265 container
+							266 text T1  /  EO Requested  T+11.27s  · planned sample T+12.30s  · publication  T+12.50s Channel unavailable · expiry T+15.50s. Affiliation is a separate inference.
+							267 container Reconstruct T1 eo
+								268 button Request · T+11.27s
+									269 text Request
+									270 text · 
+									271 text T+11.27s
+								272 button Sample · T+12.30s
+									273 text Sample
+									274 text · 
+									275 text T+12.30s
+								276 button Release · T+12.50s
+									277 text Release
+									278 text · 
+									279 text T+12.50s
+					280 container
+						281 text Suggested next practice Practice switching channels when evidence is unavailable . This is a transparent evidence-timing heuristic, not a calibrated adaptive policy or proof of learning.
+						282 link Description: Prepare a changed observation exercise, Value: localhost:8050/?acquisition=1&seed=482915&night=0
+						283 link Description: Return to Academy, Value: localhost:8050/academy
+				102 container Recorded decision moments
+					284 container Investigate T1
+						285 button 01 · T1 First modeled detectability T+4.00s · before event order 0
+							286 container
+								287 text 0 1  ·  T1
+							288 text First modeled detectability
+							289 text T+4.00s · before event order 0
+						290 button 02 · T1 Decision evidence T+4.00s · within-tick order unknown
+							291 container
+								292 text 0 2  ·  T1
+							293 text Decision evidence
+							294 text T+4.00s · within-tick order unknown
+						295 button (disabled) 03 · T1 Observed outcome Not observed within this recording
+							296 container
+								297 text 0 3  ·  T1
+							298 text Observed outcome
+							299 text Not observed within this recording
+					103 heading Decision moments, Value: 3
+						104 text Decision moments
+					105 text 1–1 of 1
+					300 checkbox 01 · T+12.63s T1 · No action recorded INCORRECT · DETECTION, Value: 1
+						301 text 01
+						302 text  ·
+						303 text T+12.63s
+						304 container
+							305 text T1  ·  No action recorded
+						306 container
+							307 text INCORRECT  ·  DETECTION
+				106 container
+					107 button (expanded) Decision explanation · pinned evidence and after-exercise reference, Secondary Actions: Collapse
+						108 text Decision explanation · pinned evidence and after-exercise reference
+					109 heading Ghost Expert, Value: 2
+						110 text Ghost Expert
+					111 text RULE-GROUNDED
+					308 container
+						309 text Decision review
+						310 pop up button (collapsed, settable) Description: Decision review, Value: T1 · T+12.63s · detection · threat missed, Secondary Actions: Expand
+							311 menu
+								312 (selected) T1 · T+12.63s · detection · threat missed
+						313 text T1  ·  T+12.63s INCORRECT
+						314 button (disabled) Previous decision
+						315 button (disabled) Next decision
+						316 button Jump to selected decision
+							317 text Jump to selected decision
+							318 image
+						319 text Decision evidence stays pinned while you move the replay cursor.
+						320 heading AVAILABLE TO TRAINEE, Value: 3
+							321 text AVAILABLE TO TRAINEE
+						322 definition list
+							323 container Radar
+								324 text Radar
+							325 container
+								326 text ACTIVE ·  contact observed
+							327 container RF control link
+								328 text RF control link
+							329 text Detected
+							330 container IFF
+								331 text IFF
+							332 text No reply · identity unconfirmed
+							333 container EO / IR observation
+								334 text EO / IR observation
+							335 text No current modeled observation
+							336 container Range
+								337 text Range
+							338 text 547.9 m
+							339 container Restricted sector
+								340 text Restricted sector
+							341 text Outside restricted sector
+							342 container First detectable
+								343 text First detectable
+							344 text T+4.00s
+						345 container
+							346 text Evidence at  T+4.00s : first detectable observation, or reviewed end if never detectable . IFF no reply does not establish hostility. Quad and FPV share a multirotor silhouette.
+						347 heading YOUR DECISION, Value: 3
+							348 text YOUR DECISION
+						349 text No action recorded
+						350 heading EXPECTED DECISION, Value: 3
+							351 text EXPECTED DECISION
+						352 text Designate
+						353 text Based on available evidence
+						354 heading WHY, Value: 3
+							355 text WHY
+						356 text This threat became detectable at T+4.00s. No designation was recorded by the reviewed end at T+12.63s. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.
+						357 text THREAT_MISSED
+						358 button (collapsed) Ground truth after review, Secondary Actions: Expand
+							359 text Ground truth after review
+						360 heading CONSEQUENCE, Value: 3
+							361 text CONSEQUENCE
+						362 text The contact remained active at the reviewed end; no later observed consequence is asserted.
+						363 text NO_CONSEQUENCE_YET
+						364 heading SCORE IMPACT, Value: 3
+							365 text SCORE IMPACT
+						366 container
+							367 text Detection :  0  / 25
+						368 text Final contact node, shared across all attempts. This is not a separate per-action award.
+						369 heading TRAINING SKILL, Value: 3
+							370 text TRAINING SKILL
+						371 text Detection
+			372 container review-timeline
+				373 container
+					374 text Training focus SERVER REVIEW Recommended training focus: detection. Counts are distinct contacts with evidenced errors; sensor context does not prove causation. Detection 1 contacts with errors ·  25  node points lost Classification / IFF 0 contacts with errors ·  0  node points lost Effector choice 0 contacts with errors ·  0  node points lost Degraded sensor response 0 contacts with errors ·  0  node points lost
+					375 button Review largest loss
+					376 text Lost points are deduplicated per contact/node before hostile-row averaging. Sensor-context tags overlap other skills. Active observation is practice-only and does not update individual mastery. Follow-up suggestions use reconstructed evidence timing.
+				377 container
+					378 text Hostile-node averages before penalties Detection 0  /  25 Classification 0  /  25 Priority ranking 0  /  15 Engagement 0  /  35 Asset impacts:  1  · Non-hostile safety flag: No Ranking agreement 1.000 × engagement coverage 0.000 × 15. Equal priority pairs are excluded; no comparable pairs yields neutral agreement 1, still multiplied by coverage.
+				379 container
+					380 text Exercise timeline
+					381 button (collapsed) Recorded interval and scoring horizon, Secondary Actions: Expand
+						382 text Recorded interval and scoring horizon
+					383 text Find recorded evidence
+					384 search text field (settable) Find recorded evidence
+					385 text Timeline category
+					386 pop up button (collapsed, settable) Timeline category, Value: All meaningful events, Secondary Actions: Expand
+						387 menu
+							388 (selected) All meaningful events
+							389 trainee action
+							390 instructor action
+							391 sensor transition
+							392 contact detection
+							393 contact resolution
+							394 asset impact
+							395 score error
+							396 tactic phase
+					397 text Showing  8  of  8 matching events ·  8  recorded
+					398 button T+0.00s SENSOR TRANSITION Radar normal · RF active · Night
+						399 text T+0.00s
+						400 text SENSOR TRANSITION
+						401 text Radar normal · RF active · Night
+					402 button T+2.00s TACTIC PHASE Red Force · direct · T1
+						403 text T+2.00s
+						404 text TACTIC PHASE
+						405 text Red Force · direct · T1
+					406 button T+4.00s CONTACT DETECTION · T1 T1 · first working-sensor observation
+						407 text T+4.00s
+						408 container
+							409 text CONTACT DETECTION  · T1
+						410 text T1 · first working-sensor observation
+					411 button T+11.00s CONTACT DETECTION · T3 T3 · first working-sensor observation
+						412 text T+11.00s
+						413 container
+							414 text CONTACT DETECTION  · T3
+						415 text T3 · first working-sensor observation
+					416 button T+11.27s SENSOR TRANSITION · T1 T1 · EO · Observation requested
+						417 text T+11.27s
+						418 container
+							419 text SENSOR TRANSITION  · T1
+						420 text T1 · EO · Observation requested
+					421 button T+12.30s SENSOR TRANSITION · T1 T1 · EO · Sampled modeled world
+						422 text T+12.30s
+						423 container
+							424 text SENSOR TRANSITION  · T1
+						425 text T1 · EO · Sampled modeled world
+					426 button T+12.50s SENSOR TRANSITION · T1 T1 · EO · Observation released
+						427 text T+12.50s
+						428 container
+							429 text SENSOR TRANSITION  · T1
+						430 text T1 · EO · Observation released
+					431 button T+12.63s SCORE ERROR · T1 T1 · threat missed
+						432 text T+12.63s
+						433 container
+							434 text SCORE ERROR  · T1
+						435 text T1 · threat missed
+			115 container
+				116 heading Decision path and What-if replay, Value: 2
+					117 text Decision path and What-if replay
+				118 text Reviewed contact
+				119 pop up button (collapsed, settable) Reviewed contact, Value: T1, Secondary Actions: Expand
+					120 menu
+						121 (selected) T1
+						122 T2
+						123 T3
+				124 text Server-verified post-exercise review. Node points are final contact outcomes, shared across attempts. After-review truth is labelled separately from observations.
+				125 content list Final contact score path for T1
+					126 checkbox STEP 1 · DETECT 0 / 25 1 authoritative review Inspect recorded evidence, Value: 0
+						127 text STEP 
+						128 text 1
+						129 text  · 
+						130 text DETECT
+						131 container
+							132 text 0  /  25
+						133 text 1
+						134 text  authoritative review
+						136 text Inspect recorded evidence
+					137 checkbox STEP 2 · CLASSIFY 0 / 25 0 authoritative reviews Inspect recorded evidence, Value: 0
+						138 text STEP 
+						139 text 2
+						140 text  · 
+						141 text CLASSIFY
+						142 container
+							143 text 0  /  25
+						144 text 0
+						145 text  authoritative review
+						146 text s
+						147 text Inspect recorded evidence
+					148 checkbox STEP 3 · PRIORITIZE 0 / 15 0 authoritative reviews Inspect recorded evidence, Value: 0
+						149 text STEP 
+						150 text 3
+						151 text  · 
+						152 text PRIORITIZE
+						153 container
+							154 text 0  /  15
+						155 text 0
+						156 text  authoritative review
+						157 text s
+						158 text Inspect recorded evidence
+					159 checkbox STEP 4 · RESPOND 0 / 35 0 authoritative reviews Inspect recorded evidence, Value: 0
+						160 text STEP 
+						161 text 4
+						162 text  · 
+						163 text RESPOND
+						164 container
+							165 text 0  /  35
+						166 text 0
+						167 text  authoritative review
+						168 text s
+						169 text Inspect recorded evidence
+				170 text Stages follow rubric order; decision ticks below preserve the actual recorded history. This display does not infer causal links between decisions.
+				171 checkbox All stages, Value: 1
+				172 text 1  review  shown
+				436 button (collapsed) T+12.63s · detectionNo action recorded INCORRECT, Secondary Actions: Expand
+					437 text T+12.63s
+					438 text  ·
+					439 text detection
+					440 text No action recorded
+					441 text INCORRECT
+				173 button (collapsed) Read the complete linear decision record, Secondary Actions: Expand
+					174 text Read the complete linear decision record
+				175 heading Try a different response, Value: 3
+					176 text Try a different response
+				177 text The server branches the frozen exercise at the recorded decision. The original score and training profile remain unchanged. No recorded engagement is available to replace for this contact.
+			178 container review-comparison
+				442 container
+					443 text RECORDED BOUNDARIES · EVIDENCE-CONSTRAINED
+					444 heading Evidence-constrained response comparison, Value: 2
+						445 text Evidence-constrained response comparison
+					446 text Each recorded response is compared at its original tick using the evidence then available. This reference is an inspectable training policy, not a certified military expert. SUPPORTED REFERENCE CHOICES
+					447 text 0
+					448 text Policy evidence label
+					449 text CONDITIONAL CHOICES
+					450 text 0
+					451 text Further evidence required
+					452 text UNCERTAIN CHOICES
+					453 text 0
+					454 text Uncertainty retained
+					455 text No engagement was recorded; no policy agreement fraction is assigned.
+					456 button (collapsed) Scope and limitations, Secondary Actions: Expand
+						457 text Scope and limitations
+				458 container
+					459 text SEPARATE HYPOTHETICAL POLICY RUN
+					460 heading Autonomous reference replay, Value: 2
+						461 text Autonomous reference replay
+					462 text Generate a separate policy run on this frozen exercise. Canonical mode consults truth after the exercise; evidence-only mode may abstain when type or intent cannot be established. Reference policy
+					463 pop up button (collapsed, settable) Reference policy, Value: Canonical rubric truth · after AAR, Secondary Actions: Expand
+						464 menu
+							465 (selected) Canonical rubric truth · after AAR
+							466 Evidence-only · conservative
+					467 button Run autonomous reference
+				183 container
+					184 text ADVICE RECEIPTS · HUMAN RELIANCE UNVERIFIED
+					185 heading Fusion advice and confidence review, Value: 2
+						186 text Fusion advice and confidence review
+					187 text Mode:  training ; exercise: normal . Advice and reported associations do not establish human viewing or cognitive reliance. RECONSTRUCTED ADVICE RECEIPTS
+					468 text 0
+					469 text Not verified human views
+					470 text LOGGED CONFIDENCE DIAGNOSTICS
+					471 text 0
+					472 text Optional operator input
+					473 text MEAN BRIER DIAGNOSTIC
+					474 text Not logged
+					475 text 0 ideal · 2 maximally wrong
+					476 text Optional logged confidence; no calibration or learning-efficacy claim . Display exposures and advice association are client-reported; deterministic receipt validation does not establish human reliance. Bias exercises and normalized advice weights are synthetic uncalibrated training heuristics. Original scorecards and Beta profiles are unchanged.
+			188 container review-score
+				189 image
+				190 text Decision-tree score breakdown
+				191 container Original decision-tree score breakdown
+					192 table
+						193 row
+							194 cell
+								195 text CONTACT
+							196 cell
+								197 text DETECT / 25
+							198 cell
+								199 text CLASSIFY / 25
+							200 cell
+								201 text PRIORITY RANKING / 15
+							202 cell
+								203 text ENGAGE / 35
+							204 cell
+								205 text TOTAL
+						206 row
+							207 cell
+								208 text T1  ·  hostile
+							209 cell
+								210 text 0
+							211 cell
+								212 text 0
+							213 cell
+								214 text 0
+							215 cell
+								216 text 0
+							217 cell
+								218 text 0
+						219 row
+							220 cell
+								221 text T2  ·  friendly
+							222 cell
+								223 text 0
+							224 cell
+								225 text 0
+							226 cell
+								227 text 0
+							228 cell
+								229 text 0
+							230 cell
+								231 text 0
+						232 row
+							233 cell
+								234 text T3  ·  neutral
+							235 cell
+								236 text 0
+							237 cell
+								238 text 0
+							239 cell
+								240 text 0
+							241 cell
+								242 text 0
+							243 cell
+								244 text 0
+				245 container
+					246 text Session score averages hostile contacts, then subtracts 10 per asset impact. Non-hostile engagement fails the session. Ranking node = 15 × co-observed pair agreement × engagement coverage. Shared ranking points are allocated to each hostile row.
+			247 button (collapsed) Local performance diagnostics, Secondary Actions: Expand
+				248 text Local performance diagnostics
+
+The focused UI element is 1 AXWebArea VYUHA · Counter-drone trainer, URL: localhost:8050/?acquisition=1&seed=482914&night=1&view=aar&session=aa312a1c-e59c-4a88-9e9f-979c21c9147b

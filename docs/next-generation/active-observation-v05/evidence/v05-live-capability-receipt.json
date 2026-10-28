@@ -1,0 +1,79 @@
+{
+  "note": "Live HTTP snapshot captured before final evidence-container resealing; embedded artifact hashes refer to the then-current receipt container, not a recursive self-hash.",
+  "current_source_hash": "ea6c85a5c0ce7bacc13dad550d540292a6b620ec5a53bf0988e7063f2eabd535",
+  "capability": {
+    "id": "active-observation-practice",
+    "title": "Request-gated synthetic EO/IR and verified acquisition reconstruction",
+    "implementation": "PARTIAL",
+    "route": "/academy",
+    "source_files": [
+      "server/acquisition.py",
+      "server/engine_v3.py",
+      "server/review_v3.py",
+      "client/src/sim-v3.ts",
+      "client/src/AcquisitionStation.tsx",
+      "client/src/AcquisitionReview.tsx"
+    ],
+    "evidence_ids": [
+      "active-observation-v05-browser"
+    ],
+    "limitations": "Browser-only opt-in v0.5 practice: radar discovery, explicit EO/IR intent, cadence sampling, delayed publication/expiry, server reconstruction and evidence-timing follow-up. Crew/VR and autonomous acquisition policy are not admitted. No individual mastery/catalog admission, calibrated sensor accuracy, physical-device or learning-gain claim. Scoped development evidence is not full release acceptance.",
+    "validation": [
+      {
+        "id": "active-observation-v05-browser",
+        "status": "PASS",
+        "source_hash": "ea6c85a5c0ce7bacc13dad550d540292a6b620ec5a53bf0988e7063f2eabd535",
+        "source_revision": "a6d209e76b225eab8e05b474dec691579d7d20f3",
+        "scopes": [
+          "backend",
+          "frontend",
+          "parity",
+          "browser",
+          "performance",
+          "build"
+        ],
+        "artifacts": [
+          {
+            "path": "docs/next-generation/active-observation-v05/manifest.json",
+            "sha256": "f070ca4130905154c8bb717e2c4f0ff091867144e25b560aae62d604fe9e1cdd"
+          },
+          {
+            "path": "docs/next-generation/active-observation-v05/ACCEPTANCE.md",
+            "sha256": "5fd06d4c8847db382d387c9d4e2b3df74afbd742694a594312be26a4676938c4"
+          },
+          {
+            "path": "docs/next-generation/active-observation-v05/evidence/v05-optimized-backend.txt",
+            "sha256": "bf25da6e6ba425bfb3efea3dbb4f4304bdf40dc2a6b9c89dc8496db3cb76f078"
+          },
+          {
+            "path": "docs/next-generation/active-observation-v05/evidence/v05-optimized-client.txt",
+            "sha256": "c1b347c755d44a4527de6ce1a5f3224212a737cbb0f1095208aa759dc7966b9b"
+          },
+          {
+            "path": "docs/next-generation/active-observation-v05/evidence/v05-production-record.json",
+            "sha256": "75abd685563a477c69afdd0b59ec418b3edd52b7c7faad2ea4ac7227de0376c4"
+          },
+          {
+            "path": "docs/next-generation/active-observation-v05/evidence/v05-production-ghost-corrected.jpg",
+            "sha256": "e97e66f19feddb67d892e47f398024efd70da35c89013a35060ec9beecc24340"
+          },
+          {
+            "path": "docs/next-generation/active-observation-v05/evidence/v05-production-mobile.json",
+            "sha256": "af1bf3a1475f9e7d40b7fe3ca8584524640fbe468af1d8c9a6f3fbab56b4182b"
+          },
+          {
+            "path": "docs/next-generation/active-observation-v05/evidence/v05-matched-performance.json",
+            "sha256": "7ff28ed3bed885c851f83b251e63ec5d53590f75b4b67632556973f40c1d2171"
+          },
+          {
+            "path": "docs/next-generation/active-observation-v05/evidence/v05-matched-client.json",
+            "sha256": "a2768a2865758f8587635ea2895220edbdc2e97c8e1babe713555b4f7e4dca36"
+          }
+        ],
+        "note": "Scoped development acceptance only: request-gated browser v0.5, 12 new backend and 7 post-optimization client tests (76 parity checkpoints/4 scenarios), real final production training/Ghost and process-outage queued intent recovery, source-equivalent native CPU benchmark. 31 earlier affected client tests and old 544-checkpoint parity retained with their actual source applicability. Final CSS-only wrap corrected and browser checked. No full-system, mastery/learning-gain or physical-device acceptance; Crew/VR/autonomous acquisition adapter not admitted. Full report distinguishes all runs and limitations.",
+        "freshness": "CURRENT_PASS",
+        "current_pass": true
+      }
+    ]
+  }
+}

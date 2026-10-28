@@ -1,0 +1,428 @@
+{
+  "schema_version": 1,
+  "runtime_commit": "a6d209e76b225eab8e05b474dec691579d7d20f3",
+  "application_runtime_commit": "c50b98941b0472de48da71ed03bff3e24aab8405",
+  "scope": "Browser-only active-observation development acceptance, not full release/physical qualification",
+  "source_tree_sha256": "ea6c85a5c0ce7bacc13dad550d540292a6b620ec5a53bf0988e7063f2eabd535",
+  "source_files": {
+    "client/src/Academy.tsx": "936749f8a357f4d4198bec3fef3f79e697c39e47a753d4f843c10f2638bba93f",
+    "client/src/AcquisitionReview.tsx": "352b38e488ad979d1e90517abf2de88927a5897795b312d0a6f51015869875fb",
+    "client/src/AcquisitionStation.tsx": "32f7c976bedb28bd32acf71aa40c14b80745d1a1ce76b23e583550e18e6475c0",
+    "client/src/App.tsx": "d49e972de5f38f604344811071ee70205f024f935dd86482b78adfb2ace9fbaa",
+    "client/src/Ghost.tsx": "098ca9db9ad34aa5a55ba430b2f9adf5ca5d3acba6361f8afe4ce5e4a50513c9",
+    "client/src/GuidedDecision.tsx": "591e94876e1518d6a9581be27da07a1b450de7ff9b8d5f46186bd10f4fc83095",
+    "client/src/ReferenceRun.tsx": "6ab2e4652bca703bb150772e4b9ec011e3b67549246d9cde9e1bd2eae59b1570",
+    "client/src/ReviewTheatre.tsx": "6706032144fc1e446daf3533467179c1aad4ae953e59fc70ac645ebafa9a4ea8",
+    "client/src/acquisition-engine.test.ts": "05ee8e4415ee800427bbf696e6c59a8a5c150603a043e68fe355c39bcfc6416c",
+    "client/src/acquisition-review.test.tsx": "43fee45f2946d60dfb849d484b47efc79566cfee7dad36dd27667fbe43e3215e",
+    "client/src/acquisition-station.test.tsx": "6388dfed9c06d77569a28eb1d2cabff3df72a202f1bcff788ac4d14d6687c86c",
+    "client/src/acquisition-theatre.css": "67b6b63012d432a573aaaa408ba4006bdce21bc4b5f1ae4f09d18202bf8e4afd",
+    "client/src/action-evidence.test.ts": "c1a77ade4376a835cfee354ca925c5649ae16518ff3fc40d8d1d33bd3490231e",
+    "client/src/action-evidence.ts": "c39986ef9cf511f7d0cce793ea2279dbc77ea45e0cd5219e4010a1181c132c45",
+    "client/src/fixtures/acquisition-engine/project.py": "c2e7cf454a1407721ffeb8105ccc0f9fbac2c533ae10821dcb5e153fe1b52dfe",
+    "client/src/mission-frame.ts": "ddb2378d7622faf3d5f0f655b0756c802c888cccce27df2623ad8a735ac0b1cf",
+    "client/src/next-generation.css": "f9e378fed672a732defdbb9d2087f3b779903233ff5bafbc431a8274dc65e965",
+    "client/src/premium/premium.css": "a337cd57374919441d3c3b7047e526186258f8b79812ee4bb50f48c5011b0390",
+    "client/src/sim-v3.ts": "1552b4fc0af9464db3c1714c52636cfbda82bc03631038d57ce578f168a3caef",
+    "client/src/sim.ts": "95e8a9be5e7c322a092128be1a3dbf2f2ec80323086eecafc228a573e5ddadef",
+    "client/src/sim.worker.ts": "adcf13775d3210811ddeadc4c6b16e22d9dfd9ee3c64333441053d9e507f30b8",
+    "client/src/types.ts": "39c91272a48d4f20a563bcd3f3183e97a917c906f2e899ae843129f44906d878",
+    "client/src/vr.test.ts": "e68e8325ee720b59ac3b532499a611c672cef539a7ea51493fac2d17a26964d6",
+    "client/src/vr.ts": "ce27fb846ea1909bfbb9ab4d8585b204178066e351800d6e5ae737a6001f0457",
+    "server/acquisition.py": "e0aefb418e0a8d796fd9f04fb45d26e1b5ed3b242aee4b5a39fc9058c12e724e",
+    "server/config/capabilities-v1.json": "a43330c94b9f2d7d1640948c5d484093e03d72be99784562ac836f311cbe9604",
+    "server/engine.py": "c89ffaf30ff76599d0dbe5a6169bcc1f2fdc9f26c0a8081ab2ff8eaa04aed98d",
+    "server/engine_v3.py": "a7aa6c4fc136f1f8efb33ba358e0f091120ecfed70c742a5ecac890fe42e49d1",
+    "server/fusion.py": "9724e48e2083a319240ea854a5d6ac52087601e1d8663a5326a4ff8d45943654",
+    "server/learning.py": "4abe674616a10050fda9fd30ad1c90ec9aa959df47aab318581cc4622e9f56f4",
+    "server/main.py": "01e80e9eae39ae48e888d7d2e368ca764c7246953a318c1f8eef8c4121fe4793",
+    "server/models.py": "dea47602709e3c9e36973abe03d9994a5a90da9af9241442a167aa1dbf925652",
+    "server/portable.py": "ff49b1d39e390622436a076657bf8bda74679ba9c6503814c7424f96ff9285d1",
+    "server/review.py": "fa64f31431c0cbc2f5b594a9b56fe3b5558cd46e7e82b798b8e8d15a622dcd86",
+    "server/review_v3.py": "50e9e6e5adc2228e39955e967010d0c40b00073fe67e9692b0fab0f3547ed72d",
+    "server/tests/test_acquisition_v3.py": "9d76c4f85791c1e788fba426d9a69e8e231b735901a992b068d5d41adcda169a"
+  },
+  "frozen_files": {
+    "server/engine_v1_0_1.py": "092229c1ee922543d5621eccf17fde4bbb1de666d64a34446fd893b1849bf0db",
+    "server/engine_v2.py": "c88e4e833d88fbe0069a797278adc15fe4318c8b71e78204beb128b580a07d05",
+    "server/sensors_v2.py": "d53d7fb14e44485db97961fd7d2426bafb7f54e3c7b9409286f5e828bf99768f",
+    "client/src/sim_v1_0_1.ts": "b4ad04b921c0652ec1c1a283c01beb543e1cff1f8a171896a9b8acf509679014",
+    "client/src/sim-v2.ts": "2f79565566cc15fe46f43339ff60179064bd3e483fe1585c11c2675ce3a80734",
+    "client/src/sensors-v2.ts": "61a22919e30a58df5d7042d64f0053b1670792342a8d697cc9d9c5de5a882ea0",
+    "server/config/learning-catalogs-v1.json": "b1f7a5a4b1da3d8b0b2de6eab05491632fe0478b4012163c5313d8ae3d1bed21",
+    "server/config/learning-catalogs/5abe5c7920a40c989546bc59abf77c4cb6430f0cd8a8af5dca2a361ac977d345.json": "5abe5c7920a40c989546bc59abf77c4cb6430f0cd8a8af5dca2a361ac977d345",
+    "server/config/learning-v1.json": "5abe5c7920a40c989546bc59abf77c4cb6430f0cd8a8af5dca2a361ac977d345",
+    "server/config/sensors-v2.json": "6564020abbe3b4809503d67a44b10644837b588a098501b8c2420787410e8e30"
+  },
+  "protected_refs": {
+    "refs/tags/v0.1.0": "dbebcae05212042b1490fa17b358cb969b83c3c8",
+    "refs/tags/v1.0.0": "8fdbf903e4b0345e73d101a763590db2cbc98860",
+    "refs/tags/v1.0.1": "4696b0583238d07eb9fcfcec128a437caf28e17b",
+    "refs/tags/v1.1.0-rc.1": "bb5150986b76a402cec99223eee95578e845bd42",
+    "refs/tags/v1.1.0-rc.2": "60c1be9a720d508775bba353a9f3fe370cd8d24a",
+    "refs/heads/release/v1.0.1": "2ca96105044ad6a14952d74db619e20006c26eca",
+    "refs/heads/integration/vyuha-combined-acceptance": "259c50acdc5373a7971e9885b1232645edf23466"
+  },
+  "artifacts": [
+    {
+      "path": "docs/next-generation/active-observation-v05/ACCEPTANCE.md",
+      "bytes": 14918,
+      "sha256": "5fd06d4c8847db382d387c9d4e2b3df74afbd742694a594312be26a4676938c4"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/acquisition-final-backend.txt",
+      "bytes": 663,
+      "sha256": "841fe58d00f6d4ebdf84b4fdd7222bfb0c71a78e991900ded9ef12d95bb0fed7"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/acquisition-native-performance.json",
+      "bytes": 3671,
+      "sha256": "2a1e27e8d2bc4d3159ddb7a4e3a0ee4c89444266bbedc4052e899e02ff9293c0"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-academy.txt",
+      "bytes": 8597,
+      "sha256": "78e363728dbedcdb83031fa81d68c07b39bf1d1d0b79f871bd1caac1b67e9529"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-browser-receipts.json",
+      "bytes": 31465,
+      "sha256": "9dce5ceff5ca40ce8acc63f589c78f178de5909fd2bfbac06335b08fff311e32"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-client-compatibility.txt",
+      "bytes": 411,
+      "sha256": "167e508449b9107a35cd634269bb68d169473cb806d47eb5bc4ddcf745a83a62"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-client-final-focused.txt",
+      "bytes": 3519,
+      "sha256": "d7e4214d4f9cb446482b237fef67d8f1a3e2e0ac8c520a8e1be7e0107a765d19"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-final-lint.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-final-release-boundary.txt",
+      "bytes": 25440,
+      "sha256": "2d0d9febd93b4b42d06a8a24314a8390c9a3f1e0ac9dcaecb023fe5d5163eca5"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-final-targeted-client.txt",
+      "bytes": 1193,
+      "sha256": "8eeda87fbae5bba20143cc000f0a0349ad8e49d137dbf8d4dfc796ad01135a13"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-final-tsc.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-integrated-format.txt",
+      "bytes": 66,
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-integrated-lint.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-integrated-tsc.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-live-capability-receipt.json",
+      "bytes": 4286,
+      "sha256": "2858fd74c10b15df8a32c9ff941cc1bb64f0ddf56743f2973ef8432f88496681"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-live-profile-receipt.json",
+      "bytes": 1191,
+      "sha256": "ff160b83187578f016203e3a9439aca2c39f47efd2f131f0180786ce4995d534"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-matched-client.json",
+      "bytes": 1998,
+      "sha256": "a2768a2865758f8587635ea2895220edbdc2e97c8e1babe713555b4f7e4dca36"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-matched-client.ts",
+      "bytes": 1758,
+      "sha256": "21b063d8e29597a79c1f6fa845aa926036984239f62f159ce2d312fe5ad65f3d"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-matched-client.txt",
+      "bytes": 408,
+      "sha256": "10efe8ad6ece095dac713665ba5b8d833233903d3226422e7d469a374b28085e"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-matched-performance.json",
+      "bytes": 38131,
+      "sha256": "7ff28ed3bed885c851f83b251e63ec5d53590f75b4b67632556973f40c1d2171"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-matched-performance.py",
+      "bytes": 3128,
+      "sha256": "5c320c9f41b2c45176fad9254f635e5a1d5ce52cb56b96163121f41b3dc97548"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-matched-performance.txt",
+      "bytes": 574,
+      "sha256": "80946a7b7059415b07033482c2ec58c8980accf2dc3f36db89a6dbae58f0760c"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-mobile-active.jpg",
+      "bytes": 50605,
+      "sha256": "0580f7722b5a1226536e1940a1b40c402b66c3cce391c3b7a1466a5cd54e2ab8"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-mobile-corrected.json",
+      "bytes": 1154,
+      "sha256": "95de5ca0e799218882293a0567e775579aa3694c079b6f99dff0e9d2d7167960"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-mobile-keyboard.jpg",
+      "bytes": 48086,
+      "sha256": "09c8783f5bbf61f75cd182fcbe9fd86393ca4c36f95de2c2f8b88850806928f2"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-mobile-keyboard.txt",
+      "bytes": 4132,
+      "sha256": "0f0d2a6572500e26621c9c74cb52f53013abb6bfb26b03cb10a22c258a8443ce"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-mobile-preparation.jpg",
+      "bytes": 38847,
+      "sha256": "06817e099a74828cb227951dc59bcd4e6aa9cbd87527603e7dde099480c516a5"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-offline-pending.jpg",
+      "bytes": 121314,
+      "sha256": "c6f2d279ab193e494f4a51dcfc029042a070551f285ca91333e692812865e2f1"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-offline-pending.txt",
+      "bytes": 6685,
+      "sha256": "c1f1f558575183187f6063de0a81b3f5f9fb5f6f484fe70d7113536fe7c3a4e5"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-offline-unavailable.jpg",
+      "bytes": 125081,
+      "sha256": "e84fb118e72d8fb34564b8f94be8a0cbecd28f67689154c2a05d9b422b51b348"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-offline-unavailable.txt",
+      "bytes": 6634,
+      "sha256": "507bf21962f3f479c9f266d8aaa49dcd8baccd769e3f55e1792e53b35f6df0e8"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-optimized-backend.txt",
+      "bytes": 663,
+      "sha256": "bf25da6e6ba425bfb3efea3dbb4f4304bdf40dc2a6b9c89dc8496db3cb76f078"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-optimized-client.txt",
+      "bytes": 986,
+      "sha256": "c1b347c755d44a4527de6ce1a5f3224212a737cbb0f1095208aa759dc7966b9b"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-original-db-after.json",
+      "bytes": 254,
+      "sha256": "68d1c037a762a2d9dfbc11f89baedb391a0a0ea5d38e1a67c818dcd23d286fd4"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-original-db-before.json",
+      "bytes": 254,
+      "sha256": "68d1c037a762a2d9dfbc11f89baedb391a0a0ea5d38e1a67c818dcd23d286fd4"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-pending.jpg",
+      "bytes": 368126,
+      "sha256": "2ce4d6d7709a1be85d6b4b3ddca7b44f873391af7f7615bb41f2d368ce239dc9"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-pending.txt",
+      "bytes": 204,
+      "sha256": "00d97cb7dec8418a4648ba39901cbec9d976f81907e606ea84b494046d6408f0"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-production-completed.txt",
+      "bytes": 24243,
+      "sha256": "3d8e40489e11f1752b1c6eea191a70414e059b9e6b42f3c4a8479a7fa45483d6"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-production-ghost-corrected.jpg",
+      "bytes": 121848,
+      "sha256": "e97e66f19feddb67d892e47f398024efd70da35c89013a35060ec9beecc24340"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-production-ghost-final.jpg",
+      "bytes": 122014,
+      "sha256": "67d45c4d280dc3f06153a04cd005ee7e89f586ab71c535e017f93502a3d8b0dd"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-production-mobile.jpg",
+      "bytes": 52407,
+      "sha256": "09ac808cb11378c9e08a84fed5b866203f84da1f43728c5a56350d9c52262d67"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-production-mobile.json",
+      "bytes": 653,
+      "sha256": "af1bf3a1475f9e7d40b7fe3ca8584524640fbe468af1d8c9a6f3fbab56b4182b"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-production-record.json",
+      "bytes": 17648,
+      "sha256": "75abd685563a477c69afdd0b59ec418b3edd52b7c7faad2ea4ac7227de0376c4"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-production-release-final.txt",
+      "bytes": 24513,
+      "sha256": "e8f83c1d641a6eed18220ee27714a7dbf6c0247421a686c9403336243490accf"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-production-release.txt",
+      "bytes": 24201,
+      "sha256": "68baff8c5d80a3eae916fb26a524ecead1e6387d19379b609f7352e74b632fb0"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-production-released.jpg",
+      "bytes": 50978,
+      "sha256": "11e0fce1bd97331385e1dca463b331be0cf16eec6e3f91210c80ee7fcd0834fb"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-production-released.txt",
+      "bytes": 4100,
+      "sha256": "f59298052cb3794624857597ad71e3e04261e01a42eddf77c0ab0f1fbc91bccf"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-production-replay-wrap.json",
+      "bytes": 588,
+      "sha256": "9ac27f316109f741715bcc19746d73ad7609362e7efc55e40467392e3af7573d"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-production-review.jpg",
+      "bytes": 192501,
+      "sha256": "21ce516c4f9862953e3d75388bfef24f3e2321f510798d39c00608a8382bedbe"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-production-sample-final.txt",
+      "bytes": 24535,
+      "sha256": "aede6255b52825b32c78ea80b8404e700426e554cf1c96c92c2285d7398f27bd"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-profile-before.txt",
+      "bytes": 2159,
+      "sha256": "1eb4dcf73e869adf87930f7188fe7e4c01d644da222eefef6f4361cc286d0b70"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-profile-compatibility.txt",
+      "bytes": 676,
+      "sha256": "048cd6bb02838709ec586d41d00fb70deb3261311e5a4981fa34bef2f277cc4f"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-profile-test.txt",
+      "bytes": 1306,
+      "sha256": "13816e4a36bb7e98d1563c2618a1666fae219a8b0d0352baaccbaa86586f9c85"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-recovered-aar.jpg",
+      "bytes": 80191,
+      "sha256": "a56a6b2688397e4c75a0dbbab7f5920c0ff6877150d28b5bb8d0ca688eeb7389"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-recovered-aar.txt",
+      "bytes": 22336,
+      "sha256": "0e5312d90266da38e5a53cda7958bd18c74b840aaf785477e81ac218d48fcee6"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-registry-check.txt",
+      "bytes": 104,
+      "sha256": "a198dd1a75d47d0cacf143c0c6032047309fee89af5a35d7548e5592c4c88bb9"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-registry-tests.txt",
+      "bytes": 662,
+      "sha256": "f352fe9a0a49995207fa1e3ddcc47f1a548571f4059779d1ce89c6a6192952ba"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-release-review.jpg",
+      "bytes": 105024,
+      "sha256": "163e07eff350cce6d1019096b7821882cf3530915a8a3911e27b9c24858be32a"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-release-review.txt",
+      "bytes": 632,
+      "sha256": "4f7e5bdffde83a7608997ce4c8e94c9d18b0ee323cbfffc10d1fb6b3b4f22d83"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-released.jpg",
+      "bytes": 376254,
+      "sha256": "4d5d6ac1026d028de6a405d4b5fe4d2b99ac848bd09344192db9d2be45d8fc11"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-released.txt",
+      "bytes": 529,
+      "sha256": "c056cef55318b7e8658d380a2f3122d294622ce2b9175f80e35dbff983c40519"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-remote-refs.txt",
+      "bytes": 297,
+      "sha256": "54963ccf397571aaabd1279bbc690aa2e468deb4fc9a7f30e5a81cd6050222a5"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-replay-css-build.txt",
+      "bytes": 6191,
+      "sha256": "6eca19bb798859d0a6bcc782390f53cc632e452e69c060c0b78eca4cf030de0b"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-sample.jpg",
+      "bytes": 104418,
+      "sha256": "c1da84eef50f956b72af90d811ae4536bbe31017b25a96d81a17a3dd309d158b"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-sample.txt",
+      "bytes": 400,
+      "sha256": "433fec3589779831a983c4546b2ba0f5c20650a8e090d227a884ea45c81952d2"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-scroll-test.txt",
+      "bytes": 355,
+      "sha256": "b2f809a4e95e7677a915f41175bf99a051a983aa82d71b937fcbbbed9fec5664"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-source-37e2339-build.txt",
+      "bytes": 6277,
+      "sha256": "ad10cb05fc07de1252f28d7a39a07af702ef7546895436836f3b1360aeb9662f"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-source-37e2339-format.txt",
+      "bytes": 66,
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-source-37e2339-lint.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-source-733c6f8-build.txt",
+      "bytes": 6278,
+      "sha256": "bb2b5f5e000bb3180243dee7d9f85a988440190ae313af480f26e3ab4838ba95"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/evidence/v05-tablet-active.jpg",
+      "bytes": 119840,
+      "sha256": "94cde851bb1a150d1fdbebf5c7f38403683670e59e11b077b962be505a2396b4"
+    },
+    {
+      "path": "docs/next-generation/active-observation-v05/verify.py",
+      "bytes": 1455,
+      "sha256": "4f2a1958bf8e5546337b0cf9f75daccdbba1dee0e6b24d541d508ae3ed81cf94"
+    }
+  ]
+}

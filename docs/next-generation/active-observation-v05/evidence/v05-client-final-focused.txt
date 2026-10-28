@@ -1,0 +1,39 @@
+✔ active engine has actual Python/TypeScript request/sample/release/decision parity for day, night, fault and cancellation (3290.476ms)
+✔ active engine fails closed for malformed policy/unknown channels and old engines never accept inspect (1910.567792ms)
+✔ worker restores pending acquisition, respects release order gaps, correlates duplicates and cancels exactly once (3157.311292ms)
+✔ dispatch freezes advice and confidence without mutating the ordinary action (49.927333ms)
+✔ VR records no browser advice or confidence when an acknowledgment is delayed until return (0.399958ms)
+✔ wrong scope, absent ID or changed payload cannot consume another action evidence (0.439541ms)
+✔ out-of-order replies preserve each request snapshot and reset clears prior session ownership (0.389292ms)
+✔ acquisition acknowledgments bind channel and stable query ID without adopting Fusion advice (0.294375ms)
+✔ worker restoration publishes owned initialization with exact frozen tick/actions/commands and rejects stale intents (1040.637666ms)
+✔ all accepted/control/finalized worker replies retain ownership while Benchmark supports the original unscoped protocol (385.373ms)
+✔ restoring an already-ended saved horizon finalizes once with its original evidence rather than remaining running (838.423833ms)
+✔ worker receipts correlate rapid decisions and reject paused/ended intents without changing authoritative evidence (255.518875ms)
+✔ mission adapter integrates real v0.4 reported samples and accepted ordered decisions without changing engine state (31.337708ms)
+✔ adapter strips injected canonical fields and independent assessment suppresses teaching prompts (9.510375ms)
+✔ VR projects only current observed position and generic shape under adversarial hidden truth (22.321125ms)
+✔ VR missing v2 observations and bearing-only evidence never fall back to true geometry (0.939167ms)
+✔ VR optical loss holds only frozen observation for six ticks, failed channels clear immediately (0.57975ms)
+✔ VR mirrors browser disabled gates and retains warned resource/cooldown/restriction attempts (12.006209ms)
+✔ VR second confirmation invalidates contact/session/phase/timeout/availability changes (0.362ms)
+✔ VR ordinary payloads retain identical worker-style replay and scoring (3118.519625ms)
+✔ capability checks distinguish insecure, absent, rejected and supported WebXR (1.516375ms)
+✔ XR lifecycle pauses on visibility loss and exit, supports clean re-entry (1.027417ms)
+✔ XR denial and renderer attachment failure do not leave an active session (0.961334ms)
+✔ pending session request is ended if cockpit unmounts; concurrent requests are suppressed (0.439208ms)
+✔ session ending during renderer attachment never publishes an active cockpit (0.298958ms)
+✔ immersive input accepts tracked controllers, rejects gaze and hands (0.175458ms)
+✔ VR requires explicit type/identity choices and distinguishes styled IR night from separate NV hardware (0.704875ms)
+✔ VR explicitly rejects active-observation engine until its acquisition adapter is admitted (0.348875ms)
+✔ benchmark pause flushes a partial timing batch before its owned stop acknowledgment (473.7125ms)
+✔ repeated benchmark initialization rejects old stop intents and accounts for every delivered step (67.158375ms)
+✔ ordinary training never emits benchmark timing or stop messages (62.614583ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12827.029292

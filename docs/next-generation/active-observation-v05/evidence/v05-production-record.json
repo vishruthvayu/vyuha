@@ -1,0 +1,717 @@
+{
+  "id": "b66509b5-3952-4356-9126-0e71440ae8aa",
+  "verified": true,
+  "scenario": {
+    "acquisition_policy": {
+      "cadenceTicks": 3,
+      "cooldownTicks": 6,
+      "dwellTicks": 30,
+      "expiryTicks": 90,
+      "latencyTicks": 6,
+      "maxReportAgeTicks": 90,
+      "maxRequests": 64,
+      "version": "optical-task-policy-v1"
+    },
+    "difficulty_label": "foundational",
+    "doctrine": {
+      "allowed_tactics": [
+        "DIRECT",
+        "SATURATION",
+        "DECOY_THEN_STRIKE",
+        "STAGGERED_WAVES",
+        "LOW_APPROACH",
+        "SPLIT_SWARM",
+        "PROBE_AND_RETREAT",
+        "BLIND_SECTOR"
+      ],
+      "defaults": {
+        "fog": 0.15,
+        "mix": [],
+        "night": false
+      },
+      "description": "Frozen meter-scale training research configuration; not official doctrine",
+      "example_values": true,
+      "id": "army-forward-post",
+      "name": "Illustrative finale local pack",
+      "rubric": {
+        "classify": 25,
+        "detect": 25,
+        "engage": 35,
+        "prioritise": 15
+      },
+      "rules": {
+        "asset_risk": 1,
+        "distance_precision": 6,
+        "effectors": [
+          "hold",
+          "rf_jam",
+          "kinetic"
+        ],
+        "hold_any_range": true,
+        "kinetic_range": 1000,
+        "restricted": {
+          "enabled": true,
+          "x_lt": -300,
+          "z_gt": 200
+        },
+        "rf_range": 1500,
+        "risk_weights": {
+          "bird": 0,
+          "fiber_fpv": 1.5,
+          "fixed_wing": 1.2,
+          "quad": 1
+        }
+      },
+      "version": 1
+    },
+    "duration": 90,
+    "effector_config": {
+      "asset_radius_m": 8,
+      "effectors": {
+        "hold": {
+          "enabled": true
+        },
+        "kinetic": {
+          "enabled": true,
+          "max_range_m": 1000
+        },
+        "rf_jam": {
+          "enabled": true,
+          "max_range_m": 1500,
+          "requires_rf_link": true
+        }
+      },
+      "engagement_channels": 1,
+      "id": "illustrative-local-response-v1",
+      "label": "Illustrative bounded training actions; not real weapon performance or official doctrine",
+      "minimum_response_window_s": 7,
+      "sensor_geometry": {
+        "day_camera_range_m": 1500,
+        "radar_range_m": 3000,
+        "thermal_range_m": 1200
+      },
+      "units": {
+        "distance": "m"
+      },
+      "version": 1
+    },
+    "engine_version": "vyuha-0.5.0",
+    "focus": "classification_iff",
+    "fog": 0.15,
+    "fusion": {
+      "bias_seed": 0,
+      "exercise": "normal",
+      "mode": "training",
+      "version": "fusion-1"
+    },
+    "id": "raid_a3bbc639cb3dea19511aef15",
+    "jamEnd": 2700,
+    "jamStart": 2700,
+    "night": false,
+    "prioritisation_version": 1,
+    "raid": {
+      "anti_repeat": {
+        "history_considered": 0,
+        "rejected_attempts": 0
+      },
+      "constraints": {
+        "max_contacts": 200,
+        "peak_hostile_cap": 3,
+        "response_window_s": 7
+      },
+      "family": "DIRECT",
+      "fingerprint": "5da2f75fc1c219ea6662b67f",
+      "formation_model": "Closed-form shared leader with bounded slots and optional split; not autonomous swarm AI",
+      "requested_seed": 482913,
+      "signature": [
+        "bird:0:0:orbit_then_dash",
+        "quad:2:0:orbit_then_dash",
+        "quad:7:0:weave"
+      ],
+      "validation": {
+        "basis": "Geometric baseline check with declared ranges; not calibrated sensor reliability or a certified human-solvability claim",
+        "peak_simultaneous_hostiles": 1,
+        "response_windows": {
+          "T1": {
+            "first_tick": 60,
+            "last_tick": 1990,
+            "usable_ticks": 1931
+          }
+        },
+        "saturation_index": 1.0
+      },
+      "version": 2,
+      "waves": [
+        {
+          "contacts": [
+            "T1"
+          ],
+          "role": "direct",
+          "tick": 60
+        }
+      ]
+    },
+    "red_force": {
+      "phases": [
+        {
+          "contacts": [
+            "T1"
+          ],
+          "role": "direct",
+          "tick": 60
+        }
+      ],
+      "tactic": "DIRECT",
+      "tactic_seed": 482913,
+      "version": 2
+    },
+    "seed": 482913,
+    "sensor_config": {
+      "civil_beacon_probability": 0.9,
+      "clear_visibility_m": 20000,
+      "dense_visibility_m": 200,
+      "eo_ifov_rad": 0.00012,
+      "eo_max_range_m": 1500,
+      "false_track_lifetime_sweeps": 3,
+      "false_track_maximum": 2,
+      "false_track_probability": 0.05,
+      "iff_max_range_m": 2500,
+      "iff_reply_probability": 0.95,
+      "ir_fog_factor": 0.45,
+      "ir_ifov_rad": 0.00018,
+      "ir_max_range_m": 1200,
+      "optical_reliability": 0.95,
+      "optical_sample_ticks": 3,
+      "radar_confirm_hits": 3,
+      "radar_jam_factor": 0.15,
+      "radar_loss_sweeps": 3,
+      "radar_max_range_m": 5000,
+      "radar_occlusion_factor": 0.1,
+      "radar_pfa": 1e-06,
+      "radar_reference_range_m": 3000,
+      "radar_reference_rcs_db": -15,
+      "radar_reference_snr": 30,
+      "radar_reliability": 0.95,
+      "radar_sweep_ticks": 30,
+      "radar_window_sweeps": 5,
+      "rcs_spread_db": 3,
+      "rf_bearing_error_deg": 5,
+      "rf_gain_db": 6,
+      "rf_max_range_m": 4000,
+      "rf_path_exponent": 2.2,
+      "rf_reliability": 0.9,
+      "rf_sensitivity_dbm": -96,
+      "rf_shadow_db": 6,
+      "rf_tx_dbm": 20
+    },
+    "sensor_version": "vyuha-0.4.0",
+    "terrain": "urban",
+    "terrain_boxes": [
+      {
+        "height": 28,
+        "x_max": 210,
+        "x_min": 120,
+        "z_max": 390,
+        "z_min": 300
+      },
+      {
+        "height": 35,
+        "x_max": -130,
+        "x_min": -230,
+        "z_max": -240,
+        "z_min": -350
+      }
+    ],
+    "terrain_id": "urban_outpost",
+    "terrain_version": 1,
+    "threat_config": {
+      "id": "illustrative-threat-library-v1",
+      "label": "Illustrative training research parameters; not operational equipment specifications",
+      "profiles": {
+        "bird": {
+          "altitude_m": [
+            15,
+            80
+          ],
+          "identity": "neutral",
+          "kind": "bird",
+          "rf": false,
+          "speed_mps": [
+            4,
+            12
+          ]
+        },
+        "civil_uav": {
+          "altitude_m": [
+            20,
+            100
+          ],
+          "identity": "neutral",
+          "kind": "quad",
+          "registration_beacon": true,
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ]
+        },
+        "fixed_wing": {
+          "altitude_m": [
+            40,
+            180
+          ],
+          "identity": "hostile",
+          "kind": "fixed_wing",
+          "rf": false,
+          "speed_mps": [
+            25,
+            42
+          ]
+        },
+        "friendly_uav": {
+          "altitude_m": [
+            20,
+            100
+          ],
+          "identity": "friendly",
+          "kind": "quad",
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ]
+        },
+        "hostile_quad": {
+          "altitude_m": [
+            15,
+            90
+          ],
+          "identity": "hostile",
+          "kind": "quad",
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ]
+        },
+        "no_rf_fpv": {
+          "altitude_m": [
+            4,
+            30
+          ],
+          "identity": "hostile",
+          "kind": "fiber_fpv",
+          "rf": false,
+          "speed_mps": [
+            20,
+            35
+          ]
+        }
+      },
+      "units": {
+        "altitude": "m",
+        "distance": "m",
+        "speed": "m/s",
+        "time": "s"
+      },
+      "version": 1
+    },
+    "title": "Active observation \u2014 evidence before decision",
+    "tracks": [
+      {
+        "altitude": 20.297,
+        "bearing": 329,
+        "distance": 971.87,
+        "id": "T1",
+        "identity": "hostile",
+        "kind": "quad",
+        "motion": {
+          "lateral_m": 102.854,
+          "period_s": 20.934,
+          "phase_s": 16.2,
+          "primitive": "weave",
+          "turn_deg": -22.775,
+          "version": 1
+        },
+        "radar_range": 3000,
+        "rf": true,
+        "spawn": 60,
+        "speed": 14.998,
+        "thermal_range": 1200,
+        "threat_profile": "hostile_quad"
+      },
+      {
+        "altitude": 21.151,
+        "bearing": 99,
+        "distance": 931.621,
+        "expires_tick": 2700,
+        "id": "T2",
+        "identity": "friendly",
+        "kind": "quad",
+        "motion": {
+          "lateral_m": 0,
+          "period_s": 20,
+          "phase_s": 90,
+          "primitive": "orbit_then_dash",
+          "turn_deg": 70,
+          "version": 1
+        },
+        "radar_range": 3000,
+        "rf": true,
+        "spawn": 660,
+        "speed": 14.862,
+        "thermal_range": 1200,
+        "threat_profile": "friendly_uav"
+      },
+      {
+        "altitude": 20.189,
+        "bearing": 11,
+        "distance": 798.238,
+        "expires_tick": 2700,
+        "id": "T3",
+        "identity": "neutral",
+        "kind": "bird",
+        "motion": {
+          "lateral_m": 0,
+          "period_s": 20,
+          "phase_s": 90,
+          "primitive": "orbit_then_dash",
+          "turn_deg": 70,
+          "version": 1
+        },
+        "radar_range": 3000,
+        "rf": false,
+        "spawn": 240,
+        "speed": 10.795,
+        "thermal_range": 1200,
+        "threat_profile": "bird"
+      }
+    ],
+    "version": 2
+  },
+  "events": [
+    {
+      "channel": "ir",
+      "k": "inspect",
+      "order": 0,
+      "request_id": "3f6f2e4c-144f-4da3-8555-93c469f927f6",
+      "tick": 124,
+      "track": "T1"
+    },
+    {
+      "k": "designate",
+      "order": 2,
+      "tick": 172,
+      "track": "T1"
+    },
+    {
+      "identity": "hostile",
+      "k": "classify",
+      "kind": "quad",
+      "order": 3,
+      "tick": 241,
+      "track": "T1"
+    },
+    {
+      "effector": "rf_jam",
+      "k": "engage",
+      "order": 4,
+      "tick": 255,
+      "track": "T1"
+    }
+  ],
+  "commands": [],
+  "acquisition": {
+    "version": "optical-task-scheduler-v1",
+    "tick": 271,
+    "ended": true,
+    "pending": null,
+    "requests": [
+      {
+        "id": "3f6f2e4c-144f-4da3-8555-93c469f927f6",
+        "trackId": "T1",
+        "channel": "ir",
+        "acceptedTick": 124,
+        "acceptedOrder": 0,
+        "sampleTick": 156,
+        "releaseTick": 162,
+        "resultId": "result_3f6f2e4c-144f-4da3-8555-93c469f927f6"
+      }
+    ],
+    "results": [
+      {
+        "id": "3f6f2e4c-144f-4da3-8555-93c469f927f6",
+        "trackId": "T1",
+        "channel": "ir",
+        "acceptedTick": 124,
+        "acceptedOrder": 0,
+        "sampleTick": 156,
+        "releaseTick": 162,
+        "resultId": "result_3f6f2e4c-144f-4da3-8555-93c469f927f6",
+        "releasedOrder": 1,
+        "expiryTick": 252,
+        "reading": {
+          "available": true,
+          "level": "detect"
+        }
+      }
+    ],
+    "events": [
+      {
+        "tick": 124,
+        "order": 0,
+        "kind": "accepted",
+        "requestId": "3f6f2e4c-144f-4da3-8555-93c469f927f6"
+      },
+      {
+        "tick": 162,
+        "order": 1,
+        "kind": "released",
+        "requestId": "3f6f2e4c-144f-4da3-8555-93c469f927f6"
+      }
+    ],
+    "cooldownUntil": 168,
+    "samples": [
+      {
+        "resultId": "result_3f6f2e4c-144f-4da3-8555-93c469f927f6",
+        "observation": {
+          "available": true,
+          "level": "detect",
+          "position": {
+            "x": -403.586,
+            "z": 835.326129,
+            "altitude": 20.297
+          },
+          "silhouette": null,
+          "sample_tick": 156
+        }
+      }
+    ],
+    "ordering": "scheduled-before-external-v1",
+    "next_order": 5
+  },
+  "scorecard": {
+    "engine_version": "vyuha-0.5.0",
+    "fratricide": false,
+    "leakers": 0,
+    "passed": true,
+    "prioritisation": {
+      "agreement": 1,
+      "choices": [
+        {
+          "available": [
+            {
+              "priority": 0.017051905,
+              "risk": 1,
+              "tick": 255,
+              "time_to_impact": 58.644475,
+              "track_id": "T1"
+            }
+          ],
+          "chosen": {
+            "priority": 0.017051905,
+            "risk": 1,
+            "tick": 255,
+            "time_to_impact": 58.644475,
+            "track_id": "T1"
+          },
+          "order": 4,
+          "tick": 255
+        }
+      ],
+      "comparisons": [],
+      "coverage": 1.0,
+      "method": "pairwise Kendall agreement over co-observed hostile choices, multiplied by engagement coverage",
+      "ordering_rule": "First accepted non-Hold engagement per hostile; an ineffective attempt still declares attention. Pairs counted once, at their first co-observed choice.",
+      "points": 15,
+      "points_possible": 15,
+      "priority_rule": "risk_weight \u00d7 asset_risk / max(time_to_impact_seconds, 1/30)",
+      "tau": null,
+      "tie_rule": "Equal priority pairs are excluded; no comparable pairs yields neutral agreement 1, still multiplied by coverage.",
+      "unengaged": [],
+      "version": 1
+    },
+    "roe_breaches": 0,
+    "rows": [
+      {
+        "attempts": [
+          "rf_jam"
+        ],
+        "classify": 25,
+        "designated": 172,
+        "detect": 25,
+        "detected": 120,
+        "engage": 35,
+        "feedback": [],
+        "id": "T1",
+        "ideal": "rf_jam",
+        "identity": "hostile",
+        "impact": false,
+        "kind": "quad",
+        "prioritise": 15,
+        "total": 100
+      },
+      {
+        "attempts": [],
+        "classify": 0,
+        "designated": null,
+        "detect": 0,
+        "detected": 750,
+        "engage": 0,
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: quad / friendly.",
+          "Hold fire on this non-hostile contact."
+        ],
+        "id": "T2",
+        "ideal": "hold",
+        "identity": "friendly",
+        "impact": false,
+        "kind": "quad",
+        "prioritise": 0,
+        "total": 0
+      },
+      {
+        "attempts": [],
+        "classify": 0,
+        "designated": null,
+        "detect": 0,
+        "detected": 300,
+        "engage": 0,
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: bird / neutral.",
+          "Hold fire on this non-hostile contact."
+        ],
+        "id": "T3",
+        "ideal": "hold",
+        "identity": "neutral",
+        "impact": false,
+        "kind": "bird",
+        "prioritise": 0,
+        "total": 0
+      }
+    ],
+    "score": 100,
+    "skills": {
+      "recognition": 33,
+      "response": 33
+    },
+    "summary": "Good control. Repeat with a new scenario seed.",
+    "threats": 1
+  },
+  "executionTick": 271,
+  "endTick": 2700,
+  "timeline": [
+    {
+      "id": "tl_0000",
+      "tick": 0,
+      "order": -1,
+      "category": "sensor_transition",
+      "code": "SENSOR_STATE",
+      "title": "Radar normal \u00b7 RF active \u00b7 Day",
+      "track_id": null,
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0007",
+      "tick": 60,
+      "order": null,
+      "category": "tactic_phase",
+      "code": "DIRECT",
+      "title": "Red Force \u00b7 direct \u00b7 T1",
+      "track_id": null,
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0001",
+      "tick": 120,
+      "order": -1,
+      "category": "contact_detection",
+      "code": "FIRST_DETECTABLE",
+      "title": "T1 \u00b7 first working-sensor observation",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_0",
+      "tick": 124,
+      "order": 0,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_ACCEPTED",
+      "title": "T1 \u00b7 IR \u00b7 Observation requested",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_sample_3f6f2e4c-144f-4da3-8555-93c469f927f6",
+      "tick": 156,
+      "order": null,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_SAMPLE",
+      "title": "T1 \u00b7 IR \u00b7 Sampled modeled world",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_1",
+      "tick": 162,
+      "order": 1,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_RELEASED",
+      "title": "T1 \u00b7 IR \u00b7 Observation released",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0003",
+      "tick": 172,
+      "order": 2,
+      "category": "trainee_action",
+      "code": "designate",
+      "title": "T1 \u00b7 designate \u00b7 designate",
+      "track_id": "T1",
+      "decision_id": "dec_0000",
+      "seek_before": true
+    },
+    {
+      "id": "tl_0004",
+      "tick": 241,
+      "order": 3,
+      "category": "trainee_action",
+      "code": "classify",
+      "title": "T1 \u00b7 classify \u00b7 quad",
+      "track_id": "T1",
+      "decision_id": "dec_0001",
+      "seek_before": true
+    },
+    {
+      "id": "tl_0005",
+      "tick": 255,
+      "order": 4,
+      "category": "trainee_action",
+      "code": "engage",
+      "title": "T1 \u00b7 engage \u00b7 RF jammer",
+      "track_id": "T1",
+      "decision_id": "dec_0002",
+      "seek_before": true
+    },
+    {
+      "id": "tl_0006",
+      "tick": 255,
+      "order": 4,
+      "category": "contact_resolution",
+      "code": "THREAT_RESOLVED",
+      "title": "T1 \u00b7 contact resolved",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    }
+  ]
+}

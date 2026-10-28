@@ -1,0 +1,157 @@
+Browser tab: 1027396728, Title: "VYUHA · Counter-drone trainer", URL: "http://localhost:8050/academy".
+1 AXWebArea VYUHA · Counter-drone trainer, URL: localhost:8050/academy
+	2 container root
+		3 link Description: Skip to workspace, Value: localhost:8050/academy#workspace-content
+		4 container
+			5 link Description: VYUHA home, Value: localhost:8050/
+			6 container Primary workspaces
+				7 link Description: Training, Help: Training ground, Value: localhost:8050/
+				8 link Description: Review, Help: After-action review, Value: localhost:8050/?view=aar
+				9 link Description: Crew, Help: Shared crew, Value: localhost:8050/crew
+				10 link Description: Instructor, Help: Instructor console, Value: localhost:8050/instructor
+				11 link Description: Analytics, Help: Training analytics, Value: localhost:8050/analytics
+			12 button Find workspace, Help: Find workspace (Control or Command K)
+			13 button Operator guide
+				14 text Operator 
+				15 text guide
+			16 button (collapsed) Description: Workspaces, Secondary Actions: Expand
+		17 container workspace-content
+			18 container
+				19 text WORKSPACE /  ACADEMY
+			20 container
+				21 text A GUIDED LEARNING JOURNEY
+				22 heading Academy, Value: 1
+					23 text Academy
+				24 text Learn a decision skill with guidance, try it with less help, then gather independent evidence. Each step leads into the real simulator and back to verified review.
+				25 container Active observation practice
+					26 text NEW SIMULATION / OPT-IN PRACTICE
+					27 heading Investigate before you decide., Value: 2
+						28 text Investigate before you decide.
+					29 text Radar supplies a contact. Request EO or IR, wait for the simulated acquisition, then decide what the released evidence actually establishes. Review the complete request-to-decision chain in verified Ghost.
+					30 text Practice only. This new engine does not update individual mastery. Crew and VR adapters are not yet admitted.
+					31 link Description: Enter active observation practice, Value: localhost:8050/?acquisition=1&night=0
+				32 text ACQ-V05-QA 's learning route Choose a competency, brief the task and explicitly prepare an attempt. Any stage is available; suggestions are not unlocks or mastery judgments.
+				33 button Refresh evidence
+				34 container Individual competency journeys
+					35 text CHOOSE YOUR FOCUS
+					36 content list
+						37 checkbox 01 · C01 Observation acquisition 0 assessed sessions · 0 unassessable observations, Value: 1
+							38 text 01
+							39 text  ·
+							40 text C01
+							41 text Observation acquisition
+							42 text 0 assessed sessions · 0 unassessable observations
+						43 checkbox 02 · C02 Evidence-based classification 0 assessed sessions · 0 unassessable observations, Value: 0
+							44 text 02
+							45 text  ·
+							46 text C02
+							47 text Evidence-based classification
+							48 text 0 assessed sessions · 0 unassessable observations
+						49 checkbox 03 · C03 Restraint under uncertainty 0 assessed sessions · 0 unassessable observations, Value: 0
+							50 text 03
+							51 text  ·
+							52 text C03
+							53 text Restraint under uncertainty
+							54 text 0 assessed sessions · 0 unassessable observations
+						55 checkbox 04 · C04 Response reasoning 0 assessed sessions · 0 unassessable observations, Value: 0
+							56 text 04
+							57 text  ·
+							58 text C04
+							59 text Response reasoning
+							60 text 0 assessed sessions · 0 unassessable observations
+						61 checkbox 05 · C05 Degraded evidence handling 0 assessed sessions · 0 unassessable observations, Value: 0
+							62 text 05
+							63 text  ·
+							64 text C05
+							65 text Degraded evidence handling
+							66 text 0 assessed sessions · 0 unassessable observations
+					67 text Individual routes only. Crew coordination is a separate curriculum contract.
+				68 container Stages of the selected competency
+					69 content list
+						70 button 1 · Learn with guidance No supporting practice observation recorded
+							71 text 1 · Learn with guidance
+							72 text No supporting practice observation recorded
+						73 button 2 · Try with less guidance No supporting practice observation recorded
+							74 text 2 · Try with less guidance
+							75 text No supporting practice observation recorded
+						76 button 3 · Demonstrate independently No assessable session recorded
+							77 text 3 · Demonstrate independently
+							78 text No assessable session recorded
+				79 text Suggested next:
+				80 text Supported practice
+				81 text . Based on recorded supported practice items; no proficiency or assessment pass is inferred.
+				82 container Observation acquisition
+					83 container
+						84 text SUPPORTED PRACTICE  ·  C01
+						85 heading Observation acquisition, Value: 2, ID: academy-lesson-title
+							86 text Observation acquisition
+						87 text Use the lesson guidance, make a decision and reconstruct the evidence afterward. Full guidance
+					88 container
+						89 text Lesson
+						90 pop up button (collapsed, settable) Description: Lesson, Value: Observation acquisition: practice A, Secondary Actions: Expand
+							91 menu
+								92 (selected) Observation acquisition: practice A
+					93 heading Your objective, Value: 3
+						94 text Your objective
+					95 text Detect and designate an observable contact without treating unknown evidence as absence.
+					96 heading In the exercise, Value: 3
+						97 text In the exercise
+					98 content list
+						99 container
+							100 AXListMarker 1. 
+							101 text Select an observed contact; retain uncertainty when evidence is insufficient.
+						102 container
+							103 AXListMarker 2. 
+							104 text Make your own designation, classification and response choices.
+						105 container
+							106 AXListMarker 3. 
+							107 text After completion, inspect the verified evidence and explain one choice.
+					108 container Evidence to review after the exercise
+						109 text WHAT TO LOOK FOR IN REVIEW
+						110 heading Build an evidence trail, Value: 3
+							111 text Build an evidence trail
+						112 text Detect and designate an observable contact without treating unknown evidence as absence.
+						113 content list
+							114 container
+								115 AXListMarker 1. 
+								116 text Identify the available observation behind one decision.
+							117 container
+								118 AXListMarker 2. 
+								119 text Compare the decision with the server-verified review in Ghost.
+							120 container
+								121 AXListMarker 3. 
+								122 text Open Evidence investigation to test what the original reports support, then inspect their exact replay moments.
+							123 container
+								124 AXListMarker 4. 
+								125 text Record what remained uncertain and what you would check next.
+						126 container
+							127 text Reflection prompt: Which observation supported your choice, and what remained uncertain?
+						128 text Practice evidence is excluded from individual assessment. A saved reflection does not award competency credit.
+					129 container
+						130 text Prepare, then open in Training Preparation freezes an attempt. Open the frozen attempt in Training, then use its Start control.
+						131 button Prepare selected lesson
+				132 container Evidence for this competency
+					133 heading Evidence for this competency, Value: 2, ID: academy-course-evidence-title
+						134 text Evidence for this competency
+					135 definition list
+						136 container Supported
+							137 text Supported
+						138 text 0
+						139 container Incorrect
+							140 text Incorrect
+						141 text 0
+						142 container Unassessable
+							143 text Unassessable
+						144 text 0
+						145 container Assessed sessions
+							146 text Assessed sessions
+						147 text 0
+					148 text These are original-server assessment observations across this competency, not stage completion or per-form results. Practice and Crew do not become individual assessment.
+					149 link Description: Open Ghost review, Value: localhost:8050/?view=aar
+				150 button (collapsed) Coverage-first practice and full evidence record, Secondary Actions: Expand
+					151 text Coverage-first practice and full evidence record
+				152 button (collapsed) Course sources, assessment limits and Crew scope, Secondary Actions: Expand
+					153 text Course sources, assessment limits and Crew scope
+				154 text Illustrative curriculum, not operational certification. Structural form balance is not empirical difficulty equivalence, fairness or demonstrated human learning benefit.
+
+The focused UI element is 1 AXWebArea VYUHA · Counter-drone trainer, URL: localhost:8050/academy

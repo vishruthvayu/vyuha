@@ -6,6 +6,7 @@ Source: `server/config/capabilities-v1.json`. Generate with `scripts/check_capab
 |---|---|---|---|
 | Versioned deterministic browser/VR training | IMPLEMENTED | `/` | `server/engine.py`, `client/src/sim.worker.ts`, `client/src/TrainingDeck.tsx`, `client/src/training-presentation.ts`, `client/src/Scene.tsx`, `client/src/world/world-lighting.ts`, `client/src/OpticalStation.tsx`, `client/src/optical-station.ts`, `client/src/inquiry-evidence.ts` |
 | Server-verified Ghost and immutable replay | IMPLEMENTED | `/?view=aar` | `server/review.py`, `client/src/Ghost.tsx`, `client/src/ReviewTheatre.tsx`, `client/src/review-frame.ts` |
+| Request-gated synthetic EO/IR and verified acquisition reconstruction | PARTIAL | `/academy` | `server/acquisition.py`, `server/engine_v3.py`, `server/review_v3.py`, `client/src/sim-v3.ts`, `client/src/AcquisitionStation.tsx`, `client/src/AcquisitionReview.tsx` |
 | Role-attributed Crew and reconnection | IMPLEMENTED | `/crew` | `server/crew.py`, `client/src/Crew.tsx` |
 | Dispatch-bound Fusion advice receipts | IMPLEMENTED | `/` | `server/fusion.py`, `client/src/action-evidence.ts` |
 | Validated transfer and restore | IMPLEMENTED | `/transfer` | `server/portable.py`, `client/src/Transfer.tsx` |
@@ -31,8 +32,8 @@ Source: `server/config/capabilities-v1.json`. Generate with `scripts/check_capab
 | R06 | Balanced assessment bank and semantic novelty | PARTIAL | A | R03 |
 | R07 | Curriculum-aware, testable Director | PARTIAL | A | R03, R06 |
 | R08 | Calibrated, abstaining observable-only assistance | PLANNED | B | R03, R06 |
-| R09 | Active evidence collection and uncertainty literacy | PLANNED | B | R03 |
-| R10 | Causal AAR with evidence graph and reflection | PLANNED | B | R03 |
+| R09 | Active evidence collection and uncertainty literacy | PARTIAL | B | R03 |
+| R10 | Causal AAR with evidence graph and reflection | PARTIAL | B | R03 |
 | R11 | Synchronized evidence workspace | PLANNED | B | Existing baseline |
 | R12 | Progressive active-session control hierarchy | PLANNED | B | R01 |
 | R13 | Accessible/localized input and presentation system | PLANNED | B | Existing baseline |
