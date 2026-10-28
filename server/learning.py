@@ -143,6 +143,9 @@ def compile_item(context):
 
 
 def is_practice(db, sid):
+    # The first active-observation engine is practice-only, never retroactive mastery.
+    row=db.execute('SELECT sc.spec FROM sessions s JOIN scenarios sc ON sc.id=s.scenario_id WHERE s.id=?',(sid,)).fetchone()
+    if row and json.loads(row['spec']).get('engine_version')=='vyuha-0.5.0':return True
     if not db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='learning_attempts'").fetchone():return False
     row=db.execute('SELECT context FROM learning_attempts WHERE session_id=?',(sid,)).fetchone()
     return bool(row and json.loads(row['context'])['mode']!='assessment')

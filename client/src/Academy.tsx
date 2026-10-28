@@ -206,6 +206,26 @@ function AcademyJourney({
         title="Academy"
         description="Learn a decision skill with guidance, try it with less help, then gather independent evidence. Each step leads into the real simulator and back to verified review."
       />
+      <section
+        className="panel acquisition-academy-brief"
+        aria-label="Active observation practice"
+      >
+        <span className="eyebrow">NEW SIMULATION / OPT-IN PRACTICE</span>
+        <h2>Investigate before you decide.</h2>
+        <p>
+          Radar supplies a contact. Request EO or IR, wait for the simulated
+          acquisition, then decide what the released evidence actually
+          establishes. Review the complete request-to-decision chain in verified
+          Ghost.
+        </p>
+        <p>
+          Practice only. This new engine does not update individual mastery.
+          Crew and VR adapters are not yet admitted.
+        </p>
+        <a className="button primary" href="/?acquisition=1&night=0">
+          Enter active observation practice
+        </a>
+      </section>
       <div className="academy-journey-intro">
         <div>
           <strong>{callsign}'s learning route</strong>

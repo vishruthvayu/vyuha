@@ -124,6 +124,17 @@ export default function ReferenceRun({ record }: { record: TrainingRecord }) {
     }
   }
   if (!record.verified) return null;
+  if (record.scenario.engine_version === "vyuha-0.5.0")
+    return (
+      <section className="panel advanced-card review-reference-run">
+        <h2>Autonomous reference replay</h2>
+        <p>
+          The active-observation policy adapter is not yet admitted. Inspect the
+          original request, sample and release history in Ghost; no autonomous
+          acquisition result or reference score is generated for this engine.
+        </p>
+      </section>
+    );
   return (
     <section className="panel advanced-card review-reference-run">
       <div className="eyebrow">SEPARATE HYPOTHETICAL POLICY RUN</div>

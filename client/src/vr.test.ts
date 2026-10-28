@@ -50,7 +50,7 @@ test('VR optical loss holds only frozen observation for six ticks, failed channe
 });
 test('VR mirrors browser disabled gates and retains warned resource/cooldown/restriction attempts',()=>{
  const {state,scenario,track}=fixture();
- const a=(k:Action['k'],e:'hold'|'rf_jam'|'kinetic'='hold')=>vrAction(state,'running',scenario,'T1',k,'quad','hostile',e);
+ const a=(k:Exclude<Action['k'],'inspect'>,e:'hold'|'rf_jam'|'kinetic'='hold')=>vrAction(state,'running',scenario,'T1',k,'quad','hostile',e);
  assert.equal(vrAction(state,'paused',scenario,'T1','designate','quad','hostile'),undefined);
  assert.equal(a('classify'),undefined);assert.equal(a('engage'),undefined);assert.deepEqual(a('designate'),{k:'designate',track:'T1'});
  track.designated=60;assert.equal(a('designate'),undefined);assert.ok(a('classify'));track.classification='quad';assert.ok(a('engage','kinetic'));
@@ -135,4 +135,9 @@ test('VR requires explicit type/identity choices and distinguishes styled IR nig
  assert.equal(vrAction(state,'running',scenario,'T1','classify',null,'neutral'),undefined);
  assert.ok(vrAction(state,'running',scenario,'T1','classify','quad','neutral'));
  assert.equal(vrVisionLabel('night',scenario),'IR night display');assert.equal(vrVisionLabel('day',scenario),'EO day');
+});
+
+test('VR explicitly rejects active-observation engine until its acquisition adapter is admitted',()=>{
+ const {state,scenario}=fixture();scenario.engine_version='vyuha-0.5.0';
+ for(const k of ['designate','classify','engage'] as const)assert.equal(vrAction(state,'running',scenario,'T1',k,'quad','hostile','hold'),undefined);
 });

@@ -114,6 +114,8 @@ export function vrAction(
   identity: Identity | null,
   effector?: Effector,
 ): Omit<Action, "tick"> | undefined {
+  if (scenario.engine_version === "vyuha-0.5.0") return; // Acquisition XR adapter is not admitted.
+
   const t = targetAt(state, selected, modernSensors(scenario));
   if (controlReason(k === "engage" ? "respond" : k, phase, t)) return;
   if (k === "classify" && (!kind || !identity)) return;

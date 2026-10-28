@@ -14,10 +14,11 @@ let benchmark=false;let tickTimes:number[]=[];
 let hidden=false;
 const clock=new FixedStepClock();
 let timer:ReturnType<typeof setInterval>|null=null;
+function nextOrder(){return (sim as Simulation&{nextOrder?:number}|null)?.nextOrder??order;}
 function publish(initialized=false){if(sim)emit({type:'snapshot',state:sim.snapshot(),paused:localPaused||sim.state.paused,initialized});}
 function flushBenchmark(){if(benchmark&&tickTimes.length){emit({type:'benchmark',tick_ms:tickTimes});tickTimes=[];}}
 function stoppedBenchmark(){if(benchmark&&sim)emit({type:'benchmark-stopped',tick:sim.state.tick});}
-function finish(){if(!sim||ended)return;ended=true;localPaused=true;flushBenchmark();publish();stoppedBenchmark();emit({type:'finalized',events:sim.events,commands:sim.commands});}
+function finish(){if(!sim||ended)return;ended=true;localPaused=true;(sim as Simulation&{endAcquisition?:()=>void}).endAcquisition?.();flushBenchmark();publish();stoppedBenchmark();emit({type:'finalized',events:sim.events,commands:sim.commands});}
 onmessage=(e:MessageEvent<{type:string;scope?:string;request_id?:number;scenario?:Scenario;action?:Action;events?:Action[];commands?:AppliedCommand[];command?:InstructorCommand;tick?:number;benchmark?:boolean;hidden?:boolean}>)=>{
  const m=e.data;
  // Benchmark retains its unscoped worker protocol. Training initialization is
@@ -44,12 +45,12 @@ onmessage=(e:MessageEvent<{type:string;scope?:string;request_id?:number;scenario
  else if(m.type==='visibility'){hidden=m.hidden===true;clock.reset(performance.now());emit({type:'clock-status',status:hidden?'hidden':'visible',note:hidden?'Exercise logical time is suspended while this browser tab is hidden.':'Tab visible. Logical time resumes without accumulating hidden wall time.'});}
  else if(m.type==='finish')finish();
  else if(m.type==='control'&&sim&&m.command&&!ended){
-  if(sim.control(m.command,sim.state.tick,order)){order++;if(m.command.type==='resume')localPaused=false;if(m.command.type==='pause'||m.command.type==='resume')clock.reset(performance.now());emit({type:'controlled',commands:sim.commands});}publish();
+  if(sim.control(m.command,sim.state.tick,nextOrder())){order=Math.max(order+1,nextOrder());if(m.command.type==='resume')localPaused=false;if(m.command.type==='pause'||m.command.type==='resume')clock.reset(performance.now());emit({type:'controlled',commands:sim.commands});}publish();
  }else if(m.type==='action'&&sim&&m.action){
   // Request correlation belongs to transport metadata, never authoritative events.
-  const a={...m.action,tick:sim.state.tick,order};
+  const a={...m.action,tick:sim.state.tick,order:nextOrder()};
   const reason=ended||sim.state.done?'ended':localPaused||sim.state.paused?'paused':undefined;
-  if(!reason&&sim.act(a)){order++;emit({type:'accepted',action:a,request_id:m.request_id});}
+  if(!reason&&sim.act(a)){order=Math.max(order+1,nextOrder());emit({type:'accepted',action:a,request_id:m.request_id});}
   else emit({type:'rejected',action:a,request_id:m.request_id,reason:reason??'state_changed'});
   publish();
  }

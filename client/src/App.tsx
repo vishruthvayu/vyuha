@@ -1,3 +1,4 @@
+import AcquisitionStation from "./AcquisitionStation";
 import { OpticalStation } from "./OpticalStation";
 import { TrainingDeck } from "./TrainingDeck";
 import { briefingSnapshot } from "./training-presentation";
@@ -309,8 +310,23 @@ export default function App({
   const [mode, setMode] = useState<"scripted" | "adaptive" | "library">(
     initialTrainingMode(window.location.search),
   );
-  const [night, setNight] = useState(true);
-  const [seed, setSeed] = useState(482913);
+  const [night, setNight] = useState(() =>
+    new URLSearchParams(window.location.search).get("acquisition") === "1"
+      ? new URLSearchParams(window.location.search).get("night") === "1"
+      : true,
+  );
+  const [seed, setSeed] = useState(() => {
+    const value = Number(
+      new URLSearchParams(window.location.search).get("seed"),
+    );
+    return new URLSearchParams(window.location.search).get("acquisition") ===
+      "1" &&
+      Number.isInteger(value) &&
+      value > 0 &&
+      value <= 4294967295
+      ? value
+      : 482913;
+  });
   const [sync, setSync] = useState<"synced" | "syncing" | "queued">("synced");
   const [assignment, setAssignment] = useState<Assignment | null>(null);
   const clientId = useRef(newId());
@@ -425,6 +441,8 @@ export default function App({
       cancelled = true;
     };
   }, [trainee, phase, reviewOnly, learningReload, requestedLearningTicket]);
+  const acquisitionEntry =
+    new URLSearchParams(window.location.search).get("acquisition") === "1";
   const prepare = async () => {
     learningRequest.current++;
     const url = new URL(window.location.href);
@@ -439,11 +457,13 @@ export default function App({
     setBusy(true);
     setPrepared(null);
     try {
-      const spec = await api<Scenario>("/director-v2/prepare", {
-        seed,
-        trainee,
-        duration: 90,
-      });
+      const spec = acquisitionEntry
+        ? await api<Scenario>("/acquisition/practice", { seed, night })
+        : await api<Scenario>("/director-v2/prepare", {
+            seed,
+            trainee,
+            duration: 90,
+          });
       setPrepared(spec);
       setScenario(spec);
       setState(new Simulation(spec).snapshot());
@@ -716,7 +736,16 @@ export default function App({
       setPhase("complete");
       setPrepared(null);
       const spec = scenarioRef.current;
-      const sim = replay(spec, log, spec.duration * HZ, commands.current);
+      const sim = replay(
+        spec,
+        log,
+        spec.duration * HZ,
+        commands.current,
+        undefined,
+        spec.engine_version === "vyuha-0.5.0"
+          ? (liveState.current?.tick ?? spec.duration * HZ)
+          : undefined,
+      );
       const preview = score(sim);
       eventBatches.current = sealEvents(log, eventBatches.current);
       let record: TrainingRecord = {
@@ -1232,8 +1261,8 @@ export default function App({
       workerScope.current,
       requestId,
       data,
-      vrOpen ? null : latestAdvice.current,
-      vrOpen ? null : confidenceRef.current,
+      vrOpen || data.k === "inspect" ? null : latestAdvice.current,
+      vrOpen || data.k === "inspect" ? null : confidenceRef.current,
     );
     setFeedback({
       seq: requestId,
@@ -1660,6 +1689,9 @@ export default function App({
               replayTick,
               current.commands ?? [],
               replayOrder,
+              current.scenario.engine_version === "vyuha-0.5.0"
+                ? current.executionTick
+                : undefined,
             ).snapshot()
           : null,
       [current, replayTick, replayOrder],
@@ -1712,7 +1744,9 @@ export default function App({
         id="workspace-content"
         tabIndex={-1}
         className={
-          view === "drill" ? "flight-shell mission-simulator" : undefined
+          view === "drill"
+            ? `flight-shell mission-simulator${scenario.engine_version === "vyuha-0.5.0" ? " active-observation-theatre" : ""}`
+            : undefined
         }
       >
         <header className="topbar">
@@ -1968,6 +2002,7 @@ export default function App({
                       busy ||
                       phase === "restoring" ||
                       phase === "complete" ||
+                      scenario.engine_version === "vyuha-0.5.0" ||
                       (mode === "adaptive" && phase === "ready" && !prepared)
                     }
                     onClick={() => {
@@ -1975,7 +2010,9 @@ export default function App({
                       setVROpen(true);
                     }}
                   >
-                    Open VR observation cockpit
+                    {scenario.engine_version === "vyuha-0.5.0"
+                      ? "Active observation: VR adapter not yet supported"
+                      : "Open VR observation cockpit"}
                   </button>
                   <a href="/vr-guide.html" target="_blank" rel="noreferrer">
                     Experimental VR / setup guide
@@ -2371,8 +2408,33 @@ export default function App({
                                     }
                                   : undefined
                               }
-                              objective={episodeBriefing?.objective}
-                              instructions={episodeBriefing?.instructions}
+                              objective={
+                                episodeBriefing?.objective ??
+                                (scenario.engine_version === "vyuha-0.5.0" ||
+                                (acquisitionEntry &&
+                                  mode === "adaptive" &&
+                                  !prepared &&
+                                  !activeLearning &&
+                                  !ticketIssue)
+                                  ? "Resolve uncertainty with requested synthetic evidence. Radar discovers contacts; EO and IR publish only after your explicit request and logical dwell."
+                                  : undefined)
+                              }
+                              instructions={
+                                episodeBriefing?.instructions ??
+                                (scenario.engine_version === "vyuha-0.5.0" ||
+                                (acquisitionEntry &&
+                                  mode === "adaptive" &&
+                                  !prepared &&
+                                  !activeLearning &&
+                                  !ticketIssue)
+                                  ? [
+                                      "Select a currently reported contact in Radar or Reports.",
+                                      "Request EO or IR. Wait for publication, then inspect availability, resolution and age.",
+                                      "Designate, explicitly classify and choose a response using the evidence you have. Shape or silence alone does not establish affiliation.",
+                                      "End the exercise and inspect request, sample and release boundaries in verified Ghost.",
+                                    ]
+                                  : undefined)
+                              }
                               briefingUnavailable={
                                 !!activeLearning && !episodeBriefing
                               }
@@ -2436,8 +2498,13 @@ export default function App({
                                         : "Start Academy practice"
                                       : mode === "adaptive"
                                         ? prepared
-                                          ? "Start adaptive drill"
-                                          : "Prepare adaptive drill"
+                                          ? scenario.engine_version ===
+                                            "vyuha-0.5.0"
+                                            ? "Start observation exercise"
+                                            : "Start adaptive drill"
+                                          : acquisitionEntry
+                                            ? "Prepare observation exercise"
+                                            : "Prepare adaptive drill"
                                         : "Begin exercise"
                               }
                               duration={scenario.duration}
@@ -2461,6 +2528,34 @@ export default function App({
                         </div>
                       )}
                     </OpticalStation>
+                    {scenario.engine_version === "vyuha-0.5.0" &&
+                      (phase === "running" || phase === "paused") && (
+                        <AcquisitionStation
+                          key={stationScope}
+                          state={state}
+                          selected={selected}
+                          running={running}
+                          enabled={workerInitialized.current && !busy}
+                          visible={stationInstrument === "observe"}
+                          receipt={feedback}
+                          request={(channel) => {
+                            if (
+                              !running ||
+                              !workerInitialized.current ||
+                              !selected
+                            )
+                              return null;
+                            const id = newId();
+                            act({
+                              k: "inspect",
+                              track: selected,
+                              channel,
+                              request_id: id,
+                            });
+                            return id;
+                          }}
+                        />
+                      )}
                     <section className="panel radar-panel" tabIndex={-1}>
                       <div className="panel-header">
                         <div>
@@ -2681,6 +2776,7 @@ export default function App({
                                       session_id: sessionRef.current || "local",
                                       scenario_id: scenario.id,
                                       before_order:
+                                        state.acquisition?.next_order ??
                                         Math.max(
                                           -1,
                                           ...events.current.map(

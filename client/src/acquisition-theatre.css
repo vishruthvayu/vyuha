@@ -1,0 +1,265 @@
+/* Active-observation theatre: a real sensor task beside a persistent world. */
+.active-observation-theatre {
+  --optics-rail: 360px;
+}
+.active-observation-theatre
+  .simulation-workstation[data-instrument="observe"]
+  .sensor-workspace
+  > .scene-container {
+  width: calc(100% - var(--optics-rail));
+}
+.acquisition-console {
+  position: absolute;
+  z-index: 7;
+  top: 70px;
+  right: 0;
+  bottom: calc(var(--station-dock, 94px) + 14px);
+  width: var(--optics-rail);
+  padding: 24px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: linear-gradient(155deg, #142c32, #09191e);
+  border-left: 1px solid #6a8b88;
+  color: #e4efe5;
+  scrollbar-gutter: stable;
+}
+.acquisition-console[hidden] {
+  display: none;
+}
+.acquisition-console header .eyebrow {
+  color: #b2d6bd;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+.acquisition-console h2 {
+  font: 550 27px/1.12 var(--font-sans, system-ui);
+  letter-spacing: -0.025em;
+  margin: 10px 0 14px;
+}
+.acquisition-console p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #c3d6ce;
+}
+.acquisition-subject {
+  display: grid;
+  gap: 8px;
+  margin: 22px 0;
+  padding: 16px;
+  background: #203c40;
+  border-left: 3px solid #b7d8a1;
+}
+.acquisition-subject > span {
+  font: 10px var(--font-mono, monospace);
+  letter-spacing: 0.1em;
+  color: #b4cdc1;
+}
+.acquisition-subject > strong {
+  font: 600 22px var(--font-sans, system-ui);
+}
+.acquisition-console small,
+.acquisition-console footer {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #b9d0c4;
+}
+.acquisition-channel-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.active-observation-theatre .acquisition-channel-actions button {
+  display: grid;
+  gap: 8px;
+  min-height: 80px;
+  padding: 14px 10px;
+  background: #d3e3bd;
+  color: #122320;
+  border: 1px solid #e2efd3;
+  border-radius: 6px;
+  text-align: left;
+  cursor: pointer;
+  white-space: normal;
+}
+.acquisition-channel-actions button span {
+  font-size: 11px;
+  line-height: 1.4;
+}
+.acquisition-channel-actions button:disabled {
+  background: #1d3437;
+  color: #98afa6;
+  border-color: #56716b;
+  cursor: default;
+}
+.acquisition-channel-actions button:focus-visible {
+  outline: 3px solid #f8d5a1;
+  outline-offset: 3px;
+}
+.acquisition-pending {
+  display: grid;
+  gap: 12px;
+  margin-block: 20px;
+  padding: 16px;
+  background: #203b3f;
+  border: 1px solid #a4c4b3;
+}
+.acquisition-pending > span {
+  font: 11px var(--font-mono, monospace);
+  color: #d0e4c1;
+}
+.acquisition-pending progress {
+  width: 100%;
+  height: 7px;
+  accent-color: #bed99e;
+}
+.acquisition-results h3 {
+  margin-top: 24px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.acquisition-results article {
+  padding: 15px 0;
+  border-top: 1px solid #59746b;
+}
+.acquisition-results article header {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 11px;
+}
+.acquisition-results article header span {
+  color: #d2dfa1;
+}
+.acquisition-results article[data-expired="true"] header span {
+  color: #d6bd9d;
+}
+.acquisition-console footer {
+  border-top: 1px solid #59746b;
+  padding-top: 16px;
+  margin-top: 16px;
+}
+.active-observation-theatre
+  .simulation-workstation[data-instrument="observe"]
+  .optical-console {
+  right: calc(var(--optics-rail) + 18px);
+  left: 212px;
+}
+.active-observation-theatre .optical-capture {
+  display: none;
+}
+@media (max-width: 1100px) {
+  .active-observation-theatre {
+    --optics-rail: 320px;
+  }
+  .acquisition-console {
+    padding: 18px;
+  }
+  .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .optical-console {
+    left: 18px;
+    bottom: 110px;
+  }
+  .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .radar-panel {
+    display: none;
+  }
+}
+@media (max-width: 780px) {
+  .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .sensor-workspace
+    > .scene-container {
+    width: 100%;
+    height: 42%;
+  }
+  .acquisition-console {
+    left: 0;
+    right: 0;
+    top: 42%;
+    bottom: calc(var(--station-dock, 94px) + 14px);
+    width: 100%;
+    padding: 16px;
+    border-top: 1px solid #6a8b88;
+    border-left: 0;
+  }
+  .acquisition-console h2 {
+    font-size: 22px;
+  }
+  .acquisition-console > header p {
+    display: none;
+  }
+  .acquisition-subject {
+    margin: 12px 0;
+  }
+  .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .optical-console {
+    display: none;
+  }
+  .acquisition-channel-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 781px) and (max-width: 1050px) {
+  .mission-simulator .deck-command-rail .station-mission-summary,
+  .mission-simulator .deck-command-rail .mission-name div > span {
+    display: none;
+  }
+  .mission-simulator .deck-command-rail .mission-name strong {
+    max-width: 20ch;
+  }
+}
+
+.acquisition-review {
+  margin-block: 20px;
+  padding: 24px;
+}
+.acquisition-review h2 {
+  font-size: 24px;
+  line-height: 1.2;
+}
+.acquisition-review p,
+.acquisition-academy-brief p {
+  font-size: 14px;
+  line-height: 1.65;
+  max-width: 90ch;
+}
+.acquisition-review-queries {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.acquisition-review-queries li {
+  padding: 18px;
+  background: #152a2e;
+  border: 1px solid #607f75;
+  border-radius: 8px;
+}
+.acquisition-review-queries li > span {
+  display: block;
+  font: 12px/1.6 var(--font-mono, monospace);
+  margin-top: 8px;
+  color: #bfd3c4;
+}
+.acquisition-review nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.acquisition-review nav button {
+  min-height: 44px;
+}
+.acquisition-review aside {
+  padding: 20px;
+  border-left: 3px solid #c5d49f;
+  background: #1b3030;
+}
+.acquisition-review aside a {
+  margin: 6px 12px 0 0;
+  white-space: normal;
+}

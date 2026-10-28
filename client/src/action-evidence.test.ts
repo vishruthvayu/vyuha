@@ -68,3 +68,41 @@ test("out-of-order replies preserve each request snapshot and reset clears prior
   assert.equal(ledger.size, 0);
   assert.equal(ledger.take("old", 3, accepted), undefined);
 });
+
+test("acquisition acknowledgments bind channel and stable query ID without adopting Fusion advice", () => {
+  const ledger = new ActionEvidenceLedger();
+  const inspect = {
+    k: "inspect" as const,
+    track: "T1",
+    channel: "ir" as const,
+    request_id: "query1",
+  };
+  ledger.capture("active", 99, inspect, null, null);
+  assert.equal(
+    ledger.take("active", 99, {
+      ...inspect,
+      channel: "eo",
+      tick: 100,
+      order: 0,
+    }),
+    undefined,
+  );
+  assert.equal(
+    ledger.take("active", 99, {
+      ...inspect,
+      request_id: "query2",
+      tick: 100,
+      order: 0,
+    }),
+    undefined,
+  );
+  assert.equal(ledger.size, 1);
+  const accepted = ledger.take("active", 99, {
+    ...inspect,
+    tick: 100,
+    order: 0,
+  })!;
+  assert.equal(accepted.advice, null);
+  assert.equal(accepted.confidence, null);
+  assert.equal(ledger.size, 0);
+});

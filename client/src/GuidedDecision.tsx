@@ -270,6 +270,8 @@ export function attemptOutcome(a: PublicResponseAttempt): {
 }
 
 function describeAction(a: DecisionAction) {
+  if (a.k === "inspect")
+    return `Request ${a.channel?.toUpperCase() ?? "optical"} observation of ${a.track}`;
   return a.k === "designate"
     ? `Designation of ${a.track}`
     : a.k === "classify"

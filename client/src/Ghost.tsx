@@ -24,6 +24,8 @@ export function actionLabel(
 ) {
   if (!action) return "No action recorded";
   const type = "k" in action ? action.k : action.type;
+  if (type === "inspect" && "channel" in action)
+    return `Request ${action.channel?.toUpperCase() ?? "optical"} observation`;
   if (type === "engage")
     return action.effector === "rf_jam"
       ? "RF jammer"
@@ -485,9 +487,10 @@ export function GhostTimeline({
         </div>
         <p className="footnote">
           Lost points are deduplicated per contact/node before hostile-row
-          averaging. Sensor-context tags overlap other skills. This focus is a
-          review recommendation. The next adaptive drill uses the persistent
-          four-skill profile.
+          averaging. Sensor-context tags overlap other skills.{" "}
+          {record.scenario.engine_version === "vyuha-0.5.0"
+            ? "Active observation is practice-only and does not update individual mastery. Follow-up suggestions use reconstructed evidence timing."
+            : "This focus is a review recommendation. The next adaptive drill uses the persistent four-skill profile."}
         </p>
       </section>
       <section className="panel rubric-summary">

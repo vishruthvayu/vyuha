@@ -60,18 +60,23 @@ export function missionFromReports({
       ],
     };
   });
-  const decisions = accepted.map((a) => {
-    if (a.order == null)
-      throw new Error("Mission guidance requires recorded action order");
-    return {
-      scope,
-      tick: a.tick,
-      order: a.order,
-      trackId: a.track,
-      action: a.k,
-      status: "accepted" as const,
-    };
-  });
+  const decisions = accepted
+    .filter(
+      (a): a is Action & { k: "designate" | "classify" | "engage" } =>
+        a.k !== "inspect",
+    )
+    .map((a) => {
+      if (a.order == null)
+        throw new Error("Mission guidance requires recorded action order");
+      return {
+        scope,
+        tick: a.tick,
+        order: a.order,
+        trackId: a.track,
+        action: a.k,
+        status: "accepted" as const,
+      };
+    });
   return projectMission(plan, {
     version: "mission-frame-v1",
     scope,

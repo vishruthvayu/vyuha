@@ -34,7 +34,7 @@ export class ActionEvidenceLedger {
     if (
       !entry ||
       entry.scope !== scope ||
-      !(["k", "track", "kind", "identity", "effector"] as const).every(
+      !(["k", "track", "kind", "identity", "effector", "channel", "request_id"] as const).every(
         (key) => entry.action[key] === action[key],
       )
     )

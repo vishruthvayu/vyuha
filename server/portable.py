@@ -268,6 +268,9 @@ class SnapshotV2(StrictModel):
  rfFailureEnd:int|None=Field(default=None,ge=0,le=5400)
 
 def validate_snapshot_v2(spec):
+ if spec.get('engine_version')=='vyuha-0.5.0':
+  from .acquisition import validate_snapshot_v3
+  return validate_snapshot_v3(spec)
  SnapshotV2.model_validate(spec)
  from .raid_v2 import validate_raid,raid_id,feature_signature
  expected=validate_raid(spec)
@@ -331,7 +334,7 @@ class RapidEntry(StrictModel):
 
 class Payload(StrictModel):
  schema_version:Literal[1]
- engine_versions:list[Literal['vyuha-0.1.0','vyuha-0.2.0','vyuha-0.3.0','vyuha-0.4.0']]=Field(max_length=4)
+ engine_versions:list[Literal['vyuha-0.1.0','vyuha-0.2.0','vyuha-0.3.0','vyuha-0.4.0','vyuha-0.5.0']]=Field(max_length=5)
  unit:UnitRef
  sessions:list[TacticalEntry]=Field(max_length=200)
  rapid:list[RapidEntry]=Field(max_length=100)
@@ -488,10 +491,10 @@ def import_bundle(req:Envelope):
    if e.scorecard.get('engine_version') not in p.engine_versions:raise ValueError('Scorecard engine version is unsupported or undeclared')
    if e.scenario.get('version')==2:
     validate_snapshot_v2(e.scenario)
-    if e.scorecard.get('engine_version')!='vyuha-0.4.0':raise ValueError('Finale scenario requires its exact score engine marker')
+    if e.scorecard.get('engine_version')!=e.scenario['engine_version']:raise ValueError('Finale scenario requires its exact score engine marker')
    else:
     Snapshot.model_validate(e.scenario)
-    if e.scorecard.get('engine_version')=='vyuha-0.4.0':raise ValueError('Finale score marker requires scenario version 2')
+    if e.scorecard.get('engine_version') in ('vyuha-0.4.0','vyuha-0.5.0'):raise ValueError('Finale score marker requires scenario version 2')
    maximum=e.scenario['duration']*30
    if e.end_tick!=maximum or not 0<=e.execution_tick<=maximum:raise ValueError('Portable horizon disagrees with frozen scenario duration')
    if e.scenario.get('director_decision') and e.scenario['director_decision']['trainee_id']!=e.trainee:raise ValueError('Frozen Director owner disagrees with pseudonymous session owner')
@@ -509,7 +512,7 @@ def import_bundle(req:Envelope):
    if e.learning_context:
     if e.shared_crew:raise ValueError('Shared crew cannot own individual learning attempts')
     if compile_item(e.learning_context)!=e.scenario:raise ValueError('Learning item disagrees with frozen scenario')
-   practice=bool(e.learning_context and e.learning_context.mode!='assessment')
+   practice=bool(e.scenario.get('engine_version')=='vyuha-0.5.0' or e.learning_context and e.learning_context.mode!='assessment')
    if practice:
     if e.outcomes is not None:raise ValueError('Practice must not carry individual skill outcomes')
    elif e.shared_crew:validate_shared(e)
@@ -557,7 +560,7 @@ def import_bundle(req:Envelope):
    if old:
     from .main import logged_events,applied_commands
     o=db.execute('SELECT outcomes,processed_at FROM skill_outcomes WHERE session_id=?',(e.id,)).fetchone()
-    if old['trainee']!=e.trainee or old['unit_id']!=unit_id or old['status']!='completed' or old['scenario_id']!=e.scenario['id'] or json.loads(old['scorecard'])!=e.scorecard or logged_events(db,e.id)!=[a.model_dump(exclude_none=True) for a in e.events] or applied_commands(db,e.id)!=e.commands or (bool(o) if e.shared_crew or e.learning_context and e.learning_context.mode!='assessment' else not o or json.loads(o['outcomes'])!=e.outcomes) or old['execution_tick']!=e.execution_tick:raise HTTPException(409,'Canonical session ID conflicts; import rolled back')
+    if old['trainee']!=e.trainee or old['unit_id']!=unit_id or old['status']!='completed' or old['scenario_id']!=e.scenario['id'] or json.loads(old['scorecard'])!=e.scorecard or logged_events(db,e.id)!=[a.model_dump(exclude_none=True) for a in e.events] or applied_commands(db,e.id)!=e.commands or (bool(o) if e.shared_crew or e.scenario.get('engine_version')=='vyuha-0.5.0' or e.learning_context and e.learning_context.mode!='assessment' else not o or json.loads(o['outcomes'])!=e.outcomes) or old['execution_tick']!=e.execution_tick:raise HTTPException(409,'Canonical session ID conflicts; import rolled back')
     expected_learning=e.learning_context.model_dump() if e.learning_context else None
     if decorate_learning(db,e.id).get('learning',{}).get('context')!=expected_learning:raise HTTPException(409,'Learning context conflicts with immutable history; import rolled back')
     if not compatible_metadata(shared_metadata(db,e.id,key()),e.shared_crew):raise HTTPException(409,'Shared crew classification or attribution conflicts; import rolled back')

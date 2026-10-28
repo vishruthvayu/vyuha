@@ -6,14 +6,21 @@ class Action(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
     tick: int = Field(ge=0, le=5400)
     order: int | None = Field(default=None, ge=0, le=100000)
-    k: Literal["designate", "classify", "engage"]
+    k: Literal["designate", "classify", "engage", "inspect"]
     track: str = Field(pattern=r"^T[1-9][0-9]{0,2}$")
     kind: Literal["bird", "quad", "fixed_wing", "fiber_fpv"] | None = None
     identity: Literal["hostile", "friendly", "neutral"] | None = None
     effector: Literal["rf_jam", "kinetic", "hold"] | None = None
 
+    channel: Literal["eo", "ir"] | None = None
+    request_id: str | None = Field(default=None, pattern=r"^[A-Za-z0-9_-]{1,80}$")
+
     @model_validator(mode="after")
     def required_fields(self):
+        if self.k == "inspect" and (not self.channel or not self.request_id):
+            raise ValueError("Inspection needs channel and request ID")
+        if self.k != "inspect" and (self.channel is not None or self.request_id is not None):
+            raise ValueError("Only inspect carries acquisition fields")
         if self.k == "classify" and (not self.kind or not self.identity):
             raise ValueError("Classification needs kind and identity")
         if self.k == "engage" and not self.effector:

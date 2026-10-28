@@ -1,3 +1,5 @@
+import AcquisitionReview from "./AcquisitionReview";
+import { timelineSeek } from "./review-frame";
 import {
   useEffect,
   useRef,
@@ -394,6 +396,13 @@ export default function ReviewTheatre(props: Props) {
           </div>
         </aside>
       </div>
+      <AcquisitionReview
+        record={record}
+        onJump={(event) => {
+          const point = timelineSeek(event);
+          props.onSeek(point.tick, point.beforeOrder, event.track_id);
+        }}
+      />
       <nav
         className="theatre-decision-rail"
         aria-label="Recorded decision moments"
