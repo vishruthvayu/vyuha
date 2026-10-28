@@ -1,0 +1,198 @@
+.observation-mission-journey {
+  margin: 28px 0 38px;
+  padding: 28px;
+  border: 1px solid #48696a;
+  border-radius: 16px;
+  background:
+    radial-gradient(ellipse at 90% 0, #29464966, transparent 55%), #101e22;
+  color: #e4eee8;
+}
+.observation-mission-journey > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+.observation-mission-journey h2 {
+  font-size: clamp(26px, 3vw, 40px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  max-width: 22ch;
+  margin: 12px 0;
+}
+.observation-mission-journey p {
+  color: #bfcdc8;
+  line-height: 1.65;
+  max-width: 85ch;
+}
+.mission-launch-controls {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  margin: 22px 0;
+}
+.mission-launch-controls fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  border: 0;
+  padding: 0;
+}
+.mission-launch-controls legend,
+.mission-launch-controls > label {
+  font-size: 12px;
+  color: #c5d6ca;
+}
+.mission-launch-controls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+}
+.mission-launch-controls > label {
+  display: grid;
+  gap: 6px;
+}
+.mission-launch-controls input:not([type="radio"]) {
+  width: 150px;
+  background: #0b151a;
+  border: 1px solid #7c9690;
+  border-radius: 6px;
+  color: #ecf4ed;
+  padding: 12px;
+}
+.mission-contract-note {
+  font-size: 12px;
+  border-left: 2px solid #b8cc9f;
+  padding-left: 14px;
+}
+.mission-brief-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 26px 0;
+}
+.mission-brief-grid > article {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+  border: 1px solid #5b7671;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #1b3438, #111f25);
+}
+.mission-brief-grid > article[data-mission="civil_restraint"] {
+  background: linear-gradient(145deg, #263a30, #111f25);
+}
+.mission-brief-grid > article[data-mission="timed_window"] {
+  background: linear-gradient(145deg, #373b30, #111f25);
+}
+.mission-sequence {
+  font: 10px/1.6 var(--font-mono, monospace);
+  letter-spacing: 0.1em;
+  color: #b9d5c3;
+}
+.mission-brief-grid h3 {
+  font-size: 24px;
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  margin: 16px 0 8px;
+}
+.mission-brief-grid p,
+.mission-brief-grid li {
+  font-size: 13px;
+  line-height: 1.65;
+}
+.mission-brief-grid ol {
+  padding-left: 20px;
+  color: #ccdad3;
+  margin: 12px 0 22px;
+}
+.mission-brief-grid li + li {
+  margin-top: 8px;
+}
+.mission-brief-grid .mission-competencies {
+  font: 11px/1.6 var(--font-mono, monospace);
+  color: #bed4b1;
+  margin-top: auto;
+}
+.mission-brief-grid .button {
+  white-space: normal;
+  min-height: 44px;
+  margin-top: 12px;
+}
+.mission-brief-grid [aria-disabled="true"] {
+  opacity: 0.6;
+  pointer-events: none;
+}
+.observation-next-practice {
+  padding: 24px;
+  margin-top: 26px;
+  border-top: 1px solid #6c8277;
+  background: #1b2b28;
+  border-radius: 8px;
+}
+.observation-next-practice h3 {
+  font-size: 23px;
+  margin: 10px 0;
+}
+.observation-mission-journey details {
+  margin: 18px 0;
+}
+.observation-mission-journey summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: list-item;
+  padding: 10px 0;
+}
+.observation-mission-journey :focus-visible {
+  outline: 3px solid #ead3a6;
+  outline-offset: 3px;
+}
+@media (max-width: 1100px) {
+  .mission-brief-grid {
+    grid-template-columns: 1fr;
+  }
+  .mission-brief-grid > article {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+  }
+  .mission-brief-grid > article > .mission-sequence,
+  .mission-brief-grid > article > h3,
+  .mission-brief-grid > article > p {
+    grid-column: 1;
+  }
+  .mission-brief-grid > article > ol {
+    grid-column: 2;
+    grid-row: 1/5;
+  }
+  .mission-brief-grid > article > .button {
+    grid-column: 2;
+  }
+}
+@media (max-width: 650px) {
+  .observation-mission-journey {
+    padding: 18px;
+  }
+  .observation-mission-journey > header,
+  .mission-launch-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .mission-brief-grid > article {
+    display: flex;
+    padding: 20px;
+  }
+  .mission-launch-controls > label input {
+    width: 100%;
+  }
+  .observation-next-practice {
+    padding: 18px;
+  }
+  .observation-mission-journey .button {
+    white-space: normal;
+    min-height: 44px;
+  }
+}

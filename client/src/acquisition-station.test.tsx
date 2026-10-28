@@ -39,6 +39,7 @@ test("real acquisition UI shows pending then released immutable evidence, blocks
   const sim = new Simulation(scenario);
   for (let i = 0; i < 150; i++) sim.step(true);
   const requests: string[] = [];
+  const inspected: string[] = [];
   let receipt: React.ComponentProps<typeof AcquisitionStation>["receipt"] =
     null;
   const render = async (selected = "T1", running = true) =>
@@ -51,6 +52,11 @@ test("real acquisition UI shows pending then released immutable evidence, blocks
           enabled={true}
           visible={true}
           receipt={receipt}
+          brief={{
+            title: "Frozen night investigation",
+            objectives: ["Reconcile optical and affiliation evidence."],
+          }}
+          onInspectChannel={(channel) => inspected.push(channel)}
           request={(channel) => {
             requests.push(channel);
             return `ui_request_${requests.length}`;
@@ -73,6 +79,11 @@ test("real acquisition UI shows pending then released immutable evidence, blocks
       "0",
       "the scrolling instrument remains keyboard reachable while its action buttons are disabled",
     );
+    assert.match(
+      dom.window.document.body.textContent!,
+      /Frozen night investigation/,
+    );
+    assert.match(dom.window.document.body.textContent!, /RF \/ IFF/);
     await click();
     await click();
     assert.deepEqual(requests, ["eo"]);
@@ -126,14 +137,121 @@ test("real acquisition UI shows pending then released immutable evidence, blocks
       dom.window.document.querySelector(".acquisition-results")!.textContent!,
       /hostile|friendly/,
     );
-    for (let i = 186; i < 276; i++) sim.step(true);
+    assert.equal(
+      (
+        dom.window.document.querySelector(
+          ".flight-inspection-action button",
+        ) as HTMLButtonElement
+      ).disabled,
+      true,
+      "an EO publication without detection does not offer live optical geometry",
+    );
+    for (let i = 186; i < 192; i++) sim.step(true);
+    await render();
+    await act(async () =>
+      (
+        dom.window.document.querySelectorAll<HTMLButtonElement>(
+          ".acquisition-channel-actions button",
+        )[1] as HTMLButtonElement
+      ).click(),
+    );
+    assert.deepEqual(requests, ["eo", "eo", "ir"]);
+    assert.ok(
+      sim.act({
+        tick: 192,
+        order: sim.nextOrder,
+        k: "inspect",
+        track: "T1",
+        channel: "ir",
+        request_id: "ui_request_3",
+      }),
+    );
+    for (let i = 192; i < 228; i++) sim.step(true);
+    await render("T1", false);
+    const inspectButton = dom.window.document.querySelector(
+      ".flight-inspection-action button",
+    ) as HTMLButtonElement;
+    assert.equal(
+      inspectButton.disabled,
+      false,
+      "inspection changes display only and remains usable while paused",
+    );
+    const evidenceBefore = JSON.stringify(sim.snapshot());
+    await act(async () => inspectButton.click());
+    assert.deepEqual(inspected, ["ir"]);
+    assert.equal(JSON.stringify(sim.snapshot()), evidenceBefore);
+    const sampleButtons =
+      dom.window.document.querySelectorAll<HTMLButtonElement>(
+        ".flight-result-selector button",
+      );
+    assert.equal(sampleButtons.length, 2);
+    await act(async () => (sampleButtons[1] as HTMLButtonElement).click());
+    assert.match(
+      dom.window.document.querySelector(".acquisition-results article")!
+        .textContent!,
+      /EO \/ T1/,
+    );
+    assert.equal(
+      (
+        dom.window.document.querySelector(
+          ".flight-inspection-action button",
+        ) as HTMLButtonElement
+      ).disabled,
+      true,
+    );
+    assert.deepEqual(
+      inspected,
+      ["ir"],
+      "selecting stored evidence never changes the camera channel automatically",
+    );
+    await act(async () =>
+      (
+        dom.window.document.querySelectorAll<HTMLButtonElement>(
+          ".flight-result-selector button",
+        )[0] as HTMLButtonElement
+      ).click(),
+    );
+    assert.match(
+      dom.window.document.querySelector(".acquisition-results article")!
+        .textContent!,
+      /IR \/ T1/,
+    );
+    assert.equal(JSON.stringify(sim.snapshot()), evidenceBefore);
+    const focusButton = dom.window.document.querySelector(
+      ".flight-deck-toggle",
+    ) as HTMLButtonElement;
+    await act(async () => focusButton.click());
+    assert.equal(
+      dom.window.document
+        .querySelector(".flight-evidence-deck")!
+        .getAttribute("data-expanded"),
+      "false",
+    );
+    assert.match(dom.window.document.body.textContent!, /Published evidence/);
+    assert.deepEqual(
+      requests,
+      ["eo", "eo", "ir"],
+      "focus and channel inspection do not submit another request",
+    );
+    for (let i = 228; i < 318; i++) sim.step(true);
     await render();
     assert.match(dom.window.document.body.textContent!, /EXPIRED/);
+    assert.equal(
+      (
+        dom.window.document.querySelector(
+          ".flight-inspection-action button",
+        ) as HTMLButtonElement
+      ).disabled,
+      true,
+      "expired samples cannot return live geometry",
+    );
     await render("T1", false);
     assert.ok(
-      [...dom.window.document.querySelectorAll("button")].every(
-        (b) => b.disabled,
-      ),
+      [
+        ...dom.window.document.querySelectorAll<HTMLButtonElement>(
+          ".acquisition-channel-actions button",
+        ),
+      ].every((b) => b.disabled),
     );
   } finally {
     await act(async () => root.unmount());

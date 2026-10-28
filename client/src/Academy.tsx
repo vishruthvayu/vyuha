@@ -1,3 +1,4 @@
+import ObservationMissionJourney from "./ObservationMissionJourney";
 import { useEffect, useRef, useState } from "react";
 import { PageHeader } from "./UI";
 import { api } from "./storage";
@@ -206,6 +207,7 @@ function AcademyJourney({
         title="Academy"
         description="Learn a decision skill with guidance, try it with less help, then gather independent evidence. Each step leads into the real simulator and back to verified review."
       />
+      <ObservationMissionJourney trainee={trainee} />
       <section
         className="panel acquisition-academy-brief"
         aria-label="Active observation practice"

@@ -13,6 +13,9 @@ import "./training-deck.css";
 import "./optical-station.css";
 import "./evidence-investigation.css";
 import "./premium/premium.css";
+import "./observation-missions.css";
+import "./observation-assessment.css";
+import "./observation-journey.css";
 import WorkspaceBoundary from "./WorkspaceBoundary";
 import { LoadingWorkspace } from "./UI";
 import { UnitGateway } from "./Unit";
@@ -63,6 +66,7 @@ const content =
       "unit",
       "instructor",
       "exercises",
+      "observation-missions",
       "transfer",
       "evaluation",
       "analytics",

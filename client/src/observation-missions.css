@@ -1,0 +1,365 @@
+.observation-mission-studio {
+  max-width: 1680px;
+  margin: auto;
+  padding: 30px clamp(16px, 3vw, 48px);
+  color: #e3ece3;
+}
+.oms-introduction {
+  max-width: 900px;
+  margin-bottom: 30px;
+}
+.oms-introduction h1 {
+  font-size: clamp(32px, 4vw, 56px);
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+  margin: 12px 0 16px;
+}
+.oms-introduction p {
+  max-width: 78ch;
+  line-height: 1.7;
+  color: #becfc5;
+}
+.oms-template-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 26px;
+}
+.oms-template-grid > button {
+  padding: 24px;
+  text-align: left;
+  background: #17282b;
+  border: 1px solid #536a62;
+  border-radius: 9px;
+  color: #e2ede1;
+  cursor: pointer;
+  min-width: 0;
+}
+.oms-template-grid > button[aria-pressed="true"] {
+  border-color: #d5dcaf;
+  background: linear-gradient(145deg, #2c413d, #14292b);
+  box-shadow: inset 0 3px #d5dcaf;
+}
+.oms-template-grid > button > span {
+  font: 11px monospace;
+  color: #c1d4af;
+}
+.oms-template-grid h2 {
+  font-size: 23px;
+  line-height: 1.2;
+  margin: 14px 0;
+}
+.oms-template-grid p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #c2d0c6;
+}
+.oms-author-workspace {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.oms-configuration {
+  background: #142327;
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid #405d57;
+}
+.oms-configuration h2 {
+  font-size: 24px;
+  line-height: 1.2;
+  margin: 10px 0 24px;
+}
+.oms-configuration label,
+.oms-inspect-controls label {
+  display: grid;
+  gap: 8px;
+  font-size: 12px;
+  color: #c8d8cc;
+  margin-bottom: 16px;
+}
+.oms-configuration input,
+.oms-configuration select,
+.oms-configuration textarea,
+.oms-inspect-controls select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px;
+  border: 1px solid #597167;
+  border-radius: 5px;
+  background: #0e191d;
+  color: #e1eddf;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.oms-configuration textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.oms-field-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.oms-configuration p,
+.oms-probe-disclaimer,
+.oms-publish p {
+  font-size: 12px;
+  line-height: 1.65;
+  color: #b6c9bd;
+}
+.oms-configuration > .button {
+  width: 100%;
+  min-height: 48px;
+  white-space: normal;
+}
+.oms-rehearsal {
+  min-width: 0;
+  border-top: 1px solid #536b61;
+}
+.oms-rehearsal > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+}
+.oms-rehearsal h2 {
+  font-size: 28px;
+  letter-spacing: -0.025em;
+  margin: 8px 0;
+}
+.oms-rehearsal > header > span {
+  font: 22px monospace;
+  color: #d6dfb4;
+}
+.oms-world {
+  position: relative;
+  aspect-ratio: 16/9;
+  min-height: 280px;
+  overflow: hidden;
+  border: 1px solid #526a61;
+  border-radius: 8px;
+  background: #0b1216;
+}
+.oms-world > div {
+  height: 100%;
+}
+.oms-inspect-controls {
+  display: flex;
+  gap: 14px;
+  align-items: end;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+.oms-inspect-controls label {
+  flex: 1;
+  min-width: 120px;
+  margin-bottom: 0;
+}
+.oms-inspect-controls .oms-reference-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  flex: 2;
+}
+.oms-reference-toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: #c4d5aa;
+}
+.oms-seek {
+  display: grid;
+  gap: 10px;
+  margin-block: 20px;
+  font-size: 12px;
+  color: #c6d5ca;
+}
+.oms-seek input {
+  width: 100%;
+  min-height: 30px;
+  accent-color: #c4d5aa;
+}
+.oms-intervals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  max-height: 200px;
+  overflow: auto;
+  padding: 5px;
+  margin-block: 12px;
+}
+.oms-intervals button {
+  display: grid;
+  gap: 5px;
+  padding: 10px 12px;
+  min-height: 50px;
+  border: 1px solid #52685c;
+  border-radius: 5px;
+  background: #203530;
+  color: #d5e7d9;
+  cursor: pointer;
+  font-size: 12px;
+}
+.oms-intervals button > span {
+  font: 10px monospace;
+}
+.oms-intervals button[data-available="false"] {
+  background: #382e26;
+  border-color: #8a7056;
+  color: #e3cba8;
+}
+.oms-intervals button[aria-current="true"] {
+  outline: 2px solid #e4d6aa;
+  outline-offset: 1px;
+}
+.oms-compiler-checks {
+  border-left: 3px solid #a1c5b1;
+  background: #182c2b;
+  padding: 16px 20px;
+  margin-block: 20px;
+}
+.oms-compiler-checks h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+.oms-compiler-checks p {
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 7px 0;
+  color: #cad8cc;
+}
+.oms-compiler-checks b {
+  font: 10px monospace;
+  color: #d7ddb7;
+  margin-right: 8px;
+}
+.oms-rehearsal details summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding-block: 12px;
+  color: #dce8d6;
+}
+.oms-rehearsal details ol {
+  padding-left: 24px;
+}
+.oms-rehearsal details button {
+  background: transparent;
+  color: #c7d7c9;
+  border: 1px solid #526759;
+  padding: 10px;
+  margin: 5px 0;
+  min-height: 44px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: normal;
+}
+.oms-publish {
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid #536a5f;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.oms-publish > div {
+  flex: 1;
+  min-width: 200px;
+}
+.oms-publish b {
+  font: 11px monospace;
+  overflow-wrap: anywhere;
+}
+.oms-publish .button {
+  min-height: 48px;
+  white-space: normal;
+}
+.oms-empty {
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(24px, 5vw, 70px);
+  background: radial-gradient(ellipse at top right, #294640, #102125 70%);
+  border-radius: 8px;
+}
+.oms-empty h2 {
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  max-width: 12ch;
+}
+.oms-empty p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #bfd0c5;
+  max-width: 58ch;
+}
+.observation-mission-studio
+  :is(button, a, input, select, textarea):focus-visible {
+  outline: 3px solid #f2d69c;
+  outline-offset: 3px;
+}
+@media (max-width: 1000px) {
+  .oms-template-grid {
+    grid-template-columns: 1fr;
+  }
+  .oms-template-grid > button {
+    padding: 18px;
+  }
+  .oms-template-grid h2 {
+    margin: 8px 0;
+    font-size: 21px;
+  }
+  .oms-template-grid p {
+    margin-bottom: 0;
+  }
+  .oms-author-workspace {
+    grid-template-columns: 1fr;
+  }
+  .oms-configuration {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px;
+  }
+  .oms-configuration > header,
+  .oms-configuration > p,
+  .oms-configuration > button,
+  .oms-configuration > [role="alert"] {
+    grid-column: 1/-1;
+  }
+  .oms-empty {
+    min-height: 300px;
+  }
+}
+@media (max-width: 600px) {
+  .oms-configuration {
+    display: block;
+    padding: 18px;
+  }
+  .oms-world {
+    min-height: 230px;
+  }
+  .oms-rehearsal > header {
+    align-items: start;
+  }
+  .oms-rehearsal h2 {
+    font-size: 24px;
+  }
+  .oms-rehearsal > header > span {
+    font-size: 17px;
+    white-space: nowrap;
+  }
+  .oms-publish {
+    display: grid;
+  }
+  .oms-publish .button {
+    width: 100%;
+  }
+}

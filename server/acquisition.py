@@ -30,7 +30,11 @@ def validate_snapshot_v3(scenario):
     validate_policy(scenario)
     if scenario['id'] != raid_id(scenario):
         raise ValueError('Acquisition content hash disagrees with frozen specification')
+    if 'observation_mission' in scenario:
+        from .observation_missions import validate_mission
+        validate_mission(scenario)
     normalized = copy.deepcopy(scenario)
+    normalized.pop('observation_mission', None)
     del normalized['acquisition_policy']
     normalized['engine_version'] = 'vyuha-0.4.0'
     normalized['id'] = raid_id(normalized)

@@ -11,6 +11,18 @@ import ts from "typescript";
 import { makeScenario } from "./scenario";
 import { replay, score } from "./sim";
 import { readFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { testPython } from "./test-python";
+const authoredMission = JSON.parse(
+  execFileSync(
+    testPython(),
+    [
+      "-c",
+      'import json;from server.observation_missions import compile_mission;print(json.dumps(compile_mission(dict(template="civil_restraint",seed=587642))))',
+    ],
+    { cwd: "..", encoding: "utf8" },
+  ),
+) as Scenario;
 import { reportedContacts } from "./observed-contacts";
 import type { Draft } from "./storage";
 import type { Record as TrainingRecord, Snapshot, Scenario } from "./types";
@@ -281,6 +293,8 @@ function memoryDatabase(
   };
 }
 type Mode =
+  | "mission-preset"
+  | "mission-published"
   | "next-review"
   | "completion"
   | "retry-complete"
@@ -346,7 +360,7 @@ async function mounted(
     context: { before_order: 0 },
   });
   const dom = new JSDOM('<!doctype html><body><div id="root"></div></body>', {
-    url: `http://qa.local/${mode.startsWith("learning") ? "?mode=adaptive&learning=prepared-learning" : mode.startsWith("retry") || mode === "memo" || mode === "next-review" ? "?view=aar&session=A" : "?mode=scripted"}`,
+    url: `http://qa.local/${mode === "mission-preset" ? "?mission_template=civil_restraint&seed=587642" : mode === "mission-published" ? `?observation_mission=${authoredMission.id}` : mode.startsWith("learning") ? "?mode=adaptive&learning=prepared-learning" : mode.startsWith("retry") || mode === "memo" || mode === "next-review" ? "?view=aar&session=A" : "?mode=scripted"}`,
     pretendToBeVisual: true,
   });
   const workers: { onmessage?: (event: { data: unknown }) => void }[] = [];
@@ -452,6 +466,11 @@ async function mounted(
         },
       });
     }
+    if (
+      url === "/observation-missions/prepare" ||
+      url === `/observation-missions/${authoredMission.id}`
+    )
+      return json(authoredMission);
     if (url === "/health") return json({ ok: true });
     if (url.endsWith("/profile"))
       return json({ sessions: 2, skills: {}, unprocessed_sessions: [] });
@@ -1087,7 +1106,15 @@ test("Actual App waits for the Academy ticket and persists assessment context wi
     "learning",
     async ({ document, createBodies, drafts, waitForPending, release }) => {
       await waitForPending();
-      await click(document, "Prepare adaptive drill");
+      const loading = [...document.querySelectorAll("button")].find(
+        (b) => b.textContent?.trim() === "Loading frozen attempt…",
+      )!;
+      assert.ok(
+        loading,
+        "The frozen Academy attempt must disclose pending admission",
+      );
+      assert.equal(loading.disabled, true);
+      await act(async () => loading.click());
       assert.equal(
         createBodies.length,
         0,
@@ -1104,7 +1131,7 @@ test("Actual App waits for the Academy ticket and persists assessment context wi
       assert.equal(seedInput.disabled, true);
       assert.equal(seedInput.value, "7");
       await click(document, "Close mission controls");
-      await click(document, "Start adaptive drill");
+      await click(document, "Start independent assessment");
       await act(async () => {
         await new Promise((r) => setTimeout(r, 20));
       });
@@ -1230,3 +1257,31 @@ test("Actual App Next drill revokes a pending pinned-review load without changin
       );
     },
   ));
+
+for (const mode of ["mission-preset", "mission-published"] as const) {
+  test(`Actual App ${mode} retains frozen preparation after synchronizing a different seed`, () =>
+    mounted(mode, async ({ document, createBodies, drafts }) => {
+      await click(document, "Prepare observation exercise");
+      await act(async () => {
+        await new Promise((r) => setTimeout(r, 20));
+      });
+      assert.ok(
+        [...document.querySelectorAll("button")].some(
+          (b) => b.textContent?.trim() === "Start observation exercise",
+        ),
+        "programmatic seed synchronization must not invalidate the new frozen mission",
+      );
+      await click(document, "Start observation exercise");
+      await act(async () => {
+        await new Promise((r) => setTimeout(r, 20));
+      });
+      assert.deepEqual(createBodies, [
+        { scenario_id: authoredMission.id, trainee: "CADET-01" },
+      ]);
+      assert.equal((drafts.get("A") as Draft).scenario.seed, 587642);
+      assert.equal(
+        (drafts.get("A") as Draft).scenario.observation_mission?.template,
+        "civil_restraint",
+      );
+    }));
+}

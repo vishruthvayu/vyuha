@@ -1,3 +1,4 @@
+import ObservationAssessmentReview from "./ObservationAssessmentReview";
 import AcquisitionReview from "./AcquisitionReview";
 import { timelineSeek } from "./review-frame";
 import {
@@ -397,6 +398,13 @@ export default function ReviewTheatre(props: Props) {
         </aside>
       </div>
       <AcquisitionReview
+        record={record}
+        onJump={(event) => {
+          const point = timelineSeek(event);
+          props.onSeek(point.tick, point.beforeOrder, event.track_id);
+        }}
+      />
+      <ObservationAssessmentReview
         record={record}
         onJump={(event) => {
           const point = timelineSeek(event);

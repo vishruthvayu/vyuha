@@ -397,6 +397,10 @@ app.include_router(evaluation_router)
 app.include_router(counterfactual_router)
 app.include_router(raid_router)
 app.include_router(episode_opportunity_router)
+from .observation_missions import router as observation_mission_router
+app.include_router(observation_mission_router)
+from .observation_assessment import router as observation_assessment_router
+app.include_router(observation_assessment_router)
 from .acquisition import router as acquisition_router
 app.include_router(acquisition_router)
 app.include_router(white_cell_router)

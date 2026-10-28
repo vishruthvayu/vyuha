@@ -1,0 +1,165 @@
+.observation-assessment {
+  margin: 24px 0;
+  padding: clamp(18px, 3vw, 34px);
+  border: 1px solid #56776f;
+  border-radius: 16px;
+  background: linear-gradient(130deg, #162b2b, #111d21);
+  color: #e6eee4;
+}
+.observation-assessment > header {
+  max-width: 94ch;
+}
+.observation-assessment h2 {
+  max-width: 34ch;
+  font-size: clamp(24px, 3vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+.observation-assessment p,
+.observation-assessment li {
+  font-size: 14px;
+  line-height: 1.65;
+}
+.observation-assessment .assessment-scope-note {
+  padding: 14px 18px;
+  border-left: 3px solid #d9be80;
+  background: #2a2a21;
+  color: #eadfc2;
+}
+.assessment-competency-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 24px 0;
+}
+.assessment-competency-strip a {
+  display: grid;
+  gap: 8px;
+  border: 1px solid #4c6a65;
+  padding: 16px;
+  border-radius: 8px;
+  color: #e7eee4;
+  text-decoration: none;
+  min-height: 110px;
+}
+.assessment-competency-strip small,
+.observation-assessment small {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #b8cec2;
+  overflow-wrap: anywhere;
+}
+.assessment-decision-chain {
+  display: grid;
+  gap: 16px;
+}
+.assessment-decision-chain article {
+  border-left: 3px solid #8fb8a1;
+  padding: 20px;
+  background: #1c3132;
+  border-radius: 0 10px 10px 0;
+}
+.assessment-decision-chain article[data-support="unsupported"] {
+  border-color: #e1b58a;
+}
+.assessment-decision-chain article[data-support="inconclusive"] {
+  border-color: #bdbb84;
+}
+.assessment-decision-chain header > span {
+  font: 11px/1.6 var(--font-mono, monospace);
+  letter-spacing: 0.03em;
+  color: #b7d0c4;
+}
+.assessment-decision-chain h3 {
+  margin: 8px 0;
+  font-size: 22px;
+}
+.assessment-decision-chain ol {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  margin: 18px 0;
+}
+.assessment-decision-chain ol li {
+  border-top: 1px solid #4c6461;
+  padding-top: 12px;
+}
+.assessment-decision-chain li > span {
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+.observation-assessment details {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #47605b;
+}
+.observation-assessment summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding: 10px 0;
+  font-size: 13px;
+}
+.observation-assessment dl {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 12px;
+  font-size: 13px;
+}
+.observation-assessment dd {
+  margin: 0;
+}
+.observation-assessment .button {
+  white-space: normal;
+  min-height: 44px;
+  max-width: 100%;
+}
+.assessment-acquisitions li {
+  margin: 14px 0;
+}
+.assessment-acquisitions li > span,
+.assessment-acquisitions li > small {
+  display: block;
+  margin-top: 8px;
+}
+.assessment-next-mission {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px;
+  margin: 24px 0;
+  background: #2a3b32;
+  border: 1px solid #799283;
+  border-radius: 12px;
+}
+.assessment-next-mission h3 {
+  margin: 8px 0;
+  font-size: 22px;
+}
+.observation-assessment :is(a, button, summary):focus-visible {
+  outline: 3px solid #e7d49a;
+  outline-offset: 4px;
+}
+@media (max-width: 800px) {
+  .assessment-competency-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .assessment-next-mission {
+    display: grid;
+    gap: 14px;
+    padding: 18px;
+  }
+}
+@media (max-width: 440px) {
+  .observation-assessment {
+    padding: 16px;
+  }
+  .assessment-decision-chain article {
+    padding: 16px;
+  }
+  .assessment-competency-strip a {
+    padding: 12px;
+  }
+}

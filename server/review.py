@@ -14,7 +14,11 @@ def build_review(scenario,actions,commands,sid,observed_end,horizon_source='comp
     if scoring_end!=round(scenario['duration']*30):raise ValueError('Scoring horizon must match frozen exercise duration')
     if scenario.get('engine_version')=='vyuha-0.5.0':
         from .review_v3 import build_review as acquisition_review
-        return acquisition_review(scenario,actions,commands,sid,observed_end,horizon_source,scoring_end)
+        review,card=acquisition_review(scenario,actions,commands,sid,observed_end,horizon_source,scoring_end)
+        if scenario.get('observation_mission') is not None:
+            from .observation_assessment import assess_mission
+            review['observation_assessment']=assess_mission(scenario,actions,commands,sid,observed_end)
+        return review,card
     if scenario.get('engine_version')=='vyuha-0.4.0':
         from .review_v2 import build_review as finale_review
         return finale_review(scenario,actions,commands,sid,observed_end,horizon_source,scoring_end)

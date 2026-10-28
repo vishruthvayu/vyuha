@@ -198,6 +198,7 @@ export default function ExerciseStudio() {
           </p>
         </div>
         <nav className="advanced-nav">
+          <a href="/observation-missions">Evidence-based mission authoring</a>
           <a href="/instructor">Instructor console</a>
           <a href="/analytics">Training analytics</a>
           <a href="/">Open trainee</a>

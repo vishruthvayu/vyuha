@@ -12,6 +12,7 @@ export const routes = [
  {id:'instructor', path:'/instructor', title:'Instructor console', section:'Unit', policy:'NAVIGATED', identity:false, status:'ACTIVE', audience:'Instructor', reason:'Independent session monitoring and commands.'},
  {id:'analytics', path:'/analytics', title:'Training analytics', section:'Unit', policy:'NAVIGATED', identity:false, status:'ACTIVE', audience:'Officer / instructor', reason:'Persisted history, trends and embedded scenario-skill heatmap.'},
  {id:'exercises', path:'/exercises', title:'Exercise studio', section:'Exercises', policy:'NAVIGATED', identity:false, status:'ACTIVE', audience:'Instructor', reason:'Author, save and assign frozen exercises.'},
+ {id:'observation-missions', path:'/observation-missions', title:'Observation mission studio', section:'Exercises', policy:'NAVIGATED', identity:false, status:'EXPERIMENTAL', audience:'Instructor', reason:'Author and rehearse frozen evidence-based missions; independent evaluation remains separate from legacy scores.'},
  {id:'recorded', path:'/recorded', title:'Recorded practice', section:'Exercises', policy:'NAVIGATED', identity:true, status:'EXPERIMENTAL', audience:'Trainee / instructor', reason:'Implemented bounded, unscored recorded-observation practice.'},
  {id:'transfer', path:'/transfer', title:'Data transfer', section:'Data / operations', policy:'NAVIGATED', identity:false, status:'ACTIVE', audience:'Officer / data operator', reason:'Export/import HMAC bundles; needs a configured shared key for transfer.'},
  {id:'compliance', path:'/system/compliance', title:'PS compliance board', section:'System / evidence', policy:'NAVIGATED', identity:false, status:'ACTIVE', audience:'All / reviewer', reason:'Official requirement provenance and scoped candidate acceptance.'},
@@ -28,7 +29,7 @@ export const navigationItems: readonly NavigationItem[] = ([
  {id:'review', href:'/?view=aar', label:'After-action review', section:'Workspace', workspace:'aar'},
  {id:'director', href:'/?mode=adaptive', label:'Adaptive Director', section:'Workspace', workspace:'drill'},
 ] satisfies NavigationItem[]).sort((a,b)=>{
- const order:NavigationId[]=['training','academy','review','crew','rapid','director','unit','instructor','analytics','exercises','recorded','transfer','evidence','compliance'];
+ const order:NavigationId[]=['training','academy','review','crew','rapid','director','unit','instructor','analytics','exercises','observation-missions','recorded','transfer','evidence','compliance'];
  return order.indexOf(a.id)-order.indexOf(b.id);
 });
 

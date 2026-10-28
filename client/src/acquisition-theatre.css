@@ -1,207 +1,622 @@
-/* Active-observation theatre: a real sensor task beside a persistent world. */
+/* One world, spatial task instruments and a common logical-time evidence deck.
+   This composition is scoped to v0.5; no renderer/model arithmetic changes. */
 .active-observation-theatre {
-  --optics-rail: 360px;
+  --evidence-deck-height: 264px;
 }
 .active-observation-theatre
   .simulation-workstation[data-instrument="observe"]
   .sensor-workspace
   > .scene-container {
-  width: calc(100% - var(--optics-rail));
+  width: 100%;
+  height: 100%;
 }
 .acquisition-console {
   position: absolute;
+  inset: 0;
   z-index: 7;
-  top: 70px;
-  right: 0;
-  bottom: calc(var(--station-dock, 94px) + 14px);
-  width: var(--optics-rail);
-  padding: 24px;
-  overflow: auto;
-  overscroll-behavior: contain;
-  background: linear-gradient(155deg, #142c32, #09191e);
-  border-left: 1px solid #6a8b88;
-  color: #e4efe5;
-  scrollbar-gutter: stable;
+  pointer-events: none;
+  color: #e5eee7;
 }
 .acquisition-console[hidden] {
   display: none;
 }
-.acquisition-console header .eyebrow {
-  color: #b2d6bd;
-  font-size: 10px;
-  letter-spacing: 0.12em;
+.acquisition-console :is(button, summary) {
+  min-height: 44px;
 }
-.acquisition-console h2 {
-  font: 550 27px/1.12 var(--font-sans, system-ui);
-  letter-spacing: -0.025em;
-  margin: 10px 0 14px;
+.acquisition-console :is(button, summary, section, details):focus-visible {
+  outline: 3px solid #f0d8a1;
+  outline-offset: 3px;
 }
-.acquisition-console p {
-  font-size: 13px;
-  line-height: 1.6;
-  color: #c3d6ce;
+.flight-directive,
+.flight-channel-rack,
+.flight-evidence-deck {
+  pointer-events: auto;
 }
-.acquisition-subject {
+.flight-directive {
+  position: absolute;
+  left: 20px;
+  top: 78px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: calc(100% - 450px);
+  padding: 12px 16px;
+  background: linear-gradient(110deg, #101f25f5, #101f25d9);
+  border: 1px solid #85a99666;
+  border-left: 3px solid #d5ddba;
+  border-radius: 3px 12px 12px 3px;
+  box-shadow: 0 8px 35px #0004;
+}
+.flight-directive-mark {
   display: grid;
-  gap: 8px;
-  margin: 22px 0;
-  padding: 16px;
-  background: #203c40;
-  border-left: 3px solid #b7d8a1;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  color: #dce7c4;
+  border: 1px solid #a8c1a866;
+  border-radius: 50%;
 }
-.acquisition-subject > span {
-  font: 10px var(--font-mono, monospace);
-  letter-spacing: 0.1em;
-  color: #b4cdc1;
+.flight-directive .eyebrow,
+.flight-evidence-heading .eyebrow {
+  color: #bdd6c7;
+  font: 9px/1.4 var(--font-mono, monospace);
+  letter-spacing: 0.14em;
 }
-.acquisition-subject > strong {
-  font: 600 22px var(--font-sans, system-ui);
+.flight-directive h2 {
+  font: 500 21px/1.2 var(--font-sans, system-ui);
+  letter-spacing: -0.025em;
+  margin: 5px 0 0;
+  max-width: 30ch;
 }
-.acquisition-console small,
-.acquisition-console footer {
+.flight-mission-objectives {
+  position: relative;
+  font-size: 12px;
+  color: #c7dacb;
+}
+.flight-mission-objectives summary {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  cursor: pointer;
+  font-size: 11px;
+}
+.flight-mission-objectives summary::after {
+  content: "+";
+  margin-left: 12px;
+  color: #dce9b6;
+}
+.flight-mission-objectives[open] summary::after {
+  content: "−";
+}
+.flight-mission-objectives :is(p, ul) {
+  margin: 0 0 8px;
+  max-width: 50ch;
+  padding: 0;
   font-size: 12px;
   line-height: 1.6;
-  color: #b9d0c4;
+}
+.flight-mission-objectives ul {
+  padding-left: 15px;
+}
+.flight-channel-rack {
+  position: absolute;
+  top: 78px;
+  right: 20px;
+  width: 360px;
+  padding: 12px;
+  background: #0c1c24ed;
+  border: 1px solid #809e8e88;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px #0004;
+}
+.flight-channel-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 2px 9px;
+}
+.flight-channel-heading > span {
+  font: 9px/1.3 var(--font-mono, monospace);
+  letter-spacing: 0.14em;
+  color: #c0d9c7;
+}
+.flight-channel-heading small {
+  color: #9fb9ae;
+  font-size: 10px;
 }
 .acquisition-channel-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 8px;
 }
 .active-observation-theatre .acquisition-channel-actions button {
-  display: grid;
-  gap: 8px;
-  min-height: 80px;
-  padding: 14px 10px;
-  background: #d3e3bd;
-  color: #122320;
-  border: 1px solid #e2efd3;
-  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  min-height: 64px;
+  padding: 12px;
+  background: #d5e1b9;
+  color: #12251f;
+  border: 1px solid #edf2d8;
+  border-radius: 7px;
   text-align: left;
+  white-space: normal;
+  cursor: pointer;
+}
+.acquisition-channel-actions button > span {
+  display: grid;
+  gap: 4px;
+}
+.acquisition-channel-actions button strong {
+  font-size: 13px;
+  font-weight: 650;
+}
+.acquisition-channel-actions button small {
+  color: #304e3d;
+  font-size: 10px;
+  line-height: 1.3;
+}
+.acquisition-channel-actions button svg {
+  flex-shrink: 0;
+}
+.active-observation-theatre .acquisition-channel-actions button:disabled {
+  background: #172d34;
+  color: #a6bdb3;
+  border-color: #547368;
+  cursor: default;
+}
+.acquisition-channel-actions button:disabled small {
+  color: #a6bdb3;
+}
+.flight-task-gate {
+  min-height: 27px;
+  font: 10px/1.4 var(--font-sans, system-ui);
+  color: #b8cec0;
+  margin: 9px 2px 0;
+}
+.flight-evidence-deck {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: calc(var(--station-dock, 94px) + 14px);
+  height: var(--evidence-deck-height);
+  border: 1px solid #789c8c;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #10282cf7, #0c1e25f7);
+  box-shadow: 0 -10px 45px #0003;
+  overflow: auto;
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
+}
+.flight-evidence-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #71928255;
+  background: #102128;
+}
+.flight-evidence-heading > div {
+  display: grid;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+}
+.flight-evidence-heading strong {
+  font-size: 15px;
+  font-weight: 500;
+}
+.flight-logical-clock {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #cee0c5;
+  font: 12px var(--font-mono, monospace);
+  white-space: nowrap;
+}
+.flight-deck-toggle {
+  background: #1d383d;
+  border: 1px solid #8aa89488;
+  color: #e2eacb;
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-size: 11px;
   cursor: pointer;
   white-space: normal;
 }
-.acquisition-channel-actions button span {
+.flight-compact-status {
+  display: none;
+  color: #c7d8ba;
   font-size: 11px;
-  line-height: 1.4;
 }
-.acquisition-channel-actions button:disabled {
-  background: #1d3437;
-  color: #98afa6;
-  border-color: #56716b;
-  cursor: default;
+.flight-deck-instruments {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.8fr) minmax(220px, 1.1fr) minmax(
+      240px,
+      1.3fr
+    );
 }
-.acquisition-channel-actions button:focus-visible {
-  outline: 3px solid #f8d5a1;
-  outline-offset: 3px;
+.flight-deck-instruments > section {
+  padding: 14px 18px;
+  min-width: 0;
+}
+.flight-deck-instruments > section + section {
+  border-left: 1px solid #77988966;
+}
+.acquisition-subject > span,
+.flight-instrument-label {
+  font: 9px/1.4 var(--font-mono, monospace);
+  letter-spacing: 0.09em;
+  color: #adcfbc;
+}
+.acquisition-subject > strong {
+  display: block;
+  margin: 5px 0 3px;
+  font: 500 28px/1.15 var(--font-sans, system-ui);
+}
+.acquisition-subject > small {
+  display: block;
+  color: #b8d1c1;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.flight-correlated-evidence {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0 0;
+  font-size: 10px;
+}
+.flight-correlated-evidence > div {
+  display: grid;
+  gap: 4px;
+}
+.flight-correlated-evidence dt {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #9fc2b3;
+}
+.flight-correlated-evidence dd {
+  margin: 0;
+  color: #dce8d6;
+  line-height: 1.5;
+}
+.flight-correlated-evidence dd span {
+  display: block;
+  color: #b2c8b6;
+}
+.flight-instrument-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.flight-instrument-label b {
+  font-size: 10px;
+  font-weight: 500;
+  color: #dae3b4;
+  letter-spacing: 0;
+  text-align: right;
+}
+.flight-instrument-label h3 {
+  font: inherit;
+  color: inherit;
+  margin: 0;
+  text-transform: uppercase;
+}
+.flight-instrument-label small {
+  color: #b8cdbf;
+  font-size: 9px;
+  letter-spacing: 0;
 }
 .acquisition-pending {
   display: grid;
-  gap: 12px;
-  margin-block: 20px;
-  padding: 16px;
-  background: #203b3f;
-  border: 1px solid #a4c4b3;
+  gap: 8px;
 }
-.acquisition-pending > span {
+.acquisition-pending > strong {
+  color: #daecc7;
   font: 11px var(--font-mono, monospace);
-  color: #d0e4c1;
+}
+.flight-countdown {
+  color: #e7edcc;
+  font: 500 28px/1 var(--font-sans, system-ui);
+}
+.flight-countdown small {
+  margin-left: 8px;
+  font-size: 10px;
+  font-weight: 400;
+  color: #b7d0c0;
 }
 .acquisition-pending progress {
+  accent-color: #c5dda8;
   width: 100%;
-  height: 7px;
-  accent-color: #bed99e;
+  height: 5px;
 }
-.acquisition-results h3 {
-  margin-top: 24px;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.flight-phase-sequence {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 8px;
+}
+.flight-phase-sequence li {
+  display: grid;
+  gap: 4px;
+  border-top: 2px solid #59726a;
+  padding-top: 7px;
+  color: #bdd0c3;
+}
+.flight-phase-sequence li[data-reached="true"] {
+  border-color: #d0e5ae;
+  color: #e1ecc9;
+}
+.flight-phase-sequence b {
+  font-size: 10px;
+  font-weight: 500;
+}
+.flight-phase-sequence span {
+  font: 9px/1.4 var(--font-mono, monospace);
+}
+.acquisition-pending > small,
+.flight-sequence-idle p,
+.flight-no-evidence {
+  color: #bed1c3;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.acquisition-pending > small {
+  font-size: 10px;
+}
+.flight-sequence-idle {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding-top: 12px;
+}
+.flight-sequence-idle p {
+  margin: 0;
+}
+.flight-rejection {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #f3d4ad;
+  background: #523e2f;
+  border-left: 2px solid #e0b98d;
+  padding: 8px;
 }
 .acquisition-results article {
-  padding: 15px 0;
-  border-top: 1px solid #59746b;
+  padding: 0;
 }
 .acquisition-results article header {
   display: flex;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 12px;
-  font-size: 11px;
+  font: 10px var(--font-mono, monospace);
+  color: #bed9c5;
+  margin-bottom: 8px;
 }
 .acquisition-results article header span {
-  color: #d2dfa1;
+  color: #d4e5ac;
 }
 .acquisition-results article[data-expired="true"] header span {
-  color: #d6bd9d;
+  color: #e5bf93;
 }
-.acquisition-console footer {
-  border-top: 1px solid #59746b;
-  padding-top: 16px;
-  margin-top: 16px;
+.acquisition-results article > strong {
+  font: 500 18px/1.2 var(--font-sans, system-ui);
+  color: #e9eeda;
+}
+.acquisition-results article > p {
+  color: #bfd2c5;
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 7px 0;
+}
+.flight-evidence-age {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px;
+  font-size: 10px;
+  color: #c0d4bd;
+}
+.flight-evidence-age b {
+  font-weight: 500;
+  color: #d5e3ae;
+}
+.flight-provenance summary {
+  display: flex;
+  align-items: center;
+  color: #bad5c8;
+  font-size: 10px;
+  cursor: pointer;
+  width: max-content;
+}
+.flight-provenance summary::after {
+  content: "+";
+  margin-left: 10px;
+}
+.flight-provenance[open] summary::after {
+  content: "−";
+}
+.flight-provenance small {
+  color: #c6d7ca;
+  font: 10px/1.6 var(--font-mono, monospace);
+}
+.flight-result-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 9px;
+}
+.flight-result-selector button {
+  color: #cae0ce;
+  border: 1px solid #779787;
+  border-radius: 5px;
+  background: #18373b;
+  padding: 7px 9px;
+  font: 10px var(--font-mono, monospace);
+  cursor: pointer;
+}
+.flight-result-selector button[aria-pressed="true"] {
+  background: #c7d9b5;
+  color: #173028;
+  border-color: #e0e8ce;
+}
+.flight-inspection-action {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 8px;
+}
+.flight-inspection-action button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 12px;
+  background: #294c4a;
+  color: #e1eacb;
+  border: 1px solid #92b39b;
+  border-radius: 5px;
+  font-size: 11px;
+  cursor: pointer;
+}
+.flight-inspection-action button:disabled {
+  background: #172f34;
+  color: #b0c3b5;
+  border-color: #567768;
+  cursor: default;
+}
+.flight-inspection-action small {
+  font-size: 10px;
+  color: #d9c3a0;
+}
+.flight-evidence-deck > footer {
+  border-top: 1px solid #75958244;
+  padding: 8px 18px;
+  font-size: 9px;
+  line-height: 1.5;
+  color: #aac5b5;
+}
+.flight-evidence-deck[data-expanded="false"] {
+  height: 70px;
+  overflow: visible;
+}
+.flight-evidence-deck[data-expanded="false"] .flight-evidence-heading {
+  height: 100%;
+  border: 0;
+  border-radius: 12px;
+}
+.flight-evidence-deck[data-expanded="false"]
+  :is(.flight-deck-instruments, footer) {
+  display: none;
+}
+.flight-evidence-deck[data-expanded="false"] .flight-compact-status {
+  display: block;
+}
+/* Separate world zones; no WebGL canvas reparenting or remounting. */
+.active-observation-theatre
+  .simulation-workstation[data-instrument="observe"]
+  .sensor-workspace
+  > .panel-header {
+  top: 202px;
+}
+.active-observation-theatre
+  .simulation-workstation[data-instrument="observe"]
+  .radar-panel {
+  top: 264px;
+  bottom: auto;
+  width: 152px;
+  max-height: 188px;
 }
 .active-observation-theatre
   .simulation-workstation[data-instrument="observe"]
   .optical-console {
-  right: calc(var(--optics-rail) + 18px);
-  left: 212px;
+  left: 190px;
+  right: 20px;
+  bottom: calc(var(--station-dock, 94px) + var(--evidence-deck-height) + 26px);
+  max-width: 580px;
+}
+.active-observation-theatre
+  .simulation-workstation[data-instrument="observe"]
+  .scene-toolbar {
+  bottom: calc(var(--station-dock, 94px) + var(--evidence-deck-height) + 26px);
+}
+.active-observation-theatre
+  .simulation-workstation[data-instrument="observe"]
+  .view-annotation.top-left {
+  top: 266px;
+  left: 190px;
+  max-width: calc(100% - 580px);
+}
+.active-observation-theatre
+  .simulation-workstation[data-instrument="observe"]
+  .view-annotation.bottom-left {
+  display: none;
 }
 .active-observation-theatre .optical-capture {
   display: none;
 }
+.active-observation-theatre
+  .simulation-workstation:has(
+    .observation-flight-deck[data-deck-expanded="false"]
+  )[data-instrument="observe"]
+  :is(.optical-console, .scene-toolbar) {
+  bottom: calc(var(--station-dock, 94px) + 96px);
+}
 @media (max-width: 1100px) {
   .active-observation-theatre {
-    --optics-rail: 320px;
+    --evidence-deck-height: 276px;
   }
-  .acquisition-console {
-    padding: 18px;
+  .flight-directive {
+    max-width: calc(100% - 410px);
+    left: 16px;
+    padding: 11px;
   }
-  .active-observation-theatre
-    .simulation-workstation[data-instrument="observe"]
-    .optical-console {
-    left: 18px;
-    bottom: 110px;
+  .flight-directive h2 {
+    font-size: 18px;
+  }
+  .flight-channel-rack {
+    right: 16px;
+    width: 340px;
+  }
+  .flight-deck-instruments {
+    grid-template-columns: minmax(135px, 0.7fr) minmax(190px, 1fr) minmax(
+        220px,
+        1.2fr
+      );
+  }
+  .flight-deck-instruments > section {
+    padding: 12px;
+  }
+  .flight-evidence-deck {
+    left: 16px;
+    right: 16px;
   }
   .active-observation-theatre
     .simulation-workstation[data-instrument="observe"]
     .radar-panel {
     display: none;
   }
-}
-@media (max-width: 780px) {
-  .active-observation-theatre
-    .simulation-workstation[data-instrument="observe"]
-    .sensor-workspace
-    > .scene-container {
-    width: 100%;
-    height: 42%;
-  }
-  .acquisition-console {
-    left: 0;
-    right: 0;
-    top: 42%;
-    bottom: calc(var(--station-dock, 94px) + 14px);
-    width: 100%;
-    padding: 16px;
-    border-top: 1px solid #6a8b88;
-    border-left: 0;
-  }
-  .acquisition-console h2 {
-    font-size: 22px;
-  }
-  .acquisition-console > header p {
-    display: none;
-  }
-  .acquisition-subject {
-    margin: 12px 0;
-  }
   .active-observation-theatre
     .simulation-workstation[data-instrument="observe"]
     .optical-console {
-    display: none;
+    left: 18px;
+    bottom: calc(
+      var(--station-dock, 94px) + var(--evidence-deck-height) + 26px
+    );
   }
-  .acquisition-channel-actions {
-    grid-template-columns: 1fr 1fr;
+  .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .view-annotation.top-left {
+    left: 18px;
+    top: 264px;
+    max-width: 50%;
   }
 }
 @media (min-width: 781px) and (max-width: 1050px) {
@@ -213,7 +628,204 @@
     max-width: 20ch;
   }
 }
+@media (max-width: 780px) {
+  .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .sensor-workspace
+    > .scene-container {
+    height: 100%;
+  }
+  .acquisition-console {
+    inset: 44% 0 calc(var(--station-dock, 128px) + 14px);
+    padding: 0 12px 12px;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+    pointer-events: auto;
+    background: #0d252df5;
+    border-top: 1px solid #8eaf97;
+  }
+  .flight-directive {
+    position: relative;
+    inset: auto;
+    max-width: none;
+    width: 100%;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    padding: 14px 0 0;
+    gap: 10px;
+  }
+  .flight-directive-mark {
+    width: 30px;
+    height: 30px;
+  }
+  .flight-directive h2 {
+    font-size: 19px;
+  }
+  .flight-directive .eyebrow {
+    font-size: 8px;
+  }
+  .flight-channel-rack {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    margin: 8px 0;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: none;
+  }
+  .flight-task-gate {
+    min-height: 0;
+  }
+  .acquisition-channel-actions button {
+    min-height: 62px;
+  }
+  .flight-evidence-deck {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    scrollbar-gutter: auto;
+  }
+  .flight-evidence-heading {
+    padding: 10px 0;
+    gap: 8px;
+    background: none;
+    border-top: 1px solid #789b8255;
+  }
+  .flight-evidence-heading strong {
+    font-size: 13px;
+  }
+  .flight-evidence-heading .eyebrow {
+    font-size: 8px;
+  }
+  .flight-logical-clock {
+    font-size: 10px;
+  }
+  .flight-deck-toggle {
+    font-size: 10px;
+    padding: 6px 8px;
+    max-width: 70px;
+  }
+  .flight-deck-instruments {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .flight-deck-instruments > section {
+    padding: 14px 0;
+  }
+  .flight-deck-instruments > section + section {
+    border-left: 0;
+    border-top: 1px solid #75978255;
+  }
+  .acquisition-subject {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 12px;
+  }
+  .acquisition-subject > strong {
+    grid-column: 2;
+    grid-row: 1/3;
+    margin: 0;
+    font-size: 30px;
+  }
+  .acquisition-subject > small {
+    grid-column: 1;
+  }
+  .flight-correlated-evidence {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 8px;
+  }
+  .flight-evidence-deck > footer {
+    padding: 10px 0;
+    font-size: 10px;
+  }
+  .flight-evidence-deck[data-expanded="false"] {
+    height: auto;
+  }
+  .flight-evidence-deck[data-expanded="false"] .flight-evidence-heading {
+    border-radius: 0;
+  }
+  .acquisition-console[data-deck-expanded="false"] {
+    inset: auto 0 calc(var(--station-dock, 128px) + 14px);
+    max-height: 250px;
+  }
+  .acquisition-console[data-deck-expanded="false"] .flight-directive {
+    display: none;
+  }
+  .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .sensor-workspace
+    > .panel-header {
+    top: 74px;
+  }
+  .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .optical-console {
+    display: none;
+  }
+  .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .view-annotation.top-left {
+    top: 150px;
+    left: 18px;
+    max-width: calc(100% - 36px);
+  }
+}
+/* A short desktop viewport prioritizes the world over a persistent minimap.
+   Radar remains available through its dedicated full-size instrument. */
+@media (min-width: 1101px) {
+  .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .optical-console {
+    top: 202px;
+    bottom: auto;
+    left: 560px;
+    right: 20px;
+  }
+  .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .scene-toolbar {
+    bottom: calc(
+      var(--station-dock, 94px) + var(--evidence-deck-height) + 26px
+    );
+  }
+}
+@media (min-width: 781px) and (max-height: 900px) {
+  .active-observation-theatre
+    .simulation-workstation:has(
+      .observation-flight-deck[data-deck-expanded="true"]
+    )[data-instrument="observe"]
+    :is(.radar-panel, .scene-toolbar) {
+    display: none;
+  }
+}
+@media (min-width: 781px) and (max-width: 1100px) and (max-height: 850px) {
+  .active-observation-theatre
+    .simulation-workstation:has(
+      .observation-flight-deck[data-deck-expanded="true"]
+    )[data-instrument="observe"]
+    .optical-console {
+    display: none;
+  }
+}
 
+@media (prefers-reduced-motion: reduce) {
+  .observation-flight-deck * {
+    scroll-behavior: auto;
+    transition: none;
+    animation: none;
+  }
+}
 .acquisition-review {
   margin-block: 20px;
   padding: 24px;

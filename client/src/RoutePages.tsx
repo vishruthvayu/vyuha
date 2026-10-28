@@ -13,6 +13,7 @@ export const pageComponents = {
   instructor: lazy(() => import("./Instructor")),
   analytics: lazy(() => import("./Analytics")),
   exercises: lazy(() => import("./ExerciseStudio")),
+  "observation-missions": lazy(() => import("./ObservationMissionStudio")),
   recorded: lazy(() => import("./Recorded")),
   transfer: lazy(() => import("./Transfer")),
   evidence: lazy(() => import("./Evidence")),

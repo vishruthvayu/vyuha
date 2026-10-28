@@ -1,3 +1,8 @@
+import {
+  observationEntry,
+  observationEntryKey,
+  loadObservationMission,
+} from "./observation-entry";
 import AcquisitionStation from "./AcquisitionStation";
 import { OpticalStation } from "./OpticalStation";
 import { TrainingDeck } from "./TrainingDeck";
@@ -361,8 +366,20 @@ export default function App({
       stopped = true;
     };
   }, [trainee, current?.id, current?.verified, phase]);
+  const preparationInputs = useRef({ trainee, seed, mode });
   useEffect(() => {
+    const previous = preparationInputs.current;
+    preparationInputs.current = { trainee, seed, mode };
     if (phase !== "ready") return;
+    // Loading a frozen mission synchronizes the displayed seed. This is not
+    // a new authoring choice and must not invalidate that same preparation.
+    if (
+      previous.trainee === trainee &&
+      previous.mode === mode &&
+      prepared?.observation_mission &&
+      prepared.seed === seed
+    )
+      return;
     setPrepared(null);
     learningRef.current = undefined;
     setLearning(undefined);
@@ -441,10 +458,13 @@ export default function App({
       cancelled = true;
     };
   }, [trainee, phase, reviewOnly, learningReload, requestedLearningTicket]);
+  const missionLaunch = observationEntry(window.location.search);
   const acquisitionEntry =
+    !!missionLaunch.entry ||
+    !!missionLaunch.error ||
     new URLSearchParams(window.location.search).get("acquisition") === "1";
   const prepare = async () => {
-    learningRequest.current++;
+    const preparationRequest = ++learningRequest.current;
     const url = new URL(window.location.href);
     if (url.searchParams.has("learning")) {
       url.searchParams.delete("learning");
@@ -457,18 +477,31 @@ export default function App({
     setBusy(true);
     setPrepared(null);
     try {
-      const spec = acquisitionEntry
-        ? await api<Scenario>("/acquisition/practice", { seed, night })
-        : await api<Scenario>("/director-v2/prepare", {
-            seed,
-            trainee,
-            duration: 90,
-          });
+      const launch = observationEntry(window.location.search);
+      if (launch.error) throw Error(launch.error);
+      const launchKey = observationEntryKey(window.location.search);
+      const spec = launch.entry
+        ? await loadObservationMission(launch.entry, (path, body) =>
+            api<Scenario>(path, body, RECONSTRUCTION_TIMEOUT_MS),
+          )
+        : acquisitionEntry
+          ? await api<Scenario>("/acquisition/practice", { seed, night })
+          : await api<Scenario>("/director-v2/prepare", {
+              seed,
+              trainee,
+              duration: 90,
+            });
+      if (preparationRequest !== learningRequest.current) return;
+      if (launchKey !== observationEntryKey(window.location.search))
+        throw Error(
+          "Mission selection changed during preparation. Prepare the current selection again.",
+        );
       setPrepared(spec);
       setScenario(spec);
       setState(new Simulation(spec).snapshot());
       setSelected(null);
       setNight(spec.night);
+      if (spec.observation_mission) setSeed(spec.seed);
       setOnline(true);
     } catch (error) {
       setNotice(
@@ -2410,6 +2443,9 @@ export default function App({
                               }
                               objective={
                                 episodeBriefing?.objective ??
+                                (scenario.observation_mission
+                                  ? `${scenario.observation_mission.mode === "assessment" ? "Independent evidence assessment" : "Evidence practice"} · ${scenario.observation_mission.objectives.join(" ")} Original rubric and evidence assessment remain separate.`
+                                  : undefined) ??
                                 (scenario.engine_version === "vyuha-0.5.0" ||
                                 (acquisitionEntry &&
                                   mode === "adaptive" &&
@@ -2421,6 +2457,7 @@ export default function App({
                               }
                               instructions={
                                 episodeBriefing?.instructions ??
+                                scenario.observation_mission?.objectives ??
                                 (scenario.engine_version === "vyuha-0.5.0" ||
                                 (acquisitionEntry &&
                                   mode === "adaptive" &&
@@ -2538,6 +2575,18 @@ export default function App({
                           enabled={workerInitialized.current && !busy}
                           visible={stationInstrument === "observe"}
                           receipt={feedback}
+                          brief={
+                            scenario.observation_mission
+                              ? {
+                                  title: scenario.observation_mission.title,
+                                  objectives:
+                                    scenario.observation_mission.objectives,
+                                }
+                              : undefined
+                          }
+                          onInspectChannel={(channel) =>
+                            setVision(channel === "eo" ? "day" : "thermal")
+                          }
                           request={(channel) => {
                             if (
                               !running ||
