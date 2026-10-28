@@ -1,0 +1,31 @@
+✔ real unchanged-engine report fixture has exact bounded intervals and frozen copies without modifying source (15.016125ms)
+✔ foreign, future, truncated, overlapping and manipulated report receipts fail closed (33.987375ms)
+✔ explicit author reconstruction retains complete source scope and an interval seeks the reference world without simulation actions (511.809833ms)
+✔ late responses cannot be displayed in a changed frozen source or stale preview; duplicate clicks do not dispatch duplicate work (45.487541ms)
+✔ server rejection leaves source untouched and shows no partial intervals; unsupported workloads do not dispatch (23.250167ms)
+✔ native interval controls and the visual report chart pass structural accessibility (373.076416ms)
+✔ reference author can scrub waves and inspect a roster subject without any API mutation or trainee action (334.497416ms)
+✔ admitted objective, exact roster and weak-sector choices reach preview unchanged; changing them marks the reference stale (193.021917ms)
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at eval (eval at <anonymous> (file:///Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/raid-rehearsal-ui.test.tsx:1:6118), <anonymous>:21238:49)
+    at Object.get (eval at <anonymous> (file:///Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/raid-rehearsal-ui.test.tsx:1:6118), <anonymous>:15318:23)
+    at _isIconLigature (eval at <anonymous> (file:///Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/raid-rehearsal-ui.test.tsx:1:6118), <anonymous>:21237:41)
+    at eval (eval at <anonymous> (file:///Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/raid-rehearsal-ui.test.tsx:1:6118), <anonymous>:21327:37)
+    at Array.map (<anonymous>)
+    at visibleVirtual (eval at <anonymous> (file:///Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/raid-rehearsal-ui.test.tsx:1:6118), <anonymous>:21321:35)
+    at eval (eval at <anonymous> (file:///Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/raid-rehearsal-ui.test.tsx:1:6118), <anonymous>:21336:18) undefined
+✔ rehearsal semantics pass structural axe and unsupported historical source remains untouched (423.950208ms)
+✔ old or malformed compiled raids use an explicit unavailable fallback (15.471167ms)
+✔ compiled sensor intervals seek the real Studio reference world and cannot become trainee actions (287.01975ms)
+✔ modeled-boundary reference seeking rejects wrong scope and invalid ticks, and repeated requests retain keyboard focus (64.049292ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3237.8625

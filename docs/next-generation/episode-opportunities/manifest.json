@@ -1,0 +1,10 @@
+{
+  "runtime_commit": "edfc728a5431e5446f0e68dab3dc918a402f08eb",
+  "runtime_source_hash": "bd3f5dfd068a5f27226c2f172fbd5c4d847bf1109bb7e6101f96a57ee55dd916",
+  "scope": "DEVELOPMENT_ONLY",
+  "browser_evidence": "reported execution; raw temporary artifacts unavailable after interruption",
+  "artifacts": {
+    "evidence/backend.txt": "df5348f7af5a44040e0ab6b5db85d20d2f219df7d8f08baac6c5d288295687f5",
+    "evidence/frontend.txt": "c8d457f42d5a7402e35842db4842942105b4369a48b5e58d4c63733af744be44"
+  }
+}
