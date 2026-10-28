@@ -1,0 +1,22 @@
+✔ moving optics into the evidence instrument retains one world, camera aim and captured reports (416.989833ms)
+✔ manual scan survives contact selection, explicitly reacquires, and preserves one world through phases (29.905917ms)
+✔ local capture pins exact sample times while live changes; another contact and session never inherit it (52.530083ms)
+✔ tactical view offers the evidence workflow without manual 3D controls (33.888667ms)
+✔ a future observation cannot enter the visible notebook (26.100667ms)
+✔ entering manual scan uses displayed held bearing, not a vanished report or default sector (36.144166ms)
+✔ pan arrows are scoped to the focused control group; comparison table has accessible structure (494.359166ms)
+✔ opening comparison moves focus to its named region; Escape returns to its trigger (30.681375ms)
+✔ scene drag retains one world and cannot survive contact, session or instrument ownership changes (41.893333ms)
+✔ manual pointing uses the fixed sensor origin and all compass quadrants (1.7315ms)
+✔ display pitch clamps, bearings wrap, malformed directions cannot reach the renderer (1.359375ms)
+✔ pointing cannot carry into a different owner or worker generation (0.19175ms)
+✔ briefing/reference/review cannot accept a live manual view (0.247917ms)
+✔ direct optical dragging is FOV-relative, cadence independent and bounded without changing source aim (0.295333ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2916.395584

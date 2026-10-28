@@ -1,0 +1,18 @@
+✔ optical scheduling parity: cadence-dwell-publication-and-expiry (386.728583ms)
+✔ optical scheduling parity: unavailable-is-not-identity (245.003833ms)
+✔ optical scheduling parity: busy-stale-hidden-alias-and-cooldown (320.409917ms)
+✔ optical scheduling parity: duplicates-and-conflicting-ids-no-extra-draw (345.691417ms)
+✔ optical scheduling parity: end-before-release-retains-accepted-intent (246.743834ms)
+✔ optical scheduling parity: release-before-same-tick-end (309.572ms)
+✔ optical scheduling parity: bounded-history-and-separate-channel-draw (387.163167ms)
+✔ optical scheduling parity: pause-does-not-advance-logical-time (652.170542ms)
+✔ invalid policies, future report prefixes and extra truth fail closed without mutating the scheduler (1.646375ms)
+✔ returned queries/results and policy never alias internal state; logical time cannot rewind (0.895709ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3365.238584

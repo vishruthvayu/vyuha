@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "runtime_commit": "2ed666bca5a9e2f982e64ee12c5e2e0fa532aafe",
+  "source_hash": "6d6b337ab95bd248e2b41be608d90bb0520b9df2dbee3dc82a3c431223b774bb",
+  "status": "DEVELOPMENT_CHECKPOINT_NOT_RELEASE_ACCEPTANCE",
+  "checks": {
+    "optical_frontend_unique_tests": 14,
+    "scheduler_frontend_tests": 10,
+    "scheduler_backend_tests": 10,
+    "scheduler_cross_language_transcripts": 8,
+    "typescript": "PASS",
+    "changed_lint": "PASS",
+    "changed_format": "PASS",
+    "new_full_build": "NOT_RERUN",
+    "full_regression": "NOT_RERUN",
+    "matched_new_performance": "NOT_MEASURED"
+  },
+  "artifacts": {
+    "evidence/automatic-sector.png": "7ca2f55d922fb7c63233eac6a4ea5496f39c1abf5c458a479572a3f07f09b7dc",
+    "evidence/browser-manual-scan.txt": "879ade9217fe0e4976009cb243d21bd46a4647d76c43315309792ba3d74e0a2e",
+    "evidence/format.txt": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20",
+    "evidence/lint.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/manual-scan.png": "5c31642300e19926ad95c0a9c173a0b8984bb953d9afad8e8f6919003167a0cf",
+    "evidence/optical-final-ui.txt": "3b3129ab23c6bf7523d66926fe04411185038be56ea9b53d762d9d7be2a7656b",
+    "evidence/optical-focused.txt": "061382ed3c3a1d4c2ffd8a057b85cb6234ec9aacf1fc1c5cda313409240d420b",
+    "evidence/scheduler-backend.txt": "5099540f41d3691ed8a3269db234c2e8c66190398ee14c94a8d7d74710ce6bbf",
+    "evidence/scheduler-frontend.txt": "78d2d7559ca9686a166714ee5a32c061ba4548bffa6f6c2d010316224b356ce9",
+    "evidence/typescript.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

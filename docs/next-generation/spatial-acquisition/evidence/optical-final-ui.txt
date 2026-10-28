@@ -1,0 +1,17 @@
+✔ moving optics into the evidence instrument retains one world, camera aim and captured reports (620.474416ms)
+✔ manual scan survives contact selection, explicitly reacquires, and preserves one world through phases (49.446917ms)
+✔ local capture pins exact sample times while live changes; another contact and session never inherit it (89.564541ms)
+✔ tactical view offers the evidence workflow without manual 3D controls (37.810584ms)
+✔ a future observation cannot enter the visible notebook (35.538167ms)
+✔ entering manual scan uses displayed held bearing, not a vanished report or default sector (57.688834ms)
+✔ pan arrows are scoped to the focused control group; comparison table has accessible structure (682.418625ms)
+✔ opening comparison moves focus to its named region; Escape returns to its trigger (41.689917ms)
+✔ scene drag retains one world and cannot survive contact, session or instrument ownership changes (58.844958ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4246.391167

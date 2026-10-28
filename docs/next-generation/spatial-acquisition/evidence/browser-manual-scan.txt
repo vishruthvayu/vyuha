@@ -1,0 +1,8 @@
+Browser tab: 1, Title: "VYUHA · Counter-drone trainer", URL: "http://localhost:8040/".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 134
+~			19 text SERVER CONNECTED · Sync up to date · Internet not required
+~					30 container SERVER CONNECTED · Sync up to date
+~						31 text Unit link ready  ·  Urban outpost · Day · Mixed contacts
++						149 text VR
+The focused UI element is 64 button Resume
