@@ -1,0 +1,26 @@
+{
+  "canvases": [
+    {
+      "height": 800,
+      "rect": {
+        "bottom": 899.9883346557617,
+        "height": 800,
+        "left": 0,
+        "right": 1440.2984619140625,
+        "top": 99.98833465576172,
+        "width": 1440.2984619140625,
+        "x": 0,
+        "y": 99.98833465576172
+      },
+      "width": 1440
+    }
+  ],
+  "sourceStyles": [
+    "/assets/index-C0kR9Ze_.css"
+  ],
+  "viewport": {
+    "dpr": 0.6700000166893005,
+    "height": 900,
+    "width": 1440
+  }
+}

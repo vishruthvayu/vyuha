@@ -1,0 +1,1476 @@
+{
+  "id": "3eb201b3-d962-4084-aa7a-1bfa627e24b9",
+  "trainee": "T_680adca3d6a04aed86aeda",
+  "unit_id": "local",
+  "exercise_group_id": null,
+  "scenario": {
+    "acquisition_policy": {
+      "cadenceTicks": 3,
+      "cooldownTicks": 6,
+      "dwellTicks": 30,
+      "expiryTicks": 180,
+      "latencyTicks": 6,
+      "maxReportAgeTicks": 90,
+      "maxRequests": 64,
+      "version": "optical-task-policy-v1"
+    },
+    "difficulty_label": "foundational",
+    "doctrine": {
+      "allowed_tactics": [
+        "DIRECT",
+        "SATURATION",
+        "DECOY_THEN_STRIKE",
+        "STAGGERED_WAVES",
+        "LOW_APPROACH",
+        "SPLIT_SWARM",
+        "PROBE_AND_RETREAT",
+        "BLIND_SECTOR"
+      ],
+      "defaults": {
+        "fog": 0.15,
+        "mix": [],
+        "night": true
+      },
+      "description": "Frozen meter-scale training research configuration; not official doctrine",
+      "example_values": true,
+      "id": "army-forward-post",
+      "name": "Illustrative finale local pack",
+      "rubric": {
+        "classify": 25,
+        "detect": 25,
+        "engage": 35,
+        "prioritise": 15
+      },
+      "rules": {
+        "asset_risk": 1,
+        "distance_precision": 6,
+        "effectors": [
+          "hold",
+          "rf_jam",
+          "kinetic"
+        ],
+        "hold_any_range": true,
+        "kinetic_range": 1000,
+        "restricted": {
+          "enabled": true,
+          "x_lt": -300,
+          "z_gt": 200
+        },
+        "rf_range": 1500,
+        "risk_weights": {
+          "bird": 0,
+          "fiber_fpv": 1.5,
+          "fixed_wing": 1.2,
+          "quad": 1
+        }
+      },
+      "version": 1
+    },
+    "duration": 90,
+    "effector_config": {
+      "asset_radius_m": 8,
+      "effectors": {
+        "hold": {
+          "enabled": true
+        },
+        "kinetic": {
+          "enabled": true,
+          "max_range_m": 1000
+        },
+        "rf_jam": {
+          "enabled": true,
+          "max_range_m": 1500,
+          "requires_rf_link": true
+        }
+      },
+      "engagement_channels": 1,
+      "id": "illustrative-local-response-v1",
+      "label": "Illustrative bounded training actions; not real weapon performance or official doctrine",
+      "minimum_response_window_s": 7,
+      "sensor_geometry": {
+        "day_camera_range_m": 1500,
+        "radar_range_m": 3000,
+        "thermal_range_m": 1200
+      },
+      "units": {
+        "distance": "m"
+      },
+      "version": 1
+    },
+    "engine_version": "vyuha-0.5.0",
+    "focus": "classification_iff",
+    "fog": 0.15,
+    "fusion": {
+      "bias_seed": 0,
+      "exercise": "normal",
+      "mode": "training",
+      "version": "fusion-1"
+    },
+    "id": "raid_87be4e223c6ddd35142a20df",
+    "jamEnd": 2700,
+    "jamStart": 2700,
+    "night": true,
+    "observation_mission": {
+      "assessment_version": "evidence-assessment-v1",
+      "authoring": {
+        "duration": 90,
+        "dwell_ticks": 30,
+        "expiry_ticks": null,
+        "extra_contacts": 0,
+        "fog": null,
+        "mode": "practice",
+        "night": null,
+        "objectives": null,
+        "seed": 482913,
+        "template": "night_switch",
+        "terrain": null,
+        "title": "QA \u00b7 Night cross-check investigation",
+        "version": "observation-mission-v1"
+      },
+      "competencies": [
+        "C01",
+        "C02",
+        "C05"
+      ],
+      "criterion_profile": "night_switch",
+      "mode": "practice",
+      "objectives": [
+        "Separate channel unavailability from an empty sky.",
+        "Choose a cross-check that can supply new information.",
+        "Keep shape resolution separate from affiliation."
+      ],
+      "template": "night_switch",
+      "title": "QA \u00b7 Night cross-check investigation",
+      "version": "observation-mission-v1"
+    },
+    "prioritisation_version": 1,
+    "raid": {
+      "anti_repeat": {
+        "history_considered": 0,
+        "rejected_attempts": 0
+      },
+      "constraints": {
+        "max_contacts": 200,
+        "peak_hostile_cap": 3,
+        "response_window_s": 7
+      },
+      "family": "DIRECT",
+      "fingerprint": "5da2f75fc1c219ea6662b67f",
+      "formation_model": "Closed-form shared leader with bounded slots and optional split; not autonomous swarm AI",
+      "requested_seed": 482913,
+      "signature": [
+        "bird:0:0:orbit_then_dash",
+        "quad:2:0:orbit_then_dash",
+        "quad:7:0:weave"
+      ],
+      "validation": {
+        "basis": "Geometric baseline check with declared ranges; not calibrated sensor reliability or a certified human-solvability claim",
+        "peak_simultaneous_hostiles": 1,
+        "response_windows": {
+          "T1": {
+            "first_tick": 60,
+            "last_tick": 1990,
+            "usable_ticks": 1931
+          }
+        },
+        "saturation_index": 1.0
+      },
+      "version": 2,
+      "waves": [
+        {
+          "contacts": [
+            "T1"
+          ],
+          "role": "direct",
+          "tick": 60
+        }
+      ]
+    },
+    "red_force": {
+      "phases": [
+        {
+          "contacts": [
+            "T1"
+          ],
+          "role": "direct",
+          "tick": 60
+        }
+      ],
+      "tactic": "DIRECT",
+      "tactic_seed": 482913,
+      "version": 2
+    },
+    "seed": 482913,
+    "sensor_config": {
+      "civil_beacon_probability": 0.9,
+      "clear_visibility_m": 20000,
+      "dense_visibility_m": 200,
+      "eo_ifov_rad": 0.00012,
+      "eo_max_range_m": 1500,
+      "false_track_lifetime_sweeps": 3,
+      "false_track_maximum": 2,
+      "false_track_probability": 0.05,
+      "iff_max_range_m": 2500,
+      "iff_reply_probability": 0.95,
+      "ir_fog_factor": 0.45,
+      "ir_ifov_rad": 0.00018,
+      "ir_max_range_m": 1200,
+      "optical_reliability": 0.95,
+      "optical_sample_ticks": 3,
+      "radar_confirm_hits": 3,
+      "radar_jam_factor": 0.15,
+      "radar_loss_sweeps": 3,
+      "radar_max_range_m": 5000,
+      "radar_occlusion_factor": 0.1,
+      "radar_pfa": 1e-06,
+      "radar_reference_range_m": 3000,
+      "radar_reference_rcs_db": -15,
+      "radar_reference_snr": 30,
+      "radar_reliability": 0.95,
+      "radar_sweep_ticks": 30,
+      "radar_window_sweeps": 5,
+      "rcs_spread_db": 3,
+      "rf_bearing_error_deg": 5,
+      "rf_gain_db": 6,
+      "rf_max_range_m": 4000,
+      "rf_path_exponent": 2.2,
+      "rf_reliability": 0.9,
+      "rf_sensitivity_dbm": -96,
+      "rf_shadow_db": 6,
+      "rf_tx_dbm": 20
+    },
+    "sensor_version": "vyuha-0.4.0",
+    "terrain": "urban",
+    "terrain_boxes": [
+      {
+        "height": 28,
+        "x_max": 210,
+        "x_min": 120,
+        "z_max": 390,
+        "z_min": 300
+      },
+      {
+        "height": 35,
+        "x_max": -130,
+        "x_min": -230,
+        "z_max": -240,
+        "z_min": -350
+      }
+    ],
+    "terrain_id": "urban_outpost",
+    "terrain_version": 1,
+    "threat_config": {
+      "id": "illustrative-threat-library-v1",
+      "label": "Illustrative training research parameters; not operational equipment specifications",
+      "profiles": {
+        "bird": {
+          "altitude_m": [
+            15,
+            80
+          ],
+          "identity": "neutral",
+          "kind": "bird",
+          "rf": false,
+          "speed_mps": [
+            4,
+            12
+          ]
+        },
+        "civil_uav": {
+          "altitude_m": [
+            20,
+            100
+          ],
+          "identity": "neutral",
+          "kind": "quad",
+          "registration_beacon": true,
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ]
+        },
+        "fixed_wing": {
+          "altitude_m": [
+            40,
+            180
+          ],
+          "identity": "hostile",
+          "kind": "fixed_wing",
+          "rf": false,
+          "speed_mps": [
+            25,
+            42
+          ]
+        },
+        "friendly_uav": {
+          "altitude_m": [
+            20,
+            100
+          ],
+          "identity": "friendly",
+          "kind": "quad",
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ]
+        },
+        "hostile_quad": {
+          "altitude_m": [
+            15,
+            90
+          ],
+          "identity": "hostile",
+          "kind": "quad",
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ]
+        },
+        "no_rf_fpv": {
+          "altitude_m": [
+            4,
+            30
+          ],
+          "identity": "hostile",
+          "kind": "fiber_fpv",
+          "rf": false,
+          "speed_mps": [
+            20,
+            35
+          ]
+        }
+      },
+      "units": {
+        "altitude": "m",
+        "distance": "m",
+        "speed": "m/s",
+        "time": "s"
+      },
+      "version": 1
+    },
+    "title": "QA \u00b7 Night cross-check investigation",
+    "tracks": [
+      {
+        "altitude": 20.297,
+        "bearing": 329,
+        "distance": 971.87,
+        "id": "T1",
+        "identity": "hostile",
+        "kind": "quad",
+        "motion": {
+          "lateral_m": 102.854,
+          "period_s": 20.934,
+          "phase_s": 16.2,
+          "primitive": "weave",
+          "turn_deg": -22.775,
+          "version": 1
+        },
+        "radar_range": 3000,
+        "rf": true,
+        "spawn": 60,
+        "speed": 14.998,
+        "thermal_range": 1200,
+        "threat_profile": "hostile_quad"
+      },
+      {
+        "altitude": 21.151,
+        "bearing": 99,
+        "distance": 931.621,
+        "expires_tick": 2700,
+        "id": "T2",
+        "identity": "friendly",
+        "kind": "quad",
+        "motion": {
+          "lateral_m": 0,
+          "period_s": 20,
+          "phase_s": 90,
+          "primitive": "orbit_then_dash",
+          "turn_deg": 70,
+          "version": 1
+        },
+        "radar_range": 3000,
+        "rf": true,
+        "spawn": 660,
+        "speed": 14.862,
+        "thermal_range": 1200,
+        "threat_profile": "friendly_uav"
+      },
+      {
+        "altitude": 20.189,
+        "bearing": 11,
+        "distance": 798.238,
+        "expires_tick": 2700,
+        "id": "T3",
+        "identity": "neutral",
+        "kind": "bird",
+        "motion": {
+          "lateral_m": 0,
+          "period_s": 20,
+          "phase_s": 90,
+          "primitive": "orbit_then_dash",
+          "turn_deg": 70,
+          "version": 1
+        },
+        "radar_range": 3000,
+        "rf": false,
+        "spawn": 240,
+        "speed": 10.795,
+        "thermal_range": 1200,
+        "threat_profile": "bird"
+      }
+    ],
+    "version": 2
+  },
+  "events": [
+    {
+      "channel": "eo",
+      "k": "inspect",
+      "order": 0,
+      "request_id": "78116dee-4e99-4360-9f7f-df2cd9ab7078",
+      "tick": 276,
+      "track": "T1"
+    },
+    {
+      "channel": "ir",
+      "k": "inspect",
+      "order": 2,
+      "request_id": "e73dfb21-0572-4eaa-9bae-287948084bde",
+      "tick": 666,
+      "track": "T1"
+    },
+    {
+      "k": "designate",
+      "order": 4,
+      "tick": 1036,
+      "track": "T1"
+    },
+    {
+      "identity": "hostile",
+      "k": "classify",
+      "kind": "quad",
+      "order": 5,
+      "tick": 1253,
+      "track": "T1"
+    },
+    {
+      "effector": "hold",
+      "k": "engage",
+      "order": 6,
+      "tick": 1469,
+      "track": "T1"
+    }
+  ],
+  "commands": [],
+  "executionTick": 1663,
+  "endTick": 2700,
+  "scorecard": {
+    "engine_version": "vyuha-0.5.0",
+    "fratricide": false,
+    "leakers": 1,
+    "passed": false,
+    "prioritisation": {
+      "agreement": 1,
+      "choices": [],
+      "comparisons": [],
+      "coverage": 0.0,
+      "method": "pairwise Kendall agreement over co-observed hostile choices, multiplied by engagement coverage",
+      "ordering_rule": "First accepted non-Hold engagement per hostile; an ineffective attempt still declares attention. Pairs counted once, at their first co-observed choice.",
+      "points": 0,
+      "points_possible": 15,
+      "priority_rule": "risk_weight \u00d7 asset_risk / max(time_to_impact_seconds, 1/30)",
+      "tau": null,
+      "tie_rule": "Equal priority pairs are excluded; no comparable pairs yields neutral agreement 1, still multiplied by coverage.",
+      "unengaged": [
+        "T1"
+      ],
+      "version": 1
+    },
+    "roe_breaches": 0,
+    "rows": [
+      {
+        "attempts": [
+          "hold"
+        ],
+        "classify": 25,
+        "designated": 1036,
+        "detect": 0,
+        "detected": 120,
+        "engage": 0,
+        "feedback": [
+          "Designation took 30.5 seconds after first sensor visibility.",
+          "RF-link present: RF jamming is the example-pack response.",
+          "1 unsuitable response; review the sensor evidence.",
+          "This threat reached the protected asset."
+        ],
+        "id": "T1",
+        "ideal": "rf_jam",
+        "identity": "hostile",
+        "impact": true,
+        "kind": "quad",
+        "prioritise": 0,
+        "total": 25
+      },
+      {
+        "attempts": [],
+        "classify": 0,
+        "designated": null,
+        "detect": 0,
+        "detected": 750,
+        "engage": 0,
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: quad / friendly.",
+          "Hold fire on this non-hostile contact."
+        ],
+        "id": "T2",
+        "ideal": "hold",
+        "identity": "friendly",
+        "impact": false,
+        "kind": "quad",
+        "prioritise": 0,
+        "total": 0
+      },
+      {
+        "attempts": [],
+        "classify": 0,
+        "designated": null,
+        "detect": 0,
+        "detected": 300,
+        "engage": 0,
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: bird / neutral.",
+          "Hold fire on this non-hostile contact."
+        ],
+        "id": "T3",
+        "ideal": "hold",
+        "identity": "neutral",
+        "impact": false,
+        "kind": "bird",
+        "prioritise": 0,
+        "total": 0
+      }
+    ],
+    "score": 15,
+    "skills": {
+      "recognition": 33,
+      "response": 0
+    },
+    "summary": "1 threat reached the protected asset. Review response selection.",
+    "threats": 1
+  },
+  "created_at": "2026-10-28T18:04:52.758263+00:00",
+  "verified": true,
+  "teaching_notes": [],
+  "timeline": [
+    {
+      "id": "tl_0000",
+      "tick": 0,
+      "order": -1,
+      "category": "sensor_transition",
+      "code": "SENSOR_STATE",
+      "title": "Radar normal \u00b7 RF active \u00b7 Night",
+      "track_id": null,
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0011",
+      "tick": 60,
+      "order": null,
+      "category": "tactic_phase",
+      "code": "DIRECT",
+      "title": "Red Force \u00b7 direct \u00b7 T1",
+      "track_id": null,
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0001",
+      "tick": 120,
+      "order": -1,
+      "category": "contact_detection",
+      "code": "FIRST_DETECTABLE",
+      "title": "T1 \u00b7 first working-sensor observation",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_0",
+      "tick": 276,
+      "order": 0,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_ACCEPTED",
+      "title": "T1 \u00b7 EO \u00b7 Observation requested",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0003",
+      "tick": 300,
+      "order": -1,
+      "category": "contact_detection",
+      "code": "FIRST_DETECTABLE",
+      "title": "T3 \u00b7 first working-sensor observation",
+      "track_id": "T3",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_sample_78116dee-4e99-4360-9f7f-df2cd9ab7078",
+      "tick": 306,
+      "order": null,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_SAMPLE",
+      "title": "T1 \u00b7 EO \u00b7 Sampled modeled world",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_1",
+      "tick": 312,
+      "order": 1,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_RELEASED",
+      "title": "T1 \u00b7 EO \u00b7 Observation released",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_2",
+      "tick": 666,
+      "order": 2,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_ACCEPTED",
+      "title": "T1 \u00b7 IR \u00b7 Observation requested",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_sample_e73dfb21-0572-4eaa-9bae-287948084bde",
+      "tick": 696,
+      "order": null,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_SAMPLE",
+      "title": "T1 \u00b7 IR \u00b7 Sampled modeled world",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_3",
+      "tick": 702,
+      "order": 3,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_RELEASED",
+      "title": "T1 \u00b7 IR \u00b7 Observation released",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0005",
+      "tick": 750,
+      "order": -1,
+      "category": "contact_detection",
+      "code": "FIRST_DETECTABLE",
+      "title": "T2 \u00b7 first working-sensor observation",
+      "track_id": "T2",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0006",
+      "tick": 1036,
+      "order": 4,
+      "category": "trainee_action",
+      "code": "designate",
+      "title": "T1 \u00b7 designate \u00b7 designate",
+      "track_id": "T1",
+      "decision_id": "dec_0000",
+      "seek_before": true
+    },
+    {
+      "id": "tl_0009",
+      "tick": 1036,
+      "order": 4,
+      "category": "score_error",
+      "code": "DETECTION_LATE",
+      "title": "T1 \u00b7 detection late",
+      "track_id": "T1",
+      "decision_id": "dec_0000",
+      "seek_before": true
+    },
+    {
+      "id": "tl_0007",
+      "tick": 1253,
+      "order": 5,
+      "category": "trainee_action",
+      "code": "classify",
+      "title": "T1 \u00b7 classify \u00b7 quad",
+      "track_id": "T1",
+      "decision_id": "dec_0001",
+      "seek_before": true
+    },
+    {
+      "id": "tl_0008",
+      "tick": 1469,
+      "order": 6,
+      "category": "trainee_action",
+      "code": "engage",
+      "title": "T1 \u00b7 engage \u00b7 Hold",
+      "track_id": "T1",
+      "decision_id": "dec_0002",
+      "seek_before": true
+    },
+    {
+      "id": "tl_0010",
+      "tick": 1469,
+      "order": 6,
+      "category": "score_error",
+      "code": "WRONG_EFFECTOR",
+      "title": "T1 \u00b7 wrong effector",
+      "track_id": "T1",
+      "decision_id": "dec_0002",
+      "seek_before": true
+    }
+  ],
+  "decision_reviews": [
+    {
+      "decision_id": "dec_0000",
+      "session_id": "3eb201b3-d962-4084-aa7a-1bfa627e24b9",
+      "track_id": "T1",
+      "tick": 1036,
+      "order": 4,
+      "decision_kind": "detection",
+      "evidence": {
+        "tick": 1036,
+        "radar": {
+          "available": true,
+          "state": "normal",
+          "detected": true
+        },
+        "rf": {
+          "available": true,
+          "signal": true,
+          "iff": "no_reply"
+        },
+        "visual": {
+          "available": false,
+          "silhouette": null
+        },
+        "range_m": 492.278,
+        "restricted": false,
+        "first_detectable_tick": 120,
+        "prior_classification": null,
+        "prior_identity": null,
+        "night": true
+      },
+      "ground_truth": {
+        "kind": "quad",
+        "identity": "hostile",
+        "rf_link": true,
+        "spawn_tick": 60
+      },
+      "trainee_action": {
+        "tick": 1036,
+        "order": 4,
+        "k": "designate",
+        "track": "T1",
+        "kind": null,
+        "identity": null,
+        "effector": null,
+        "channel": null,
+        "request_id": null
+      },
+      "expected_action": {
+        "type": "designate",
+        "kind": null,
+        "identity": null,
+        "effector": null,
+        "basis": "available_evidence"
+      },
+      "verdict": "incorrect",
+      "reason_code": "DETECTION_LATE",
+      "explanation": "This contact first became detectable at T+4.00s. Designation at T+34.53s took 30.53s. Detection credit tapers after three simulation seconds, not after spawn or paused wall-clock time. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+      "consequence": {
+        "kind": "remained_active",
+        "tick": null,
+        "reason_code": "NO_CONSEQUENCE_YET",
+        "immediate": "not_applicable",
+        "text": "The contact remained active at the reviewed end; no later observed consequence is asserted."
+      },
+      "score_effect": {
+        "scope": "final_contact_node",
+        "node": "detect",
+        "points_awarded": 0,
+        "points_possible": 25,
+        "session_penalty": 0,
+        "penalty_basis": "none",
+        "session_failure": false
+      },
+      "skill_tags": [
+        "detection"
+      ],
+      "context_commands": []
+    },
+    {
+      "decision_id": "dec_0001",
+      "session_id": "3eb201b3-d962-4084-aa7a-1bfa627e24b9",
+      "track_id": "T1",
+      "tick": 1253,
+      "order": 5,
+      "decision_kind": "classification_iff",
+      "evidence": {
+        "tick": 1253,
+        "radar": {
+          "available": true,
+          "state": "normal",
+          "detected": true
+        },
+        "rf": {
+          "available": true,
+          "signal": true,
+          "iff": "no_reply"
+        },
+        "visual": {
+          "available": false,
+          "silhouette": null
+        },
+        "range_m": 394.732,
+        "restricted": false,
+        "first_detectable_tick": 120,
+        "prior_classification": null,
+        "prior_identity": null,
+        "night": true
+      },
+      "ground_truth": {
+        "kind": "quad",
+        "identity": "hostile",
+        "rf_link": true,
+        "spawn_tick": 60
+      },
+      "trainee_action": {
+        "tick": 1253,
+        "order": 5,
+        "k": "classify",
+        "track": "T1",
+        "kind": "quad",
+        "identity": "hostile",
+        "effector": null,
+        "channel": null,
+        "request_id": null
+      },
+      "expected_action": {
+        "type": "classify",
+        "kind": "quad",
+        "identity": "hostile",
+        "effector": null,
+        "basis": "ground_truth_reference"
+      },
+      "verdict": "correct",
+      "reason_code": "CORRECT_CLASSIFICATION",
+      "explanation": "The recorded type and identity match the reconstructed reference. Classification uses the final per-contact rubric; a correct label does not prove every identity cue was available. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+      "consequence": {
+        "kind": "remained_active",
+        "tick": null,
+        "reason_code": "NO_CONSEQUENCE_YET",
+        "immediate": "not_applicable",
+        "text": "The contact remained active at the reviewed end; no later observed consequence is asserted."
+      },
+      "score_effect": {
+        "scope": "final_contact_node",
+        "node": "classify",
+        "points_awarded": 25,
+        "points_possible": 25,
+        "session_penalty": 0,
+        "penalty_basis": "none",
+        "session_failure": false
+      },
+      "skill_tags": [],
+      "context_commands": []
+    },
+    {
+      "decision_id": "dec_0002",
+      "session_id": "3eb201b3-d962-4084-aa7a-1bfa627e24b9",
+      "track_id": "T1",
+      "tick": 1469,
+      "order": 6,
+      "decision_kind": "engagement",
+      "evidence": {
+        "tick": 1469,
+        "radar": {
+          "available": true,
+          "state": "normal",
+          "detected": true
+        },
+        "rf": {
+          "available": true,
+          "signal": true,
+          "iff": "no_reply"
+        },
+        "visual": {
+          "available": false,
+          "silhouette": null
+        },
+        "range_m": 298.273,
+        "restricted": false,
+        "first_detectable_tick": 120,
+        "prior_classification": "quad",
+        "prior_identity": "hostile",
+        "night": true
+      },
+      "ground_truth": {
+        "kind": "quad",
+        "identity": "hostile",
+        "rf_link": true,
+        "spawn_tick": 60
+      },
+      "trainee_action": {
+        "tick": 1469,
+        "order": 6,
+        "k": "engage",
+        "track": "T1",
+        "kind": null,
+        "identity": null,
+        "effector": "hold",
+        "channel": null,
+        "request_id": null
+      },
+      "expected_action": {
+        "type": "engage",
+        "kind": null,
+        "identity": null,
+        "effector": "rf_jam",
+        "basis": "ground_truth_reference"
+      },
+      "verdict": "incorrect",
+      "reason_code": "WRONG_EFFECTOR",
+      "explanation": "The selected response differs from the permitted reconstructed reference at this tick: RF jammer. Reference success uses the existing RF-link, range and restricted-sector rules. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded. The expected response is a ground-truth rubric reference, conditional on establishing identity.",
+      "consequence": {
+        "kind": "hold",
+        "tick": null,
+        "reason_code": "NO_CONSEQUENCE_YET",
+        "immediate": "held",
+        "text": "Hold was recorded; no later observed consequence is asserted."
+      },
+      "score_effect": {
+        "scope": "final_contact_node",
+        "node": "engage",
+        "points_awarded": 0,
+        "points_possible": 35,
+        "session_penalty": 10,
+        "penalty_basis": "scoring_projection",
+        "session_failure": false
+      },
+      "skill_tags": [
+        "effector_choice"
+      ],
+      "context_commands": []
+    }
+  ],
+  "ghost_summary": {
+    "largest_loss": "dec_0002",
+    "strongest_decision": "dec_0001",
+    "mistake_counts": {
+      "detection": 1,
+      "classification_iff": 0,
+      "effector_choice": 1,
+      "degraded_sensor_response": 0
+    },
+    "lost_points": {
+      "detection": 25,
+      "classification_iff": 0,
+      "effector_choice": 35,
+      "degraded_sensor_response": 0
+    },
+    "recommended_focus": "effector_choice",
+    "no_major_errors": false,
+    "text": "Recommended training focus: effector choice. Counts are distinct contacts with evidenced errors; sensor context does not prove causation."
+  },
+  "replay_metadata": {
+    "hz": 30,
+    "observed_end_tick": 1663,
+    "scoring_end_tick": 2700,
+    "horizon_source": "completion",
+    "early_end": true,
+    "version": "ghost-acquisition-v1",
+    "note": "Review and timeline stop at the observed exercise end. Final node scores retain the frozen exercise-duration scoring projection."
+  },
+  "node_averages": {
+    "detect": 0.0,
+    "classify": 25.0,
+    "prioritise": 0.0,
+    "engage": 0.0
+  },
+  "acquisition": {
+    "version": "optical-task-scheduler-v1",
+    "tick": 1663,
+    "ended": true,
+    "pending": null,
+    "requests": [
+      {
+        "id": "78116dee-4e99-4360-9f7f-df2cd9ab7078",
+        "trackId": "T1",
+        "channel": "eo",
+        "acceptedTick": 276,
+        "acceptedOrder": 0,
+        "sampleTick": 306,
+        "releaseTick": 312,
+        "resultId": "result_78116dee-4e99-4360-9f7f-df2cd9ab7078"
+      },
+      {
+        "id": "e73dfb21-0572-4eaa-9bae-287948084bde",
+        "trackId": "T1",
+        "channel": "ir",
+        "acceptedTick": 666,
+        "acceptedOrder": 2,
+        "sampleTick": 696,
+        "releaseTick": 702,
+        "resultId": "result_e73dfb21-0572-4eaa-9bae-287948084bde"
+      }
+    ],
+    "results": [
+      {
+        "id": "78116dee-4e99-4360-9f7f-df2cd9ab7078",
+        "trackId": "T1",
+        "channel": "eo",
+        "acceptedTick": 276,
+        "acceptedOrder": 0,
+        "sampleTick": 306,
+        "releaseTick": 312,
+        "resultId": "result_78116dee-4e99-4360-9f7f-df2cd9ab7078",
+        "releasedOrder": 1,
+        "expiryTick": 492,
+        "reading": {
+          "available": false,
+          "level": "none"
+        }
+      },
+      {
+        "id": "e73dfb21-0572-4eaa-9bae-287948084bde",
+        "trackId": "T1",
+        "channel": "ir",
+        "acceptedTick": 666,
+        "acceptedOrder": 2,
+        "sampleTick": 696,
+        "releaseTick": 702,
+        "resultId": "result_e73dfb21-0572-4eaa-9bae-287948084bde",
+        "releasedOrder": 3,
+        "expiryTick": 882,
+        "reading": {
+          "available": true,
+          "level": "none"
+        }
+      }
+    ],
+    "events": [
+      {
+        "tick": 276,
+        "order": 0,
+        "kind": "accepted",
+        "requestId": "78116dee-4e99-4360-9f7f-df2cd9ab7078"
+      },
+      {
+        "tick": 312,
+        "order": 1,
+        "kind": "released",
+        "requestId": "78116dee-4e99-4360-9f7f-df2cd9ab7078"
+      },
+      {
+        "tick": 666,
+        "order": 2,
+        "kind": "accepted",
+        "requestId": "e73dfb21-0572-4eaa-9bae-287948084bde"
+      },
+      {
+        "tick": 702,
+        "order": 3,
+        "kind": "released",
+        "requestId": "e73dfb21-0572-4eaa-9bae-287948084bde"
+      }
+    ],
+    "cooldownUntil": 708,
+    "samples": [
+      {
+        "resultId": "result_78116dee-4e99-4360-9f7f-df2cd9ab7078",
+        "observation": {
+          "available": false,
+          "level": "none",
+          "position": null,
+          "silhouette": null,
+          "sample_tick": null
+        }
+      },
+      {
+        "resultId": "result_e73dfb21-0572-4eaa-9bae-287948084bde",
+        "observation": {
+          "available": true,
+          "level": "none",
+          "position": null,
+          "silhouette": null,
+          "sample_tick": null
+        }
+      }
+    ],
+    "ordering": "scheduled-before-external-v1",
+    "next_order": 7
+  },
+  "observation_assessment": {
+    "version": "evidence-assessment-v1",
+    "session_id": "3eb201b3-d962-4084-aa7a-1bfa627e24b9",
+    "mission_version": "observation-mission-v1",
+    "criterion_profile": "night_switch",
+    "mode": "practice",
+    "assessed": false,
+    "observed_end_tick": 1663,
+    "score_contract": "separate-from-frozen-rubric",
+    "decisions": [
+      {
+        "id": "evidence_decision_4",
+        "tick": 1036,
+        "order": 4,
+        "track": "T1",
+        "action": {
+          "k": "designate",
+          "order": 4,
+          "tick": 1036,
+          "track": "T1"
+        },
+        "status": "supported",
+        "findings": [
+          {
+            "dimension": "observation",
+            "status": "supported",
+            "code": "REPORTED_GEOMETRY",
+            "explanation": "A reported position was available before designation; recognition and attention are separate.",
+            "evidence_ids": [
+              "radar:T1:1036",
+              "rf:T1:1036",
+              "iff:T1:1036"
+            ]
+          }
+        ],
+        "available_evidence": {
+          "tick": 1036,
+          "track": "T1",
+          "observation": {
+            "version": "vyuha-0.4.0",
+            "tick": 1036,
+            "track_id": "T1",
+            "radar": {
+              "available": true,
+              "state": "confirmed",
+              "detected": true,
+              "fresh": false,
+              "position": {
+                "x": -269.129927,
+                "z": 412.197059,
+                "altitude": 20.297
+              },
+              "sample_tick": 1020
+            },
+            "eo": {
+              "available": false,
+              "level": "none",
+              "position": null,
+              "silhouette": null,
+              "sample_tick": null
+            },
+            "ir": {
+              "available": true,
+              "level": "none",
+              "position": null,
+              "silhouette": null,
+              "sample_tick": null
+            },
+            "rf": {
+              "available": true,
+              "detected": true,
+              "band_ghz": 2.4,
+              "bearing_deg": 328.106032
+            },
+            "iff": {
+              "available": true,
+              "cue": "no_reply",
+              "registration_id": null
+            }
+          },
+          "current_optical_results": [],
+          "has_geometry": true
+        },
+        "confidence": {
+          "status": "not_assessed",
+          "reason": "Choices are not recorded confidence statements."
+        }
+      },
+      {
+        "id": "evidence_decision_5",
+        "tick": 1253,
+        "order": 5,
+        "track": "T1",
+        "action": {
+          "identity": "hostile",
+          "k": "classify",
+          "kind": "quad",
+          "order": 5,
+          "tick": 1253,
+          "track": "T1"
+        },
+        "status": "unsupported",
+        "findings": [
+          {
+            "dimension": "type",
+            "status": "inconclusive",
+            "code": "TYPE_DETAIL_INSUFFICIENT",
+            "explanation": "Current reports do not resolve this type. Expired or detection-only optics are not recognition; other cues may still justify restraint.",
+            "evidence_ids": [
+              "radar:T1:1253",
+              "rf:T1:1253",
+              "iff:T1:1253"
+            ]
+          },
+          {
+            "dimension": "identity",
+            "status": "unsupported",
+            "code": "HOSTILITY_NOT_ESTABLISHED",
+            "explanation": "No positive hostile-intent cue exists in this contract. No reply, RF silence, shape or a matching after-review answer cannot establish this claim.",
+            "evidence_ids": [
+              "radar:T1:1253",
+              "rf:T1:1253",
+              "iff:T1:1253"
+            ]
+          }
+        ],
+        "available_evidence": {
+          "tick": 1253,
+          "track": "T1",
+          "observation": {
+            "version": "vyuha-0.4.0",
+            "tick": 1253,
+            "track_id": "T1",
+            "radar": {
+              "available": true,
+              "state": "confirmed",
+              "detected": true,
+              "fresh": false,
+              "position": {
+                "x": -266.153204,
+                "z": 291.505481,
+                "altitude": 20.297
+              },
+              "sample_tick": 1230
+            },
+            "eo": {
+              "available": false,
+              "level": "none",
+              "position": null,
+              "silhouette": null,
+              "sample_tick": null
+            },
+            "ir": {
+              "available": true,
+              "level": "none",
+              "position": null,
+              "silhouette": null,
+              "sample_tick": null
+            },
+            "rf": {
+              "available": true,
+              "detected": true,
+              "band_ghz": 2.4,
+              "bearing_deg": 317.849596
+            },
+            "iff": {
+              "available": true,
+              "cue": "no_reply",
+              "registration_id": null
+            }
+          },
+          "current_optical_results": [],
+          "has_geometry": true
+        },
+        "confidence": {
+          "status": "not_assessed",
+          "reason": "Choices are not recorded confidence statements."
+        }
+      },
+      {
+        "id": "evidence_decision_6",
+        "tick": 1469,
+        "order": 6,
+        "track": "T1",
+        "action": {
+          "effector": "hold",
+          "k": "engage",
+          "order": 6,
+          "tick": 1469,
+          "track": "T1"
+        },
+        "status": "supported",
+        "findings": [
+          {
+            "dimension": "restraint",
+            "status": "supported",
+            "code": "UNCERTAINTY_RETAINED",
+            "explanation": "Hold retains uncertainty while no positive hostility evidence is supplied. This records a choice, not private reasoning.",
+            "evidence_ids": [
+              "radar:T1:1469",
+              "rf:T1:1469",
+              "iff:T1:1469"
+            ]
+          }
+        ],
+        "available_evidence": {
+          "tick": 1469,
+          "track": "T1",
+          "observation": {
+            "version": "vyuha-0.4.0",
+            "tick": 1469,
+            "track_id": "T1",
+            "radar": {
+              "available": true,
+              "state": "confirmed",
+              "detected": true,
+              "fresh": false,
+              "position": {
+                "x": -61.832512,
+                "z": 291.793564,
+                "altitude": 20.297
+              },
+              "sample_tick": 1440
+            },
+            "eo": {
+              "available": false,
+              "level": "none",
+              "position": null,
+              "silhouette": null,
+              "sample_tick": null
+            },
+            "ir": {
+              "available": true,
+              "level": "none",
+              "position": null,
+              "silhouette": null,
+              "sample_tick": null
+            },
+            "rf": {
+              "available": true,
+              "detected": true,
+              "band_ghz": 2.4,
+              "bearing_deg": 347.564199
+            },
+            "iff": {
+              "available": true,
+              "cue": "no_reply",
+              "registration_id": null
+            }
+          },
+          "current_optical_results": [],
+          "has_geometry": true
+        },
+        "confidence": {
+          "status": "not_assessed",
+          "reason": "Choices are not recorded confidence statements."
+        }
+      }
+    ],
+    "acquisitions": [
+      {
+        "id": "78116dee-4e99-4360-9f7f-df2cd9ab7078",
+        "track": "T1",
+        "channel": "eo",
+        "accepted_tick": 276,
+        "accepted_order": 0,
+        "sample_tick": 306,
+        "release_tick": 312,
+        "result_id": "result_78116dee-4e99-4360-9f7f-df2cd9ab7078",
+        "expiry_tick": 492,
+        "released_order": 1,
+        "utility": "no_new_decision_feature",
+        "explanation": "This channel was already unavailable. The repeat added no type or identity cue.",
+        "available_before_decisions": [],
+        "cognitive_use": "not_observed"
+      },
+      {
+        "id": "e73dfb21-0572-4eaa-9bae-287948084bde",
+        "track": "T1",
+        "channel": "ir",
+        "accepted_tick": 666,
+        "accepted_order": 2,
+        "sample_tick": 696,
+        "release_tick": 702,
+        "result_id": "result_e73dfb21-0572-4eaa-9bae-287948084bde",
+        "expiry_tick": 882,
+        "released_order": 3,
+        "utility": "no_detection",
+        "explanation": "An available channel reported no detection. This is not proof of absence or affiliation.",
+        "available_before_decisions": [],
+        "cognitive_use": "not_observed"
+      }
+    ],
+    "competencies": [
+      {
+        "id": "C01",
+        "status": "supported",
+        "decision_ids": [
+          "evidence_decision_4"
+        ],
+        "criterion": "Designate from an actual reported position, not a hidden reference.",
+        "observation_scope": "Recorded mission event pattern; not mastery or causal attribution."
+      },
+      {
+        "id": "C02",
+        "status": "unsupported",
+        "decision_ids": [
+          "evidence_decision_5"
+        ],
+        "criterion": "Separate shape/category support from affiliation and control-medium claims.",
+        "observation_scope": "Recorded mission event pattern; not mastery or causal attribution."
+      },
+      {
+        "id": "C05",
+        "status": "unassessable",
+        "decision_ids": [],
+        "criterion": "After an unavailable channel result, a working different channel must publish before a recorded decision to support the adaptation event pattern.",
+        "observation_scope": "Recorded mission event pattern; not mastery or causal attribution."
+      }
+    ],
+    "summary": {
+      "decisions": 3,
+      "statuses": {
+        "supported": 2,
+        "unsupported": 1
+      },
+      "requests": 2,
+      "mastery_awarded": false
+    },
+    "limitations": [
+      "Educational support differs from original rubric correctness and consequence; original scores are unchanged.",
+      "Availability is reconstructed, not evidence that the trainee noticed, relied on or understood a report.",
+      "The sensor contract has no positive hostile-intent observation; silence and shape do not establish hostility or a fibre link.",
+      "Acquisition utility describes changed reported decision features, not information-theoretic gain or request-count rewards.",
+      "No mastery, calibrated proficiency, empirically equated forms, operational certification or human learning gain is inferred.",
+      "Action choices are not confidence statements. Confidence is not evaluated by this event contract.",
+      "The frozen action alphabet cannot record an unclassified defer choice. Explicit Hold is evaluated separately from the preceding type/identity declaration; inactivity is not interpreted as justified uncertainty."
+    ],
+    "follow_up": {
+      "competency": "C02",
+      "template": "civil_restraint",
+      "mode": "practice",
+      "seed": 587642,
+      "reason": "Revisit C02 with changed conditions; this is evidence-targeted practice, not a mastery judgment.",
+      "href": "/?mission_template=civil_restraint&mission_mode=practice&seed=587642"
+    },
+    "input_fingerprint": "66734f56ed616d2901a1af6728f764e019686f4276ea15d6714841becde6b46d",
+    "report_hash": "aff78e257cfdf7c7cc643a75f56e65a27cb2500d31447eefce2d65e55510449e"
+  }
+}

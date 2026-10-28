@@ -1,0 +1,13 @@
+✔ Actual App waits for the Academy ticket and persists assessment context without default hints (2052.923542ms)
+✔ Actual App preserves safe legacy behavior for legacy-rejected (427.082833ms)
+✔ Actual App preserves safe legacy behavior for legacy-network (356.038042ms)
+✔ Actual App mission-preset retains frozen preparation after synchronizing a different seed (487.002625ms)
+✔ Actual App mission-published retains frozen preparation after synchronizing a different seed (345.6135ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6489.568334

@@ -72,3 +72,8 @@ Source: `server/config/capabilities-v1.json`. Generate with `scripts/check_capab
 | R46 | Private end-to-end request lineage | PLANNED | Research extension | R01, R29, R34 |
 | R47 | Asset-build qualification and semantic fidelity gate | PLANNED | Research extension | R01, R19, R21, R34 |
 | R48 | Offline artifact verification and update disposition | PLANNED | Research extension | R02, R28, R30 |
+
+
+## Connected observation mission milestone
+
+Source `91dfce7`: `/observation-missions` now authors, reconstructs and publishes three frozen information problems. Training provides the full-width Observation Flight Deck; verified Ghost separates original tactical scoring from evidence support; Academy offers mode-separated evidence-gap follow-up. [Exact scope, tests, browser journey and limitations](observation-missions-v1/ACCEPTANCE.md). Overall status remains **PARTIAL**: explicit unclassified Defer, wider product/3D work, independent empirical assessment validation and Crew/XR acquisition remain incomplete.

@@ -1,0 +1,10 @@
+✔ worker restores pending acquisition, respects release order gaps, correlates duplicates and cancels exactly once (24049.687667ms)
+✔ verified acquisition feedback uses release order and expiry at each decision, never future or stale evidence (203.917416ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 49864.519708

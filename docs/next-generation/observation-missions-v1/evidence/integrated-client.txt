@@ -1,0 +1,23 @@
+✔ real acquisition UI shows pending then released immutable evidence, blocks double submit and keeps contact scope (359.667292ms)
+✔ an acquisition acknowledgment is labelled as observation intent, not an effector response (0.400875ms)
+✔ Command navigation exposes primary tasks without a permanent sidebar and preserves every catalogue destination (551.213292ms)
+✔ Catalogue search and Control K transfer a single modal owner and restore the reachable command toggle (273.284666ms)
+✔ Guide replaces catalogue ownership and blocks search shortcuts until closed (131.579709ms)
+✔ Search preserves in-app unit/review transitions and native modified navigation semantics (113.337208ms)
+✔ Guided walkthrough releases catalogue focus isolation before its explicit tour event (78.338042ms)
+✔ educational review separates actual evidence support from an unchanged perfect rubric and hides unverified/mismatched reports (14.676583ms)
+✔ reconstruction control carries the exact before-action order and keeps competency practice links traceable (107.091ms)
+✔ mission admission keeps old Academy tickets isolated and fails closed on ambiguous or malformed launches (7.272542ms)
+✔ published mission admission never recompiles and verifies returned ownership and contract before preparing (1.347ms)
+✔ preset preparation preserves seed zero and independent assessment mode; changed returned criteria are rejected (0.490917ms)
+✔ mission journey separates practice/assessment admission and discards stale learner recommendations (356.532875ms)
+✔ authored mission metadata preserves exact Python/TypeScript publication and policy timing for three different challenges (1801.333ms)
+✔ authoring entry exposes accessible frozen-input controls and explicitly separates rehearsal from human guarantees (25.824375ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4743.729041
