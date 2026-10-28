@@ -174,8 +174,11 @@ export class Simulation extends finale.Simulation {
     super.observe();
     for (const t of this.state.tracks) {
       this.raw.set(t.id, {
-        eo: structuredClone(t.observation!.eo),
-        ir: structuredClone(t.observation!.ir),
+        // The frozen base engine replaces observation objects every tick.
+        // project() replaces public channels; the sampling callback owns the
+        // deep copy at the actual cadence boundary, not at every 30 Hz tick.
+        eo: t.observation!.eo,
+        ir: t.observation!.ir,
       });
       const radar = t.observation!.radar;
       if (

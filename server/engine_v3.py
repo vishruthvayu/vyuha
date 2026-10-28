@@ -79,7 +79,11 @@ class Simulation(base.Simulation):
     def observe(self):
         previous = {t['id']: t['detected'] for t in self.tracks}
         super().observe()
-        self._raw = {t['id']: copy.deepcopy(t['observation']) for t in self.tracks}
+        # v0.4 replaces each complete observation on every observe(). Retain its
+        # channel values behind a separate top-level mapping, then replace the
+        # public optical channels below. Only an actual sample needs a deep copy;
+        # copying every nested report at 30 Hz adds no evidence isolation.
+        self._raw = {t['id']: dict(t['observation']) for t in self.tracks}
         for t in self.tracks:
             radar = t['observation']['radar']
             if radar['position'] is not None and radar['sample_tick'] is not None and radar['state'] in ('tentative', 'confirmed'):
