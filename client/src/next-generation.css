@@ -56,3 +56,12 @@
 @media(max-width:740px){.reconstruction-page .aar-summary>.next-drill{margin-left:0;width:100%;flex-basis:100%}}
 /* Source-bound investigation chapters share the existing replay cursor. */
 .theatre-episode{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:22px}.theatre-episode button{display:grid;gap:7px;text-align:left;padding:13px;border:1px solid #587763;border-radius:8px;background:#1a2b22;color:#e1eddf;min-width:0;white-space:normal}.theatre-episode small{font:10px ui-monospace,monospace;color:#aad2bc}.theatre-episode strong{font-size:13px}.theatre-episode span{font-size:11px;line-height:1.6;color:#c3d4c8}.theatre-episode button:disabled{opacity:1;background:#19211d;border-color:#3e4b43;color:#a9b5ac;cursor:not-allowed}.theatre-episode button:disabled span,.theatre-episode button:disabled small{color:#a9b5ac}@media(max-width:740px){.theatre-episode{grid-template-columns:1fr;gap:8px}.theatre-episode button{padding:12px}}
+
+/* Keep the pinned-evidence return action inside the narrow replay column. */
+.theatre-observations .theatre-time-context .button {
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  flex-wrap: wrap;
+  line-height: 1.5;
+}
