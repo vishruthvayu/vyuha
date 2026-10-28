@@ -15,6 +15,7 @@ async function mounted(
       tick?: number;
       enabled?: boolean;
       tactical?: boolean;
+      scanEnabled?: boolean;
       observation?: SensorObservation;
       cue?: boolean;
       controlsHost?: HTMLElement | null;
@@ -80,6 +81,7 @@ async function mounted(
       tick?: number;
       enabled?: boolean;
       tactical?: boolean;
+      scanEnabled?: boolean;
       observation?: SensorObservation;
       cue?: boolean;
       controlsHost?: HTMLElement | null;
@@ -93,6 +95,7 @@ async function mounted(
           scopeId={o.scope ?? "session:worker1"}
           enabled={o.enabled ?? true}
           tactical={o.tactical ?? false}
+          scanEnabled={o.scanEnabled ?? true}
           selected={selected}
           observation={o.observation ?? sample(tick, selected)}
           cue={o.cue === false ? null : { x: 80, z: 500, altitude: 30 }}
@@ -106,7 +109,12 @@ async function mounted(
           {(v) => {
             view = v.manualAim;
             reportAim = v.onCameraAim;
-            return <World />;
+            return (
+              <div data-scan-surface {...v.scanSurface}>
+                <World />
+                <canvas aria-label="Observed test world" />
+              </div>
+            );
           }}
         </OpticalStation>,
       ),
@@ -299,4 +307,51 @@ test("opening comparison moves focus to its named region; Escape returns to its 
       q.document.activeElement?.textContent?.trim(),
       "Evidence compare",
     );
+  }));
+
+test("scene drag retains one world and cannot survive contact, session or instrument ownership changes", () =>
+  mounted(async (q) => {
+    const canvas = q.document.querySelector("canvas")!;
+    canvas.getBoundingClientRect = () => ({
+      x: 0,
+      y: 0,
+      left: 0,
+      top: 0,
+      right: 1000,
+      bottom: 500,
+      width: 1000,
+      height: 500,
+      toJSON: () => ({}),
+    });
+    async function pointer(type: string, x: number, y: number) {
+      const e = new q.document.defaultView!.MouseEvent(type, {
+        bubbles: true,
+        clientX: x,
+        clientY: y,
+        button: 0,
+      });
+      Object.defineProperty(e, "pointerId", { value: 1 });
+      await act(async () => {
+        canvas.dispatchEvent(e);
+      });
+    }
+    await pointer("pointerdown", 500, 250);
+    await pointer("pointermove", 600, 300);
+    assert.ok(q.view());
+    const aim = q.view();
+    await pointer("pointerup", 600, 300);
+    await pointer("pointermove", 700, 300);
+    assert.deepEqual(q.view(), aim);
+    await pointer("pointerdown", 500, 250);
+    await q.render({ selected: "T2" });
+    await pointer("pointermove", 900, 400);
+    assert.deepEqual(q.view(), aim);
+    await pointer("pointerdown", 500, 250);
+    await q.render({ selected: "T2", scanEnabled: false });
+    await q.render({ selected: "T2" });
+    await pointer("pointermove", 900, 400);
+    assert.deepEqual(q.view(), aim);
+    await q.render({ scope: "another-session" });
+    assert.equal(q.view(), null);
+    assert.equal(q.mounts(), 1);
   }));

@@ -66,3 +66,29 @@ export function liveManualAim(
     ? boundedAim(aim)
     : null;
 }
+
+/** A direct display gesture uses the visible field of view; never sensor IFOV.
+ * Starting aim is frozen for a gesture, avoiding frame-rate-dependent drift. */
+export function draggedOpticalAim(
+  start: OpticalAim,
+  dx: number,
+  dy: number,
+  width: number,
+  height: number,
+  verticalFov: number,
+): OpticalAim | null {
+  if (
+    ![dx, dy, width, height, verticalFov].every(Number.isFinite) ||
+    width <= 0 ||
+    height <= 0 ||
+    verticalFov <= 0 ||
+    verticalFov >= 180
+  )
+    return null;
+  const horizontal =
+    (2 * Math.atan((Math.tan((verticalFov * DEG) / 2) * width) / height)) / DEG;
+  return boundedAim({
+    azimuthDeg: start.azimuthDeg - (dx / width) * horizontal,
+    elevationDeg: start.elevationDeg + (dy / height) * verticalFov,
+  });
+}

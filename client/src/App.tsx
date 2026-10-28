@@ -2184,6 +2184,7 @@ export default function App({
                       </div>
                     </div>
                     <OpticalStation
+                      scanEnabled={stationInstrument === "observe" && !vrOpen}
                       controlsHost={
                         stationInstrument === "evidence"
                           ? opticalControlsHost.current
@@ -2217,9 +2218,11 @@ export default function App({
                       zoom={opticalZoom}
                       onZoom={setOpticalZoom}
                     >
-                      {({ manualAim, onCameraAim }) => (
+                      {({ manualAim, onCameraAim, scanSurface, canScan }) => (
                         <div
                           className={`scene-container ${vision} ${tactical ? "tactical-mode" : ""}`}
+                          data-optical-scan={canScan || undefined}
+                          {...scanSurface}
                         >
                           {phase === "restoring" ? (
                             <div className="render-fallback" role="status">

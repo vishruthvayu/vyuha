@@ -1,0 +1,1315 @@
+{
+  "version": "optical-task-scheduler-fixtures-v1",
+  "cases": [
+    {
+      "id": "cadence-dwell-publication-and-expiry",
+      "policy": {
+        "version": "optical-task-policy-v1",
+        "dwellTicks": 4,
+        "cadenceTicks": 3,
+        "latencyTicks": 2,
+        "cooldownTicks": 3,
+        "expiryTicks": 10,
+        "maxReportAgeTicks": 5,
+        "maxRequests": 3
+      },
+      "readings": {
+        "eo:6": {
+          "available": true,
+          "level": "recognise"
+        }
+      },
+      "steps": [
+        {
+          "kind": "request",
+          "tick": 1,
+          "request": {
+            "id": "q1",
+            "trackId": "T1",
+            "channel": "eo"
+          },
+          "observed": [
+            {
+              "trackId": "T1",
+              "reportTick": 1
+            }
+          ]
+        },
+        {
+          "kind": "available",
+          "tick": 5
+        },
+        {
+          "kind": "available",
+          "tick": 6
+        },
+        {
+          "kind": "available",
+          "tick": 8
+        },
+        {
+          "kind": "available",
+          "tick": 18
+        }
+      ],
+      "expected": {
+        "replies": [
+          {
+            "status": "accepted",
+            "query": {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 1,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            }
+          },
+          [],
+          [],
+          [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 1,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1",
+              "releasedOrder": 2,
+              "expiryTick": 18,
+              "reading": {
+                "available": true,
+                "level": "recognise"
+              }
+            }
+          ],
+          []
+        ],
+        "state": {
+          "version": "optical-task-scheduler-v1",
+          "tick": 18,
+          "ended": false,
+          "pending": null,
+          "requests": [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 1,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            }
+          ],
+          "results": [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 1,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1",
+              "releasedOrder": 2,
+              "expiryTick": 18,
+              "reading": {
+                "available": true,
+                "level": "recognise"
+              }
+            }
+          ],
+          "events": [
+            {
+              "tick": 1,
+              "order": 1,
+              "kind": "accepted",
+              "requestId": "q1"
+            },
+            {
+              "tick": 8,
+              "order": 2,
+              "kind": "released",
+              "requestId": "q1"
+            }
+          ],
+          "cooldownUntil": 11
+        },
+        "calls": [
+          {
+            "trackId": "T1",
+            "channel": "eo",
+            "tick": 6
+          }
+        ]
+      }
+    },
+    {
+      "id": "unavailable-is-not-identity",
+      "policy": {
+        "version": "optical-task-policy-v1",
+        "dwellTicks": 4,
+        "cadenceTicks": 3,
+        "latencyTicks": 2,
+        "cooldownTicks": 3,
+        "expiryTicks": 10,
+        "maxReportAgeTicks": 5,
+        "maxRequests": 3
+      },
+      "readings": {
+        "eo:6": {
+          "available": false,
+          "level": "none"
+        }
+      },
+      "steps": [
+        {
+          "kind": "request",
+          "tick": 0,
+          "request": {
+            "id": "q1",
+            "trackId": "T1",
+            "channel": "eo"
+          },
+          "observed": [
+            {
+              "trackId": "T1",
+              "reportTick": 0
+            }
+          ]
+        },
+        {
+          "kind": "available",
+          "tick": 8
+        }
+      ],
+      "expected": {
+        "replies": [
+          {
+            "status": "accepted",
+            "query": {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            }
+          },
+          [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1",
+              "releasedOrder": 2,
+              "expiryTick": 18,
+              "reading": {
+                "available": false,
+                "level": "none"
+              }
+            }
+          ]
+        ],
+        "state": {
+          "version": "optical-task-scheduler-v1",
+          "tick": 8,
+          "ended": false,
+          "pending": null,
+          "requests": [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            }
+          ],
+          "results": [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1",
+              "releasedOrder": 2,
+              "expiryTick": 18,
+              "reading": {
+                "available": false,
+                "level": "none"
+              }
+            }
+          ],
+          "events": [
+            {
+              "tick": 0,
+              "order": 1,
+              "kind": "accepted",
+              "requestId": "q1"
+            },
+            {
+              "tick": 8,
+              "order": 2,
+              "kind": "released",
+              "requestId": "q1"
+            }
+          ],
+          "cooldownUntil": 11
+        },
+        "calls": [
+          {
+            "trackId": "T1",
+            "channel": "eo",
+            "tick": 6
+          }
+        ]
+      }
+    },
+    {
+      "id": "busy-stale-hidden-alias-and-cooldown",
+      "policy": {
+        "version": "optical-task-policy-v1",
+        "dwellTicks": 4,
+        "cadenceTicks": 3,
+        "latencyTicks": 2,
+        "cooldownTicks": 3,
+        "expiryTicks": 10,
+        "maxReportAgeTicks": 5,
+        "maxRequests": 3
+      },
+      "steps": [
+        {
+          "kind": "request",
+          "tick": 0,
+          "request": {
+            "id": "q1",
+            "trackId": "T1",
+            "channel": "eo"
+          },
+          "observed": [
+            {
+              "trackId": "T1",
+              "reportTick": 0
+            }
+          ]
+        },
+        {
+          "kind": "request",
+          "tick": 1,
+          "request": {
+            "id": "q2",
+            "trackId": "T1",
+            "channel": "ir"
+          },
+          "observed": [
+            {
+              "trackId": "T1",
+              "reportTick": 1
+            }
+          ]
+        },
+        {
+          "kind": "request",
+          "tick": 8,
+          "request": {
+            "id": "q2",
+            "trackId": "T1",
+            "channel": "ir"
+          },
+          "observed": [
+            {
+              "trackId": "T1",
+              "reportTick": 8
+            }
+          ]
+        },
+        {
+          "kind": "request",
+          "tick": 11,
+          "request": {
+            "id": "q2",
+            "trackId": "T1",
+            "channel": "ir"
+          },
+          "observed": [
+            {
+              "trackId": "T1",
+              "reportTick": 5
+            }
+          ]
+        },
+        {
+          "kind": "request",
+          "tick": 11,
+          "request": {
+            "id": "q2",
+            "trackId": "hidden",
+            "channel": "ir"
+          },
+          "observed": []
+        },
+        {
+          "kind": "request",
+          "tick": 11,
+          "request": {
+            "id": "q2",
+            "trackId": "T1",
+            "channel": "ir"
+          },
+          "observed": [
+            {
+              "trackId": "T1",
+              "reportTick": 11
+            }
+          ]
+        },
+        {
+          "kind": "available",
+          "tick": 17
+        }
+      ],
+      "expected": {
+        "replies": [
+          {
+            "status": "accepted",
+            "query": {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            }
+          },
+          {
+            "status": "rejected",
+            "reason": "busy"
+          },
+          {
+            "status": "rejected",
+            "reason": "cooldown"
+          },
+          {
+            "status": "rejected",
+            "reason": "unavailable-or-stale"
+          },
+          {
+            "status": "rejected",
+            "reason": "unavailable-or-stale"
+          },
+          {
+            "status": "accepted",
+            "query": {
+              "id": "q2",
+              "trackId": "T1",
+              "channel": "ir",
+              "acceptedTick": 11,
+              "acceptedOrder": 3,
+              "sampleTick": 15,
+              "releaseTick": 17,
+              "resultId": "result_q2"
+            }
+          },
+          [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1",
+              "releasedOrder": 2,
+              "expiryTick": 18,
+              "reading": {
+                "available": true,
+                "level": "none"
+              }
+            },
+            {
+              "id": "q2",
+              "trackId": "T1",
+              "channel": "ir",
+              "acceptedTick": 11,
+              "acceptedOrder": 3,
+              "sampleTick": 15,
+              "releaseTick": 17,
+              "resultId": "result_q2",
+              "releasedOrder": 4,
+              "expiryTick": 27,
+              "reading": {
+                "available": true,
+                "level": "none"
+              }
+            }
+          ]
+        ],
+        "state": {
+          "version": "optical-task-scheduler-v1",
+          "tick": 17,
+          "ended": false,
+          "pending": null,
+          "requests": [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            },
+            {
+              "id": "q2",
+              "trackId": "T1",
+              "channel": "ir",
+              "acceptedTick": 11,
+              "acceptedOrder": 3,
+              "sampleTick": 15,
+              "releaseTick": 17,
+              "resultId": "result_q2"
+            }
+          ],
+          "results": [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1",
+              "releasedOrder": 2,
+              "expiryTick": 18,
+              "reading": {
+                "available": true,
+                "level": "none"
+              }
+            },
+            {
+              "id": "q2",
+              "trackId": "T1",
+              "channel": "ir",
+              "acceptedTick": 11,
+              "acceptedOrder": 3,
+              "sampleTick": 15,
+              "releaseTick": 17,
+              "resultId": "result_q2",
+              "releasedOrder": 4,
+              "expiryTick": 27,
+              "reading": {
+                "available": true,
+                "level": "none"
+              }
+            }
+          ],
+          "events": [
+            {
+              "tick": 0,
+              "order": 1,
+              "kind": "accepted",
+              "requestId": "q1"
+            },
+            {
+              "tick": 8,
+              "order": 2,
+              "kind": "released",
+              "requestId": "q1"
+            },
+            {
+              "tick": 11,
+              "order": 3,
+              "kind": "accepted",
+              "requestId": "q2"
+            },
+            {
+              "tick": 17,
+              "order": 4,
+              "kind": "released",
+              "requestId": "q2"
+            }
+          ],
+          "cooldownUntil": 20
+        },
+        "calls": [
+          {
+            "trackId": "T1",
+            "channel": "eo",
+            "tick": 6
+          },
+          {
+            "trackId": "T1",
+            "channel": "ir",
+            "tick": 15
+          }
+        ]
+      }
+    },
+    {
+      "id": "duplicates-and-conflicting-ids-no-extra-draw",
+      "policy": {
+        "version": "optical-task-policy-v1",
+        "dwellTicks": 4,
+        "cadenceTicks": 3,
+        "latencyTicks": 2,
+        "cooldownTicks": 3,
+        "expiryTicks": 10,
+        "maxReportAgeTicks": 5,
+        "maxRequests": 3
+      },
+      "steps": [
+        {
+          "kind": "request",
+          "tick": 0,
+          "request": {
+            "id": "q1",
+            "trackId": "T1",
+            "channel": "eo"
+          },
+          "observed": [
+            {
+              "trackId": "T1",
+              "reportTick": 0
+            }
+          ]
+        },
+        {
+          "kind": "request",
+          "tick": 1,
+          "request": {
+            "id": "q1",
+            "trackId": "T1",
+            "channel": "eo"
+          },
+          "observed": [
+            {
+              "trackId": "T1",
+              "reportTick": 1
+            }
+          ]
+        },
+        {
+          "kind": "request",
+          "tick": 1,
+          "request": {
+            "id": "q1",
+            "trackId": "T1",
+            "channel": "ir"
+          },
+          "observed": [
+            {
+              "trackId": "T1",
+              "reportTick": 1
+            }
+          ]
+        },
+        {
+          "kind": "advance",
+          "tick": 8
+        },
+        {
+          "kind": "request",
+          "tick": 8,
+          "request": {
+            "id": "q1",
+            "trackId": "T1",
+            "channel": "eo"
+          },
+          "observed": [
+            {
+              "trackId": "T1",
+              "reportTick": 8
+            }
+          ]
+        },
+        {
+          "kind": "available",
+          "tick": 8
+        }
+      ],
+      "expected": {
+        "replies": [
+          {
+            "status": "accepted",
+            "query": {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            }
+          },
+          {
+            "status": "duplicate",
+            "query": {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            }
+          },
+          {
+            "status": "rejected",
+            "reason": "id-conflict"
+          },
+          {
+            "status": "duplicate",
+            "query": {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            }
+          },
+          [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1",
+              "releasedOrder": 2,
+              "expiryTick": 18,
+              "reading": {
+                "available": true,
+                "level": "none"
+              }
+            }
+          ]
+        ],
+        "state": {
+          "version": "optical-task-scheduler-v1",
+          "tick": 8,
+          "ended": false,
+          "pending": null,
+          "requests": [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            }
+          ],
+          "results": [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1",
+              "releasedOrder": 2,
+              "expiryTick": 18,
+              "reading": {
+                "available": true,
+                "level": "none"
+              }
+            }
+          ],
+          "events": [
+            {
+              "tick": 0,
+              "order": 1,
+              "kind": "accepted",
+              "requestId": "q1"
+            },
+            {
+              "tick": 8,
+              "order": 2,
+              "kind": "released",
+              "requestId": "q1"
+            }
+          ],
+          "cooldownUntil": 11
+        },
+        "calls": [
+          {
+            "trackId": "T1",
+            "channel": "eo",
+            "tick": 6
+          }
+        ]
+      }
+    },
+    {
+      "id": "end-before-release-retains-accepted-intent",
+      "policy": {
+        "version": "optical-task-policy-v1",
+        "dwellTicks": 4,
+        "cadenceTicks": 3,
+        "latencyTicks": 2,
+        "cooldownTicks": 3,
+        "expiryTicks": 10,
+        "maxReportAgeTicks": 5,
+        "maxRequests": 3
+      },
+      "steps": [
+        {
+          "kind": "request",
+          "tick": 0,
+          "request": {
+            "id": "q1",
+            "trackId": "T1",
+            "channel": "eo"
+          },
+          "observed": [
+            {
+              "trackId": "T1",
+              "reportTick": 0
+            }
+          ]
+        },
+        {
+          "kind": "end",
+          "tick": 7
+        },
+        {
+          "kind": "end",
+          "tick": 7
+        },
+        {
+          "kind": "request",
+          "tick": 7,
+          "request": {
+            "id": "q2",
+            "trackId": "T1",
+            "channel": "eo"
+          },
+          "observed": [
+            {
+              "trackId": "T1",
+              "reportTick": 7
+            }
+          ]
+        },
+        {
+          "kind": "available",
+          "tick": 7
+        }
+      ],
+      "expected": {
+        "replies": [
+          {
+            "status": "accepted",
+            "query": {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            }
+          },
+          {
+            "status": "rejected",
+            "reason": "ended"
+          },
+          []
+        ],
+        "state": {
+          "version": "optical-task-scheduler-v1",
+          "tick": 7,
+          "ended": true,
+          "pending": null,
+          "requests": [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            }
+          ],
+          "results": [],
+          "events": [
+            {
+              "tick": 0,
+              "order": 1,
+              "kind": "accepted",
+              "requestId": "q1"
+            },
+            {
+              "tick": 7,
+              "order": 2,
+              "kind": "cancelled",
+              "requestId": "q1",
+              "reason": "exercise-ended"
+            }
+          ],
+          "cooldownUntil": 0
+        },
+        "calls": [
+          {
+            "trackId": "T1",
+            "channel": "eo",
+            "tick": 6
+          }
+        ]
+      }
+    },
+    {
+      "id": "release-before-same-tick-end",
+      "policy": {
+        "version": "optical-task-policy-v1",
+        "dwellTicks": 4,
+        "cadenceTicks": 3,
+        "latencyTicks": 2,
+        "cooldownTicks": 3,
+        "expiryTicks": 10,
+        "maxReportAgeTicks": 5,
+        "maxRequests": 3
+      },
+      "steps": [
+        {
+          "kind": "request",
+          "tick": 0,
+          "request": {
+            "id": "q1",
+            "trackId": "T1",
+            "channel": "eo"
+          },
+          "observed": [
+            {
+              "trackId": "T1",
+              "reportTick": 0
+            }
+          ]
+        },
+        {
+          "kind": "end",
+          "tick": 8
+        },
+        {
+          "kind": "available",
+          "tick": 8
+        }
+      ],
+      "expected": {
+        "replies": [
+          {
+            "status": "accepted",
+            "query": {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            }
+          },
+          [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1",
+              "releasedOrder": 2,
+              "expiryTick": 18,
+              "reading": {
+                "available": true,
+                "level": "none"
+              }
+            }
+          ]
+        ],
+        "state": {
+          "version": "optical-task-scheduler-v1",
+          "tick": 8,
+          "ended": true,
+          "pending": null,
+          "requests": [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            }
+          ],
+          "results": [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1",
+              "releasedOrder": 2,
+              "expiryTick": 18,
+              "reading": {
+                "available": true,
+                "level": "none"
+              }
+            }
+          ],
+          "events": [
+            {
+              "tick": 0,
+              "order": 1,
+              "kind": "accepted",
+              "requestId": "q1"
+            },
+            {
+              "tick": 8,
+              "order": 2,
+              "kind": "released",
+              "requestId": "q1"
+            }
+          ],
+          "cooldownUntil": 11
+        },
+        "calls": [
+          {
+            "trackId": "T1",
+            "channel": "eo",
+            "tick": 6
+          }
+        ]
+      }
+    },
+    {
+      "id": "bounded-history-and-separate-channel-draw",
+      "policy": {
+        "version": "optical-task-policy-v1",
+        "dwellTicks": 4,
+        "cadenceTicks": 3,
+        "latencyTicks": 2,
+        "cooldownTicks": 0,
+        "expiryTicks": 10,
+        "maxReportAgeTicks": 5,
+        "maxRequests": 1
+      },
+      "steps": [
+        {
+          "kind": "request",
+          "tick": 0,
+          "request": {
+            "id": "q1",
+            "trackId": "T1",
+            "channel": "eo"
+          },
+          "observed": [
+            {
+              "trackId": "T1",
+              "reportTick": 0
+            }
+          ]
+        },
+        {
+          "kind": "request",
+          "tick": 8,
+          "request": {
+            "id": "q2",
+            "trackId": "T1",
+            "channel": "ir"
+          },
+          "observed": [
+            {
+              "trackId": "T1",
+              "reportTick": 8
+            }
+          ]
+        },
+        {
+          "kind": "available",
+          "tick": 8
+        }
+      ],
+      "expected": {
+        "replies": [
+          {
+            "status": "accepted",
+            "query": {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            }
+          },
+          {
+            "status": "rejected",
+            "reason": "request-limit"
+          },
+          [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1",
+              "releasedOrder": 2,
+              "expiryTick": 18,
+              "reading": {
+                "available": true,
+                "level": "none"
+              }
+            }
+          ]
+        ],
+        "state": {
+          "version": "optical-task-scheduler-v1",
+          "tick": 8,
+          "ended": false,
+          "pending": null,
+          "requests": [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            }
+          ],
+          "results": [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1",
+              "releasedOrder": 2,
+              "expiryTick": 18,
+              "reading": {
+                "available": true,
+                "level": "none"
+              }
+            }
+          ],
+          "events": [
+            {
+              "tick": 0,
+              "order": 1,
+              "kind": "accepted",
+              "requestId": "q1"
+            },
+            {
+              "tick": 8,
+              "order": 2,
+              "kind": "released",
+              "requestId": "q1"
+            }
+          ],
+          "cooldownUntil": 8
+        },
+        "calls": [
+          {
+            "trackId": "T1",
+            "channel": "eo",
+            "tick": 6
+          }
+        ]
+      }
+    },
+    {
+      "id": "pause-does-not-advance-logical-time",
+      "policy": {
+        "version": "optical-task-policy-v1",
+        "dwellTicks": 4,
+        "cadenceTicks": 3,
+        "latencyTicks": 2,
+        "cooldownTicks": 3,
+        "expiryTicks": 10,
+        "maxReportAgeTicks": 5,
+        "maxRequests": 3
+      },
+      "steps": [
+        {
+          "kind": "request",
+          "tick": 0,
+          "request": {
+            "id": "q1",
+            "trackId": "T1",
+            "channel": "eo"
+          },
+          "observed": [
+            {
+              "trackId": "T1",
+              "reportTick": 0
+            }
+          ]
+        },
+        {
+          "kind": "advance",
+          "tick": 2
+        },
+        {
+          "kind": "advance",
+          "tick": 2
+        },
+        {
+          "kind": "available",
+          "tick": 2
+        },
+        {
+          "kind": "available",
+          "tick": 8
+        }
+      ],
+      "expected": {
+        "replies": [
+          {
+            "status": "accepted",
+            "query": {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            }
+          },
+          [],
+          [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1",
+              "releasedOrder": 2,
+              "expiryTick": 18,
+              "reading": {
+                "available": true,
+                "level": "none"
+              }
+            }
+          ]
+        ],
+        "state": {
+          "version": "optical-task-scheduler-v1",
+          "tick": 8,
+          "ended": false,
+          "pending": null,
+          "requests": [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1"
+            }
+          ],
+          "results": [
+            {
+              "id": "q1",
+              "trackId": "T1",
+              "channel": "eo",
+              "acceptedTick": 0,
+              "acceptedOrder": 1,
+              "sampleTick": 6,
+              "releaseTick": 8,
+              "resultId": "result_q1",
+              "releasedOrder": 2,
+              "expiryTick": 18,
+              "reading": {
+                "available": true,
+                "level": "none"
+              }
+            }
+          ],
+          "events": [
+            {
+              "tick": 0,
+              "order": 1,
+              "kind": "accepted",
+              "requestId": "q1"
+            },
+            {
+              "tick": 8,
+              "order": 2,
+              "kind": "released",
+              "requestId": "q1"
+            }
+          ],
+          "cooldownUntil": 11
+        },
+        "calls": [
+          {
+            "trackId": "T1",
+            "channel": "eo",
+            "tick": 6
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   aimPoint,
+  draggedOpticalAim,
   boundedAim,
   reportedAim,
   scopedAim,
@@ -65,4 +66,18 @@ test("briefing/reference/review cannot accept a live manual view", () => {
     { briefing: false, referenceTruth: false, preset: true },
   ])
     assert.equal(liveManualAim(aim, context), null);
+});
+
+test("direct optical dragging is FOV-relative, cadence independent and bounded without changing source aim", () => {
+  const start = { azimuthDeg: 359, elevationDeg: 84 };
+  const first = draggedOpticalAim(start, -100, 100, 1000, 500, 38)!;
+  assert.ok(first.azimuthDeg < 10 && first.elevationDeg === 85);
+  assert.deepEqual(draggedOpticalAim(start, -100, 100, 1000, 500, 38), first);
+  assert.deepEqual(start, { azimuthDeg: 359, elevationDeg: 84 });
+  assert.ok(
+    draggedOpticalAim(start, 100, 0, 1000, 500, 10)!.azimuthDeg >
+      draggedOpticalAim(start, 100, 0, 1000, 500, 38)!.azimuthDeg,
+  );
+  for (const size of [0, -1, NaN, Infinity])
+    assert.equal(draggedOpticalAim(start, 1, 1, size, 500, 38), null);
 });

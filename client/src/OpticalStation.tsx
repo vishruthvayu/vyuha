@@ -6,6 +6,7 @@ import {
   useRef,
   useState,
   type ReactNode,
+  type PointerEvent,
 } from "react";
 import {
   ArrowDown,
@@ -22,6 +23,7 @@ import type { SensorObservation, SensorPosition } from "./sensors-v2";
 import type { Vision } from "./visibility";
 import {
   boundedAim,
+  draggedOpticalAim,
   reportedAim,
   scopedAim,
   type OpticalAim,
@@ -65,12 +67,21 @@ export function OpticalStation({
   zoom,
   onZoom,
   controlsHost,
+  scanEnabled = true,
   onCompareOpen,
   onCompareClose,
 }: {
   children: (view: {
     manualAim: OpticalAim | null;
     onCameraAim: (aim: OpticalAim) => void;
+    scanSurface: {
+      onPointerDown: (event: PointerEvent<HTMLDivElement>) => void;
+      onPointerMove: (event: PointerEvent<HTMLDivElement>) => void;
+      onPointerUp: (event: PointerEvent<HTMLDivElement>) => void;
+      onPointerCancel: (event: PointerEvent<HTMLDivElement>) => void;
+      onLostPointerCapture: () => void;
+    };
+    canScan: boolean;
   }) => ReactNode;
   scopeId: string;
   enabled: boolean;
@@ -84,6 +95,7 @@ export function OpticalStation({
   zoom: number;
   onZoom: (zoom: number) => void;
   controlsHost?: HTMLElement | null;
+  scanEnabled?: boolean;
   onCompareOpen?: () => void;
   onCompareClose?: () => void;
 }) {
@@ -169,6 +181,91 @@ export function OpticalStation({
         "Manual scan. Selected contact and decision evidence are unchanged.",
       );
     }
+  };
+  const gesture = useRef<{
+    scope: string;
+    selected: string | null;
+    pointer: number;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    fov: number;
+    aim: OpticalAim;
+  } | null>(null);
+  const canScan = enabled && scanEnabled && !tactical && !bench;
+  // Discard input ownership immediately, including exit/re-entry into the same scope.
+  if (
+    !canScan ||
+    gesture.current?.scope !== scopeId ||
+    gesture.current?.selected !== selected
+  )
+    gesture.current = null;
+  const finishScan = (event: PointerEvent<HTMLDivElement>) => {
+    if (gesture.current?.pointer !== event.pointerId) return;
+    gesture.current = null;
+    if (event.currentTarget.hasPointerCapture?.(event.pointerId))
+      event.currentTarget.releasePointerCapture(event.pointerId);
+  };
+  const scanSurface = {
+    onPointerDown: (event: PointerEvent<HTMLDivElement>) => {
+      if (
+        !canScan ||
+        gesture.current ||
+        event.button !== 0 ||
+        (event.target as HTMLElement).tagName !== "CANVAS"
+      )
+        return;
+      const aim =
+        manualAim ??
+        scopedAim(displayedAim.current, scopeId) ??
+        reportedAim(cue, origin);
+      const rect = (event.target as HTMLElement).getBoundingClientRect();
+      if (!aim || rect.width <= 0 || rect.height <= 0) return;
+      event.preventDefault();
+      gesture.current = {
+        scope: scopeId,
+        selected,
+        pointer: event.pointerId,
+        x: event.clientX,
+        y: event.clientY,
+        width: rect.width,
+        height: rect.height,
+        fov: opticalFov(38, zoom),
+        aim,
+      };
+      event.currentTarget.setPointerCapture?.(event.pointerId);
+    },
+    onPointerMove: (event: PointerEvent<HTMLDivElement>) => {
+      const g = gesture.current;
+      if (
+        !canScan ||
+        !g ||
+        g.pointer !== event.pointerId ||
+        g.scope !== scopeId ||
+        g.selected !== selected
+      )
+        return;
+      const aim = draggedOpticalAim(
+        g.aim,
+        event.clientX - g.x,
+        event.clientY - g.y,
+        g.width,
+        g.height,
+        g.fov,
+      );
+      if (!aim) return;
+      event.preventDefault();
+      setManual({ scopeId, aim });
+      setNotice(
+        "Manual scan. Pointing changes only the display; report sampling and scoring are unchanged.",
+      );
+    },
+    onPointerUp: finishScan,
+    onPointerCancel: finishScan,
+    onLostPointerCapture: () => {
+      gesture.current = null;
+    },
   };
   const capture = (slot: "a" | "b") => {
     if (
@@ -328,6 +425,12 @@ export function OpticalStation({
           Evidence compare
         </button>
       </div>
+      {canScan && (
+        <p className="optical-scan-hint">
+          Drag the scene to scan · arrow controls for keyboard · Track selected
+          report to return
+        </p>
+      )}
       <p className="optical-integrity">
         {vision === "day" ? "EO" : "IR"} display · Pointing and crop do not
         change sensor sampling or scoring.
@@ -339,7 +442,7 @@ export function OpticalStation({
   );
   return (
     <>
-      {children({ manualAim, onCameraAim })}
+      {children({ manualAim, onCameraAim, scanSurface, canScan })}
       {controlsHost ? createPortal(controls, controlsHost) : controls}
       {enabled && bench && (
         <aside
