@@ -20,3 +20,10 @@ Full regression and physical candidate qualification remain reserved for a froze
 ## Connected flagship milestone 91dfce7
 
 The Observation Flight Deck, frozen mission Studio, evidence-assessment-v1 and Academy follow-up work together through a verified browser session. [Acceptance and limitations](observation-missions-v1/ACCEPTANCE.md), [source/artifact manifest](observation-missions-v1/manifest.json). These are connected subsystem improvements, not completion of any entire flagship. Defer remains an explicit decision-contract gap in this revision; sensor absence, request counts and inactivity never substitute for a recorded decision or mastery. Wider environment, Instructor, Crew, Analytics and XR transformations remain open.
+
+
+## Explicit uncertainty milestone 0ac34fe
+
+[Versioned Defer acceptance](uncertainty-v06/ACCEPTANCE.md) and [source/artifact manifest](uncertainty-v06/manifest.json). Engine v0.6 / mission v2 now records deliberate unclassified Defer with explicit reasons, ordered authoritative reconstruction and educational support separate from tactical scoring. Compact keyboard disclosure and exact-boundary Ghost review are integrated. No individual mastery is awarded; Crew/XR acquisition remains unadmitted. The earlier statement that Defer is absent describes 91dfce7 only. All three flagship targets remain open.
+
+Next coordinated milestone: frozen Training Site Compiler and an occlusion/reacquisition exercise. Authored visible building footprints must agree with authoritative sensor boxes; richer site geometry should create a reproducible information problem and survive review/transfer. No graphics improvement or human training benefit is presumed before measurement.

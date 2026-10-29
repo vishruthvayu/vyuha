@@ -1,0 +1,19 @@
+✔ mission admission keeps old Academy tickets isolated and fails closed on ambiguous or malformed launches (3.852875ms)
+✔ published mission admission never recompiles and verifies returned ownership and contract before preparing (1.4145ms)
+✔ preset preparation preserves seed zero and independent assessment mode; changed returned criteria are rejected (0.482625ms)
+✔ v2 admission is explicit and cannot reinterpret a frozen v1 mission as the new decision alphabet (0.583167ms)
+✔ Defer requires an explicit reason, owns its receipt, blocks duplicate clicks and resets on contact/session replacement (797.196708ms)
+✔ pending evidence ledger never accepts a Defer acknowledgment carrying another declared reason or contract (0.915875ms)
+✔ v0.6 Python/TypeScript agree at 45 real uncertainty, publication, fault and cancellation checkpoints (1522.31525ms)
+✔ real worker restores unclassified Defer, preserves request ownership and rejects duplicate/stale/paused/end actions (828.744708ms)
+✔ Ghost exposes explicit unclassified uncertainty, keeps tactical score separate and never calls it an inferred Hold (11.3275ms)
+✔ new-contract decision station exposes Defer on a retained selection even without a current optical/radar position, while old contract stays unchanged (23.534542ms)
+✔ tactical omission labels cannot disguise recorded Defer and its action label never becomes Observe (4.58725ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5055.4995

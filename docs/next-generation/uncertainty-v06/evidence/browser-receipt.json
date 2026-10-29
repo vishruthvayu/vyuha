@@ -1,0 +1,28 @@
+{
+  "source_hash": "d2c761dc95ce17b84fa0860652cff72285a5a5d8514cd3d412e4132908d895bc",
+  "session_id": "cc8214af-d45c-42a6-b2a3-067943b96d51",
+  "runtime": "Vite development + native loopback server; isolated database",
+  "browser": "Codex in-app browser; emulated narrow viewport, not physical phone",
+  "viewport": {
+    "width": 434,
+    "height": 936,
+    "overflow": 0
+  },
+  "keyboard": [
+    "Enter opens native disclosure",
+    "Escape closes and focuses SUMMARY",
+    "Enter submits selected reason after Resume"
+  ],
+  "controls_css_height": {
+    "summary": 45.6944465637207,
+    "select": 43.99305725097656,
+    "button": 43.99305725097656
+  },
+  "declared_tick": 1965,
+  "order": 0,
+  "classification": null,
+  "score": 0,
+  "verified": true,
+  "seek": "T+65.50 before event order 0",
+  "mastery_awarded": false
+}

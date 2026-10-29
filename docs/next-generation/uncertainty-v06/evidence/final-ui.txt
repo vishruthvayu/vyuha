@@ -1,0 +1,13 @@
+✔ Defer requires an explicit reason, owns its receipt, blocks duplicate clicks and resets on contact/session replacement (334.666ms)
+✔ pending evidence ledger never accepts a Defer acknowledgment carrying another declared reason or contract (0.345791ms)
+✔ Ghost exposes explicit unclassified uncertainty, keeps tactical score separate and never calls it an inferred Hold (10.694416ms)
+✔ new-contract decision station exposes Defer on a retained selection even without a current optical/radar position, while old contract stays unchanged (15.747042ms)
+✔ tactical omission labels cannot disguise recorded Defer and its action label never becomes Observe (3.338834ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1743.715208

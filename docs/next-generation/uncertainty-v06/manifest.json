@@ -1,0 +1,43 @@
+{
+  "version": "uncertainty-v06-development-acceptance-v1",
+  "implementation_commit": "0ac34fe08efd2f81614e04325f6849dc00ceac23",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "d2c761dc95ce17b84fa0860652cff72285a5a5d8514cd3d412e4132908d895bc",
+  "scope": "Targeted development acceptance; no RC, release or physical qualification",
+  "checks": {
+    "backend_v06": 9,
+    "legacy_contracts": 14,
+    "focused_client": 11,
+    "parity_checkpoints": 45,
+    "final_ui_subset": 5,
+    "actual_app_projection": 1,
+    "typecheck": "PASS",
+    "changed_typescript_lint": "PASS",
+    "production_build": "PASS",
+    "offline_assets": 80,
+    "historical_baseline": 18,
+    "historical_current": 25
+  },
+  "browser_session": "cc8214af-d45c-42a6-b2a3-067943b96d51",
+  "earlier_interruption": "Reported checkpoint only where /private/tmp artifacts were unavailable on continuation",
+  "files": {
+    "evidence/app-final.txt": "a93fc36f5f3cf3fb6e2857def3ee59c91b41d044f85234f141b20596b2869aa2",
+    "evidence/backend-v06.txt": "835480ea9a8e1d1f76247fce000e6ce9ba514deec6aa05905b9d963628a289e3",
+    "evidence/browser-receipt.json": "776a330fc23df1e8fb628d51e0a362113902d3e14e7dc63e5775b969a15fccbd",
+    "evidence/browser-session.json": "96ed15cc9be1f77634cada5878dbb777603e7f3045c4953143b5d51a6839fd5e",
+    "evidence/changed-lint.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/client-v06.txt": "fda4fc93abc296aaf5ef58a27af1fb19bcd013de35e02e2144f666cc154c71b4",
+    "evidence/final-ui-format.txt": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20",
+    "evidence/final-ui-lint.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/final-ui.txt": "d74fd3b668dbe5292a14b8820a8e2f5ede359fe1fc4ee03bc15feb8396257359",
+    "evidence/ghost.png": "d26e47d53ae3bb24263479283729b41f8fb43178051154c8f85d3c8fea37ce22",
+    "evidence/ghost.txt": "20ccb143a5813185013799a218713eb58f40da25b5ff2babd2d889a7726da6c2",
+    "evidence/historical-copies.json": "6685d5d2ae4ab521df070082fb02c16447611a17714b6add99cf5bcd5eaa6e4f",
+    "evidence/legacy-contracts.txt": "af600ee2ec3112f1ddec1894311b7bc95de49c3ec990e796594a9171c5916f7a",
+    "evidence/mobile-closed.png": "e4251aed3d532189dc22675560af0bcf6269d85e0d7e39004a978327877ba998",
+    "evidence/mobile-recorded.png": "068086fe89af81a59e8a3e9fedb37b0b50341e48c59cec3d1ccfe600fcde0fda",
+    "evidence/production-build.txt": "5bca49e011806182ecccd59f91afbdf52e3e49e0c022cc86d04f87f75a4e68d9",
+    "evidence/protected-refs.json": "9befd6c996a4ac5007c168eac4c77d7d61af4318681b61a7ecbf62e1d7a07323",
+    "evidence/typecheck.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

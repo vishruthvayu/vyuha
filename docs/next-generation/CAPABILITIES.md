@@ -77,3 +77,8 @@ Source: `server/config/capabilities-v1.json`. Generate with `scripts/check_capab
 ## Connected observation mission milestone
 
 Source `91dfce7`: `/observation-missions` now authors, reconstructs and publishes three frozen information problems. Training provides the full-width Observation Flight Deck; verified Ghost separates original tactical scoring from evidence support; Academy offers mode-separated evidence-gap follow-up. [Exact scope, tests, browser journey and limitations](observation-missions-v1/ACCEPTANCE.md). Overall status remains **PARTIAL**: explicit unclassified Defer, wider product/3D work, independent empirical assessment validation and Crew/XR acquisition remain incomplete.
+
+
+### v0.6 explicit uncertainty — development accepted
+
+Source `0ac34fe`; [receipt](uncertainty-v06/ACCEPTANCE.md). Browser-only authored mission v2 permits explicit Defer on an observed alias without classification. Required reasons, exact ordered worker/server reconstruction, archive regeneration and separate public-evidence assessment are implemented. Defer does not earn tactical points or mastery. Native disclosure keeps normal controls accessible. Old contracts remain isolated. Crew/XR acquisition, autonomous reference acquisition, physical qualification and final release acceptance remain pending.
