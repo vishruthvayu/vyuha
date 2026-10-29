@@ -1,0 +1,37 @@
+{
+  "source": {
+    "working_tree_source_dirty": false,
+    "commit": "13df5180bb82be723c923ed205c9babe93aa9d8a",
+    "source_hash": "7bfd8932ff38a7262169f6ee6a14c59dd70abefd05f9a9a7e93ef9ac9fc8d473"
+  },
+  "sample_window_ms": 216430.6000000015,
+  "setting_notes": "Baseline manual capture. Paused App phase is labelled preparation by the existing diagnostics. CSS viewport 1440x756, DPR2; Medium canvas backing is 1440x656. Before/after fixed-console layout intentionally changes render area. Not an isolated GPU measurement.",
+  "render_frame": {
+    "samples": 12782,
+    "p50_ms": 16.7,
+    "p95_ms": 19,
+    "p99_ms": 29.7,
+    "max_ms": 502.3,
+    "over_50_ms": 24,
+    "over_100_ms": 7
+  },
+  "interaction": {
+    "samples": 123,
+    "p50_ms": 144,
+    "p95_ms": 224,
+    "p99_ms": 232,
+    "max_ms": 232,
+    "over_50_ms": 123,
+    "over_100_ms": 103
+  },
+  "long_task": {
+    "samples": 19,
+    "p50_ms": 72,
+    "p95_ms": 493,
+    "p99_ms": 493,
+    "max_ms": 493,
+    "over_50_ms": 19,
+    "over_100_ms": 6
+  },
+  "startup_samples_available": false
+}

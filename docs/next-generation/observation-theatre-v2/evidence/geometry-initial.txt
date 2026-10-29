@@ -1,0 +1,30 @@
+✖ authored sites share exact authoritative footprints and bounded deterministic architecture (271.871125ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3425.60675
+
+✖ failing tests:
+
+test at src/training-sites.test.tsx:36:1
+✖ authored sites share exact authoritative footprints and bounded deterministic architecture (271.871125ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(triangles < 5000 && bytes < 1_000_000 && batches <= 24)
+  
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/training-sites.test.tsx:69:12)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

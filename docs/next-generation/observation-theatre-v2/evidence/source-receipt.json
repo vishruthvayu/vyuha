@@ -1,0 +1,12 @@
+{
+  "implementation_commit": "1f422d8f35fc8324aa6e8ae0d148d30da77f4cfd",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "ff9f08fb2b6ecca431e70379f2ccaca305a182e37c5a5c9d89d8f95fc2330d76",
+  "source_changed_files": [
+    "client/src/architecture-cache.test.ts",
+    "client/src/world/architecture-cache.ts",
+    "client/src/world/site-architecture.ts"
+  ],
+  "earlier_visual_instructor_commit": "5c86f936784f55135cb05e41e478bdb8a0725b81",
+  "scope": "Development milestone only; controlled frame-pacing, complete flagships and frozen-release acceptance not complete"
+}

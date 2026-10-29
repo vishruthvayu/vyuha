@@ -1,0 +1,32 @@
+INSTRUCTOR / VERIFIED EPISODE EVIDENCE
+Compare outcomes with their evidence.
+
+Use existing assigned-group lineage. Tactical correctness, declared uncertainty and public evidence support remain separate.
+
+Assigned exercise group
+Choose a group
+G_2c5e0374ba984317931aad74812d633e
+Inspect group observation evidence
+Open transfer campus · assessment
+THEATRE-QA
+Verified tactical score 0/100
+
+5.7s observed · 1 decisions · 1 requests
+
+C01 · unassessable
+C02 · unassessable
+C03 · supported
+
+1 explicit Defer declarations · no mastery inferred
+
+Open verified Ghost
+
+Revisit C01 with changed conditions; this is evidence-targeted practice, not a mastery judgment.
+
+Inspect next-practice briefing
+
+Original tactical outcomes and reconstructed evidence support are separate.
+
+Requests, declarations and supported findings do not establish private reasoning, mastery or learning gains.
+
+Only server-completed sessions contribute evidence; active sessions have no inferred result.

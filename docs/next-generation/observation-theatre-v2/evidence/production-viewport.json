@@ -1,0 +1,26 @@
+{
+  "canvas": [
+    {
+      "backing": [
+        1010,
+        544
+      ],
+      "rect": {
+        "bottom": 644,
+        "height": 544,
+        "left": 76,
+        "right": 1086,
+        "top": 100,
+        "width": 1010,
+        "x": 76,
+        "y": 100
+      }
+    }
+  ],
+  "dpr": 2,
+  "overflow": 0,
+  "viewport": [
+    1440,
+    756
+  ]
+}

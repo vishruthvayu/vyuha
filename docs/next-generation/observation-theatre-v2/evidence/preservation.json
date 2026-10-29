@@ -1,0 +1,26 @@
+{
+  "protected_refs": {
+    "release/v1.0.1": "2ca96105044ad6a14952d74db619e20006c26eca",
+    "v1.0.1": "4696b0583238d07eb9fcfcec128a437caf28e17b",
+    "v1.1.0-rc.2": "60c1be9a720d508775bba353a9f3fe370cd8d24a",
+    "integration/vyuha-combined-acceptance": "259c50acdc5373a7971e9885b1232645edf23466"
+  },
+  "user_database_sha256": "7a479420d31de3fa40eb27ab149981c7bca4f98e239095cd0372a223fcb5dc13",
+  "changed_existing_files": [
+    "client/src/App.tsx",
+    "client/src/Instructor.tsx",
+    "client/src/Scene.tsx",
+    "client/src/main.tsx",
+    "client/src/training-site-contract.ts",
+    "client/src/training-sites.test.tsx",
+    "client/src/world/Environment.tsx",
+    "client/src/world/contact-shading.ts",
+    "client/src/world/site-architecture.ts",
+    "client/src/world/training-site.ts",
+    "server/auth.py",
+    "server/units.py"
+  ],
+  "scoring_engine_changes": false,
+  "historical_parity_rerun": false,
+  "reason": "Presentation, instructor assignment admission and separate evidence summary changed. No engine, action protocol, scoring, replay or assessment implementation changed. Previous immutable compatibility evidence remains historical, not a new full-system pass."
+}

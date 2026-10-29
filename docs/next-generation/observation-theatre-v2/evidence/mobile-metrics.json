@@ -1,0 +1,164 @@
+{
+  "canvas": [
+    {
+      "bottom": -548,
+      "height": 422,
+      "left": 0,
+      "right": 390,
+      "top": -970,
+      "width": 390,
+      "x": 0,
+      "y": -970
+    }
+  ],
+  "controls": [
+    {
+      "name": "Request EODay optical cross-check",
+      "rect": {
+        "bottom": -155.3203125,
+        "height": 60,
+        "left": 16,
+        "right": 191,
+        "top": -215.3203125,
+        "width": 175,
+        "x": 16,
+        "y": -215.3203125
+      }
+    },
+    {
+      "name": "Request IRThermal cross-check",
+      "rect": {
+        "bottom": -155.3203125,
+        "height": 60,
+        "left": 199,
+        "right": 374,
+        "top": -215.3203125,
+        "width": 175,
+        "x": 199,
+        "y": -215.3203125
+      }
+    },
+    {
+      "name": "Focus world",
+      "rect": {
+        "bottom": -36.8203125,
+        "height": 45,
+        "left": 304,
+        "right": 374,
+        "top": -81.8203125,
+        "width": 70,
+        "x": 304,
+        "y": -81.8203125
+      }
+    },
+    {
+      "name": "Inspect EO in world",
+      "rect": {
+        "bottom": 442.4609375,
+        "height": 44,
+        "left": 29,
+        "right": 152.71875,
+        "top": 398.4609375,
+        "width": 123.71875,
+        "x": 29,
+        "y": 398.4609375
+      }
+    },
+    {
+      "name": "Pan camera left",
+      "rect": {
+        "bottom": 658.4609375,
+        "height": 44,
+        "left": 16,
+        "right": 60,
+        "top": 614.4609375,
+        "width": 44,
+        "x": 16,
+        "y": 614.4609375
+      }
+    },
+    {
+      "name": "Tilt camera up",
+      "rect": {
+        "bottom": 658.4609375,
+        "height": 44,
+        "left": 65,
+        "right": 109,
+        "top": 614.4609375,
+        "width": 44,
+        "x": 65,
+        "y": 614.4609375
+      }
+    },
+    {
+      "name": "Tilt camera down",
+      "rect": {
+        "bottom": 658.4609375,
+        "height": 44,
+        "left": 114,
+        "right": 158,
+        "top": 614.4609375,
+        "width": 44,
+        "x": 114,
+        "y": 614.4609375
+      }
+    },
+    {
+      "name": "Pan camera right",
+      "rect": {
+        "bottom": 658.4609375,
+        "height": 44,
+        "left": 163,
+        "right": 207,
+        "top": 614.4609375,
+        "width": 44,
+        "x": 163,
+        "y": 614.4609375
+      }
+    },
+    {
+      "name": "Track selected report",
+      "rect": {
+        "bottom": 658.4609375,
+        "height": 44,
+        "left": 212,
+        "right": 359.5625,
+        "top": 614.4609375,
+        "width": 147.5625,
+        "x": 212,
+        "y": 614.4609375
+      }
+    },
+    {
+      "name": "Capture A",
+      "rect": {
+        "bottom": 0,
+        "height": 0,
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "name": "Evidence compare",
+      "rect": {
+        "bottom": 0,
+        "height": 0,
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "overflow": 0,
+  "viewport": [
+    390,
+    844
+  ]
+}

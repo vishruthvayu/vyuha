@@ -1,0 +1,77 @@
+{
+  "scope": "Interleaved Node geometry construction only, eight samples after two warmups. Disposal included; no materials, browser, GPU or shader preparation. Shared workstation; not isolated CPU calibration.",
+  "baseline": "13df5180bb82be723c923ed205c9babe93aa9d8a",
+  "premium": "5c86f936784f55135cb05e41e478bdb8a0725b81",
+  "rows": [
+    {
+      "site": "freight_corridor",
+      "shape": {
+        "baseline": {
+          "triangles": 2172,
+          "attribute_bytes": 286704
+        },
+        "premium": {
+          "triangles": 19500,
+          "attribute_bytes": 2574000
+        }
+      },
+      "samples_ms": {
+        "baseline": [
+          69.94174999999996,
+          15.60529200000019,
+          10.3979589999999,
+          28.1940829999985,
+          35.18195800000103,
+          62.10508300000038,
+          48.673375000000306,
+          36.79345900000044
+        ],
+        "premium": [
+          465.1828750000004,
+          498.7962920000009,
+          273.14887500000077,
+          205.1942080000008,
+          233.32424999999967,
+          234.93087500000001,
+          250.47062499999993,
+          268.3466669999998
+        ]
+      }
+    },
+    {
+      "site": "open_campus",
+      "shape": {
+        "baseline": {
+          "triangles": 1692,
+          "attribute_bytes": 223344
+        },
+        "premium": {
+          "triangles": 13332,
+          "attribute_bytes": 1759824
+        }
+      },
+      "samples_ms": {
+        "baseline": [
+          21.753959000001487,
+          56.197165999999925,
+          11.10595900000044,
+          31.37904200000048,
+          25.939707999999882,
+          38.76250000000073,
+          21.697416000000885,
+          33.27458300000035
+        ],
+        "premium": [
+          170.83141699999942,
+          432.50795800000014,
+          651.0388750000002,
+          249.2113330000011,
+          531.7151670000003,
+          386.0796250000003,
+          385.77400000000125,
+          466.2498749999995
+        ]
+      }
+    }
+  ]
+}

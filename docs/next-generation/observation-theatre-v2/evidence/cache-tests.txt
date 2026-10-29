@@ -1,0 +1,27 @@
+✔ cached scenery gives independent mutable consumer geometry and disposes retained originals exactly once (9.763ms)
+✔ LRU scenery memory is bounded and evicts an unused key; oversized geometry remains consumer-owned (4.001041ms)
+{"site":"freight_corridor","quality":"low","triangles":384,"bytes":50688}
+{"site":"freight_corridor","quality":"medium","triangles":19500,"bytes":2574000}
+{"site":"freight_corridor","quality":"high","triangles":22716,"bytes":2998512}
+{"site":"open_campus","quality":"low","triangles":384,"bytes":50688}
+{"site":"open_campus","quality":"medium","triangles":13332,"bytes":1759824}
+{"site":"open_campus","quality":"high","triangles":15924,"bytes":2101968}
+✔ premium all-sided architecture has finite metric attributes and remains inside frozen volumes at every quality (1210.557916ms)
+✔ site shadows cover authored extents without per-frame shadow updates or changing legacy profiles (4.662125ms)
+✔ architectural arrival uses only public geometry, clamps invalid time and honors reduced motion (2.35975ms)
+{"site":"freight_corridor","structure_triangles":19500,"attribute_bytes":2574000,"per_structure_material_batches":24,"environment_materials":"merged by material before mounting"}
+{"site":"freight_corridor","decorative_placements":56,"facility_triangles":43472,"facility_attribute_bytes":5738304,"facility_material_batches":10}
+{"site":"open_campus","structure_triangles":13332,"attribute_bytes":1759824,"per_structure_material_batches":24,"environment_materials":"merged by material before mounting"}
+{"site":"open_campus","decorative_placements":58,"facility_triangles":43756,"facility_attribute_bytes":5775792,"facility_material_batches":10}
+✔ authored sites share exact authoritative footprints and bounded deterministic architecture (4300.597542ms)
+✔ new site validation fails closed, while historic worlds use their unchanged layout (19.053417ms)
+✔ public site survey and plan never consume contacts or future opportunities (51.474792ms)
+✔ v3 launch admission binds site and exact version; old entries never acquire a new site (8.721083ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 30175.05225

@@ -1,0 +1,47 @@
+✔ real acquisition UI shows pending then released immutable evidence, blocks double submit and keeps contact scope (4296.117625ms)
+✔ an acquisition acknowledgment is labelled as observation intent, not an effector response (5.25575ms)
+✔ console retains instrument state and exactly one camera portal across workspace changes (978.0475ms)
+✔ instructor evidence blocks duplicate requests and preserves separate results and exact Ghost links (277.783084ms)
+✔ moving optics into the evidence instrument retains one world, camera aim and captured reports (1333.323667ms)
+✔ manual scan survives contact selection, explicitly reacquires, and preserves one world through phases (150.699917ms)
+✔ local capture pins exact sample times while live changes; another contact and session never inherit it (195.351291ms)
+✔ tactical view offers the evidence workflow without manual 3D controls (245.1675ms)
+✔ a future observation cannot enter the visible notebook (201.058875ms)
+✔ entering manual scan uses displayed held bearing, not a vanished report or default sector (1664.441791ms)
+✔ pan arrows are scoped to the focused control group; comparison table has accessible structure (8627.940125ms)
+✔ opening comparison moves focus to its named region; Escape returns to its trigger (835.449916ms)
+✔ scene drag retains one world and cannot survive contact, session or instrument ownership changes (166.676917ms)
+{"site":"freight_corridor","quality":"low","triangles":384,"bytes":50688}
+{"site":"freight_corridor","quality":"medium","triangles":19500,"bytes":2574000}
+{"site":"freight_corridor","quality":"high","triangles":22716,"bytes":2998512}
+{"site":"open_campus","quality":"low","triangles":384,"bytes":50688}
+{"site":"open_campus","quality":"medium","triangles":13332,"bytes":1759824}
+{"site":"open_campus","quality":"high","triangles":15924,"bytes":2101968}
+✔ premium all-sided architecture has finite metric attributes and remains inside frozen volumes at every quality (3485.504333ms)
+✔ site shadows cover authored extents without per-frame shadow updates or changing legacy profiles (2.610792ms)
+✔ architectural arrival uses only public geometry, clamps invalid time and honors reduced motion (1.1465ms)
+✔ briefing strips all roster, clutter, messages and response evidence without changing authoritative snapshot (81.108542ms)
+✔ authored arrival is bounded, roster-independent and stationary for reduced motion (47.098416ms)
+✔ briefing offers one explicit phase-correct action and discloses non-evidentiary scenery (112.393292ms)
+{"site":"freight_corridor","structure_triangles":19500,"attribute_bytes":2574000,"per_structure_material_batches":24,"environment_materials":"merged by material before mounting"}
+{"site":"freight_corridor","decorative_placements":56,"facility_triangles":43472,"facility_attribute_bytes":5738304,"facility_material_batches":10}
+{"site":"open_campus","structure_triangles":13332,"attribute_bytes":1759824,"per_structure_material_batches":24,"environment_materials":"merged by material before mounting"}
+{"site":"open_campus","decorative_placements":58,"facility_triangles":43756,"facility_attribute_bytes":5775792,"facility_material_batches":10}
+✔ authored sites share exact authoritative footprints and bounded deterministic architecture (9489.853583ms)
+✔ new site validation fails closed, while historic worlds use their unchanged layout (3.2325ms)
+✔ public site survey and plan never consume contacts or future opportunities (54.439ms)
+✔ v3 launch admission binds site and exact version; old entries never acquire a new site (4.620833ms)
+✔ survey commands remain bounded and contact-independent for urban_outpost (17.865875ms)
+✔ survey commands remain bounded and contact-independent for rural_forward_base (9.18825ms)
+✔ survey commands remain bounded and contact-independent for logistics_quarter (6.542375ms)
+✔ installed OrbitControls listener lease, stale commands and camera restoration are isolated and disposable (334.473209ms)
+✔ live-rig handoff can dispose the survey without any pose or projection write (36.199375ms)
+✔ documented upstream r180 held-Control release listener is bounded and cannot change the handed-off camera (18.169084ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 34308.599417

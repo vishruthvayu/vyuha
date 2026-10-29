@@ -1,0 +1,40 @@
+{
+  "baseline": {
+    "source": {
+      "working_tree_source_dirty": false,
+      "commit": "13df5180bb82be723c923ed205c9babe93aa9d8a",
+      "source_hash": "7bfd8932ff38a7262169f6ee6a14c59dd70abefd05f9a9a7e93ef9ac9fc8d473"
+    },
+    "matched_elapsed_window_ms": [
+      5000,
+      65000
+    ],
+    "frames": {
+      "samples": 3487,
+      "p50_ms": 16.7,
+      "p95_ms": 20.5,
+      "p99_ms": 35.7,
+      "max_ms": 502.3,
+      "over_50_ms": 13
+    }
+  },
+  "premium": {
+    "source": {
+      "working_tree_source_dirty": false,
+      "commit": "5c86f936784f55135cb05e41e478bdb8a0725b81",
+      "source_hash": "baba9aabf2f7247eec7f236224eed47dce376f298fc4200a74cd21aeb4c218f4"
+    },
+    "matched_elapsed_window_ms": [
+      5000,
+      65000
+    ],
+    "frames": {
+      "samples": 2976,
+      "p50_ms": 16.9,
+      "p95_ms": 42.4,
+      "p99_ms": 91.2,
+      "max_ms": 266.6,
+      "over_50_ms": 105
+    }
+  }
+}

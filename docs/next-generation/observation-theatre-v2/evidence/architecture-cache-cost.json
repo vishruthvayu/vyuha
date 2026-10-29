@@ -1,0 +1,77 @@
+{
+  "scope": "Interleaved Node geometry construction only, eight samples after two warmups. Disposal included; no materials, browser, GPU or shader preparation. Shared workstation; not isolated CPU calibration.",
+  "baseline": "13df5180bb82be723c923ed205c9babe93aa9d8a",
+  "premium": "working cache candidate after 5c86f93",
+  "rows": [
+    {
+      "site": "freight_corridor",
+      "shape": {
+        "baseline": {
+          "triangles": 2172,
+          "attribute_bytes": 286704
+        },
+        "premium": {
+          "triangles": 19500,
+          "attribute_bytes": 2574000
+        }
+      },
+      "samples_ms": {
+        "baseline": [
+          14.848625000000084,
+          15.278167000000394,
+          16.251832999999806,
+          30.667333000000326,
+          15.966666999999688,
+          17.688250000000153,
+          13.988166999999976,
+          16.240999999999985
+        ],
+        "premium": [
+          1.6156659999996918,
+          1.5201250000000073,
+          26.849707999999737,
+          1.6309999999998581,
+          3.3288330000000315,
+          4.287249999999858,
+          1.7807499999998981,
+          1.014625000000251
+        ]
+      }
+    },
+    {
+      "site": "open_campus",
+      "shape": {
+        "baseline": {
+          "triangles": 1692,
+          "attribute_bytes": 223344
+        },
+        "premium": {
+          "triangles": 13332,
+          "attribute_bytes": 1759824
+        }
+      },
+      "samples_ms": {
+        "baseline": [
+          9.78625000000011,
+          13.56816600000002,
+          16.945083000000068,
+          11.509415999999874,
+          17.076915999999983,
+          23.261708999999883,
+          24.969042000000172,
+          27.56395799999973
+        ],
+        "premium": [
+          0.7349999999996726,
+          1.009375000000091,
+          10.50112500000023,
+          1.753624999999829,
+          1.131083000000217,
+          1.1849160000001575,
+          16.16125000000011,
+          1.5103329999997186
+        ]
+      }
+    }
+  ]
+}

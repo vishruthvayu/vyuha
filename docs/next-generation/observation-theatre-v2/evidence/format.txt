@@ -1,0 +1,3 @@
+src/ObservationConsole.tsx 163ms
+src/App.tsx 877ms
+src/world/site-architecture.ts 79ms

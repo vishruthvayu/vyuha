@@ -1,0 +1,2 @@
+src/architecture-cache.test.ts 183ms
+src/world/architecture-cache.ts 66ms

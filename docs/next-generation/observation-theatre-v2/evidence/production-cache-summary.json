@@ -1,0 +1,137 @@
+{
+  "source": {
+    "working_tree_source_dirty": false,
+    "commit": "1f422d8f35fc8324aa6e8ae0d148d30da77f4cfd",
+    "source_hash": "ff9f08fb2b6ecca431e70379f2ccaca305a182e37c5a5c9d89d8f95fc2330d76"
+  },
+  "scope": "Mixed restore, quality-switch, acquisition and review workflow. Not a matched frame benchmark.",
+  "elapsed_ms": 181450.69999999925,
+  "summary": {
+    "world_textures": {
+      "samples": 7,
+      "p50_ms": 182.8,
+      "p95_ms": 326.6,
+      "p99_ms": 326.6,
+      "max_ms": 326.6,
+      "over_50_ms": 7,
+      "over_100_ms": 7
+    },
+    "world_build": {
+      "samples": 7,
+      "p50_ms": 72.9,
+      "p95_ms": 226.2,
+      "p99_ms": 226.2,
+      "max_ms": 226.2,
+      "over_50_ms": 6,
+      "over_100_ms": 2
+    },
+    "environment_reflections": {
+      "samples": 3,
+      "p50_ms": 73.3,
+      "p95_ms": 74.9,
+      "p99_ms": 74.9,
+      "max_ms": 74.9,
+      "over_50_ms": 3,
+      "over_100_ms": 0
+    },
+    "airframe_geometry": {
+      "samples": 6,
+      "p50_ms": 8.6,
+      "p95_ms": 38.2,
+      "p99_ms": 38.2,
+      "max_ms": 38.2,
+      "over_50_ms": 0,
+      "over_100_ms": 0
+    },
+    "renderer_module": {
+      "samples": 1,
+      "p50_ms": 111.2,
+      "p95_ms": 111.2,
+      "p99_ms": 111.2,
+      "max_ms": 111.2,
+      "over_50_ms": 1,
+      "over_100_ms": 1
+    },
+    "first_frame": {
+      "samples": 5,
+      "p50_ms": 9.5,
+      "p95_ms": 522,
+      "p99_ms": 522,
+      "max_ms": 522,
+      "over_50_ms": 1,
+      "over_100_ms": 1
+    },
+    "render_frame": {
+      "samples": 10350,
+      "p50_ms": 16.7,
+      "p95_ms": 17.6,
+      "p99_ms": 18.1,
+      "max_ms": 2352.2,
+      "over_50_ms": 17,
+      "over_100_ms": 14
+    },
+    "worker_delivery": {
+      "samples": 35,
+      "p50_ms": 66.9,
+      "p95_ms": 11994.6,
+      "p99_ms": 39463.6,
+      "max_ms": 39463.6,
+      "over_50_ms": 19,
+      "over_100_ms": 7
+    },
+    "long_frame": {
+      "samples": 19,
+      "p50_ms": 103.4,
+      "p95_ms": 2672.3,
+      "p99_ms": 2672.3,
+      "max_ms": 2672.3,
+      "over_50_ms": 19,
+      "over_100_ms": 11
+    },
+    "long_task": {
+      "samples": 21,
+      "p50_ms": 317,
+      "p95_ms": 630,
+      "p99_ms": 2349,
+      "max_ms": 2349,
+      "over_50_ms": 21,
+      "over_100_ms": 15
+    },
+    "script_work": {
+      "samples": 19,
+      "p50_ms": 86.2,
+      "p95_ms": 2647.2,
+      "p99_ms": 2647.2,
+      "max_ms": 2647.2,
+      "over_50_ms": 13,
+      "over_100_ms": 9
+    },
+    "layout_work": {
+      "samples": 19,
+      "p50_ms": 0.9,
+      "p95_ms": 46.2,
+      "p99_ms": 46.2,
+      "max_ms": 46.2,
+      "over_50_ms": 0,
+      "over_100_ms": 0
+    },
+    "resource": {
+      "samples": 44,
+      "p50_ms": 46.6,
+      "p95_ms": 79,
+      "p99_ms": 88.2,
+      "max_ms": 88.2,
+      "over_50_ms": 16,
+      "over_100_ms": 0
+    },
+    "interaction": {
+      "samples": 58,
+      "p50_ms": 64,
+      "p95_ms": 168,
+      "p99_ms": 168,
+      "max_ms": 168,
+      "over_50_ms": 47,
+      "over_100_ms": 7
+    }
+  }
+}

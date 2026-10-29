@@ -1,0 +1,11 @@
+✔ cached scenery gives independent mutable consumer geometry and disposes retained originals exactly once (5.792666ms)
+✔ LRU scenery memory is bounded and evicts an unused key; oversized geometry remains consumer-owned (3.032ms)
+✔ zero-byte public entries also have a bounded LRU count (0.431875ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 938.484833

@@ -1,0 +1,457 @@
+- link "Skip to workspace":
+  - /url: "#workspace-content"
+- banner:
+  - link "VYUHA home":
+    - /url: /
+    - strong: VYUHA
+  - navigation "Primary workspaces":
+    - link "Training":
+      - /url: /
+    - link "Review":
+      - /url: /?view=aar
+      - text: Review
+      - generic: "1"
+    - link "Crew":
+      - /url: /crew
+    - link "Instructor":
+      - /url: /instructor
+    - link "Analytics":
+      - /url: /analytics
+  - button "Find workspace":
+    - generic: Find workspace
+    - generic: ⌘ / Ctrl K
+  - button "Operator guide":
+    - generic: Operator guide
+  - button "Workspaces":
+    - generic: Workspaces
+- main:
+  - text: WORKSPACE
+  - generic: AFTER-ACTION REVIEW
+  - text: VYUHA server connected
+  - generic: LEARN FROM EVERY DECISION
+  - heading "After-action review" [level=1]
+  - paragraph: A replay of your exercise, with a traceable score and reference response.
+  - button "Export session":
+    - text: Export session
+  - generic "Exercise history · 1 saved exercise"
+  - strong: "0"
+  - generic: / 100
+  - generic: REVIEW REQUIRED
+  - 'heading "Full-horizon tactical projection: 1 threat reached the protected asset. Review response selection." [level=2]'
+  - paragraph: The recording ends at 00:19. These tactical outcomes project to the frozen scoring horizon at 01:30; they are not additional observed events.
+  - paragraph: PREMIUM-NATIVE-QA · Evidence has a clock · Seed 482913
+  - text: Server verified
+  - button "Next drill":
+    - text: Next drill
+  - article:
+    - text: Recognition
+    - strong: 0%
+    - generic: Correct type and identity
+  - article:
+    - text: Response selection
+    - strong: 0%
+    - generic: Reference response, fewer errors
+  - article:
+    - text: Projected asset impacts
+    - strong: "1"
+    - generic: Frozen scoring horizon 01:30
+  - article:
+    - text: Safety flags
+    - strong: "0"
+    - generic: Restricted-zone attempts
+  - navigation "Review sections":
+    - link "Verdict":
+      - /url: "#review-verdict"
+    - link "Replay & decisions":
+      - /url: "#review-replay"
+    - link "Timeline":
+      - /url: "#review-timeline"
+    - link "Decision path":
+      - /url: "#review-path"
+    - link "Comparison":
+      - /url: "#review-comparison"
+    - link "Score breakdown":
+      - /url: "#review-score"
+  - region "Evidence reconstruction theatre":
+    - paragraph: INVESTIGATE THE DECISION
+    - heading "Evidence reconstruction theatre" [level=2]
+    - paragraph: Reconstruct available observations, then compare them with the reference world.
+    - text: SERVER VERIFIED
+    - generic: Evidence has a clock
+    - generic "Reconstruction lens":
+      - button "Modeled observations" [pressed]:
+        - text: Modeled observations
+      - button "Reference world":
+        - text: Reference world
+      - text: T+0.00s · after recorded events at this tick
+      - generic: PINNED EVIDENCE T+4.00s · REVIEW T+19.10s
+    - paragraph: "Frozen site: Freight corridor · training-site-v1 · geometry preserved from this exercise"
+    - generic "Reconstruction channels":
+      - button "IR" [pressed]
+      - button "EO"
+      - button "Radar"
+      - button "2D fallback"
+    - text: IR · MODELED OBSERVATIONS
+    - generic: Sensor-origin view · observed geometry only
+    - generic: 60 fps
+    - button "Play replay":
+    - slider "Replay time": "0"
+    - generic: T+19.10s
+    - complementary "Evidence at replay cursor":
+      - paragraph: AT THE PLAYHEAD
+      - heading "T+0.00s" [level=3]
+      - paragraph: Modeled availability reconstructed from the frozen engine. This is not a recording of gaze, viewport or what the trainee actually noticed.
+      - text: Reported contact
+      - combobox "Reported contact at cursor":
+        - option "Choose a reported contact" [selected]
+      - paragraph: T1 has no time-valid report at this playhead. Absence of a report is not proof of an empty sky.
+      - status:
+        - strong: Two different moments
+        - paragraph: "Ghost evidence for T1 was captured at T+4.00s. Review moment: T+19.10s. The scene follows the playhead."
+        - button "Inspect pinned evidence moment":
+          - text: Inspect pinned evidence moment
+    - region "Verified acquisition reconstruction":
+      - text: VERIFIED / ACTIVE OBSERVATION
+      - heading "What information reached the decision?" [level=2]
+      - paragraph: 1 accepted requests · 1 published results. Requests are intentions; availability and shape resolution determine what information was returned.
+      - paragraph: 0 of 0 recorded classification/response decisions had no current released optical detection. This describes missing optical evidence, not intent, wrongness by itself or a mastery score. RF/IFF and other evidence must still be considered.
+      - list:
+        - strong: T1 / EO
+        - generic: Requested T+17.77s · planned sample T+18.80s · publication T+19.00s
+        - paragraph: No detection · expiry T+21.00s. Affiliation is a separate inference.
+        - navigation "Reconstruct T1 eo":
+          - button "Request · T+17.77s"
+          - button "Sample · T+18.80s"
+          - button "Release · T+19.00s"
+      - complementary:
+        - strong: Suggested next practice
+        - paragraph: Try changed evidence conditions. This is a transparent evidence-timing heuristic, not a calibrated adaptive policy or proof of learning.
+        - link "Prepare a changed observation exercise":
+          - /url: /?acquisition=1&seed=482914&night=1
+        - link "Return to Academy":
+          - /url: /academy
+    - region "Mission evidence assessment":
+      - generic: RECONSTRUCTED SUPPORT / evidence-assessment-v2
+      - heading "An answer can be correct before its reasoning is established." [level=2]
+      - paragraph: The original 0/100 rubric result is preserved. This separate educational model asks what the frozen public reports support at each accepted decision boundary.
+      - strong: Practice evidence · No mastery awarded
+      - paragraph: Defer is an explicit decision to withhold a new declaration. It does not erase prior choices or prove private reasoning. Inactivity is never interpreted as Defer. Choices are not confidence statements.
+      - navigation "Mission competency evidence":
+        - link "C01 unassessable Designate only with a reported position. One mission observation · not proficiency":
+          - /url: /academy?competency=C01
+          - strong: C01
+          - generic: unassessable
+          - generic: Designate only with a reported position.
+          - generic: One mission observation · not proficiency
+        - link "C02 unassessable Interpret the exact released/expired evidence at the classification frontier; another legitimate cue can still support an affiliation claim. One mission observation · not proficiency":
+          - /url: /academy?competency=C02
+          - strong: C02
+          - generic: unassessable
+          - generic: Interpret the exact released/expired evidence at the classification frontier; another legitimate cue can still support an affiliation claim.
+          - generic: One mission observation · not proficiency
+        - link "C03 supported Record an explicit restraint/defer choice against the public evidence at this boundary. Declared reasons are not private reasoning, and inactivity is not a declaration. One mission observation · not proficiency":
+          - /url: /academy?competency=C03
+          - strong: C03
+          - generic: supported
+          - generic: Record an explicit restraint/defer choice against the public evidence at this boundary. Declared reasons are not private reasoning, and inactivity is not a declaration.
+          - generic: One mission observation · not proficiency
+      - article:
+        - generic: T+19.10s · BEFORE ORDER 2 · T1
+        - heading "Defer new declaration / affiliation unresolved" [level=3]
+        - strong: supported
+        - list "Evidence support for T1 at T+19.10s":
+          - generic: restraint · supported
+          - paragraph: The declaration retains unresolved affiliation; no positive affiliation cue is available.
+          - text: radar:T1:573 → rf:T1:573 → iff:T1:573 → result_cbc077f5-c4d0-42c8-8615-578648061630
+        - generic "Inspect the exact available evidence"
+        - button "Reconstruct this boundary"
+      - generic "What did the requests add? · 1 accepted"
+      - complementary:
+        - text: EVIDENCE → NEXT PRACTICE
+        - heading "C01 · changed conditions" [level=3]
+        - paragraph: Revisit C01 with changed conditions; this is evidence-targeted practice, not a mastery judgment.
+        - link "Open the next mission briefing":
+          - /url: /?mission_template=timed_window&mission_mode=practice&seed=587642&mission_version=3&mission_site=freight_corridor
+      - generic "Interpretation contract and limits"
+    - navigation "Recorded decision moments":
+      - group "Investigate T1":
+        - button "01 · T1 First modeled detectability T+4.00s · before event order 0":
+          - generic: 01 · T1
+          - strong: First modeled detectability
+          - generic: T+4.00s · before event order 0
+        - button "02 · T1 Decision evidence T+4.00s · within-tick order unknown":
+          - generic: 02 · T1
+          - strong: Decision evidence
+          - generic: T+4.00s · within-tick order unknown
+        - button "03 · T1 Observed outcome Not observed within this recording" [disabled]:
+          - generic: 03 · T1
+          - strong: Observed outcome
+          - generic: Not observed within this recording
+      - heading "Original tactical rubric moments" [level=3]
+      - generic: 1–2 of 2
+      - button "01 · T+19.10s T1 · No tactical action recorded incorrect · detection" [pressed]:
+        - generic: 01 · T+19.10s
+        - strong: T1 · No tactical action recorded
+        - generic: incorrect · detection
+      - button "02 · T+19.10s T2 · No tactical action recorded incorrect · detection":
+        - generic: 02 · T+19.10s
+        - strong: T2 · No tactical action recorded
+        - generic: incorrect · detection
+    - generic "Original tactical rubric explanation · Defer is reviewed separately"
+    - heading "Ghost Expert · Tactical rubric" [level=2]
+    - generic: RULE-GROUNDED
+    - paragraph: This section preserves the original tactical rubric. Missing designation or classification does not mean no Defer was recorded. Explicit uncertainty is reviewed separately in Mission evidence assessment.
+    - text: Decision review
+    - combobox "Decision review":
+      - option "T1 · T+19.10s · detection · threat missed" [selected]
+      - option "T2 · T+19.10s · detection · threat missed"
+    - strong: T1 · T+19.10s
+    - generic: INCORRECT
+    - button "Previous decision" [disabled]
+    - button "Next decision"
+    - button "Jump to selected decision":
+      - text: Jump to selected decision
+    - paragraph: Decision evidence stays pinned while you move the replay cursor.
+    - heading "Available to trainee" [level=3]
+    - term: Radar
+    - definition: ACTIVE · contact observed
+    - term: RF control link
+    - definition: Detected
+    - term: IFF
+    - definition: No reply · identity unconfirmed
+    - term: EO / IR observation
+    - definition: No current modeled observation
+    - term: Range
+    - definition: 700.0 m
+    - term: Restricted sector
+    - definition: Kinetic restricted
+    - term: First detectable
+    - definition: T+4.00s
+    - paragraph: "Evidence at T+4.00s: first detectable observation, or reviewed end if never detectable. IFF no reply does not establish hostility. Quad and FPV share a multirotor silhouette."
+    - heading "Your decision" [level=3]
+    - strong: No tactical action recorded
+    - heading "Expected decision" [level=3]
+    - strong: Designate
+    - generic: Based on available evidence
+    - heading "Why" [level=3]
+    - paragraph: This threat became detectable at T+4.00s. No designation was recorded by the reviewed end at T+19.10s. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.
+    - text: THREAT_MISSED
+    - generic "Ground truth after review"
+    - heading "Consequence" [level=3]
+    - paragraph: The contact remained active at the reviewed end; no later observed consequence is asserted.
+    - text: NO_CONSEQUENCE_YET
+    - heading "Score impact" [level=3]
+    - strong: "Detection: 0 / 25"
+    - paragraph: Final contact node, shared across all attempts. This is not a separate per-action award.
+    - heading "Training skill" [level=3]
+    - paragraph: Detection
+  - strong: Training focus
+  - generic: SERVER REVIEW
+  - paragraph: "Recommended training focus: detection. Counts are distinct contacts with evidenced errors; sensor context does not prove causation."
+  - generic: Detection
+  - strong: "2"
+  - generic: contacts with errors · 50 node points lost
+  - generic: Classification / IFF
+  - strong: "0"
+  - generic: contacts with errors · 0 node points lost
+  - generic: Effector choice
+  - strong: "0"
+  - generic: contacts with errors · 0 node points lost
+  - generic: Degraded sensor response
+  - strong: "0"
+  - generic: contacts with errors · 0 node points lost
+  - button "Review largest loss"
+  - paragraph: Lost points are deduplicated per contact/node before hostile-row averaging. Sensor-context tags overlap other skills. Active-observation missions use a separate educational evidence contract and do not update the historical individual mastery profile. Follow-up suggestions use reconstructed evidence.
+  - strong: Hostile-node averages before penalties
+  - generic: Detection
+  - strong: 0 / 25
+  - generic: Classification
+  - strong: 0 / 25
+  - generic: Priority ranking
+  - strong: 0 / 15
+  - generic: Engagement
+  - strong: 0 / 35
+  - paragraph: "Asset impacts: 1 · Non-hostile safety flag: No"
+  - paragraph: Ranking agreement 1.000 × engagement coverage 0.000 × 15. Equal priority pairs are excluded; no comparable pairs yields neutral agreement 1, still multiplied by coverage.
+  - strong: Exercise timeline
+  - generic "Recorded interval and scoring horizon"
+  - text: Find recorded evidence
+  - searchbox "Find recorded evidence"
+  - text: Timeline category
+  - combobox "Timeline category":
+    - option "All meaningful events" [selected]
+    - option "trainee action"
+    - option "instructor action"
+    - option "sensor transition"
+    - option "contact detection"
+    - option "contact resolution"
+    - option "asset impact"
+    - option "score error"
+    - option "tactic phase"
+  - status: Showing 12 of 12 matching events · 12 recorded
+  - button "T+0.00s sensor transition Radar normal · RF active · Day":
+    - generic: T+0.00s
+    - generic: sensor transition
+    - text: Radar normal · RF active · Day
+  - button "T+2.00s tactic phase Red Force · low_approach · T1, T2":
+    - generic: T+2.00s
+    - generic: tactic phase
+    - text: Red Force · low_approach · T1, T2
+  - button "T+4.00s contact detection · T1 T1 · first working-sensor observation":
+    - generic: T+4.00s
+    - generic: contact detection · T1
+    - text: T1 · first working-sensor observation
+  - button "T+6.00s contact detection · T2 T2 · first working-sensor observation":
+    - generic: T+6.00s
+    - generic: contact detection · T2
+    - text: T2 · first working-sensor observation
+  - button "T+9.00s contact detection · T4 T4 · first working-sensor observation":
+    - generic: T+9.00s
+    - generic: contact detection · T4
+    - text: T4 · first working-sensor observation
+  - button "T+13.00s contact detection · T3 T3 · first working-sensor observation":
+    - generic: T+13.00s
+    - generic: contact detection · T3
+    - text: T3 · first working-sensor observation
+  - button "T+17.77s sensor transition · T1 T1 · EO · Observation requested":
+    - generic: T+17.77s
+    - generic: sensor transition · T1
+    - text: T1 · EO · Observation requested
+  - button "T+18.80s sensor transition · T1 T1 · EO · Sampled modeled world":
+    - generic: T+18.80s
+    - generic: sensor transition · T1
+    - text: T1 · EO · Sampled modeled world
+  - button "T+19.00s sensor transition · T1 T1 · EO · Observation released":
+    - generic: T+19.00s
+    - generic: sensor transition · T1
+    - text: T1 · EO · Observation released
+  - button "T+19.10s score error · T1 T1 · threat missed":
+    - generic: T+19.10s
+    - generic: score error · T1
+    - text: T1 · threat missed
+  - button "T+19.10s score error · T2 T2 · threat missed":
+    - generic: T+19.10s
+    - generic: score error · T2
+    - text: T2 · threat missed
+  - button "T+19.10s trainee action · T1 T1 · Defer new declaration · affiliation unresolved":
+    - generic: T+19.10s
+    - generic: trainee action · T1
+    - text: T1 · Defer new declaration · affiliation unresolved
+  - heading "Decision path and What-if replay" [level=2]
+  - text: Reviewed contact
+  - combobox "Reviewed contact":
+    - option "T1" [selected]
+    - option "T2"
+    - option "T3"
+    - option "T4"
+  - paragraph: Server-verified post-exercise review. Node points are final contact outcomes, shared across attempts. After-review truth is labelled separately from observations.
+  - list "Final contact score path for T1":
+    - button "STEP 1 · Detect 0 / 25 1 authoritative review Inspect recorded evidence":
+      - generic: STEP 1 · Detect
+      - strong: 0 / 25
+      - generic: 1 authoritative review
+      - generic: Inspect recorded evidence
+    - button "STEP 2 · Classify 0 / 25 0 authoritative reviews Inspect recorded evidence":
+      - generic: STEP 2 · Classify
+      - strong: 0 / 25
+      - generic: 0 authoritative reviews
+      - generic: Inspect recorded evidence
+    - button "STEP 3 · Prioritize 0 / 15 0 authoritative reviews Inspect recorded evidence":
+      - generic: STEP 3 · Prioritize
+      - strong: 0 / 15
+      - generic: 0 authoritative reviews
+      - generic: Inspect recorded evidence
+    - button "STEP 4 · Respond 0 / 35 0 authoritative reviews Inspect recorded evidence":
+      - generic: STEP 4 · Respond
+      - strong: 0 / 35
+      - generic: 0 authoritative reviews
+      - generic: Inspect recorded evidence
+  - paragraph: Stages follow rubric order; decision ticks below preserve the actual recorded history. This display does not infer causal links between decisions.
+  - button "All stages" [pressed]
+  - status: 1 review shown
+  - generic "T+19.10s · detectionNo action recorded INCORRECT":
+    - generic: T+19.10s · detection
+    - strong: No action recorded
+    - generic: INCORRECT
+  - generic "Read the complete linear decision record"
+  - heading "Try a different response" [level=3]
+  - paragraph: The server branches the frozen exercise at the recorded decision. The original score and training profile remain unchanged.
+  - paragraph: No recorded engagement is available to replace for this contact.
+  - generic: RECORDED BOUNDARIES · EVIDENCE-CONSTRAINED
+  - heading "Evidence-constrained response comparison" [level=2]
+  - paragraph: Each recorded response is compared at its original tick using the evidence then available. This reference is an inspectable training policy, not a certified military expert.
+  - article:
+    - generic: Supported reference choices
+    - strong: "0"
+    - generic: Policy evidence label
+  - article:
+    - generic: Conditional choices
+    - strong: "0"
+    - generic: Further evidence required
+  - article:
+    - generic: Uncertain choices
+    - strong: "0"
+    - generic: Uncertainty retained
+  - paragraph: No engagement was recorded; no policy agreement fraction is assigned.
+  - generic "Scope and limitations"
+  - heading "Autonomous reference replay" [level=2]
+  - paragraph: The active-observation policy adapter is not yet admitted. Inspect the original request, sample and release history in Ghost; no autonomous acquisition result or reference score is generated for this engine.
+  - generic: ADVICE RECEIPTS · HUMAN RELIANCE UNVERIFIED
+  - heading "Fusion advice and confidence review" [level=2]
+  - paragraph: "Mode: training; exercise: normal. Advice and reported associations do not establish human viewing or cognitive reliance."
+  - article:
+    - generic: Reconstructed advice receipts
+    - strong: "0"
+    - generic: Not verified human views
+  - article:
+    - generic: Logged confidence diagnostics
+    - strong: "0"
+    - generic: Optional operator input
+  - article:
+    - generic: Mean Brier diagnostic
+    - strong: Not logged
+    - generic: 0 ideal · 2 maximally wrong
+  - paragraph: Optional logged confidence; no calibration or learning-efficacy claim.
+  - paragraph: Display exposures and advice association are client-reported; deterministic receipt validation does not establish human reliance. Bias exercises and normalized advice weights are synthetic uncalibrated training heuristics. Original scorecards and Beta profiles are unchanged.
+  - strong: Decision-tree score breakdown
+  - region "Original decision-tree score breakdown":
+    - table:
+      - rowgroup:
+        - row "Contact Detect / 25 Classify / 25 Priority ranking / 15 Engage / 35 Total":
+          - columnheader "Contact"
+          - columnheader "Detect / 25"
+          - columnheader "Classify / 25"
+          - columnheader "Priority ranking / 15"
+          - columnheader "Engage / 35"
+          - columnheader "Total"
+      - rowgroup:
+        - row "T1 · hostile 0 0 0 0 0":
+          - cell "T1 · hostile"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+        - row "T2 · hostile 0 0 0 0 0":
+          - cell "T2 · hostile"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+        - row "T3 · friendly 0 0 0 0 0":
+          - cell "T3 · friendly"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+        - row "T4 · neutral 0 0 0 0 0":
+          - cell "T4 · neutral"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+  - paragraph: Session score averages hostile contacts, then subtracts 10 per asset impact. Non-hostile engagement fails the session. Ranking node = 15 × co-observed pair agreement × engagement coverage. Shared ranking points are allocated to each hostile row.
+  - generic "Local performance diagnostics"
