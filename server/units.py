@@ -149,7 +149,13 @@ def launch_group(uid:str,req:GroupLaunch):
             gid='G_'+uuid.uuid4().hex
             if req.scenario_id:
                 row=db.execute('SELECT sc.spec FROM scenarios sc JOIN scenario_library l ON l.id=sc.id WHERE sc.id=?',(req.scenario_id,)).fetchone()
-                if not row:raise HTTPException(422,'Saved library scenario not found')
+                if not row:
+                    row=db.execute('SELECT spec FROM scenarios WHERE id=?',(req.scenario_id,)).fetchone()
+                    candidate=json.loads(row['spec']) if row else {}
+                    if candidate.get('observation_mission',{}).get('version')!='observation-mission-v3':raise HTTPException(422,'Saved library scenario not found')
+                    from .observation_missions_v3 import validate_snapshot
+                    try:validate_snapshot(candidate)
+                    except (ValueError,KeyError,TypeError) as error:raise HTTPException(422,'Invalid frozen site mission') from error
                 spec=json.loads(row['spec'])
             else:spec=make_scenario(req.seed,'recognition',req.night)
             db.execute('INSERT OR IGNORE INTO scenarios VALUES (?,?)',(spec['id'],dumps(spec)))
@@ -194,3 +200,29 @@ def group_results(uid:str,gid:str):
             if card and card.get('prioritisation'):averages['prioritise']=card['prioritisation']['points']
             result.append(dict(session_id=r['id'],trainee_id=r['trainee'],callsign=r['callsign'],status=r['status'],score=card['score'] if card else None,node_averages=averages))
         return dict(exercise_group_id=gid,scenario_id=g['scenario_id'],created_at=g['created_at'],results=result)
+
+
+@router.get('/units/{uid}/exercises/{gid}/observation-evidence')
+def group_observation_evidence(uid:str,gid:str):
+    """Existing group lineage + verified mission evidence; never a mastery score."""
+    from .main import logged_events,applied_commands
+    from .observation_missions_v3 import validate_snapshot
+    from .observation_assessment import _cached_assessment
+    with connect() as db:
+        g=db.execute('SELECT g.*,sc.spec FROM exercise_groups g JOIN scenarios sc ON sc.id=g.scenario_id WHERE g.id=? AND g.unit_id=?',(gid,uid)).fetchone()
+        if not g:raise HTTPException(404,'Exercise group not found')
+        scenario=json.loads(g['spec'])
+        if scenario.get('observation_mission',{}).get('version')!='observation-mission-v3':raise HTTPException(422,'This group has no authored-site evidence contract')
+        try:validate_snapshot(scenario)
+        except (ValueError,KeyError,TypeError) as error:raise HTTPException(422,'Invalid frozen site mission') from error
+        rows=db.execute('SELECT s.*,t.callsign FROM sessions s JOIN trainees t ON t.id=s.trainee WHERE s.exercise_group_id=? ORDER BY t.callsign',(gid,)).fetchall()
+        results=[]
+        for row in rows:
+            item=dict(session_id=row['id'],callsign=row['callsign'],status=row['status'],verified=False,original_tactical_score=None,evidence=None)
+            if row['status']=='completed' and row['scorecard']:
+                actions=logged_events(db,row['id']);commands=applied_commands(db,row['id'])
+                end=row['execution_tick'] if row['execution_tick'] is not None else max([e['tick'] for e in actions+commands],default=0)
+                report=_cached_assessment(dumps(dict(scenario=scenario,actions=actions,commands=commands,sid=row['id'],observed_end=end)))
+                item.update(verified=True,original_tactical_score=json.loads(row['scorecard'])['score'],evidence=dict(observed_end_tick=end,competencies=report['competencies'],decisions=report['summary']['decisions'],requests=report['summary']['requests'],declared_deferrals=[dict(tick=a['tick'],reason=a['reason'],track=a['track']) for a in actions if a['k']=='defer'],acquisition_utility=[dict(channel=a['channel'],utility=a['utility']) for a in report['acquisitions']],follow_up=report['follow_up'],report_hash=report['report_hash']))
+            results.append(item)
+    return dict(version='site-instructor-evidence-v1',exercise_group_id=gid,scenario_id=scenario['id'],site=scenario['training_site']['title'],mode=scenario['observation_mission']['mode'],results=results,mastery_awarded=False,limitations=['Original tactical outcomes and reconstructed evidence support are separate.','Requests, declarations and supported findings do not establish private reasoning, mastery or learning gains.','Only server-completed sessions contribute evidence; active sessions have no inferred result.'])

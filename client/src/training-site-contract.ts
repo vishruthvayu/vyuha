@@ -98,3 +98,28 @@ export function siteSurveyPose(site: TrainingSite) {
     position: { x: x - radius * 0.55, y: radius * 0.75, z: z - radius * 0.8 },
   };
 }
+
+/** Public architectural arrival, independent of contacts and future events.
+ * The live camera never uses this pose; Start cuts back to the sensor origin. */
+export function siteArrivalPose(
+  site: TrainingSite,
+  seconds = 7,
+  reducedMotion = false,
+) {
+  const b = site.structures[0],
+    cx = (b.x_min + b.x_max) / 2,
+    w = b.x_max - b.x_min;
+  const progress = reducedMotion
+      ? 1
+      : Math.min(1, Math.max(0, (Number.isFinite(seconds) ? seconds : 0) / 7)),
+    ease = progress * progress * (3 - 2 * progress);
+  const distance = Math.max(115, w * 1.1);
+  return {
+    target: { x: cx, y: b.height * 0.5, z: (b.z_min + b.z_max) / 2 },
+    position: {
+      x: cx - w * 0.38 + (1 - ease) * 18,
+      y: b.height * 0.85 + 18 + (1 - ease) * 7,
+      z: b.z_min - distance - (1 - ease) * 25,
+    },
+  };
+}

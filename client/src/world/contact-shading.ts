@@ -64,8 +64,11 @@ export function contactShadeData(size = 64) {
     }
   return data;
 }
-export function createContactShading(layout: FacilityLayout) {
-  const places = foundations(layout);
+export function createContactShading(
+  layout: FacilityLayout,
+  authored: Foundation[] = [],
+) {
+  const places = [...foundations(layout), ...authored];
   const texture = new THREE.DataTexture(contactShadeData(), 64, 64);
   texture.colorSpace = THREE.SRGBColorSpace;
   texture.magFilter = THREE.LinearFilter;

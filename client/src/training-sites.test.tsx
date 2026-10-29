@@ -1,3 +1,4 @@
+import { siteGeometryBudget } from "./world/presentation-profile";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -66,7 +67,11 @@ test("authored sites share exact authoritative footprints and bounded determinis
         g.dispose();
       }
     }
-    assert.ok(triangles < 5000 && bytes < 1_000_000 && batches <= 24);
+    assert.ok(
+      triangles < siteGeometryBudget.medium.triangles &&
+        bytes < siteGeometryBudget.medium.bytes &&
+        batches <= 24,
+    );
     console.info(
       JSON.stringify({
         site: site.id,

@@ -1,3 +1,4 @@
+import { siteShadowProfile } from "./presentation-profile";
 import { siteArchitecture, addSiteStreetscape } from "./site-architecture";
 import { trainingSiteLayout, type TrainingSite } from "./training-site";
 import { addLogisticsArchitecture, isAuthoredStructure } from "./logistics-kit";
@@ -326,6 +327,10 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
   }, [terrain, boxes, legacy, props.trainingSite]);
   const textures = useWorldTextures(quality, layout);
   const { gl, scene } = useThree();
+  const shadowProfile = useMemo(
+    () => siteShadowProfile(props.trainingSite, quality),
+    [props.trainingSite, quality],
+  );
 
   const built = useMemo<Built>(() => {
     const finish = diagnosticSpan("world_build");
@@ -356,7 +361,16 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     };
     // One inexpensive EO-only batch. No shadow decals enter thermal imagery.
     if (quality !== "low") {
-      const shade = createContactShading(layout);
+      const shade = createContactShading(
+        layout,
+        props.trainingSite?.structures.map((b) => ({
+          x: (b.x_min + b.x_max) / 2,
+          z: (b.z_min + b.z_max) / 2,
+          rx: (b.x_max - b.x_min) / 2 + 3,
+          rz: (b.z_max - b.z_min) / 2 + 3,
+          rot: 0,
+        })) ?? [],
+      );
       group.add(shade.mesh);
       disposables.push(shade);
     }
@@ -466,7 +480,8 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
       facility,
       layout.placements.filter(isAuthoredStructure),
     );
-    if (props.trainingSite) addSiteStreetscape(facility, props.trainingSite);
+    if (props.trainingSite)
+      addSiteStreetscape(facility, props.trainingSite, quality);
     else addStreetscape(facility, layout);
     for (const [key, geometry] of facility.merged())
       addMesh(geometry, kit[key], MATERIAL_THERMAL[key], {
@@ -477,7 +492,10 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     const dressing = new Batches();
     boxes.forEach((b, i) => {
       if (props.trainingSite) {
-        const siteBatch = siteArchitecture(props.trainingSite.structures[i]);
+        const siteBatch = siteArchitecture(
+          props.trainingSite.structures[i],
+          quality,
+        );
         for (const [key, geometry] of siteBatch.merged())
           dressing.add(key, geometry, new THREE.Matrix4());
         return;
@@ -1035,17 +1053,23 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
       <primitive object={skyProbe} />
       <directionalLight
         ref={sunRef}
-        position={sunDirection.clone().multiplyScalar(400).toArray()}
+        position={sunDirection
+          .clone()
+          .multiplyScalar(shadowProfile.distance)
+          .toArray()}
         intensity={2.6}
         color="#fff2dc"
         castShadow={quality !== "low"}
-        shadow-mapSize={quality === "high" ? [2048, 2048] : [1024, 1024]}
-        shadow-camera-left={-170}
-        shadow-camera-right={170}
-        shadow-camera-top={170}
-        shadow-camera-bottom={-170}
+        shadow-mapSize={[
+          shadowProfile.resolution || 1024,
+          shadowProfile.resolution || 1024,
+        ]}
+        shadow-camera-left={-shadowProfile.radius}
+        shadow-camera-right={shadowProfile.radius}
+        shadow-camera-top={shadowProfile.radius}
+        shadow-camera-bottom={-shadowProfile.radius}
         shadow-camera-near={10}
-        shadow-camera-far={900}
+        shadow-camera-far={shadowProfile.far}
         shadow-bias={-0.0006}
         shadow-normalBias={0.04}
         onUpdate={(l) => l.layers.enableAll()}

@@ -1,0 +1,619 @@
+/* Observation Theatre v2. One world + fixed instrument edges. Imported after
+   legacy station rules; canvas/worker ownership and instrument state persist. */
+:root {
+  --theatre-ink: #101a21;
+  --theatre-surface: #17262f;
+  --theatre-edge: #344d59;
+  --theatre-text: #e4eeed;
+  --theatre-muted: #9cb4bd;
+  --theatre-accent: #b8d6c7;
+  --theatre-warm: #dfbc76;
+}
+#root .active-observation-theatre {
+  --station-dock: 62px;
+  --evidence-deck-height: 0px;
+}
+#root .active-observation-theatre .simulation-workstation {
+  background: var(--theatre-ink);
+}
+#root .active-observation-theatre .station-instrument-bar {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: auto;
+  width: 76px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 10px 6px;
+  border-right: 1px solid var(--theatre-edge);
+  background: #101c24;
+  z-index: 18;
+}
+#root .active-observation-theatre .station-phase-context {
+  display: none;
+}
+#root .active-observation-theatre .station-instrument-bar nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+}
+#root .active-observation-theatre .station-instrument-bar nav button {
+  width: 62px;
+  min-height: 62px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 3px;
+  font-size: 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  color: var(--theatre-muted);
+  background: transparent;
+}
+#root
+  .active-observation-theatre
+  .station-instrument-bar
+  nav
+  button[aria-pressed="true"] {
+  background: #233a43;
+  border-color: #73968f;
+  color: #dceddf;
+  box-shadow: inset 3px 0 #bdd7c5;
+}
+#root
+  .active-observation-theatre
+  .simulation-workstation[data-instrument="observe"]:not(
+    [data-station-phase="ready"]
+  ):not([data-station-phase="restoring"])
+  .sensor-workspace
+  > .scene-container {
+  left: 76px;
+  right: 354px;
+  top: 0;
+  bottom: 112px;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+}
+#root
+  .active-observation-theatre
+  .simulation-workstation[data-instrument="observe"]
+  .sensor-workspace
+  > .panel-header {
+  left: 88px;
+  right: 366px;
+  top: auto;
+  bottom: 64px;
+  max-width: none;
+  min-height: 42px;
+  display: flex;
+  background: #12232d;
+  border: 1px solid #3a515b;
+  border-radius: 7px;
+  padding: 4px 8px;
+}
+#root
+  .active-observation-theatre
+  .simulation-workstation[data-instrument="observe"]
+  .sensor-workspace
+  > .panel-header
+  > div:first-child {
+  display: none;
+}
+#root
+  .active-observation-theatre
+  .simulation-workstation[data-instrument="observe"]
+  .sensor-workspace
+  > .panel-header
+  .segmented {
+  margin-left: auto;
+}
+#root
+  .active-observation-theatre
+  .simulation-workstation[data-instrument="observe"]
+  .radar-panel {
+  left: 90px;
+  top: 16px;
+  bottom: auto;
+  width: 164px;
+  max-height: 200px;
+  opacity: 0.94;
+  border: 1px solid #4f6870;
+  border-radius: 8px;
+  background: #13232cdd;
+}
+#root
+  .active-observation-theatre
+  .simulation-workstation[data-instrument="observe"]
+  .scene-toolbar {
+  left: 88px;
+  right: auto;
+  bottom: 64px;
+  display: none;
+}
+#root
+  .active-observation-theatre
+  .simulation-workstation[data-instrument="observe"]
+  .view-annotation.top-left {
+  left: 270px;
+  top: 20px;
+  max-width: calc(100% - 650px);
+  background: #11232abf;
+  padding: 7px 10px;
+  border-left: 2px solid #91b4b1;
+}
+#root
+  .active-observation-theatre
+  .simulation-workstation[data-instrument="observe"]
+  .station-selection-bar {
+  left: 88px;
+  right: 366px;
+  bottom: 6px;
+  min-height: 50px;
+  max-height: 54px;
+  padding: 6px 12px;
+  border-radius: 7px;
+  background: #172b33;
+  border: 1px solid #49616a;
+}
+#root .active-observation-theatre .station-selection-bar p {
+  display: none;
+}
+#root .active-observation-theatre .station-selection-bar dl {
+  gap: 12px;
+}
+#root
+  .active-observation-theatre
+  .station-selection-bar
+  .station-primary-action {
+  min-height: 38px;
+}
+#vyuha-observation-console {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 354px;
+  z-index: 12;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(160deg, #1c3039, #101e28);
+  border-left: 1px solid #5c7780;
+  overflow: hidden;
+  color: var(--theatre-text);
+}
+#vyuha-observation-console[hidden] {
+  display: none;
+}
+.theatre-console-header {
+  padding: 18px 18px 14px;
+  border-bottom: 1px solid var(--theatre-edge);
+  display: grid;
+  gap: 6px;
+}
+.theatre-console-header > span {
+  font:
+    10px ui-monospace,
+    monospace;
+  letter-spacing: 0.14em;
+  color: var(--theatre-warm);
+}
+.theatre-console-header strong {
+  font-size: 19px;
+  font-weight: 550;
+  letter-spacing: -0.02em;
+}
+.theatre-console-header small {
+  font-size: 11px;
+  color: var(--theatre-muted);
+}
+.theatre-console-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+#vyuha-observation-console .observation-flight-deck {
+  position: static;
+  inset: auto;
+  display: block;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  height: auto;
+  overflow: visible;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+#vyuha-observation-console .flight-directive {
+  position: static;
+  inset: auto;
+  max-width: none;
+  max-height: none;
+  padding: 14px 16px;
+  border: 0;
+  border-bottom: 1px solid var(--theatre-edge);
+  background: none;
+  display: block;
+  border-radius: 0;
+  overflow: visible;
+}
+#vyuha-observation-console .flight-directive-mark {
+  display: none;
+}
+#vyuha-observation-console .flight-directive .eyebrow {
+  font-size: 9px;
+  color: var(--theatre-muted);
+}
+#vyuha-observation-console .flight-directive h2 {
+  font-size: 17px;
+  line-height: 1.35;
+  margin: 6px 0;
+}
+#vyuha-observation-console .flight-channel-rack {
+  position: static;
+  inset: auto;
+  width: auto;
+  max-width: none;
+  padding: 14px 16px;
+  border: 0;
+  border-bottom: 1px solid var(--theatre-edge);
+  border-radius: 0;
+  background: none;
+}
+#vyuha-observation-console .acquisition-channel-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+#vyuha-observation-console .acquisition-channel-actions button {
+  min-height: 60px;
+  padding: 10px;
+  background: #263e48;
+  border: 1px solid #60858c;
+  border-radius: 7px;
+}
+#vyuha-observation-console .acquisition-channel-actions button strong {
+  font-size: 13px;
+}
+#vyuha-observation-console .acquisition-channel-actions button small {
+  font-size: 10px;
+}
+#vyuha-observation-console .flight-task-gate {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #b5c9ce;
+}
+#vyuha-observation-console .flight-evidence-deck {
+  position: static;
+  inset: auto;
+  width: auto;
+  height: auto;
+  max-height: none;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  padding: 14px 16px;
+  border-radius: 0;
+  overflow: visible;
+}
+#vyuha-observation-console .flight-evidence-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+#vyuha-observation-console .flight-evidence-heading > div {
+  flex: 1;
+  min-width: 160px;
+}
+#vyuha-observation-console .flight-evidence-heading strong {
+  font-size: 13px;
+}
+#vyuha-observation-console .flight-logical-clock {
+  font-size: 11px;
+}
+#vyuha-observation-console .flight-deck-instruments {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding-top: 12px;
+}
+#vyuha-observation-console
+  .flight-evidence-deck[data-expanded="false"]
+  .flight-deck-instruments {
+  display: none;
+}
+#vyuha-observation-console .flight-task-instrument,
+#vyuha-observation-console .acquisition-results,
+#vyuha-observation-console .acquisition-subject {
+  padding: 12px;
+  background: #142630;
+  border: 1px solid #37545e;
+  border-radius: 7px;
+}
+#vyuha-observation-console .flight-correlated-evidence {
+  display: grid;
+  gap: 8px;
+}
+#vyuha-observation-console .flight-countdown {
+  font-size: 26px;
+}
+#vyuha-observation-console .flight-evidence-deck footer {
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--theatre-muted);
+  margin-top: 14px;
+}
+#vyuha-observation-console .theatre-camera-dock {
+  flex: none;
+  padding: 12px 16px;
+  border-top: 1px solid var(--theatre-edge);
+  background: #11212a;
+}
+#vyuha-observation-console .optical-console {
+  position: static;
+  inset: auto;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  min-height: 0;
+  height: auto;
+  display: flex;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  gap: 8px;
+  background: none;
+}
+#vyuha-observation-console .optical-mode {
+  font-size: 10px;
+}
+#vyuha-observation-console .optical-console button {
+  min-height: 40px;
+  min-width: 40px;
+}
+#vyuha-observation-console .optical-console > small {
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--theatre-muted);
+}
+#root
+  .active-observation-theatre
+  .simulation-workstation:not([data-instrument="observe"])
+  .station-instrument-heading {
+  left: 90px;
+}
+#root
+  .active-observation-theatre
+  .simulation-workstation:not([data-instrument="observe"])
+  .station-selection-bar {
+  left: 90px;
+}
+/* Shared review/authoring language: quiet analytical surfaces, framed worlds. */
+#root .theatre-stage {
+  border: 1px solid #435e68;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #101e28;
+}
+#root .theatre-evidence-inspector {
+  background: linear-gradient(160deg, #1b303a, #11202a);
+}
+#root .oms-world {
+  border: 1px solid #526e77;
+  box-shadow: 0 18px 60px #0004;
+}
+#root .mission-briefing-next .mission-briefing-main {
+  border-left: 2px solid #b8cdbb;
+}
+@media (max-width: 1100px) and (min-width: 761px) {
+  #vyuha-observation-console {
+    width: 310px;
+  }
+  #root
+    .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]:not(
+      [data-station-phase="ready"]
+    ):not([data-station-phase="restoring"])
+    .sensor-workspace
+    > .scene-container {
+    right: 310px;
+  }
+  #root
+    .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .sensor-workspace
+    > .panel-header,
+  #root
+    .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .station-selection-bar {
+    right: 322px;
+  }
+  #root
+    .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .radar-panel {
+    display: none;
+  }
+  #root
+    .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .view-annotation.top-left {
+    left: 92px;
+    max-width: calc(100% - 430px);
+  }
+}
+@media (max-width: 760px) {
+  #root .active-observation-theatre .station-instrument-bar {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: auto;
+    height: 54px;
+    min-height: 54px;
+    padding: 4px;
+  }
+  #root .active-observation-theatre .station-instrument-bar nav {
+    flex-direction: row;
+    gap: 3px;
+    justify-content: space-around;
+  }
+  #root .active-observation-theatre .station-instrument-bar nav button {
+    min-height: 44px;
+    width: auto;
+    flex: 1;
+    gap: 2px;
+    padding: 3px;
+    font-size: 9px;
+  }
+  #root
+    .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]:not(
+      [data-station-phase="ready"]
+    ) {
+    overflow-y: auto;
+  }
+  #root
+    .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]:not(
+      [data-station-phase="ready"]
+    )
+    .sensor-workspace {
+    position: relative;
+    height: auto;
+    min-height: 100%;
+    padding-top: calc(50svh + 110px);
+    padding-bottom: 80px;
+    overflow: visible;
+  }
+  #root
+    .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]:not(
+      [data-station-phase="ready"]
+    ):not([data-station-phase="restoring"])
+    .sensor-workspace
+    > .scene-container {
+    top: 54px;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    height: 50svh;
+    width: 100%;
+  }
+  #vyuha-observation-console {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    min-height: 400px;
+    overflow: visible;
+    border: 0;
+  }
+  #root
+    .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .sensor-workspace
+    > .panel-header {
+    left: 8px;
+    right: 8px;
+    top: calc(50svh + 58px);
+    bottom: auto;
+    min-height: 44px;
+  }
+  #root
+    .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .station-selection-bar {
+    position: fixed;
+    left: 8px;
+    right: 8px;
+    bottom: 6px;
+    max-height: 58px;
+    z-index: 24;
+  }
+  #root
+    .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .radar-panel {
+    display: none;
+  }
+  #root
+    .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .view-annotation.top-left {
+    left: 12px;
+    top: 12px;
+    max-width: calc(100% - 24px);
+  }
+  .theatre-console-header {
+    padding: 14px 16px;
+  }
+  #vyuha-observation-console .theatre-camera-dock {
+    position: static;
+  }
+}
+.site-episode-review {
+  background: linear-gradient(130deg, #1b303a, #11202a);
+  border: 1px solid #47616b;
+  padding: 22px;
+  border-radius: 12px;
+}
+.site-episode-review label {
+  display: grid;
+  gap: 8px;
+  max-width: 600px;
+  margin: 16px 0;
+}
+.site-episode-review select {
+  min-height: 44px;
+}
+.site-episode-people {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+.site-episode-people article {
+  padding: 16px;
+  border: 1px solid #3c5b67;
+  background: #142731;
+  border-radius: 8px;
+}
+.site-episode-people a {
+  color: #c2dccc;
+  display: inline-block;
+  min-height: 32px;
+}
+/* Settings open toward the world, rather than below the bottom instrument row. */
+#root
+  .active-observation-theatre
+  .simulation-workstation[data-instrument="observe"]
+  .observation-preferences[open]
+  > .observation-popover {
+  top: auto;
+  bottom: calc(100% + 8px);
+  max-height: min(320px, 42svh);
+}
+#vyuha-observation-console .optical-console button {
+  min-height: 44px;
+  min-width: 44px;
+}
+#root
+  .active-observation-theatre
+  .station-instrument-bar
+  nav
+  button:focus-visible,
+#vyuha-observation-console button:focus-visible,
+#vyuha-observation-console summary:focus-visible {
+  outline: 2px solid #e8d5a5;
+  outline-offset: 3px;
+}

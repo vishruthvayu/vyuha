@@ -59,7 +59,7 @@ import {
 import { SceneryObstruction, sceneryObstacles } from "./world/obstruction";
 import {
   trainingSiteLayout,
-  siteSurveyPose,
+  siteArrivalPose,
   type TrainingSite,
 } from "./world/training-site";
 import { worldPresentationEnvelope } from "./world/world-envelope";
@@ -197,7 +197,9 @@ function CameraRig({
           arrivalTime.current,
           reducedMotion,
         );
-        const sitePose = trainingSite ? siteSurveyPose(trainingSite) : null;
+        const sitePose = trainingSite
+          ? siteArrivalPose(trainingSite, arrivalTime.current, reducedMotion)
+          : null;
         const arrival = sitePose
           ? {
               aim: [

@@ -1,3 +1,5 @@
+import SiteEpisodeReview from "./SiteEpisodeReview";
+import type { ObservationMissionCatalog } from "./observation-missions";
 import { useEffect, useState } from "react";
 import { WhiteCell } from "./WhiteCell";
 import { commandLabel, commandState, instructorReason } from "./presentation";
@@ -80,9 +82,26 @@ export default function Instructor() {
   const [checked, setChecked] = useState<string[]>([]);
   const [groups, setGroups] = useState<GroupResult[]>([]);
   const [launchMessage, setLaunchMessage] = useState("");
+  const [siteMissions, setSiteMissions] = useState<
+    ObservationMissionCatalog["missions"]
+  >([]);
+  const [siteMission, setSiteMission] = useState("");
+  useEffect(() => {
+    let alive = true;
+    void api<ObservationMissionCatalog>("/observation-missions-v3/catalog")
+      .then((c) => {
+        if (alive)
+          setSiteMissions(c.missions.filter((m) => m.mission_version === 3));
+      })
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, []);
   const [launching, setLaunching] = useState(false);
   const [groupRequest, setGroupRequest] = useState<{
     request_id: string;
+    scenario_id?: string;
     trainees: string[];
     seed: number;
     night: boolean;
@@ -121,6 +140,7 @@ export default function Instructor() {
       trainees: checked,
       seed: 482913,
       night: true,
+      ...(siteMission ? { scenario_id: siteMission } : {}),
     };
     setGroupRequest(body);
     try {
@@ -128,7 +148,7 @@ export default function Instructor() {
       setGroupRequest(null);
       setChecked([]);
       setLaunchMessage(
-        "Night Watch assigned. Each trainee receives a separate session and can start from its lobby.",
+        "Frozen exercise assigned. Each trainee receives a separate session and explicitly starts it from the lobby.",
       );
     } catch (e) {
       setLaunchMessage(e instanceof Error ? e.message : "Assignment failed.");
@@ -292,9 +312,29 @@ export default function Instructor() {
             <strong>Connected trainees · Group assignment</strong>
           </div>
           <p>
-            Assign Night Watch to connected, idle trainees. Each browser polls
-            once per second and starts its own assigned session.
+            Assign one frozen exercise to connected, idle trainees. Each browser
+            receives a separate session and explicitly starts from its lobby.
+            Site missions retain their authored evidence conditions and separate
+            practice/assessment contracts.
           </p>
+          <label>
+            Frozen exercise
+            <select
+              value={siteMission}
+              disabled={launching || !!groupRequest}
+              onChange={(e) => setSiteMission(e.target.value)}
+            >
+              <option value="">Night Watch · original exercise</option>
+              {siteMissions.map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.title} · {m.mode} · {m.id.slice(-8)}
+                </option>
+              ))}
+            </select>
+          </label>
+          <a className="button subtle" href="/observation-missions">
+            Author or publish a site mission
+          </a>
           <div className="roster-options">
             {roster
               .filter((r) => r.connected)
@@ -341,7 +381,9 @@ export default function Instructor() {
               ? "Assigning…"
               : groupRequest
                 ? "Retry same assignment"
-                : "Assign Night Watch"}
+                : siteMission
+                  ? "Assign frozen site mission"
+                  : "Assign Night Watch"}
           </button>
           {launchMessage && <p role="status">{launchMessage}</p>}
           <p className="footnote">
@@ -673,6 +715,7 @@ export default function Instructor() {
         }}
       />
       <GroupResults groups={groups} />
+      <SiteEpisodeReview groups={groups} />
     </main>
   );
 }

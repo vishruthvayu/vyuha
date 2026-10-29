@@ -9,6 +9,7 @@ import {
 export {
   validateTrainingSite,
   siteSurveyPose,
+  siteArrivalPose,
   type TrainingSite,
 } from "../training-site-contract";
 

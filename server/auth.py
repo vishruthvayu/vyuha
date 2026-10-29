@@ -50,6 +50,7 @@ def verify(password):
 def protected(method,path):
     if method=='POST' and path in ['/api/v1/observation-missions/compile','/api/v1/observation-missions/publish','/api/v1/observation-missions-v2/compile','/api/v1/observation-missions-v2/publish','/api/v1/observation-missions-v3/compile','/api/v1/observation-missions-v3/publish']:
         return True
+    if re.fullmatch(r'/api/v1/units/[^/]+/exercises/[^/]+/observation-evidence',path):return True
     if path.startswith('/api/v1/instructor/') or path.startswith('/api/v1/white-cell') or path.startswith('/api/v1/raids'):
         return True
     if re.fullmatch(r'/api/v1/trainees/[^/]+/analytics',path) or path=='/api/v1/evaluations' or path.startswith('/api/v1/evaluations/'):

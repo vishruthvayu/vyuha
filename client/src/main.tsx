@@ -16,6 +16,7 @@ import "./premium/premium.css";
 import "./observation-missions.css";
 import "./observation-assessment.css";
 import "./observation-journey.css";
+import "./premium/observation-theatre.css";
 import WorkspaceBoundary from "./WorkspaceBoundary";
 import { LoadingWorkspace } from "./UI";
 import { UnitGateway } from "./Unit";

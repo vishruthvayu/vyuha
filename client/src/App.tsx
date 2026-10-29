@@ -1,3 +1,4 @@
+import ObservationConsole from "./ObservationConsole";
 import { isAcquisitionEngine } from "./engine-contracts";
 import {
   observationEntry,
@@ -181,6 +182,7 @@ export default function App({
   const replayHeading = useRef<HTMLHeadingElement>(null);
   const decisionDock = useRef<HTMLElement>(null);
   const opticalControlsHost = useRef<HTMLDivElement>(null);
+  const observationControlsHost = useRef<HTMLDivElement>(null);
   const decisionAdviceHost = useRef<HTMLDivElement>(null);
   const [view, setView] = useState<View>(() =>
     workspaceViewFromSearch(window.location.search),
@@ -1785,7 +1787,7 @@ export default function App({
         tabIndex={-1}
         className={
           view === "drill"
-            ? `flight-shell mission-simulator${isAcquisitionEngine(scenario.engine_version) ? " active-observation-theatre" : ""}`
+            ? `flight-shell mission-simulator${isAcquisitionEngine(scenario.engine_version) || acquisitionEntry ? " active-observation-theatre" : ""}`
             : undefined
         }
       >
@@ -2265,7 +2267,10 @@ export default function App({
                       controlsHost={
                         stationInstrument === "evidence"
                           ? opticalControlsHost.current
-                          : null
+                          : isAcquisitionEngine(scenario.engine_version) &&
+                              stationInstrument === "observe"
+                            ? observationControlsHost.current
+                            : null
                       }
                       onCompareOpen={() => setStationInstrument("observe")}
                       onCompareClose={() => setStationInstrument("evidence")}
@@ -2584,43 +2589,48 @@ export default function App({
                     </OpticalStation>
                     {isAcquisitionEngine(scenario.engine_version) &&
                       (phase === "running" || phase === "paused") && (
-                        <AcquisitionStation
-                          key={stationScope}
-                          state={state}
-                          selected={selected}
-                          running={running}
-                          enabled={workerInitialized.current && !busy}
+                        <ObservationConsole
                           visible={stationInstrument === "observe"}
-                          receipt={feedback}
-                          brief={
-                            scenario.observation_mission
-                              ? {
-                                  title: scenario.observation_mission.title,
-                                  objectives:
-                                    scenario.observation_mission.objectives,
-                                }
-                              : undefined
-                          }
-                          onInspectChannel={(channel) =>
-                            setVision(channel === "eo" ? "day" : "thermal")
-                          }
-                          request={(channel) => {
-                            if (
-                              !running ||
-                              !workerInitialized.current ||
-                              !selected
-                            )
-                              return null;
-                            const id = newId();
-                            act({
-                              k: "inspect",
-                              track: selected,
-                              channel,
-                              request_id: id,
-                            });
-                            return id;
-                          }}
-                        />
+                          controlsHost={observationControlsHost}
+                        >
+                          <AcquisitionStation
+                            key={stationScope}
+                            state={state}
+                            selected={selected}
+                            running={running}
+                            enabled={workerInitialized.current && !busy}
+                            visible={stationInstrument === "observe"}
+                            receipt={feedback}
+                            brief={
+                              scenario.observation_mission
+                                ? {
+                                    title: scenario.observation_mission.title,
+                                    objectives:
+                                      scenario.observation_mission.objectives,
+                                  }
+                                : undefined
+                            }
+                            onInspectChannel={(channel) =>
+                              setVision(channel === "eo" ? "day" : "thermal")
+                            }
+                            request={(channel) => {
+                              if (
+                                !running ||
+                                !workerInitialized.current ||
+                                !selected
+                              )
+                                return null;
+                              const id = newId();
+                              act({
+                                k: "inspect",
+                                track: selected,
+                                channel,
+                                request_id: id,
+                              });
+                              return id;
+                            }}
+                          />
+                        </ObservationConsole>
                       )}
                     <section className="panel radar-panel" tabIndex={-1}>
                       <div className="panel-header">
