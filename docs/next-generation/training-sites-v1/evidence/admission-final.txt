@@ -1,0 +1,12 @@
+✔ mission admission keeps old Academy tickets isolated and fails closed on ambiguous or malformed launches (3.480417ms)
+✔ published mission admission never recompiles and verifies returned ownership and contract before preparing (1.064166ms)
+✔ preset preparation preserves seed zero and independent assessment mode; changed returned criteria are rejected (0.34725ms)
+✔ v2 admission is explicit and cannot reinterpret a frozen v1 mission as the new decision alphabet (0.403417ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 726.925167

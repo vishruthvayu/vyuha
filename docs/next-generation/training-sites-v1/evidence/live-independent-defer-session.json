@@ -1,0 +1,1222 @@
+{
+  "id": "38900d82-61c7-4d6a-83de-d02ef0f81f22",
+  "trainee": "T_2ac21623c54c473ca41629",
+  "unit_id": "local",
+  "exercise_group_id": null,
+  "scenario": {
+    "acquisition_policy": {
+      "cadenceTicks": 3,
+      "cooldownTicks": 6,
+      "dwellTicks": 30,
+      "expiryTicks": 60,
+      "latencyTicks": 6,
+      "maxReportAgeTicks": 90,
+      "maxRequests": 64,
+      "version": "optical-task-policy-v1"
+    },
+    "decision_policy": {
+      "reasons": [
+        "type_unresolved",
+        "affiliation_unresolved",
+        "conflicting_reports"
+      ],
+      "version": "uncertainty-decisions-v1"
+    },
+    "difficulty_label": "foundational",
+    "doctrine": {
+      "allowed_tactics": [
+        "DIRECT",
+        "SATURATION",
+        "DECOY_THEN_STRIKE",
+        "STAGGERED_WAVES",
+        "LOW_APPROACH",
+        "SPLIT_SWARM",
+        "PROBE_AND_RETREAT",
+        "BLIND_SECTOR"
+      ],
+      "defaults": {
+        "fog": 0.45,
+        "mix": [],
+        "night": false
+      },
+      "description": "Frozen meter-scale training research configuration; not official doctrine",
+      "example_values": true,
+      "id": "army-forward-post",
+      "name": "Illustrative finale local pack",
+      "rubric": {
+        "classify": 25,
+        "detect": 25,
+        "engage": 35,
+        "prioritise": 15
+      },
+      "rules": {
+        "asset_risk": 1,
+        "distance_precision": 6,
+        "effectors": [
+          "hold",
+          "rf_jam",
+          "kinetic"
+        ],
+        "hold_any_range": true,
+        "kinetic_range": 1000,
+        "restricted": {
+          "enabled": true,
+          "x_lt": -300,
+          "z_gt": 200
+        },
+        "rf_range": 1500,
+        "risk_weights": {
+          "bird": 0,
+          "fiber_fpv": 1.5,
+          "fixed_wing": 1.2,
+          "quad": 1
+        }
+      },
+      "version": 1
+    },
+    "duration": 90,
+    "effector_config": {
+      "asset_radius_m": 8,
+      "effectors": {
+        "hold": {
+          "enabled": true
+        },
+        "kinetic": {
+          "enabled": true,
+          "max_range_m": 1000
+        },
+        "rf_jam": {
+          "enabled": true,
+          "max_range_m": 1500,
+          "requires_rf_link": true
+        }
+      },
+      "engagement_channels": 1,
+      "id": "illustrative-local-response-v1",
+      "label": "Illustrative bounded training actions; not real weapon performance or official doctrine",
+      "minimum_response_window_s": 7,
+      "sensor_geometry": {
+        "day_camera_range_m": 1500,
+        "radar_range_m": 3000,
+        "thermal_range_m": 1200
+      },
+      "units": {
+        "distance": "m"
+      },
+      "version": 1
+    },
+    "engine_version": "vyuha-0.6.0",
+    "focus": "classification_iff",
+    "fog": 0.45,
+    "fusion": {
+      "bias_seed": 0,
+      "exercise": "normal",
+      "mode": "assessment",
+      "version": "fusion-1"
+    },
+    "id": "raid_ca60651665a72fe013e8f1bb",
+    "jamEnd": 2700,
+    "jamStart": 2700,
+    "night": false,
+    "observation_mission": {
+      "assessment_version": "evidence-assessment-v2",
+      "authoring": {
+        "duration": 90,
+        "dwell_ticks": 30,
+        "expiry_ticks": null,
+        "extra_contacts": 0,
+        "fog": null,
+        "mode": "assessment",
+        "night": null,
+        "objectives": null,
+        "seed": 587642,
+        "site": "open_campus",
+        "template": "timed_window",
+        "terrain": null,
+        "title": "",
+        "version": "observation-mission-v3"
+      },
+      "competencies": [
+        "C01",
+        "C02",
+        "C03"
+      ],
+      "criterion_profile": "timed_window",
+      "mode": "assessment",
+      "objectives": [
+        "Relate request, sample, publication and expiry to the decision boundary.",
+        "Reacquire only when a new observation can change a decision.",
+        "Retain uncertainty when current evidence does not establish type or affiliation."
+      ],
+      "template": "timed_window",
+      "title": "Evidence has a clock",
+      "version": "observation-mission-v3"
+    },
+    "prioritisation_version": 1,
+    "raid": {
+      "anti_repeat": {
+        "history_considered": 0,
+        "rejected_attempts": 0
+      },
+      "constraints": {
+        "max_contacts": 200,
+        "peak_hostile_cap": 3,
+        "response_window_s": 7
+      },
+      "family": "LOW_APPROACH",
+      "fingerprint": "3020731875153121807d1c52",
+      "formation_model": "Closed-form shared leader with bounded slots and optional split; not autonomous swarm AI",
+      "requested_seed": 587642,
+      "signature": [
+        "bird:0:0:orbit_then_dash",
+        "fiber_fpv:6:0:orbit_then_dash",
+        "quad:2:0:orbit_then_dash",
+        "quad:6:0:weave"
+      ],
+      "validation": {
+        "basis": "Geometric baseline check with declared ranges; not calibrated sensor reliability or a certified human-solvability claim",
+        "peak_simultaneous_hostiles": 2,
+        "response_windows": {
+          "T1": {
+            "first_tick": 592,
+            "last_tick": 2699,
+            "usable_ticks": 1712
+          },
+          "T2": {
+            "first_tick": 63,
+            "last_tick": 1997,
+            "usable_ticks": 1911
+          }
+        },
+        "saturation_index": 2.0
+      },
+      "version": 2,
+      "waves": [
+        {
+          "contacts": [
+            "T1",
+            "T2"
+          ],
+          "role": "low_approach",
+          "tick": 60
+        }
+      ]
+    },
+    "red_force": {
+      "phases": [
+        {
+          "contacts": [
+            "T1",
+            "T2"
+          ],
+          "role": "low_approach",
+          "tick": 60
+        }
+      ],
+      "tactic": "LOW_APPROACH",
+      "tactic_seed": 587642,
+      "version": 2
+    },
+    "seed": 587642,
+    "sensor_config": {
+      "civil_beacon_probability": 0.9,
+      "clear_visibility_m": 20000,
+      "dense_visibility_m": 200,
+      "eo_ifov_rad": 0.00012,
+      "eo_max_range_m": 1500,
+      "false_track_lifetime_sweeps": 3,
+      "false_track_maximum": 2,
+      "false_track_probability": 0.05,
+      "iff_max_range_m": 2500,
+      "iff_reply_probability": 0.95,
+      "ir_fog_factor": 0.45,
+      "ir_ifov_rad": 0.00018,
+      "ir_max_range_m": 1200,
+      "optical_reliability": 0.95,
+      "optical_sample_ticks": 3,
+      "radar_confirm_hits": 3,
+      "radar_jam_factor": 0.15,
+      "radar_loss_sweeps": 3,
+      "radar_max_range_m": 5000,
+      "radar_occlusion_factor": 0.1,
+      "radar_pfa": 1e-06,
+      "radar_reference_range_m": 3000,
+      "radar_reference_rcs_db": -15,
+      "radar_reference_snr": 30,
+      "radar_reliability": 0.95,
+      "radar_sweep_ticks": 30,
+      "radar_window_sweeps": 5,
+      "rcs_spread_db": 3,
+      "rf_bearing_error_deg": 5,
+      "rf_gain_db": 6,
+      "rf_max_range_m": 4000,
+      "rf_path_exponent": 2.2,
+      "rf_reliability": 0.9,
+      "rf_sensitivity_dbm": -96,
+      "rf_shadow_db": 6,
+      "rf_tx_dbm": 20
+    },
+    "sensor_version": "vyuha-0.4.0",
+    "terrain": "urban",
+    "terrain_boxes": [
+      {
+        "height": 12,
+        "x_max": -165,
+        "x_min": -260,
+        "z_max": 345,
+        "z_min": 270
+      },
+      {
+        "height": 12,
+        "x_max": 260,
+        "x_min": 165,
+        "z_max": 345,
+        "z_min": 270
+      },
+      {
+        "height": 10,
+        "x_max": -175,
+        "x_min": -240,
+        "z_max": -90,
+        "z_min": -160
+      },
+      {
+        "height": 14,
+        "x_max": 280,
+        "x_min": 190,
+        "z_max": -115,
+        "z_min": -190
+      }
+    ],
+    "terrain_id": "urban_outpost",
+    "terrain_version": 1,
+    "threat_config": {
+      "id": "illustrative-threat-library-v1",
+      "label": "Illustrative training research parameters; not operational equipment specifications",
+      "profiles": {
+        "bird": {
+          "altitude_m": [
+            15,
+            80
+          ],
+          "identity": "neutral",
+          "kind": "bird",
+          "rf": false,
+          "speed_mps": [
+            4,
+            12
+          ]
+        },
+        "civil_uav": {
+          "altitude_m": [
+            20,
+            100
+          ],
+          "identity": "neutral",
+          "kind": "quad",
+          "registration_beacon": true,
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ]
+        },
+        "fixed_wing": {
+          "altitude_m": [
+            40,
+            180
+          ],
+          "identity": "hostile",
+          "kind": "fixed_wing",
+          "rf": false,
+          "speed_mps": [
+            25,
+            42
+          ]
+        },
+        "friendly_uav": {
+          "altitude_m": [
+            20,
+            100
+          ],
+          "identity": "friendly",
+          "kind": "quad",
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ]
+        },
+        "hostile_quad": {
+          "altitude_m": [
+            15,
+            90
+          ],
+          "identity": "hostile",
+          "kind": "quad",
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ]
+        },
+        "no_rf_fpv": {
+          "altitude_m": [
+            4,
+            30
+          ],
+          "identity": "hostile",
+          "kind": "fiber_fpv",
+          "rf": false,
+          "speed_mps": [
+            20,
+            35
+          ]
+        }
+      },
+      "units": {
+        "altitude": "m",
+        "distance": "m",
+        "speed": "m/s",
+        "time": "s"
+      },
+      "version": 1
+    },
+    "title": "Evidence has a clock",
+    "tracks": [
+      {
+        "altitude": 16,
+        "bearing": 310,
+        "distance": 700,
+        "id": "T1",
+        "identity": "hostile",
+        "kind": "fiber_fpv",
+        "motion": {
+          "lateral_m": 0,
+          "period_s": 20,
+          "phase_s": 72.0,
+          "primitive": "orbit_then_dash",
+          "turn_deg": 100,
+          "version": 1
+        },
+        "radar_range": 3000,
+        "rf": false,
+        "spawn": 60,
+        "speed": 10,
+        "thermal_range": 1200,
+        "threat_profile": "no_rf_fpv"
+      },
+      {
+        "altitude": 4.27114684227854,
+        "bearing": 303,
+        "distance": 1144.433,
+        "id": "T2",
+        "identity": "hostile",
+        "kind": "quad",
+        "motion": {
+          "lateral_m": 87.828,
+          "period_s": 19.377,
+          "phase_s": 16.2,
+          "primitive": "weave",
+          "turn_deg": -21.674,
+          "version": 1
+        },
+        "radar_range": 3000,
+        "rf": true,
+        "spawn": 63,
+        "speed": 17.661,
+        "thermal_range": 1200,
+        "threat_profile": "hostile_quad"
+      },
+      {
+        "altitude": 46.673,
+        "bearing": 93,
+        "distance": 1608.094,
+        "expires_tick": 2700,
+        "id": "T3",
+        "identity": "friendly",
+        "kind": "quad",
+        "motion": {
+          "lateral_m": 0,
+          "period_s": 20,
+          "phase_s": 90,
+          "primitive": "orbit_then_dash",
+          "turn_deg": 70,
+          "version": 1
+        },
+        "radar_range": 3000,
+        "rf": true,
+        "spawn": 510,
+        "speed": 13.86,
+        "thermal_range": 1200,
+        "threat_profile": "friendly_uav"
+      },
+      {
+        "altitude": 74.817,
+        "bearing": 36,
+        "distance": 772.816,
+        "expires_tick": 2700,
+        "id": "T4",
+        "identity": "neutral",
+        "kind": "bird",
+        "motion": {
+          "lateral_m": 0,
+          "period_s": 20,
+          "phase_s": 90,
+          "primitive": "orbit_then_dash",
+          "turn_deg": 70,
+          "version": 1
+        },
+        "radar_range": 3000,
+        "rf": false,
+        "spawn": 240,
+        "speed": 6.921,
+        "thermal_range": 1200,
+        "threat_profile": "bird"
+      }
+    ],
+    "training_site": {
+      "id": "open_campus",
+      "landmarks": [
+        {
+          "id": "court",
+          "label": "Central observation court",
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 65
+          }
+        },
+        {
+          "id": "workshops",
+          "label": "Workshop crossing",
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 220
+          }
+        },
+        {
+          "id": "north_lane",
+          "label": "Open north lane",
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 480
+          }
+        }
+      ],
+      "structures": [
+        {
+          "height": 12,
+          "id": "west_workshop",
+          "label": "West workshop",
+          "style": "warehouse",
+          "x_max": -165,
+          "x_min": -260,
+          "z_max": 345,
+          "z_min": 270
+        },
+        {
+          "height": 12,
+          "id": "east_workshop",
+          "label": "East workshop",
+          "style": "warehouse",
+          "x_max": 260,
+          "x_min": 165,
+          "z_max": 345,
+          "z_min": 270
+        },
+        {
+          "height": 10,
+          "id": "west_office",
+          "label": "West office",
+          "style": "block",
+          "x_max": -175,
+          "x_min": -240,
+          "z_max": -90,
+          "z_min": -160
+        },
+        {
+          "height": 14,
+          "id": "east_store",
+          "label": "East store",
+          "style": "warehouse",
+          "x_max": 280,
+          "x_min": 190,
+          "z_max": -115,
+          "z_min": -190
+        }
+      ],
+      "summary": "Separated low buildings flank an open central approach. This contrasting public layout changes actual modeled sight lines, not sensor quality.",
+      "surfaces": [
+        {
+          "kind": "asphalt",
+          "path": [
+            [
+              -550,
+              220
+            ],
+            [
+              0,
+              220
+            ],
+            [
+              550,
+              220
+            ]
+          ],
+          "width": 10
+        },
+        {
+          "kind": "asphalt",
+          "path": [
+            [
+              0,
+              -550
+            ],
+            [
+              0,
+              220
+            ],
+            [
+              0,
+              650
+            ]
+          ],
+          "width": 10
+        },
+        {
+          "kind": "concrete",
+          "path": [
+            [
+              -70,
+              -45
+            ],
+            [
+              70,
+              -45
+            ],
+            [
+              70,
+              110
+            ],
+            [
+              -70,
+              110
+            ]
+          ]
+        },
+        {
+          "kind": "concrete",
+          "path": [
+            [
+              -270,
+              230
+            ],
+            [
+              -155,
+              230
+            ],
+            [
+              -155,
+              265
+            ],
+            [
+              -270,
+              265
+            ]
+          ]
+        },
+        {
+          "kind": "concrete",
+          "path": [
+            [
+              155,
+              230
+            ],
+            [
+              270,
+              230
+            ],
+            [
+              270,
+              265
+            ],
+            [
+              155,
+              265
+            ]
+          ]
+        }
+      ],
+      "title": "Open transfer campus",
+      "version": "training-site-v1"
+    },
+    "version": 2
+  },
+  "events": [
+    {
+      "decision_version": "uncertainty-decisions-v1",
+      "k": "defer",
+      "order": 0,
+      "reason": "affiliation_unresolved",
+      "tick": 1063,
+      "track": "T1"
+    }
+  ],
+  "commands": [],
+  "executionTick": 1074,
+  "endTick": 2700,
+  "scorecard": {
+    "engine_version": "vyuha-0.6.0",
+    "fratricide": false,
+    "leakers": 1,
+    "passed": false,
+    "prioritisation": {
+      "agreement": 1,
+      "choices": [],
+      "comparisons": [],
+      "coverage": 0.0,
+      "method": "pairwise Kendall agreement over co-observed hostile choices, multiplied by engagement coverage",
+      "ordering_rule": "First accepted non-Hold engagement per hostile; an ineffective attempt still declares attention. Pairs counted once, at their first co-observed choice.",
+      "points": 0,
+      "points_possible": 15,
+      "priority_rule": "risk_weight \u00d7 asset_risk / max(time_to_impact_seconds, 1/30)",
+      "tau": null,
+      "tie_rule": "Equal priority pairs are excluded; no comparable pairs yields neutral agreement 1, still multiplied by coverage.",
+      "unengaged": [
+        "T1",
+        "T2"
+      ],
+      "version": 1
+    },
+    "roe_breaches": 0,
+    "rows": [
+      {
+        "attempts": [],
+        "classify": 0,
+        "designated": null,
+        "detect": 0,
+        "detected": 120,
+        "engage": 0,
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: fiber fpv / hostile.",
+          "No RF link: use an allowed kinetic response in this example pack."
+        ],
+        "id": "T1",
+        "ideal": "kinetic",
+        "identity": "hostile",
+        "impact": false,
+        "kind": "fiber_fpv",
+        "prioritise": 0,
+        "total": 0
+      },
+      {
+        "attempts": [],
+        "classify": 0,
+        "designated": null,
+        "detect": 0,
+        "detected": 120,
+        "engage": 0,
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: quad / hostile.",
+          "RF-link present: RF jamming is the example-pack response.",
+          "This threat reached the protected asset."
+        ],
+        "id": "T2",
+        "ideal": "rf_jam",
+        "identity": "hostile",
+        "impact": true,
+        "kind": "quad",
+        "prioritise": 0,
+        "total": 0
+      },
+      {
+        "attempts": [],
+        "classify": 0,
+        "designated": null,
+        "detect": 0,
+        "detected": 570,
+        "engage": 0,
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: quad / friendly.",
+          "Hold fire on this non-hostile contact."
+        ],
+        "id": "T3",
+        "ideal": "hold",
+        "identity": "friendly",
+        "impact": false,
+        "kind": "quad",
+        "prioritise": 0,
+        "total": 0
+      },
+      {
+        "attempts": [],
+        "classify": 0,
+        "designated": null,
+        "detect": 0,
+        "detected": 330,
+        "engage": 0,
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: bird / neutral.",
+          "Hold fire on this non-hostile contact."
+        ],
+        "id": "T4",
+        "ideal": "hold",
+        "identity": "neutral",
+        "impact": false,
+        "kind": "bird",
+        "prioritise": 0,
+        "total": 0
+      }
+    ],
+    "score": 0,
+    "skills": {
+      "recognition": 0,
+      "response": 0
+    },
+    "summary": "1 threat reached the protected asset. Review response selection.",
+    "threats": 2
+  },
+  "created_at": "2026-10-29T05:42:01.660945+00:00",
+  "verified": true,
+  "teaching_notes": [],
+  "timeline": [
+    {
+      "id": "tl_0000",
+      "tick": 0,
+      "order": -1,
+      "category": "sensor_transition",
+      "code": "SENSOR_STATE",
+      "title": "Radar normal \u00b7 RF active \u00b7 Day",
+      "track_id": null,
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0008",
+      "tick": 60,
+      "order": null,
+      "category": "tactic_phase",
+      "code": "LOW_APPROACH",
+      "title": "Red Force \u00b7 low_approach \u00b7 T1, T2",
+      "track_id": null,
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0001",
+      "tick": 120,
+      "order": -1,
+      "category": "contact_detection",
+      "code": "FIRST_DETECTABLE",
+      "title": "T1 \u00b7 first working-sensor observation",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0002",
+      "tick": 120,
+      "order": -1,
+      "category": "contact_detection",
+      "code": "FIRST_DETECTABLE",
+      "title": "T2 \u00b7 first working-sensor observation",
+      "track_id": "T2",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0003",
+      "tick": 330,
+      "order": -1,
+      "category": "contact_detection",
+      "code": "FIRST_DETECTABLE",
+      "title": "T4 \u00b7 first working-sensor observation",
+      "track_id": "T4",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0004",
+      "tick": 570,
+      "order": -1,
+      "category": "contact_detection",
+      "code": "FIRST_DETECTABLE",
+      "title": "T3 \u00b7 first working-sensor observation",
+      "track_id": "T3",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0005",
+      "tick": 1063,
+      "order": 0,
+      "category": "trainee_action",
+      "code": "defer",
+      "title": "T1 \u00b7 Defer new declaration \u00b7 affiliation unresolved",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0006",
+      "tick": 1074,
+      "order": null,
+      "category": "score_error",
+      "code": "THREAT_MISSED",
+      "title": "T1 \u00b7 threat missed",
+      "track_id": "T1",
+      "decision_id": "dec_0000",
+      "seek_before": false
+    },
+    {
+      "id": "tl_0007",
+      "tick": 1074,
+      "order": null,
+      "category": "score_error",
+      "code": "THREAT_MISSED",
+      "title": "T2 \u00b7 threat missed",
+      "track_id": "T2",
+      "decision_id": "dec_0001",
+      "seek_before": false
+    }
+  ],
+  "decision_reviews": [
+    {
+      "decision_id": "dec_0000",
+      "session_id": "38900d82-61c7-4d6a-83de-d02ef0f81f22",
+      "track_id": "T1",
+      "tick": 1074,
+      "order": null,
+      "decision_kind": "detection",
+      "evidence": {
+        "tick": 120,
+        "radar": {
+          "available": true,
+          "state": "normal",
+          "detected": true
+        },
+        "rf": {
+          "available": true,
+          "signal": false,
+          "iff": "no_reply"
+        },
+        "visual": {
+          "available": false,
+          "silhouette": null
+        },
+        "range_m": 700.0,
+        "restricted": true,
+        "first_detectable_tick": 120,
+        "prior_classification": null,
+        "prior_identity": null,
+        "night": false
+      },
+      "ground_truth": {
+        "kind": "fiber_fpv",
+        "identity": "hostile",
+        "rf_link": false,
+        "spawn_tick": 60
+      },
+      "trainee_action": null,
+      "expected_action": {
+        "type": "designate",
+        "kind": null,
+        "identity": null,
+        "effector": null,
+        "basis": "available_evidence"
+      },
+      "verdict": "incorrect",
+      "reason_code": "THREAT_MISSED",
+      "explanation": "This threat became detectable at T+4.00s. No designation was recorded by the reviewed end at T+35.80s. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+      "consequence": {
+        "kind": "remained_active",
+        "tick": null,
+        "reason_code": "NO_CONSEQUENCE_YET",
+        "immediate": "not_applicable",
+        "text": "The contact remained active at the reviewed end; no later observed consequence is asserted."
+      },
+      "score_effect": {
+        "scope": "final_contact_node",
+        "node": "detect",
+        "points_awarded": 0,
+        "points_possible": 25,
+        "session_penalty": 0,
+        "penalty_basis": "none",
+        "session_failure": false
+      },
+      "skill_tags": [
+        "detection"
+      ],
+      "context_commands": []
+    },
+    {
+      "decision_id": "dec_0001",
+      "session_id": "38900d82-61c7-4d6a-83de-d02ef0f81f22",
+      "track_id": "T2",
+      "tick": 1074,
+      "order": null,
+      "decision_kind": "detection",
+      "evidence": {
+        "tick": 120,
+        "radar": {
+          "available": true,
+          "state": "normal",
+          "detected": true
+        },
+        "rf": {
+          "available": true,
+          "signal": false,
+          "iff": "no_reply"
+        },
+        "visual": {
+          "available": false,
+          "silhouette": null
+        },
+        "range_m": 1112.036,
+        "restricted": true,
+        "first_detectable_tick": 120,
+        "prior_classification": null,
+        "prior_identity": null,
+        "night": false
+      },
+      "ground_truth": {
+        "kind": "quad",
+        "identity": "hostile",
+        "rf_link": true,
+        "spawn_tick": 63
+      },
+      "trainee_action": null,
+      "expected_action": {
+        "type": "designate",
+        "kind": null,
+        "identity": null,
+        "effector": null,
+        "basis": "available_evidence"
+      },
+      "verdict": "incorrect",
+      "reason_code": "THREAT_MISSED",
+      "explanation": "This threat became detectable at T+4.00s. No designation was recorded by the reviewed end at T+35.80s. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+      "consequence": {
+        "kind": "remained_active",
+        "tick": null,
+        "reason_code": "NO_CONSEQUENCE_YET",
+        "immediate": "not_applicable",
+        "text": "The contact remained active at the reviewed end; no later observed consequence is asserted."
+      },
+      "score_effect": {
+        "scope": "final_contact_node",
+        "node": "detect",
+        "points_awarded": 0,
+        "points_possible": 25,
+        "session_penalty": 0,
+        "penalty_basis": "none",
+        "session_failure": false
+      },
+      "skill_tags": [
+        "detection"
+      ],
+      "context_commands": []
+    }
+  ],
+  "ghost_summary": {
+    "largest_loss": "dec_0000",
+    "strongest_decision": null,
+    "mistake_counts": {
+      "detection": 2,
+      "classification_iff": 0,
+      "effector_choice": 0,
+      "degraded_sensor_response": 0
+    },
+    "lost_points": {
+      "detection": 50,
+      "classification_iff": 0,
+      "effector_choice": 0,
+      "degraded_sensor_response": 0
+    },
+    "recommended_focus": "detection",
+    "no_major_errors": false,
+    "text": "Recommended training focus: detection. Counts are distinct contacts with evidenced errors; sensor context does not prove causation."
+  },
+  "replay_metadata": {
+    "hz": 30,
+    "observed_end_tick": 1074,
+    "scoring_end_tick": 2700,
+    "horizon_source": "completion",
+    "early_end": true,
+    "version": "ghost-uncertainty-v1",
+    "note": "Review and timeline stop at the observed exercise end. Final node scores retain the frozen exercise-duration scoring projection."
+  },
+  "node_averages": {
+    "detect": 0.0,
+    "classify": 0.0,
+    "prioritise": 0.0,
+    "engage": 0.0
+  },
+  "acquisition": {
+    "version": "optical-task-scheduler-v1",
+    "tick": 1074,
+    "ended": true,
+    "pending": null,
+    "requests": [],
+    "results": [],
+    "events": [],
+    "cooldownUntil": 0,
+    "samples": [],
+    "ordering": "scheduled-before-external-v1",
+    "next_order": 1
+  },
+  "observation_assessment": {
+    "version": "evidence-assessment-v2",
+    "session_id": "38900d82-61c7-4d6a-83de-d02ef0f81f22",
+    "mission_version": "observation-mission-v3",
+    "criterion_profile": "timed_window",
+    "mode": "assessment",
+    "assessed": true,
+    "observed_end_tick": 1074,
+    "score_contract": "separate-from-frozen-rubric",
+    "decisions": [
+      {
+        "id": "evidence_decision_0",
+        "tick": 1063,
+        "order": 0,
+        "track": "T1",
+        "action": {
+          "decision_version": "uncertainty-decisions-v1",
+          "k": "defer",
+          "order": 0,
+          "reason": "affiliation_unresolved",
+          "tick": 1063,
+          "track": "T1"
+        },
+        "status": "supported",
+        "findings": [
+          {
+            "dimension": "restraint",
+            "status": "supported",
+            "code": "EXPLICIT_UNCERTAINTY_DECLARED",
+            "explanation": "The declaration retains unresolved affiliation; no positive affiliation cue is available.",
+            "evidence_ids": [
+              "radar:T1:1063",
+              "rf:T1:1063",
+              "iff:T1:1063"
+            ]
+          }
+        ],
+        "available_evidence": {
+          "tick": 1063,
+          "track": "T1",
+          "observation": {
+            "version": "vyuha-0.4.0",
+            "tick": 1063,
+            "track_id": "T1",
+            "radar": {
+              "available": true,
+              "state": "confirmed",
+              "detected": true,
+              "fresh": false,
+              "position": {
+                "x": -50.86058,
+                "z": 698.149842,
+                "altitude": 16.0
+              },
+              "sample_tick": 1050
+            },
+            "eo": {
+              "available": true,
+              "level": "none",
+              "position": null,
+              "silhouette": null,
+              "sample_tick": null
+            },
+            "ir": {
+              "available": true,
+              "level": "none",
+              "position": null,
+              "silhouette": null,
+              "sample_tick": null
+            },
+            "rf": {
+              "available": true,
+              "detected": false,
+              "band_ghz": null,
+              "bearing_deg": null
+            },
+            "iff": {
+              "available": true,
+              "cue": "no_reply",
+              "registration_id": null
+            }
+          },
+          "current_optical_results": [],
+          "has_geometry": true
+        },
+        "confidence": {
+          "status": "not_assessed",
+          "reason": "Choices are not recorded confidence statements."
+        }
+      }
+    ],
+    "acquisitions": [],
+    "competencies": [
+      {
+        "id": "C01",
+        "status": "unassessable",
+        "decision_ids": [],
+        "criterion": "Designate only with a reported position.",
+        "observation_scope": "Recorded mission event pattern; not mastery or causal attribution."
+      },
+      {
+        "id": "C02",
+        "status": "unassessable",
+        "decision_ids": [],
+        "criterion": "Interpret the exact released/expired evidence at the classification frontier; another legitimate cue can still support an affiliation claim.",
+        "observation_scope": "Recorded mission event pattern; not mastery or causal attribution."
+      },
+      {
+        "id": "C03",
+        "status": "supported",
+        "decision_ids": [
+          "evidence_decision_0"
+        ],
+        "criterion": "Record an explicit restraint/defer choice against the public evidence at this boundary. Declared reasons are not private reasoning, and inactivity is not a declaration.",
+        "observation_scope": "Recorded mission event pattern; not mastery or causal attribution."
+      }
+    ],
+    "summary": {
+      "decisions": 1,
+      "statuses": {
+        "supported": 1
+      },
+      "requests": 0,
+      "mastery_awarded": false
+    },
+    "limitations": [
+      "Educational support differs from original rubric correctness and consequence; original scores are unchanged.",
+      "Availability is reconstructed, not evidence that the trainee noticed, relied on or understood a report.",
+      "The sensor contract has no positive hostile-intent observation; silence and shape do not establish hostility or a fibre link.",
+      "Acquisition utility describes changed reported decision features, not information-theoretic gain or request-count rewards.",
+      "No mastery, calibrated proficiency, empirically equated forms, operational certification or human learning gain is inferred.",
+      "Action choices are not confidence statements. Confidence is not evaluated by this event contract.",
+      "Defer records a decision to withhold a new classification or response, with a trainee-declared reason. It does not erase earlier declarations, designate, resolve a contact or award tactical points.",
+      "A declared uncertainty reason does not establish attention, private reasoning or cognitive reliance. Conflict interpretation is not calibrated.",
+      "Authored site geometry changes possible LOS, not the criterion definitions, sensor calibration or proof of human evidence use."
+    ],
+    "follow_up": {
+      "competency": "C01",
+      "template": "timed_window",
+      "mode": "practice",
+      "seed": 692371,
+      "reason": "Revisit C01 with changed conditions; this is evidence-targeted practice, not a mastery judgment.",
+      "href": "/?mission_template=timed_window&mission_mode=practice&seed=692371&mission_version=3&mission_site=open_campus"
+    },
+    "input_fingerprint": "4149852d3e6d9519bf3568a3ade28e14020fb3107a5181b8f7cac69bfc7cb302",
+    "report_hash": "7fd5c1485ac43215805cd3b090020fda0e8d0200054664bf0e28dff31ca8aff5"
+  }
+}

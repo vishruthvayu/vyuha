@@ -1,0 +1,31 @@
+{
+  "scope": "Independent source and screenshot review, not a full release audit or physical acceptance",
+  "source_findings": [
+    {
+      "issue": "Incomplete mission intent fell through to ordinary Director",
+      "resolution": "Fixed: version/site without template or published ID is rejected; focused test added"
+    },
+    {
+      "issue": "No blocking truth/camera/geometry defect found for canonical presets",
+      "resolution": "Shared layout, bounded architecture and briefing-only survey verified statically"
+    }
+  ],
+  "visual_findings": [
+    {
+      "issue": "Pause instruction lacks contrast over apron",
+      "resolution": "Fixed compact opaque badge; exact production screenshot retained"
+    },
+    {
+      "issue": "Campus visually sparse",
+      "resolution": "Documented limitation; whole graphics flagship remains incomplete"
+    }
+  ],
+  "not_validated": [
+    "100% zoom",
+    "physical screen reader",
+    "headset",
+    "all workspaces",
+    "full independent numeric audit"
+  ],
+  "score": null
+}

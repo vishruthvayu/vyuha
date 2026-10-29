@@ -1,0 +1,11 @@
+{
+  "implementation_commit": "13df5180bb82be723c923ed205c9babe93aa9d8a",
+  "source_hash_policy": "vyuha-source-inputs-v2",
+  "source_tree_sha256": "7bfd8932ff38a7262169f6ee6a14c59dd70abefd05f9a9a7e93ef9ac9fc8d473",
+  "protected_refs": {
+    "release/v1.0.1": "2ca96105044ad6a14952d74db619e20006c26eca",
+    "v1.0.1": "4696b0583238d07eb9fcfcec128a437caf28e17b",
+    "v1.1.0-rc.2": "60c1be9a720d508775bba353a9f3fe370cd8d24a",
+    "integration/vyuha-combined-acceptance": "259c50acdc5373a7971e9885b1232645edf23466"
+  }
+}

@@ -1,0 +1,1457 @@
+{
+  "id": "4ee201b0-2225-4ba9-b8b9-03d829314f15",
+  "trainee": "T_2ac21623c54c473ca41629",
+  "unit_id": "local",
+  "exercise_group_id": null,
+  "scenario": {
+    "acquisition_policy": {
+      "cadenceTicks": 3,
+      "cooldownTicks": 6,
+      "dwellTicks": 30,
+      "expiryTicks": 60,
+      "latencyTicks": 6,
+      "maxReportAgeTicks": 90,
+      "maxRequests": 64,
+      "version": "optical-task-policy-v1"
+    },
+    "decision_policy": {
+      "reasons": [
+        "type_unresolved",
+        "affiliation_unresolved",
+        "conflicting_reports"
+      ],
+      "version": "uncertainty-decisions-v1"
+    },
+    "difficulty_label": "foundational",
+    "doctrine": {
+      "allowed_tactics": [
+        "DIRECT",
+        "SATURATION",
+        "DECOY_THEN_STRIKE",
+        "STAGGERED_WAVES",
+        "LOW_APPROACH",
+        "SPLIT_SWARM",
+        "PROBE_AND_RETREAT",
+        "BLIND_SECTOR"
+      ],
+      "defaults": {
+        "fog": 0.45,
+        "mix": [],
+        "night": false
+      },
+      "description": "Frozen meter-scale training research configuration; not official doctrine",
+      "example_values": true,
+      "id": "army-forward-post",
+      "name": "Illustrative finale local pack",
+      "rubric": {
+        "classify": 25,
+        "detect": 25,
+        "engage": 35,
+        "prioritise": 15
+      },
+      "rules": {
+        "asset_risk": 1,
+        "distance_precision": 6,
+        "effectors": [
+          "hold",
+          "rf_jam",
+          "kinetic"
+        ],
+        "hold_any_range": true,
+        "kinetic_range": 1000,
+        "restricted": {
+          "enabled": true,
+          "x_lt": -300,
+          "z_gt": 200
+        },
+        "rf_range": 1500,
+        "risk_weights": {
+          "bird": 0,
+          "fiber_fpv": 1.5,
+          "fixed_wing": 1.2,
+          "quad": 1
+        }
+      },
+      "version": 1
+    },
+    "duration": 90,
+    "effector_config": {
+      "asset_radius_m": 8,
+      "effectors": {
+        "hold": {
+          "enabled": true
+        },
+        "kinetic": {
+          "enabled": true,
+          "max_range_m": 1000
+        },
+        "rf_jam": {
+          "enabled": true,
+          "max_range_m": 1500,
+          "requires_rf_link": true
+        }
+      },
+      "engagement_channels": 1,
+      "id": "illustrative-local-response-v1",
+      "label": "Illustrative bounded training actions; not real weapon performance or official doctrine",
+      "minimum_response_window_s": 7,
+      "sensor_geometry": {
+        "day_camera_range_m": 1500,
+        "radar_range_m": 3000,
+        "thermal_range_m": 1200
+      },
+      "units": {
+        "distance": "m"
+      },
+      "version": 1
+    },
+    "engine_version": "vyuha-0.6.0",
+    "focus": "classification_iff",
+    "fog": 0.45,
+    "fusion": {
+      "bias_seed": 0,
+      "exercise": "normal",
+      "mode": "training",
+      "version": "fusion-1"
+    },
+    "id": "raid_057c3c74b5b2aab751c16e2a",
+    "jamEnd": 2700,
+    "jamStart": 2700,
+    "night": false,
+    "observation_mission": {
+      "assessment_version": "evidence-assessment-v2",
+      "authoring": {
+        "duration": 90,
+        "dwell_ticks": 30,
+        "expiry_ticks": null,
+        "extra_contacts": 0,
+        "fog": null,
+        "mode": "practice",
+        "night": null,
+        "objectives": null,
+        "seed": 482913,
+        "site": "freight_corridor",
+        "template": "timed_window",
+        "terrain": null,
+        "title": "QA \u00b7 Freight reacquisition",
+        "version": "observation-mission-v3"
+      },
+      "competencies": [
+        "C01",
+        "C02",
+        "C03"
+      ],
+      "criterion_profile": "timed_window",
+      "mode": "practice",
+      "objectives": [
+        "Relate request, sample, publication and expiry to the decision boundary.",
+        "Reacquire only when a new observation can change a decision.",
+        "Retain uncertainty when current evidence does not establish type or affiliation."
+      ],
+      "template": "timed_window",
+      "title": "QA \u00b7 Freight reacquisition",
+      "version": "observation-mission-v3"
+    },
+    "prioritisation_version": 1,
+    "raid": {
+      "anti_repeat": {
+        "history_considered": 0,
+        "rejected_attempts": 0
+      },
+      "constraints": {
+        "max_contacts": 200,
+        "peak_hostile_cap": 3,
+        "response_window_s": 7
+      },
+      "family": "LOW_APPROACH",
+      "fingerprint": "75c46f92b79305766ab7b87e",
+      "formation_model": "Closed-form shared leader with bounded slots and optional split; not autonomous swarm AI",
+      "requested_seed": 482913,
+      "signature": [
+        "bird:5:0:orbit_then_dash",
+        "fiber_fpv:4:0:weave",
+        "quad:3:0:orbit_then_dash",
+        "quad:6:0:orbit_then_dash"
+      ],
+      "validation": {
+        "basis": "Geometric baseline check with declared ranges; not calibrated sensor reliability or a certified human-solvability claim",
+        "peak_simultaneous_hostiles": 2,
+        "response_windows": {
+          "T1": {
+            "first_tick": 169,
+            "last_tick": 2699,
+            "usable_ticks": 1278
+          },
+          "T2": {
+            "first_tick": 1661,
+            "last_tick": 1997,
+            "usable_ticks": 337
+          }
+        },
+        "saturation_index": 2.0
+      },
+      "version": 2,
+      "waves": [
+        {
+          "contacts": [
+            "T1",
+            "T2"
+          ],
+          "role": "low_approach",
+          "tick": 60
+        }
+      ]
+    },
+    "red_force": {
+      "phases": [
+        {
+          "contacts": [
+            "T1",
+            "T2"
+          ],
+          "role": "low_approach",
+          "tick": 60
+        }
+      ],
+      "tactic": "LOW_APPROACH",
+      "tactic_seed": 482913,
+      "version": 2
+    },
+    "seed": 482913,
+    "sensor_config": {
+      "civil_beacon_probability": 0.9,
+      "clear_visibility_m": 20000,
+      "dense_visibility_m": 200,
+      "eo_ifov_rad": 0.00012,
+      "eo_max_range_m": 1500,
+      "false_track_lifetime_sweeps": 3,
+      "false_track_maximum": 2,
+      "false_track_probability": 0.05,
+      "iff_max_range_m": 2500,
+      "iff_reply_probability": 0.95,
+      "ir_fog_factor": 0.45,
+      "ir_ifov_rad": 0.00018,
+      "ir_max_range_m": 1200,
+      "optical_reliability": 0.95,
+      "optical_sample_ticks": 3,
+      "radar_confirm_hits": 3,
+      "radar_jam_factor": 0.15,
+      "radar_loss_sweeps": 3,
+      "radar_max_range_m": 5000,
+      "radar_occlusion_factor": 0.1,
+      "radar_pfa": 1e-06,
+      "radar_reference_range_m": 3000,
+      "radar_reference_rcs_db": -15,
+      "radar_reference_snr": 30,
+      "radar_reliability": 0.95,
+      "radar_sweep_ticks": 30,
+      "radar_window_sweeps": 5,
+      "rcs_spread_db": 3,
+      "rf_bearing_error_deg": 5,
+      "rf_gain_db": 6,
+      "rf_max_range_m": 4000,
+      "rf_path_exponent": 2.2,
+      "rf_reliability": 0.9,
+      "rf_sensitivity_dbm": -96,
+      "rf_shadow_db": 6,
+      "rf_tx_dbm": 20
+    },
+    "sensor_version": "vyuha-0.4.0",
+    "terrain": "urban",
+    "terrain_boxes": [
+      {
+        "height": 30,
+        "x_max": 105,
+        "x_min": -105,
+        "z_max": 325,
+        "z_min": 250
+      },
+      {
+        "height": 22,
+        "x_max": 275,
+        "x_min": 195,
+        "z_max": 505,
+        "z_min": 390
+      },
+      {
+        "height": 17,
+        "x_max": -220,
+        "x_min": -285,
+        "z_max": 220,
+        "z_min": 145
+      },
+      {
+        "height": 15,
+        "x_max": -65,
+        "x_min": -175,
+        "z_max": -175,
+        "z_min": -245
+      }
+    ],
+    "terrain_id": "urban_outpost",
+    "terrain_version": 1,
+    "threat_config": {
+      "id": "illustrative-threat-library-v1",
+      "label": "Illustrative training research parameters; not operational equipment specifications",
+      "profiles": {
+        "bird": {
+          "altitude_m": [
+            15,
+            80
+          ],
+          "identity": "neutral",
+          "kind": "bird",
+          "rf": false,
+          "speed_mps": [
+            4,
+            12
+          ]
+        },
+        "civil_uav": {
+          "altitude_m": [
+            20,
+            100
+          ],
+          "identity": "neutral",
+          "kind": "quad",
+          "registration_beacon": true,
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ]
+        },
+        "fixed_wing": {
+          "altitude_m": [
+            40,
+            180
+          ],
+          "identity": "hostile",
+          "kind": "fixed_wing",
+          "rf": false,
+          "speed_mps": [
+            25,
+            42
+          ]
+        },
+        "friendly_uav": {
+          "altitude_m": [
+            20,
+            100
+          ],
+          "identity": "friendly",
+          "kind": "quad",
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ]
+        },
+        "hostile_quad": {
+          "altitude_m": [
+            15,
+            90
+          ],
+          "identity": "hostile",
+          "kind": "quad",
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ]
+        },
+        "no_rf_fpv": {
+          "altitude_m": [
+            4,
+            30
+          ],
+          "identity": "hostile",
+          "kind": "fiber_fpv",
+          "rf": false,
+          "speed_mps": [
+            20,
+            35
+          ]
+        }
+      },
+      "units": {
+        "altitude": "m",
+        "distance": "m",
+        "speed": "m/s",
+        "time": "s"
+      },
+      "version": 1
+    },
+    "title": "QA \u00b7 Freight reacquisition",
+    "tracks": [
+      {
+        "altitude": 16,
+        "bearing": 310,
+        "distance": 700,
+        "id": "T1",
+        "identity": "hostile",
+        "kind": "quad",
+        "motion": {
+          "lateral_m": 0,
+          "period_s": 20,
+          "phase_s": 72.0,
+          "primitive": "orbit_then_dash",
+          "turn_deg": 100,
+          "version": 1
+        },
+        "radar_range": 3000,
+        "rf": true,
+        "spawn": 60,
+        "speed": 10,
+        "thermal_range": 1200,
+        "threat_profile": "hostile_quad"
+      },
+      {
+        "altitude": 4.371696237241849,
+        "bearing": 199,
+        "distance": 1564.337,
+        "id": "T2",
+        "identity": "hostile",
+        "kind": "fiber_fpv",
+        "motion": {
+          "lateral_m": 26.48,
+          "period_s": 20.193,
+          "phase_s": 16.2,
+          "primitive": "weave",
+          "turn_deg": -8.483,
+          "version": 1
+        },
+        "radar_range": 3000,
+        "rf": false,
+        "spawn": 63,
+        "speed": 24.141,
+        "thermal_range": 1200,
+        "threat_profile": "no_rf_fpv"
+      },
+      {
+        "altitude": 68.592,
+        "bearing": 170,
+        "distance": 2199.5,
+        "expires_tick": 2700,
+        "id": "T3",
+        "identity": "friendly",
+        "kind": "quad",
+        "motion": {
+          "lateral_m": 0,
+          "period_s": 20,
+          "phase_s": 90,
+          "primitive": "orbit_then_dash",
+          "turn_deg": 70,
+          "version": 1
+        },
+        "radar_range": 3000,
+        "rf": true,
+        "spawn": 270,
+        "speed": 10.964,
+        "thermal_range": 1200,
+        "threat_profile": "friendly_uav"
+      },
+      {
+        "altitude": 31.264,
+        "bearing": 244,
+        "distance": 845.147,
+        "expires_tick": 2700,
+        "id": "T4",
+        "identity": "neutral",
+        "kind": "bird",
+        "motion": {
+          "lateral_m": 0,
+          "period_s": 20,
+          "phase_s": 90,
+          "primitive": "orbit_then_dash",
+          "turn_deg": 70,
+          "version": 1
+        },
+        "radar_range": 3000,
+        "rf": false,
+        "spawn": 210,
+        "speed": 8.722,
+        "thermal_range": 1200,
+        "threat_profile": "bird"
+      }
+    ],
+    "training_site": {
+      "id": "freight_corridor",
+      "landmarks": [
+        {
+          "id": "apron",
+          "label": "Observation apron",
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 45
+          }
+        },
+        {
+          "id": "hall",
+          "label": "Transfer hall",
+          "position": {
+            "x": 0,
+            "y": 30,
+            "z": 287.5
+          }
+        },
+        {
+          "id": "junction",
+          "label": "Service junction",
+          "position": {
+            "x": 145,
+            "y": 0,
+            "z": 190
+          }
+        }
+      ],
+      "structures": [
+        {
+          "height": 30,
+          "id": "transfer_hall",
+          "label": "Transfer hall",
+          "style": "warehouse",
+          "x_max": 105,
+          "x_min": -105,
+          "z_max": 325,
+          "z_min": 250
+        },
+        {
+          "height": 22,
+          "id": "east_depot",
+          "label": "East depot",
+          "style": "warehouse",
+          "x_max": 275,
+          "x_min": 195,
+          "z_max": 505,
+          "z_min": 390
+        },
+        {
+          "height": 17,
+          "id": "administration",
+          "label": "Administration",
+          "style": "block",
+          "x_max": -220,
+          "x_min": -285,
+          "z_max": 220,
+          "z_min": 145
+        },
+        {
+          "height": 15,
+          "id": "south_stores",
+          "label": "South stores",
+          "style": "warehouse",
+          "x_max": -65,
+          "x_min": -175,
+          "z_max": -175,
+          "z_min": -245
+        }
+      ],
+      "summary": "A long transfer hall separates the observation apron from the northern approach. Public site geometry, not a contact or future-evidence map.",
+      "surfaces": [
+        {
+          "kind": "asphalt",
+          "path": [
+            [
+              -600,
+              190
+            ],
+            [
+              0,
+              190
+            ],
+            [
+              600,
+              190
+            ]
+          ],
+          "width": 14
+        },
+        {
+          "kind": "asphalt",
+          "path": [
+            [
+              145,
+              -600
+            ],
+            [
+              145,
+              190
+            ],
+            [
+              145,
+              650
+            ]
+          ],
+          "width": 12
+        },
+        {
+          "kind": "concrete",
+          "path": [
+            [
+              -115,
+              205
+            ],
+            [
+              115,
+              205
+            ],
+            [
+              115,
+              245
+            ],
+            [
+              -115,
+              245
+            ]
+          ]
+        },
+        {
+          "kind": "concrete",
+          "path": [
+            [
+              -50,
+              -45
+            ],
+            [
+              50,
+              -45
+            ],
+            [
+              50,
+              90
+            ],
+            [
+              -50,
+              90
+            ]
+          ]
+        },
+        {
+          "kind": "gravel",
+          "path": [
+            [
+              -330,
+              100
+            ],
+            [
+              -195,
+              100
+            ],
+            [
+              -195,
+              240
+            ],
+            [
+              -330,
+              240
+            ]
+          ]
+        }
+      ],
+      "title": "Freight corridor",
+      "version": "training-site-v1"
+    },
+    "version": 2
+  },
+  "events": [
+    {
+      "channel": "eo",
+      "k": "inspect",
+      "order": 0,
+      "request_id": "5629321a-f85c-4006-ad63-a0931b591bc2",
+      "tick": 418,
+      "track": "T1"
+    },
+    {
+      "channel": "ir",
+      "k": "inspect",
+      "order": 2,
+      "request_id": "66a2520c-1ee6-4745-bb8b-926604980651",
+      "tick": 1372,
+      "track": "T1"
+    },
+    {
+      "channel": "eo",
+      "k": "inspect",
+      "order": 4,
+      "request_id": "06f15199-0c18-4cf5-aaa0-f3b4f5e6bd25",
+      "tick": 2299,
+      "track": "T1"
+    }
+  ],
+  "commands": [],
+  "executionTick": 2700,
+  "endTick": 2700,
+  "scorecard": {
+    "engine_version": "vyuha-0.6.0",
+    "fratricide": false,
+    "leakers": 1,
+    "passed": false,
+    "prioritisation": {
+      "agreement": 1,
+      "choices": [],
+      "comparisons": [],
+      "coverage": 0.0,
+      "method": "pairwise Kendall agreement over co-observed hostile choices, multiplied by engagement coverage",
+      "ordering_rule": "First accepted non-Hold engagement per hostile; an ineffective attempt still declares attention. Pairs counted once, at their first co-observed choice.",
+      "points": 0,
+      "points_possible": 15,
+      "priority_rule": "risk_weight \u00d7 asset_risk / max(time_to_impact_seconds, 1/30)",
+      "tau": null,
+      "tie_rule": "Equal priority pairs are excluded; no comparable pairs yields neutral agreement 1, still multiplied by coverage.",
+      "unengaged": [
+        "T1",
+        "T2"
+      ],
+      "version": 1
+    },
+    "roe_breaches": 0,
+    "rows": [
+      {
+        "attempts": [],
+        "classify": 0,
+        "designated": null,
+        "detect": 0,
+        "detected": 120,
+        "engage": 0,
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: quad / hostile.",
+          "RF-link present: RF jamming is the example-pack response."
+        ],
+        "id": "T1",
+        "ideal": "rf_jam",
+        "identity": "hostile",
+        "impact": false,
+        "kind": "quad",
+        "prioritise": 0,
+        "total": 0
+      },
+      {
+        "attempts": [],
+        "classify": 0,
+        "designated": null,
+        "detect": 0,
+        "detected": 180,
+        "engage": 0,
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: fiber fpv / hostile.",
+          "No RF link: use an allowed kinetic response in this example pack.",
+          "This threat reached the protected asset."
+        ],
+        "id": "T2",
+        "ideal": "kinetic",
+        "identity": "hostile",
+        "impact": true,
+        "kind": "fiber_fpv",
+        "prioritise": 0,
+        "total": 0
+      },
+      {
+        "attempts": [],
+        "classify": 0,
+        "designated": null,
+        "detect": 0,
+        "detected": 390,
+        "engage": 0,
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: quad / friendly.",
+          "Hold fire on this non-hostile contact."
+        ],
+        "id": "T3",
+        "ideal": "hold",
+        "identity": "friendly",
+        "impact": false,
+        "kind": "quad",
+        "prioritise": 0,
+        "total": 0
+      },
+      {
+        "attempts": [],
+        "classify": 0,
+        "designated": null,
+        "detect": 0,
+        "detected": 270,
+        "engage": 0,
+        "feedback": [
+          "Designate the contact after a sensor first reveals it.",
+          "Reference classification: bird / neutral.",
+          "Hold fire on this non-hostile contact."
+        ],
+        "id": "T4",
+        "ideal": "hold",
+        "identity": "neutral",
+        "impact": false,
+        "kind": "bird",
+        "prioritise": 0,
+        "total": 0
+      }
+    ],
+    "score": 0,
+    "skills": {
+      "recognition": 0,
+      "response": 0
+    },
+    "summary": "1 threat reached the protected asset. Review response selection.",
+    "threats": 2
+  },
+  "created_at": "2026-10-29T05:26:29.300056+00:00",
+  "verified": true,
+  "teaching_notes": [],
+  "timeline": [
+    {
+      "id": "tl_0000",
+      "tick": 0,
+      "order": -1,
+      "category": "sensor_transition",
+      "code": "SENSOR_STATE",
+      "title": "Radar normal \u00b7 RF active \u00b7 Day",
+      "track_id": null,
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0011",
+      "tick": 60,
+      "order": null,
+      "category": "tactic_phase",
+      "code": "LOW_APPROACH",
+      "title": "Red Force \u00b7 low_approach \u00b7 T1, T2",
+      "track_id": null,
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0001",
+      "tick": 120,
+      "order": -1,
+      "category": "contact_detection",
+      "code": "FIRST_DETECTABLE",
+      "title": "T1 \u00b7 first working-sensor observation",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0002",
+      "tick": 180,
+      "order": -1,
+      "category": "contact_detection",
+      "code": "FIRST_DETECTABLE",
+      "title": "T2 \u00b7 first working-sensor observation",
+      "track_id": "T2",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0003",
+      "tick": 270,
+      "order": -1,
+      "category": "contact_detection",
+      "code": "FIRST_DETECTABLE",
+      "title": "T4 \u00b7 first working-sensor observation",
+      "track_id": "T4",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0004",
+      "tick": 390,
+      "order": -1,
+      "category": "contact_detection",
+      "code": "FIRST_DETECTABLE",
+      "title": "T3 \u00b7 first working-sensor observation",
+      "track_id": "T3",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_0",
+      "tick": 418,
+      "order": 0,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_ACCEPTED",
+      "title": "T1 \u00b7 EO \u00b7 Observation requested",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_sample_5629321a-f85c-4006-ad63-a0931b591bc2",
+      "tick": 450,
+      "order": null,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_SAMPLE",
+      "title": "T1 \u00b7 EO \u00b7 Sampled modeled world",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_1",
+      "tick": 456,
+      "order": 1,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_RELEASED",
+      "title": "T1 \u00b7 EO \u00b7 Observation released",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_2",
+      "tick": 1372,
+      "order": 2,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_ACCEPTED",
+      "title": "T1 \u00b7 IR \u00b7 Observation requested",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_sample_66a2520c-1ee6-4745-bb8b-926604980651",
+      "tick": 1404,
+      "order": null,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_SAMPLE",
+      "title": "T1 \u00b7 IR \u00b7 Sampled modeled world",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_3",
+      "tick": 1410,
+      "order": 3,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_RELEASED",
+      "title": "T1 \u00b7 IR \u00b7 Observation released",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0007",
+      "tick": 1998,
+      "order": -1,
+      "category": "asset_impact",
+      "code": "THREAT_IMPACTED_ASSET",
+      "title": "T2 \u00b7 protected asset impact",
+      "track_id": "T2",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_4",
+      "tick": 2299,
+      "order": 4,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_ACCEPTED",
+      "title": "T1 \u00b7 EO \u00b7 Observation requested",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_sample_06f15199-0c18-4cf5-aaa0-f3b4f5e6bd25",
+      "tick": 2331,
+      "order": null,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_SAMPLE",
+      "title": "T1 \u00b7 EO \u00b7 Sampled modeled world",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "acq_5",
+      "tick": 2337,
+      "order": 5,
+      "category": "sensor_transition",
+      "code": "ACQUISITION_RELEASED",
+      "title": "T1 \u00b7 EO \u00b7 Observation released",
+      "track_id": "T1",
+      "decision_id": null,
+      "seek_before": false
+    },
+    {
+      "id": "tl_0009",
+      "tick": 2700,
+      "order": null,
+      "category": "score_error",
+      "code": "THREAT_MISSED",
+      "title": "T1 \u00b7 threat missed",
+      "track_id": "T1",
+      "decision_id": "dec_0000",
+      "seek_before": false
+    },
+    {
+      "id": "tl_0010",
+      "tick": 2700,
+      "order": null,
+      "category": "score_error",
+      "code": "THREAT_MISSED",
+      "title": "T2 \u00b7 threat missed",
+      "track_id": "T2",
+      "decision_id": "dec_0001",
+      "seek_before": false
+    }
+  ],
+  "decision_reviews": [
+    {
+      "decision_id": "dec_0000",
+      "session_id": "4ee201b0-2225-4ba9-b8b9-03d829314f15",
+      "track_id": "T1",
+      "tick": 2700,
+      "order": null,
+      "decision_kind": "detection",
+      "evidence": {
+        "tick": 120,
+        "radar": {
+          "available": true,
+          "state": "normal",
+          "detected": true
+        },
+        "rf": {
+          "available": true,
+          "signal": true,
+          "iff": "no_reply"
+        },
+        "visual": {
+          "available": false,
+          "silhouette": null
+        },
+        "range_m": 700.0,
+        "restricted": true,
+        "first_detectable_tick": 120,
+        "prior_classification": null,
+        "prior_identity": null,
+        "night": false
+      },
+      "ground_truth": {
+        "kind": "quad",
+        "identity": "hostile",
+        "rf_link": true,
+        "spawn_tick": 60
+      },
+      "trainee_action": null,
+      "expected_action": {
+        "type": "designate",
+        "kind": null,
+        "identity": null,
+        "effector": null,
+        "basis": "available_evidence"
+      },
+      "verdict": "incorrect",
+      "reason_code": "THREAT_MISSED",
+      "explanation": "This threat became detectable at T+4.00s. No designation was recorded by the reviewed end at T+90.00s. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+      "consequence": {
+        "kind": "remained_active",
+        "tick": null,
+        "reason_code": "NO_CONSEQUENCE_YET",
+        "immediate": "not_applicable",
+        "text": "The contact remained active at the reviewed end; no later observed consequence is asserted."
+      },
+      "score_effect": {
+        "scope": "final_contact_node",
+        "node": "detect",
+        "points_awarded": 0,
+        "points_possible": 25,
+        "session_penalty": 0,
+        "penalty_basis": "none",
+        "session_failure": false
+      },
+      "skill_tags": [
+        "detection"
+      ],
+      "context_commands": []
+    },
+    {
+      "decision_id": "dec_0001",
+      "session_id": "4ee201b0-2225-4ba9-b8b9-03d829314f15",
+      "track_id": "T2",
+      "tick": 2700,
+      "order": null,
+      "decision_kind": "detection",
+      "evidence": {
+        "tick": 180,
+        "radar": {
+          "available": true,
+          "state": "normal",
+          "detected": true
+        },
+        "rf": {
+          "available": true,
+          "signal": false,
+          "iff": "no_reply"
+        },
+        "visual": {
+          "available": false,
+          "silhouette": null
+        },
+        "range_m": 1470.396,
+        "restricted": false,
+        "first_detectable_tick": 180,
+        "prior_classification": null,
+        "prior_identity": null,
+        "night": false
+      },
+      "ground_truth": {
+        "kind": "fiber_fpv",
+        "identity": "hostile",
+        "rf_link": false,
+        "spawn_tick": 63
+      },
+      "trainee_action": null,
+      "expected_action": {
+        "type": "designate",
+        "kind": null,
+        "identity": null,
+        "effector": null,
+        "basis": "available_evidence"
+      },
+      "verdict": "incorrect",
+      "reason_code": "THREAT_MISSED",
+      "explanation": "This threat became detectable at T+6.00s. No designation was recorded by the reviewed end at T+90.00s. The IFF panel returned no reply; that alone does not establish hostility. No current modeled EO/IR silhouette observation is recorded.",
+      "consequence": {
+        "kind": "asset_impact",
+        "tick": 1998,
+        "reason_code": "THREAT_IMPACTED_ASSET",
+        "immediate": "not_applicable",
+        "text": "The contact reached the protected asset at T+66.60s."
+      },
+      "score_effect": {
+        "scope": "final_contact_node",
+        "node": "detect",
+        "points_awarded": 0,
+        "points_possible": 25,
+        "session_penalty": 0,
+        "penalty_basis": "none",
+        "session_failure": false
+      },
+      "skill_tags": [
+        "detection"
+      ],
+      "context_commands": []
+    }
+  ],
+  "ghost_summary": {
+    "largest_loss": "dec_0000",
+    "strongest_decision": null,
+    "mistake_counts": {
+      "detection": 2,
+      "classification_iff": 0,
+      "effector_choice": 0,
+      "degraded_sensor_response": 0
+    },
+    "lost_points": {
+      "detection": 50,
+      "classification_iff": 0,
+      "effector_choice": 0,
+      "degraded_sensor_response": 0
+    },
+    "recommended_focus": "detection",
+    "no_major_errors": false,
+    "text": "Recommended training focus: detection. Counts are distinct contacts with evidenced errors; sensor context does not prove causation."
+  },
+  "replay_metadata": {
+    "hz": 30,
+    "observed_end_tick": 2700,
+    "scoring_end_tick": 2700,
+    "horizon_source": "completion",
+    "early_end": false,
+    "version": "ghost-uncertainty-v1",
+    "note": "Review covers the recorded exercise. Paused wall-clock time is excluded."
+  },
+  "node_averages": {
+    "detect": 0.0,
+    "classify": 0.0,
+    "prioritise": 0.0,
+    "engage": 0.0
+  },
+  "acquisition": {
+    "version": "optical-task-scheduler-v1",
+    "tick": 2700,
+    "ended": true,
+    "pending": null,
+    "requests": [
+      {
+        "id": "5629321a-f85c-4006-ad63-a0931b591bc2",
+        "trackId": "T1",
+        "channel": "eo",
+        "acceptedTick": 418,
+        "acceptedOrder": 0,
+        "sampleTick": 450,
+        "releaseTick": 456,
+        "resultId": "result_5629321a-f85c-4006-ad63-a0931b591bc2"
+      },
+      {
+        "id": "66a2520c-1ee6-4745-bb8b-926604980651",
+        "trackId": "T1",
+        "channel": "ir",
+        "acceptedTick": 1372,
+        "acceptedOrder": 2,
+        "sampleTick": 1404,
+        "releaseTick": 1410,
+        "resultId": "result_66a2520c-1ee6-4745-bb8b-926604980651"
+      },
+      {
+        "id": "06f15199-0c18-4cf5-aaa0-f3b4f5e6bd25",
+        "trackId": "T1",
+        "channel": "eo",
+        "acceptedTick": 2299,
+        "acceptedOrder": 4,
+        "sampleTick": 2331,
+        "releaseTick": 2337,
+        "resultId": "result_06f15199-0c18-4cf5-aaa0-f3b4f5e6bd25"
+      }
+    ],
+    "results": [
+      {
+        "id": "5629321a-f85c-4006-ad63-a0931b591bc2",
+        "trackId": "T1",
+        "channel": "eo",
+        "acceptedTick": 418,
+        "acceptedOrder": 0,
+        "sampleTick": 450,
+        "releaseTick": 456,
+        "resultId": "result_5629321a-f85c-4006-ad63-a0931b591bc2",
+        "releasedOrder": 1,
+        "expiryTick": 516,
+        "reading": {
+          "available": true,
+          "level": "detect"
+        }
+      },
+      {
+        "id": "66a2520c-1ee6-4745-bb8b-926604980651",
+        "trackId": "T1",
+        "channel": "ir",
+        "acceptedTick": 1372,
+        "acceptedOrder": 2,
+        "sampleTick": 1404,
+        "releaseTick": 1410,
+        "resultId": "result_66a2520c-1ee6-4745-bb8b-926604980651",
+        "releasedOrder": 3,
+        "expiryTick": 1470,
+        "reading": {
+          "available": true,
+          "level": "none"
+        }
+      },
+      {
+        "id": "06f15199-0c18-4cf5-aaa0-f3b4f5e6bd25",
+        "trackId": "T1",
+        "channel": "eo",
+        "acceptedTick": 2299,
+        "acceptedOrder": 4,
+        "sampleTick": 2331,
+        "releaseTick": 2337,
+        "resultId": "result_06f15199-0c18-4cf5-aaa0-f3b4f5e6bd25",
+        "releasedOrder": 5,
+        "expiryTick": 2397,
+        "reading": {
+          "available": true,
+          "level": "detect"
+        }
+      }
+    ],
+    "events": [
+      {
+        "tick": 418,
+        "order": 0,
+        "kind": "accepted",
+        "requestId": "5629321a-f85c-4006-ad63-a0931b591bc2"
+      },
+      {
+        "tick": 456,
+        "order": 1,
+        "kind": "released",
+        "requestId": "5629321a-f85c-4006-ad63-a0931b591bc2"
+      },
+      {
+        "tick": 1372,
+        "order": 2,
+        "kind": "accepted",
+        "requestId": "66a2520c-1ee6-4745-bb8b-926604980651"
+      },
+      {
+        "tick": 1410,
+        "order": 3,
+        "kind": "released",
+        "requestId": "66a2520c-1ee6-4745-bb8b-926604980651"
+      },
+      {
+        "tick": 2299,
+        "order": 4,
+        "kind": "accepted",
+        "requestId": "06f15199-0c18-4cf5-aaa0-f3b4f5e6bd25"
+      },
+      {
+        "tick": 2337,
+        "order": 5,
+        "kind": "released",
+        "requestId": "06f15199-0c18-4cf5-aaa0-f3b4f5e6bd25"
+      }
+    ],
+    "cooldownUntil": 2343,
+    "samples": [
+      {
+        "resultId": "result_5629321a-f85c-4006-ad63-a0931b591bc2",
+        "observation": {
+          "available": true,
+          "level": "detect",
+          "position": {
+            "x": -370.367707,
+            "z": 593.993065,
+            "altitude": 16.0
+          },
+          "silhouette": null,
+          "sample_tick": 450
+        }
+      },
+      {
+        "resultId": "result_66a2520c-1ee6-4745-bb8b-926604980651",
+        "observation": {
+          "available": true,
+          "level": "none",
+          "position": null,
+          "silhouette": null,
+          "sample_tick": null
+        }
+      },
+      {
+        "resultId": "result_06f15199-0c18-4cf5-aaa0-f3b4f5e6bd25",
+        "observation": {
+          "available": true,
+          "level": "detect",
+          "position": {
+            "x": 507.887466,
+            "z": 426.168185,
+            "altitude": 16.0
+          },
+          "silhouette": null,
+          "sample_tick": 2331
+        }
+      }
+    ],
+    "ordering": "scheduled-before-external-v1",
+    "next_order": 6
+  },
+  "observation_assessment": {
+    "version": "evidence-assessment-v2",
+    "session_id": "4ee201b0-2225-4ba9-b8b9-03d829314f15",
+    "mission_version": "observation-mission-v3",
+    "criterion_profile": "timed_window",
+    "mode": "practice",
+    "assessed": false,
+    "observed_end_tick": 2700,
+    "score_contract": "separate-from-frozen-rubric",
+    "decisions": [],
+    "acquisitions": [
+      {
+        "id": "5629321a-f85c-4006-ad63-a0931b591bc2",
+        "track": "T1",
+        "channel": "eo",
+        "accepted_tick": 418,
+        "accepted_order": 0,
+        "sample_tick": 450,
+        "release_tick": 456,
+        "result_id": "result_5629321a-f85c-4006-ad63-a0931b591bc2",
+        "expiry_tick": 516,
+        "released_order": 1,
+        "utility": "new_reported_feature",
+        "explanation": "A current detection or shape feature was added. Availability does not prove it was noticed or used; requesting alone earns no competency evidence.",
+        "available_before_decisions": [],
+        "cognitive_use": "not_observed"
+      },
+      {
+        "id": "66a2520c-1ee6-4745-bb8b-926604980651",
+        "track": "T1",
+        "channel": "ir",
+        "accepted_tick": 1372,
+        "accepted_order": 2,
+        "sample_tick": 1404,
+        "release_tick": 1410,
+        "result_id": "result_66a2520c-1ee6-4745-bb8b-926604980651",
+        "expiry_tick": 1470,
+        "released_order": 3,
+        "utility": "no_detection",
+        "explanation": "An available channel reported no detection. This is not proof of absence or affiliation.",
+        "available_before_decisions": [],
+        "cognitive_use": "not_observed"
+      },
+      {
+        "id": "06f15199-0c18-4cf5-aaa0-f3b4f5e6bd25",
+        "track": "T1",
+        "channel": "eo",
+        "accepted_tick": 2299,
+        "accepted_order": 4,
+        "sample_tick": 2331,
+        "release_tick": 2337,
+        "result_id": "result_06f15199-0c18-4cf5-aaa0-f3b4f5e6bd25",
+        "expiry_tick": 2397,
+        "released_order": 5,
+        "utility": "new_reported_feature",
+        "explanation": "A current detection or shape feature was added. Availability does not prove it was noticed or used; requesting alone earns no competency evidence.",
+        "available_before_decisions": [],
+        "cognitive_use": "not_observed"
+      }
+    ],
+    "competencies": [
+      {
+        "id": "C01",
+        "status": "unassessable",
+        "decision_ids": [],
+        "criterion": "Designate only with a reported position.",
+        "observation_scope": "Recorded mission event pattern; not mastery or causal attribution."
+      },
+      {
+        "id": "C02",
+        "status": "unassessable",
+        "decision_ids": [],
+        "criterion": "Interpret the exact released/expired evidence at the classification frontier; another legitimate cue can still support an affiliation claim.",
+        "observation_scope": "Recorded mission event pattern; not mastery or causal attribution."
+      },
+      {
+        "id": "C03",
+        "status": "unassessable",
+        "decision_ids": [],
+        "criterion": "Record an explicit restraint/defer choice against the public evidence at this boundary. Declared reasons are not private reasoning, and inactivity is not a declaration.",
+        "observation_scope": "Recorded mission event pattern; not mastery or causal attribution."
+      }
+    ],
+    "summary": {
+      "decisions": 0,
+      "statuses": {},
+      "requests": 3,
+      "mastery_awarded": false
+    },
+    "limitations": [
+      "Educational support differs from original rubric correctness and consequence; original scores are unchanged.",
+      "Availability is reconstructed, not evidence that the trainee noticed, relied on or understood a report.",
+      "The sensor contract has no positive hostile-intent observation; silence and shape do not establish hostility or a fibre link.",
+      "Acquisition utility describes changed reported decision features, not information-theoretic gain or request-count rewards.",
+      "No mastery, calibrated proficiency, empirically equated forms, operational certification or human learning gain is inferred.",
+      "Action choices are not confidence statements. Confidence is not evaluated by this event contract.",
+      "Defer records a decision to withhold a new classification or response, with a trainee-declared reason. It does not erase earlier declarations, designate, resolve a contact or award tactical points.",
+      "A declared uncertainty reason does not establish attention, private reasoning or cognitive reliance. Conflict interpretation is not calibrated.",
+      "Authored site geometry changes possible LOS, not the criterion definitions, sensor calibration or proof of human evidence use."
+    ],
+    "follow_up": {
+      "competency": "C01",
+      "template": "timed_window",
+      "mode": "practice",
+      "seed": 587642,
+      "reason": "Revisit C01 with changed conditions; this is evidence-targeted practice, not a mastery judgment.",
+      "href": "/?mission_template=timed_window&mission_mode=practice&seed=587642&mission_version=3&mission_site=freight_corridor"
+    },
+    "input_fingerprint": "7bd7eac2ee3bf55915cd00cb45e91a44482be965235a222705ffee4496afa3df",
+    "report_hash": "96802b26302f8c5c25a56f7d233523eb4b6a81f14332d6e548caf1804642cc6f"
+  }
+}

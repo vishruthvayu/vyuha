@@ -1,0 +1,176 @@
+- link "Skip to workspace":
+  - /url: "#workspace-content"
+- banner:
+  - link "VYUHA home":
+    - /url: /
+    - strong: VYUHA
+  - navigation "Primary workspaces":
+    - link "Training":
+      - /url: /
+    - link "Review":
+      - /url: /?view=aar
+      - text: Review
+      - generic: "1"
+    - link "Crew":
+      - /url: /crew
+    - link "Instructor":
+      - /url: /instructor
+    - link "Analytics":
+      - /url: /analytics
+  - button "Find workspace":
+    - generic: Find workspace
+    - generic: ⌘ / Ctrl K
+  - button "Operator guide":
+    - generic: Operator guide
+  - button "Workspaces":
+    - generic: Workspaces
+- main:
+  - status: SERVER OFFLINE · Session continues locally · Events queued · Instructor control unavailable · Internet not required
+  - generic: COUNTER-DRONE TRAINING
+  - heading "Training ground" [level=1]
+  - paragraph: Read the sensors. Identify the contact. Choose your response.
+  - generic: Callsign SITE-COMPARISON-QA
+  - text: EXERCISE / PAUSED
+  - region "Simulation station":
+    - generic: Paused
+    - strong: Evidence has a clock
+    - generic "SERVER OFFLINE · Session continues locally · Events queued · Instructor control unavailable": Server offline · queued locally · Freight corridor · Day · Mixed contacts
+    - text: 00:15
+    - generic: / 01:30
+    - button "Resume" [active]:
+      - text: Resume
+    - button "End exercise"
+    - button "Open VR observation cockpit" [disabled]: "VR Active observation: VR adapter not yet supported"
+    - button "Mission controls":
+      - text: Mission controls
+    - region "Interactive simulation workstation":
+      - generic: OBSERVATION STATION
+      - strong: Exercise paused
+      - navigation "Simulation instruments":
+        - button "Observe world":
+          - generic: Observe
+        - button "Open radar picture":
+          - generic: Radar
+        - button "Browse reported contacts":
+          - generic: Reports · 4
+        - button "Inspect selected evidence":
+          - generic: Evidence
+        - button "Open decision station" [pressed]:
+          - generic: Decide
+      - generic: EXPLICIT TRAINEE DECISION
+      - strong: T1 · current report
+      - button "Back to observation":
+        - text: Back to observation
+      - generic "Observation preferences"
+      - button "THERMAL"
+      - button "DAY TV" [pressed]
+      - button "IR NIGHT DISPLAY"
+      - text: DAY TV / OPTICAL
+      - generic: T1 · CUED BY RADAR · NOT SEEN BY THIS CAMERA
+      - text: FREIGHT CORRIDOR
+      - generic: CUE BEARING 327° · ALT 16 m
+      - heading "Exercise paused" [level=2]
+      - paragraph: Use Resume in the exercise controls above.
+      - region "Optical investigation station":
+        - strong: REPORT TRACK
+        - generic: T1
+        - group "Camera pan and tilt":
+          - button "Pan camera left":
+          - button "Tilt camera up":
+          - button "Tilt camera down":
+          - button "Pan camera right":
+          - button "Track selected report" [disabled]:
+            - text: Track selected report
+        - text: Crop 1×
+        - slider "Optical station display crop": "1"
+      - text: +
+      - strong: Radar picture
+      - generic: NORMAL
+      - group "Radar showing detected contacts around the protected asset":
+        - generic: "N"
+        - generic: E
+        - generic: S
+        - generic: W
+        - generic: RESTRICTED
+        - generic: BASE
+        - img "Schematic radar sweep"
+        - button "Select radar contact T1" [pressed]:
+          - generic: T1
+        - button "Select radar contact T2":
+          - generic: T2
+        - button "Select radar contact T3":
+          - generic: T3
+        - button "Select radar contact T4":
+          - generic: T4
+      - generic: ILLUSTRATIVE RANGE
+      - generic: 3000 m
+      - generic "Sensor availability":
+        - generic: RADAR
+        - generic: NORMAL
+        - generic: RF
+        - generic: NORMAL
+      - button "2D fallback":
+        - text: 2D fallback
+      - region "Decisions for the selected contact":
+        - region "Explicit uncertainty decision":
+          - generic "Withhold a new declaration RECORDED":
+            - strong: Withhold a new declaration
+            - generic: RECORDED
+          - paragraph: Keep this contact unclassified, or retain your previous declaration while you investigate. Defer records this choice; it does not designate, resolve the contact or use an effector.
+          - text: Declared uncertainty
+          - combobox "Declared uncertainty":
+            - option "Choose your reason explicitly"
+            - option "Type remains unresolved"
+            - option "Affiliation remains unresolved" [selected]
+            - option "Reports appear to conflict"
+          - button "Record Defer" [disabled]
+          - status: Defer recorded at T+15.30s. No new classification or response was submitted.
+          - generic: A declared reason is not proof of private reasoning or mastery. Inactivity is never interpreted as Defer.
+        - list "Decision steps":
+          - generic: Select
+          - generic: "2"
+          - generic: Designate
+          - generic: "3"
+          - generic: Classify
+          - generic: "4"
+          - generic: Respond
+          - generic: "5"
+          - generic: Outcome
+        - strong: T1
+        - generic: 700 m observed
+        - button "Guidance" [pressed]:
+          - text: Guidance
+        - group "Designate T1":
+          - generic: Shape
+          - strong: Not seen by DAY TV
+          - generic: Range
+          - strong: 700 m
+          - button "Designate T1" [disabled]:
+            - text: Designate T1
+          - paragraph: Exercise is paused. Resume to make decisions.
+        - status: "Defer new declaration for T1 · affiliation unresolved: accepted at 00:15"
+        - complementary "Fusion training assistant":
+          - heading "Fusion Assistant Training heuristic" [level=3]
+          - paragraph:
+            - strong: Verify identity before selecting a response
+            - text: ". Identity: Unresolved."
+          - paragraph: Type hypothesis weights · uncertainty 100%
+          - list:
+            - listitem: No-RF FPV — 26%
+            - listitem: Bird — 25%
+            - listitem: Fixed-wing — 25%
+            - listitem: RF-controlled quad — 24%
+          - generic "Why this suggestion?"
+          - paragraph: Illustrative normalized weights, not calibrated probabilities. No RF or IFF reply does not establish hostile intent. The operator makes the decision.
+      - generic "Selected report context":
+        - generic: CURRENTLY REPORTED
+        - strong: T1
+        - term: Range
+        - definition: 700 m
+        - term: RF link
+        - definition: Not detected
+        - term: IFF
+        - definition: No reply
+        - paragraph: Type and identity remain your decision.
+        - button "Inspect evidence":
+          - text: Inspect evidence

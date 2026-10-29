@@ -1,0 +1,66 @@
+- button "Start tour"
+- link "Skip to workspace":
+  - /url: "#workspace-content"
+- banner:
+  - link "VYUHA home":
+    - /url: /
+    - strong: VYUHA
+  - navigation "Primary workspaces":
+    - link "Training":
+      - /url: /
+    - link "Review":
+      - /url: /?view=aar
+      - text: Review
+      - generic: "2"
+    - link "Crew":
+      - /url: /crew
+    - link "Instructor":
+      - /url: /instructor
+    - link "Analytics":
+      - /url: /analytics
+  - button "Find workspace":
+    - generic: Find workspace
+    - generic: ⌘ / Ctrl K
+  - button "Operator guide":
+    - generic: Operator guide
+  - button "Workspaces":
+    - generic: Workspaces
+- main:
+  - status: SERVER CONNECTED · Sync up to date · Internet not required
+  - generic: COUNTER-DRONE TRAINING
+  - heading "Training ground" [level=1]
+  - paragraph: Read the sensors. Identify the contact. Choose your response.
+  - generic: Callsign SITE-COMPARISON-QA
+  - text: EXERCISE / READY
+  - region "Simulation station":
+    - generic: Ready
+    - strong: Evidence has a clock
+    - generic "SERVER CONNECTED · Sync up to date": Unit link ready · Freight corridor · Day · Mixed contacts
+    - text: 00:00
+    - generic: / 01:30
+    - button "Open VR observation cockpit" [disabled]: "VR Active observation: VR adapter not yet supported"
+    - button "Mission controls":
+      - text: Mission controls
+    - region "Interactive simulation workstation":
+      - region "Mission briefing":
+        - paragraph: PUBLIC SCENERY / NO CONTACTS
+        - heading "Explore Freight corridor" [level=2]
+        - paragraph: Drag to orbit and scroll or pinch to change distance. This is a public environment preview, not a sensor observation. The exercise clock remains stopped.
+        - group "Environment survey camera":
+          - button "Turn view left":
+          - button "Turn view right":
+          - button "Raise overview":
+          - button "Lower overview":
+          - button "Move view closer":
+          - button "Move view farther":
+          - button "Reset environment view" [active]:
+        - strong: Ready for your explicit start
+        - paragraph: The frozen exercise starts only when you choose Start.
+        - generic: Contact-free scenery · not sensor evidence
+        - button "Return to briefing" [pressed]:
+          - text: Return to briefing
+        - button "Start observation exercise":
+          - text: Start observation exercise
+      - button "2D fallback":
+        - text: 2D fallback
+  - paragraph: Training prototype · Illustrative signatures, ranges and responses · Detection timing begins at first working-sensor observation. Offline cache ready.

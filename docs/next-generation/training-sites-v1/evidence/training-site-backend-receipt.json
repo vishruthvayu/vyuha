@@ -1,0 +1,42 @@
+{
+  "version": "training-site-backend-targeted-v1",
+  "base_commit": "c8572dd872902f8d609a8c942e24e4ca823903d8",
+  "scope": "uncommitted delegated backend development slice; no complete regression or browser/device acceptance",
+  "source_files": {
+    "server/training_sites.py": "2756e208a61edbe1e311f4708e0d9a6411cf5fc71d336ec5cc026a05f2dc33a9",
+    "server/observation_missions_v3.py": "67f05790003e7fc4c20d14455f899c6bb16fed4f3df2367402c4119eaea0d1c6",
+    "server/observation_assessment_v3.py": "508233cfece0e39b274961c1820b271dc813d6eb733ae81df93ac2f12263d652",
+    "server/auth.py": "ce2097aeb39b1ca96998b26a32007877e03fee2454cf2bcda1a533662eb82b7c",
+    "server/main.py": "356dd3000e423f0da6b95471ba0f5026b406ad5ade425d5dce6fb971e3f1ff81",
+    "server/portable.py": "120861eeb49b80cabe33e91c8e51ec5990a8535ae3c6efac8ef4bf9277c1dd26",
+    "server/review_v4.py": "f6ac004bc1d6b94ce8614486992c6f6137f965df40dce0a97763ef55d7814594",
+    "server/observation_assessment.py": "6bd15db8cf541d6d95979d0f586e39a1dc4bd1d1a9b482e2ad4c49b77fd1baf3",
+    "server/tests/test_training_sites_v3.py": "6b859f7c2e928b594b9d8d99182cdf332acb272713d7ace1563ce379e915ea5e",
+    "server/tests/fixtures/observation-missions-v3.json": "b199d50eab41f32882426e9ca5499344bcf7b235f9b80bd21a502341d6741ed2"
+  },
+  "checks": [
+    {
+      "command": ".venv/bin/python -m pytest -p no:cacheprovider server/tests/test_training_sites_v3.py -q",
+      "result": "7 passed / 1 failed in 22.45s",
+      "note": "Completion test was imported before agreed site\u2192mission_site query rename. First seven tests unaffected.",
+      "log": "training-sites-backend.txt"
+    },
+    {
+      "command": ".venv/bin/python -m pytest -p no:cacheprovider server/tests/test_training_sites_v3.py::test_site_mission_completion_assessment_transfer_restore_and_mastery_isolation server/tests/test_observation_assessment.py server/tests/test_uncertainty_v4.py::test_v2_auth_completion_transfer_and_profile_isolation -q",
+      "result": "15 passed in 18.50s",
+      "log": "training-sites-contract-followup.txt"
+    }
+  ],
+  "distinct_focused_backend_tests_passed": 22,
+  "not_rerun": [
+    "complete backend suite",
+    "all historical 18/22 stored cards",
+    "full parity",
+    "browser/VR/device acceptance"
+  ],
+  "artifacts": {
+    "training-sites-backend.txt": "3178ac10415ed0a1e7bcb300ca978931b8ddc0bf077040c5283acb3dea6ec766",
+    "training-sites-contract-followup.txt": "53838aeac057f1128955202ea6d0f46ab8fb9eb53740517a135c82bdbbd11bb0",
+    "training-site-freight-actual-rehearsal.json": "f8baac98c6fbb61f780ec06a05fe645e9a08a2a3b1523850bf4f3a23c92da449"
+  }
+}

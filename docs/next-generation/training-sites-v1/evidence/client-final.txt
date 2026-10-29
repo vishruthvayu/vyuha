@@ -1,0 +1,30 @@
+✔ public scenery survey and keyboard camera controls never dispatch Start, and the primary launch node stays mounted (237.279625ms)
+✔ busy preparation/start guards actions and communicates the actual phase (33.040625ms)
+✔ populated briefing and survey expose named keyboard controls and pass structural axe (275.354042ms)
+✔ briefing renders input as text, omits malformed optional facts and has no implicit launch (10.329209ms)
+✔ mission admission keeps old Academy tickets isolated and fails closed on ambiguous or malformed launches (13.382583ms)
+✔ published mission admission never recompiles and verifies returned ownership and contract before preparing (1.502375ms)
+✔ preset preparation preserves seed zero and independent assessment mode; changed returned criteria are rejected (0.491042ms)
+✔ v2 admission is explicit and cannot reinterpret a frozen v1 mission as the new decision alphabet (0.4285ms)
+✔ authored mission metadata preserves exact Python/TypeScript publication and policy timing for three different challenges (2085.726792ms)
+✔ authoring entry exposes accessible frozen-input controls and explicitly separates rehearsal from human guarantees (25.770625ms)
+{"site":"freight_corridor","structure_triangles":2172,"attribute_bytes":286704,"per_structure_material_batches":23,"environment_materials":"merged by material before mounting"}
+{"site":"open_campus","structure_triangles":1692,"attribute_bytes":223344,"per_structure_material_batches":23,"environment_materials":"merged by material before mounting"}
+✔ authored sites share exact authoritative footprints and bounded deterministic architecture (82.294875ms)
+✔ new site validation fails closed, while historic worlds use their unchanged layout (2.886917ms)
+✔ public site survey and plan never consume contacts or future opportunities (21.826917ms)
+✔ v3 launch admission binds site and exact version; old entries never acquire a new site (2.028791ms)
+✔ survey commands remain bounded and contact-independent for urban_outpost (7.923375ms)
+✔ survey commands remain bounded and contact-independent for rural_forward_base (5.747208ms)
+✔ survey commands remain bounded and contact-independent for logistics_quarter (1.516166ms)
+✔ installed OrbitControls listener lease, stale commands and camera restoration are isolated and disposable (102.68825ms)
+✔ live-rig handoff can dispose the survey without any pose or projection write (9.034166ms)
+✔ documented upstream r180 held-Control release listener is bounded and cannot change the handed-off camera (8.910417ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3449.117333

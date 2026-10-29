@@ -1,0 +1,42 @@
+.......F                                                                 [100%]
+=================================== FAILURES ===================================
+_ test_site_mission_completion_assessment_transfer_restore_and_mastery_isolation _
+
+client = <starlette.testclient.TestClient object at 0x1104fe630>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1104ff890>
+tmp_path = PosixPath('/private/var/folders/f8/6d_zbw0s3cj661yt6jg15d200000gn/T/pytest-of-seemalanaveenyadav/pytest-2/test_site_mission_completion_a0')
+
+    def test_site_mission_completion_assessment_transfer_restore_and_mastery_isolation(client, monkeypatch, tmp_path):
+        from server import storage
+        from server.tests.test_hardening import KEY
+        s = client.post('/api/v1/observation-missions-v3/prepare', json={'site':'open_campus','mode':'assessment'}).json()
+        sid = client.post('/api/v1/sessions', json={'scenario_id':s['id'],'trainee':'SITE-QA'}).json()['id']
+        sim = Simulation(s)
+        while sim.tick < 300:
+            sim.step(force=True)
+        t = next(t for t in sim.tracks if t['active'] and t['detected'] is not None)
+        assert sim.act(dict(tick=sim.tick, order=sim.next_order, k='inspect', track=t['id'], channel='ir', request_id='site_ir'))
+        while sim.tick < 345:
+            sim.step(force=True)
+        assert sim.act(dict(tick=sim.tick, order=sim.next_order, k='defer', track=t['id'], decision_version='uncertainty-decisions-v1', reason='affiliation_unresolved'))
+        assert client.post(f'/api/v1/sessions/{sid}/events',json={'seq':0,'events':sim.events}).status_code == 200
+        assert client.post(f'/api/v1/sessions/{sid}/complete',json={'end_tick':2700,'execution_tick':360}).status_code == 200
+        original = client.get(f'/api/v1/sessions/{sid}/aar').json()
+        assert original['verified']
+        report = original['observation_assessment']
+        assert report['version'] == 'evidence-assessment-v2' and report['mission_version'] == 'observation-mission-v3'
+        assert report['summary']['mastery_awarded'] is False
+>       assert 'mission_version=3&mission_site=open_campus' in report['follow_up']['href']
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert 'mission_version=3&site=open_campus' in '/?mission_template=timed_window&mission_mode=practice&seed=587642&mission_version=3&mission_site=open_campus'
+
+server/tests/test_training_sites_v3.py:140: AssertionError
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED server/tests/test_training_sites_v3.py::test_site_mission_completion_assessment_transfer_restore_and_mastery_isolation
+1 failed, 7 passed, 1 warning in 22.45s

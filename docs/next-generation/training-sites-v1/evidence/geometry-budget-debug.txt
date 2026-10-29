@@ -1,0 +1,32 @@
+{"site":"freight_corridor","structure_triangles":2172,"attribute_bytes":286704,"per_structure_material_batches":23,"environment_materials":"merged by material before mounting"}
+{"site":"freight_corridor","decorative_placements":56,"facility_triangles":132692,"facility_attribute_bytes":17515344,"facility_material_batches":10}
+✖ authored sites share exact authoritative footprints and bounded deterministic architecture (631.276584ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1773.513875
+
+✖ failing tests:
+
+test at src/training-sites.test.tsx:36:1
+✖ authored sites share exact authoritative footprints and bounded deterministic architecture (631.276584ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(
+  
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/training-sites.test.tsx:107:12)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

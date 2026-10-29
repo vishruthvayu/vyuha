@@ -1,0 +1,18 @@
+src/training-sites.test.tsx 80ms
+src/world/training-site.ts 31ms (unchanged)
+src/world/site-architecture.ts 22ms
+src/TrainingSiteBrief.tsx 21ms (unchanged)
+src/Scene.tsx 74ms (unchanged)
+src/world/Environment.tsx 109ms
+src/VRWorld.tsx 8ms (unchanged)
+src/world-survey.ts 7ms (unchanged)
+src/WorldSurveyControls.tsx 13ms (unchanged)
+src/types.ts 36ms (unchanged)
+src/observation-entry.ts 14ms
+src/observation-missions.ts 19ms
+src/ObservationMissionStudio.tsx 61ms
+src/ObservationMissionJourney.tsx 31ms (unchanged)
+src/MissionBriefing.tsx 26ms (unchanged)
+src/App.tsx 440ms (unchanged)
+src/ReviewTheatre.tsx 71ms (unchanged)
+src/ObservationAssessmentReview.tsx 31ms (unchanged)

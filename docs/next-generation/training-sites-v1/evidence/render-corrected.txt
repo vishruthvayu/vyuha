@@ -1,0 +1,20 @@
+{"site":"freight_corridor","structure_triangles":2172,"attribute_bytes":286704,"per_structure_material_batches":23,"environment_materials":"merged by material before mounting"}
+{"site":"freight_corridor","decorative_placements":56,"facility_triangles":42212,"facility_attribute_bytes":5571984,"facility_material_batches":10}
+{"site":"open_campus","structure_triangles":1692,"attribute_bytes":223344,"per_structure_material_batches":23,"environment_materials":"merged by material before mounting"}
+{"site":"open_campus","decorative_placements":58,"facility_triangles":42304,"facility_attribute_bytes":5584128,"facility_material_batches":10}
+✔ authored sites share exact authoritative footprints and bounded deterministic architecture (544.195125ms)
+✔ new site validation fails closed, while historic worlds use their unchanged layout (1.458125ms)
+✔ public site survey and plan never consume contacts or future opportunities (13.450959ms)
+✔ v3 launch admission binds site and exact version; old entries never acquire a new site (1.5815ms)
+✔ actual browser Scene forwards frozen configuration to both environment and sensor-limited inspection (375.805834ms)
+✔ actual XR world forwards the same scenario configuration without adding browser inspection (6.005625ms)
+✔ actual reconstruction theatre preserves source sensor configuration when creating its modeled scene (18.93625ms)
+✔ authored public site reaches the real browser environment and briefing survey without admitting contact truth (7.008ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2722.851792

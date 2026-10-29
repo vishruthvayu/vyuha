@@ -1,0 +1,203 @@
+- link "Skip to workspace":
+  - /url: "#workspace-content"
+- banner:
+  - link "VYUHA home":
+    - /url: /
+    - strong: VYUHA
+  - navigation "Primary workspaces":
+    - link "Training":
+      - /url: /
+    - link "Review":
+      - /url: /?view=aar
+      - text: Review
+      - generic: "2"
+    - link "Crew":
+      - /url: /crew
+    - link "Instructor":
+      - /url: /instructor
+    - link "Analytics":
+      - /url: /analytics
+  - button "Find workspace":
+    - generic: Find workspace
+    - generic: ⌘ / Ctrl K
+  - button "Operator guide":
+    - generic: Operator guide
+  - button "Workspaces":
+    - generic: Workspaces
+- main [active]:
+  - text: WORKSPACE
+  - generic: AFTER-ACTION REVIEW
+  - text: VYUHA server offline
+  - generic: LEARN FROM EVERY DECISION
+  - heading "After-action review" [level=1]
+  - paragraph: A replay of your exercise, with a traceable score and reference response.
+  - button "Export session":
+    - text: Export session
+  - generic "Exercise history · 2 saved exercises"
+  - strong: "0"
+  - generic: / 100
+  - generic: REVIEW REQUIRED
+  - 'heading "Full-horizon tactical projection: 1 threat reached the protected asset. Review response selection." [level=2]'
+  - paragraph: The recording ends at 00:15. These tactical outcomes project to the frozen scoring horizon at 01:30; they are not additional observed events.
+  - paragraph: SITE-COMPARISON-QA · Evidence has a clock · Seed 482913
+  - text: Device score · verification pending
+  - button "Retry verification"
+  - button "Next drill":
+    - text: Next drill
+  - article:
+    - text: Recognition
+    - strong: 0%
+    - generic: Correct type and identity
+  - article:
+    - text: Response selection
+    - strong: 0%
+    - generic: Reference response, fewer errors
+  - article:
+    - text: Projected asset impacts
+    - strong: "1"
+    - generic: Frozen scoring horizon 01:30
+  - article:
+    - text: Safety flags
+    - strong: "0"
+    - generic: Restricted-zone attempts
+  - navigation "Review sections":
+    - link "Verdict":
+      - /url: "#review-verdict"
+    - link "Replay & decisions":
+      - /url: "#review-replay"
+    - link "Timeline":
+      - /url: "#review-timeline"
+    - link "Decision path":
+      - /url: "#review-path"
+    - link "Comparison":
+      - /url: "#review-comparison"
+    - link "Score breakdown":
+      - /url: "#review-score"
+  - region "Evidence reconstruction theatre":
+    - paragraph: INVESTIGATE THE DECISION
+    - heading "Evidence reconstruction theatre" [level=2]
+    - paragraph: Reconstruct available observations, then compare them with the reference world.
+    - text: LOCAL · VERIFICATION PENDING
+    - generic: Evidence has a clock
+    - generic "Reconstruction lens":
+      - button "Modeled observations" [pressed]:
+        - text: Modeled observations
+      - button "Reference world":
+        - text: Reference world
+      - generic: T+0.00s · after recorded events at this tick
+    - paragraph: "Frozen site: Freight corridor · training-site-v1 · geometry preserved from this exercise"
+    - generic "Reconstruction channels":
+      - button "IR" [pressed]
+      - button "EO"
+      - button "Radar"
+      - button "2D fallback"
+    - text: IR · MODELED OBSERVATIONS
+    - generic: Sensor-origin view · observed geometry only
+    - generic: INITIALIZING RENDERER
+    - button "Play replay":
+    - slider "Replay time": "0"
+    - generic: T+15.70s
+    - complementary "Evidence at replay cursor":
+      - paragraph: AT THE PLAYHEAD
+      - heading "T+0.00s" [level=3]
+      - paragraph: Modeled availability reconstructed from the frozen engine. This is not a recording of gaze, viewport or what the trainee actually noticed.
+      - text: Reported contact
+      - combobox "Reported contact at cursor":
+        - option "Choose a reported contact" [selected]
+      - paragraph: Select a decision below or a reported contact. Absence of a report is not proof of an empty sky.
+      - status:
+        - strong: No decision selected
+    - navigation "Recorded decision moments":
+      - heading "Original tactical rubric moments" [level=3]
+      - generic: No tactical rubric decision within this interval; explicit Defer is reviewed separately
+    - generic "Original tactical rubric explanation · Defer is reviewed separately"
+    - heading "Ghost Expert · Tactical rubric" [level=2]
+    - generic: VERIFICATION PENDING
+    - paragraph: This section preserves the original tactical rubric. Missing designation or classification does not mean no Defer was recorded. Explicit uncertainty is reviewed separately in Mission evidence assessment.
+    - heading "Verification pending" [level=3]
+    - paragraph: Authoritative decision review becomes available after the original local server verifies this exercise. No expert expectations are generated from device-only display state.
+  - heading "Decision path and What-if replay" [level=2]
+  - text: Reviewed contact
+  - combobox "Reviewed contact":
+    - option "T1" [selected]
+    - option "T2"
+    - option "T3"
+    - option "T4"
+  - paragraph: Device result; authoritative review requires server verification. Node points are final contact outcomes, shared across attempts. After-review truth is labelled separately from observations.
+  - list "Final contact score path for T1":
+    - button "STEP 1 · Detect 0 / 25 0 authoritative reviews Inspect recorded evidence":
+      - generic: STEP 1 · Detect
+      - strong: 0 / 25
+      - generic: 0 authoritative reviews
+      - generic: Inspect recorded evidence
+    - button "STEP 2 · Classify 0 / 25 0 authoritative reviews Inspect recorded evidence":
+      - generic: STEP 2 · Classify
+      - strong: 0 / 25
+      - generic: 0 authoritative reviews
+      - generic: Inspect recorded evidence
+    - button "STEP 3 · Prioritize 0 / 15 0 authoritative reviews Inspect recorded evidence":
+      - generic: STEP 3 · Prioritize
+      - strong: 0 / 15
+      - generic: 0 authoritative reviews
+      - generic: Inspect recorded evidence
+    - button "STEP 4 · Respond 0 / 35 0 authoritative reviews Inspect recorded evidence":
+      - generic: STEP 4 · Respond
+      - strong: 0 / 35
+      - generic: 0 authoritative reviews
+      - generic: Inspect recorded evidence
+  - paragraph: Stages follow rubric order; decision ticks below preserve the actual recorded history. This display does not infer causal links between decisions.
+  - button "All stages" [pressed]
+  - status: 0 reviews shown
+  - paragraph: No authoritative decision review is recorded for this selection. A score alone does not establish what was observed.
+  - generic "Read the complete linear decision record"
+  - heading "Try a different response" [level=3]
+  - paragraph: The server branches the frozen exercise at the recorded decision. The original score and training profile remain unchanged.
+  - paragraph: Server verification is required for What-if.
+  - heading "Evidence-constrained response comparison" [level=2]
+  - paragraph: Server verification of this completed session is required.
+  - generic: ADVICE RECEIPTS · HUMAN RELIANCE UNVERIFIED
+  - heading "Fusion advice and confidence review" [level=2]
+  - paragraph: "Mode: training; exercise: normal. Advice and reported associations do not establish human viewing or cognitive reliance."
+  - paragraph: Server verification is required for reconstructed Fusion receipts.
+  - strong: Decision-tree score breakdown
+  - region "Original decision-tree score breakdown":
+    - table:
+      - rowgroup:
+        - row "Contact Detect / 25 Classify / 25 Priority ranking / 15 Engage / 35 Total":
+          - columnheader "Contact"
+          - columnheader "Detect / 25"
+          - columnheader "Classify / 25"
+          - columnheader "Priority ranking / 15"
+          - columnheader "Engage / 35"
+          - columnheader "Total"
+      - rowgroup:
+        - row "T1 · hostile 0 0 0 0 0":
+          - cell "T1 · hostile"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+        - row "T2 · hostile 0 0 0 0 0":
+          - cell "T2 · hostile"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+        - row "T3 · friendly 0 0 0 0 0":
+          - cell "T3 · friendly"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+        - row "T4 · neutral 0 0 0 0 0":
+          - cell "T4 · neutral"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+          - cell "0"
+  - paragraph: Session score averages hostile contacts, then subtracts 10 per asset impact. Non-hostile engagement fails the session. Ranking node = 15 × co-observed pair agreement × engagement coverage. Shared ranking points are allocated to each hostile row.
+  - generic "Local performance diagnostics"

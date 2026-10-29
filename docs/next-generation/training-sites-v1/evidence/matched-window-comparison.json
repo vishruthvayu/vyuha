@@ -1,0 +1,77 @@
+{
+  "baseline-paused-fixed-medium.json": {
+    "source": {
+      "working_tree_source_dirty": false,
+      "commit": "0ac34fe08efd2f81614e04325f6849dc00ceac23",
+      "source_hash": "d2c761dc95ce17b84fa0860652cff72285a5a5d8514cd3d412e4132908d895bc"
+    },
+    "capture_elapsed_ms": 135273.8999999999,
+    "common_window_ms": [
+      5000,
+      35000
+    ],
+    "frames": 1754,
+    "p50_ms": 16.7,
+    "p95_ms": 17.7,
+    "p99_ms": 32.4,
+    "max_ms": 100.9,
+    "over_50_ms": 9,
+    "over_100_ms": 1,
+    "dropped_samples": 0,
+    "ignored_background_frames": 0
+  },
+  "candidate-paused-fixed-medium.json": {
+    "source": {
+      "working_tree_source_dirty": false,
+      "commit": "13df5180bb82be723c923ed205c9babe93aa9d8a",
+      "source_hash": "7bfd8932ff38a7262169f6ee6a14c59dd70abefd05f9a9a7e93ef9ac9fc8d473"
+    },
+    "capture_elapsed_ms": 124136.70000000019,
+    "common_window_ms": [
+      5000,
+      35000
+    ],
+    "frames": 1800,
+    "p50_ms": 16.7,
+    "p95_ms": 17.7,
+    "p99_ms": 18,
+    "max_ms": 20.1,
+    "over_50_ms": 0,
+    "over_100_ms": 0,
+    "dropped_samples": 0,
+    "ignored_background_frames": 0
+  },
+  "conditions": {
+    "hardware": "MacBook Air M1 / 8 GB",
+    "quality": "fixed Medium, auto disabled by explicit selection",
+    "viewport_css": [
+      1440,
+      900
+    ],
+    "canvas": [
+      1440,
+      800
+    ],
+    "pixel_ratio": 1,
+    "sensor_origin": [
+      0,
+      2,
+      0
+    ],
+    "aim": [
+      0,
+      18,
+      1500
+    ],
+    "selection": null,
+    "optical_requests": 0,
+    "vision": "day",
+    "night": false,
+    "fog": 0.45,
+    "seed": 482913,
+    "logical_tick": "baseline 236 (T+7.87s); candidate 458 (T+15.27s); both paused, no released optical geometry",
+    "roster": 4,
+    "scope": "native loopback Codex in-app browser; paused sensor-origin rendering; no training throughput, GPU time or headset claim",
+    "differences": "Intentional authored-site geometry and compact optics/pause layout; baseline v2 versus candidate v3. Different logical ticks/radar returns. Not an equivalent pixel workload or proof of graphics fidelity/performance causation."
+  }
+}

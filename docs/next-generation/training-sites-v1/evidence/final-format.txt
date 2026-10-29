@@ -1,0 +1,5 @@
+src/App.tsx 347ms
+src/training-sites.test.tsx 28ms
+src/training-site-contract.ts 15ms (unchanged)
+src/world/training-site.ts 11ms
+src/world/site-architecture.ts 17ms (unchanged)

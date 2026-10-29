@@ -1,0 +1,51 @@
+{"site":"freight_corridor","structure_triangles":2172,"attribute_bytes":286704,"per_structure_material_batches":23,"environment_materials":"merged by material before mounting"}
+✖ authored sites share exact authoritative footprints and bounded deterministic architecture (1672.596708ms)
+✔ new site validation fails closed, while historic worlds use their unchanged layout (136.443916ms)
+✔ public site survey and plan never consume contacts or future opportunities (42.228166ms)
+✔ v3 launch admission binds site and exact version; old entries never acquire a new site (2.762583ms)
+✖ actual browser Scene forwards frozen configuration to both environment and sensor-limited inspection (2569.06875ms)
+✔ actual XR world forwards the same scenario configuration without adding browser inspection (105.178958ms)
+✔ actual reconstruction theatre preserves source sensor configuration when creating its modeled scene (35.379167ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 5
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8783.522875
+
+✖ failing tests:
+
+test at src/training-sites.test.tsx:36:1
+✖ authored sites share exact authoritative footprints and bounded deterministic architecture (1672.596708ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(
+  
+      at TestContext.<anonymous> (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/training-sites.test.tsx:98:12)
+      at Test.runInAsyncScope (node:async_hooks:213:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at src/world-config-flow.test.tsx:105:1
+✖ actual browser Scene forwards frozen configuration to both environment and sensor-limited inspection (2569.06875ms)
+  Error: R3F: Hooks can only be used within the Canvas component!
+      at useStore (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/node_modules/@react-three/fiber/dist/events-21d8cd92.cjs.dev.js:1269:21)
+      at useThree (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/node_modules/@react-three/fiber/dist/events-21d8cd92.cjs.dev.js:1278:10)
+      at WorldSurveyControls (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/src/WorldSurveyControls.tsx:118:26)
+      at Object.react_stack_bottom_frame (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:10371:18)
+      at renderWithHooks (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5361:19)
+      at renderElement (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:5796:23)
+      at retryNode (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:6772:31)
+      at renderNodeDestructive (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:6717:11)
+      at renderNode (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:7268:18)
+      at renderChildrenArray (/Users/seemalanaveenyadav/Desktop/SIH/vyuha/work/finale/ultimate-experience/browser-vr-unified/client/node_modules/react-dom/cjs/react-dom-server-legacy.node.development.js:7029:11)

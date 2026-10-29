@@ -1,0 +1,51 @@
+- link "Skip to workspace":
+  - /url: "#workspace-content"
+- banner:
+  - link "VYUHA home":
+    - /url: /
+    - strong: VYUHA
+  - navigation "Primary workspaces":
+    - link "Training":
+      - /url: /
+    - link "Review":
+      - /url: /?view=aar
+      - text: Review
+      - generic: "2"
+    - link "Crew":
+      - /url: /crew
+    - link "Instructor":
+      - /url: /instructor
+    - link "Analytics":
+      - /url: /analytics
+  - button "Find workspace":
+    - generic: Find workspace
+    - generic: ⌘ / Ctrl K
+  - button "Operator guide":
+    - generic: Operator guide
+  - button "Workspaces":
+    - generic: Workspaces
+- main:
+  - text: WORKSPACE
+  - generic: AFTER-ACTION REVIEW
+  - text: VYUHA server offline
+  - generic: LEARN FROM EVERY DECISION
+  - heading "After-action review" [level=1]
+  - paragraph: A replay of your exercise, with a traceable score and reference response.
+  - heading "Choose an exercise to review" [level=2]
+  - paragraph: Complete a drill to review detection timing, classification, and responses.
+  - group "Saved exercise reviews":
+    - button "Evidence has a clock SITE-COMPARISON-QA · 10/29/2026, 11:23:42 AM Seed 482913 · 4 contacts · 15.7s observed · 1 decisions Device score · verification pending Exercise 52c7b3aa-a4a 0/100":
+      - strong: Evidence has a clock
+      - generic: SITE-COMPARISON-QA · 10/29/2026, 11:23:42 AM
+      - generic: Seed 482913 · 4 contacts · 15.7s observed · 1 decisions
+      - text: Device score · verification pending
+      - generic: Exercise 52c7b3aa-a4a
+      - strong: 0/100
+    - button "Evidence has a clock SITE-COMPARISON-QA · 10/29/2026, 10:40:59 AM Seed 482913 · 4 contacts · 21.9s observed · 0 decisions Server verified Exercise f83b6f38-975 0/100":
+      - strong: Evidence has a clock
+      - generic: SITE-COMPARISON-QA · 10/29/2026, 10:40:59 AM
+      - generic: Seed 482913 · 4 contacts · 21.9s observed · 0 decisions
+      - text: Server verified
+      - generic: Exercise f83b6f38-975
+      - strong: 0/100
+  - generic "Local performance diagnostics"

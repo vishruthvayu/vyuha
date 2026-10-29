@@ -1,0 +1,10 @@
+Actual site parity checkpoints: 109
+✔ authored site loss/reacquisition, requests, expiry and Defer reconstruct identically in Python and TypeScript (85955.740083ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 86281.363334

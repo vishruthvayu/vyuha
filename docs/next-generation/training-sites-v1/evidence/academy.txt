@@ -1,0 +1,189 @@
+- link "Skip to workspace":
+  - /url: "#workspace-content"
+- banner:
+  - link "VYUHA home":
+    - /url: /
+    - strong: VYUHA
+  - navigation "Primary workspaces":
+    - link "Training":
+      - /url: /
+    - link "Review":
+      - /url: /?view=aar
+    - link "Crew":
+      - /url: /crew
+    - link "Instructor":
+      - /url: /instructor
+    - link "Analytics":
+      - /url: /analytics
+  - button "Find workspace":
+    - generic: Find workspace
+    - generic: ⌘ / Ctrl K
+  - button "Operator guide":
+    - generic: Operator guide
+  - button "Workspaces":
+    - generic: Workspaces
+- banner:
+  - text: Workspace
+  - generic: / Academy
+- main:
+  - paragraph: A GUIDED LEARNING JOURNEY
+  - heading "Academy" [level=1]
+  - paragraph: Learn a decision skill with guidance, try it with less help, then gather independent evidence. Each step leads into the real simulator and back to verified review.
+  - region "Different information. Different decisions.":
+    - text: AUTHORED EVIDENCE / OBSERVATION MISSIONS
+    - heading "Different information. Different decisions." [level=2]
+    - paragraph: Enter a frozen mission, investigate its evidence, then separate outcome accuracy from what your decision was actually supported by.
+    - link "Instructor mission studio":
+      - /url: /observation-missions
+    - text: Authored training site
+    - combobox "Authored training site":
+      - option "Freight corridor" [selected]
+      - option "Open campus"
+    - group "Evidence mode":
+      - generic: Evidence mode
+      - radio "Practice" [checked]
+      - text: Practice
+      - radio "Independent assessment"
+      - text: Independent assessment
+    - text: Reproducible seed
+    - textbox "Reproducible seed": "482913"
+    - paragraph: Practice evidence guides the next exercise; it does not update the historical individual mastery profile. Original rubric scores are preserved.
+    - article:
+      - generic: 01 / NIGHT · URBAN
+      - heading "A channel is not an answer" [level=3]
+      - paragraph: Night optics may be unavailable. Choose a useful cross-check and retain uncertainty about affiliation.
+      - list:
+        - listitem: Separate channel unavailability from an empty sky.
+        - listitem: Choose a cross-check that can supply new information.
+        - listitem: Keep shape resolution separate from affiliation.
+      - paragraph: "Competency evidence: C01 · C02 · C05 · C03"
+      - link "Brief this mission":
+        - /url: /?mission_template=night_switch&mission_mode=practice&seed=482913&mission_version=3&mission_site=freight_corridor
+    - article:
+      - generic: 02 / DAY · RURAL
+      - heading "Resolve the affiliation conflict" [level=3]
+      - paragraph: Positive affiliation cues can justify restraint even when optical detail is inconclusive or old.
+      - list:
+        - listitem: Compare current IFF, radar and requested optics without discarding contradictory cues.
+        - listitem: Use positive affiliation evidence when selecting restraint.
+        - listitem: Do not infer hostility from no reply or absence of a radio report.
+      - paragraph: "Competency evidence: C02 · C03 · C05"
+      - link "Brief this mission":
+        - /url: /?mission_template=civil_restraint&mission_mode=practice&seed=482913&mission_version=3&mission_site=freight_corridor
+    - article:
+      - generic: 03 / DAY · URBAN
+      - heading "Evidence has a clock" [level=3]
+      - paragraph: Moving contacts and short-lived reports create a timing problem, not a request-count competition.
+      - list:
+        - listitem: Relate request, sample, publication and expiry to the decision boundary.
+        - listitem: Reacquire only when a new observation can change a decision.
+        - listitem: Retain uncertainty when current evidence does not establish type or affiliation.
+      - paragraph: "Competency evidence: C01 · C02 · C03"
+      - link "Brief this mission":
+        - /url: /?mission_template=timed_window&mission_mode=practice&seed=482913&mission_version=3&mission_site=freight_corridor
+    - generic "Saved frozen missions · 3"
+    - region "Evidence-guided observation practice":
+      - text: EVIDENCE-GAP DIRECTOR / EXPLAINABLE HEURISTIC
+      - heading "Your next information problem" [level=3]
+      - paragraph:
+        - strong: C01
+        - text: · Sample another C01 evidence opportunity; missing observations are not proof of weakness or mastery.
+      - link "Prepare recommended observation practice":
+        - /url: /?mission_template=timed_window&mission_mode=practice&seed=587642&mission_version=3&mission_site=freight_corridor
+      - paragraph: 1 practice sessions · 1 independent sessions in the bounded evidence window. These are descriptive evidence observations, not mastery levels or measured learning gains.
+  - region "Active observation practice":
+    - text: NEW SIMULATION / OPT-IN PRACTICE
+    - heading "Investigate before you decide." [level=2]
+    - paragraph: Radar supplies a contact. Request EO or IR, wait for the simulated acquisition, then decide what the released evidence actually establishes. Review the complete request-to-decision chain in verified Ghost.
+    - paragraph: Practice only. This new engine does not update individual mastery. Crew and VR adapters are not yet admitted.
+    - link "Enter active observation practice":
+      - /url: /?acquisition=1&night=0
+  - strong: V06-RECOVERY-QA's learning route
+  - paragraph: Choose a competency, brief the task and explicitly prepare an attempt. Any stage is available; suggestions are not unlocks or mastery judgments.
+  - button "Refresh evidence"
+  - navigation "Individual competency journeys":
+    - paragraph: CHOOSE YOUR FOCUS
+    - list:
+      - button "01 · C01 Observation acquisition 0 assessed sessions · 0 unassessable observations" [pressed]:
+        - generic: 01 · C01
+        - strong: Observation acquisition
+        - generic: 0 assessed sessions · 0 unassessable observations
+      - button "02 · C02 Evidence-based classification 0 assessed sessions · 0 unassessable observations":
+        - generic: 02 · C02
+        - strong: Evidence-based classification
+        - generic: 0 assessed sessions · 0 unassessable observations
+      - button "03 · C03 Restraint under uncertainty 0 assessed sessions · 0 unassessable observations":
+        - generic: 03 · C03
+        - strong: Restraint under uncertainty
+        - generic: 0 assessed sessions · 0 unassessable observations
+      - button "04 · C04 Response reasoning 0 assessed sessions · 0 unassessable observations":
+        - generic: 04 · C04
+        - strong: Response reasoning
+        - generic: 0 assessed sessions · 0 unassessable observations
+      - button "05 · C05 Degraded evidence handling 0 assessed sessions · 0 unassessable observations":
+        - generic: 05 · C05
+        - strong: Degraded evidence handling
+        - generic: 0 assessed sessions · 0 unassessable observations
+    - paragraph: Individual routes only. Crew coordination is a separate curriculum contract.
+  - navigation "Stages of the selected competency":
+    - list:
+      - button "1 · Learn with guidance No supporting practice observation recorded":
+        - strong: 1 · Learn with guidance
+        - generic: No supporting practice observation recorded
+      - button "2 · Try with less guidance No supporting practice observation recorded":
+        - strong: 2 · Try with less guidance
+        - generic: No supporting practice observation recorded
+      - button "3 · Demonstrate independently No assessable session recorded":
+        - strong: 3 · Demonstrate independently
+        - generic: No assessable session recorded
+  - paragraph:
+    - text: "Suggested next:"
+    - strong: Supported practice
+    - text: . Based on recorded supported practice items; no proficiency or assessment pass is inferred.
+  - region "Observation acquisition":
+    - paragraph: Supported practice · C01
+    - heading "Observation acquisition" [level=2]
+    - paragraph: Use the lesson guidance, make a decision and reconstruct the evidence afterward.
+    - generic: Full guidance
+    - text: Lesson
+    - combobox "Lesson":
+      - 'option "Observation acquisition: practice A" [selected]'
+    - heading "Your objective" [level=3]
+    - paragraph: Detect and designate an observable contact without treating unknown evidence as absence.
+    - heading "In the exercise" [level=3]
+    - list:
+      - listitem: Select an observed contact; retain uncertainty when evidence is insufficient.
+      - listitem: Make your own designation, classification and response choices.
+      - listitem: After completion, inspect the verified evidence and explain one choice.
+    - complementary "Evidence to review after the exercise":
+      - paragraph: WHAT TO LOOK FOR IN REVIEW
+      - heading "Build an evidence trail" [level=3]
+      - paragraph: Detect and designate an observable contact without treating unknown evidence as absence.
+      - list:
+        - listitem: Identify the available observation behind one decision.
+        - listitem: Compare the decision with the server-verified review in Ghost.
+        - listitem: Open Evidence investigation to test what the original reports support, then inspect their exact replay moments.
+        - listitem: Record what remained uncertain and what you would check next.
+      - paragraph:
+        - strong: "Reflection prompt:"
+        - text: Which observation supported your choice, and what remained uncertain?
+      - paragraph: Practice evidence is excluded from individual assessment. A saved reflection does not award competency credit.
+    - strong: Prepare, then open in Training
+    - paragraph: Preparation freezes an attempt. Open the frozen attempt in Training, then use its Start control.
+    - button "Prepare selected lesson"
+  - region "Evidence for this competency":
+    - heading "Evidence for this competency" [level=2]
+    - term: Supported
+    - definition: "0"
+    - term: Incorrect
+    - definition: "0"
+    - term: Unassessable
+    - definition: "0"
+    - term: Assessed sessions
+    - definition: "0"
+    - paragraph: These are original-server assessment observations across this competency, not stage completion or per-form results. Practice and Crew do not become individual assessment.
+    - link "Open Ghost review":
+      - /url: /?view=aar
+  - generic "Coverage-first practice and full evidence record"
+  - generic "Course sources, assessment limits and Crew scope"
+  - paragraph: Illustrative curriculum, not operational certification. Structural form balance is not empirical difficulty equivalence, fairness or demonstrated human learning benefit.

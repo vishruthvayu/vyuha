@@ -1,0 +1,34 @@
+{
+  "version": "authored-sites-browser-acceptance-v1",
+  "implementation_commit": "13df5180bb82be723c923ed205c9babe93aa9d8a",
+  "source_tree_sha256": "7bfd8932ff38a7262169f6ee6a14c59dd70abefd05f9a9a7e93ef9ac9fc8d473",
+  "working_tree_browser_scope": "Vite integrated author/independent journeys followed by clean source-pinned production render/recovery",
+  "journeys": {
+    "authored_practice": "4ee201b0-2225-4ba9-b8b9-03d829314f15",
+    "rejected_tentative": "c18c92c7-f2ce-4f05-be9d-070717b6d844",
+    "independent_defer": "38900d82-61c7-4d6a-83de-d02ef0f81f22",
+    "production_recovery": "52c7b3aa-a4a0-4f24-a593-d954a6a4fd7f"
+  },
+  "narrow_css": [
+    391,
+    843
+  ],
+  "narrow_horizontal_overflow": 0,
+  "expanded_plan_start_rect": {
+    "top": 766.68408203125,
+    "bottom": 816.7795715332031,
+    "height": 50.095489501953125
+  },
+  "desktop_css": [
+    1440,
+    900
+  ],
+  "canvas_pixels": [
+    1440,
+    800
+  ],
+  "optics_console_height_css": 106.08507537841795,
+  "public_survey": "Final production, all four buildings framed, logical clock zero and contact-free, keyboard reset tested",
+  "physical_devices": "NOT PERFORMED",
+  "source_pinned_production_export": "candidate-paused-fixed-medium.json"
+}

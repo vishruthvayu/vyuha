@@ -1,0 +1,29 @@
+{
+  "version": "training-site-production-recovery-v1",
+  "runtime_commit": "13df5180bb82be723c923ed205c9babe93aa9d8a",
+  "session": "52c7b3aa-a4a0-4f24-a593-d954a6a4fd7f",
+  "site": "freight_corridor",
+  "mode": "practice",
+  "server_process_outage": true,
+  "health_failed_while_stopped": true,
+  "cached_reload_without_server": true,
+  "queued_events": [
+    {
+      "decision_version": "uncertainty-decisions-v1",
+      "k": "defer",
+      "order": 0,
+      "reason": "affiliation_unresolved",
+      "tick": 459,
+      "track": "T1"
+    }
+  ],
+  "execution_tick": 471,
+  "verified": true,
+  "score": 0,
+  "mastery_awarded": false,
+  "legacy_profile_sessions": 0,
+  "limitations": [
+    "Loopback software server-process outage; not physical LAN/WAN-off or separate-device validation.",
+    "Fusion classification confidence is not attached to Defer by contract. No human reliance inference."
+  ]
+}

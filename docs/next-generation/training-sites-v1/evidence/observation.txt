@@ -1,0 +1,148 @@
+- link "Skip to workspace":
+  - /url: "#workspace-content"
+- banner:
+  - link "VYUHA home":
+    - /url: /
+    - strong: VYUHA
+  - navigation "Primary workspaces":
+    - link "Training":
+      - /url: /
+    - link "Review":
+      - /url: /?view=aar
+      - text: Review
+      - generic: "1"
+    - link "Crew":
+      - /url: /crew
+    - link "Instructor":
+      - /url: /instructor
+    - link "Analytics":
+      - /url: /analytics
+  - button "Find workspace":
+    - generic: Find workspace
+    - generic: ⌘ / Ctrl K
+  - button "Operator guide":
+    - generic: Operator guide
+  - button "Workspaces":
+    - generic: Workspaces
+- main:
+  - status: SERVER CONNECTED · Sync up to date · Internet not required
+  - generic: COUNTER-DRONE TRAINING
+  - heading "Training ground" [level=1]
+  - paragraph: Read the sensors. Identify the contact. Choose your response.
+  - generic: Callsign V06-RECOVERY-QA
+  - text: EXERCISE / PAUSED
+  - region "Simulation station":
+    - generic: Paused
+    - strong: QA · Freight reacquisition
+    - generic "SERVER CONNECTED · Sync up to date": Unit link ready · Freight corridor · Day · Mixed contacts
+    - text: 00:45
+    - generic: / 01:30
+    - button "Resume" [active]:
+      - text: Resume
+    - button "End exercise"
+    - button "Open VR observation cockpit" [disabled]: "VR Active observation: VR adapter not yet supported"
+    - button "Mission controls":
+      - text: Mission controls
+    - region "Interactive simulation workstation":
+      - generic: OBSERVATION STATION
+      - strong: Exercise paused
+      - navigation "Simulation instruments":
+        - button "Observe world" [pressed]:
+          - generic: Observe
+        - button "Open radar picture":
+          - generic: Radar
+        - button "Browse reported contacts":
+          - generic: Reports · 3
+        - button "Inspect selected evidence":
+          - generic: Evidence
+        - button "Open decision station":
+          - generic: Decide
+      - generic "Observation preferences"
+      - button "THERMAL"
+      - button "DAY TV" [pressed]
+      - button "IR NIGHT DISPLAY"
+      - text: DAY TV / OPTICAL
+      - generic: T1 · CUED BY RADAR · NOT SEEN BY THIS CAMERA
+      - heading "Exercise paused" [level=2]
+      - paragraph: Use Resume in the exercise controls above.
+      - region "Optical investigation station":
+        - strong: REPORT TRACK
+        - generic: T1
+        - group "Camera pan and tilt":
+          - button "Pan camera left":
+          - button "Tilt camera up":
+          - button "Tilt camera down":
+          - button "Pan camera right":
+          - button "Track selected report" [disabled]:
+            - text: Track selected report
+        - text: Crop 1×
+        - slider "Optical station display crop": "1"
+        - paragraph: Drag the scene to scan · arrow controls for keyboard · Track selected report to return
+      - complementary "Active observation instrument":
+        - text: OBSERVATION FLIGHT DECK
+        - heading "QA · Freight reacquisition" [level=2]
+        - generic "Mission objective +"
+        - region "Request synthetic optical observation":
+          - generic: OPTICAL TASKING
+          - generic: One task slot · logical time
+          - button "Request EO Day optical cross-check" [disabled]:
+            - strong: Request EO
+            - generic: Day optical cross-check
+          - button "Request IR Thermal cross-check" [disabled]:
+            - strong: Request IR
+            - generic: Thermal cross-check
+          - paragraph: Exercise paused · logical acquisition time is stopped.
+        - region "Observation evidence deck":
+          - generic: INFORMATION AT THIS MOMENT
+          - strong: Evidence before inference.
+          - text: T+45.43s
+          - button "Focus world" [expanded]
+          - region "Selected observation subject":
+            - text: OBSERVED SUBJECT
+            - strong: T1
+            - generic: Current radar alias
+            - term:
+              - text: Radar
+            - definition: confirmed · 1.43s old
+            - term:
+              - text: RF / IFF
+            - definition:
+              - text: Signal reported
+              - generic: No reply · unresolved
+          - region "Authoritative acquisition phase":
+            - generic: TASK SEQUENCE
+            - generic: Expired evidence
+            - list "Observation workflow":
+              - generic: Request
+              - generic: Explicit intent
+              - generic: Sample
+              - generic: Frozen cadence
+              - generic: Inspect
+              - generic: Released evidence
+            - paragraph: Availability is not detection. A shape is not an affiliation.
+          - region "Released observations for selected contact":
+            - heading "Released evidence" [level=3]
+            - generic: 1 retained
+            - article:
+              - generic: EO / T1
+              - generic: EXPIRED
+              - strong: Detection only
+              - paragraph: This result does not establish type or affiliation.
+              - generic: Expired 30.23s ago
+              - generic: Historical sample
+              - button "Inspect EO in world" [disabled]
+              - generic: Expired evidence cannot restore live optical geometry.
+              - generic "Observation timestamps +"
+          - generic: Server reconstruction preserves this sequence. Pointing/crop do not change sampling. Request counts do not earn mastery.
+      - generic "Selected report context":
+        - generic: CURRENTLY REPORTED
+        - strong: T1
+        - term: Range
+        - definition: 700 m
+        - term: RF link
+        - definition: Detected
+        - term: IFF
+        - definition: No reply
+        - paragraph: Type and identity remain your decision.
+        - button "Decide on T1":
+          - text: Decide on T1

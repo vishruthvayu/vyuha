@@ -1,0 +1,1816 @@
+{
+  "scenario": {
+    "version": 2,
+    "engine_version": "vyuha-0.6.0",
+    "id": "raid_fb3eddb30a21474dcd70154c",
+    "seed": 482913,
+    "title": "A channel is not an answer",
+    "duration": 90,
+    "night": true,
+    "fog": 0.15,
+    "jamStart": 2700,
+    "jamEnd": 2700,
+    "focus": "classification_iff",
+    "tracks": [
+      {
+        "id": "T1",
+        "kind": "quad",
+        "identity": "hostile",
+        "rf": true,
+        "spawn": 60,
+        "bearing": 310,
+        "distance": 700,
+        "speed": 10,
+        "altitude": 16,
+        "motion": {
+          "version": 1,
+          "primitive": "orbit_then_dash",
+          "phase_s": 72.0,
+          "lateral_m": 0,
+          "period_s": 20,
+          "turn_deg": 100
+        },
+        "radar_range": 3000,
+        "thermal_range": 1200,
+        "threat_profile": "hostile_quad"
+      },
+      {
+        "id": "T2",
+        "kind": "quad",
+        "identity": "friendly",
+        "rf": true,
+        "spawn": 660,
+        "bearing": 99,
+        "distance": 931.621,
+        "speed": 14.862,
+        "altitude": 21.151,
+        "motion": {
+          "version": 1,
+          "primitive": "orbit_then_dash",
+          "phase_s": 90,
+          "turn_deg": 70,
+          "period_s": 20,
+          "lateral_m": 0
+        },
+        "expires_tick": 2700,
+        "threat_profile": "friendly_uav",
+        "radar_range": 3000,
+        "thermal_range": 1200
+      },
+      {
+        "id": "T3",
+        "kind": "bird",
+        "identity": "neutral",
+        "rf": false,
+        "spawn": 240,
+        "bearing": 11,
+        "distance": 798.238,
+        "speed": 10.795,
+        "altitude": 20.189,
+        "motion": {
+          "version": 1,
+          "primitive": "orbit_then_dash",
+          "phase_s": 90,
+          "turn_deg": 70,
+          "period_s": 20,
+          "lateral_m": 0
+        },
+        "expires_tick": 2700,
+        "threat_profile": "bird",
+        "radar_range": 3000,
+        "thermal_range": 1200
+      }
+    ],
+    "terrain": "urban",
+    "terrain_id": "urban_outpost",
+    "terrain_version": 1,
+    "difficulty_label": "foundational",
+    "sensor_version": "vyuha-0.4.0",
+    "sensor_config": {
+      "radar_reference_range_m": 3000,
+      "radar_reference_rcs_db": -15,
+      "radar_reference_snr": 30,
+      "radar_max_range_m": 5000,
+      "radar_pfa": 1e-06,
+      "radar_reliability": 0.95,
+      "radar_jam_factor": 0.15,
+      "radar_occlusion_factor": 0.1,
+      "radar_confirm_hits": 3,
+      "radar_window_sweeps": 5,
+      "radar_loss_sweeps": 3,
+      "radar_sweep_ticks": 30,
+      "rcs_spread_db": 3,
+      "eo_ifov_rad": 0.00012,
+      "ir_ifov_rad": 0.00018,
+      "eo_max_range_m": 1500,
+      "ir_max_range_m": 1200,
+      "optical_reliability": 0.95,
+      "optical_sample_ticks": 3,
+      "clear_visibility_m": 20000,
+      "dense_visibility_m": 200,
+      "ir_fog_factor": 0.45,
+      "rf_tx_dbm": 20,
+      "rf_gain_db": 6,
+      "rf_sensitivity_dbm": -96,
+      "rf_path_exponent": 2.2,
+      "rf_shadow_db": 6,
+      "rf_reliability": 0.9,
+      "rf_max_range_m": 4000,
+      "rf_bearing_error_deg": 5,
+      "iff_reply_probability": 0.95,
+      "civil_beacon_probability": 0.9,
+      "iff_max_range_m": 2500,
+      "false_track_probability": 0.05,
+      "false_track_lifetime_sweeps": 3,
+      "false_track_maximum": 2
+    },
+    "terrain_boxes": [
+      {
+        "x_min": -105,
+        "x_max": 105,
+        "z_min": 250,
+        "z_max": 325,
+        "height": 30
+      },
+      {
+        "x_min": 195,
+        "x_max": 275,
+        "z_min": 390,
+        "z_max": 505,
+        "height": 22
+      },
+      {
+        "x_min": -285,
+        "x_max": -220,
+        "z_min": 145,
+        "z_max": 220,
+        "height": 17
+      },
+      {
+        "x_min": -175,
+        "x_max": -65,
+        "z_min": -245,
+        "z_max": -175,
+        "height": 15
+      }
+    ],
+    "doctrine": {
+      "id": "army-forward-post",
+      "version": 1,
+      "name": "Illustrative finale local pack",
+      "description": "Frozen meter-scale training research configuration; not official doctrine",
+      "example_values": true,
+      "rules": {
+        "rf_range": 1500,
+        "kinetic_range": 1000,
+        "restricted": {
+          "enabled": true,
+          "x_lt": -300,
+          "z_gt": 200
+        },
+        "effectors": [
+          "hold",
+          "rf_jam",
+          "kinetic"
+        ],
+        "risk_weights": {
+          "quad": 1,
+          "fixed_wing": 1.2,
+          "fiber_fpv": 1.5,
+          "bird": 0
+        },
+        "asset_risk": 1,
+        "distance_precision": 6,
+        "hold_any_range": true
+      },
+      "defaults": {
+        "fog": 0.15,
+        "night": true,
+        "mix": []
+      },
+      "allowed_tactics": [
+        "DIRECT",
+        "SATURATION",
+        "DECOY_THEN_STRIKE",
+        "STAGGERED_WAVES",
+        "LOW_APPROACH",
+        "SPLIT_SWARM",
+        "PROBE_AND_RETREAT",
+        "BLIND_SECTOR"
+      ],
+      "rubric": {
+        "detect": 25,
+        "classify": 25,
+        "prioritise": 15,
+        "engage": 35
+      }
+    },
+    "prioritisation_version": 1,
+    "threat_config": {
+      "version": 1,
+      "id": "illustrative-threat-library-v1",
+      "label": "Illustrative training research parameters; not operational equipment specifications",
+      "units": {
+        "distance": "m",
+        "speed": "m/s",
+        "altitude": "m",
+        "time": "s"
+      },
+      "profiles": {
+        "hostile_quad": {
+          "kind": "quad",
+          "identity": "hostile",
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ],
+          "altitude_m": [
+            15,
+            90
+          ]
+        },
+        "no_rf_fpv": {
+          "kind": "fiber_fpv",
+          "identity": "hostile",
+          "rf": false,
+          "speed_mps": [
+            20,
+            35
+          ],
+          "altitude_m": [
+            4,
+            30
+          ]
+        },
+        "fixed_wing": {
+          "kind": "fixed_wing",
+          "identity": "hostile",
+          "rf": false,
+          "speed_mps": [
+            25,
+            42
+          ],
+          "altitude_m": [
+            40,
+            180
+          ]
+        },
+        "bird": {
+          "kind": "bird",
+          "identity": "neutral",
+          "rf": false,
+          "speed_mps": [
+            4,
+            12
+          ],
+          "altitude_m": [
+            15,
+            80
+          ]
+        },
+        "friendly_uav": {
+          "kind": "quad",
+          "identity": "friendly",
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ],
+          "altitude_m": [
+            20,
+            100
+          ]
+        },
+        "civil_uav": {
+          "kind": "quad",
+          "identity": "neutral",
+          "rf": true,
+          "speed_mps": [
+            8,
+            18
+          ],
+          "altitude_m": [
+            20,
+            100
+          ],
+          "registration_beacon": true
+        }
+      }
+    },
+    "effector_config": {
+      "version": 1,
+      "id": "illustrative-local-response-v1",
+      "label": "Illustrative bounded training actions; not real weapon performance or official doctrine",
+      "units": {
+        "distance": "m"
+      },
+      "sensor_geometry": {
+        "radar_range_m": 3000,
+        "day_camera_range_m": 1500,
+        "thermal_range_m": 1200
+      },
+      "effectors": {
+        "hold": {
+          "enabled": true
+        },
+        "rf_jam": {
+          "enabled": true,
+          "max_range_m": 1500,
+          "requires_rf_link": true
+        },
+        "kinetic": {
+          "enabled": true,
+          "max_range_m": 1000
+        }
+      },
+      "engagement_channels": 1,
+      "asset_radius_m": 8,
+      "minimum_response_window_s": 7
+    },
+    "raid": {
+      "version": 2,
+      "family": "DIRECT",
+      "requested_seed": 482913,
+      "waves": [
+        {
+          "tick": 60,
+          "role": "direct",
+          "contacts": [
+            "T1"
+          ]
+        }
+      ],
+      "formation_model": "Closed-form shared leader with bounded slots and optional split; not autonomous swarm AI",
+      "constraints": {
+        "response_window_s": 7,
+        "peak_hostile_cap": 3,
+        "max_contacts": 200
+      },
+      "anti_repeat": {
+        "rejected_attempts": 0,
+        "history_considered": 0
+      },
+      "signature": [
+        "bird:0:0:orbit_then_dash",
+        "quad:2:0:orbit_then_dash",
+        "quad:6:0:orbit_then_dash"
+      ],
+      "fingerprint": "c75fc04f7332e58bb7378bb8",
+      "validation": {
+        "basis": "Geometric baseline check with declared ranges; not calibrated sensor reliability or a certified human-solvability claim",
+        "response_windows": {
+          "T1": {
+            "first_tick": 169,
+            "last_tick": 2699,
+            "usable_ticks": 1278
+          }
+        },
+        "peak_simultaneous_hostiles": 1,
+        "saturation_index": 1.0
+      }
+    },
+    "red_force": {
+      "version": 2,
+      "tactic": "DIRECT",
+      "tactic_seed": 482913,
+      "phases": [
+        {
+          "tick": 60,
+          "role": "direct",
+          "contacts": [
+            "T1"
+          ]
+        }
+      ]
+    },
+    "fusion": {
+      "version": "fusion-1",
+      "mode": "training",
+      "exercise": "normal",
+      "bias_seed": 0
+    },
+    "acquisition_policy": {
+      "version": "optical-task-policy-v1",
+      "dwellTicks": 30,
+      "cadenceTicks": 3,
+      "latencyTicks": 6,
+      "cooldownTicks": 6,
+      "expiryTicks": 180,
+      "maxReportAgeTicks": 90,
+      "maxRequests": 64
+    },
+    "observation_mission": {
+      "version": "observation-mission-v3",
+      "assessment_version": "evidence-assessment-v2",
+      "template": "night_switch",
+      "criterion_profile": "night_switch",
+      "mode": "practice",
+      "title": "A channel is not an answer",
+      "objectives": [
+        "Separate channel unavailability from an empty sky.",
+        "Choose a cross-check that can supply new information.",
+        "Keep shape resolution separate from affiliation."
+      ],
+      "competencies": [
+        "C01",
+        "C02",
+        "C05",
+        "C03"
+      ],
+      "authoring": {
+        "template": "night_switch",
+        "seed": 482913,
+        "mode": "practice",
+        "version": "observation-mission-v3",
+        "title": "",
+        "duration": 90,
+        "terrain": null,
+        "night": null,
+        "fog": null,
+        "dwell_ticks": 30,
+        "expiry_ticks": null,
+        "objectives": null,
+        "extra_contacts": 0,
+        "site": "freight_corridor"
+      }
+    },
+    "decision_policy": {
+      "version": "uncertainty-decisions-v1",
+      "reasons": [
+        "type_unresolved",
+        "affiliation_unresolved",
+        "conflicting_reports"
+      ]
+    },
+    "training_site": {
+      "version": "training-site-v1",
+      "id": "freight_corridor",
+      "title": "Freight corridor",
+      "summary": "A long transfer hall separates the observation apron from the northern approach. Public site geometry, not a contact or future-evidence map.",
+      "structures": [
+        {
+          "id": "transfer_hall",
+          "label": "Transfer hall",
+          "x_min": -105,
+          "x_max": 105,
+          "z_min": 250,
+          "z_max": 325,
+          "height": 30,
+          "style": "warehouse"
+        },
+        {
+          "id": "east_depot",
+          "label": "East depot",
+          "x_min": 195,
+          "x_max": 275,
+          "z_min": 390,
+          "z_max": 505,
+          "height": 22,
+          "style": "warehouse"
+        },
+        {
+          "id": "administration",
+          "label": "Administration",
+          "x_min": -285,
+          "x_max": -220,
+          "z_min": 145,
+          "z_max": 220,
+          "height": 17,
+          "style": "block"
+        },
+        {
+          "id": "south_stores",
+          "label": "South stores",
+          "x_min": -175,
+          "x_max": -65,
+          "z_min": -245,
+          "z_max": -175,
+          "height": 15,
+          "style": "warehouse"
+        }
+      ],
+      "surfaces": [
+        {
+          "kind": "asphalt",
+          "width": 14,
+          "path": [
+            [
+              -600,
+              190
+            ],
+            [
+              0,
+              190
+            ],
+            [
+              600,
+              190
+            ]
+          ]
+        },
+        {
+          "kind": "asphalt",
+          "width": 12,
+          "path": [
+            [
+              145,
+              -600
+            ],
+            [
+              145,
+              190
+            ],
+            [
+              145,
+              650
+            ]
+          ]
+        },
+        {
+          "kind": "concrete",
+          "path": [
+            [
+              -115,
+              205
+            ],
+            [
+              115,
+              205
+            ],
+            [
+              115,
+              245
+            ],
+            [
+              -115,
+              245
+            ]
+          ]
+        },
+        {
+          "kind": "concrete",
+          "path": [
+            [
+              -50,
+              -45
+            ],
+            [
+              50,
+              -45
+            ],
+            [
+              50,
+              90
+            ],
+            [
+              -50,
+              90
+            ]
+          ]
+        },
+        {
+          "kind": "gravel",
+          "path": [
+            [
+              -330,
+              100
+            ],
+            [
+              -195,
+              100
+            ],
+            [
+              -195,
+              240
+            ],
+            [
+              -330,
+              240
+            ]
+          ]
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "apron",
+          "label": "Observation apron",
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 45
+          }
+        },
+        {
+          "id": "hall",
+          "label": "Transfer hall",
+          "position": {
+            "x": 0,
+            "y": 30,
+            "z": 287.5
+          }
+        },
+        {
+          "id": "junction",
+          "label": "Service junction",
+          "position": {
+            "x": 145,
+            "y": 0,
+            "z": 190
+          }
+        }
+      ]
+    }
+  },
+  "rehearsal": {
+    "version": "observation-mission-rehearsal-v1",
+    "scenario_id": "raid_fb3eddb30a21474dcd70154c",
+    "request_schedule": [
+      {
+        "tick": 60,
+        "order": 0,
+        "k": "inspect",
+        "track": "T1",
+        "channel": "eo",
+        "request_id": "author_probe_0"
+      },
+      {
+        "tick": 102,
+        "order": 2,
+        "k": "inspect",
+        "track": "T1",
+        "channel": "ir",
+        "request_id": "author_probe_1"
+      },
+      {
+        "tick": 144,
+        "order": 4,
+        "k": "inspect",
+        "track": "T1",
+        "channel": "eo",
+        "request_id": "author_probe_2"
+      },
+      {
+        "tick": 186,
+        "order": 6,
+        "k": "inspect",
+        "track": "T1",
+        "channel": "ir",
+        "request_id": "author_probe_3"
+      },
+      {
+        "tick": 228,
+        "order": 8,
+        "k": "inspect",
+        "track": "T1",
+        "channel": "eo",
+        "request_id": "author_probe_4"
+      },
+      {
+        "tick": 270,
+        "order": 10,
+        "k": "inspect",
+        "track": "T1",
+        "channel": "ir",
+        "request_id": "author_probe_5"
+      },
+      {
+        "tick": 312,
+        "order": 12,
+        "k": "inspect",
+        "track": "T1",
+        "channel": "eo",
+        "request_id": "author_probe_6"
+      },
+      {
+        "tick": 354,
+        "order": 14,
+        "k": "inspect",
+        "track": "T3",
+        "channel": "ir",
+        "request_id": "author_probe_7"
+      },
+      {
+        "tick": 396,
+        "order": 16,
+        "k": "inspect",
+        "track": "T1",
+        "channel": "eo",
+        "request_id": "author_probe_8"
+      },
+      {
+        "tick": 438,
+        "order": 18,
+        "k": "inspect",
+        "track": "T1",
+        "channel": "ir",
+        "request_id": "author_probe_9"
+      },
+      {
+        "tick": 480,
+        "order": 20,
+        "k": "inspect",
+        "track": "T3",
+        "channel": "eo",
+        "request_id": "author_probe_10"
+      },
+      {
+        "tick": 522,
+        "order": 22,
+        "k": "inspect",
+        "track": "T3",
+        "channel": "ir",
+        "request_id": "author_probe_11"
+      }
+    ],
+    "results": [
+      {
+        "id": "author_probe_0",
+        "trackId": "T1",
+        "channel": "eo",
+        "acceptedTick": 60,
+        "acceptedOrder": 0,
+        "sampleTick": 90,
+        "releaseTick": 96,
+        "resultId": "result_author_probe_0",
+        "releasedOrder": 1,
+        "expiryTick": 276,
+        "reading": {
+          "available": false,
+          "level": "none"
+        }
+      },
+      {
+        "id": "author_probe_1",
+        "trackId": "T1",
+        "channel": "ir",
+        "acceptedTick": 102,
+        "acceptedOrder": 2,
+        "sampleTick": 132,
+        "releaseTick": 138,
+        "resultId": "result_author_probe_1",
+        "releasedOrder": 3,
+        "expiryTick": 318,
+        "reading": {
+          "available": true,
+          "level": "none"
+        }
+      },
+      {
+        "id": "author_probe_2",
+        "trackId": "T1",
+        "channel": "eo",
+        "acceptedTick": 144,
+        "acceptedOrder": 4,
+        "sampleTick": 174,
+        "releaseTick": 180,
+        "resultId": "result_author_probe_2",
+        "releasedOrder": 5,
+        "expiryTick": 360,
+        "reading": {
+          "available": false,
+          "level": "none"
+        }
+      },
+      {
+        "id": "author_probe_3",
+        "trackId": "T1",
+        "channel": "ir",
+        "acceptedTick": 186,
+        "acceptedOrder": 6,
+        "sampleTick": 216,
+        "releaseTick": 222,
+        "resultId": "result_author_probe_3",
+        "releasedOrder": 7,
+        "expiryTick": 402,
+        "reading": {
+          "available": true,
+          "level": "detect"
+        }
+      },
+      {
+        "id": "author_probe_4",
+        "trackId": "T1",
+        "channel": "eo",
+        "acceptedTick": 228,
+        "acceptedOrder": 8,
+        "sampleTick": 258,
+        "releaseTick": 264,
+        "resultId": "result_author_probe_4",
+        "releasedOrder": 9,
+        "expiryTick": 444,
+        "reading": {
+          "available": false,
+          "level": "none"
+        }
+      },
+      {
+        "id": "author_probe_5",
+        "trackId": "T1",
+        "channel": "ir",
+        "acceptedTick": 270,
+        "acceptedOrder": 10,
+        "sampleTick": 300,
+        "releaseTick": 306,
+        "resultId": "result_author_probe_5",
+        "releasedOrder": 11,
+        "expiryTick": 486,
+        "reading": {
+          "available": true,
+          "level": "none"
+        }
+      },
+      {
+        "id": "author_probe_6",
+        "trackId": "T1",
+        "channel": "eo",
+        "acceptedTick": 312,
+        "acceptedOrder": 12,
+        "sampleTick": 342,
+        "releaseTick": 348,
+        "resultId": "result_author_probe_6",
+        "releasedOrder": 13,
+        "expiryTick": 528,
+        "reading": {
+          "available": false,
+          "level": "none"
+        }
+      },
+      {
+        "id": "author_probe_7",
+        "trackId": "T3",
+        "channel": "ir",
+        "acceptedTick": 354,
+        "acceptedOrder": 14,
+        "sampleTick": 384,
+        "releaseTick": 390,
+        "resultId": "result_author_probe_7",
+        "releasedOrder": 15,
+        "expiryTick": 570,
+        "reading": {
+          "available": true,
+          "level": "none"
+        }
+      },
+      {
+        "id": "author_probe_8",
+        "trackId": "T1",
+        "channel": "eo",
+        "acceptedTick": 396,
+        "acceptedOrder": 16,
+        "sampleTick": 426,
+        "releaseTick": 432,
+        "resultId": "result_author_probe_8",
+        "releasedOrder": 17,
+        "expiryTick": 612,
+        "reading": {
+          "available": false,
+          "level": "none"
+        }
+      },
+      {
+        "id": "author_probe_9",
+        "trackId": "T1",
+        "channel": "ir",
+        "acceptedTick": 438,
+        "acceptedOrder": 18,
+        "sampleTick": 468,
+        "releaseTick": 474,
+        "resultId": "result_author_probe_9",
+        "releasedOrder": 19,
+        "expiryTick": 654,
+        "reading": {
+          "available": true,
+          "level": "detect"
+        }
+      },
+      {
+        "id": "author_probe_10",
+        "trackId": "T3",
+        "channel": "eo",
+        "acceptedTick": 480,
+        "acceptedOrder": 20,
+        "sampleTick": 510,
+        "releaseTick": 516,
+        "resultId": "result_author_probe_10",
+        "releasedOrder": 21,
+        "expiryTick": 696,
+        "reading": {
+          "available": false,
+          "level": "none"
+        }
+      },
+      {
+        "id": "author_probe_11",
+        "trackId": "T3",
+        "channel": "ir",
+        "acceptedTick": 522,
+        "acceptedOrder": 22,
+        "sampleTick": 552,
+        "releaseTick": 558,
+        "resultId": "result_author_probe_11",
+        "releasedOrder": 23,
+        "expiryTick": 738,
+        "reading": {
+          "available": true,
+          "level": "none"
+        }
+      }
+    ],
+    "passive_intervals": [
+      {
+        "track": "T1",
+        "channel": "radar",
+        "start_tick": 0,
+        "end_tick": 60,
+        "active": false,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T1",
+        "channel": "eo",
+        "start_tick": 0,
+        "end_tick": 60,
+        "active": false,
+        "available": false,
+        "state": "none"
+      },
+      {
+        "track": "T1",
+        "channel": "ir",
+        "start_tick": 0,
+        "end_tick": 60,
+        "active": false,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 0,
+        "end_tick": 60,
+        "active": false,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T1",
+        "channel": "iff",
+        "start_tick": 0,
+        "end_tick": 60,
+        "active": false,
+        "available": true,
+        "state": "no_reply"
+      },
+      {
+        "track": "T1",
+        "channel": "radar",
+        "start_tick": 60,
+        "end_tick": 120,
+        "active": true,
+        "available": true,
+        "state": "tentative"
+      },
+      {
+        "track": "T1",
+        "channel": "ir",
+        "start_tick": 60,
+        "end_tick": 222,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T3",
+        "channel": "radar",
+        "start_tick": 0,
+        "end_tick": 240,
+        "active": false,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T3",
+        "channel": "eo",
+        "start_tick": 0,
+        "end_tick": 240,
+        "active": false,
+        "available": false,
+        "state": "none"
+      },
+      {
+        "track": "T3",
+        "channel": "ir",
+        "start_tick": 0,
+        "end_tick": 240,
+        "active": false,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T3",
+        "channel": "rf",
+        "start_tick": 0,
+        "end_tick": 240,
+        "active": false,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T3",
+        "channel": "iff",
+        "start_tick": 0,
+        "end_tick": 240,
+        "active": false,
+        "available": true,
+        "state": "no_reply"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 60,
+        "end_tick": 300,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T3",
+        "channel": "radar",
+        "start_tick": 240,
+        "end_tick": 300,
+        "active": true,
+        "available": true,
+        "state": "tentative"
+      },
+      {
+        "track": "T1",
+        "channel": "ir",
+        "start_tick": 222,
+        "end_tick": 306,
+        "active": true,
+        "available": true,
+        "state": "detect"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 300,
+        "end_tick": 330,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T3",
+        "channel": "radar",
+        "start_tick": 300,
+        "end_tick": 330,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 330,
+        "end_tick": 450,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T1",
+        "channel": "ir",
+        "start_tick": 306,
+        "end_tick": 474,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 450,
+        "end_tick": 480,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 480,
+        "end_tick": 540,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 540,
+        "end_tick": 570,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T1",
+        "channel": "ir",
+        "start_tick": 474,
+        "end_tick": 654,
+        "active": true,
+        "available": true,
+        "state": "detect"
+      },
+      {
+        "track": "T2",
+        "channel": "radar",
+        "start_tick": 0,
+        "end_tick": 660,
+        "active": false,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "eo",
+        "start_tick": 0,
+        "end_tick": 660,
+        "active": false,
+        "available": false,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "ir",
+        "start_tick": 0,
+        "end_tick": 660,
+        "active": false,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "rf",
+        "start_tick": 0,
+        "end_tick": 660,
+        "active": false,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "iff",
+        "start_tick": 0,
+        "end_tick": 660,
+        "active": false,
+        "available": true,
+        "state": "no_reply"
+      },
+      {
+        "track": "T2",
+        "channel": "radar",
+        "start_tick": 660,
+        "end_tick": 690,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "radar",
+        "start_tick": 690,
+        "end_tick": 750,
+        "active": true,
+        "available": true,
+        "state": "tentative"
+      },
+      {
+        "track": "T2",
+        "channel": "iff",
+        "start_tick": 660,
+        "end_tick": 930,
+        "active": true,
+        "available": true,
+        "state": "friendly_reply"
+      },
+      {
+        "track": "T2",
+        "channel": "iff",
+        "start_tick": 930,
+        "end_tick": 960,
+        "active": true,
+        "available": true,
+        "state": "no_reply"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 570,
+        "end_tick": 1050,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 1050,
+        "end_tick": 1080,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "rf",
+        "start_tick": 660,
+        "end_tick": 1230,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 1080,
+        "end_tick": 1260,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T2",
+        "channel": "rf",
+        "start_tick": 1230,
+        "end_tick": 1260,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 1260,
+        "end_tick": 1290,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 1290,
+        "end_tick": 1530,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 1530,
+        "end_tick": 1560,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "rf",
+        "start_tick": 1260,
+        "end_tick": 1860,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T2",
+        "channel": "rf",
+        "start_tick": 1860,
+        "end_tick": 1890,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "iff",
+        "start_tick": 960,
+        "end_tick": 1890,
+        "active": true,
+        "available": true,
+        "state": "friendly_reply"
+      },
+      {
+        "track": "T2",
+        "channel": "iff",
+        "start_tick": 1890,
+        "end_tick": 1950,
+        "active": true,
+        "available": true,
+        "state": "no_reply"
+      },
+      {
+        "track": "T2",
+        "channel": "rf",
+        "start_tick": 1890,
+        "end_tick": 2010,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 1560,
+        "end_tick": 2040,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T2",
+        "channel": "rf",
+        "start_tick": 2010,
+        "end_tick": 2040,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 2040,
+        "end_tick": 2070,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 2070,
+        "end_tick": 2100,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T2",
+        "channel": "rf",
+        "start_tick": 2040,
+        "end_tick": 2100,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 2100,
+        "end_tick": 2130,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "rf",
+        "start_tick": 2100,
+        "end_tick": 2130,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 2130,
+        "end_tick": 2190,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T2",
+        "channel": "rf",
+        "start_tick": 2130,
+        "end_tick": 2190,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 2190,
+        "end_tick": 2220,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "rf",
+        "start_tick": 2190,
+        "end_tick": 2220,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "rf",
+        "start_tick": 2220,
+        "end_tick": 2340,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T2",
+        "channel": "rf",
+        "start_tick": 2340,
+        "end_tick": 2400,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "rf",
+        "start_tick": 2400,
+        "end_tick": 2430,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T2",
+        "channel": "rf",
+        "start_tick": 2430,
+        "end_tick": 2460,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 2220,
+        "end_tick": 2490,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 2490,
+        "end_tick": 2520,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "iff",
+        "start_tick": 1950,
+        "end_tick": 2610,
+        "active": true,
+        "available": true,
+        "state": "friendly_reply"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 2520,
+        "end_tick": 2640,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 2640,
+        "end_tick": 2670,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "iff",
+        "start_tick": 2610,
+        "end_tick": 2670,
+        "active": true,
+        "available": true,
+        "state": "no_reply"
+      },
+      {
+        "track": "T2",
+        "channel": "radar",
+        "start_tick": 750,
+        "end_tick": 2700,
+        "active": true,
+        "available": true,
+        "state": "confirmed"
+      },
+      {
+        "track": "T2",
+        "channel": "eo",
+        "start_tick": 660,
+        "end_tick": 2700,
+        "active": true,
+        "available": false,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "ir",
+        "start_tick": 660,
+        "end_tick": 2700,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "rf",
+        "start_tick": 2460,
+        "end_tick": 2700,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T2",
+        "channel": "iff",
+        "start_tick": 2670,
+        "end_tick": 2700,
+        "active": true,
+        "available": true,
+        "state": "friendly_reply"
+      },
+      {
+        "track": "T3",
+        "channel": "radar",
+        "start_tick": 330,
+        "end_tick": 2700,
+        "active": true,
+        "available": true,
+        "state": "confirmed"
+      },
+      {
+        "track": "T3",
+        "channel": "eo",
+        "start_tick": 240,
+        "end_tick": 2700,
+        "active": true,
+        "available": false,
+        "state": "none"
+      },
+      {
+        "track": "T3",
+        "channel": "ir",
+        "start_tick": 240,
+        "end_tick": 2700,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T3",
+        "channel": "rf",
+        "start_tick": 240,
+        "end_tick": 2700,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T3",
+        "channel": "iff",
+        "start_tick": 240,
+        "end_tick": 2700,
+        "active": true,
+        "available": true,
+        "state": "no_reply"
+      },
+      {
+        "track": "T1",
+        "channel": "radar",
+        "start_tick": 120,
+        "end_tick": 2701,
+        "active": true,
+        "available": true,
+        "state": "confirmed"
+      },
+      {
+        "track": "T1",
+        "channel": "eo",
+        "start_tick": 60,
+        "end_tick": 2701,
+        "active": true,
+        "available": false,
+        "state": "none"
+      },
+      {
+        "track": "T1",
+        "channel": "ir",
+        "start_tick": 654,
+        "end_tick": 2701,
+        "active": true,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T1",
+        "channel": "rf",
+        "start_tick": 2670,
+        "end_tick": 2701,
+        "active": true,
+        "available": true,
+        "state": "detected"
+      },
+      {
+        "track": "T1",
+        "channel": "iff",
+        "start_tick": 60,
+        "end_tick": 2701,
+        "active": true,
+        "available": true,
+        "state": "no_reply"
+      },
+      {
+        "track": "T2",
+        "channel": "radar",
+        "start_tick": 2700,
+        "end_tick": 2701,
+        "active": false,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "eo",
+        "start_tick": 2700,
+        "end_tick": 2701,
+        "active": false,
+        "available": false,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "ir",
+        "start_tick": 2700,
+        "end_tick": 2701,
+        "active": false,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "rf",
+        "start_tick": 2700,
+        "end_tick": 2701,
+        "active": false,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T2",
+        "channel": "iff",
+        "start_tick": 2700,
+        "end_tick": 2701,
+        "active": false,
+        "available": true,
+        "state": "no_reply"
+      },
+      {
+        "track": "T3",
+        "channel": "radar",
+        "start_tick": 2700,
+        "end_tick": 2701,
+        "active": false,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T3",
+        "channel": "eo",
+        "start_tick": 2700,
+        "end_tick": 2701,
+        "active": false,
+        "available": false,
+        "state": "none"
+      },
+      {
+        "track": "T3",
+        "channel": "ir",
+        "start_tick": 2700,
+        "end_tick": 2701,
+        "active": false,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T3",
+        "channel": "rf",
+        "start_tick": 2700,
+        "end_tick": 2701,
+        "active": false,
+        "available": true,
+        "state": "none"
+      },
+      {
+        "track": "T3",
+        "channel": "iff",
+        "start_tick": 2700,
+        "end_tick": 2701,
+        "active": false,
+        "available": true,
+        "state": "no_reply"
+      }
+    ],
+    "coverage": {
+      "radar_aliases": [
+        "T1",
+        "T3"
+      ],
+      "accepted_requests": 12,
+      "published_results": 12,
+      "unavailable_results": 6,
+      "optical_detections": 2,
+      "positive_affiliation_reports": [
+        {
+          "track": "T2",
+          "tick": 660,
+          "cue": "friendly_reply"
+        }
+      ]
+    },
+    "checks": [
+      {
+        "id": "observed_alias",
+        "passed": true,
+        "description": "At least one radar-reported alias admitted a request."
+      },
+      {
+        "id": "publication",
+        "passed": true,
+        "description": "A scheduled request reached publication inside the frozen horizon."
+      },
+      {
+        "id": "channel_contrast",
+        "passed": true,
+        "description": "This probe produced unavailable EO and detected IR at their own sample moments."
+      }
+    ],
+    "attainable_probe": true,
+    "limitations": [
+      "One deterministic author-only request schedule, not an optimal policy, human detectability or guaranteed solvability.",
+      "A check failure can be an intentionally authored information problem; publication remains allowed with explicit warning.",
+      "EO/IR intervals here are the probe schedule\u2019s released observations; radar/RF/IFF remain passive.",
+      "No observations from this rehearsal are copied into a trainee session.",
+      "The site geometry trace is author-only. It is not copied into trainee observations and does not imply guaranteed acquisition or mastery."
+    ],
+    "site_geometry": {
+      "version": "training-site-rehearsal-v1",
+      "site_id": "freight_corridor",
+      "line_of_sight_intervals": [
+        {
+          "track": "T1",
+          "start_tick": 60,
+          "end_tick": 169,
+          "clear": false
+        },
+        {
+          "track": "T1",
+          "start_tick": 169,
+          "end_tick": 648,
+          "clear": true
+        },
+        {
+          "track": "T1",
+          "start_tick": 648,
+          "end_tick": 1901,
+          "clear": false
+        },
+        {
+          "track": "T1",
+          "start_tick": 1901,
+          "end_tick": 2701,
+          "clear": true
+        }
+      ],
+      "clear_after_occlusion": true,
+      "scope": "Author-only geometric LOS reconstruction. Clear geometry is not a guaranteed reported detection or human notice."
+    }
+  }
+}

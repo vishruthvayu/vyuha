@@ -1,0 +1,14 @@
+{
+  "id": "c18c92c7-f2ce-4f05-be9d-070717b6d844",
+  "verified": true,
+  "events": [],
+  "replay_metadata": {
+    "hz": 30,
+    "observed_end_tick": 83,
+    "scoring_end_tick": 2700,
+    "horizon_source": "completion",
+    "early_end": true,
+    "version": "ghost-uncertainty-v1",
+    "note": "Review and timeline stop at the observed exercise end. Final node scores retain the frozen exercise-duration scoring projection."
+  }
+}

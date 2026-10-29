@@ -82,3 +82,8 @@ Source `91dfce7`: `/observation-missions` now authors, reconstructs and publishe
 ### v0.6 explicit uncertainty — development accepted
 
 Source `0ac34fe`; [receipt](uncertainty-v06/ACCEPTANCE.md). Browser-only authored mission v2 permits explicit Defer on an observed alias without classification. Required reasons, exact ordered worker/server reconstruction, archive regeneration and separate public-evidence assessment are implemented. Defer does not earn tactical points or mastery. Native disclosure keeps normal controls accessible. Old contracts remain isolated. Crew/XR acquisition, autonomous reference acquisition, physical qualification and final release acceptance remain pending.
+
+
+### Frozen authored sites — development milestone 13df518
+
+[Acceptance](training-sites-v1/ACCEPTANCE.md), [source/artifact manifest](training-sites-v1/manifest.json). Two mission-v3/site-v1 presets connect original visible architecture to authoritative sensor boxes, actual loss/reacquisition rehearsal, explicit observation/Defer, verified Ghost and site-preserving Academy follow-up. Source-pinned production build, M1 measurements and server-outage/cached-reload recovery are retained. The wider graphics/simulation/intelligence transformation remains PARTIAL; no new Crew/XR acquisition admission, empirical calibration, mastery/human learning or physical-device qualification is claimed.
