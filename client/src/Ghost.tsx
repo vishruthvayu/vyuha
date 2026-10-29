@@ -1,3 +1,4 @@
+import { isAcquisitionEngine } from "./engine-contracts";
 import { LearningEvidence } from "./LearningEvidence";
 import { useEffect, useRef, useState } from "react";
 import { Flag, ChevronRight, Activity } from "lucide-react";
@@ -21,8 +22,12 @@ export const skillLabel: { [K in GhostSkill]: string } = {
 export const tickLabel = (tick: number) => `T+${(tick / 30).toFixed(2)}s`;
 export function actionLabel(
   action: Action | DecisionReview["expected_action"] | null,
+  tacticalOnly = false,
 ) {
-  if (!action) return "No action recorded";
+  if (!action)
+    return tacticalOnly ? "No tactical action recorded" : "No action recorded";
+  if ("k" in action && action.k === "defer")
+    return `Defer / ${action.reason?.replaceAll("_", " ") ?? "declared uncertainty"}`;
   const type = "k" in action ? action.k : action.type;
   if (type === "inspect" && "channel" in action)
     return `Request ${action.channel?.toUpperCase() ?? "optical"} observation`;
@@ -166,12 +171,24 @@ export function GhostPanel({
       <div className="panel-header">
         <div>
           <Flag size={16} aria-hidden="true" />
-          <h2 className="panel-title">Ghost Expert</h2>
+          <h2 className="panel-title">
+            {record.scenario.engine_version === "vyuha-0.6.0"
+              ? "Ghost Expert · Tactical rubric"
+              : "Ghost Expert"}
+          </h2>
         </div>
         <span className="status">
           {record.verified ? "RULE-GROUNDED" : "VERIFICATION PENDING"}
         </span>
       </div>
+      {record.scenario.engine_version === "vyuha-0.6.0" && (
+        <p className="footnote">
+          This section preserves the original tactical rubric. Missing
+          designation or classification does not mean no Defer was recorded.
+          Explicit uncertainty is reviewed separately in Mission evidence
+          assessment.
+        </p>
+      )}
       {record.verified && record.learning && (
         <LearningEvidence
           review={record.learning}
@@ -306,7 +323,12 @@ export function GhostPanel({
             <section className="ghost-section ghost-comparison">
               <div>
                 <h3>Your decision</h3>
-                <strong>{actionLabel(r.trainee_action)}</strong>
+                <strong>
+                  {actionLabel(
+                    r.trainee_action,
+                    record.scenario.engine_version === "vyuha-0.6.0",
+                  )}
+                </strong>
               </div>
               <div>
                 <h3>Expected decision</h3>
@@ -488,8 +510,8 @@ export function GhostTimeline({
         <p className="footnote">
           Lost points are deduplicated per contact/node before hostile-row
           averaging. Sensor-context tags overlap other skills.{" "}
-          {record.scenario.engine_version === "vyuha-0.5.0"
-            ? "Active observation is practice-only and does not update individual mastery. Follow-up suggestions use reconstructed evidence timing."
+          {isAcquisitionEngine(record.scenario.engine_version)
+            ? "Active-observation missions use a separate educational evidence contract and do not update the historical individual mastery profile. Follow-up suggestions use reconstructed evidence."
             : "This focus is a review recommendation. The next adaptive drill uses the persistent four-skill profile."}
         </p>
       </section>

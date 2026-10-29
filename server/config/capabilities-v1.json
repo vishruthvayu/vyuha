@@ -228,6 +228,23 @@
       ],
       "evidence_ids": [],
       "limitations": "One frozen C01 detection assessment; proposed15-tick opportunity only. No classification/response solvability, empirical fairness, physical calibration or human learning claim. Current integrated regression/browser checks required."
+    },
+    {
+      "id": "authored-observation-missions",
+      "title": "Authored evidence missions and explicit uncertainty decisions",
+      "implementation": "PARTIAL",
+      "route": "/observation-missions",
+      "source_files": [
+        "server/observation_missions_v2.py",
+        "server/engine_v4.py",
+        "server/observation_assessment_v2.py",
+        "server/review_v4.py",
+        "client/src/ObservationMissionStudio.tsx",
+        "client/src/UncertaintyDecision.tsx",
+        "client/src/ObservationMissionJourney.tsx"
+      ],
+      "evidence_ids": [],
+      "limitations": "Opt-in browser mission/assessment v2 adds declared Defer under engine v0.6. Frozen v0.5 and original tactical scoring arithmetic remain separate. No private reasoning, mastery, calibrated proficiency, human learning gain or physical device acceptance is inferred. Crew/XR acquisition remains gated. Targeted development checks do not constitute full release acceptance."
     }
   ],
   "roadmap": [

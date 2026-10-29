@@ -451,11 +451,17 @@ export default function ReviewTheatre(props: Props) {
           </div>
         )}
         <div className="theatre-rail-heading">
-          <h3>Decision moments</h3>
+          <h3>
+            {record.scenario.engine_version === "vyuha-0.6.0"
+              ? "Original tactical rubric moments"
+              : "Decision moments"}
+          </h3>
           <span>
             {decisions.length
               ? `${offset + 1}–${Math.min(offset + 12, decisions.length)} of ${decisions.length}`
-              : "No decision within the recorded interval"}
+              : record.scenario.engine_version === "vyuha-0.6.0"
+                ? "No tactical rubric decision within this interval; explicit Defer is reviewed separately"
+                : "No decision within the recorded interval"}
           </span>
         </div>
         <div className="theatre-moments" ref={railRef}>
@@ -470,7 +476,11 @@ export default function ReviewTheatre(props: Props) {
                 {tickLabel(r.tick)}
               </span>
               <strong>
-                {r.track_id} · {actionLabel(r.trainee_action)}
+                {r.track_id} ·{" "}
+                {actionLabel(
+                  r.trainee_action,
+                  record.scenario.engine_version === "vyuha-0.6.0",
+                )}
               </strong>
               <small>
                 {r.verdict} · {r.decision_kind.replaceAll("_", " ")}
@@ -503,7 +513,9 @@ export default function ReviewTheatre(props: Props) {
       </nav>
       <details className="theatre-inspector" open>
         <summary>
-          Decision explanation · pinned evidence and after-exercise reference
+          {record.scenario.engine_version === "vyuha-0.6.0"
+            ? "Original tactical rubric explanation · Defer is reviewed separately"
+            : "Decision explanation · pinned evidence and after-exercise reference"}
         </summary>
         {props.inspector}
       </details>

@@ -293,6 +293,7 @@ function memoryDatabase(
   };
 }
 type Mode =
+  | "projection"
   | "mission-preset"
   | "mission-published"
   | "next-review"
@@ -335,7 +336,11 @@ async function mounted(
     emitWorker: (data: object) => void;
   }) => Promise<void>,
 ) {
-  const initial = record("A", mode === "memo" || mode === "next-review");
+  const initial = record(
+    "A",
+    mode === "memo" || mode === "next-review" || mode === "projection",
+  );
+  if (mode === "projection") initial.executionTick = 0;
   if (mode.startsWith("retry"))
     initial.fusionExposures = [
       {
@@ -360,7 +365,7 @@ async function mounted(
     context: { before_order: 0 },
   });
   const dom = new JSDOM('<!doctype html><body><div id="root"></div></body>', {
-    url: `http://qa.local/${mode === "mission-preset" ? "?mission_template=civil_restraint&seed=587642" : mode === "mission-published" ? `?observation_mission=${authoredMission.id}` : mode.startsWith("learning") ? "?mode=adaptive&learning=prepared-learning" : mode.startsWith("retry") || mode === "memo" || mode === "next-review" ? "?view=aar&session=A" : "?mode=scripted"}`,
+    url: `http://qa.local/${mode === "mission-preset" ? "?mission_template=civil_restraint&seed=587642" : mode === "mission-published" ? `?observation_mission=${authoredMission.id}` : mode.startsWith("learning") ? "?mode=adaptive&learning=prepared-learning" : mode.startsWith("retry") || mode === "memo" || mode === "next-review" || mode === "projection" ? "?view=aar&session=A" : "?mode=scripted"}`,
     pretendToBeVisual: true,
   });
   const workers: { onmessage?: (event: { data: unknown }) => void }[] = [];
@@ -1174,7 +1179,7 @@ for (const mode of [
           release();
           await new Promise((r) => setTimeout(r, 20));
         });
-        await click(document, "Start adaptive drill");
+        await click(document, "Start independent assessment");
         await act(async () => {
           await new Promise((r) => setTimeout(r, 20));
         });
@@ -1285,3 +1290,21 @@ for (const mode of ["mission-preset", "mission-published"] as const) {
       );
     }));
 }
+
+test("Actual App labels zero-length early-end scoring projections without rewriting the stored scorecard", () =>
+  mounted("projection", async ({ document, saved }) => {
+    const before = structuredClone(saved.get("A")!.scorecard);
+    assert.match(
+      document.querySelector(".aar-summary h2")!.textContent!,
+      /^Full-horizon tactical projection:/,
+    );
+    assert.match(
+      document.querySelector(".aar-summary")!.textContent!,
+      /recording ends at 00:00/,
+    );
+    assert.match(
+      document.querySelector(".metric-grid")!.textContent!,
+      /Projected asset impacts/,
+    );
+    assert.deepEqual(saved.get("A")!.scorecard, before);
+  }));

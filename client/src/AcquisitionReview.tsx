@@ -1,8 +1,9 @@
+import { isAcquisitionEngine } from "./engine-contracts";
 import type { Record as TrainingRecord, TimelineItem } from "./types";
 const time = (n: number) => `T+${(n / 30).toFixed(2)}s`;
 export function acquisitionDecisionEvidence(record: TrainingRecord) {
   if (
-    record.scenario.engine_version !== "vyuha-0.5.0" ||
+    !isAcquisitionEngine(record.scenario.engine_version) ||
     !record.verified ||
     !record.acquisition
   )
@@ -30,7 +31,7 @@ export default function AcquisitionReview({
 }) {
   const a = record.acquisition;
   if (
-    record.scenario.engine_version !== "vyuha-0.5.0" ||
+    !isAcquisitionEngine(record.scenario.engine_version) ||
     !record.verified ||
     !a
   )

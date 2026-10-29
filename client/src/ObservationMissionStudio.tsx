@@ -31,7 +31,7 @@ export default function ObservationMissionStudio() {
   const generation = useRef(0);
   useEffect(() => {
     let alive = true;
-    void api<ObservationMissionCatalog>("/observation-missions/catalog")
+    void api<ObservationMissionCatalog>("/observation-missions-v2/catalog")
       .then((r) => {
         if (alive) setCatalog(r);
       })
@@ -61,7 +61,7 @@ export default function ObservationMissionStudio() {
     setPublished(null);
     try {
       const result = await api<CompiledObservationMission>(
-        "/observation-missions/compile",
+        "/observation-missions-v2/compile",
         form,
         120000,
       );
@@ -82,7 +82,7 @@ export default function ObservationMissionStudio() {
     setError("");
     try {
       const result = await api<Scenario>(
-        "/observation-missions/publish",
+        "/observation-missions-v2/publish",
         form,
         120000,
       );
@@ -117,7 +117,7 @@ export default function ObservationMissionStudio() {
   return (
     <main className="observation-mission-studio">
       <header className="oms-introduction">
-        <span className="eyebrow">MISSION DESIGN / EVIDENCE CONTRACT 01</span>
+        <span className="eyebrow">MISSION DESIGN / EVIDENCE CONTRACT 02</span>
         <h1>Author the information problem.</h1>
         <p>
           Design what a trainee must investigate, then inspect an actual request
@@ -489,7 +489,7 @@ export default function ObservationMissionStudio() {
                 {published && (
                   <a
                     className="button primary"
-                    href={`/?observation_mission=${encodeURIComponent(published.id)}`}
+                    href={`/?observation_mission=${encodeURIComponent(published.id)}&mission_version=2`}
                   >
                     Open published mission in Training
                   </a>

@@ -50,7 +50,7 @@ export class Simulation extends finale.Simulation {
   declare private sampled: Map<string, OpticalObservation>;
   declare private orderMap: Map<number, number>;
   declare private schedulerCursor: number;
-  declare private globalOrder: number;
+  declare protected globalOrder: number;
   constructor(scenario: Scenario) {
     validateAcquisitionScenario(scenario);
     super(scenario);
@@ -135,7 +135,7 @@ export class Simulation extends finale.Simulation {
       })),
     };
   }
-  private project() {
+  protected project() {
     const results = this.scheduler
       .snapshot()
       .results.filter(
@@ -196,6 +196,12 @@ export class Simulation extends finale.Simulation {
     this.project();
   }
   override act(action: Action) {
+    if (
+      action.decision_version !== undefined ||
+      action.reason !== undefined ||
+      action.k === "defer"
+    )
+      return false;
     action = { ...action, order: action.order ?? this.nextOrder };
     if (
       action.tick !== this.state.tick ||

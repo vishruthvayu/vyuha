@@ -104,3 +104,42 @@ test("preset preparation preserves seed zero and independent assessment mode; ch
     /does not match/,
   );
 });
+
+test("v2 admission is explicit and cannot reinterpret a frozen v1 mission as the new decision alphabet", async () => {
+  const parsed = observationEntry(
+    "?mission_template=night_switch&mission_version=2&seed=0",
+  );
+  assert.equal(parsed.entry?.version, 2);
+  assert.ok(
+    observationEntry("?mission_template=night_switch&mission_version=3").error,
+  );
+  assert.ok(
+    observationEntry(
+      "?mission_template=night_switch&mission_version=2&mission_version=1",
+    ).error,
+  );
+  const spec = {
+    id: "raid_" + "a".repeat(24),
+    seed: 0,
+    engine_version: "vyuha-0.6.0",
+    observation_mission: {
+      version: "observation-mission-v2",
+      assessment_version: "evidence-assessment-v2",
+      template: "night_switch",
+      mode: "practice",
+    },
+  } as Scenario;
+  const paths: string[] = [];
+  await loadObservationMission(parsed.entry!, async (path) => {
+    paths.push(path);
+    return spec;
+  });
+  assert.deepEqual(paths, ["/observation-missions-v2/prepare"]);
+  await assert.rejects(
+    loadObservationMission(
+      { ...parsed.entry!, version: undefined },
+      async () => spec,
+    ),
+    /unsupported frozen contract/,
+  );
+});

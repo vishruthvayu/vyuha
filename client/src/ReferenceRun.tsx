@@ -1,3 +1,4 @@
+import { isAcquisitionEngine } from "./engine-contracts";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { RECONSTRUCTION_TIMEOUT_MS, api, download } from "./storage";
 import { replay } from "./sim";
@@ -124,7 +125,7 @@ export default function ReferenceRun({ record }: { record: TrainingRecord }) {
     }
   }
   if (!record.verified) return null;
-  if (record.scenario.engine_version === "vyuha-0.5.0")
+  if (isAcquisitionEngine(record.scenario.engine_version))
     return (
       <section className="panel advanced-card review-reference-run">
         <h2>Autonomous reference replay</h2>

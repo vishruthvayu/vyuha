@@ -165,7 +165,7 @@ def validate_exposure(spec, events, commands, session_id, exposure, horizon, *, 
     No mutation of a scorecard, original session, event stream or learner profile.
     """
     from .engine import replay
-    if spec.get('engine_version') not in ('vyuha-0.4.0','vyuha-0.5.0') or not spec.get('fusion'):
+    if spec.get('engine_version') not in ('vyuha-0.4.0','vyuha-0.5.0','vyuha-0.6.0') or not spec.get('fusion'):
         raise ValueError('Fusion is not enabled in the frozen scenario')
     config = configuration(spec['fusion'])
     if config['mode'] == 'assessment':
@@ -176,17 +176,17 @@ def validate_exposure(spec, events, commands, session_id, exposure, horizon, *, 
     timeline = ordered_events + commands
     if len({e['order'] for e in timeline}) != len(timeline):
         raise ValueError('Exposure needs a unique accepted timeline order')
-    if spec.get('engine_version')!='vyuha-0.5.0' and exposure.before_order > max([e['order'] for e in timeline], default=-1) + 1:
+    if spec.get('engine_version') not in ('vyuha-0.5.0','vyuha-0.6.0') and exposure.before_order > max([e['order'] for e in timeline], default=-1) + 1:
         raise ValueError('Exposure boundary exceeds accepted timeline')
     def preceding(e):
         return e['tick'] < exposure.tick or e['tick'] == exposure.tick and e['order'] < exposure.before_order
     if any(e['tick'] < exposure.tick and e['order'] >= exposure.before_order or e['tick'] > exposure.tick and e['order'] < exposure.before_order for e in timeline):
         raise ValueError('Exposure order disagrees with logical time')
     frontier = max([e['order'] for e in timeline if preceding(e)], default=-1) + 1
-    if spec.get('engine_version')!='vyuha-0.5.0' and exposure.before_order != frontier:
+    if spec.get('engine_version') not in ('vyuha-0.5.0','vyuha-0.6.0') and exposure.before_order != frontier:
         raise ValueError('Exposure boundary is not the next accepted timeline order')
     sim = _boundary if _boundary is not None else replay(spec, [e for e in ordered_events if preceding(e)], exposure.tick, [c for c in commands if preceding(c)])
-    if spec.get('engine_version')=='vyuha-0.5.0' and exposure.before_order != sim.next_order:
+    if spec.get('engine_version') in ('vyuha-0.5.0','vyuha-0.6.0') and exposure.before_order != sim.next_order:
         raise ValueError('Exposure boundary is not the next acquisition timeline order')
     track = next((t for t in sim.tracks if t['id'] == exposure.track and t['active']), None)
     if track is None or not track.get('observation'):
@@ -197,6 +197,8 @@ def validate_exposure(spec, events, commands, session_id, exposure, horizon, *, 
     decision = next((a for a in ordered_events if a['order'] == exposure.action_order), None) if exposure.action_order is not None else None
     if exposure.action_order is not None and (not decision or decision['track'] != exposure.track or decision['tick'] < exposure.tick or decision['order'] < exposure.before_order or decision['tick'] - exposure.tick > 90):
         raise ValueError('Associated action is absent, precedes exposure or is stale')
+    if decision and decision['k']=='defer' and exposure.distribution is not None:
+        raise ValueError('Defer is not a classification confidence statement')
     diagnostic = None
     if exposure.distribution is not None:
         # Reference truth is used ONLY after reconstruction for a labelled diagnostic.
@@ -217,7 +219,7 @@ def reconstruct_boundaries(spec, events, commands, exposures):
         nonlocal frontier
         if stage in ['action', 'command']:
             frontier = order + 1
-        if spec.get('engine_version')=='vyuha-0.5.0':frontier=sim.next_order
+        if spec.get('engine_version') in ('vyuha-0.5.0','vyuha-0.6.0'):frontier=sim.next_order
         key = (sim.tick, frontier)
         if key in requested:
             boundaries[key] = SimpleNamespace(next_order=frontier,tracks=copy.deepcopy([t for t in sim.tracks if t['id'] in requested[key]]))

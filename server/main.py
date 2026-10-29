@@ -68,11 +68,11 @@ def profile(trainee):
             from .director import SKILLS
             return TrainingProfile(trainee=trainee,sessions=0,skills={s:dict(alpha=1.,beta=1.,observations=0,mean=.5,updated_at=None,last_session_id=None) for s in SKILLS},outcomes=[],unprocessed_sessions=[],version='shared-crew-not-individual').model_dump()
         ready=db.execute('SELECT COUNT(*) FROM skill_profiles WHERE trainee=?',(trainee,)).fetchone()[0]==4
-        pending=db.execute("SELECT 1 FROM sessions s JOIN scenarios sc ON sc.id=s.scenario_id LEFT JOIN skill_outcomes o ON o.session_id=s.id WHERE COALESCE(json_extract(sc.spec,'$.engine_version'),'')!='vyuha-0.5.0' AND s.trainee=? AND s.status='completed' AND o.session_id IS NULL AND NOT EXISTS(SELECT 1 FROM learning_attempts la WHERE la.session_id=s.id AND json_extract(la.context,'$.mode')!='assessment') LIMIT 1",(trainee,)).fetchone()
+        pending=db.execute("SELECT 1 FROM sessions s JOIN scenarios sc ON sc.id=s.scenario_id LEFT JOIN skill_outcomes o ON o.session_id=s.id WHERE COALESCE(json_extract(sc.spec,'$.engine_version'),'') NOT IN ('vyuha-0.5.0','vyuha-0.6.0') AND s.trainee=? AND s.status='completed' AND o.session_id IS NULL AND NOT EXISTS(SELECT 1 FROM learning_attempts la WHERE la.session_id=s.id AND json_extract(la.context,'$.mode')!='assessment') LIMIT 1",(trainee,)).fetchone()
         if ready and not pending:return read_profile(db,trainee,ensure=False)
     with connect() as db:
         db.execute('BEGIN IMMEDIATE')
-        pending=db.execute("SELECT s.*,sc.spec FROM sessions s JOIN scenarios sc ON sc.id=s.scenario_id LEFT JOIN skill_outcomes o ON o.session_id=s.id WHERE COALESCE(json_extract(sc.spec,'$.engine_version'),'')!='vyuha-0.5.0' AND s.trainee=? AND s.status='completed' AND o.session_id IS NULL AND NOT EXISTS(SELECT 1 FROM learning_attempts la WHERE la.session_id=s.id AND json_extract(la.context,'$.mode')!='assessment') ORDER BY s.created_at,s.id",(trainee,)).fetchall()
+        pending=db.execute("SELECT s.*,sc.spec FROM sessions s JOIN scenarios sc ON sc.id=s.scenario_id LEFT JOIN skill_outcomes o ON o.session_id=s.id WHERE COALESCE(json_extract(sc.spec,'$.engine_version'),'') NOT IN ('vyuha-0.5.0','vyuha-0.6.0') AND s.trainee=? AND s.status='completed' AND o.session_id IS NULL AND NOT EXISTS(SELECT 1 FROM learning_attempts la WHERE la.session_id=s.id AND json_extract(la.context,'$.mode')!='assessment') ORDER BY s.created_at,s.id",(trainee,)).fetchall()
         skipped=[]
         for row in pending:
             try:review=review_session(db,row)
@@ -166,8 +166,11 @@ def events(session_id: str, req: EventBatch):
             raise HTTPException(409, "Session already completed")
         if any(e.k=='inspect' for e in req.events):
             frozen=db.execute('SELECT sc.spec FROM sessions s JOIN scenarios sc ON sc.id=s.scenario_id WHERE s.id=?',(session_id,)).fetchone()
-            if json.loads(frozen['spec']).get('engine_version')!='vyuha-0.5.0':
+            if json.loads(frozen['spec']).get('engine_version') not in ('vyuha-0.5.0','vyuha-0.6.0'):
                 raise HTTPException(422,'Observation requests require the explicit acquisition engine')
+        if any(e.k=='defer' for e in req.events):
+            frozen=db.execute('SELECT sc.spec FROM sessions s JOIN scenarios sc ON sc.id=s.scenario_id WHERE s.id=?',(session_id,)).fetchone()
+            if json.loads(frozen['spec']).get('engine_version')!='vyuha-0.6.0':raise HTTPException(422,'Defer requires the explicit uncertainty decision engine')
         count = db.execute("SELECT COUNT(*) FROM chunks WHERE session_id=?", (session_id,)).fetchone()[0]
         if count >= 1000:
             raise HTTPException(422, "Session event limit exceeded")
@@ -301,7 +304,7 @@ def issue_command(session_id:str, req:InstructorCommand):
     with connect() as db:
         db.execute("BEGIN IMMEDIATE")
         session = session_record(db,session_id)
-        if req.type in ['sensor_fault','sensor_restore'] and req.payload.sensor in ['eo','ir'] and json.loads(session['spec']).get('engine_version') not in ('vyuha-0.4.0','vyuha-0.5.0'):raise HTTPException(422,'EO/IR fault controls require a finale scenario')
+        if req.type in ['sensor_fault','sensor_restore'] and req.payload.sensor in ['eo','ir'] and json.loads(session['spec']).get('engine_version') not in ('vyuha-0.4.0','vyuha-0.5.0','vyuha-0.6.0'):raise HTTPException(422,'EO/IR fault controls require a finale scenario')
         old = db.execute("SELECT * FROM instructor_commands WHERE session_id=? AND command_id=?",(session_id,req.command_id)).fetchone()
         if old:
             if old["body"] != body:
@@ -399,6 +402,8 @@ app.include_router(raid_router)
 app.include_router(episode_opportunity_router)
 from .observation_missions import router as observation_mission_router
 app.include_router(observation_mission_router)
+from .observation_missions_v2 import router as uncertainty_mission_router
+app.include_router(uncertainty_mission_router)
 from .observation_assessment import router as observation_assessment_router
 app.include_router(observation_assessment_router)
 from .acquisition import router as acquisition_router

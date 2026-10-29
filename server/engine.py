@@ -10,6 +10,10 @@ from . import engine_v1_0_1 as legacy
 LEGACY_VERSIONS = {None, 'vyuha-0.2.0', 'vyuha-0.3.0'}
 
 def validate_engine(scenario):
+    if scenario.get('engine_version')=='vyuha-0.6.0':
+        from .engine_v4 import validate_policy
+        validate_policy(scenario)
+        return
     if scenario.get('engine_version')=='vyuha-0.5.0':
         from .engine_v3 import validate_policy
         validate_policy(scenario)
@@ -27,6 +31,9 @@ def validate_engine(scenario):
 class Simulation(legacy.Simulation):
     def __new__(cls,scenario):
         validate_engine(scenario)
+        if scenario.get('engine_version')=='vyuha-0.6.0':
+            from .engine_v4 import Simulation as DecisionSimulation
+            return DecisionSimulation(scenario)
         if scenario.get('engine_version')=='vyuha-0.5.0':
             from .engine_v3 import Simulation as AcquisitionSimulation
             return AcquisitionSimulation(scenario)
@@ -34,15 +41,22 @@ class Simulation(legacy.Simulation):
             from .engine_v2 import Simulation as FinaleSimulation
             return FinaleSimulation(scenario)
         return super().__new__(cls)
+    def act(self,action):
+        if action.get('k')=='defer' or any(action.get(k) is not None for k in ('decision_version','reason')):return False
+        return super().act(action)
     def __init__(self,scenario):
         validate_engine(scenario)
         super().__init__(scenario)
 
 def replay(scenario,actions,end_tick=2250,commands=None,observer=None):
     validate_engine(scenario)
+    if scenario.get('engine_version')!='vyuha-0.6.0' and any(e.get('k')=='defer' or any(e.get(k) is not None for k in ('decision_version','reason')) for e in actions):raise ValueError('Defer requires the explicit uncertainty decision engine')
     maximum=round(scenario['duration']*HZ)
     if isinstance(end_tick,bool) or not isinstance(end_tick,int) or not 0<=end_tick<=maximum:
         raise ValueError('Replay horizon exceeds the frozen exercise duration')
+    if scenario.get('engine_version')=='vyuha-0.6.0':
+        from .engine_v4 import replay as decision_replay
+        return decision_replay(scenario,actions,end_tick,commands,observer)
     if scenario.get('engine_version')=='vyuha-0.5.0':
         from .engine_v3 import replay as acquisition_replay
         return acquisition_replay(scenario,actions,end_tick,commands,observer)
@@ -52,6 +66,9 @@ def replay(scenario,actions,end_tick=2250,commands=None,observer=None):
     return legacy.replay(scenario,actions,end_tick,commands,observer)
 
 def score(sim):
+    if sim.scenario.get('engine_version')=='vyuha-0.6.0':
+        from .engine_v4 import score as decision_score
+        return decision_score(sim)
     if sim.scenario.get('engine_version')=='vyuha-0.5.0':
         from .engine_v3 import score as acquisition_score
         return acquisition_score(sim)

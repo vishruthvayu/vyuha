@@ -135,8 +135,8 @@ def _utility(query, result, before, acquisition):
     return 'new_reported_feature', 'A current detection or shape feature was added. Availability does not prove it was noticed or used; requesting alone earns no competency evidence.'
 
 
-def assess_mission(scenario, actions, commands, sid, observed_end):
-    m = mission_contract(scenario)
+def assess_mission(scenario, actions, commands, sid, observed_end, *, _contract=mission_contract, _interpret=interpret, _replay=replay, _version=VERSION, _criteria=CRITERIA, _limitations=LIMITATIONS, _follow_suffix=""):
+    m = _contract(scenario)
     if m is None:
         return None
     if type(observed_end) is not int or not 0 <= observed_end <= scenario['duration'] * 30:
@@ -152,11 +152,11 @@ def assess_mission(scenario, actions, commands, sid, observed_end):
         if action['k'] == 'inspect':
             query_before[action['request_id']] = facts
             return
-        findings = interpret(action, facts, m['criterion_profile'])
+        findings = _interpret(action, facts, m['criterion_profile'])
         decisions.append(dict(id=f'evidence_decision_{order}', tick=sim.tick, order=order, track=action['track'], action=copy.deepcopy(action),
                               status=combined(findings), findings=findings, available_evidence=facts,
                               confidence=dict(status='not_assessed', reason='Choices are not recorded confidence statements.')))
-    sim = replay(scenario, actions, observed_end, commands, observer=observe)
+    sim = _replay(scenario, actions, observed_end, commands, observer=observe)
     sim.end_acquisition()
     acquisition = sim.acquisition_snapshot()
     requests = []
@@ -170,7 +170,7 @@ def assess_mission(scenario, actions, commands, sid, observed_end):
                              expiry_tick=result['expiryTick'] if result else None, released_order=result['releasedOrder'] if result else None, utility=utility, explanation=explanation, available_before_decisions=linked, cognitive_use='not_observed'))
     grouped = {key: [] for key in m['competencies']}
     for d in decisions:
-        key = {'designate':'C01', 'classify':'C02', 'engage':'C03'}.get(d['action']['k'])
+        key = {'designate':'C01', 'classify':'C02', 'engage':'C03','defer':'C03'}.get(d['action']['k'])
         if key in grouped:
             grouped[key].append((d['status'], d['id']))
     if 'C05' in grouped:
@@ -183,29 +183,33 @@ def assess_mission(scenario, actions, commands, sid, observed_end):
             switched=(m['criterion_profile']=='night_switch' and any(r['reading']['available'] and r['reading']['level'] != 'none' and any(u['trackId'] == r['trackId'] and u['channel'] != r['channel'] and u['releaseTick'] < r['acceptedTick'] for u in unavailable) for r in d['available_evidence']['current_optical_results']))
             if alternative_iff or switched:
                 grouped['C05'].append(('supported', d['id']))
-    competencies = [dict(id=key, status=combined([dict(status=s) for s, _ in values]), decision_ids=list(dict.fromkeys(i for _, i in values)), criterion=CRITERIA[m['criterion_profile']].get(key,'No versioned criterion is admitted for this competency.'), observation_scope='Recorded mission event pattern; not mastery or causal attribution.') for key, values in grouped.items()]
-    report = dict(version=VERSION, session_id=sid, mission_version=m['version'], criterion_profile=m['criterion_profile'], mode=m['mode'], assessed=m['mode']=='assessment',
+    competencies = [dict(id=key, status=combined([dict(status=s) for s, _ in values]), decision_ids=list(dict.fromkeys(i for _, i in values)), criterion=_criteria[m['criterion_profile']].get(key,'No versioned criterion is admitted for this competency.'), observation_scope='Recorded mission event pattern; not mastery or causal attribution.') for key, values in grouped.items()]
+    report = dict(version=_version, session_id=sid, mission_version=m['version'], criterion_profile=m['criterion_profile'], mode=m['mode'], assessed=m['mode']=='assessment',
                   observed_end_tick=observed_end, score_contract='separate-from-frozen-rubric', decisions=decisions, acquisitions=requests, competencies=competencies,
-                  summary=dict(decisions=len(decisions), statuses=dict(Counter(d['status'] for d in decisions)), requests=len(requests), mastery_awarded=False), limitations=LIMITATIONS)
+                  summary=dict(decisions=len(decisions), statuses=dict(Counter(d['status'] for d in decisions)), requests=len(requests), mastery_awarded=False), limitations=_limitations)
     candidates=[c for c in competencies if c['status'] in ('unsupported','inconclusive')]
     focus=(candidates[0]['id'] if candidates else m['competencies'][0])
     template={'C01':'timed_window','C02':'civil_restraint','C03':'civil_restraint','C05':'night_switch'}[focus]
     seed=(scenario['seed']+104729)&0xffffffff
-    report['follow_up']=dict(competency=focus,template=template,mode='practice',seed=seed,reason=f'Revisit {focus} with changed conditions; this is evidence-targeted practice, not a mastery judgment.',href=f'/?mission_template={template}&mission_mode=practice&seed={seed}')
-    report['input_fingerprint'] = hashlib.sha256(dumps(dict(scenario=scenario, actions=actions, commands=commands, observed_end=observed_end, version=VERSION)).encode()).hexdigest()
+    report['follow_up']=dict(competency=focus,template=template,mode='practice',seed=seed,reason=f'Revisit {focus} with changed conditions; this is evidence-targeted practice, not a mastery judgment.',href=f'/?mission_template={template}&mission_mode=practice&seed={seed}{_follow_suffix}')
+    report['input_fingerprint'] = hashlib.sha256(dumps(dict(scenario=scenario, actions=actions, commands=commands, observed_end=observed_end, version=_version)).encode()).hexdigest()
     report['report_hash'] = hashlib.sha256(dumps(report).encode()).hexdigest()
     return report
 
 
 @lru_cache(maxsize=64)
 def _cached_assessment(payload):
-    return assess_mission(**json.loads(payload))
+    record=json.loads(payload)
+    if record['scenario'].get('engine_version')=='vyuha-0.6.0':
+        from .observation_assessment_v2 import assess_mission as uncertainty_assessment
+        return uncertainty_assessment(**record)
+    return assess_mission(**record)
 
 
 def progression(trainee):
     from .main import logged_events, applied_commands
     with connect() as db:
-        rows = db.execute("SELECT s.*,sc.spec FROM sessions s JOIN scenarios sc ON sc.id=s.scenario_id WHERE s.trainee=? AND s.status='completed' AND json_extract(sc.spec,'$.observation_mission.version')='observation-mission-v1' ORDER BY s.created_at DESC,s.id DESC LIMIT 8", (trainee,)).fetchall()
+        rows = db.execute("SELECT s.*,sc.spec FROM sessions s JOIN scenarios sc ON sc.id=s.scenario_id WHERE s.trainee=? AND s.status='completed' AND json_extract(sc.spec,'$.observation_mission.version') IN ('observation-mission-v1','observation-mission-v2') ORDER BY s.created_at DESC,s.id DESC LIMIT 8", (trainee,)).fetchall()
         records = []
         for row in rows:
             actions, commands = logged_events(db,row['id']), applied_commands(db,row['id'])
@@ -227,8 +231,10 @@ def progression(trainee):
     seed = ((records[0]['scenario']['seed'] if records else 482913)+104729)&0xffffffff
     basis = [e for e in need if e['competency']==focus][:4]
     reason = f"Revisit {focus}: a reconstructed {basis[0]['mode']} decision had {basis[0]['status']} evidence support." if basis else f'Sample another {focus} evidence opportunity; missing observations are not proof of weakness or mastery.'
-    return dict(version='observation-progression-v1',assessment_version=VERSION,trainee=trainee,window=dict(limit=8,completed_mission_sessions=len(sessions)),**groups,sessions=sessions,
-                recommendation=dict(policy='evidence-gap-director-v1',template=template,mode='practice',seed=seed,competency=focus,reason=reason,based_on=basis,href=f'/?mission_template={template}&mission_mode=practice&seed={seed}'),limitations=LIMITATIONS)
+    modern=any(r['scenario'].get('engine_version')=='vyuha-0.6.0' for r in records)
+    suffix='&mission_version=2' if modern else ''
+    return dict(version='observation-progression-v2' if modern else 'observation-progression-v1',assessment_version='evidence-assessment-v2' if modern else VERSION,trainee=trainee,window=dict(limit=8,completed_mission_sessions=len(sessions)),**groups,sessions=sessions,
+                recommendation=dict(policy='evidence-gap-director-v2' if modern else 'evidence-gap-director-v1',template=template,mode='practice',seed=seed,competency=focus,reason=reason,based_on=basis,href=f'/?mission_template={template}&mission_mode=practice&seed={seed}{suffix}'),limitations=LIMITATIONS if not modern else [x for x in LIMITATIONS if 'unclassified defer choice' not in x]+['Defer records a declared reason, not proof of private reasoning or mastery.'])
 
 
 @router.get('/trainees/{trainee}/progression')

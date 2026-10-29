@@ -39,6 +39,7 @@ export function missionPracticeHref(
       mission_template: template,
       mission_mode: mode,
       seed: String(seed),
+      mission_version: "2",
     }).toString()
   );
 }
@@ -61,7 +62,7 @@ export default function ObservationMissionJourney({
     setError("");
     setProgressError("");
     setProgress(null);
-    void api<ObservationMissionCatalog>("/observation-missions/catalog")
+    void api<ObservationMissionCatalog>("/observation-missions-v2/catalog")
       .then((v) => {
         if (!cancelled) setCatalog(v);
       })
@@ -189,7 +190,9 @@ export default function ObservationMissionJourney({
           <ul>
             {catalog.missions.map((m) => (
               <li key={m.id}>
-                <a href={`/?observation_mission=${encodeURIComponent(m.id)}`}>
+                <a
+                  href={`/?observation_mission=${encodeURIComponent(m.id)}${m.mission_version === 2 ? "&mission_version=2" : ""}`}
+                >
                   {m.title}
                 </a>{" "}
                 · {m.mode} · frozen {m.id.slice(-8)}

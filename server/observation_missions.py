@@ -65,10 +65,10 @@ def validate_mission(scenario):
  if scenario!=expected:raise ValueError('Frozen observation mission disagrees with its complete authored definition')
  return scenario
 
-def rehearse(scenario):
+def rehearse(scenario, *, _validate=validate_mission, _simulation=Simulation):
  """One observable-only probe; no raw optical/identity truth drives actions."""
- validate_mission(scenario)
- sim=Simulation(scenario);end=scenario['duration']*30
+ _validate(scenario)
+ sim=_simulation(scenario);end=scenario['duration']*30
  requests=[];positive_iff=[];intervals=[];open_intervals={};turn=0
  for tick in range(end+1):
   observed=[t for t in sim.tracks if t['active'] and t['observation']['radar']['position'] is not None and t['observation']['radar']['sample_tick'] is not None]

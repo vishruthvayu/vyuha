@@ -48,7 +48,7 @@ def verify(password):
     except (OSError,ValueError,KeyError,TypeError):return False
 
 def protected(method,path):
-    if method=='POST' and path in ['/api/v1/observation-missions/compile','/api/v1/observation-missions/publish']:
+    if method=='POST' and path in ['/api/v1/observation-missions/compile','/api/v1/observation-missions/publish','/api/v1/observation-missions-v2/compile','/api/v1/observation-missions-v2/publish']:
         return True
     if path.startswith('/api/v1/instructor/') or path.startswith('/api/v1/white-cell') or path.startswith('/api/v1/raids'):
         return True

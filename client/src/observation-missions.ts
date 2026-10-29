@@ -3,7 +3,7 @@ export type ObservationTemplate =
   "night_switch" | "civil_restraint" | "timed_window";
 export type MissionMode = "practice" | "assessment";
 export type ObservationMissionRequest = {
-  version: "observation-mission-v1";
+  version: "observation-mission-v1" | "observation-mission-v2";
   template: ObservationTemplate;
   seed: number;
   mode: MissionMode;
@@ -18,8 +18,8 @@ export type ObservationMissionRequest = {
   extra_contacts: number;
 };
 export type ObservationMission = {
-  version: "observation-mission-v1";
-  assessment_version: "evidence-assessment-v1";
+  version: "observation-mission-v1" | "observation-mission-v2";
+  assessment_version: "evidence-assessment-v1" | "evidence-assessment-v2";
   template: ObservationTemplate;
   criterion_profile: ObservationTemplate;
   mode: MissionMode;
@@ -41,10 +41,11 @@ export type MissionTemplateBrief = {
   };
 };
 export type ObservationMissionCatalog = {
-  version: "observation-mission-v1";
+  version: "observation-mission-v1" | "observation-mission-v2";
   templates: MissionTemplateBrief[];
   missions: {
     id: string;
+    mission_version?: 1 | 2;
     title: string;
     objectives: string[];
     mode: MissionMode;
@@ -95,7 +96,7 @@ export type CompiledObservationMission = {
   rehearsal: MissionRehearsal;
 };
 export const initialMissionRequest: ObservationMissionRequest = {
-  version: "observation-mission-v1",
+  version: "observation-mission-v2",
   template: "night_switch",
   seed: 482913,
   mode: "practice",

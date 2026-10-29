@@ -126,7 +126,7 @@ export default function AcquisitionStation({
           <Crosshair size={20} />
         </div>
         <div>
-          <span className="eyebrow">OBSERVATION FLIGHT DECK / 0.5</span>
+          <span className="eyebrow">OBSERVATION FLIGHT DECK</span>
           <h2>{brief?.title ?? "Investigate the unknown."}</h2>
           <details className="flight-mission-objectives">
             <summary>Mission objective</summary>

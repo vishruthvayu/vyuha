@@ -34,9 +34,19 @@ export class ActionEvidenceLedger {
     if (
       !entry ||
       entry.scope !== scope ||
-      !(["k", "track", "kind", "identity", "effector", "channel", "request_id"] as const).every(
-        (key) => entry.action[key] === action[key],
-      )
+      !(
+        [
+          "k",
+          "track",
+          "kind",
+          "identity",
+          "effector",
+          "channel",
+          "request_id",
+          "decision_version",
+          "reason",
+        ] as const
+      ).every((key) => entry.action[key] === action[key])
     )
       return;
     this.pending.delete(id);

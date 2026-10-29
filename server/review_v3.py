@@ -126,11 +126,11 @@ class Extractor:
             self.end_evidence={t['id']:evidence(sim,t) for t in sim.tracks if t['spawn']<=sim.tick}
 
 
-def build_review(scenario, actions, commands, sid, observed_end, horizon_source='completion', scoring_end=2250):
+def build_review(scenario, actions, commands, sid, observed_end, horizon_source='completion', scoring_end=2250, *, _replay=acquisition_replay, _extractor=Extractor):
     if not 0<=observed_end<=scoring_end:raise ValueError('Invalid observed exercise horizon')
     if any(e['tick']>observed_end for e in actions+commands):raise ValueError('Recorded action exceeds observed exercise horizon')
-    extractor=Extractor(sid,observed_end)
-    sim=acquisition_replay(scenario,actions,scoring_end,commands,observer=extractor,acquisition_end_tick=observed_end)
+    extractor=_extractor(sid,observed_end)
+    sim=_replay(scenario,actions,scoring_end,commands,observer=extractor,acquisition_end_tick=observed_end)
     card=score(sim);rows={r['id']:r for r in card['rows']}
     for t in extractor.observed.values():
         if t['identity']!='hostile' or t['designated'] is not None:continue
@@ -240,7 +240,7 @@ def build_review(scenario, actions, commands, sid, observed_end, horizon_source=
     validated=GhostAAR.model_validate(result).model_dump()
     for r in validated['decision_reviews']:
         if r['expected_action']['track_id'] is None:r['expected_action'].pop('track_id')
-    observed=acquisition_replay(scenario,actions,observed_end,commands)
+    observed=_replay(scenario,actions,observed_end,commands)
     observed.end_acquisition()
     acquisition=observed.acquisition_snapshot()
     queries={q['id']:q for q in acquisition['requests']}

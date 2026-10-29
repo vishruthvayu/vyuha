@@ -1,3 +1,4 @@
+import { isAcquisitionEngine } from "./engine-contracts";
 import { controlReason } from "./presentation";
 import { effectorStates } from "./GuidedDecision";
 import { reportedPosition } from "./observed-contacts";
@@ -114,7 +115,7 @@ export function vrAction(
   identity: Identity | null,
   effector?: Effector,
 ): Omit<Action, "tick"> | undefined {
-  if (scenario.engine_version === "vyuha-0.5.0") return; // Acquisition XR adapter is not admitted.
+  if (isAcquisitionEngine(scenario.engine_version)) return; // Acquisition XR adapter is not admitted.
 
   const t = targetAt(state, selected, modernSensors(scenario));
   if (controlReason(k === "engage" ? "respond" : k, phase, t)) return;

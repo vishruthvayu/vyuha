@@ -107,6 +107,8 @@ class Simulation(base.Simulation):
 
     def act(self, action):
         a = copy.deepcopy(action)
+        if any(a.get(k) is not None for k in ('decision_version','reason')):
+            return False
         order = a.get('order', self.next_order)
         if type(order) is not int or order != self.next_order:
             return False

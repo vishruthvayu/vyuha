@@ -1,3 +1,4 @@
+import { isAcquisitionEngine } from "./engine-contracts";
 import {
   observationEntry,
   observationEntryKey,
@@ -258,6 +259,7 @@ export default function App({
     current?.executionTick ??
     current?.endTick ??
     2250;
+  const projectedOutcomes = !!current && replayEnd < current.endTick;
   const fusionRecords = useRef<FusionExposure[]>([]),
     latestAdvice = useRef<FusionAdvice | null>(null);
   const fusionExposure = useCallback((advice: FusionAdvice | null) => {
@@ -775,7 +777,7 @@ export default function App({
         spec.duration * HZ,
         commands.current,
         undefined,
-        spec.engine_version === "vyuha-0.5.0"
+        isAcquisitionEngine(spec.engine_version)
           ? (liveState.current?.tick ?? spec.duration * HZ)
           : undefined,
       );
@@ -1294,8 +1296,12 @@ export default function App({
       workerScope.current,
       requestId,
       data,
-      vrOpen || data.k === "inspect" ? null : latestAdvice.current,
-      vrOpen || data.k === "inspect" ? null : confidenceRef.current,
+      vrOpen || data.k === "inspect" || data.k === "defer"
+        ? null
+        : latestAdvice.current,
+      vrOpen || data.k === "inspect" || data.k === "defer"
+        ? null
+        : confidenceRef.current,
     );
     setFeedback({
       seq: requestId,
@@ -1308,6 +1314,7 @@ export default function App({
       request_id: requestId,
       action: { ...data, tick: state.tick },
     });
+    return requestId;
   };
   const suspendVR = useCallback(() => {
     if (
@@ -1722,7 +1729,7 @@ export default function App({
               replayTick,
               current.commands ?? [],
               replayOrder,
-              current.scenario.engine_version === "vyuha-0.5.0"
+              isAcquisitionEngine(current.scenario.engine_version)
                 ? current.executionTick
                 : undefined,
             ).snapshot()
@@ -1778,7 +1785,7 @@ export default function App({
         tabIndex={-1}
         className={
           view === "drill"
-            ? `flight-shell mission-simulator${scenario.engine_version === "vyuha-0.5.0" ? " active-observation-theatre" : ""}`
+            ? `flight-shell mission-simulator${isAcquisitionEngine(scenario.engine_version) ? " active-observation-theatre" : ""}`
             : undefined
         }
       >
@@ -2035,7 +2042,7 @@ export default function App({
                       busy ||
                       phase === "restoring" ||
                       phase === "complete" ||
-                      scenario.engine_version === "vyuha-0.5.0" ||
+                      isAcquisitionEngine(scenario.engine_version) ||
                       (mode === "adaptive" && phase === "ready" && !prepared)
                     }
                     onClick={() => {
@@ -2043,7 +2050,7 @@ export default function App({
                       setVROpen(true);
                     }}
                   >
-                    {scenario.engine_version === "vyuha-0.5.0"
+                    {isAcquisitionEngine(scenario.engine_version)
                       ? "Active observation: VR adapter not yet supported"
                       : "Open VR observation cockpit"}
                   </button>
@@ -2446,7 +2453,7 @@ export default function App({
                                 (scenario.observation_mission
                                   ? `${scenario.observation_mission.mode === "assessment" ? "Independent evidence assessment" : "Evidence practice"} · ${scenario.observation_mission.objectives.join(" ")} Original rubric and evidence assessment remain separate.`
                                   : undefined) ??
-                                (scenario.engine_version === "vyuha-0.5.0" ||
+                                (isAcquisitionEngine(scenario.engine_version) ||
                                 (acquisitionEntry &&
                                   mode === "adaptive" &&
                                   !prepared &&
@@ -2458,7 +2465,7 @@ export default function App({
                               instructions={
                                 episodeBriefing?.instructions ??
                                 scenario.observation_mission?.objectives ??
-                                (scenario.engine_version === "vyuha-0.5.0" ||
+                                (isAcquisitionEngine(scenario.engine_version) ||
                                 (acquisitionEntry &&
                                   mode === "adaptive" &&
                                   !prepared &&
@@ -2535,8 +2542,9 @@ export default function App({
                                         : "Start Academy practice"
                                       : mode === "adaptive"
                                         ? prepared
-                                          ? scenario.engine_version ===
-                                            "vyuha-0.5.0"
+                                          ? isAcquisitionEngine(
+                                              scenario.engine_version,
+                                            )
                                             ? "Start observation exercise"
                                             : "Start adaptive drill"
                                           : acquisitionEntry
@@ -2565,7 +2573,7 @@ export default function App({
                         </div>
                       )}
                     </OpticalStation>
-                    {scenario.engine_version === "vyuha-0.5.0" &&
+                    {isAcquisitionEngine(scenario.engine_version) &&
                       (phase === "running" || phase === "paused") && (
                         <AcquisitionStation
                           key={stationScope}
@@ -2931,6 +2939,7 @@ export default function App({
                         }
                       >
                         <GuidedDecision
+                          key={stationScope}
                           phase={phase}
                           selected={selected}
                           target={target}
@@ -2943,11 +2952,16 @@ export default function App({
                           rf={rfObservation}
                           feedback={feedback}
                           guidance={
-                            learning
-                              ? learning.context.assistance === "full"
-                              : guidance
+                            scenario.observation_mission?.mode === "assessment"
+                              ? false
+                              : learning
+                                ? learning.context.assistance === "full"
+                                : guidance
                           }
-                          guidanceLocked={!!learning}
+                          guidanceLocked={
+                            !!learning ||
+                            scenario.observation_mission?.mode === "assessment"
+                          }
                           onGuidance={setGuidance}
                           onAct={act}
                           onNext={nextContact}
@@ -3090,7 +3104,20 @@ export default function App({
                         ? "STANDARD MET"
                         : "REVIEW REQUIRED"}
                     </span>
-                    <h2>{current.scorecard.summary}</h2>
+                    <h2>
+                      {projectedOutcomes
+                        ? "Full-horizon tactical projection: "
+                        : ""}
+                      {current.scorecard.summary}
+                    </h2>
+                    {projectedOutcomes && (
+                      <p>
+                        The recording ends at {time(replayEnd)}. These tactical
+                        outcomes project to the frozen scoring horizon at{" "}
+                        {time(current.endTick)}; they are not additional
+                        observed events.
+                      </p>
+                    )}
                     <p>
                       {traineeLabel(current.trainee)} · {current.scenario.title}{" "}
                       · Seed {current.scenario.seed}
@@ -3142,9 +3169,17 @@ export default function App({
                     note="Reference response, fewer errors"
                   />
                   <Metric
-                    label="Asset impacts"
+                    label={
+                      projectedOutcomes
+                        ? "Projected asset impacts"
+                        : "Asset impacts"
+                    }
                     value={String(current.scorecard.leakers)}
-                    note={`${current.scorecard.threats} hostile threats in exercise`}
+                    note={
+                      projectedOutcomes
+                        ? `Frozen scoring horizon ${time(current.endTick)}`
+                        : `${current.scorecard.threats} hostile threats in exercise`
+                    }
                   />
                   <Metric
                     label="Safety flags"

@@ -1,3 +1,4 @@
+import UncertaintyDecision from "./UncertaintyDecision";
 import {
   useEffect,
   useId,
@@ -270,6 +271,8 @@ export function attemptOutcome(a: PublicResponseAttempt): {
 }
 
 function describeAction(a: DecisionAction) {
+  if (a.k === "defer")
+    return `Defer new declaration for ${a.track} · ${a.reason?.replaceAll("_", " ") ?? "uncertainty"}`;
   if (a.k === "inspect")
     return `Request ${a.channel?.toUpperCase() ?? "optical"} observation of ${a.track}`;
   return a.k === "designate"
@@ -379,14 +382,17 @@ export function GuidedDecision({
   /** The trainee's recorded decisions on the selected contact. */
   record?: DecisionRecord;
   state: Pick<Snapshot, "tick" | "rfAvailable" | "response">;
-  scenario: Pick<Scenario, "doctrine" | "response_model">;
+  scenario: Pick<
+    Scenario,
+    "doctrine" | "response_model" | "engine_version" | "decision_policy"
+  >;
   vision: Vision;
   rf?: Observation;
   feedback: ActionFeedback | null;
   guidance: boolean;
   onGuidance: (on: boolean) => void;
   guidanceLocked?: boolean;
-  onAct: (action: DecisionAction) => void;
+  onAct: (action: DecisionAction) => number | void;
   onNext?: () => void;
 }) {
   const uid = useId();
@@ -494,6 +500,15 @@ export function GuidedDecision({
           : "";
   return (
     <div ref={dock} className="guided" data-step={step}>
+      {scenario.engine_version === "vyuha-0.6.0" && selected && (
+        <UncertaintyDecision
+          key={selected}
+          track={selected}
+          enabled={running}
+          feedback={feedback}
+          onAct={onAct}
+        />
+      )}
       <div className="guided-head">
         <ol className="guided-steps" aria-label="Decision steps" tabIndex={0}>
           {DECISION_STEPS.map((s, i) => (

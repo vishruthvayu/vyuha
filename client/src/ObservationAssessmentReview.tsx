@@ -11,9 +11,9 @@ type Finding = {
   evidence_ids: string[];
 };
 export type ObservationAssessment = {
-  version: "evidence-assessment-v1";
+  version: "evidence-assessment-v1" | "evidence-assessment-v2";
   session_id: string;
-  mission_version: "observation-mission-v1";
+  mission_version: "observation-mission-v1" | "observation-mission-v2";
   criterion_profile: ObservationTemplate;
   mode: "practice" | "assessment";
   assessed: boolean;
@@ -87,11 +87,13 @@ export type ObservationAssessment = {
 const when = (tick: number) => `T+${(tick / 30).toFixed(2)}s`;
 const human = (value: string) => value.replaceAll("_", " ");
 const actionName = (a: Action) =>
-  a.k === "classify"
-    ? `Declare ${human(a.kind ?? "unknown")} / ${a.identity ?? "unknown"}`
-    : a.k === "engage"
-      ? `Choose ${human(a.effector ?? "unknown")}`
-      : "Designate";
+  a.k === "defer"
+    ? `Defer new declaration / ${human(a.reason ?? "uncertainty")}`
+    : a.k === "classify"
+      ? `Declare ${human(a.kind ?? "unknown")} / ${a.identity ?? "unknown"}`
+      : a.k === "engage"
+        ? `Choose ${human(a.effector ?? "unknown")}`
+        : "Designate";
 export default function ObservationAssessmentReview({
   record,
   onJump,
@@ -102,8 +104,12 @@ export default function ObservationAssessmentReview({
   const report = record.observation_assessment;
   if (
     !record.verified ||
-    record.scenario.engine_version !== "vyuha-0.5.0" ||
-    report?.version !== "evidence-assessment-v1" ||
+    !(
+      (record.scenario.engine_version === "vyuha-0.5.0" &&
+        report?.version === "evidence-assessment-v1") ||
+      (record.scenario.engine_version === "vyuha-0.6.0" &&
+        report?.version === "evidence-assessment-v2")
+    ) ||
     report.session_id !== record.id
   )
     return null;
@@ -127,9 +133,9 @@ export default function ObservationAssessmentReview({
           {" · "}No mastery awarded
         </strong>
         <p className="assessment-scope-note">
-          Explicit Hold is evaluated separately from the preceding declaration.
-          This frozen action alphabet cannot record an unclassified defer
-          choice; inactivity is not interpreted as justified uncertainty.
+          {report.version === "evidence-assessment-v2"
+            ? "Defer is an explicit decision to withhold a new declaration. It does not erase prior choices or prove private reasoning. Inactivity is never interpreted as Defer. "
+            : "Explicit Hold is evaluated separately from the preceding declaration. This frozen action alphabet cannot record an unclassified defer choice; inactivity is not interpreted as justified uncertainty. "}
           Choices are not confidence statements.
         </p>
       </header>
