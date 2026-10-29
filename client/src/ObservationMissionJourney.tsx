@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { api, RECONSTRUCTION_TIMEOUT_MS } from "./storage";
 import type {
   MissionMode,
+  ObservationTemplate,
   ObservationMissionCatalog,
 } from "./observation-missions";
 type Counts = {
@@ -43,6 +44,23 @@ export function missionPracticeHref(
     }).toString()
   );
 }
+export function siteMissionHref(
+  template: ObservationTemplate,
+  mode: MissionMode,
+  seed: number,
+  site: "freight_corridor" | "open_campus",
+) {
+  return (
+    "/?" +
+    new URLSearchParams({
+      mission_template: template,
+      mission_mode: mode,
+      seed: String(seed),
+      mission_version: "3",
+      mission_site: site,
+    }).toString()
+  );
+}
 export default function ObservationMissionJourney({
   trainee,
 }: {
@@ -54,6 +72,9 @@ export default function ObservationMissionJourney({
     [progress, setProgress] = useState<ObservationProgression | null>(null);
   const [mode, setMode] = useState<MissionMode>("practice"),
     [seed, setSeed] = useState("482913"),
+    [site, setSite] = useState<"freight_corridor" | "open_campus">(
+      "freight_corridor",
+    ),
     [error, setError] = useState(""),
     [progressError, setProgressError] = useState(""),
     [reload, setReload] = useState(0);
@@ -62,7 +83,7 @@ export default function ObservationMissionJourney({
     setError("");
     setProgressError("");
     setProgress(null);
-    void api<ObservationMissionCatalog>("/observation-missions-v2/catalog")
+    void api<ObservationMissionCatalog>("/observation-missions-v3/catalog")
       .then((v) => {
         if (!cancelled) setCatalog(v);
       })
@@ -113,6 +134,16 @@ export default function ObservationMissionJourney({
         </a>
       </header>
       <div className="mission-launch-controls">
+        <label>
+          Authored training site
+          <select
+            value={site}
+            onChange={(e) => setSite(e.target.value as typeof site)}
+          >
+            <option value="freight_corridor">Freight corridor</option>
+            <option value="open_campus">Open campus</option>
+          </select>
+        </label>
         <fieldset>
           <legend>Evidence mode</legend>
           <label>
@@ -176,7 +207,7 @@ export default function ObservationMissionJourney({
               <a
                 className="button primary"
                 aria-disabled={!valid}
-                href={valid ? missionPracticeHref(m.id, mode, n) : undefined}
+                href={valid ? siteMissionHref(m.id, mode, n, site) : undefined}
               >
                 Brief this mission
               </a>
@@ -191,7 +222,7 @@ export default function ObservationMissionJourney({
             {catalog.missions.map((m) => (
               <li key={m.id}>
                 <a
-                  href={`/?observation_mission=${encodeURIComponent(m.id)}${m.mission_version === 2 ? "&mission_version=2" : ""}`}
+                  href={`/?observation_mission=${encodeURIComponent(m.id)}${m.mission_version === 3 ? "&mission_version=3" : m.mission_version === 2 ? "&mission_version=2" : ""}`}
                 >
                   {m.title}
                 </a>{" "}

@@ -3,7 +3,11 @@ export type ObservationTemplate =
   "night_switch" | "civil_restraint" | "timed_window";
 export type MissionMode = "practice" | "assessment";
 export type ObservationMissionRequest = {
-  version: "observation-mission-v1" | "observation-mission-v2";
+  version:
+    | "observation-mission-v1"
+    | "observation-mission-v2"
+    | "observation-mission-v3";
+  site?: "freight_corridor" | "open_campus";
   template: ObservationTemplate;
   seed: number;
   mode: MissionMode;
@@ -18,7 +22,10 @@ export type ObservationMissionRequest = {
   extra_contacts: number;
 };
 export type ObservationMission = {
-  version: "observation-mission-v1" | "observation-mission-v2";
+  version:
+    | "observation-mission-v1"
+    | "observation-mission-v2"
+    | "observation-mission-v3";
   assessment_version: "evidence-assessment-v1" | "evidence-assessment-v2";
   template: ObservationTemplate;
   criterion_profile: ObservationTemplate;
@@ -41,11 +48,14 @@ export type MissionTemplateBrief = {
   };
 };
 export type ObservationMissionCatalog = {
-  version: "observation-mission-v1" | "observation-mission-v2";
+  version:
+    | "observation-mission-v1"
+    | "observation-mission-v2"
+    | "observation-mission-v3";
   templates: MissionTemplateBrief[];
   missions: {
     id: string;
-    mission_version?: 1 | 2;
+    mission_version?: 1 | 2 | 3;
     title: string;
     objectives: string[];
     mode: MissionMode;
@@ -53,6 +63,18 @@ export type ObservationMissionCatalog = {
   }[];
 };
 export type MissionRehearsal = {
+  site_geometry?: {
+    version: "training-site-rehearsal-v1";
+    site_id: string;
+    line_of_sight_intervals: {
+      track: string;
+      start_tick: number;
+      end_tick: number;
+      clear: boolean;
+    }[];
+    clear_after_occlusion: boolean;
+    scope: string;
+  };
   version: "observation-mission-rehearsal-v1";
   scenario_id: string;
   request_schedule: Action[];
@@ -96,7 +118,8 @@ export type CompiledObservationMission = {
   rehearsal: MissionRehearsal;
 };
 export const initialMissionRequest: ObservationMissionRequest = {
-  version: "observation-mission-v2",
+  version: "observation-mission-v3",
+  site: "freight_corridor",
   template: "night_switch",
   seed: 482913,
   mode: "practice",

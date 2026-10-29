@@ -210,3 +210,98 @@
 .uncertainty-fields {
   padding: 0 16px 16px;
 }
+
+.training-site-brief {
+  padding: 1rem;
+  background: linear-gradient(140deg, #142b33, #101b24);
+  border: 1px solid #4c7078;
+  border-radius: 12px;
+  color: #dce9e7;
+}
+.training-site-brief h3 {
+  margin: 0.4rem 0;
+  font-size: 1.1rem;
+}
+.training-site-brief svg {
+  display: block;
+  width: 100%;
+  max-height: 280px;
+  border: 1px solid #334b53;
+  border-radius: 8px;
+  margin: 0.7rem 0;
+}
+.training-site-brief p,
+.training-site-brief small {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #b5c8ce;
+}
+.training-site-brief ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.3rem;
+  padding-left: 1.2rem;
+  font-size: 0.8rem;
+}
+.mission-public-site {
+  max-width: 100%;
+  margin-bottom: 0.6rem;
+}
+.mission-public-site summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #bde6dd;
+  font-size: 0.85rem;
+}
+@media (max-width: 600px) {
+  .training-site-brief {
+    padding: 0.7rem;
+  }
+  .training-site-brief svg {
+    max-height: 210px;
+  }
+}
+
+.site-los-rehearsal {
+  border: 1px solid #456473;
+  background: #122530;
+  padding: 1rem;
+  border-radius: 12px;
+}
+.site-los-rehearsal h3 {
+  margin: 0.4rem 0;
+}
+.site-los-rehearsal p {
+  max-width: 68ch;
+  font-size: 0.85rem;
+  color: #bbced4;
+  line-height: 1.5;
+}
+.site-los-rehearsal > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.site-los-rehearsal button {
+  min-height: 52px;
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.6rem;
+  background: #253c47;
+  color: #e4eced;
+  border: 1px solid #618492;
+  border-radius: 6px;
+  text-align: left;
+}
+.site-los-rehearsal .is-clear {
+  border-left: 4px solid #82c3a4;
+}
+.site-los-rehearsal .is-blocked {
+  border-left: 4px solid #d3ae74;
+}
+.site-los-rehearsal button[aria-pressed="true"] {
+  outline: 2px solid #aee6dd;
+  outline-offset: 2px;
+}

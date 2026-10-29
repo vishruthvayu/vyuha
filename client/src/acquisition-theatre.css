@@ -875,3 +875,34 @@
   margin: 6px 12px 0 0;
   white-space: normal;
 }
+/* A top-anchored instrument must size to its controls. The compact evidence
+   dock also supplies a bottom anchor; without an explicit intrinsic height,
+   the two anchors stretch the optical console across the world. */
+@media (min-width: 1101px) {
+  .active-observation-theatre
+    .simulation-workstation[data-instrument="observe"]
+    .optical-console {
+    height: fit-content;
+    align-content: start;
+  }
+}
+
+.active-observation-theatre .pause-message {
+  padding: 16px 20px;
+  max-width: 320px;
+  border: 1px solid #6c909a;
+  border-radius: 10px;
+  background: #10232df5;
+  color: #f0f5f4;
+  text-align: center;
+  box-shadow: 0 8px 30px #0004;
+}
+.active-observation-theatre .pause-message h2 {
+  margin: 0.3rem 0;
+  color: #f0f5f4;
+}
+.active-observation-theatre .pause-message p {
+  color: #d3e1e4;
+  margin: 0.3rem 0;
+  line-height: 1.5;
+}

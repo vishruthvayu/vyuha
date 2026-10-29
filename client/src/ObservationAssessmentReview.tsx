@@ -13,7 +13,10 @@ type Finding = {
 export type ObservationAssessment = {
   version: "evidence-assessment-v1" | "evidence-assessment-v2";
   session_id: string;
-  mission_version: "observation-mission-v1" | "observation-mission-v2";
+  mission_version:
+    | "observation-mission-v1"
+    | "observation-mission-v2"
+    | "observation-mission-v3";
   criterion_profile: ObservationTemplate;
   mode: "practice" | "assessment";
   assessed: boolean;

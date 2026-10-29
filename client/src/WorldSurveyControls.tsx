@@ -1,3 +1,4 @@
+import type { TrainingSite } from "./world/training-site";
 import { useLayoutEffect, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { PerspectiveCamera } from "three";
@@ -6,7 +7,7 @@ import {
   isSurveyCommand,
   publicSurveyPose,
   surveyPosition,
-  SURVEY_BOUNDS,
+  surveyBounds,
   type SurveyIntent,
 } from "./world-survey";
 
@@ -23,6 +24,7 @@ export function createWorldSurveyController(
   reducedMotion = false,
   initialRevision = 0,
   restorePose = true,
+  trainingSite?: TrainingSite,
 ) {
   const previousTouchAction = surface.style.touchAction;
   const previousCamera = {
@@ -30,7 +32,8 @@ export function createWorldSurveyController(
     quaternion: camera.quaternion.clone(),
     zoom: camera.zoom,
   };
-  const preset = publicSurveyPose(terrain);
+  const preset = publicSurveyPose(terrain, trainingSite);
+  const limits = surveyBounds(trainingSite);
   camera.position.set(preset.position.x, preset.position.y, preset.position.z);
   const controls = new OrbitControls(camera, surface);
   controls.target.set(preset.target.x, preset.target.y, preset.target.z);
@@ -40,10 +43,10 @@ export function createWorldSurveyController(
   controls.dampingFactor = 0.09;
   controls.rotateSpeed = 0.5;
   controls.zoomSpeed = 0.7;
-  controls.minDistance = SURVEY_BOUNDS.minRadius;
-  controls.maxDistance = SURVEY_BOUNDS.maxRadius;
-  controls.minPolarAngle = SURVEY_BOUNDS.minPolar;
-  controls.maxPolarAngle = SURVEY_BOUNDS.maxPolar;
+  controls.minDistance = limits.minRadius;
+  controls.maxDistance = limits.maxRadius;
+  controls.minPolarAngle = limits.minPolar;
+  controls.maxPolarAngle = limits.maxPolar;
   controls.update();
   controls.saveState();
   let alive = true,
@@ -65,7 +68,12 @@ export function createWorldSurveyController(
       const damping = controls.enableDamping;
       controls.enableDamping = false;
       controls.update();
-      const next = surveyPosition(camera.position, intent.action, terrain);
+      const next = surveyPosition(
+        camera.position,
+        intent.action,
+        terrain,
+        trainingSite,
+      );
       camera.position.set(next.x, next.y, next.z);
       controls.update();
       controls.enableDamping = damping;
@@ -95,12 +103,14 @@ export function createWorldSurveyController(
 export function WorldSurveyControls({
   enabled,
   terrain,
+  trainingSite,
   reducedMotion = false,
   command,
   restorePose = true,
 }: {
   enabled: boolean;
   terrain?: string;
+  trainingSite?: TrainingSite;
   reducedMotion?: boolean;
   command?: SurveyIntent;
   /** Disable when a new live CameraRig takes ownership at the same boundary. */
@@ -123,16 +133,25 @@ export function WorldSurveyControls({
       reducedMotion,
       latestCommand.current?.revision,
       restorePose,
+      trainingSite,
     );
     controller.current = lease;
     return () => {
       controller.current = null;
       lease.dispose();
     };
-  }, [enabled, camera, gl.domElement, terrain, reducedMotion, restorePose]);
+  }, [
+    enabled,
+    camera,
+    gl.domElement,
+    terrain,
+    reducedMotion,
+    restorePose,
+    trainingSite,
+  ]);
   useLayoutEffect(() => {
     if (enabled && command) controller.current?.apply(command);
-  }, [command, enabled, terrain, reducedMotion]);
+  }, [command, enabled, terrain, reducedMotion, trainingSite]);
   useFrame((_, dt) => controller.current?.update(dt));
   return null;
 }

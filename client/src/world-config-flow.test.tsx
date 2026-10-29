@@ -33,8 +33,8 @@ before(async () => {
   await writeFile(
     capture,
     `import React from 'react';
-    const capture=(kind,p)=>React.createElement('div',{['data-'+kind]:JSON.stringify(p.sensorConfig??null),'data-origin':JSON.stringify(p.sensorOrigin??null)});
-    export const Environment=p=>capture('environment',p),InspectionPass=p=>capture('inspection',p),Scene=p=>capture('scene',p),ContactRenderer=()=>null;
+    const capture=(kind,p)=>React.createElement('div',{['data-'+kind]:JSON.stringify(p.sensorConfig??null),'data-origin':JSON.stringify(p.sensorOrigin??null),'data-site':JSON.stringify(p.trainingSite??null)});
+    export const Environment=p=>capture('environment',p),InspectionPass=p=>capture('inspection',p),Scene=p=>capture('scene',p),ContactRenderer=()=>null,WorldSurveyControls=p=>capture('survey',p);
     export const LAYER_WORLD=0,LAYER_CONTACTS=1,LAYER_OCCLUDERS=2;`,
   );
   await writeFile(
@@ -64,6 +64,7 @@ before(async () => {
               "./world/Environment",
               "./InspectionPass",
               "./ContactRenderer",
+              "./WorldSurveyControls",
             ].includes(specifier)
           )
             return `from ${JSON.stringify(pathToFileURL(capture).href)}`;
@@ -172,4 +173,53 @@ test("actual reconstruction theatre preserves source sensor configuration when c
   );
   assert.deepEqual(readCapture(html, "scene"), config);
   assert.equal(JSON.stringify(record), before);
+});
+
+test("authored public site reaches the real browser environment and briefing survey without admitting contact truth", () => {
+  const site: import("./training-site-contract").TrainingSite = {
+    version: "training-site-v1",
+    id: "freight_corridor",
+    title: "Fixture site",
+    summary: "Public geometry",
+    structures: [
+      {
+        id: "hall",
+        label: "Hall",
+        style: "warehouse",
+        x_min: 50,
+        x_max: 90,
+        z_min: 150,
+        z_max: 200,
+        height: 12,
+      },
+    ],
+    surfaces: [],
+    landmarks: [],
+  };
+  const scenario = makeScenario(),
+    state = new Simulation(scenario).snapshot();
+  const html = renderToStaticMarkup(
+    <Scene
+      state={state}
+      selected={null}
+      vision="day"
+      onFps={() => {}}
+      sensorConfig={config}
+      trainingSite={site}
+      terrainBoxes={site.structures}
+      presentation="briefing"
+      briefingSurvey={true}
+      fallback={<p>Fallback</p>}
+    />,
+  );
+  const dom = new JSDOM(html);
+  try {
+    for (const kind of ["environment", "survey"]) {
+      const node = dom.window.document.querySelector(`[data-${kind}]`)!;
+      assert.ok(node);
+      assert.deepEqual(JSON.parse(node.getAttribute("data-site")!), site);
+    }
+  } finally {
+    dom.window.close();
+  }
 });

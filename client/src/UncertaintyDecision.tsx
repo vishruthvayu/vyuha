@@ -5,11 +5,13 @@ export default function UncertaintyDecision({
   track,
   enabled,
   feedback,
+  unavailableReason,
   onAct,
 }: {
   track: string;
   enabled: boolean;
   feedback: ActionFeedback | null;
+  unavailableReason?: string;
   onAct: (action: DecisionAction) => number | void;
 }) {
   const [reason, setReason] = useState<NonNullable<Action["reason"]> | "">("");
@@ -51,6 +53,7 @@ export default function UncertaintyDecision({
           </span>
         </summary>
         <div className="uncertainty-fields">
+          {unavailableReason && <p role="status">{unavailableReason}</p>}
           <p>
             Keep this contact unclassified, or retain your previous declaration
             while you investigate. Defer records this choice; it does not

@@ -200,6 +200,9 @@ def assess_mission(scenario, actions, commands, sid, observed_end, *, _contract=
 @lru_cache(maxsize=64)
 def _cached_assessment(payload):
     record=json.loads(payload)
+    if record['scenario'].get('observation_mission',{}).get('version')=='observation-mission-v3':
+        from .observation_assessment_v3 import assess_mission as site_assessment
+        return site_assessment(**record)
     if record['scenario'].get('engine_version')=='vyuha-0.6.0':
         from .observation_assessment_v2 import assess_mission as uncertainty_assessment
         return uncertainty_assessment(**record)
@@ -209,7 +212,7 @@ def _cached_assessment(payload):
 def progression(trainee):
     from .main import logged_events, applied_commands
     with connect() as db:
-        rows = db.execute("SELECT s.*,sc.spec FROM sessions s JOIN scenarios sc ON sc.id=s.scenario_id WHERE s.trainee=? AND s.status='completed' AND json_extract(sc.spec,'$.observation_mission.version') IN ('observation-mission-v1','observation-mission-v2') ORDER BY s.created_at DESC,s.id DESC LIMIT 8", (trainee,)).fetchall()
+        rows = db.execute("SELECT s.*,sc.spec FROM sessions s JOIN scenarios sc ON sc.id=s.scenario_id WHERE s.trainee=? AND s.status='completed' AND json_extract(sc.spec,'$.observation_mission.version') IN ('observation-mission-v1','observation-mission-v2','observation-mission-v3') ORDER BY s.created_at DESC,s.id DESC LIMIT 8", (trainee,)).fetchall()
         records = []
         for row in rows:
             actions, commands = logged_events(db,row['id']), applied_commands(db,row['id'])
@@ -233,8 +236,10 @@ def progression(trainee):
     reason = f"Revisit {focus}: a reconstructed {basis[0]['mode']} decision had {basis[0]['status']} evidence support." if basis else f'Sample another {focus} evidence opportunity; missing observations are not proof of weakness or mastery.'
     modern=any(r['scenario'].get('engine_version')=='vyuha-0.6.0' for r in records)
     suffix='&mission_version=2' if modern else ''
-    return dict(version='observation-progression-v2' if modern else 'observation-progression-v1',assessment_version='evidence-assessment-v2' if modern else VERSION,trainee=trainee,window=dict(limit=8,completed_mission_sessions=len(sessions)),**groups,sessions=sessions,
-                recommendation=dict(policy='evidence-gap-director-v2' if modern else 'evidence-gap-director-v1',template=template,mode='practice',seed=seed,competency=focus,reason=reason,based_on=basis,href=f'/?mission_template={template}&mission_mode=practice&seed={seed}{suffix}'),limitations=LIMITATIONS if not modern else [x for x in LIMITATIONS if 'unclassified defer choice' not in x]+['Defer records a declared reason, not proof of private reasoning or mastery.'])
+    sites=[r['scenario']['training_site']['id'] for r in records if r['scenario'].get('observation_mission',{}).get('version')=='observation-mission-v3']
+    if sites:suffix=f'&mission_version=3&mission_site={sites[0]}'
+    return dict(version='observation-progression-v3' if sites else 'observation-progression-v2' if modern else 'observation-progression-v1',assessment_version='evidence-assessment-v2' if modern else VERSION,trainee=trainee,window=dict(limit=8,completed_mission_sessions=len(sessions)),**groups,sessions=sessions,
+                recommendation=dict(policy='evidence-gap-director-v3' if sites else 'evidence-gap-director-v2' if modern else 'evidence-gap-director-v1',template=template,mode='practice',seed=seed,competency=focus,reason=reason,based_on=basis,href=f'/?mission_template={template}&mission_mode=practice&seed={seed}{suffix}'),limitations=LIMITATIONS if not modern else [x for x in LIMITATIONS if 'unclassified defer choice' not in x]+['Defer records a declared reason, not proof of private reasoning or mastery.'])
 
 
 @router.get('/trainees/{trainee}/progression')

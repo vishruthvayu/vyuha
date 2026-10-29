@@ -1,3 +1,5 @@
+import TrainingSiteBrief from "./TrainingSiteBrief";
+import type { TrainingSite } from "./world/training-site";
 import { useEffect, useId, useRef } from "react";
 import {
   ArrowDown,
@@ -14,6 +16,7 @@ import type { EpisodeBriefing } from "./episode-briefing";
 import type { SurveyCommand } from "./world-survey";
 
 export type MissionBriefingProps = {
+  trainingSite?: TrainingSite;
   onPrepare?: () => void;
   busy?: boolean;
   prepared?: boolean;
@@ -49,6 +52,7 @@ const viewCommands = [
 /** A task briefing and contact-free survey share one persistent explicit launch
  * control. Exploring, switching views or reading constraints cannot launch. */
 export function MissionBriefing({
+  trainingSite,
   onPrepare,
   busy = false,
   prepared = false,
@@ -88,6 +92,14 @@ export function MissionBriefing({
     >
       {!survey ? (
         <div className="mission-briefing-main">
+          {trainingSite && (
+            <details className="mission-public-site">
+              <summary>
+                Explore the frozen site plan · {trainingSite.title}
+              </summary>
+              <TrainingSiteBrief site={trainingSite} />
+            </details>
+          )}
           <p className="mission-briefing-eyebrow">
             {prepared ? "FROZEN EXERCISE / READY" : "TRAINING / ORIENTATION"}
           </p>

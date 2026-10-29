@@ -404,6 +404,8 @@ from .observation_missions import router as observation_mission_router
 app.include_router(observation_mission_router)
 from .observation_missions_v2 import router as uncertainty_mission_router
 app.include_router(uncertainty_mission_router)
+from .observation_missions_v3 import router as training_site_mission_router
+app.include_router(training_site_mission_router)
 from .observation_assessment import router as observation_assessment_router
 app.include_router(observation_assessment_router)
 from .acquisition import router as acquisition_router

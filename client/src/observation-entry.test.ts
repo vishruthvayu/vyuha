@@ -111,7 +111,7 @@ test("v2 admission is explicit and cannot reinterpret a frozen v1 mission as the
   );
   assert.equal(parsed.entry?.version, 2);
   assert.ok(
-    observationEntry("?mission_template=night_switch&mission_version=3").error,
+    observationEntry("?mission_template=night_switch&mission_version=4").error,
   );
   assert.ok(
     observationEntry(

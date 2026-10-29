@@ -1,0 +1,2572 @@
+{
+  "version": "observation-mission-v3-frozen-defaults",
+  "cases": [
+    {
+      "request": {},
+      "scenario": {
+        "version": 2,
+        "engine_version": "vyuha-0.6.0",
+        "id": "raid_fb3eddb30a21474dcd70154c",
+        "seed": 482913,
+        "title": "A channel is not an answer",
+        "duration": 90,
+        "night": true,
+        "fog": 0.15,
+        "jamStart": 2700,
+        "jamEnd": 2700,
+        "focus": "classification_iff",
+        "tracks": [
+          {
+            "id": "T1",
+            "kind": "quad",
+            "identity": "hostile",
+            "rf": true,
+            "spawn": 60,
+            "bearing": 310,
+            "distance": 700,
+            "speed": 10,
+            "altitude": 16,
+            "motion": {
+              "version": 1,
+              "primitive": "orbit_then_dash",
+              "phase_s": 72.0,
+              "lateral_m": 0,
+              "period_s": 20,
+              "turn_deg": 100
+            },
+            "radar_range": 3000,
+            "thermal_range": 1200,
+            "threat_profile": "hostile_quad"
+          },
+          {
+            "id": "T2",
+            "kind": "quad",
+            "identity": "friendly",
+            "rf": true,
+            "spawn": 660,
+            "bearing": 99,
+            "distance": 931.621,
+            "speed": 14.862,
+            "altitude": 21.151,
+            "motion": {
+              "version": 1,
+              "primitive": "orbit_then_dash",
+              "phase_s": 90,
+              "turn_deg": 70,
+              "period_s": 20,
+              "lateral_m": 0
+            },
+            "expires_tick": 2700,
+            "threat_profile": "friendly_uav",
+            "radar_range": 3000,
+            "thermal_range": 1200
+          },
+          {
+            "id": "T3",
+            "kind": "bird",
+            "identity": "neutral",
+            "rf": false,
+            "spawn": 240,
+            "bearing": 11,
+            "distance": 798.238,
+            "speed": 10.795,
+            "altitude": 20.189,
+            "motion": {
+              "version": 1,
+              "primitive": "orbit_then_dash",
+              "phase_s": 90,
+              "turn_deg": 70,
+              "period_s": 20,
+              "lateral_m": 0
+            },
+            "expires_tick": 2700,
+            "threat_profile": "bird",
+            "radar_range": 3000,
+            "thermal_range": 1200
+          }
+        ],
+        "terrain": "urban",
+        "terrain_id": "urban_outpost",
+        "terrain_version": 1,
+        "difficulty_label": "foundational",
+        "sensor_version": "vyuha-0.4.0",
+        "sensor_config": {
+          "radar_reference_range_m": 3000,
+          "radar_reference_rcs_db": -15,
+          "radar_reference_snr": 30,
+          "radar_max_range_m": 5000,
+          "radar_pfa": 1e-06,
+          "radar_reliability": 0.95,
+          "radar_jam_factor": 0.15,
+          "radar_occlusion_factor": 0.1,
+          "radar_confirm_hits": 3,
+          "radar_window_sweeps": 5,
+          "radar_loss_sweeps": 3,
+          "radar_sweep_ticks": 30,
+          "rcs_spread_db": 3,
+          "eo_ifov_rad": 0.00012,
+          "ir_ifov_rad": 0.00018,
+          "eo_max_range_m": 1500,
+          "ir_max_range_m": 1200,
+          "optical_reliability": 0.95,
+          "optical_sample_ticks": 3,
+          "clear_visibility_m": 20000,
+          "dense_visibility_m": 200,
+          "ir_fog_factor": 0.45,
+          "rf_tx_dbm": 20,
+          "rf_gain_db": 6,
+          "rf_sensitivity_dbm": -96,
+          "rf_path_exponent": 2.2,
+          "rf_shadow_db": 6,
+          "rf_reliability": 0.9,
+          "rf_max_range_m": 4000,
+          "rf_bearing_error_deg": 5,
+          "iff_reply_probability": 0.95,
+          "civil_beacon_probability": 0.9,
+          "iff_max_range_m": 2500,
+          "false_track_probability": 0.05,
+          "false_track_lifetime_sweeps": 3,
+          "false_track_maximum": 2
+        },
+        "terrain_boxes": [
+          {
+            "x_min": -105,
+            "x_max": 105,
+            "z_min": 250,
+            "z_max": 325,
+            "height": 30
+          },
+          {
+            "x_min": 195,
+            "x_max": 275,
+            "z_min": 390,
+            "z_max": 505,
+            "height": 22
+          },
+          {
+            "x_min": -285,
+            "x_max": -220,
+            "z_min": 145,
+            "z_max": 220,
+            "height": 17
+          },
+          {
+            "x_min": -175,
+            "x_max": -65,
+            "z_min": -245,
+            "z_max": -175,
+            "height": 15
+          }
+        ],
+        "doctrine": {
+          "id": "army-forward-post",
+          "version": 1,
+          "name": "Illustrative finale local pack",
+          "description": "Frozen meter-scale training research configuration; not official doctrine",
+          "example_values": true,
+          "rules": {
+            "rf_range": 1500,
+            "kinetic_range": 1000,
+            "restricted": {
+              "enabled": true,
+              "x_lt": -300,
+              "z_gt": 200
+            },
+            "effectors": [
+              "hold",
+              "rf_jam",
+              "kinetic"
+            ],
+            "risk_weights": {
+              "quad": 1,
+              "fixed_wing": 1.2,
+              "fiber_fpv": 1.5,
+              "bird": 0
+            },
+            "asset_risk": 1,
+            "distance_precision": 6,
+            "hold_any_range": true
+          },
+          "defaults": {
+            "fog": 0.15,
+            "night": true,
+            "mix": []
+          },
+          "allowed_tactics": [
+            "DIRECT",
+            "SATURATION",
+            "DECOY_THEN_STRIKE",
+            "STAGGERED_WAVES",
+            "LOW_APPROACH",
+            "SPLIT_SWARM",
+            "PROBE_AND_RETREAT",
+            "BLIND_SECTOR"
+          ],
+          "rubric": {
+            "detect": 25,
+            "classify": 25,
+            "prioritise": 15,
+            "engage": 35
+          }
+        },
+        "prioritisation_version": 1,
+        "threat_config": {
+          "version": 1,
+          "id": "illustrative-threat-library-v1",
+          "label": "Illustrative training research parameters; not operational equipment specifications",
+          "units": {
+            "distance": "m",
+            "speed": "m/s",
+            "altitude": "m",
+            "time": "s"
+          },
+          "profiles": {
+            "hostile_quad": {
+              "kind": "quad",
+              "identity": "hostile",
+              "rf": true,
+              "speed_mps": [
+                8,
+                18
+              ],
+              "altitude_m": [
+                15,
+                90
+              ]
+            },
+            "no_rf_fpv": {
+              "kind": "fiber_fpv",
+              "identity": "hostile",
+              "rf": false,
+              "speed_mps": [
+                20,
+                35
+              ],
+              "altitude_m": [
+                4,
+                30
+              ]
+            },
+            "fixed_wing": {
+              "kind": "fixed_wing",
+              "identity": "hostile",
+              "rf": false,
+              "speed_mps": [
+                25,
+                42
+              ],
+              "altitude_m": [
+                40,
+                180
+              ]
+            },
+            "bird": {
+              "kind": "bird",
+              "identity": "neutral",
+              "rf": false,
+              "speed_mps": [
+                4,
+                12
+              ],
+              "altitude_m": [
+                15,
+                80
+              ]
+            },
+            "friendly_uav": {
+              "kind": "quad",
+              "identity": "friendly",
+              "rf": true,
+              "speed_mps": [
+                8,
+                18
+              ],
+              "altitude_m": [
+                20,
+                100
+              ]
+            },
+            "civil_uav": {
+              "kind": "quad",
+              "identity": "neutral",
+              "rf": true,
+              "speed_mps": [
+                8,
+                18
+              ],
+              "altitude_m": [
+                20,
+                100
+              ],
+              "registration_beacon": true
+            }
+          }
+        },
+        "effector_config": {
+          "version": 1,
+          "id": "illustrative-local-response-v1",
+          "label": "Illustrative bounded training actions; not real weapon performance or official doctrine",
+          "units": {
+            "distance": "m"
+          },
+          "sensor_geometry": {
+            "radar_range_m": 3000,
+            "day_camera_range_m": 1500,
+            "thermal_range_m": 1200
+          },
+          "effectors": {
+            "hold": {
+              "enabled": true
+            },
+            "rf_jam": {
+              "enabled": true,
+              "max_range_m": 1500,
+              "requires_rf_link": true
+            },
+            "kinetic": {
+              "enabled": true,
+              "max_range_m": 1000
+            }
+          },
+          "engagement_channels": 1,
+          "asset_radius_m": 8,
+          "minimum_response_window_s": 7
+        },
+        "raid": {
+          "version": 2,
+          "family": "DIRECT",
+          "requested_seed": 482913,
+          "waves": [
+            {
+              "tick": 60,
+              "role": "direct",
+              "contacts": [
+                "T1"
+              ]
+            }
+          ],
+          "formation_model": "Closed-form shared leader with bounded slots and optional split; not autonomous swarm AI",
+          "constraints": {
+            "response_window_s": 7,
+            "peak_hostile_cap": 3,
+            "max_contacts": 200
+          },
+          "anti_repeat": {
+            "rejected_attempts": 0,
+            "history_considered": 0
+          },
+          "signature": [
+            "bird:0:0:orbit_then_dash",
+            "quad:2:0:orbit_then_dash",
+            "quad:6:0:orbit_then_dash"
+          ],
+          "fingerprint": "c75fc04f7332e58bb7378bb8",
+          "validation": {
+            "basis": "Geometric baseline check with declared ranges; not calibrated sensor reliability or a certified human-solvability claim",
+            "response_windows": {
+              "T1": {
+                "first_tick": 169,
+                "last_tick": 2699,
+                "usable_ticks": 1278
+              }
+            },
+            "peak_simultaneous_hostiles": 1,
+            "saturation_index": 1.0
+          }
+        },
+        "red_force": {
+          "version": 2,
+          "tactic": "DIRECT",
+          "tactic_seed": 482913,
+          "phases": [
+            {
+              "tick": 60,
+              "role": "direct",
+              "contacts": [
+                "T1"
+              ]
+            }
+          ]
+        },
+        "fusion": {
+          "version": "fusion-1",
+          "mode": "training",
+          "exercise": "normal",
+          "bias_seed": 0
+        },
+        "acquisition_policy": {
+          "version": "optical-task-policy-v1",
+          "dwellTicks": 30,
+          "cadenceTicks": 3,
+          "latencyTicks": 6,
+          "cooldownTicks": 6,
+          "expiryTicks": 180,
+          "maxReportAgeTicks": 90,
+          "maxRequests": 64
+        },
+        "observation_mission": {
+          "version": "observation-mission-v3",
+          "assessment_version": "evidence-assessment-v2",
+          "template": "night_switch",
+          "criterion_profile": "night_switch",
+          "mode": "practice",
+          "title": "A channel is not an answer",
+          "objectives": [
+            "Separate channel unavailability from an empty sky.",
+            "Choose a cross-check that can supply new information.",
+            "Keep shape resolution separate from affiliation."
+          ],
+          "competencies": [
+            "C01",
+            "C02",
+            "C05",
+            "C03"
+          ],
+          "authoring": {
+            "template": "night_switch",
+            "seed": 482913,
+            "mode": "practice",
+            "version": "observation-mission-v3",
+            "title": "",
+            "duration": 90,
+            "terrain": null,
+            "night": null,
+            "fog": null,
+            "dwell_ticks": 30,
+            "expiry_ticks": null,
+            "objectives": null,
+            "extra_contacts": 0,
+            "site": "freight_corridor"
+          }
+        },
+        "decision_policy": {
+          "version": "uncertainty-decisions-v1",
+          "reasons": [
+            "type_unresolved",
+            "affiliation_unresolved",
+            "conflicting_reports"
+          ]
+        },
+        "training_site": {
+          "version": "training-site-v1",
+          "id": "freight_corridor",
+          "title": "Freight corridor",
+          "summary": "A long transfer hall separates the observation apron from the northern approach. Public site geometry, not a contact or future-evidence map.",
+          "structures": [
+            {
+              "id": "transfer_hall",
+              "label": "Transfer hall",
+              "x_min": -105,
+              "x_max": 105,
+              "z_min": 250,
+              "z_max": 325,
+              "height": 30,
+              "style": "warehouse"
+            },
+            {
+              "id": "east_depot",
+              "label": "East depot",
+              "x_min": 195,
+              "x_max": 275,
+              "z_min": 390,
+              "z_max": 505,
+              "height": 22,
+              "style": "warehouse"
+            },
+            {
+              "id": "administration",
+              "label": "Administration",
+              "x_min": -285,
+              "x_max": -220,
+              "z_min": 145,
+              "z_max": 220,
+              "height": 17,
+              "style": "block"
+            },
+            {
+              "id": "south_stores",
+              "label": "South stores",
+              "x_min": -175,
+              "x_max": -65,
+              "z_min": -245,
+              "z_max": -175,
+              "height": 15,
+              "style": "warehouse"
+            }
+          ],
+          "surfaces": [
+            {
+              "kind": "asphalt",
+              "width": 14,
+              "path": [
+                [
+                  -600,
+                  190
+                ],
+                [
+                  0,
+                  190
+                ],
+                [
+                  600,
+                  190
+                ]
+              ]
+            },
+            {
+              "kind": "asphalt",
+              "width": 12,
+              "path": [
+                [
+                  145,
+                  -600
+                ],
+                [
+                  145,
+                  190
+                ],
+                [
+                  145,
+                  650
+                ]
+              ]
+            },
+            {
+              "kind": "concrete",
+              "path": [
+                [
+                  -115,
+                  205
+                ],
+                [
+                  115,
+                  205
+                ],
+                [
+                  115,
+                  245
+                ],
+                [
+                  -115,
+                  245
+                ]
+              ]
+            },
+            {
+              "kind": "concrete",
+              "path": [
+                [
+                  -50,
+                  -45
+                ],
+                [
+                  50,
+                  -45
+                ],
+                [
+                  50,
+                  90
+                ],
+                [
+                  -50,
+                  90
+                ]
+              ]
+            },
+            {
+              "kind": "gravel",
+              "path": [
+                [
+                  -330,
+                  100
+                ],
+                [
+                  -195,
+                  100
+                ],
+                [
+                  -195,
+                  240
+                ],
+                [
+                  -330,
+                  240
+                ]
+              ]
+            }
+          ],
+          "landmarks": [
+            {
+              "id": "apron",
+              "label": "Observation apron",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 45
+              }
+            },
+            {
+              "id": "hall",
+              "label": "Transfer hall",
+              "position": {
+                "x": 0,
+                "y": 30,
+                "z": 287.5
+              }
+            },
+            {
+              "id": "junction",
+              "label": "Service junction",
+              "position": {
+                "x": 145,
+                "y": 0,
+                "z": 190
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "site": "open_campus"
+      },
+      "scenario": {
+        "version": 2,
+        "engine_version": "vyuha-0.6.0",
+        "id": "raid_ce7db9f0d3a9c4c5c49e85c7",
+        "seed": 482913,
+        "title": "A channel is not an answer",
+        "duration": 90,
+        "night": true,
+        "fog": 0.15,
+        "jamStart": 2700,
+        "jamEnd": 2700,
+        "focus": "classification_iff",
+        "tracks": [
+          {
+            "id": "T1",
+            "kind": "quad",
+            "identity": "hostile",
+            "rf": true,
+            "spawn": 60,
+            "bearing": 310,
+            "distance": 700,
+            "speed": 10,
+            "altitude": 16,
+            "motion": {
+              "version": 1,
+              "primitive": "orbit_then_dash",
+              "phase_s": 72.0,
+              "lateral_m": 0,
+              "period_s": 20,
+              "turn_deg": 100
+            },
+            "radar_range": 3000,
+            "thermal_range": 1200,
+            "threat_profile": "hostile_quad"
+          },
+          {
+            "id": "T2",
+            "kind": "quad",
+            "identity": "friendly",
+            "rf": true,
+            "spawn": 660,
+            "bearing": 99,
+            "distance": 931.621,
+            "speed": 14.862,
+            "altitude": 21.151,
+            "motion": {
+              "version": 1,
+              "primitive": "orbit_then_dash",
+              "phase_s": 90,
+              "turn_deg": 70,
+              "period_s": 20,
+              "lateral_m": 0
+            },
+            "expires_tick": 2700,
+            "threat_profile": "friendly_uav",
+            "radar_range": 3000,
+            "thermal_range": 1200
+          },
+          {
+            "id": "T3",
+            "kind": "bird",
+            "identity": "neutral",
+            "rf": false,
+            "spawn": 240,
+            "bearing": 11,
+            "distance": 798.238,
+            "speed": 10.795,
+            "altitude": 20.189,
+            "motion": {
+              "version": 1,
+              "primitive": "orbit_then_dash",
+              "phase_s": 90,
+              "turn_deg": 70,
+              "period_s": 20,
+              "lateral_m": 0
+            },
+            "expires_tick": 2700,
+            "threat_profile": "bird",
+            "radar_range": 3000,
+            "thermal_range": 1200
+          }
+        ],
+        "terrain": "urban",
+        "terrain_id": "urban_outpost",
+        "terrain_version": 1,
+        "difficulty_label": "foundational",
+        "sensor_version": "vyuha-0.4.0",
+        "sensor_config": {
+          "radar_reference_range_m": 3000,
+          "radar_reference_rcs_db": -15,
+          "radar_reference_snr": 30,
+          "radar_max_range_m": 5000,
+          "radar_pfa": 1e-06,
+          "radar_reliability": 0.95,
+          "radar_jam_factor": 0.15,
+          "radar_occlusion_factor": 0.1,
+          "radar_confirm_hits": 3,
+          "radar_window_sweeps": 5,
+          "radar_loss_sweeps": 3,
+          "radar_sweep_ticks": 30,
+          "rcs_spread_db": 3,
+          "eo_ifov_rad": 0.00012,
+          "ir_ifov_rad": 0.00018,
+          "eo_max_range_m": 1500,
+          "ir_max_range_m": 1200,
+          "optical_reliability": 0.95,
+          "optical_sample_ticks": 3,
+          "clear_visibility_m": 20000,
+          "dense_visibility_m": 200,
+          "ir_fog_factor": 0.45,
+          "rf_tx_dbm": 20,
+          "rf_gain_db": 6,
+          "rf_sensitivity_dbm": -96,
+          "rf_path_exponent": 2.2,
+          "rf_shadow_db": 6,
+          "rf_reliability": 0.9,
+          "rf_max_range_m": 4000,
+          "rf_bearing_error_deg": 5,
+          "iff_reply_probability": 0.95,
+          "civil_beacon_probability": 0.9,
+          "iff_max_range_m": 2500,
+          "false_track_probability": 0.05,
+          "false_track_lifetime_sweeps": 3,
+          "false_track_maximum": 2
+        },
+        "terrain_boxes": [
+          {
+            "x_min": -260,
+            "x_max": -165,
+            "z_min": 270,
+            "z_max": 345,
+            "height": 12
+          },
+          {
+            "x_min": 165,
+            "x_max": 260,
+            "z_min": 270,
+            "z_max": 345,
+            "height": 12
+          },
+          {
+            "x_min": -240,
+            "x_max": -175,
+            "z_min": -160,
+            "z_max": -90,
+            "height": 10
+          },
+          {
+            "x_min": 190,
+            "x_max": 280,
+            "z_min": -190,
+            "z_max": -115,
+            "height": 14
+          }
+        ],
+        "doctrine": {
+          "id": "army-forward-post",
+          "version": 1,
+          "name": "Illustrative finale local pack",
+          "description": "Frozen meter-scale training research configuration; not official doctrine",
+          "example_values": true,
+          "rules": {
+            "rf_range": 1500,
+            "kinetic_range": 1000,
+            "restricted": {
+              "enabled": true,
+              "x_lt": -300,
+              "z_gt": 200
+            },
+            "effectors": [
+              "hold",
+              "rf_jam",
+              "kinetic"
+            ],
+            "risk_weights": {
+              "quad": 1,
+              "fixed_wing": 1.2,
+              "fiber_fpv": 1.5,
+              "bird": 0
+            },
+            "asset_risk": 1,
+            "distance_precision": 6,
+            "hold_any_range": true
+          },
+          "defaults": {
+            "fog": 0.15,
+            "night": true,
+            "mix": []
+          },
+          "allowed_tactics": [
+            "DIRECT",
+            "SATURATION",
+            "DECOY_THEN_STRIKE",
+            "STAGGERED_WAVES",
+            "LOW_APPROACH",
+            "SPLIT_SWARM",
+            "PROBE_AND_RETREAT",
+            "BLIND_SECTOR"
+          ],
+          "rubric": {
+            "detect": 25,
+            "classify": 25,
+            "prioritise": 15,
+            "engage": 35
+          }
+        },
+        "prioritisation_version": 1,
+        "threat_config": {
+          "version": 1,
+          "id": "illustrative-threat-library-v1",
+          "label": "Illustrative training research parameters; not operational equipment specifications",
+          "units": {
+            "distance": "m",
+            "speed": "m/s",
+            "altitude": "m",
+            "time": "s"
+          },
+          "profiles": {
+            "hostile_quad": {
+              "kind": "quad",
+              "identity": "hostile",
+              "rf": true,
+              "speed_mps": [
+                8,
+                18
+              ],
+              "altitude_m": [
+                15,
+                90
+              ]
+            },
+            "no_rf_fpv": {
+              "kind": "fiber_fpv",
+              "identity": "hostile",
+              "rf": false,
+              "speed_mps": [
+                20,
+                35
+              ],
+              "altitude_m": [
+                4,
+                30
+              ]
+            },
+            "fixed_wing": {
+              "kind": "fixed_wing",
+              "identity": "hostile",
+              "rf": false,
+              "speed_mps": [
+                25,
+                42
+              ],
+              "altitude_m": [
+                40,
+                180
+              ]
+            },
+            "bird": {
+              "kind": "bird",
+              "identity": "neutral",
+              "rf": false,
+              "speed_mps": [
+                4,
+                12
+              ],
+              "altitude_m": [
+                15,
+                80
+              ]
+            },
+            "friendly_uav": {
+              "kind": "quad",
+              "identity": "friendly",
+              "rf": true,
+              "speed_mps": [
+                8,
+                18
+              ],
+              "altitude_m": [
+                20,
+                100
+              ]
+            },
+            "civil_uav": {
+              "kind": "quad",
+              "identity": "neutral",
+              "rf": true,
+              "speed_mps": [
+                8,
+                18
+              ],
+              "altitude_m": [
+                20,
+                100
+              ],
+              "registration_beacon": true
+            }
+          }
+        },
+        "effector_config": {
+          "version": 1,
+          "id": "illustrative-local-response-v1",
+          "label": "Illustrative bounded training actions; not real weapon performance or official doctrine",
+          "units": {
+            "distance": "m"
+          },
+          "sensor_geometry": {
+            "radar_range_m": 3000,
+            "day_camera_range_m": 1500,
+            "thermal_range_m": 1200
+          },
+          "effectors": {
+            "hold": {
+              "enabled": true
+            },
+            "rf_jam": {
+              "enabled": true,
+              "max_range_m": 1500,
+              "requires_rf_link": true
+            },
+            "kinetic": {
+              "enabled": true,
+              "max_range_m": 1000
+            }
+          },
+          "engagement_channels": 1,
+          "asset_radius_m": 8,
+          "minimum_response_window_s": 7
+        },
+        "raid": {
+          "version": 2,
+          "family": "DIRECT",
+          "requested_seed": 482913,
+          "waves": [
+            {
+              "tick": 60,
+              "role": "direct",
+              "contacts": [
+                "T1"
+              ]
+            }
+          ],
+          "formation_model": "Closed-form shared leader with bounded slots and optional split; not autonomous swarm AI",
+          "constraints": {
+            "response_window_s": 7,
+            "peak_hostile_cap": 3,
+            "max_contacts": 200
+          },
+          "anti_repeat": {
+            "rejected_attempts": 0,
+            "history_considered": 0
+          },
+          "signature": [
+            "bird:0:0:orbit_then_dash",
+            "quad:2:0:orbit_then_dash",
+            "quad:6:0:orbit_then_dash"
+          ],
+          "fingerprint": "c75fc04f7332e58bb7378bb8",
+          "validation": {
+            "basis": "Geometric baseline check with declared ranges; not calibrated sensor reliability or a certified human-solvability claim",
+            "response_windows": {
+              "T1": {
+                "first_tick": 60,
+                "last_tick": 2699,
+                "usable_ticks": 1848
+              }
+            },
+            "peak_simultaneous_hostiles": 1,
+            "saturation_index": 1.0
+          }
+        },
+        "red_force": {
+          "version": 2,
+          "tactic": "DIRECT",
+          "tactic_seed": 482913,
+          "phases": [
+            {
+              "tick": 60,
+              "role": "direct",
+              "contacts": [
+                "T1"
+              ]
+            }
+          ]
+        },
+        "fusion": {
+          "version": "fusion-1",
+          "mode": "training",
+          "exercise": "normal",
+          "bias_seed": 0
+        },
+        "acquisition_policy": {
+          "version": "optical-task-policy-v1",
+          "dwellTicks": 30,
+          "cadenceTicks": 3,
+          "latencyTicks": 6,
+          "cooldownTicks": 6,
+          "expiryTicks": 180,
+          "maxReportAgeTicks": 90,
+          "maxRequests": 64
+        },
+        "observation_mission": {
+          "version": "observation-mission-v3",
+          "assessment_version": "evidence-assessment-v2",
+          "template": "night_switch",
+          "criterion_profile": "night_switch",
+          "mode": "practice",
+          "title": "A channel is not an answer",
+          "objectives": [
+            "Separate channel unavailability from an empty sky.",
+            "Choose a cross-check that can supply new information.",
+            "Keep shape resolution separate from affiliation."
+          ],
+          "competencies": [
+            "C01",
+            "C02",
+            "C05",
+            "C03"
+          ],
+          "authoring": {
+            "template": "night_switch",
+            "seed": 482913,
+            "mode": "practice",
+            "version": "observation-mission-v3",
+            "title": "",
+            "duration": 90,
+            "terrain": null,
+            "night": null,
+            "fog": null,
+            "dwell_ticks": 30,
+            "expiry_ticks": null,
+            "objectives": null,
+            "extra_contacts": 0,
+            "site": "open_campus"
+          }
+        },
+        "decision_policy": {
+          "version": "uncertainty-decisions-v1",
+          "reasons": [
+            "type_unresolved",
+            "affiliation_unresolved",
+            "conflicting_reports"
+          ]
+        },
+        "training_site": {
+          "version": "training-site-v1",
+          "id": "open_campus",
+          "title": "Open transfer campus",
+          "summary": "Separated low buildings flank an open central approach. This contrasting public layout changes actual modeled sight lines, not sensor quality.",
+          "structures": [
+            {
+              "id": "west_workshop",
+              "label": "West workshop",
+              "x_min": -260,
+              "x_max": -165,
+              "z_min": 270,
+              "z_max": 345,
+              "height": 12,
+              "style": "warehouse"
+            },
+            {
+              "id": "east_workshop",
+              "label": "East workshop",
+              "x_min": 165,
+              "x_max": 260,
+              "z_min": 270,
+              "z_max": 345,
+              "height": 12,
+              "style": "warehouse"
+            },
+            {
+              "id": "west_office",
+              "label": "West office",
+              "x_min": -240,
+              "x_max": -175,
+              "z_min": -160,
+              "z_max": -90,
+              "height": 10,
+              "style": "block"
+            },
+            {
+              "id": "east_store",
+              "label": "East store",
+              "x_min": 190,
+              "x_max": 280,
+              "z_min": -190,
+              "z_max": -115,
+              "height": 14,
+              "style": "warehouse"
+            }
+          ],
+          "surfaces": [
+            {
+              "kind": "asphalt",
+              "width": 10,
+              "path": [
+                [
+                  -550,
+                  220
+                ],
+                [
+                  0,
+                  220
+                ],
+                [
+                  550,
+                  220
+                ]
+              ]
+            },
+            {
+              "kind": "asphalt",
+              "width": 10,
+              "path": [
+                [
+                  0,
+                  -550
+                ],
+                [
+                  0,
+                  220
+                ],
+                [
+                  0,
+                  650
+                ]
+              ]
+            },
+            {
+              "kind": "concrete",
+              "path": [
+                [
+                  -70,
+                  -45
+                ],
+                [
+                  70,
+                  -45
+                ],
+                [
+                  70,
+                  110
+                ],
+                [
+                  -70,
+                  110
+                ]
+              ]
+            },
+            {
+              "kind": "concrete",
+              "path": [
+                [
+                  -270,
+                  230
+                ],
+                [
+                  -155,
+                  230
+                ],
+                [
+                  -155,
+                  265
+                ],
+                [
+                  -270,
+                  265
+                ]
+              ]
+            },
+            {
+              "kind": "concrete",
+              "path": [
+                [
+                  155,
+                  230
+                ],
+                [
+                  270,
+                  230
+                ],
+                [
+                  270,
+                  265
+                ],
+                [
+                  155,
+                  265
+                ]
+              ]
+            }
+          ],
+          "landmarks": [
+            {
+              "id": "court",
+              "label": "Central observation court",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 65
+              }
+            },
+            {
+              "id": "workshops",
+              "label": "Workshop crossing",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 220
+              }
+            },
+            {
+              "id": "north_lane",
+              "label": "Open north lane",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 480
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "template": "civil_restraint",
+        "site": "open_campus",
+        "seed": 587642,
+        "mode": "assessment"
+      },
+      "scenario": {
+        "version": 2,
+        "engine_version": "vyuha-0.6.0",
+        "id": "raid_8e6fabc6b729e16088a86b9b",
+        "seed": 587642,
+        "title": "Resolve the affiliation conflict",
+        "duration": 90,
+        "night": false,
+        "fog": 0.28,
+        "jamStart": 2700,
+        "jamEnd": 2700,
+        "focus": "classification_iff",
+        "tracks": [
+          {
+            "id": "T1",
+            "kind": "quad",
+            "identity": "hostile",
+            "rf": true,
+            "spawn": 60,
+            "bearing": 310,
+            "distance": 700,
+            "speed": 10,
+            "altitude": 16,
+            "motion": {
+              "version": 1,
+              "primitive": "orbit_then_dash",
+              "phase_s": 72.0,
+              "lateral_m": 0,
+              "period_s": 20,
+              "turn_deg": 100
+            },
+            "radar_range": 3000,
+            "thermal_range": 1200,
+            "threat_profile": "hostile_quad"
+          },
+          {
+            "id": "T2",
+            "kind": "quad",
+            "identity": "neutral",
+            "rf": true,
+            "spawn": 0,
+            "bearing": 347,
+            "distance": 1187.61,
+            "speed": 13.47,
+            "altitude": 68.867,
+            "motion": {
+              "version": 1,
+              "primitive": "orbit_then_dash",
+              "phase_s": 90,
+              "turn_deg": 70,
+              "period_s": 20,
+              "lateral_m": 0
+            },
+            "expires_tick": 2700,
+            "threat_profile": "civil_uav",
+            "radar_range": 3000,
+            "thermal_range": 1200,
+            "registration_id": "CIV-7642-T2"
+          },
+          {
+            "id": "T3",
+            "kind": "quad",
+            "identity": "friendly",
+            "rf": true,
+            "spawn": 120,
+            "bearing": 264,
+            "distance": 744.612,
+            "speed": 15.814,
+            "altitude": 23.968,
+            "motion": {
+              "version": 1,
+              "primitive": "orbit_then_dash",
+              "phase_s": 90,
+              "turn_deg": 70,
+              "period_s": 20,
+              "lateral_m": 0
+            },
+            "expires_tick": 2700,
+            "threat_profile": "friendly_uav",
+            "radar_range": 3000,
+            "thermal_range": 1200
+          },
+          {
+            "id": "T4",
+            "kind": "bird",
+            "identity": "neutral",
+            "rf": false,
+            "spawn": 510,
+            "bearing": 93,
+            "distance": 1608.094,
+            "speed": 8.688,
+            "altitude": 46.673,
+            "motion": {
+              "version": 1,
+              "primitive": "orbit_then_dash",
+              "phase_s": 90,
+              "turn_deg": 70,
+              "period_s": 20,
+              "lateral_m": 0
+            },
+            "expires_tick": 2700,
+            "threat_profile": "bird",
+            "radar_range": 3000,
+            "thermal_range": 1200
+          }
+        ],
+        "terrain": "rural",
+        "terrain_id": "rural_forward_base",
+        "terrain_version": 1,
+        "difficulty_label": "foundational",
+        "sensor_version": "vyuha-0.4.0",
+        "sensor_config": {
+          "radar_reference_range_m": 3000,
+          "radar_reference_rcs_db": -15,
+          "radar_reference_snr": 30,
+          "radar_max_range_m": 5000,
+          "radar_pfa": 1e-06,
+          "radar_reliability": 0.95,
+          "radar_jam_factor": 0.15,
+          "radar_occlusion_factor": 0.1,
+          "radar_confirm_hits": 3,
+          "radar_window_sweeps": 5,
+          "radar_loss_sweeps": 3,
+          "radar_sweep_ticks": 30,
+          "rcs_spread_db": 3,
+          "eo_ifov_rad": 0.00012,
+          "ir_ifov_rad": 0.00018,
+          "eo_max_range_m": 1500,
+          "ir_max_range_m": 1200,
+          "optical_reliability": 0.95,
+          "optical_sample_ticks": 3,
+          "clear_visibility_m": 20000,
+          "dense_visibility_m": 200,
+          "ir_fog_factor": 0.45,
+          "rf_tx_dbm": 20,
+          "rf_gain_db": 6,
+          "rf_sensitivity_dbm": -96,
+          "rf_path_exponent": 2.2,
+          "rf_shadow_db": 6,
+          "rf_reliability": 0.9,
+          "rf_max_range_m": 4000,
+          "rf_bearing_error_deg": 5,
+          "iff_reply_probability": 0.95,
+          "civil_beacon_probability": 0.9,
+          "iff_max_range_m": 2500,
+          "false_track_probability": 0.05,
+          "false_track_lifetime_sweeps": 3,
+          "false_track_maximum": 2
+        },
+        "terrain_boxes": [
+          {
+            "x_min": -260,
+            "x_max": -165,
+            "z_min": 270,
+            "z_max": 345,
+            "height": 12
+          },
+          {
+            "x_min": 165,
+            "x_max": 260,
+            "z_min": 270,
+            "z_max": 345,
+            "height": 12
+          },
+          {
+            "x_min": -240,
+            "x_max": -175,
+            "z_min": -160,
+            "z_max": -90,
+            "height": 10
+          },
+          {
+            "x_min": 190,
+            "x_max": 280,
+            "z_min": -190,
+            "z_max": -115,
+            "height": 14
+          }
+        ],
+        "doctrine": {
+          "id": "army-forward-post",
+          "version": 1,
+          "name": "Illustrative finale local pack",
+          "description": "Frozen meter-scale training research configuration; not official doctrine",
+          "example_values": true,
+          "rules": {
+            "rf_range": 1500,
+            "kinetic_range": 1000,
+            "restricted": {
+              "enabled": false,
+              "x_lt": -300,
+              "z_gt": 200
+            },
+            "effectors": [
+              "hold",
+              "rf_jam",
+              "kinetic"
+            ],
+            "risk_weights": {
+              "quad": 1,
+              "fixed_wing": 1.2,
+              "fiber_fpv": 1.5,
+              "bird": 0
+            },
+            "asset_risk": 1,
+            "distance_precision": 6,
+            "hold_any_range": true
+          },
+          "defaults": {
+            "fog": 0.28,
+            "night": false,
+            "mix": []
+          },
+          "allowed_tactics": [
+            "DIRECT",
+            "SATURATION",
+            "DECOY_THEN_STRIKE",
+            "STAGGERED_WAVES",
+            "LOW_APPROACH",
+            "SPLIT_SWARM",
+            "PROBE_AND_RETREAT",
+            "BLIND_SECTOR"
+          ],
+          "rubric": {
+            "detect": 25,
+            "classify": 25,
+            "prioritise": 15,
+            "engage": 35
+          }
+        },
+        "prioritisation_version": 1,
+        "threat_config": {
+          "version": 1,
+          "id": "illustrative-threat-library-v1",
+          "label": "Illustrative training research parameters; not operational equipment specifications",
+          "units": {
+            "distance": "m",
+            "speed": "m/s",
+            "altitude": "m",
+            "time": "s"
+          },
+          "profiles": {
+            "hostile_quad": {
+              "kind": "quad",
+              "identity": "hostile",
+              "rf": true,
+              "speed_mps": [
+                8,
+                18
+              ],
+              "altitude_m": [
+                15,
+                90
+              ]
+            },
+            "no_rf_fpv": {
+              "kind": "fiber_fpv",
+              "identity": "hostile",
+              "rf": false,
+              "speed_mps": [
+                20,
+                35
+              ],
+              "altitude_m": [
+                4,
+                30
+              ]
+            },
+            "fixed_wing": {
+              "kind": "fixed_wing",
+              "identity": "hostile",
+              "rf": false,
+              "speed_mps": [
+                25,
+                42
+              ],
+              "altitude_m": [
+                40,
+                180
+              ]
+            },
+            "bird": {
+              "kind": "bird",
+              "identity": "neutral",
+              "rf": false,
+              "speed_mps": [
+                4,
+                12
+              ],
+              "altitude_m": [
+                15,
+                80
+              ]
+            },
+            "friendly_uav": {
+              "kind": "quad",
+              "identity": "friendly",
+              "rf": true,
+              "speed_mps": [
+                8,
+                18
+              ],
+              "altitude_m": [
+                20,
+                100
+              ]
+            },
+            "civil_uav": {
+              "kind": "quad",
+              "identity": "neutral",
+              "rf": true,
+              "speed_mps": [
+                8,
+                18
+              ],
+              "altitude_m": [
+                20,
+                100
+              ],
+              "registration_beacon": true
+            }
+          }
+        },
+        "effector_config": {
+          "version": 1,
+          "id": "illustrative-local-response-v1",
+          "label": "Illustrative bounded training actions; not real weapon performance or official doctrine",
+          "units": {
+            "distance": "m"
+          },
+          "sensor_geometry": {
+            "radar_range_m": 3000,
+            "day_camera_range_m": 1500,
+            "thermal_range_m": 1200
+          },
+          "effectors": {
+            "hold": {
+              "enabled": true
+            },
+            "rf_jam": {
+              "enabled": true,
+              "max_range_m": 1500,
+              "requires_rf_link": true
+            },
+            "kinetic": {
+              "enabled": true,
+              "max_range_m": 1000
+            }
+          },
+          "engagement_channels": 1,
+          "asset_radius_m": 8,
+          "minimum_response_window_s": 7
+        },
+        "raid": {
+          "version": 2,
+          "family": "DIRECT",
+          "requested_seed": 587642,
+          "waves": [
+            {
+              "tick": 60,
+              "role": "direct",
+              "contacts": [
+                "T1"
+              ]
+            }
+          ],
+          "formation_model": "Closed-form shared leader with bounded slots and optional split; not autonomous swarm AI",
+          "constraints": {
+            "response_window_s": 7,
+            "peak_hostile_cap": 3,
+            "max_contacts": 200
+          },
+          "anti_repeat": {
+            "rejected_attempts": 0,
+            "history_considered": 0
+          },
+          "signature": [
+            "bird:2:0:orbit_then_dash",
+            "quad:5:0:orbit_then_dash",
+            "quad:6:0:orbit_then_dash",
+            "quad:7:0:orbit_then_dash"
+          ],
+          "fingerprint": "f9a5c96cc2a72c483ad5f65f",
+          "validation": {
+            "basis": "Geometric baseline check with declared ranges; not calibrated sensor reliability or a certified human-solvability claim",
+            "response_windows": {
+              "T1": {
+                "first_tick": 60,
+                "last_tick": 2699,
+                "usable_ticks": 1848
+              }
+            },
+            "peak_simultaneous_hostiles": 1,
+            "saturation_index": 1.0
+          }
+        },
+        "red_force": {
+          "version": 2,
+          "tactic": "DIRECT",
+          "tactic_seed": 587642,
+          "phases": [
+            {
+              "tick": 60,
+              "role": "direct",
+              "contacts": [
+                "T1"
+              ]
+            }
+          ]
+        },
+        "fusion": {
+          "version": "fusion-1",
+          "mode": "assessment",
+          "exercise": "normal",
+          "bias_seed": 0
+        },
+        "acquisition_policy": {
+          "version": "optical-task-policy-v1",
+          "dwellTicks": 30,
+          "cadenceTicks": 3,
+          "latencyTicks": 6,
+          "cooldownTicks": 6,
+          "expiryTicks": 300,
+          "maxReportAgeTicks": 90,
+          "maxRequests": 64
+        },
+        "observation_mission": {
+          "version": "observation-mission-v3",
+          "assessment_version": "evidence-assessment-v2",
+          "template": "civil_restraint",
+          "criterion_profile": "civil_restraint",
+          "mode": "assessment",
+          "title": "Resolve the affiliation conflict",
+          "objectives": [
+            "Compare current IFF, radar and requested optics without discarding contradictory cues.",
+            "Use positive affiliation evidence when selecting restraint.",
+            "Do not infer hostility from no reply or absence of a radio report."
+          ],
+          "competencies": [
+            "C02",
+            "C03",
+            "C05"
+          ],
+          "authoring": {
+            "template": "civil_restraint",
+            "seed": 587642,
+            "mode": "assessment",
+            "version": "observation-mission-v3",
+            "title": "",
+            "duration": 90,
+            "terrain": null,
+            "night": null,
+            "fog": null,
+            "dwell_ticks": 30,
+            "expiry_ticks": null,
+            "objectives": null,
+            "extra_contacts": 0,
+            "site": "open_campus"
+          }
+        },
+        "decision_policy": {
+          "version": "uncertainty-decisions-v1",
+          "reasons": [
+            "type_unresolved",
+            "affiliation_unresolved",
+            "conflicting_reports"
+          ]
+        },
+        "training_site": {
+          "version": "training-site-v1",
+          "id": "open_campus",
+          "title": "Open transfer campus",
+          "summary": "Separated low buildings flank an open central approach. This contrasting public layout changes actual modeled sight lines, not sensor quality.",
+          "structures": [
+            {
+              "id": "west_workshop",
+              "label": "West workshop",
+              "x_min": -260,
+              "x_max": -165,
+              "z_min": 270,
+              "z_max": 345,
+              "height": 12,
+              "style": "warehouse"
+            },
+            {
+              "id": "east_workshop",
+              "label": "East workshop",
+              "x_min": 165,
+              "x_max": 260,
+              "z_min": 270,
+              "z_max": 345,
+              "height": 12,
+              "style": "warehouse"
+            },
+            {
+              "id": "west_office",
+              "label": "West office",
+              "x_min": -240,
+              "x_max": -175,
+              "z_min": -160,
+              "z_max": -90,
+              "height": 10,
+              "style": "block"
+            },
+            {
+              "id": "east_store",
+              "label": "East store",
+              "x_min": 190,
+              "x_max": 280,
+              "z_min": -190,
+              "z_max": -115,
+              "height": 14,
+              "style": "warehouse"
+            }
+          ],
+          "surfaces": [
+            {
+              "kind": "asphalt",
+              "width": 10,
+              "path": [
+                [
+                  -550,
+                  220
+                ],
+                [
+                  0,
+                  220
+                ],
+                [
+                  550,
+                  220
+                ]
+              ]
+            },
+            {
+              "kind": "asphalt",
+              "width": 10,
+              "path": [
+                [
+                  0,
+                  -550
+                ],
+                [
+                  0,
+                  220
+                ],
+                [
+                  0,
+                  650
+                ]
+              ]
+            },
+            {
+              "kind": "concrete",
+              "path": [
+                [
+                  -70,
+                  -45
+                ],
+                [
+                  70,
+                  -45
+                ],
+                [
+                  70,
+                  110
+                ],
+                [
+                  -70,
+                  110
+                ]
+              ]
+            },
+            {
+              "kind": "concrete",
+              "path": [
+                [
+                  -270,
+                  230
+                ],
+                [
+                  -155,
+                  230
+                ],
+                [
+                  -155,
+                  265
+                ],
+                [
+                  -270,
+                  265
+                ]
+              ]
+            },
+            {
+              "kind": "concrete",
+              "path": [
+                [
+                  155,
+                  230
+                ],
+                [
+                  270,
+                  230
+                ],
+                [
+                  270,
+                  265
+                ],
+                [
+                  155,
+                  265
+                ]
+              ]
+            }
+          ],
+          "landmarks": [
+            {
+              "id": "court",
+              "label": "Central observation court",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 65
+              }
+            },
+            {
+              "id": "workshops",
+              "label": "Workshop crossing",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 220
+              }
+            },
+            {
+              "id": "north_lane",
+              "label": "Open north lane",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 480
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "template": "timed_window",
+        "duration": 60
+      },
+      "scenario": {
+        "version": 2,
+        "engine_version": "vyuha-0.6.0",
+        "id": "raid_afd64f6b49874ecfe069b33d",
+        "seed": 482913,
+        "title": "Evidence has a clock",
+        "duration": 60,
+        "night": false,
+        "fog": 0.45,
+        "jamStart": 1800,
+        "jamEnd": 1800,
+        "focus": "classification_iff",
+        "tracks": [
+          {
+            "id": "T1",
+            "kind": "quad",
+            "identity": "hostile",
+            "rf": true,
+            "spawn": 60,
+            "bearing": 310,
+            "distance": 700,
+            "speed": 10,
+            "altitude": 16,
+            "motion": {
+              "version": 1,
+              "primitive": "orbit_then_dash",
+              "phase_s": 48.0,
+              "lateral_m": 0,
+              "period_s": 20,
+              "turn_deg": 100
+            },
+            "radar_range": 3000,
+            "thermal_range": 1200,
+            "threat_profile": "hostile_quad"
+          },
+          {
+            "id": "T2",
+            "kind": "fiber_fpv",
+            "identity": "hostile",
+            "rf": false,
+            "spawn": 63,
+            "bearing": 199,
+            "distance": 1042.891,
+            "speed": 24.141,
+            "altitude": 4.371696237241849,
+            "motion": {
+              "version": 1,
+              "primitive": "weave",
+              "phase_s": 10.8,
+              "lateral_m": 26.48,
+              "period_s": 20.193,
+              "turn_deg": -8.483
+            },
+            "radar_range": 3000,
+            "thermal_range": 1200,
+            "threat_profile": "no_rf_fpv"
+          },
+          {
+            "id": "T3",
+            "kind": "quad",
+            "identity": "friendly",
+            "rf": true,
+            "spawn": 180,
+            "bearing": 170,
+            "distance": 2199.5,
+            "speed": 10.964,
+            "altitude": 68.592,
+            "motion": {
+              "version": 1,
+              "primitive": "orbit_then_dash",
+              "phase_s": 60,
+              "turn_deg": 70,
+              "period_s": 20,
+              "lateral_m": 0
+            },
+            "expires_tick": 1800,
+            "threat_profile": "friendly_uav",
+            "radar_range": 3000,
+            "thermal_range": 1200
+          },
+          {
+            "id": "T4",
+            "kind": "bird",
+            "identity": "neutral",
+            "rf": false,
+            "spawn": 120,
+            "bearing": 244,
+            "distance": 845.147,
+            "speed": 8.722,
+            "altitude": 31.264,
+            "motion": {
+              "version": 1,
+              "primitive": "orbit_then_dash",
+              "phase_s": 60,
+              "turn_deg": 70,
+              "period_s": 20,
+              "lateral_m": 0
+            },
+            "expires_tick": 1800,
+            "threat_profile": "bird",
+            "radar_range": 3000,
+            "thermal_range": 1200
+          }
+        ],
+        "terrain": "urban",
+        "terrain_id": "urban_outpost",
+        "terrain_version": 1,
+        "difficulty_label": "foundational",
+        "sensor_version": "vyuha-0.4.0",
+        "sensor_config": {
+          "radar_reference_range_m": 3000,
+          "radar_reference_rcs_db": -15,
+          "radar_reference_snr": 30,
+          "radar_max_range_m": 5000,
+          "radar_pfa": 1e-06,
+          "radar_reliability": 0.95,
+          "radar_jam_factor": 0.15,
+          "radar_occlusion_factor": 0.1,
+          "radar_confirm_hits": 3,
+          "radar_window_sweeps": 5,
+          "radar_loss_sweeps": 3,
+          "radar_sweep_ticks": 30,
+          "rcs_spread_db": 3,
+          "eo_ifov_rad": 0.00012,
+          "ir_ifov_rad": 0.00018,
+          "eo_max_range_m": 1500,
+          "ir_max_range_m": 1200,
+          "optical_reliability": 0.95,
+          "optical_sample_ticks": 3,
+          "clear_visibility_m": 20000,
+          "dense_visibility_m": 200,
+          "ir_fog_factor": 0.45,
+          "rf_tx_dbm": 20,
+          "rf_gain_db": 6,
+          "rf_sensitivity_dbm": -96,
+          "rf_path_exponent": 2.2,
+          "rf_shadow_db": 6,
+          "rf_reliability": 0.9,
+          "rf_max_range_m": 4000,
+          "rf_bearing_error_deg": 5,
+          "iff_reply_probability": 0.95,
+          "civil_beacon_probability": 0.9,
+          "iff_max_range_m": 2500,
+          "false_track_probability": 0.05,
+          "false_track_lifetime_sweeps": 3,
+          "false_track_maximum": 2
+        },
+        "terrain_boxes": [
+          {
+            "x_min": -105,
+            "x_max": 105,
+            "z_min": 250,
+            "z_max": 325,
+            "height": 30
+          },
+          {
+            "x_min": 195,
+            "x_max": 275,
+            "z_min": 390,
+            "z_max": 505,
+            "height": 22
+          },
+          {
+            "x_min": -285,
+            "x_max": -220,
+            "z_min": 145,
+            "z_max": 220,
+            "height": 17
+          },
+          {
+            "x_min": -175,
+            "x_max": -65,
+            "z_min": -245,
+            "z_max": -175,
+            "height": 15
+          }
+        ],
+        "doctrine": {
+          "id": "army-forward-post",
+          "version": 1,
+          "name": "Illustrative finale local pack",
+          "description": "Frozen meter-scale training research configuration; not official doctrine",
+          "example_values": true,
+          "rules": {
+            "rf_range": 1500,
+            "kinetic_range": 1000,
+            "restricted": {
+              "enabled": true,
+              "x_lt": -300,
+              "z_gt": 200
+            },
+            "effectors": [
+              "hold",
+              "rf_jam",
+              "kinetic"
+            ],
+            "risk_weights": {
+              "quad": 1,
+              "fixed_wing": 1.2,
+              "fiber_fpv": 1.5,
+              "bird": 0
+            },
+            "asset_risk": 1,
+            "distance_precision": 6,
+            "hold_any_range": true
+          },
+          "defaults": {
+            "fog": 0.45,
+            "night": false,
+            "mix": []
+          },
+          "allowed_tactics": [
+            "DIRECT",
+            "SATURATION",
+            "DECOY_THEN_STRIKE",
+            "STAGGERED_WAVES",
+            "LOW_APPROACH",
+            "SPLIT_SWARM",
+            "PROBE_AND_RETREAT",
+            "BLIND_SECTOR"
+          ],
+          "rubric": {
+            "detect": 25,
+            "classify": 25,
+            "prioritise": 15,
+            "engage": 35
+          }
+        },
+        "prioritisation_version": 1,
+        "threat_config": {
+          "version": 1,
+          "id": "illustrative-threat-library-v1",
+          "label": "Illustrative training research parameters; not operational equipment specifications",
+          "units": {
+            "distance": "m",
+            "speed": "m/s",
+            "altitude": "m",
+            "time": "s"
+          },
+          "profiles": {
+            "hostile_quad": {
+              "kind": "quad",
+              "identity": "hostile",
+              "rf": true,
+              "speed_mps": [
+                8,
+                18
+              ],
+              "altitude_m": [
+                15,
+                90
+              ]
+            },
+            "no_rf_fpv": {
+              "kind": "fiber_fpv",
+              "identity": "hostile",
+              "rf": false,
+              "speed_mps": [
+                20,
+                35
+              ],
+              "altitude_m": [
+                4,
+                30
+              ]
+            },
+            "fixed_wing": {
+              "kind": "fixed_wing",
+              "identity": "hostile",
+              "rf": false,
+              "speed_mps": [
+                25,
+                42
+              ],
+              "altitude_m": [
+                40,
+                180
+              ]
+            },
+            "bird": {
+              "kind": "bird",
+              "identity": "neutral",
+              "rf": false,
+              "speed_mps": [
+                4,
+                12
+              ],
+              "altitude_m": [
+                15,
+                80
+              ]
+            },
+            "friendly_uav": {
+              "kind": "quad",
+              "identity": "friendly",
+              "rf": true,
+              "speed_mps": [
+                8,
+                18
+              ],
+              "altitude_m": [
+                20,
+                100
+              ]
+            },
+            "civil_uav": {
+              "kind": "quad",
+              "identity": "neutral",
+              "rf": true,
+              "speed_mps": [
+                8,
+                18
+              ],
+              "altitude_m": [
+                20,
+                100
+              ],
+              "registration_beacon": true
+            }
+          }
+        },
+        "effector_config": {
+          "version": 1,
+          "id": "illustrative-local-response-v1",
+          "label": "Illustrative bounded training actions; not real weapon performance or official doctrine",
+          "units": {
+            "distance": "m"
+          },
+          "sensor_geometry": {
+            "radar_range_m": 3000,
+            "day_camera_range_m": 1500,
+            "thermal_range_m": 1200
+          },
+          "effectors": {
+            "hold": {
+              "enabled": true
+            },
+            "rf_jam": {
+              "enabled": true,
+              "max_range_m": 1500,
+              "requires_rf_link": true
+            },
+            "kinetic": {
+              "enabled": true,
+              "max_range_m": 1000
+            }
+          },
+          "engagement_channels": 1,
+          "asset_radius_m": 8,
+          "minimum_response_window_s": 7
+        },
+        "raid": {
+          "version": 2,
+          "family": "LOW_APPROACH",
+          "requested_seed": 482913,
+          "waves": [
+            {
+              "tick": 60,
+              "role": "low_approach",
+              "contacts": [
+                "T1",
+                "T2"
+              ]
+            }
+          ],
+          "formation_model": "Closed-form shared leader with bounded slots and optional split; not autonomous swarm AI",
+          "constraints": {
+            "response_window_s": 7,
+            "peak_hostile_cap": 3,
+            "max_contacts": 200
+          },
+          "anti_repeat": {
+            "rejected_attempts": 0,
+            "history_considered": 0
+          },
+          "signature": [
+            "bird:5:0:orbit_then_dash",
+            "fiber_fpv:4:0:weave",
+            "quad:3:0:orbit_then_dash",
+            "quad:6:0:orbit_then_dash"
+          ],
+          "fingerprint": "75c46f92b79305766ab7b87e",
+          "validation": {
+            "basis": "Geometric baseline check with declared ranges; not calibrated sensor reliability or a certified human-solvability claim",
+            "response_windows": {
+              "T1": {
+                "first_tick": 133,
+                "last_tick": 1799,
+                "usable_ticks": 832
+              },
+              "T2": {
+                "first_tick": 1046,
+                "last_tick": 1349,
+                "usable_ticks": 304
+              }
+            },
+            "peak_simultaneous_hostiles": 2,
+            "saturation_index": 2.0
+          }
+        },
+        "red_force": {
+          "version": 2,
+          "tactic": "LOW_APPROACH",
+          "tactic_seed": 482913,
+          "phases": [
+            {
+              "tick": 60,
+              "role": "low_approach",
+              "contacts": [
+                "T1",
+                "T2"
+              ]
+            }
+          ]
+        },
+        "fusion": {
+          "version": "fusion-1",
+          "mode": "training",
+          "exercise": "normal",
+          "bias_seed": 0
+        },
+        "acquisition_policy": {
+          "version": "optical-task-policy-v1",
+          "dwellTicks": 30,
+          "cadenceTicks": 3,
+          "latencyTicks": 6,
+          "cooldownTicks": 6,
+          "expiryTicks": 60,
+          "maxReportAgeTicks": 90,
+          "maxRequests": 64
+        },
+        "observation_mission": {
+          "version": "observation-mission-v3",
+          "assessment_version": "evidence-assessment-v2",
+          "template": "timed_window",
+          "criterion_profile": "timed_window",
+          "mode": "practice",
+          "title": "Evidence has a clock",
+          "objectives": [
+            "Relate request, sample, publication and expiry to the decision boundary.",
+            "Reacquire only when a new observation can change a decision.",
+            "Retain uncertainty when current evidence does not establish type or affiliation."
+          ],
+          "competencies": [
+            "C01",
+            "C02",
+            "C03"
+          ],
+          "authoring": {
+            "template": "timed_window",
+            "seed": 482913,
+            "mode": "practice",
+            "version": "observation-mission-v3",
+            "title": "",
+            "duration": 60,
+            "terrain": null,
+            "night": null,
+            "fog": null,
+            "dwell_ticks": 30,
+            "expiry_ticks": null,
+            "objectives": null,
+            "extra_contacts": 0,
+            "site": "freight_corridor"
+          }
+        },
+        "decision_policy": {
+          "version": "uncertainty-decisions-v1",
+          "reasons": [
+            "type_unresolved",
+            "affiliation_unresolved",
+            "conflicting_reports"
+          ]
+        },
+        "training_site": {
+          "version": "training-site-v1",
+          "id": "freight_corridor",
+          "title": "Freight corridor",
+          "summary": "A long transfer hall separates the observation apron from the northern approach. Public site geometry, not a contact or future-evidence map.",
+          "structures": [
+            {
+              "id": "transfer_hall",
+              "label": "Transfer hall",
+              "x_min": -105,
+              "x_max": 105,
+              "z_min": 250,
+              "z_max": 325,
+              "height": 30,
+              "style": "warehouse"
+            },
+            {
+              "id": "east_depot",
+              "label": "East depot",
+              "x_min": 195,
+              "x_max": 275,
+              "z_min": 390,
+              "z_max": 505,
+              "height": 22,
+              "style": "warehouse"
+            },
+            {
+              "id": "administration",
+              "label": "Administration",
+              "x_min": -285,
+              "x_max": -220,
+              "z_min": 145,
+              "z_max": 220,
+              "height": 17,
+              "style": "block"
+            },
+            {
+              "id": "south_stores",
+              "label": "South stores",
+              "x_min": -175,
+              "x_max": -65,
+              "z_min": -245,
+              "z_max": -175,
+              "height": 15,
+              "style": "warehouse"
+            }
+          ],
+          "surfaces": [
+            {
+              "kind": "asphalt",
+              "width": 14,
+              "path": [
+                [
+                  -600,
+                  190
+                ],
+                [
+                  0,
+                  190
+                ],
+                [
+                  600,
+                  190
+                ]
+              ]
+            },
+            {
+              "kind": "asphalt",
+              "width": 12,
+              "path": [
+                [
+                  145,
+                  -600
+                ],
+                [
+                  145,
+                  190
+                ],
+                [
+                  145,
+                  650
+                ]
+              ]
+            },
+            {
+              "kind": "concrete",
+              "path": [
+                [
+                  -115,
+                  205
+                ],
+                [
+                  115,
+                  205
+                ],
+                [
+                  115,
+                  245
+                ],
+                [
+                  -115,
+                  245
+                ]
+              ]
+            },
+            {
+              "kind": "concrete",
+              "path": [
+                [
+                  -50,
+                  -45
+                ],
+                [
+                  50,
+                  -45
+                ],
+                [
+                  50,
+                  90
+                ],
+                [
+                  -50,
+                  90
+                ]
+              ]
+            },
+            {
+              "kind": "gravel",
+              "path": [
+                [
+                  -330,
+                  100
+                ],
+                [
+                  -195,
+                  100
+                ],
+                [
+                  -195,
+                  240
+                ],
+                [
+                  -330,
+                  240
+                ]
+              ]
+            }
+          ],
+          "landmarks": [
+            {
+              "id": "apron",
+              "label": "Observation apron",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 45
+              }
+            },
+            {
+              "id": "hall",
+              "label": "Transfer hall",
+              "position": {
+                "x": 0,
+                "y": 30,
+                "z": 287.5
+              }
+            },
+            {
+              "id": "junction",
+              "label": "Service junction",
+              "position": {
+                "x": 145,
+                "y": 0,
+                "z": 190
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

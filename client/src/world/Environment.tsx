@@ -1,3 +1,5 @@
+import { siteArchitecture, addSiteStreetscape } from "./site-architecture";
+import { trainingSiteLayout, type TrainingSite } from "./training-site";
 import { addLogisticsArchitecture, isAuthoredStructure } from "./logistics-kit";
 import { addStreetscape } from "./streetscape";
 import { buildLandscapeIdentity } from "./landscape-identity";
@@ -29,8 +31,6 @@ import {
   type MaterialKey,
 } from "./kit";
 import {
-  facilityLayout,
-  withoutBoxes,
   type FacilityLayout,
   type Placement,
   type PropModel,
@@ -282,6 +282,7 @@ export type EnvironmentProps = {
   sensorOrigin?: SensorPosition;
   terrain: TerrainKind;
   boxes: readonly TerrainBox[];
+  trainingSite?: TrainingSite;
   /** Pre-0.4 scenarios have no authoritative boxes; scenery is decorative only. */
   legacy: boolean;
   night: boolean;
@@ -318,11 +319,11 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     SKY.night,
   ]);
   const layout = useMemo(() => {
-    const base = withoutBoxes(facilityLayout(terrain), boxes);
+    const base = trainingSiteLayout(terrain, boxes, props.trainingSite);
     if (!legacy || terrain !== "urban_outpost") return base;
     // Legacy scenarios: a decorative skyline well outside the compound.
     return base;
-  }, [terrain, boxes, legacy]);
+  }, [terrain, boxes, legacy, props.trainingSite]);
   const textures = useWorldTextures(quality, layout);
   const { gl, scene } = useThree();
 
@@ -330,7 +331,8 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     const finish = diagnosticSpan("world_build");
     const group = new THREE.Group();
     group.name = "vyuha-environment";
-    group.userData.presentationWorld = worldManifest(terrain);
+    group.userData.presentationWorld =
+      props.trainingSite ?? worldManifest(terrain);
     const swappable: Built["swappable"] = [];
     const disposables: { dispose: () => void }[] = [];
     const kit = createKitMaterials(textures, quality);
@@ -464,7 +466,8 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
       facility,
       layout.placements.filter(isAuthoredStructure),
     );
-    addStreetscape(facility, layout);
+    if (props.trainingSite) addSiteStreetscape(facility, props.trainingSite);
+    else addStreetscape(facility, layout);
     for (const [key, geometry] of facility.merged())
       addMesh(geometry, kit[key], MATERIAL_THERMAL[key], {
         cast: key !== "fence" && key !== "marking",
@@ -473,6 +476,12 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     // Authoritative occluders: dressing inside each box, plus exact depth proxies.
     const dressing = new Batches();
     boxes.forEach((b, i) => {
+      if (props.trainingSite) {
+        const siteBatch = siteArchitecture(props.trainingSite.structures[i]);
+        for (const [key, geometry] of siteBatch.merged())
+          dressing.add(key, geometry, new THREE.Matrix4());
+        return;
+      }
       if (terrain === "rural_forward_base")
         warehouse(
           dressing,
@@ -660,6 +669,7 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     boxes,
     props3d,
     worldEnvelope.flatRadius,
+    props.trainingSite,
   ]);
   useEffect(() => () => built.dispose(), [built]);
 

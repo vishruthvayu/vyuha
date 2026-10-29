@@ -231,7 +231,7 @@
     },
     {
       "id": "authored-observation-missions",
-      "title": "Authored evidence missions and explicit uncertainty decisions",
+      "title": "Frozen training sites, evidence missions and uncertainty decisions",
       "implementation": "PARTIAL",
       "route": "/observation-missions",
       "source_files": [
@@ -241,10 +241,15 @@
         "server/review_v4.py",
         "client/src/ObservationMissionStudio.tsx",
         "client/src/UncertaintyDecision.tsx",
-        "client/src/ObservationMissionJourney.tsx"
+        "client/src/ObservationMissionJourney.tsx",
+        "server/training_sites.py",
+        "server/observation_missions_v3.py",
+        "client/src/world/training-site.ts",
+        "client/src/world/site-architecture.ts",
+        "client/src/TrainingSiteBrief.tsx"
       ],
       "evidence_ids": [],
-      "limitations": "Opt-in browser mission/assessment v2 adds declared Defer under engine v0.6. Frozen v0.5 and original tactical scoring arithmetic remain separate. No private reasoning, mastery, calibrated proficiency, human learning gain or physical device acceptance is inferred. Crew/XR acquisition remains gated. Targeted development checks do not constitute full release acceptance."
+      "limitations": "Opt-in browser mission v3 binds two synthetic training sites to actual modeled occlusion under unchanged engine v0.6. Author-only LOS rehearsal is not trainee acquisition or guaranteed solvability. Explicit Defer and descriptive assessment remain separate from frozen tactical scoring and mastery. No private reasoning, calibration, human learning or physical-device qualification is inferred. Crew/XR acquisition remains gated. Wider visual transformation and full release acceptance remain incomplete."
     }
   ],
   "roadmap": [

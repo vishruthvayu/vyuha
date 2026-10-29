@@ -269,7 +269,10 @@ class SnapshotV2(StrictModel):
 
 def validate_snapshot_v2(spec):
  if spec.get('engine_version')=='vyuha-0.6.0':
-  from .observation_missions_v2 import validate_snapshot
+  if spec.get('observation_mission',{}).get('version')=='observation-mission-v3':
+   from .observation_missions_v3 import validate_snapshot
+  else:
+   from .observation_missions_v2 import validate_snapshot
   return validate_snapshot(spec)
  if spec.get('engine_version')=='vyuha-0.5.0':
   from .acquisition import validate_snapshot_v3

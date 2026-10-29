@@ -1883,7 +1883,7 @@ export default function App({
                         <i>
                           {phase === "ready" && mode === "adaptive" && !prepared
                             ? "Orientation · daylight scenery · mission not prepared"
-                            : `${scenario.terrain_id === "rural_forward_base" ? "Rural forward base" : "Urban outpost"} · ${(phase === "ready" ? night : state.night) ? "Night" : "Day"} · Mixed contacts`}
+                            : `${scenario.training_site?.title ?? (scenario.terrain_id === "rural_forward_base" ? "Rural forward base" : "Urban outpost")} · ${(phase === "ready" ? night : state.night) ? "Night" : "Day"} · Mixed contacts`}
                         </i>
                       </span>
                     </div>
@@ -2336,6 +2336,7 @@ export default function App({
                                   : null
                               }
                               sensorConfig={scenario.sensor_config}
+                              trainingSite={scenario.training_site}
                               terrainBoxes={scenario.terrain_boxes}
                               engineVersion={scenario.engine_version}
                               visibilityKey={`${scenario.id}:${sessionRef.current || "preview"}`}
@@ -2415,9 +2416,11 @@ export default function App({
                                 </div>
                                 <div className="camera-corners" />
                                 <div className="view-annotation bottom-left">
-                                  {scenario.terrain_id === "rural_forward_base"
-                                    ? "RURAL FORWARD BASE"
-                                    : "URBAN OUTPOST"}
+                                  {scenario.training_site?.title.toUpperCase() ??
+                                    (scenario.terrain_id ===
+                                    "rural_forward_base"
+                                      ? "RURAL FORWARD BASE"
+                                      : "URBAN OUTPOST")}
                                   <span>
                                     {manualAim
                                       ? `AZ ${manualAim.azimuthDeg.toFixed(1)}° · EL ${manualAim.elevationDeg.toFixed(1)}° · FIXED SENSOR ORIGIN`
@@ -2436,6 +2439,7 @@ export default function App({
                             )}
                           {phase === "ready" && (
                             <MissionBriefing
+                              trainingSite={scenario.training_site}
                               frozenEpisode={episodeBriefing ?? undefined}
                               availability={
                                 ticketIssue
@@ -2483,9 +2487,10 @@ export default function App({
                                 !!activeLearning && !episodeBriefing
                               }
                               environmentName={
-                                scenario.terrain_id === "rural_forward_base"
+                                scenario.training_site?.title ??
+                                (scenario.terrain_id === "rural_forward_base"
                                   ? "Rural forward base"
-                                  : "Urban outpost"
+                                  : "Urban outpost")
                               }
                               dayNight={
                                 mode === "adaptive" && !prepared
@@ -2565,9 +2570,13 @@ export default function App({
                           )}
                           {phase === "paused" && (
                             <div className="pause-overlay">
-                              <Pause size={24} />
-                              <h2>Exercise paused</h2>
-                              <p>Use Resume in the exercise controls above.</p>
+                              <div className="pause-message">
+                                <Pause size={24} aria-hidden="true" />
+                                <h2>Exercise paused</h2>
+                                <p>
+                                  Use Resume in the exercise controls above.
+                                </p>
+                              </div>
                             </div>
                           )}
                         </div>
@@ -2943,6 +2952,10 @@ export default function App({
                           phase={phase}
                           selected={selected}
                           target={target}
+                          firstObservedAt={
+                            state.tracks.find((t) => t.id === selected)
+                              ?.detected ?? null
+                          }
                           record={decisionRecord(
                             state.tracks.find((t) => t.id === selected),
                           )}

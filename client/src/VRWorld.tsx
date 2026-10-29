@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { Environment } from "./world/Environment";
 import { ContactRenderer } from "./ContactRenderer";
-import { facilityLayout, withoutBoxes } from "./world/layout";
+import { trainingSiteLayout } from "./world/training-site";
 import { SceneryObstruction, sceneryObstacles } from "./world/obstruction";
 import { ObservedPoseBuffer } from "./render-contacts";
 import { ObservationVisibility, type Vision } from "./visibility";
@@ -52,9 +52,13 @@ export function VRWorld({
   );
   const obstruction = useMemo(() => {
     const o = new SceneryObstruction();
-    o.set(sceneryObstacles(withoutBoxes(facilityLayout(terrain), boxes)));
+    o.set(
+      sceneryObstacles(
+        trainingSiteLayout(terrain, boxes, scenario.training_site),
+      ),
+    );
     return o;
-  }, [terrain, boxes]);
+  }, [terrain, boxes, scenario.training_site]);
   useFrame((_, dt) => {
     poses.update(contacts, state.tick, context + ":" + vision);
     poses.forEachFrame(dt, () => {}, false);
@@ -66,6 +70,7 @@ export function VRWorld({
       <Environment
         sensorConfig={scenario.sensor_config}
         terrain={terrain}
+        trainingSite={scenario.training_site}
         boxes={boxes}
         legacy={!modernSensors(scenario)}
         night={state.night}

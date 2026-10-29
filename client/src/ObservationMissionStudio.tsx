@@ -1,3 +1,4 @@
+import TrainingSiteBrief from "./TrainingSiteBrief";
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { api } from "./storage";
 import { replay } from "./sim";
@@ -31,7 +32,7 @@ export default function ObservationMissionStudio() {
   const generation = useRef(0);
   useEffect(() => {
     let alive = true;
-    void api<ObservationMissionCatalog>("/observation-missions-v2/catalog")
+    void api<ObservationMissionCatalog>("/observation-missions-v3/catalog")
       .then((r) => {
         if (alive) setCatalog(r);
       })
@@ -61,7 +62,7 @@ export default function ObservationMissionStudio() {
     setPublished(null);
     try {
       const result = await api<CompiledObservationMission>(
-        "/observation-missions-v2/compile",
+        "/observation-missions-v3/compile",
         form,
         120000,
       );
@@ -82,7 +83,7 @@ export default function ObservationMissionStudio() {
     setError("");
     try {
       const result = await api<Scenario>(
-        "/observation-missions-v2/publish",
+        "/observation-missions-v3/publish",
         form,
         120000,
       );
@@ -117,7 +118,9 @@ export default function ObservationMissionStudio() {
   return (
     <main className="observation-mission-studio">
       <header className="oms-introduction">
-        <span className="eyebrow">MISSION DESIGN / EVIDENCE CONTRACT 02</span>
+        <span className="eyebrow">
+          MISSION DESIGN / SITE + EVIDENCE CONTRACT 03
+        </span>
         <h1>Author the information problem.</h1>
         <p>
           Design what a trainee must investigate, then inspect an actual request
@@ -152,6 +155,22 @@ export default function ObservationMissionStudio() {
             <span className="eyebrow">FROZEN INPUTS</span>
             <h2>{template?.title ?? "Observation mission"}</h2>
           </header>
+          <label>
+            Authored training site
+            <select
+              value={form.site ?? "freight_corridor"}
+              onChange={(e) =>
+                update("site", e.target.value as typeof form.site)
+              }
+            >
+              <option value="freight_corridor">
+                Freight corridor · frontage and reacquisition
+              </option>
+              <option value="open_campus">
+                Open campus · separated pavilions
+              </option>
+            </select>
+          </label>
           <label>
             Mission title
             <input
@@ -348,6 +367,7 @@ export default function ObservationMissionStudio() {
                       </p>
                     }
                     terrain={compiled.scenario.terrain_id}
+                    trainingSite={compiled.scenario.training_site}
                     terrainBoxes={compiled.scenario.terrain_boxes}
                     sensorConfig={compiled.scenario.sensor_config}
                     engineVersion={compiled.scenario.engine_version}
@@ -358,6 +378,48 @@ export default function ObservationMissionStudio() {
                   />
                 </Suspense>
               </div>
+              {compiled.scenario.training_site && (
+                <TrainingSiteBrief site={compiled.scenario.training_site} />
+              )}
+              {compiled.rehearsal.site_geometry && (
+                <section
+                  className="site-los-rehearsal"
+                  aria-label="Author-only modeled line of sight"
+                >
+                  <span className="eyebrow">
+                    AUTHOR REFERENCE / GEOMETRY TRACE
+                  </span>
+                  <h3>Occlusion changes the information problem.</h3>
+                  <p>
+                    These intervals describe the frozen reference path against
+                    the building boxes. They are not sensor reports, guaranteed
+                    acquisition, or trainee-visible forecasts.
+                  </p>
+                  <div>
+                    {compiled.rehearsal.site_geometry.line_of_sight_intervals.map(
+                      (v, i) => (
+                        <button
+                          key={i}
+                          className={v.clear ? "is-clear" : "is-blocked"}
+                          aria-pressed={
+                            tick >= v.start_tick && tick < v.end_tick
+                          }
+                          onClick={() => {
+                            setTick(v.start_tick);
+                            setTrack(v.track);
+                          }}
+                        >
+                          {v.clear ? "Clear geometry" : "Modeled obstruction"}
+                          <strong>
+                            {seconds(v.start_tick)}–{seconds(v.end_tick)}s ·{" "}
+                            {v.track}
+                          </strong>
+                        </button>
+                      ),
+                    )}
+                  </div>
+                </section>
+              )}
               <div className="oms-inspect-controls">
                 <label>
                   Contact
@@ -489,7 +551,7 @@ export default function ObservationMissionStudio() {
                 {published && (
                   <a
                     className="button primary"
-                    href={`/?observation_mission=${encodeURIComponent(published.id)}&mission_version=2`}
+                    href={`/?observation_mission=${encodeURIComponent(published.id)}&mission_version=3`}
                   >
                     Open published mission in Training
                   </a>

@@ -1,3 +1,4 @@
+import type { TrainingSite } from "./world/training-site";
 import type { SensorObservation, SensorConfig, TerrainBox } from "./sensors-v2";
 export type Tactic =
   | "DIRECT"
@@ -107,6 +108,7 @@ export type TrackSpec = {
   rules?: DoctrineRules;
 };
 export type Scenario = {
+  training_site?: TrainingSite;
   decision_policy?: { version: "uncertainty-decisions-v1"; reasons: string[] };
   observation_mission?: import("./observation-missions").ObservationMission;
   acquisition_policy?: import("./optical-task-scheduler").OpticalPolicy;

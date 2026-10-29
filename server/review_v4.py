@@ -13,6 +13,9 @@ def build_review(scenario,actions,commands,sid,observed_end,horizon_source='comp
             action=next(a for a in actions if a['order']==entry['order'])
             entry['title']=f"{action['track']} · Defer new declaration · {action['reason'].replace('_',' ')}"
     review['replay_metadata']['version']='ghost-uncertainty-v1'
-    from .observation_assessment_v2 import assess_mission
+    if scenario.get('observation_mission',{}).get('version')=='observation-mission-v3':
+        from .observation_assessment_v3 import assess_mission
+    else:
+        from .observation_assessment_v2 import assess_mission
     review['observation_assessment']=assess_mission(scenario,actions,commands,sid,observed_end)
     return review,card

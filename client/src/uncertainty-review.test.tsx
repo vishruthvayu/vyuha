@@ -80,3 +80,25 @@ test("tactical omission labels cannot disguise recorded Defer and its action lab
     /Missing designation or classification does not mean no Defer was recorded/,
   );
 });
+
+test("tentative Defer shows its actual public admission requirement; a retained first observation at tick zero remains valid", () => {
+  const props = {
+    phase: "running" as const,
+    selected: "T1",
+    state: { tick: 80, rfAvailable: true },
+    vision: "day" as const,
+    feedback: null,
+    guidance: false,
+    onGuidance: () => {},
+    onAct: () => {},
+    scenario: record.scenario,
+  };
+  assert.match(
+    renderToStaticMarkup(<GuidedDecision {...props} firstObservedAt={null} />),
+    /no confirmed detection yet/,
+  );
+  assert.doesNotMatch(
+    renderToStaticMarkup(<GuidedDecision {...props} firstObservedAt={0} />),
+    /no confirmed detection yet/,
+  );
+});

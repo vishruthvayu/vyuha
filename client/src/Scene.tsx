@@ -57,7 +57,11 @@ import {
   LAYER_WORLD,
 } from "./world/Environment";
 import { SceneryObstruction, sceneryObstacles } from "./world/obstruction";
-import { facilityLayout, withoutBoxes } from "./world/layout";
+import {
+  trainingSiteLayout,
+  siteSurveyPose,
+  type TrainingSite,
+} from "./world/training-site";
 import { worldPresentationEnvelope } from "./world/world-envelope";
 export type { Vision } from "./visibility";
 export type RendererMetrics = {
@@ -104,6 +108,7 @@ function CameraRig({
   briefing = false,
   briefingSurvey = false,
   terrain,
+  trainingSite,
   manualAim,
   onCameraAim,
 }: {
@@ -125,6 +130,7 @@ function CameraRig({
   briefing?: boolean;
   briefingSurvey?: boolean;
   terrain?: string;
+  trainingSite?: TrainingSite;
   manualAim?: OpticalAim | null;
   onCameraAim?: (aim: OpticalAim) => void;
 }) {
@@ -186,11 +192,26 @@ function CameraRig({
       const v = view.current;
       let mode: CameraMode;
       if (briefing) {
-        const arrival = arrivalCamera(
+        const legacyArrival = arrivalCamera(
           terrain,
           arrivalTime.current,
           reducedMotion,
         );
+        const sitePose = trainingSite ? siteSurveyPose(trainingSite) : null;
+        const arrival = sitePose
+          ? {
+              aim: [
+                sitePose.target.x,
+                sitePose.target.y,
+                sitePose.target.z,
+              ] as [number, number, number],
+              position: [
+                sitePose.position.x,
+                sitePose.position.y,
+                sitePose.position.z,
+              ] as [number, number, number],
+            }
+          : legacyArrival;
         mode = "preset";
         goal.set(...arrival.aim);
         goalPosition.set(...arrival.position);
@@ -427,6 +448,7 @@ function World({
   cameraPreset,
   finale = false,
   terrainBoxes,
+  trainingSite,
   sensorOrigin,
   sensorConfig,
   referenceTruth = false,
@@ -464,6 +486,7 @@ function World({
   cameraPreset?: CameraPreset;
   finale?: boolean;
   terrainBoxes?: TerrainBox[];
+  trainingSite?: TrainingSite;
   sensorOrigin?: SensorPosition;
   sensorConfig?: Partial<SensorConfig>;
   referenceTruth?: boolean;
@@ -515,14 +538,15 @@ function World({
   // as markers, not as airframes painted on a wall.
   const obstruction = useMemo(() => {
     const o = new SceneryObstruction();
-    o.set(sceneryObstacles(withoutBoxes(facilityLayout(world), boxes)));
+    o.set(sceneryObstacles(trainingSiteLayout(world, boxes, trainingSite)));
     return o;
-  }, [world, boxes]);
+  }, [world, boxes, trainingSite]);
   return (
     <>
       <LayeredRender />
       <Environment
         terrain={world}
+        trainingSite={trainingSite}
         sensorConfig={sensorConfig}
         sensorOrigin={sensorOrigin}
         boxes={boxes}
@@ -547,6 +571,7 @@ function World({
         briefingSurvey={presentation === "briefing" && briefingSurvey}
         briefing={presentation === "briefing"}
         terrain={terrain}
+        trainingSite={trainingSite}
         opticalZoom={opticalZoom}
         reducedMotion={reducedMotion}
         onMetrics={onMetrics}
@@ -566,6 +591,7 @@ function World({
       <WorldSurveyControls
         enabled={presentation === "briefing" && briefingSurvey}
         terrain={terrain}
+        trainingSite={trainingSite}
         reducedMotion={reducedMotion}
         command={surveyCommand}
         restorePose={false}
@@ -619,6 +645,7 @@ export type SceneProps = {
   visibilityKey?: string;
   opticalAvailable?: boolean;
   terrainBoxes?: TerrainBox[];
+  trainingSite?: TrainingSite;
   sensorOrigin?: SensorPosition;
   sensorConfig?: Partial<SensorConfig>;
   engineVersion?: string;

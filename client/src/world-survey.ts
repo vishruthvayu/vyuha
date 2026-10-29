@@ -1,3 +1,4 @@
+import { siteSurveyPose, type TrainingSite } from "./training-site-contract";
 /** Public-scenery inspection only. No scenario roster, observed contact or clock input. */
 export type SurveyPoint = { x: number; y: number; z: number };
 export type SurveyCommand =
@@ -12,9 +13,17 @@ export const SURVEY_BOUNDS = Object.freeze({
   tilt: Math.PI / 22.5,
   zoomFactor: 1.15,
 });
+/** Larger authored campuses need room to frame their public extent. This is
+ * briefing-only; scored observation cameras retain their sensor-origin rules. */
+export const surveyBounds = (site?: TrainingSite) =>
+  site ? { ...SURVEY_BOUNDS, maxRadius: 1400 } : SURVEY_BOUNDS;
 const clamp = (value: number, low: number, high: number) =>
   Math.max(low, Math.min(high, value));
-export function publicSurveyPose(terrain?: string) {
+export function publicSurveyPose(
+  terrain?: string,
+  trainingSite?: TrainingSite,
+) {
+  if (trainingSite) return siteSurveyPose(trainingSite);
   const rural = terrain === "rural_forward_base";
   return {
     target: rural ? { x: -5, y: 7, z: 70 } : { x: 15, y: 9, z: 65 },
@@ -34,8 +43,10 @@ export function surveyPosition(
   position: SurveyPoint,
   action: SurveyCommand,
   terrain?: string,
+  trainingSite?: TrainingSite,
 ): SurveyPoint {
-  const preset = publicSurveyPose(terrain);
+  const preset = publicSurveyPose(terrain, trainingSite);
+  const limits = surveyBounds(trainingSite);
   if (
     action === "reset" ||
     ![position.x, position.y, position.z].every(Number.isFinite)
@@ -46,16 +57,16 @@ export function surveyPosition(
     z = position.z - preset.target.z;
   let radius = Math.hypot(x, y, z);
   let polar =
-    radius > 0 ? Math.acos(clamp(y / radius, -1, 1)) : SURVEY_BOUNDS.maxPolar;
+    radius > 0 ? Math.acos(clamp(y / radius, -1, 1)) : limits.maxPolar;
   let azimuth = Math.atan2(x, z);
-  if (action === "left") azimuth -= SURVEY_BOUNDS.turn;
-  if (action === "right") azimuth += SURVEY_BOUNDS.turn;
-  if (action === "up") polar -= SURVEY_BOUNDS.tilt;
-  if (action === "down") polar += SURVEY_BOUNDS.tilt;
-  if (action === "closer") radius /= SURVEY_BOUNDS.zoomFactor;
-  if (action === "farther") radius *= SURVEY_BOUNDS.zoomFactor;
-  radius = clamp(radius, SURVEY_BOUNDS.minRadius, SURVEY_BOUNDS.maxRadius);
-  polar = clamp(polar, SURVEY_BOUNDS.minPolar, SURVEY_BOUNDS.maxPolar);
+  if (action === "left") azimuth -= limits.turn;
+  if (action === "right") azimuth += limits.turn;
+  if (action === "up") polar -= limits.tilt;
+  if (action === "down") polar += limits.tilt;
+  if (action === "closer") radius /= limits.zoomFactor;
+  if (action === "farther") radius *= limits.zoomFactor;
+  radius = clamp(radius, limits.minRadius, limits.maxRadius);
+  polar = clamp(polar, limits.minPolar, limits.maxPolar);
   return {
     x: preset.target.x + radius * Math.sin(polar) * Math.sin(azimuth),
     y: preset.target.y + radius * Math.cos(polar),

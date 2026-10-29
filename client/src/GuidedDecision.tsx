@@ -363,6 +363,7 @@ export function GuidedDecision({
   phase,
   selected,
   target,
+  firstObservedAt = target?.detected ?? null,
   record,
   state,
   scenario,
@@ -379,6 +380,8 @@ export function GuidedDecision({
   selected: string | null;
   /** The selected contact while it is currently reported by any sensor. */
   target?: Track;
+  /** Public first-confirmed observation timestamp; retained even after report loss. */
+  firstObservedAt?: number | null;
   /** The trainee's recorded decisions on the selected contact. */
   record?: DecisionRecord;
   state: Pick<Snapshot, "tick" | "rfAvailable" | "response">;
@@ -504,7 +507,12 @@ export function GuidedDecision({
         <UncertaintyDecision
           key={selected}
           track={selected}
-          enabled={running}
+          enabled={running && firstObservedAt !== null}
+          unavailableReason={
+            firstObservedAt === null
+              ? "This tentative alias has no confirmed detection yet. Wait for a confirmed observation before recording Defer."
+              : undefined
+          }
           feedback={feedback}
           onAct={onAct}
         />

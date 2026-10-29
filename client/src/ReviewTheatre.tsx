@@ -170,6 +170,12 @@ export default function ReviewTheatre(props: Props) {
           explanation.
         </p>
       )}
+      {record.scenario.training_site && (
+        <p className="theatre-fallback-note">
+          Frozen site: {record.scenario.training_site.title} · training-site-v1
+          · geometry preserved from this exercise
+        </p>
+      )}
       <div className="theatre-stage">
         <div className="theatre-visual">
           <div className="theatre-viewbar" aria-label="Reconstruction channels">
@@ -229,6 +235,7 @@ export default function ReviewTheatre(props: Props) {
                 quality={props.quality}
                 terrain={record.scenario.terrain_id}
                 sensorConfig={record.scenario.sensor_config}
+                trainingSite={record.scenario.training_site}
                 terrainBoxes={record.scenario.terrain_boxes}
                 engineVersion={record.scenario.engine_version}
                 fog={record.scenario.fog}
