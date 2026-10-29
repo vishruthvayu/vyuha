@@ -1,10 +1,26 @@
 import { Batches, box, frame, type MaterialKey, type Tint } from "./kit";
 import type { TrainingSite } from "./training-site";
 import type { Quality } from "../quality";
+import { ArchitectureCache } from "./architecture-cache";
+import { SITE_PRESENTATION_VERSION } from "./presentation-profile";
+const architectureCache = new ArchitectureCache();
+
+export function siteArchitecture(
+  s: TrainingSite["structures"][number],
+  quality: Quality = "medium",
+) {
+  const key = JSON.stringify([SITE_PRESENTATION_VERSION, quality, s]);
+  return {
+    merged: () =>
+      architectureCache.get(key, () =>
+        buildSiteArchitecture(s, quality).merged(),
+      ),
+  };
+}
 
 /** Original industrial architectural grammar. All built detail stays inside
  * the admitted AABB; openings are visual recesses, never new sensor apertures. */
-export function siteArchitecture(
+function buildSiteArchitecture(
   s: TrainingSite["structures"][number],
   quality: Quality = "medium",
 ) {
