@@ -562,6 +562,16 @@ function World({
         quality={quality}
         fog={fog}
         translucentOccluders={referenceTruth && cameraPreset !== undefined}
+        reviewFogNear={
+          referenceTruth && cameraPreset === "overview"
+            ? envelope.fogNear
+            : undefined
+        }
+        reviewFogFar={
+          referenceTruth && cameraPreset === "overview"
+            ? envelope.fogFar
+            : undefined
+        }
         logicalTick={logicalTick}
         reducedMotion={reducedMotion}
       />

@@ -239,3 +239,38 @@ test("Review fitting retains all live/observer/follow range boundaries and avoid
   }
   assert.deepEqual(original, { far: 20000, fogNear: 8000, fogFar: 18000 });
 });
+
+test("expanded overview fog reaches the renderer while live and invalid bounds retain exact display density", async () => {
+  const THREE = await import("three");
+  const { presentationFog } = await import("./world/presentation-fog");
+  const source = { far: 20000, fogNear: 0, fogFar: 0 };
+  const tracks = [{ active: true, x: 0, z: 700, altitude: 20 }] as never;
+  const bounds = sceneReviewEnvelope(
+    tracks,
+    null,
+    true,
+    "overview",
+    1.5,
+    source,
+  );
+  const reference = presentationFog(
+    "#a3a7b2",
+    0.0045,
+    bounds.fogNear,
+    bounds.fogFar,
+  );
+  assert.ok(reference instanceof THREE.Fog);
+  assert.equal(reference.near, bounds.fogNear);
+  assert.equal(reference.far, bounds.fogFar);
+  for (const [near, far] of [
+    [undefined, undefined],
+    [0, 0],
+    [NaN, 100],
+    [100, 99],
+  ]) {
+    const live = presentationFog("#a3a7b2", 0.0045, near, far);
+    assert.ok(live instanceof THREE.FogExp2);
+    assert.equal(live.density, 0.0045);
+  }
+  assert.deepEqual(source, { far: 20000, fogNear: 0, fogFar: 0 });
+});

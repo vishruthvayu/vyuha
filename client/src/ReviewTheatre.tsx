@@ -265,7 +265,9 @@ export default function ReviewTheatre(props: Props) {
                 {displayRadar
                   ? "Positions from radar reports; tentative/coasting uncertainty retained"
                   : referenceLens
-                    ? "External camera · translucent reference terrain"
+                    ? camera === "overview"
+                      ? "External reference overview · fog expanded for inspection · not trainee weather"
+                      : "External reference camera · translucent reference terrain"
                     : !frame.modern
                       ? "EO/IR are presentation styles · separate channel provenance unavailable"
                       : "Sensor-origin view · observed geometry only"}

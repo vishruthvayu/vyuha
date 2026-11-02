@@ -1,3 +1,4 @@
+import { presentationFog } from "./presentation-fog";
 import { authoredShadowFit } from "./authored-shadows";
 import { applyFacadeRadiance } from "./facade-radiance";
 import { authoredFinishEnabled } from "./authored-finish-policy";
@@ -296,6 +297,8 @@ export type EnvironmentProps = {
   fog: number;
   /** AAR external cameras show authoritative dressing translucent. */
   translucentOccluders: boolean;
+  reviewFogNear?: number;
+  reviewFogFar?: number;
   logicalTick: () => number;
   reducedMotion: boolean;
 };
@@ -976,7 +979,12 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
       : mode.night
         ? new THREE.Color("#121515")
         : new THREE.Color("#a3a7b2"); // measured sky colour 1° above the horizon
-    scene.fog = new THREE.FogExp2(fogColor.getHex(), density);
+    scene.fog = presentationFog(
+      fogColor.getHex(),
+      density,
+      props.reviewFogNear,
+      props.reviewFogFar,
+    );
     gl.setClearColor(fogColor);
     scene.environment = thermal
       ? null
@@ -1008,6 +1016,8 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     props.fog,
     parameters,
     props.translucentOccluders,
+    props.reviewFogNear,
+    props.reviewFogFar,
     quality,
     lightingProfile,
     diffuseProbes,
