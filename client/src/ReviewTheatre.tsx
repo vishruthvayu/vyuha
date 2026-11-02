@@ -1,3 +1,4 @@
+import { WorkspaceHeader } from "./product/WorkspaceHeader";
 import ObservationAssessmentReview from "./ObservationAssessmentReview";
 import AcquisitionReview from "./AcquisitionReview";
 import { timelineSeek } from "./review-frame";
@@ -57,6 +58,7 @@ export default function ReviewTheatre(props: Props) {
   );
   const [channel, setChannel] = useState<"ir" | "eo" | "radar">("ir");
   const [camera, setCamera] = useState<CameraPreset>("overview");
+  const [evidenceOpen, setEvidenceOpen] = useState(true);
   const [tactical, setTactical] = useState(false),
     [fps, setFps] = useState(0);
   const modeledSnapshot = useMemo(
@@ -110,22 +112,23 @@ export default function ReviewTheatre(props: Props) {
       aria-labelledby="theatre-heading"
       data-lens={referenceLens ? "reference" : "observations"}
     >
-      <header className="theatre-heading">
-        <div>
-          <p className="eyebrow">INVESTIGATE THE DECISION</p>
-          <h2 id="theatre-heading" ref={props.headingRef} tabIndex={-1}>
-            Evidence reconstruction theatre
-          </h2>
-          <p>
-            Reconstruct available observations, then compare them with the
-            reference world.
-          </p>
-        </div>
-        <span className="theatre-source">
-          {record.verified ? "SERVER VERIFIED" : "LOCAL · VERIFICATION PENDING"}
-          <small>{record.scenario.title}</small>
-        </span>
-      </header>
+      <WorkspaceHeader
+        className="theatre-heading"
+        level={2}
+        eyebrow="Ghost / Time Machine"
+        title="Reconstruct the decision"
+        description="Inspect what was available at the decision boundary, compare the reference world, then follow the explanation."
+        headingId="theatre-heading"
+        headingRef={props.headingRef}
+        actions={
+          <span className="theatre-source" data-verified={record.verified}>
+            {record.verified
+              ? "Server verified"
+              : "Local · verification pending"}
+            <small>{record.scenario.title}</small>
+          </span>
+        }
+      />
       <div className="theatre-lensbar" aria-label="Reconstruction lens">
         <button
           aria-pressed={!referenceLens}
@@ -301,108 +304,122 @@ export default function ReviewTheatre(props: Props) {
             <span>{tickLabel(endTick)}</span>
           </div>
         </div>
-        <aside
-          className="theatre-observations"
-          aria-label="Evidence at replay cursor"
-          tabIndex={0}
-        >
-          <p className="eyebrow">AT THE PLAYHEAD</p>
-          <h3>{tickLabel(tick)}</h3>
-          <p className="theatre-limit">
-            Modeled availability reconstructed from the frozen engine. This is
-            not a recording of gaze, viewport or what the trainee actually
-            noticed.
-          </p>
-          {!frame.modern && (
-            <p className="theatre-warning">
-              Legacy exercise: separate timestamped EO/IR reports were not
-              recorded. Modern channel provenance cannot be inferred.
-            </p>
-          )}
-          <label>
-            Reported contact
-            <select
-              aria-label="Reported contact at cursor"
-              value={atCursor?.id ?? ""}
-              onChange={(e) => props.onSelect(e.target.value)}
-            >
-              <option value="">Choose a reported contact</option>
-              {frame.contacts.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.id} · trainee declaration: {c.declaration}
-                </option>
-              ))}
-            </select>
-          </label>
-          {atCursor ? (
-            <dl>
-              {(["radar", "eo", "ir", "rf", "iff"] as const).map((key) => (
-                <div key={key}>
-                  <dt>{key.toUpperCase()}</dt>
-                  <dd>{atCursor[key]}</dd>
-                </div>
-              ))}
-            </dl>
-          ) : (
-            <p className="theatre-empty">
-              {selected
-                ? `${selected} has no time-valid report at this playhead.`
-                : "Select a decision below or a reported contact."}{" "}
-              Absence of a report is not proof of an empty sky.
-            </p>
-          )}
-          <div
-            className={`theatre-time-context ${aligned ? "aligned" : ""}`}
-            role="status"
+        <div className="product-review-evidence" data-open={evidenceOpen}>
+          <button
+            className="product-review-disclosure"
+            aria-expanded={evidenceOpen}
+            aria-controls="theatre-cursor-evidence"
+            onClick={() => setEvidenceOpen((value) => !value)}
           >
-            <strong>
-              {decision
-                ? aligned
-                  ? "Decision time and event boundary aligned"
-                  : sampleTimeMatches
-                    ? "Sample time matches · event boundary unknown"
-                    : "Two different moments"
-                : "No decision selected"}
-            </strong>
-            {decision && (
-              <>
-                <p>
-                  Ghost evidence for {decision.track_id} was captured at{" "}
-                  {tickLabel(decision.evidence.tick)}. Review moment:{" "}
-                  {tickLabel(decision.tick)}
-                  {decision.trainee_action && decision.order !== null
-                    ? `, before event order ${decision.order}`
-                    : ""}
-                  . The scene follows the playhead
-                  {selected && selected !== decision.track_id
-                    ? `; inspected contact ${selected} differs from the pinned decision`
-                    : ""}
-                  .
-                </p>
-                {(!aligned || selected !== decision.track_id) && (
-                  <button
-                    className="button subtle"
-                    disabled={decision.evidence.tick > endTick}
-                    onClick={() => {
-                      props.onDecision(decision);
-                      props.onSeek(
-                        decision.evidence.tick,
-                        decision.trainee_action &&
-                          decision.evidence.tick === decision.tick
-                          ? (decision.order ?? undefined)
-                          : undefined,
-                        decision.track_id,
-                      );
-                    }}
-                  >
-                    <RotateCcw size={14} aria-hidden="true" />
-                    Inspect pinned evidence moment
-                  </button>
-                )}
-              </>
+            <Eye size={17} aria-hidden="true" />
+            <span>Evidence at playhead</span>
+            <span aria-hidden="true">{evidenceOpen ? "−" : "+"}</span>
+          </button>
+          <aside
+            id="theatre-cursor-evidence"
+            hidden={!evidenceOpen}
+            className="theatre-observations"
+            aria-label="Evidence at replay cursor"
+            tabIndex={0}
+          >
+            <p className="eyebrow">AT THE PLAYHEAD</p>
+            <h3>{tickLabel(tick)}</h3>
+            <p className="theatre-limit">
+              Modeled availability reconstructed from the frozen engine. This is
+              not a recording of gaze, viewport or what the trainee actually
+              noticed.
+            </p>
+            {!frame.modern && (
+              <p className="theatre-warning">
+                Legacy exercise: separate timestamped EO/IR reports were not
+                recorded. Modern channel provenance cannot be inferred.
+              </p>
             )}
-          </div>
-        </aside>
+            <label>
+              Reported contact
+              <select
+                aria-label="Reported contact at cursor"
+                value={atCursor?.id ?? ""}
+                onChange={(e) => props.onSelect(e.target.value)}
+              >
+                <option value="">Choose a reported contact</option>
+                {frame.contacts.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.id} · trainee declaration: {c.declaration}
+                  </option>
+                ))}
+              </select>
+            </label>
+            {atCursor ? (
+              <dl>
+                {(["radar", "eo", "ir", "rf", "iff"] as const).map((key) => (
+                  <div key={key}>
+                    <dt>{key.toUpperCase()}</dt>
+                    <dd>{atCursor[key]}</dd>
+                  </div>
+                ))}
+              </dl>
+            ) : (
+              <p className="theatre-empty">
+                {selected
+                  ? `${selected} has no time-valid report at this playhead.`
+                  : "Select a decision below or a reported contact."}{" "}
+                Absence of a report is not proof of an empty sky.
+              </p>
+            )}
+            <div
+              className={`theatre-time-context ${aligned ? "aligned" : ""}`}
+              role="status"
+            >
+              <strong>
+                {decision
+                  ? aligned
+                    ? "Decision time and event boundary aligned"
+                    : sampleTimeMatches
+                      ? "Sample time matches · event boundary unknown"
+                      : "Two different moments"
+                  : "No decision selected"}
+              </strong>
+              {decision && (
+                <>
+                  <p>
+                    Ghost evidence for {decision.track_id} was captured at{" "}
+                    {tickLabel(decision.evidence.tick)}. Review moment:{" "}
+                    {tickLabel(decision.tick)}
+                    {decision.trainee_action && decision.order !== null
+                      ? `, before event order ${decision.order}`
+                      : ""}
+                    . The scene follows the playhead
+                    {selected && selected !== decision.track_id
+                      ? `; inspected contact ${selected} differs from the pinned decision`
+                      : ""}
+                    .
+                  </p>
+                  {(!aligned || selected !== decision.track_id) && (
+                    <button
+                      className="button subtle"
+                      disabled={decision.evidence.tick > endTick}
+                      onClick={() => {
+                        props.onDecision(decision);
+                        props.onSeek(
+                          decision.evidence.tick,
+                          decision.trainee_action &&
+                            decision.evidence.tick === decision.tick
+                            ? (decision.order ?? undefined)
+                            : undefined,
+                          decision.track_id,
+                        );
+                      }}
+                    >
+                      <RotateCcw size={14} aria-hidden="true" />
+                      Inspect pinned evidence moment
+                    </button>
+                  )}
+                </>
+              )}
+            </div>
+          </aside>
+        </div>
       </div>
       <AcquisitionReview
         record={record}

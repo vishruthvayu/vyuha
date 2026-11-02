@@ -39,13 +39,42 @@ test("mission journey separates practice/assessment admission and discards stale
     ],
     missions: [],
   };
-  const progress = (name: string) => ({
-    practice: { sessions: 1 },
-    assessment: { sessions: 0 },
+  const progress = (name: string, trainee: string) => ({
+    version: "observation-journey-v1",
+    trainee,
+    window: {
+      included_sessions: 1,
+      total_sessions: 1,
+      limit: 32,
+      truncated: false,
+      ordering:
+        "completed_at (legacy fallback created_at) descending, session_id descending",
+    },
+    competencies: [
+      {
+        id: "C02",
+        title: "Separate affiliation",
+        state: "practice-only",
+        latest_practice: null,
+        latest_independent: null,
+        independent_contexts: 0,
+        evidence: [],
+      },
+    ],
+    candidates: [],
+    limitations: ["No mastery inferred."],
     recommendation: {
       competency: "C02",
+      template: "civil_restraint",
+      mode: "practice",
+      policy: "longitudinal-evidence-policy-v1",
+      seed: 42,
+      mission_version: 3,
+      site: "open_campus",
+      novelty: "Unobserved template context",
+      rank: [2, 0, 0, 1, 1],
       reason: name,
-      href: "/?mission_template=civil_restraint",
+      href: "/?mission_template=civil_restraint&mission_version=3&mission_site=open_campus",
       based_on: [],
     },
   });
@@ -61,7 +90,7 @@ test("mission journey separates practice/assessment admission and discards stale
   try {
     await act(async () => root.render(<Journey trainee="FIRST" />));
     await respond(pending[0], catalog);
-    await respond(pending[1], progress("First learner"));
+    await respond(pending[1], progress("First learner", "FIRST"));
     assert.match(dom.window.document.body.textContent!, /First learner/);
     assert.match(
       dom.window.document
@@ -84,18 +113,45 @@ test("mission journey separates practice/assessment admission and discards stale
     assert.doesNotMatch(dom.window.document.body.textContent!, /First learner/);
     const second = pending.find((p) => p.url.includes("SECOND"))!;
     await act(async () => root.render(<Journey trainee="THIRD" />));
-    await respond(second, progress("Stale second learner"));
+    await respond(second, progress("Stale second learner", "SECOND"));
     assert.doesNotMatch(
       dom.window.document.body.textContent!,
       /Stale second learner/,
     );
     await respond(
       pending.find((p) => p.url.includes("THIRD"))!,
-      progress("Current third learner"),
+      progress("Current third learner", "THIRD"),
     );
     assert.match(
       dom.window.document.body.textContent!,
       /Current third learner/,
+    );
+    assert.match(
+      dom.window.document.body.textContent!,
+      /Readiness is not established/,
+    );
+    assert.match(
+      dom.window.document.body.textContent!,
+      /Practice does not supply independent evidence/,
+    );
+    assert.match(
+      dom.window.document
+        .querySelector(".journey-next-exercise a")!
+        .getAttribute("href")!,
+      /mission_site=open_campus/,
+    );
+    await act(async () => root.render(<Journey trainee="FOURTH" />));
+    await respond(
+      pending.find((p) => p.url.includes("FOURTH"))!,
+      progress("Wrong learner evidence", "THIRD"),
+    );
+    assert.doesNotMatch(
+      dom.window.document.body.textContent!,
+      /Wrong learner evidence/,
+    );
+    assert.match(
+      dom.window.document.body.textContent!,
+      /does not match this learner/,
     );
   } finally {
     await act(async () => root.unmount());

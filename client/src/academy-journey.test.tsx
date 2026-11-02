@@ -214,8 +214,19 @@ async function mounted(
     localStorage: dom.window.localStorage,
     sessionStorage: dom.window.sessionStorage,
     IS_REACT_ACT_ENVIRONMENT: true,
-    fetch: async (url: unknown, init?: RequestInit) =>
-      new Promise<Response>((resolve, reject) =>
+    // The nested observation journey has its own focused contract tests.
+    // Keep this harness's indexed requests scoped to the learning-v1 journey.
+    fetch: async (url: unknown, init?: RequestInit) => {
+      if (String(url).includes("/observation-missions-v3/catalog"))
+        return new Response(JSON.stringify({ templates: [], missions: [] }));
+      if (String(url).includes("/observation-learning/"))
+        return new Response(
+          JSON.stringify({
+            detail: "Evidence unavailable in this isolated Academy fixture",
+          }),
+          { status: 503 },
+        );
+      return new Promise<Response>((resolve, reject) =>
         requests.push({
           url: String(url),
           body: init?.body ? JSON.parse(String(init.body)) : null,
@@ -223,7 +234,8 @@ async function mounted(
           resolve,
           reject,
         }),
-      ),
+      );
+    },
   })) {
     saved.set(name, Object.getOwnPropertyDescriptor(globalThis, name));
     Object.defineProperty(globalThis, name, {
@@ -350,7 +362,7 @@ test("competency-linked journey prepares full, faded and independent tasks expli
       ),
     );
     assert.match(
-      q.document.querySelector('[role="status"]')!.textContent!,
+      q.document.querySelector('.academy-ready [role="status"]')!.textContent!,
       /no exercise has started automatically/,
     );
     await q.click("2 · Try with less guidance");
@@ -450,12 +462,14 @@ test("supporting evidence suggests less guidance without switching or granting m
       /Less-guided practice/,
     );
     assert.equal(
-      q.document.querySelector<HTMLSelectElement>("select")!.value,
+      q.document.querySelector<HTMLSelectElement>('[aria-label="Lesson"]')!
+        .value,
       "C02_PRACTICE_A",
     );
     await q.click("Try with less guidance");
     assert.equal(
-      q.document.querySelector<HTMLSelectElement>("select")!.value,
+      q.document.querySelector<HTMLSelectElement>('[aria-label="Lesson"]')!
+        .value,
       "C02_PRACTICE_B",
     );
     assert.equal(q.requests.filter((r) => r.body).length, 0);
@@ -466,7 +480,8 @@ test("supporting evidence suggests less guidance without switching or granting m
       /Independent assessment/,
     );
     assert.equal(
-      q.document.querySelector<HTMLSelectElement>("select")!.value,
+      q.document.querySelector<HTMLSelectElement>('[aria-label="Lesson"]')!
+        .value,
       "C02_PRACTICE_B",
     );
   }));
@@ -484,7 +499,12 @@ test("sparse assessment forms normalize the visible selection and actual request
       /Observation acquisition/,
     );
     await q.click("3 · Demonstrate independently");
-    assert.equal(q.document.querySelectorAll("select")[1].value, "retention-c");
+    assert.equal(
+      q.document.querySelector<HTMLSelectElement>(
+        ".academy-course-workspace select:not([aria-label])",
+      )!.value,
+      "retention-c",
+    );
     await q.click("Prepare assessment item");
     assert.equal(q.requests[2].body!.form, "retention-c");
     assert.equal(q.requests[2].body!.item_id, "C01_RETENTION-C_A");

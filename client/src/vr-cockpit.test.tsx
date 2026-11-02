@@ -9,7 +9,10 @@ import ts from "typescript";
 import { JSDOM } from "jsdom";
 import { act, type ComponentProps } from "react";
 import { createRoot } from "react-dom/client";
-import { replay } from "./sim";
+import { replay, Simulation } from "./sim";
+import { execFileSync } from "node:child_process";
+import { testPython } from "./test-python";
+import type { Scenario } from "./types";
 import { makeScenario } from "./scenario";
 import type Cockpit from "./VRCockpit";
 import type { Action } from "./types";
@@ -53,6 +56,11 @@ test("actual cockpit requires second confirmation, suppresses duplicate/stale re
       fiber,
       "import React from 'react'; export const Canvas=()=>React.createElement('div',{'data-renderer-stub':true});export const useFrame=()=>{};export const useThree=()=>({});",
     );
+    const style = document.createElement("style");
+    style.textContent =
+      (await readFile(resolve(import.meta.dirname, "vr.css"), "utf8")) +
+      "\n.button.subtle { display: inline-flex; }";
+    document.head.append(style);
     let code = ts.transpileModule(await readFile(source, "utf8"), {
       compilerOptions: {
         module: ts.ModuleKind.ESNext,
@@ -115,6 +123,34 @@ test("actual cockpit requires second confirmation, suppresses duplicate/stale re
         `[data-vr-action="${id}"]`,
       )!;
       assert.ok(button && !button.disabled, id + " available");
+      if (button.hidden) {
+        // jsdom does not implement author !important cascade precedence.
+        // Verify the real rule; computed cascade is also checked in Chromium.
+        const hiddenRule = Array.from(style.sheet!.cssRules).find((rule) =>
+          rule.cssText.startsWith(".vr-workspace [hidden]"),
+        ) as CSSStyleRule;
+        assert.equal(hiddenRule.style.getPropertyValue("display"), "none");
+        assert.equal(
+          hiddenRule.style.getPropertyPriority("display"),
+          "important",
+        );
+        const mode = /^(request-|defer|vision$)/.test(id)
+          ? "Observation instruments"
+          : /^(finish|confirm-finish|exit)$/.test(id)
+            ? "Session controls"
+            : "Decision instruments";
+        const tab = Array.from(
+          document.querySelectorAll<HTMLButtonElement>(
+            ".vr-instrument-tabs button",
+          ),
+        ).find((b) => b.textContent === mode)!;
+        await act(async () => tab.click());
+      }
+      assert.equal(
+        button.hidden,
+        false,
+        id + " is reachable on its instrument page",
+      );
       await act(async () => button.click());
     };
     const enabled = (id: string) =>
@@ -298,6 +334,156 @@ test("actual cockpit requires second confirmation, suppresses duplicate/stale re
       /friendly/,
     );
     assert.equal(enabled("classify"), true);
+    // The admitted acquisition cockpit uses the same payload and exact global
+    // receipt id, including synchronous stale controller handlers.
+    const s6 = JSON.parse(
+      execFileSync(
+        testPython(),
+        [
+          "-c",
+          "import json;from server.observation_missions_v3 import compile_mission;print(json.dumps(compile_mission(dict(template='timed_window',night=False))))",
+        ],
+        { cwd: "..", encoding: "utf8" },
+      ),
+    ) as Scenario;
+    const sim6 = new Simulation(s6);
+    while (sim6.state.tick < 150) sim6.step(true);
+    const observedActions: Omit<Action, "tick">[] = [];
+    let requestSequence = 50;
+    props = {
+      ...props,
+      scenario: s6,
+      state: sim6.snapshot(),
+      phase: "running",
+      selected: "T1",
+      sessionKey: "acquisition-one",
+      feedback: null,
+      onAction(a) {
+        observedActions.push(a);
+        return ++requestSequence;
+      },
+    };
+    mountKey++;
+    await render();
+    assert.equal(enabled("defer"), false, "Defer requires an explicit reason");
+    await click("request-eo");
+    assert.equal(observedActions.length, 1);
+    assert.equal(observedActions[0].k, "inspect");
+    assert.ok(observedActions[0].request_id);
+    assert.equal(enabled("request-ir"), false);
+    props = {
+      ...props,
+      feedback: { seq: 50, action: observedActions[0], status: "accepted" },
+    };
+    await render();
+    assert.equal(
+      enabled("request-ir"),
+      false,
+      "same payload from an older request cannot release exact receipt ownership",
+    );
+    props = {
+      ...props,
+      feedback: { seq: 51, action: observedActions[0], status: "accepted" },
+    };
+    await render();
+    assert.equal(enabled("request-ir"), true);
+    assert.ok(sim6.act({ ...observedActions[0], tick: 150 }));
+    props = { ...props, state: sim6.snapshot() };
+    await render();
+    assert.equal(
+      enabled("request-ir"),
+      false,
+      "pending slot belongs to its original contact",
+    );
+    const release = sim6.snapshot().acquisition!.pending!.releaseTick;
+    while (sim6.state.tick < release) sim6.step(true);
+    props = { ...props, state: sim6.snapshot() };
+    await render();
+    assert.match(
+      document.querySelector(".vr-observation-evidence")!.textContent!,
+      /RELEASED/,
+    );
+    const staleRequest = document.querySelector<HTMLButtonElement>(
+      '[data-vr-action="request-ir"]',
+    )!;
+    const other = Array.from(
+      document.querySelectorAll<HTMLButtonElement>(".vr-contact-picker button"),
+    ).find((b) => b.textContent === "T2")!;
+    assert.ok(other);
+    await act(async () => {
+      other.click();
+      staleRequest.click();
+    });
+    assert.equal(
+      observedActions.length,
+      1,
+      "a stale request callback cannot target the previous contact after selection intent changes",
+    );
+    props = { ...props, selected: "T2" };
+    await render();
+    await click("defer-reason");
+    assert.equal(enabled("defer"), true);
+    await click("defer");
+    assert.equal(observedActions[1].k, "defer");
+    assert.equal(observedActions[1].track, "T2");
+    props = {
+      ...props,
+      feedback: { seq: 52, action: observedActions[1], status: "submitted" },
+    };
+    mountKey++;
+    await render();
+    assert.equal(
+      enabled("request-eo"),
+      false,
+      "App's pending ownership survives VR exit and reentry",
+    );
+    assert.equal(enabled("defer"), false);
+    props = {
+      ...props,
+      feedback: { seq: 52, action: observedActions[1], status: "accepted" },
+    };
+    await render();
+    assert.equal(enabled("request-eo"), true);
+    assert.equal(
+      enabled("defer"),
+      false,
+      "reentry never inherits an unsubmitted uncertainty reason",
+    );
+    let ended = 0;
+    props = {
+      ...props,
+      onEnd: () => {
+        ended++;
+      },
+      phase: "paused",
+    };
+    await render();
+    await click("finish");
+    const clock = Date.now;
+    try {
+      Date.now = () => clock() + 9000;
+      await click("confirm-finish");
+    } finally {
+      Date.now = clock;
+    }
+    assert.equal(ended, 0, "expired finish cannot complete an exercise");
+    await click("finish");
+    props = { ...props, sessionKey: "changed-before-finish" };
+    await render();
+    assert.equal(
+      enabled("confirm-finish"),
+      false,
+      "finish does not carry into a new session",
+    );
+    await click("finish");
+    const finish = document.querySelector<HTMLButtonElement>(
+      '[data-vr-action="confirm-finish"]',
+    )!;
+    await act(async () => {
+      finish.click();
+      finish.click();
+    });
+    assert.equal(ended, 1, "paused finish is explicit and duplicate-safe");
   } finally {
     await act(async () => root.unmount());
     dom.window.close();

@@ -48,10 +48,12 @@ addEventListener('DOMContentLoaded',()=>{
  button('Hidden',()=>device.updateVisibilityState('hidden'));button('Blurred',()=>device.updateVisibilityState('visible-blurred'));button('Visible',()=>device.updateVisibilityState('visible'));
  for(const hand of ['left','right']){
   button(hand+' contact 1',()=>ray(hand,-.98,1.3));button(hand+' contact 2',()=>ray(hand,-.98,1.16));
-  button(hand+' next page',()=>ray(hand,-.98,.67));button(hand+' designate',()=>ray(hand,0,1.83));
-  button(hand+' type',()=>ray(hand,0,1.68));button(hand+' identity',()=>ray(hand,0,1.53));button(hand+' classify',()=>ray(hand,0,1.38));
-  button(hand+' hold',()=>ray(hand,0,1.23));button(hand+' RF',()=>ray(hand,0,1.08));button(hand+' kinetic',()=>ray(hand,0,.93));button(hand+' confirm',()=>ray(hand,0,.78));
-  button(hand+' start/pause',()=>ray(hand,.98,1.37));button(hand+' view',()=>ray(hand,.98,1.22));button(hand+' cancel',()=>ray(hand,.98,1.07));button(hand+' exit',()=>ray(hand,.98,.92));
+  button(hand+' next page',()=>ray(hand,-.98,.67));
+  button(hand+' observe tab',()=>ray(hand,-.29,1.92));button(hand+' decide tab',()=>ray(hand,0,1.92));button(hand+' session tab',()=>ray(hand,.29,1.92));
+  for(const [index,name] of ['designate','type','identity','classify','hold','RF','kinetic','confirm','cancel'].entries()) button(hand+' '+name,()=>ray(hand,0,1.72-index*.14));
+  button(hand+' start/pause',()=>ray(hand,-.98,1.90));
+  button(hand+' view',()=>ray(hand,0,1.72));button(hand+' request EO',()=>ray(hand,0,1.58));button(hand+' request IR',()=>ray(hand,0,1.44));button(hand+' uncertainty',()=>ray(hand,0,1.30));button(hand+' defer',()=>ray(hand,0,1.16));
+  button(hand+' exit',()=>ray(hand,0,1.72));button(hand+' end',()=>ray(hand,0,1.58));button(hand+' confirm end',()=>ray(hand,0,1.44));
  }
  button('Head look left',()=>device.quaternion.set(0,Math.sin(.3),0,Math.cos(.3)));button('Head neutral',()=>device.quaternion.set(0,0,0,1));
  button('Lose graphics context',()=>{const canvas=document.querySelector('canvas[data-engine^="three.js"]');canvas?.getContext('webgl2')?.getExtension('WEBGL_lose_context')?.loseContext();});

@@ -250,3 +250,14 @@ def read_progression(trainee: str):
         return progression(trainee)
     except (ValueError,KeyError,TypeError) as error:
         raise HTTPException(422,'Mission evidence cannot be reconstructed: '+str(error)[:160]) from error
+
+
+@router.get('/trainees/{trainee}/journey')
+def read_journey(trainee: str):
+    if not 1 <= len(trainee) <= 64:
+        raise HTTPException(422, 'Invalid trainee identifier')
+    from .observation_journey import journey
+    try:
+        return journey(trainee)
+    except (ValueError, KeyError, TypeError) as error:
+        raise HTTPException(422, 'Mission evidence cannot be reconstructed: '+str(error)[:160]) from error

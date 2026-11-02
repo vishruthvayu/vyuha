@@ -332,3 +332,33 @@ test("investigation chapters retain lens and record, use source order and disabl
     assert.deepEqual(qa.seeks.at(-1), [15, undefined, review.track_id]);
     assert.deepEqual(source, before);
   }));
+
+// Collapsing the inspector must preserve the exact reconstruction and its lens.
+test("playhead evidence disclosure preserves inspector nodes, time, contact and reference lens", () =>
+  mounted(async (qa) => {
+    const source = structuredClone(qa.props.record);
+    const inspector = qa.document.querySelector(
+      ".theatre-observations",
+    ) as HTMLElement;
+    const selector = qa.document.querySelector(
+      '[aria-label="Reported contact at cursor"]',
+    );
+    await qa.click("Reference world");
+    await qa.click("Evidence at playhead");
+    assert.equal(inspector.hidden, true);
+    await qa.click("Evidence at playhead");
+    assert.equal(inspector.hidden, false);
+    assert.equal(qa.document.querySelector(".theatre-observations"), inspector);
+    assert.equal(
+      qa.document.querySelector('[aria-label="Reported contact at cursor"]'),
+      selector,
+    );
+    assert.equal(
+      qa.document
+        .querySelector("[data-scene-reference]")
+        ?.getAttribute("data-scene-reference"),
+      "true",
+    );
+    assert.equal(qa.seeks.length, 0);
+    assert.deepEqual(qa.props.record, source);
+  }));

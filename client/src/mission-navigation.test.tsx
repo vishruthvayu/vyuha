@@ -71,7 +71,13 @@ test("Command navigation exposes primary tasks without a permanent sidebar and p
     assert.equal(document.querySelector(".sidebar"), null);
     assert.equal(
       document.querySelectorAll(".mission-primary-navigation a").length,
-      5,
+      6,
+    );
+    assert.equal(
+      document
+        .querySelector('.mission-primary-navigation a[href="/academy"]')
+        ?.textContent?.trim(),
+      "Academy",
     );
     assert.equal(
       document.querySelector('[aria-current="location"]')?.getAttribute("href"),

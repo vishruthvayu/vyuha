@@ -1,3 +1,4 @@
+import { vrEngineReason, vrLaunchReadiness } from "./vr-observation";
 import ObservationConsole from "./ObservationConsole";
 import { isAcquisitionEngine } from "./engine-contracts";
 import {
@@ -102,6 +103,7 @@ import type { FusionAdvice } from "./fusion";
 import type { FusionExposure } from "./types";
 import { simulatedObservations } from "./observations";
 import type { Quality } from "./quality";
+import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
 import { useRenderingQuality } from "./useRenderingQuality";
 import { useOfflineStatus } from "./useOfflineStatus";
 import { useWorkspaceNavigation } from "./useWorkspaceNavigation";
@@ -229,6 +231,7 @@ export default function App({
     command?: SurveyIntent;
   } | null>(null);
   const [vrOpen, setVROpen] = useState(false);
+  const [vrAssignedPreview, setVRAssignedPreview] = useState(false);
   const [feedback, setFeedback] = useState<ActionFeedback | null>(null);
   const feedbackSeq = useRef(0);
   const [guidance, setGuidanceState] = useState(() => {
@@ -340,6 +343,7 @@ export default function App({
   const [assignment, setAssignment] = useState<Assignment | null>(null);
   const clientId = useRef(newId());
   const eventBatches = useRef<Action[][]>([]);
+  const reducedMotion = usePrefersReducedMotion();
   const enterTactical = useCallback(() => setTactical(true), []);
   const { fps, quality, setQuality, autoQuality, setAutoQuality, renderFps } =
     useRenderingQuality(enterTactical);
@@ -1291,6 +1295,14 @@ export default function App({
       );
     }
   };
+  const vrScenario =
+    vrAssignedPreview && phase === "ready" && assignment
+      ? assignment.scenario
+      : scenario;
+  const vrPreviewState = useMemo(
+    () => briefingSnapshot(new Simulation(vrScenario).snapshot()),
+    [vrScenario],
+  );
   const act = (data: Omit<Action, "tick">) => {
     if (!running || !workerInitialized.current) return;
     const requestId = ++feedbackSeq.current;
@@ -2041,23 +2053,42 @@ export default function App({
                     aria-label="Open VR observation cockpit"
                     className="button subtle"
                     disabled={
-                      busy ||
-                      phase === "restoring" ||
-                      phase === "complete" ||
-                      isAcquisitionEngine(scenario.engine_version) ||
-                      (mode === "adaptive" && phase === "ready" && !prepared)
+                      !vrLaunchReadiness(
+                        scenario,
+                        phase,
+                        mode !== "adaptive" || !!prepared,
+                        busy,
+                      ).allowed
                     }
+                    title={
+                      vrLaunchReadiness(
+                        scenario,
+                        phase,
+                        mode !== "adaptive" || !!prepared,
+                        busy,
+                      ).reason
+                    }
+                    aria-describedby="vr-launch-reason"
                     onClick={() => {
                       fusionExposure(null);
+                      setVRAssignedPreview(false);
                       setVROpen(true);
                     }}
                   >
-                    {isAcquisitionEngine(scenario.engine_version)
-                      ? "Active observation: VR adapter not yet supported"
-                      : "Open VR observation cockpit"}
+                    Open VR observation cockpit
                   </button>
+                  <span id="vr-launch-reason" className="vr-launch-reason">
+                    {
+                      vrLaunchReadiness(
+                        scenario,
+                        phase,
+                        mode !== "adaptive" || !!prepared,
+                        busy,
+                      ).reason
+                    }
+                  </span>
                   <a href="/vr-guide.html" target="_blank" rel="noreferrer">
-                    Experimental VR / setup guide
+                    VR setup guide
                   </a>
                 </div>
               }
@@ -2086,6 +2117,21 @@ export default function App({
                     >
                       Start assigned exercise
                     </button>
+                    <button
+                      className="button subtle"
+                      disabled={busy || !!vrEngineReason(assignment.scenario)}
+                      title={
+                        vrEngineReason(assignment.scenario) ??
+                        "Inspect the frozen assignment before explicitly starting it."
+                      }
+                      onClick={() => {
+                        fusionExposure(null);
+                        setVRAssignedPreview(true);
+                        setVROpen(true);
+                      }}
+                    >
+                      Preview assigned VR cockpit
+                    </button>
                   </section>
                 )}
               {phase === "ready" && recovery && (
@@ -2106,26 +2152,48 @@ export default function App({
                   <VRCockpit
                     state={
                       phase === "ready" || phase === "restoring"
-                        ? briefingSnapshot(state)
+                        ? vrPreviewState
                         : state
                     }
-                    scenario={scenario}
+                    scenario={vrScenario}
                     phase={phase}
                     selected={selected}
-                    sessionKey={`${scenario.id}:${sessionRef.current || "preview"}`}
+                    sessionKey={`${vrScenario.id}:${vrAssignedPreview && phase === "ready" && assignment ? "assignment:" + assignment.session_id : sessionRef.current || "preview"}`}
                     feedback={feedback}
                     quality={quality}
                     vision={vision}
-                    busy={busy}
-                    startLabel="Start exercise"
-                    onStart={() => void start()}
+                    busy={
+                      busy ||
+                      (phase === "running" && !workerInitialized.current)
+                    }
+                    reducedMotion={reducedMotion}
+                    startLabel={
+                      vrAssignedPreview && assignment
+                        ? "Start assigned exercise"
+                        : "Start exercise"
+                    }
+                    onStart={() =>
+                      void (vrAssignedPreview && assignment
+                        ? startAssigned()
+                        : start())
+                    }
                     onPause={togglePause}
                     onSuspend={suspendVR}
                     onSelect={choose}
                     onVision={setVision}
                     onAction={act}
+                    onEnd={() => {
+                      if (busy || finishLock.current) return;
+                      setBusy(true);
+                      worker.current?.postMessage({
+                        type: "finish",
+                        scope: workerScope.current,
+                      });
+                      setVROpen(false);
+                    }}
                     onClose={() => {
                       suspendVR();
+                      setVRAssignedPreview(false);
                       setVROpen(false);
                     }}
                   />
@@ -2590,6 +2658,7 @@ export default function App({
                     {isAcquisitionEngine(scenario.engine_version) &&
                       (phase === "running" || phase === "paused") && (
                         <ObservationConsole
+                          snapshot={state}
                           visible={stationInstrument === "observe"}
                           controlsHost={observationControlsHost}
                         >

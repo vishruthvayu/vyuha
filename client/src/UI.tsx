@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { WorkspaceHeader } from "./product/WorkspaceHeader";
 export function PageHeader({
   eyebrow,
   title,
@@ -11,14 +12,13 @@ export function PageHeader({
   actions?: ReactNode;
 }) {
   return (
-    <header className="page-heading ui-page-header">
-      <div>
-        <p className="eyebrow">{eyebrow}</p>
-        <h1>{title}</h1>
-        <p>{description}</p>
-      </div>
-      {actions && <div className="ui-header-actions">{actions}</div>}
-    </header>
+    <WorkspaceHeader
+      className="page-heading ui-page-header"
+      eyebrow={eyebrow}
+      title={title}
+      description={description}
+      actions={actions}
+    />
   );
 }
 export function Panel({

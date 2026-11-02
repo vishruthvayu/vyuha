@@ -1,3 +1,4 @@
+import { diagnosticRendererSubmit } from "./diagnostics";
 import {
   aimPoint,
   reportedAim,
@@ -354,6 +355,7 @@ function LayeredRender() {
     };
   }, [gl, scene]);
   useFrame(() => {
+    const finishSubmit = diagnosticRendererSubmit();
     // Update the shared scene graph once for all main/inset layer passes.
     scene.updateMatrixWorld();
     gl.info.reset();
@@ -367,6 +369,7 @@ function LayeredRender() {
     camera.layers.set(LAYER_CONTACTS);
     gl.render(scene, camera);
     camera.layers.set(LAYER_WORLD);
+    finishSubmit(gl.info);
   }, 1);
   return null;
 }

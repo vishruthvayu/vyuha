@@ -23,6 +23,7 @@ export function VRWorld({
   selected,
   context,
   quality,
+  reducedMotion = false,
 }: {
   state: Snapshot;
   scenario: Scenario;
@@ -30,6 +31,7 @@ export function VRWorld({
   selected: string | null;
   context: string;
   quality: Quality;
+  reducedMotion?: boolean;
 }) {
   const root = useRef<THREE.Group>(null);
   const visibility = useRef(new ObservationVisibility());
@@ -61,7 +63,7 @@ export function VRWorld({
   }, [terrain, boxes, scenario.training_site]);
   useFrame((_, dt) => {
     poses.update(contacts, state.tick, context + ":" + vision);
-    poses.forEachFrame(dt, () => {}, false);
+    poses.forEachFrame(dt, () => {}, reducedMotion);
     // Includes imperatively created marker objects and asynchronously loaded props.
     root.current?.traverse((o) => o.layers.set(0));
   }, -2);
@@ -79,7 +81,7 @@ export function VRWorld({
         quality={quality}
         fog={scenario.fog}
         logicalTick={logicalTick}
-        reducedMotion={false}
+        reducedMotion={reducedMotion}
         translucentOccluders={false}
       />
       <ContactRenderer
@@ -87,6 +89,7 @@ export function VRWorld({
         vision={vision}
         palette="white"
         quality={quality}
+        reducedMotion={reducedMotion}
         selected={contacts.some((t) => t.id === selected) ? selected : null}
         night={state.night}
         obstruction={obstruction}

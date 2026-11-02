@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "measured_at": "2026-10-31T06:26:44.381Z",
+  "runtime": "v25.2.1",
+  "platform": "darwin",
+  "arch": "arm64",
+  "source_files": [
+    "client/src/world/authored-shadows.ts",
+    "client/src/world/facade-radiance.ts"
+  ],
+  "source_hash": "a22cbeb3707aed12ff67f7ce4d1739b4c108348ed9c9321983333f0361a79e2b",
+  "scope": "Alternating warmed Node CPU-only shadow-fit, four material clones and shader-string setup. No renderer, driver compile, texture upload, frame-time or GPU result. Concurrent host load not isolated.",
+  "results": [
+    {
+      "site": "freight_corridor",
+      "repetitions_per_sample": 100,
+      "baseline_ms": [
+        0.007132919999999671,
+        0.005595420000000217,
+        0.005615000000000236,
+        0.005424580000000106,
+        0.0053458299999999785,
+        0.004544159999999806,
+        0.010222909999999957,
+        0.004612500000000068
+      ],
+      "candidate_ms": [
+        0.0974491599999999,
+        0.08454250000000002,
+        0.0716279099999997,
+        0.06233791999999994,
+        0.06885749999999974,
+        0.05016124999999988,
+        0.04526834000000008,
+        0.05210582999999985
+      ],
+      "baseline_median_ms": 0.0055100000000001615,
+      "candidate_median_ms": 0.06559770999999984,
+      "shadow": {
+        "old_area_m2": 1716213.9127804816,
+        "fitted_area_m2": 825379.395749219,
+        "fitted_width_m": 994.6442919002792,
+        "fitted_height_m": 829.8236892028227,
+        "unchanged_resolution": 2048
+      }
+    },
+    {
+      "site": "open_campus",
+      "repetitions_per_sample": 100,
+      "baseline_ms": [
+        0.004754999999999541,
+        0.004360829999999965,
+        0.004348749999999768,
+        0.011476669999999557,
+        0.0049808400000000575,
+        0.0058183300000001735,
+        0.005649999999999977,
+        0.004277910000000134
+      ],
+      "candidate_ms": [
+        0.051080830000000216,
+        0.04558083000000011,
+        0.052864170000000286,
+        0.04451082999999983,
+        0.047579170000000205,
+        0.049574159999999666,
+        0.05753082999999947,
+        0.06792208000000016
+      ],
+      "baseline_median_ms": 0.004867919999999799,
+      "candidate_median_ms": 0.050327494999999944,
+      "shadow": {
+        "old_area_m2": 1048580.7407397483,
+        "fitted_area_m2": 825379.395749219,
+        "fitted_width_m": 994.6442919002792,
+        "fitted_height_m": 829.8236892028227,
+        "unchanged_resolution": 2048
+      }
+    }
+  ]
+}

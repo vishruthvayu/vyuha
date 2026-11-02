@@ -196,3 +196,98 @@
     min-height: 44px;
   }
 }
+
+.competency-evidence-journey {
+  border: 1px solid var(--color-border-subtle, #6c8277);
+  background: var(--color-surface-instrument, #142327);
+}
+.journey-next-exercise,
+.journey-evidence-lanes {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 24px;
+}
+.journey-next-exercise {
+  padding: 20px;
+  margin: 20px 0;
+  background: var(--color-surface-raised, #203335);
+  border-left: 3px solid var(--color-status-ready, #c4dbab);
+}
+.journey-next-exercise h4,
+.journey-competency-detail h4 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+.journey-evidence-lanes h5 {
+  font-size: 15px;
+  margin: 8px 0;
+}
+.journey-competency-rail {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 24px 0;
+}
+.journey-competency-rail button {
+  display: grid;
+  gap: 8px;
+  text-align: left;
+  padding: 16px;
+  color: var(--color-text-primary, #e4eee8);
+  background: var(--color-surface-raised, #203335);
+  border: 1px solid var(--color-border-subtle, #617775);
+  border-radius: 8px;
+  min-height: 44px;
+}
+.journey-competency-rail button[aria-pressed="true"] {
+  border-color: var(--color-status-ready, #c4dbab);
+  box-shadow: inset 0 3px var(--color-status-ready, #c4dbab);
+}
+.journey-competency-rail small {
+  line-height: 1.5;
+}
+.journey-competency-detail {
+  padding: 20px;
+  border: 1px solid var(--color-border-subtle, #617775);
+  border-radius: 8px;
+}
+.journey-evidence-source {
+  margin: 12px 0;
+  padding: 12px 16px;
+  border-left: 2px solid var(--color-border-subtle, #617775);
+}
+.journey-evidence-source p,
+.journey-evidence-source li {
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.competency-evidence-journey table {
+  width: 100%;
+  font-size: 12px;
+  border-collapse: collapse;
+}
+.competency-evidence-journey th,
+.competency-evidence-journey td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-subtle, #617775);
+}
+.competency-evidence-journey code {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 1000px) {
+  .journey-competency-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 650px) {
+  .journey-next-exercise,
+  .journey-evidence-lanes,
+  .journey-competency-rail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .journey-next-exercise,
+  .journey-competency-detail {
+    padding: 14px;
+  }
+}

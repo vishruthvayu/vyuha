@@ -1,3 +1,6 @@
+import { authoredShadowFit } from "./authored-shadows";
+import { applyFacadeRadiance } from "./facade-radiance";
+import { authoredFinishEnabled } from "./authored-finish-policy";
 import { siteShadowProfile } from "./presentation-profile";
 import { siteArchitecture, addSiteStreetscape } from "./site-architecture";
 import { trainingSiteLayout, type TrainingSite } from "./training-site";
@@ -299,6 +302,13 @@ export type EnvironmentProps = {
 
 export const Environment = memo(function Environment(props: EnvironmentProps) {
   const { terrain, boxes, legacy, quality } = props;
+  const enableAuthoredFinish = useMemo(
+    () =>
+      authoredFinishEnabled(
+        typeof window === "undefined" ? "" : window.location.search,
+      ),
+    [],
+  );
   const parameters = useMemo(
     () => sensorConfiguration(props.sensorConfig),
     [props.sensorConfig],
@@ -513,6 +523,8 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     });
     for (const [key, geometry] of dressing.merged()) {
       const material = kit[key].clone();
+      if (props.trainingSite && enableAuthoredFinish)
+        applyFacadeRadiance(material, key, quality);
       material.userData.occluderDressing = true;
       disposables.push(material);
       addMesh(geometry, material, MATERIAL_THERMAL[key], {
@@ -688,6 +700,7 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     props3d,
     worldEnvelope.flatRadius,
     props.trainingSite,
+    enableAuthoredFinish,
   ]);
   useEffect(() => () => built.dispose(), [built]);
 
@@ -735,6 +748,18 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
         .normalize(),
     [sun, skyYaw],
   );
+  const shadowFit = useMemo(
+    () =>
+      props.trainingSite && enableAuthoredFinish
+        ? authoredShadowFit(props.trainingSite, sunDirection)
+        : null,
+    [props.trainingSite, sunDirection, enableAuthoredFinish],
+  );
+  const sunTarget = useMemo(() => {
+    const target = new THREE.Object3D();
+    if (shadowFit) target.position.copy(shadowFit.target);
+    return target;
+  }, [shadowFit]);
   const skyGeometry = useMemo(() => {
     const below = (SKY.meta.below_horizon_deg * Math.PI) / 180;
     const g = new THREE.SphereGeometry(
@@ -1010,8 +1035,13 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
     for (const m of new Set(all)) warm.add(new THREE.Mesh(quadG, m));
     warm.fog = scene.fog;
     // Synchronous on purpose: this runs once while the scene loads, not mid-drill.
-    gl.compile(warm, camera, scene);
-    quadG.dispose();
+    const finishShaderPreparation = diagnosticSpan("world_shader_prepare");
+    try {
+      gl.compile(warm, camera, scene);
+    } finally {
+      finishShaderPreparation();
+      quadG.dispose();
+    }
   }, [built, twins, gl, camera, scene, skyMaterials]);
 
   useFrame(({ camera: cam }) => {
@@ -1051,12 +1081,14 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
         onUpdate={(l) => l.layers.enableAll()}
       />
       <primitive object={skyProbe} />
+      <primitive object={sunTarget} />
       <directionalLight
         ref={sunRef}
-        position={sunDirection
-          .clone()
-          .multiplyScalar(shadowProfile.distance)
-          .toArray()}
+        target={sunTarget}
+        position={(
+          shadowFit?.position ??
+          sunDirection.clone().multiplyScalar(shadowProfile.distance)
+        ).toArray()}
         intensity={2.6}
         color="#fff2dc"
         castShadow={quality !== "low"}
@@ -1064,14 +1096,14 @@ export const Environment = memo(function Environment(props: EnvironmentProps) {
           shadowProfile.resolution || 1024,
           shadowProfile.resolution || 1024,
         ]}
-        shadow-camera-left={-shadowProfile.radius}
-        shadow-camera-right={shadowProfile.radius}
-        shadow-camera-top={shadowProfile.radius}
-        shadow-camera-bottom={-shadowProfile.radius}
-        shadow-camera-near={10}
-        shadow-camera-far={shadowProfile.far}
-        shadow-bias={-0.0006}
-        shadow-normalBias={0.04}
+        shadow-camera-left={shadowFit?.left ?? -shadowProfile.radius}
+        shadow-camera-right={shadowFit?.right ?? shadowProfile.radius}
+        shadow-camera-top={shadowFit?.top ?? shadowProfile.radius}
+        shadow-camera-bottom={shadowFit?.bottom ?? -shadowProfile.radius}
+        shadow-camera-near={shadowFit?.near ?? 10}
+        shadow-camera-far={shadowFit?.far ?? shadowProfile.far}
+        shadow-bias={shadowFit?.bias ?? -0.0006}
+        shadow-normalBias={shadowFit?.normalBias ?? 0.04}
         onUpdate={(l) => l.layers.enableAll()}
       />
     </>

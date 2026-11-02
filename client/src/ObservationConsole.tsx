@@ -1,28 +1,34 @@
 import type { ReactNode, RefObject } from "react";
-/** A fixed instrument edge, sharing the persistent simulation. The host accepts
- * the existing camera controls; no camera, action transport or evidence is copied. */
+import { ContextDock } from "./product/ContextDock";
+import {
+  observationDockStatus,
+  type ObservationDockSnapshot,
+} from "./product/observation-status";
+
+/** One persistent instrument edge. Closing or unpinning only changes its
+ * disclosure; neither instrument children nor the camera portal are remounted. */
 export default function ObservationConsole({
   children,
   controlsHost,
   visible,
+  snapshot,
 }: {
   children: ReactNode;
   controlsHost: RefObject<HTMLDivElement | null>;
   visible: boolean;
+  snapshot?: ObservationDockSnapshot;
 }) {
   return (
-    <section
+    <ContextDock
       id="vyuha-observation-console"
-      hidden={!visible}
-      aria-label="Observation console"
+      visible={visible}
+      title="Observation console"
+      eyebrow="Sensor operations"
+      description="EO / IR evidence · camera controls"
+      status={observationDockStatus(snapshot)}
     >
-      <header className="theatre-console-header">
-        <span>VYUHA / SENSOR OPERATIONS</span>
-        <strong>Observation console</strong>
-        <small>Reported evidence · operator decisions</small>
-      </header>
       <div className="theatre-console-body">{children}</div>
       <div className="theatre-camera-dock" ref={controlsHost} />
-    </section>
+    </ContextDock>
   );
 }

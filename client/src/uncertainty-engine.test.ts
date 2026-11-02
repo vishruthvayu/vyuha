@@ -149,7 +149,7 @@ test("real worker restores unclassified Defer, preserves request ownership and r
   assert.equal(JSON.stringify(log), JSON.stringify([accepted.action]));
   send({ type: "action", scope: "B", request_id: 5, action: a });
   assert.equal(messages.find((m) => m.request_id === 5)?.type, "rejected");
-  assert.equal(
+  assert.deepEqual(
     vrAction(
       replay(scenario, [], 150).snapshot(),
       "running",
@@ -159,7 +159,20 @@ test("real worker restores unclassified Defer, preserves request ownership and r
       "quad",
       "hostile",
     ),
+    { k: "designate", track: "T1" },
+    "versioned VR adapter admits the same observed worker action",
+  );
+  assert.equal(
+    vrAction(
+      replay(scenario, [], 150).snapshot(),
+      "running",
+      { ...scenario, acquisition_policy: undefined },
+      "T1",
+      "designate",
+      "quad",
+      "hostile",
+    ),
     undefined,
-    "new acquisition/action contract is not silently admitted to XR",
+    "incomplete acquisition contracts still fail closed",
   );
 });

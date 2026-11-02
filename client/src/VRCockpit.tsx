@@ -1,4 +1,20 @@
 import {
+  VR_SPATIAL,
+  spatialSurface,
+  vrContactSurface,
+  vrActionSurface,
+  vrInstrumentSurface,
+} from "./vr-layout";
+import { newId } from "./unit-state";
+import { isAcquisitionEngine } from "./engine-contracts";
+import {
+  vrInspectAction,
+  vrDeferAction,
+  vrDeferReasons,
+  vrObservationEvidence,
+  vrObservationStatus,
+} from "./vr-observation";
+import {
   Component,
   useEffect,
   useMemo,
@@ -60,7 +76,9 @@ type Props = {
   onSuspend: () => void;
   onSelect: (id: string) => void;
   onVision: (vision: Vision) => void;
-  onAction: (action: Omit<Action, "tick">) => void;
+  onAction: (action: Omit<Action, "tick">) => number | void;
+  onEnd?: () => void;
+  reducedMotion?: boolean;
   onClose: () => void;
 };
 class VRBoundary extends Component<
@@ -170,6 +188,7 @@ function Runtime({
   onFault,
   onInput,
   onMetrics,
+  heading,
 }: {
   ready: (
     renderer: THREE.WebGLRenderer | null,
@@ -180,6 +199,7 @@ function Runtime({
   onFault: (message: string) => void;
   onInput: (message: string) => void;
   onMetrics: (message: string) => void;
+  heading: number;
 }) {
   const { gl, scene, camera } = useThree();
   const latest = useRef({ onSuspend, onStatus, onFault, onInput, onMetrics });
@@ -199,6 +219,7 @@ function Runtime({
     gl.xr.setFramebufferScaleFactor(0.85);
     gl.xr.setFoveation(1);
     rig.position.set(0, 2, 0);
+    rig.rotation.y = heading;
     scene.add(rig);
     rig.add(camera);
     camera.position.set(0, 0, 0);
@@ -325,7 +346,7 @@ function Runtime({
       rig.remove(camera);
       scene.remove(rig);
     };
-  }, [gl, scene, camera, rig, ready, raycaster, rotation]);
+  }, [gl, scene, camera, rig, ready, raycaster, rotation, heading]);
   useFrame(({ clock }) => {
     const fps = meter.current.sample(clock.elapsedTime);
     if (fps !== null)
@@ -389,6 +410,8 @@ function Cockpit({
   setPage,
   inputStatus,
   contacts,
+  instrument,
+  setInstrument,
 }: {
   props: Props;
   buttons: Button[];
@@ -396,6 +419,8 @@ function Cockpit({
   setPage: (n: number) => void;
   inputStatus: string;
   contacts: (VRContact & { available: boolean })[];
+  instrument: VRInstrument;
+  setInstrument: (mode: VRInstrument) => void;
 }) {
   const { state, scenario, phase, selected, vision } = props;
   const pages = Math.max(1, Math.ceil(contacts.length / 4)),
@@ -408,99 +433,178 @@ function Cockpit({
         selected={selected}
         vision={vision}
         quality={props.quality}
+        reducedMotion={props.reducedMotion}
         context={props.sessionKey}
       />
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.02, 0]}>
-        <circleGeometry args={[2, 48]} />
-        <meshBasicMaterial color="#1a3039" fog={false} />
-      </mesh>
-      <gridHelper args={[4, 8, "#6b9395", "#31484f"]} />
-      <Surface
-        text={`VYUHA / VR OBSERVATION POST\n${phase.toUpperCase()} | ${(state.tick / 30).toFixed(0)} / ${scenario.duration} seconds`}
-        position={[0, 2.12, -1.9]}
-        width={2.8}
-        height={0.19}
-      />
-      <Surface
-        text={vrEvidence(state, selected, modernSensors(scenario))}
-        position={[-0.98, 1.64, -1.9]}
-        width={0.88}
-        height={0.48}
-      />
-      {contacts.slice(safePage * 4, safePage * 4 + 4).map((t, i) => {
-        const b = {
-          id: `contact-${t.id}`,
-          label: `${selected === t.id ? "> " : ""}${t.id} | ${t.range} m${t.available ? "" : " / last report"}`,
-          enabled: t.available,
-          run: () => props.onSelect(t.id),
-        };
-        return (
+      <group
+        rotation={[
+          0,
+          isAcquisitionEngine(scenario.engine_version) ? Math.PI : 0,
+          0,
+        ]}
+      >
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.02, 0]}>
+          <circleGeometry args={[2, 48]} />
+          <meshBasicMaterial color="#1a3039" fog={false} />
+        </mesh>
+        <gridHelper args={[4, 8, "#6b9395", "#31484f"]} />
+        <Surface
+          text={`VYUHA / VR OBSERVATION POST\n${phase.toUpperCase()} | ${(state.tick / 30).toFixed(0)} / ${scenario.duration} seconds`}
+          {...spatialSurface(VR_SPATIAL.header)}
+        />
+        <Surface
+          text={vrEvidence(state, selected, modernSensors(scenario))}
+          {...spatialSurface(VR_SPATIAL.evidence)}
+        />
+        {contacts.slice(safePage * 4, safePage * 4 + 4).map((t, i) => {
+          const b = {
+            id: `contact-${t.id}`,
+            label: `${selected === t.id ? "> " : ""}${t.id} | ${t.range} m${t.available ? "" : " / last report"}`,
+            enabled: t.available,
+            run: () => props.onSelect(t.id),
+          };
+          return (
+            <Surface
+              key={t.id}
+              text={b.label}
+              button={b}
+              {...spatialSurface(vrContactSurface(i))}
+            />
+          );
+        })}
+        {!contacts.length && (
           <Surface
-            key={t.id}
-            text={b.label}
-            button={b}
-            position={[-0.98, 1.3 - i * 0.14, -1.9]}
+            text="No detected contacts yet"
+            position={[-0.98, 1.25, -1.9]}
             width={0.88}
           />
-        );
-      })}
-      {!contacts.length && (
+        )}
         <Surface
-          text="No detected contacts yet"
-          position={[-0.98, 1.25, -1.9]}
-          width={0.88}
+          text={`Contacts ${safePage + 1}/${pages} | next page`}
+          {...spatialSurface(VR_SPATIAL.contactPage)}
+          button={{
+            id: "contact-page",
+            label: "Next contacts",
+            enabled: pages > 1,
+            run: () => setPage((safePage + 1) % pages),
+          }}
         />
-      )}
-      <Surface
-        text={`Contacts ${safePage + 1}/${pages} | next page`}
-        position={[-0.98, 0.67, -1.9]}
-        width={0.88}
-        button={{
-          id: "contact-page",
-          label: "Next contacts",
-          enabled: pages > 1,
-          run: () => setPage((safePage + 1) % pages),
-        }}
-      />
-      {buttons.slice(0, 8).map((b, i) => (
+        {(["observe", "decide", "session"] as VRInstrument[]).map((mode, i) => (
+          <Surface
+            key={mode}
+            text={`${instrument === mode ? "> " : ""}${mode === "observe" ? "Observe" : mode === "decide" ? "Decide" : "Session"}`}
+            button={{
+              id: `instrument-${mode}`,
+              label: mode,
+              enabled: true,
+              run: () => setInstrument(mode),
+            }}
+            {...spatialSurface(vrInstrumentSurface(i))}
+          />
+        ))}
+        {buttons
+          .filter(
+            (b) =>
+              vrControlGroup(b.id) === instrument && b.id !== "start-pause",
+          )
+          .map((b, i) => (
+            <Surface
+              key={b.id}
+              text={b.label}
+              button={b}
+              {...spatialSurface(vrActionSurface(i))}
+            />
+          ))}
         <Surface
-          key={b.id}
-          text={b.label}
-          button={b}
-          position={[0, 1.83 - i * 0.15, -1.9]}
+          text={`RADAR ${state.radarStatus.toUpperCase()}\nRF SENSOR ${state.rfAvailable ? "AVAILABLE" : "OFFLINE"}\n${vrVisionLabel(vision, scenario).toUpperCase()} VIEW\n${props.feedback?.action.track === selected ? props.feedback.status : "Training model / observed evidence"}`}
+          {...spatialSurface(VR_SPATIAL.status)}
         />
-      ))}
-      <Surface
-        text={`RADAR ${state.radarStatus.toUpperCase()}\nRF SENSOR ${state.rfAvailable ? "AVAILABLE" : "OFFLINE"}\n${vrVisionLabel(vision, scenario).toUpperCase()} VIEW\n${props.feedback?.action.track === selected ? props.feedback.status : "Training model / observed evidence"}`}
-        position={[0.98, 1.68, -1.9]}
-        width={0.88}
-        height={0.36}
-      />
-      {buttons.slice(8).map((b, i) => (
+        {state.acquisition && (
+          <Surface
+            text={[
+              vrObservationStatus(state),
+              ...vrObservationEvidence(state, selected),
+            ].join("\n")}
+            {...spatialSurface(VR_SPATIAL.acquisition)}
+          />
+        )}
+        {buttons
+          .filter((b) => b.id === "start-pause")
+          .map((b) => (
+            <Surface
+              key={b.id}
+              text={b.label}
+              button={b}
+              {...spatialSurface(VR_SPATIAL.pause)}
+            />
+          ))}
         <Surface
-          key={b.id}
-          text={b.label}
-          button={b}
-          position={[0.98, 1.37 - i * 0.15, -1.9]}
-          width={0.88}
+          text={
+            state.acquisition
+              ? "OBSERVE → REQUEST → EVIDENCE → DECIDE / DEFER"
+              : "OBSERVE → SELECT → DESIGNATE → CLASSIFY → RESPOND"
+          }
+          {...spatialSurface(VR_SPATIAL.legend)}
         />
-      ))}
-      <Surface
-        text={`OBSERVE → SELECT → DESIGNATE → CLASSIFY → RESPOND`}
-        position={[0, 0.44, -1.9]}
-        width={2.8}
-        height={0.12}
-      />
-      <Surface
-        text={`${inputStatus}\nPoint and release trigger. Stay seated. Exit VR pauses the drill.`}
-        position={[0, 0.22, -1.9]}
-        width={2.8}
-        height={0.2}
-      />
+        <Surface
+          text={`${inputStatus}\nPoint and release trigger. Stay seated. Exit VR pauses the drill.`}
+          {...spatialSurface(VR_SPATIAL.notes)}
+        />
+      </group>
     </>
   );
 }
+type VRInstrument = "observe" | "decide" | "session";
+function vrControlGroup(id: string): VRInstrument {
+  return [
+    "request-eo",
+    "request-ir",
+    "defer-reason",
+    "defer",
+    "vision",
+  ].includes(id)
+    ? "observe"
+    : ["start-pause", "finish", "confirm-finish", "exit"].includes(id)
+      ? "session"
+      : "decide";
+}
 export default function VRCockpit(props: Props) {
+  const [instrument, setInstrument] = useState<VRInstrument>(
+    props.phase === "ready"
+      ? "session"
+      : isAcquisitionEngine(props.scenario.engine_version)
+        ? "observe"
+        : "decide",
+  );
+  const [deferReason, setDeferReason] = useState<Action["reason"] | null>(null);
+  const endArm = useRef<{ session: string; until: number } | null>(null);
+  const [endConfirm, setEndConfirm] = useState(false);
+  const latestProps = useRef(props);
+  latestProps.current = props;
+  const intent = useRef({
+    session: props.sessionKey,
+    selected: props.selected,
+    propSelected: props.selected,
+    phase: props.phase,
+    suspended: props.phase !== "running",
+  });
+  if (intent.current.session !== props.sessionKey) {
+    intent.current = {
+      session: props.sessionKey,
+      selected: props.selected,
+      propSelected: props.selected,
+      phase: props.phase,
+      suspended: props.phase !== "running",
+    };
+  }
+  if (intent.current.propSelected !== props.selected) {
+    intent.current.propSelected = props.selected;
+    intent.current.selected = props.selected;
+  }
+  if (intent.current.phase !== props.phase) {
+    intent.current.phase = props.phase;
+    intent.current.suspended = props.phase !== "running";
+  }
   const [support, setSupport] = useState<XRSupport>("checking"),
     [active, setActive] = useState(false),
     [entering, setEntering] = useState(false),
@@ -516,18 +620,21 @@ export default function VRCockpit(props: Props) {
     [identity, setIdentity] = useState<Identity | null>(null);
   const lock = useRef<{
     baseline: number;
+    request?: number;
     action: Omit<Action, "tick">;
   } | null>(null);
   const [, refresh] = useState(0);
   const pendingRef = useRef(pending);
   pendingRef.current = pending;
   const suspend = () => {
+    intent.current.suspended = true;
     pendingRef.current = null;
     setPending(null);
     props.onSuspend();
   };
 
   const selectContact = (id: string) => {
+    intent.current.selected = id;
     pendingRef.current = null;
     setPending(null);
     props.onSelect(id);
@@ -571,9 +678,14 @@ export default function VRCockpit(props: Props) {
     );
     setKind(own?.classification ?? null);
     setIdentity(own?.declared ?? null);
+    setDeferReason(null);
+    endArm.current = null;
+    setEndConfirm(false);
   }, [props.selected, props.sessionKey]);
   useEffect(() => {
     setPending(null);
+    endArm.current = null;
+    setEndConfirm(false);
   }, [props.phase]);
   useEffect(() => {
     lock.current = null;
@@ -585,7 +697,7 @@ export default function VRCockpit(props: Props) {
     if (
       l &&
       f &&
-      f.seq > l.baseline &&
+      (l.request === undefined ? f.seq > l.baseline : f.seq === l.request) &&
       JSON.stringify(f.action) === JSON.stringify(l.action) &&
       f.status !== "submitted"
     ) {
@@ -611,6 +723,24 @@ export default function VRCockpit(props: Props) {
     );
     return () => clearTimeout(timer);
   }, [pending]);
+  useEffect(() => {
+    if (!endConfirm) return;
+    const armed = endArm.current;
+    if (!armed) return;
+    const timer = setTimeout(
+      () => {
+        if (endArm.current === armed) {
+          endArm.current = null;
+          setEndConfirm(false);
+          setError(
+            "End confirmation expired. Choose End exercise again if intended.",
+          );
+        }
+      },
+      Math.max(0, armed.until - Date.now()),
+    );
+    return () => clearTimeout(timer);
+  }, [endConfirm, props.sessionKey]);
   async function enter() {
     const { renderer, lifecycle } = runtime.current;
     if (!renderer || !lifecycle || !navigator.xr) return;
@@ -655,15 +785,33 @@ export default function VRCockpit(props: Props) {
       identity,
       effector,
     );
-    if (action && !lock.current && !awaitingReceipt) {
-      lock.current = { baseline: props.feedback?.seq ?? 0, action };
-      setPending(null);
-      pendingRef.current = null;
-      refresh((n) => n + 1);
-      props.onAction(action);
-    }
+    if (action) dispatch(action);
+  };
+  const dispatch = (action: Omit<Action, "tick">) => {
+    if (
+      lock.current ||
+      awaitingReceipt ||
+      props.busy ||
+      intent.current.suspended ||
+      intent.current.selected !== action.track ||
+      latestProps.current.sessionKey !== props.sessionKey ||
+      latestProps.current.phase !== "running"
+    )
+      return;
+    const owned = {
+      baseline: props.feedback?.seq ?? 0,
+      action,
+      request: undefined as number | undefined,
+    };
+    lock.current = owned;
+    setPending(null);
+    pendingRef.current = null;
+    refresh((n) => n + 1);
+    const request = props.onAction(action);
+    if (typeof request === "number") owned.request = request;
   };
   const can = (k: "designate" | "classify" | "engage", effector?: Effector) =>
+    !props.busy &&
     !lock.current &&
     !awaitingReceipt &&
     !!vrAction(
@@ -848,8 +996,17 @@ export default function VRCockpit(props: Props) {
       run: () => {
         pendingRef.current = null;
         setPending(null);
-        if (props.phase === "ready") props.onStart();
-        else props.onPause();
+        if (props.phase === "ready") {
+          props.onStart();
+          setInstrument(
+            isAcquisitionEngine(props.scenario.engine_version)
+              ? "observe"
+              : "decide",
+          );
+        } else {
+          if (props.phase === "running") intent.current.suspended = true;
+          props.onPause();
+        }
       },
     },
     {
@@ -876,13 +1033,137 @@ export default function VRCockpit(props: Props) {
     },
     { id: "exit", label: "Exit headset / pause", enabled: active, run: exit },
   ];
+  if (isAcquisitionEngine(props.scenario.engine_version)) {
+    for (const channel of ["eo", "ir"] as const)
+      buttons.push({
+        id: `request-${channel}`,
+        label: `Request ${channel.toUpperCase()} observation`,
+        enabled:
+          !props.busy &&
+          !lock.current &&
+          !awaitingReceipt &&
+          !!vrInspectAction(
+            props.state,
+            props.phase,
+            props.scenario,
+            props.selected,
+            channel,
+            "eligibility",
+          ),
+        run: () => {
+          const action = vrInspectAction(
+            props.state,
+            props.phase,
+            props.scenario,
+            props.selected,
+            channel,
+            newId(),
+          );
+          if (action) dispatch(action);
+        },
+      });
+    if (props.scenario.engine_version === "vyuha-0.6.0") {
+      buttons.push({
+        id: "defer-reason",
+        label: `Uncertainty: ${deferReason ? deferReason.replaceAll("_", " ") : "choose reason"} / cycle`,
+        enabled: !props.busy && !lock.current && !awaitingReceipt,
+        run: () =>
+          setDeferReason(
+            vrDeferReasons[
+              ((deferReason ? vrDeferReasons.indexOf(deferReason) : -1) + 1) %
+                vrDeferReasons.length
+            ],
+          ),
+      });
+      buttons.push({
+        id: "defer",
+        label: "Record Defer / retain uncertainty",
+        enabled:
+          !props.busy &&
+          !lock.current &&
+          !awaitingReceipt &&
+          !!vrDeferAction(
+            props.state,
+            props.phase,
+            props.scenario,
+            props.selected,
+            deferReason,
+          ),
+        run: () => {
+          const action = vrDeferAction(
+            props.state,
+            props.phase,
+            props.scenario,
+            props.selected,
+            deferReason,
+          );
+          if (action) dispatch(action);
+        },
+      });
+    }
+  }
+  if (props.onEnd) {
+    buttons.push({
+      id: "finish",
+      label: "End exercise / review",
+      enabled: !props.busy && ["running", "paused"].includes(props.phase),
+      run: () => {
+        const current = latestProps.current;
+        if (
+          current.sessionKey !== props.sessionKey ||
+          current.phase !== props.phase ||
+          current.busy ||
+          !["running", "paused"].includes(current.phase)
+        )
+          return;
+        endArm.current = {
+          session: props.sessionKey,
+          until: Date.now() + 8000,
+        };
+        setEndConfirm(true);
+      },
+    });
+    buttons.push({
+      id: "confirm-finish",
+      label: "Confirm end exercise",
+      enabled:
+        endConfirm &&
+        !props.busy &&
+        !!endArm.current &&
+        endArm.current.session === props.sessionKey &&
+        ["running", "paused"].includes(props.phase),
+      run: () => {
+        const armed = endArm.current;
+        endArm.current = null;
+        setEndConfirm(false);
+        if (
+          armed &&
+          armed.session === props.sessionKey &&
+          latestProps.current.sessionKey === props.sessionKey &&
+          latestProps.current.phase === props.phase &&
+          Date.now() < armed.until &&
+          !latestProps.current.busy &&
+          ["running", "paused"].includes(latestProps.current.phase)
+        ) {
+          intent.current.suspended = true;
+          props.onEnd?.();
+        } else if (armed)
+          setError(
+            "End confirmation expired or context changed. Choose End exercise again if intended.",
+          );
+      },
+    });
+  }
   const descriptions: Record<XRSupport, string> = {
     checking: "Checking this browser for a VR headset…",
-    available: "WebXR headset detected. Enter VR when you are ready.",
+    available:
+      "This browser reports immersive VR is available. Enter when ready; physical device validation is separate.",
+    unsupported:
+      "This browser has no WebXR API. Use desktop preview or a compatible WebXR browser.",
     insecure:
       "Headset mode needs trusted HTTPS. Plain LAN HTTP supports desktop preview only.",
     unavailable:
-      "No immersive WebXR headset detected. Desktop preview is available below.",
+      "No compatible immersive VR session is currently available. Connect a supported headset and check browser permissions, or use desktop preview.",
     error:
       "The browser could not check VR support. Check permissions and retry by reopening this cockpit.",
   };
@@ -949,6 +1230,9 @@ export default function VRCockpit(props: Props) {
               onFault={setError}
               onInput={setInputStatus}
               onMetrics={setMetrics}
+              heading={
+                isAcquisitionEngine(props.scenario.engine_version) ? Math.PI : 0
+              }
             />
             <Cockpit
               props={{ ...props, onSelect: selectContact }}
@@ -957,6 +1241,8 @@ export default function VRCockpit(props: Props) {
               setPage={setPage}
               inputStatus={inputStatus}
               contacts={contacts}
+              instrument={instrument}
+              setInstrument={setInstrument}
             />
           </Canvas>
         </div>
@@ -997,11 +1283,43 @@ export default function VRCockpit(props: Props) {
         >
           Next contacts · {safePage + 1}/{pages}
         </button>
+        <div className="vr-instrument-tabs" aria-label="Cockpit instruments">
+          {(["observe", "decide", "session"] as VRInstrument[]).map((mode) => (
+            <button
+              key={mode}
+              className="button subtle"
+              aria-pressed={instrument === mode}
+              onClick={() => setInstrument(mode)}
+            >
+              {mode === "observe"
+                ? "Observation instruments"
+                : mode === "decide"
+                  ? "Decision instruments"
+                  : "Session controls"}
+            </button>
+          ))}
+        </div>
+        {props.state.acquisition && (
+          <section
+            className="vr-observation-evidence"
+            aria-label="VR released observation evidence"
+          >
+            <strong role="status">{vrObservationStatus(props.state)}</strong>
+            {vrObservationEvidence(props.state, props.selected).map(
+              (line, i) => (
+                <p key={i}>{line}</p>
+              ),
+            )}
+          </section>
+        )}
         <div className="vr-button-grid">
           {buttons.map((b) => (
             <button
               key={b.id}
               data-vr-action={b.id}
+              hidden={
+                b.id !== "start-pause" && vrControlGroup(b.id) !== instrument
+              }
               className="button subtle"
               disabled={!b.enabled}
               onClick={b.run}

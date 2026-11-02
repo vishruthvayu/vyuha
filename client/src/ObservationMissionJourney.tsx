@@ -5,30 +5,8 @@ import type {
   ObservationTemplate,
   ObservationMissionCatalog,
 } from "./observation-missions";
-type Counts = {
-  supported: number;
-  unsupported: number;
-  inconclusive: number;
-  unassessable: number;
-};
-export type ObservationProgression = {
-  version: string;
-  practice: { sessions: number; competencies: Record<string, Counts> };
-  assessment: { sessions: number; competencies: Record<string, Counts> };
-  recommendation: {
-    template: string;
-    competency: string;
-    reason: string;
-    href: string;
-    based_on: {
-      session_id: string;
-      mode: string;
-      competency: string;
-      status: string;
-    }[];
-  };
-  limitations: string[];
-};
+import CompetencyEvidenceJourney from "./CompetencyEvidenceJourney";
+import { journeyMatches, type LearningJourney } from "./learning-journey";
 export function missionPracticeHref(
   template: string,
   mode: MissionMode,
@@ -69,7 +47,7 @@ export default function ObservationMissionJourney({
   const [catalog, setCatalog] = useState<ObservationMissionCatalog | null>(
       null,
     ),
-    [progress, setProgress] = useState<ObservationProgression | null>(null);
+    [progress, setProgress] = useState<LearningJourney | null>(null);
   const [mode, setMode] = useState<MissionMode>("practice"),
     [seed, setSeed] = useState("482913"),
     [site, setSite] = useState<"freight_corridor" | "open_campus">(
@@ -90,13 +68,19 @@ export default function ObservationMissionJourney({
       .catch((e) => {
         if (!cancelled) setError((e as Error).message);
       });
-    void api<ObservationProgression>(
-      `/observation-learning/trainees/${encodeURIComponent(trainee)}/progression`,
+    void api<LearningJourney>(
+      `/observation-learning/trainees/${encodeURIComponent(trainee)}/journey`,
       undefined,
       RECONSTRUCTION_TIMEOUT_MS,
     )
       .then((v) => {
-        if (!cancelled) setProgress(v);
+        if (!cancelled) {
+          if (!journeyMatches(v, trainee))
+            throw new Error(
+              "The evidence response does not match this learner or journey contract.",
+            );
+          setProgress(v);
+        }
       })
       .catch((e) => {
         if (!cancelled) setProgressError((e as Error).message);
@@ -232,61 +216,23 @@ export default function ObservationMissionJourney({
           </ul>
         </details>
       )}
-      {progress && (
-        <section
-          className="observation-next-practice"
-          aria-label="Evidence-guided observation practice"
-        >
-          <span className="eyebrow">
-            EVIDENCE-GAP DIRECTOR / EXPLAINABLE HEURISTIC
-          </span>
-          <h3>Your next information problem</h3>
-          <p>
-            <strong>{progress.recommendation.competency}</strong> ·{" "}
-            {progress.recommendation.reason}
-          </p>
-          <a className="button primary" href={progress.recommendation.href}>
-            Prepare recommended observation practice
-          </a>
-          <p>
-            {progress.practice.sessions} practice sessions ·{" "}
-            {progress.assessment.sessions} independent sessions in the bounded
-            evidence window. These are descriptive evidence observations, not
-            mastery levels or measured learning gains.
-          </p>
-          {!!progress.recommendation.based_on.length && (
-            <details>
-              <summary>Show the evidence behind this recommendation</summary>
-              <ul>
-                {progress.recommendation.based_on.map((r, i) => (
-                  <li key={i}>
-                    <a
-                      href={`/?view=aar&session=${encodeURIComponent(r.session_id)}`}
-                    >
-                      {r.session_id.slice(0, 12)}
-                    </a>{" "}
-                    · {r.mode} · {r.competency} · {r.status}
-                  </li>
-                ))}
-              </ul>
-            </details>
-          )}
-        </section>
+      {progress && progress.trainee === trainee && (
+        <CompetencyEvidenceJourney key={trainee} journey={progress} />
       )}
       {progressError && (
         <p role="status">
-          Evidence-guided practice is unavailable: {progressError}. The frozen
-          mission briefs remain usable.
+          Verified competency journey is unavailable: {progressError}. The
+          frozen mission briefs remain usable.
         </p>
       )}
-      {(error || progressError) && (
+      {
         <button
           className="button subtle"
           onClick={() => setReload((x) => x + 1)}
         >
-          Retry mission evidence
+          Refresh verified journey
         </button>
-      )}
+      }
     </section>
   );
 }

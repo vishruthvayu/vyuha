@@ -20,6 +20,7 @@ import type { Action, Scenario, Snapshot, Track } from "./types";
 function fixture() {
   const scenario: Scenario = {
     ...makeScenario(),
+    version: 2,
     engine_version: SENSOR_VERSION,
     sensor_version: SENSOR_VERSION,
   };
@@ -286,7 +287,7 @@ test("VR ordinary payloads retain identical worker-style replay and scoring", ()
 });
 test("capability checks distinguish insecure, absent, rejected and supported WebXR", async () => {
   assert.equal(await checkVRSupport(false, undefined), "insecure");
-  assert.equal(await checkVRSupport(true, undefined), "unavailable");
+  assert.equal(await checkVRSupport(true, undefined), "unsupported");
   assert.equal(
     await checkVRSupport(true, { isSessionSupported: async () => false }),
     "unavailable",
@@ -460,7 +461,7 @@ test("VR requires explicit type/identity choices and distinguishes styled IR nig
   assert.equal(vrVisionLabel("day", scenario), "EO day");
 });
 
-test("VR explicitly rejects active-observation engine until its acquisition adapter is admitted", () => {
+test("VR rejects an incomplete active-observation contract rather than bypassing admission", () => {
   const { state, scenario } = fixture();
   scenario.engine_version = "vyuha-0.5.0";
   for (const k of ["designate", "classify", "engage"] as const)

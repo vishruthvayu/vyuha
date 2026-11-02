@@ -1,0 +1,51 @@
+✔ cached scenery gives independent mutable consumer geometry and disposes retained originals exactly once (3.976833ms)
+✔ LRU scenery memory is bounded and evicts an unused key; oversized geometry remains consumer-owned (2.247375ms)
+✔ zero-byte public entries also have a bounded LRU count (0.641708ms)
+{"site":"freight_corridor","map":2048,"oldArea":1716213.9127804816,"fittedArea":825379.395749219,"areaRatio":0.4809303721422471,"width":994.6442919002792,"height":829.8236892028227,"near":988.9401255866768,"far":1777.0906496527716}
+{"site":"open_campus","map":2048,"oldArea":1048580.7407397483,"fittedArea":825379.395749219,"areaRatio":0.7871395722631085,"width":994.6442919002792,"height":829.8236892028227,"near":988.9401255866768,"far":1777.0906496527716}
+✔ same-build presentation ablation requires an explicit baseline and defaults to the authored finish (1.270625ms)
+✔ fitted daylight shadow camera encloses authored volumes and projected receivers at unchanged map cost (5.96375ms)
+✔ authored mineral finish patches installed Standard chunks without geometry, visibility or new texture samples (2.053875ms)
+✔ quality fallback, undecorated materials and thermal shader stay frozen (0.890416ms)
+✔ incompatible future shader chunks keep the complete stock shader instead of partially patching GLSL (0.275875ms)
+✔ timing reports tail stalls and never substitutes median FPS (4.562042ms)
+✔ bounded collection preserves first samples and discloses overflow and stopped state (0.62925ms)
+✔ optics and startup are separate and malformed timings cannot poison a report (1.849ms)
+✔ diagnostics are off by default and report snapshots cannot mutate collected data (0.441958ms)
+✔ hidden/resumed frame gaps are disclosed rather than counted as foreground stalls (0.486ms)
+✔ a throttled stop timer cannot extend the bounded timing window (2.292583ms)
+✔ manual stop seals elapsed time and observer support is disclosed (0.5855ms)
+✔ delayed renderer work cannot contaminate a replacement capture or submit twice (2.7975ms)
+✔ timed work preserves original return values, exceptions and one scoped measurement (1.93875ms)
+✔ renderer counters are throttled, validated, copied and bounded without claiming GPU memory (0.953541ms)
+✔ renderer submit timing stays opt-in, once-only and capture-owned (0.875458ms)
+✔ renderer-only samples cannot extend the recording window or contaminate a stopped capture (0.234334ms)
+✔ shader preparation failure keeps the original exception and records one CPU span (0.329666ms)
+✔ reports retain only the declared presentation variant for same-build comparisons (0.255917ms)
+{"site":"freight_corridor","quality":"low","triangles":384,"bytes":50688}
+{"site":"freight_corridor","quality":"medium","triangles":19500,"bytes":2574000}
+{"site":"freight_corridor","quality":"high","triangles":22716,"bytes":2998512}
+{"site":"open_campus","quality":"low","triangles":384,"bytes":50688}
+{"site":"open_campus","quality":"medium","triangles":13332,"bytes":1759824}
+{"site":"open_campus","quality":"high","triangles":15924,"bytes":2101968}
+✔ premium all-sided architecture has finite metric attributes and remains inside frozen volumes at every quality (359.463917ms)
+✔ site shadows cover authored extents without per-frame shadow updates or changing legacy profiles (0.944583ms)
+✔ architectural arrival uses only public geometry, clamps invalid time and honors reduced motion (0.427583ms)
+✔ constant environment produces analytic pi-times-radiance diffuse irradiance (11.417ms)
+✔ directional environment reproduces the cosine-convolved linear field (6.619584ms)
+✔ yaw rotates the irradiance field without changing its energy (15.77925ms)
+✔ mirrored environment coordinates agree with both photographed sky sun metadata (0.512709ms)
+✔ sample work is bounded and rejects non-finite dimensions/yaw (1.121542ms)
+✔ authored probes replace a declared fill share and leave existing PMREM intensity unchanged (4.095375ms)
+✔ extreme directional fields stay nonnegative and inside analytic irradiance budget (9.433ms)
+✔ fallback and thermal/IR modes retain original light policy with no probe contribution (0.609625ms)
+✔ profile caches are immutable and projected/probe values have independent ownership (4.749583ms)
+✔ scene cleanup restores prior fog, environment, intensity, rotation and clear state (1.723416ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1195.012459

@@ -1,4 +1,5 @@
 import { isAcquisitionEngine } from "./engine-contracts";
+import { vrEngineReason } from "./vr-observation";
 import { controlReason } from "./presentation";
 import { effectorStates } from "./GuidedDecision";
 import { reportedPosition } from "./observed-contacts";
@@ -21,7 +22,9 @@ export type VRPhase = "ready" | "restoring" | "running" | "paused" | "complete";
 export const vrKinds: Kind[] = ["quad", "fixed_wing", "fiber_fpv", "bird"];
 export const vrIdentities: Identity[] = ["hostile", "friendly", "neutral"];
 export const modernSensors = (s: Scenario) =>
-  s.engine_version === SENSOR_VERSION || s.sensor_version === SENSOR_VERSION;
+  s.engine_version === SENSOR_VERSION ||
+  s.sensor_version === SENSOR_VERSION ||
+  isAcquisitionEngine(s.engine_version);
 // The v2 contract never falls back to truth if an observation is missing.
 export function vrObservedState(state: Snapshot, modern: boolean): Snapshot {
   return {
@@ -115,7 +118,11 @@ export function vrAction(
   identity: Identity | null,
   effector?: Effector,
 ): Omit<Action, "tick"> | undefined {
-  if (isAcquisitionEngine(scenario.engine_version)) return; // Acquisition XR adapter is not admitted.
+  if (
+    vrEngineReason(scenario) ||
+    (isAcquisitionEngine(scenario.engine_version) && !state.acquisition)
+  )
+    return;
 
   const t = targetAt(state, selected, modernSensors(scenario));
   if (controlReason(k === "engage" ? "respond" : k, phase, t)) return;
@@ -165,13 +172,18 @@ export function validConfirmation(
   );
 }
 export type XRSupport =
-  "checking" | "available" | "insecure" | "unavailable" | "error";
+  | "checking"
+  | "available"
+  | "insecure"
+  | "unsupported"
+  | "unavailable"
+  | "error";
 export async function checkVRSupport(
   secure: boolean,
   xr: Pick<XRSystem, "isSessionSupported"> | undefined,
 ): Promise<XRSupport> {
   if (!secure) return "insecure";
-  if (!xr) return "unavailable";
+  if (!xr) return "unsupported";
   try {
     return (await xr.isSessionSupported("immersive-vr"))
       ? "available"

@@ -221,8 +221,9 @@ function AcademyJourney({
           Ghost.
         </p>
         <p>
-          Practice only. This new engine does not update individual mastery.
-          Crew and VR adapters are not yet admitted.
+          Practice evidence remains separate from independent assessment and
+          does not update the historical individual mastery profile. Mission and
+          VR availability follow the prepared engine contract.
         </p>
         <a className="button primary" href="/?acquisition=1&night=0">
           Enter active observation practice

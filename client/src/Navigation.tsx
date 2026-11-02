@@ -41,6 +41,8 @@ import {
 
 const icons: Partial<Record<NavigationId, LucideIcon>> = {
   training: Crosshair,
+  academy: BookOpen,
+  crew: Users,
   review: Activity,
   rapid: Eye,
   director: Target,
@@ -123,6 +125,7 @@ export function NavigationLinks({
 }
 
 const primaryIds: NavigationId[] = [
+  "academy",
   "training",
   "review",
   "crew",
@@ -130,6 +133,7 @@ const primaryIds: NavigationId[] = [
   "analytics",
 ];
 const primaryLabels: Partial<Record<NavigationId, string>> = {
+  academy: "Academy",
   training: "Training",
   review: "Review",
   crew: "Crew",
@@ -166,6 +170,7 @@ export function PrimaryNavigationLinks({
           view && item.workspaceHref ? item.workspaceHref : item.href;
         const nestedTraining = id === "training" && active === "director";
         const selected = active === id || nestedTraining;
+        const Icon = icons[id] ?? BookOpen;
         return (
           <a
             key={id}
@@ -187,6 +192,7 @@ export function PrimaryNavigationLinks({
             className={`mission-primary-link ${selected ? "active" : ""}`}
             onClick={(event) => onNavigate?.(event, { ...item, href })}
           >
+            <Icon size={16} aria-hidden="true" />
             {primaryLabels[id]}
             {id === "review" && reviewCount > 0 && (
               <span aria-hidden="true" className="nav-count">
@@ -316,7 +322,10 @@ export default function Navigation({
             <path d="M3 5h6l7 18 7-18h6L18 30h-4Z" fill="currentColor" />
             <path d="M11 3h10l-5 12Z" fill="currentColor" opacity=".4" />
           </svg>
-          <strong>VYUHA</strong>
+          <span className="mission-brand-copy">
+            <strong>VYUHA</strong>
+            <small>Simulation learning</small>
+          </span>
         </a>
         <PrimaryNavigationLinks
           pathname={pathname}

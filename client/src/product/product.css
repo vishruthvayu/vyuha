@@ -1,0 +1,25 @@
+/* Final product composition layer. Keep after premium/observation-theatre.css. */
+@import "./tokens.css";
+@import "./shell.css";
+@import "./training.css";
+@import "./review.css";
+
+:is(.product-context-dock, .product-workspace-header, .evidence-theatre)
+  :is(button, a, input, select, summary, [tabindex]):focus-visible,
+.mission-navigation :is(a, button):focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+.product-context-dock [hidden] {
+  display: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .product-context-dock *,
+  .product-workspace-header *,
+  .mission-navigation *,
+  .evidence-theatre * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

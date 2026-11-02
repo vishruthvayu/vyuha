@@ -1,3 +1,8 @@
+import {
+  authoredFinishVariant,
+  type AuthoredFinishVariant,
+} from "./world/authored-finish-policy";
+
 /** Opt-in, bounded, local-only timing. Never reads actions, text, identities or sensor truth. */
 export type TimingKind =
   | "world_textures"
@@ -5,10 +10,12 @@ export type TimingKind =
   | "world_texture_chunk"
   | "world_build"
   | "environment_reflections"
+  | "world_shader_prepare"
   | "airframe_geometry"
   | "renderer_module"
   | "first_frame"
   | "render_frame"
+  | "renderer_cpu_submit"
   | "worker_delivery"
   | "long_frame"
   | "long_task"
@@ -36,10 +43,12 @@ const KINDS: TimingKind[] = [
   "world_texture_chunk",
   "world_build",
   "environment_reflections",
+  "world_shader_prepare",
   "airframe_geometry",
   "renderer_module",
   "first_frame",
   "render_frame",
+  "renderer_cpu_submit",
   "worker_delivery",
   "long_frame",
   "long_task",
@@ -66,6 +75,39 @@ export function distribution(values: readonly number[]) {
     over_100_ms: sorted.filter((n) => n > 100).length,
   };
 }
+/** These are renderer object/draw counts, never allocation sizes or GPU timing.
+ * Multi-pass callers must reset info once before, and sample after, their passes. */
+export type RendererInfo = {
+  render: { calls: number; triangles: number; lines: number; points: number };
+  memory: { geometries: number; textures: number };
+  programs?: readonly unknown[] | null;
+};
+export const RENDERER_COUNTER_LIMIT = 1024;
+export const RENDERER_COUNTER_INTERVAL_MS = 250;
+const COUNTERS = [
+  "calls",
+  "triangles",
+  "lines",
+  "points",
+  "geometries",
+  "textures",
+  "programs",
+] as const;
+type RendererCounters = Record<(typeof COUNTERS)[number], number>;
+function rendererCounters(info: RendererInfo): RendererCounters | null {
+  const counters = {
+    calls: info.render.calls,
+    triangles: info.render.triangles,
+    lines: info.render.lines,
+    points: info.render.points,
+    geometries: info.memory.geometries,
+    textures: info.memory.textures,
+    programs: info.programs?.length ?? 0,
+  };
+  return Object.values(counters).every((n) => Number.isSafeInteger(n) && n >= 0)
+    ? counters
+    : null;
+}
 export class TimingCapture {
   readonly samples: {
     kind: TimingKind;
@@ -80,11 +122,45 @@ export class TimingCapture {
   stopped = false;
   stoppedAt: number | null = null;
   observerSupport: string[] = [];
-  stop(now:number) {if(this.stoppedAt===null)this.stoppedAt=Math.min(this.start+DIAGNOSTIC_WINDOW_MS,Math.max(this.start,now));this.stopped=true;}
+  readonly rendererSamples: (RendererCounters & {
+    phase: DiagnosticPhase;
+    elapsed_ms: number;
+  })[] = [];
+  rendererDropped = 0;
+  private lastRendererSample = -Infinity;
+  renderer(info: RendererInfo, now: number) {
+    if (this.stopped || !Number.isFinite(now) || now < this.start) return;
+    if (now - this.start > DIAGNOSTIC_WINDOW_MS) {
+      this.stop(this.start + DIAGNOSTIC_WINDOW_MS);
+      return;
+    }
+    if (now - this.lastRendererSample < RENDERER_COUNTER_INTERVAL_MS) return;
+    const counters = rendererCounters(info);
+    if (!counters) return;
+    this.lastRendererSample = now;
+    if (this.rendererSamples.length >= RENDERER_COUNTER_LIMIT) {
+      this.rendererDropped++;
+      return;
+    }
+    this.rendererSamples.push({
+      ...counters,
+      phase: this.phase,
+      elapsed_ms: Math.round((now - this.start) * 100) / 100,
+    });
+  }
+  stop(now: number) {
+    if (this.stoppedAt === null)
+      this.stoppedAt = Math.min(
+        this.start + DIAGNOSTIC_WINDOW_MS,
+        Math.max(this.start, now),
+      );
+    this.stopped = true;
+  }
   constructor(
     readonly start: number,
     readonly source = buildSource,
     readonly limit = DIAGNOSTIC_LIMIT,
+    readonly presentationVariant: AuthoredFinishVariant = "candidate",
   ) {}
   sample(kind: TimingKind, duration: number, now: number) {
     if (
@@ -99,7 +175,7 @@ export class TimingCapture {
     // Timers can be throttled in an embedded/background browser. Enforce the
     // window on samples too, rather than trusting a delayed setTimeout.
     if (now - this.start > DIAGNOSTIC_WINDOW_MS) {
-      this.stop(this.start+DIAGNOSTIC_WINDOW_MS);
+      this.stop(this.start + DIAGNOSTIC_WINDOW_MS);
       return;
     }
     if (this.samples.length >= this.limit) {
@@ -131,9 +207,13 @@ export class TimingCapture {
     return {
       schema_version: 1,
       source: { ...this.source },
-      elapsed_ms: Math.min(DIAGNOSTIC_WINDOW_MS, Math.max(0, (this.stoppedAt??now) - this.start)),
-      observer_support:[...this.observerSupport],
-      interaction_sample_floor_ms:16,
+      presentation_variant: this.presentationVariant,
+      elapsed_ms: Math.min(
+        DIAGNOSTIC_WINDOW_MS,
+        Math.max(0, (this.stoppedAt ?? now) - this.start),
+      ),
+      observer_support: [...this.observerSupport],
+      interaction_sample_floor_ms: 16,
       stopped: this.stopped,
       sample_limit: this.limit,
       dropped_samples: this.dropped,
@@ -166,6 +246,28 @@ export class TimingCapture {
         ]),
       ),
       samples: this.samples.map((s) => ({ ...s })),
+      renderer: {
+        scope:
+          "CPU wall time around caller-owned layered render passes; draw counters cover only passes before this sample. Geometry, texture and program values are object counts, not GPU bytes. No GPU queries or readbacks.",
+        counter_interval_ms: RENDERER_COUNTER_INTERVAL_MS,
+        counter_limit: RENDERER_COUNTER_LIMIT,
+        dropped_samples: this.rendererDropped,
+        summary: Object.fromEntries(
+          COUNTERS.map((key) => {
+            const values = this.rendererSamples.map((s) => s[key]);
+            return [
+              key,
+              {
+                samples: values.length,
+                min: values.length ? Math.min(...values) : null,
+                max: values.length ? Math.max(...values) : null,
+                last: values.at(-1) ?? null,
+              },
+            ];
+          }),
+        ),
+        samples: this.rendererSamples.map((s) => ({ ...s })),
+      },
       scope:
         "Local opt-in browser timings. Render callbacks are not GPU time or headset FPS. Worker delivery measures wall-time between snapshots, not simulation CPU cost. No actions, identifiers, text, URLs or hidden sensor truth are recorded.",
       limitations: [
@@ -200,7 +302,14 @@ export function stopDiagnostics() {
 }
 export function startDiagnostics() {
   stopDiagnostics();
-  capture = new TimingCapture(performance.now());
+  capture = new TimingCapture(
+    performance.now(),
+    buildSource,
+    DIAGNOSTIC_LIMIT,
+    authoredFinishVariant(
+      typeof window === "undefined" ? "" : window.location.search,
+    ),
+  );
   previousWorker = 0;
   if (typeof document !== "undefined") {
     const visibility = () => {
@@ -216,7 +325,12 @@ export function startDiagnostics() {
   }
   if (typeof PerformanceObserver !== "undefined") {
     const supported = PerformanceObserver.supportedEntryTypes ?? [];
-    capture.observerSupport=["long-animation-frame","longtask","event","resource"].filter(type=>supported.includes(type));
+    capture.observerSupport = [
+      "long-animation-frame",
+      "longtask",
+      "event",
+      "resource",
+    ].filter((type) => supported.includes(type));
     const observe = (
       type: string,
       receive: (entry: PerformanceEntry) => void,
@@ -226,7 +340,15 @@ export function startDiagnostics() {
         const observer = new PerformanceObserver((list) => {
           for (const entry of list.getEntries()) receive(entry);
         });
-        observer.observe(type === "event" ? ({type,buffered:false,durationThreshold:16} as PerformanceObserverInit & {durationThreshold:number}) : { type, buffered: false });
+        observer.observe(
+          type === "event"
+            ? ({
+                type,
+                buffered: false,
+                durationThreshold: 16,
+              } as PerformanceObserverInit & { durationThreshold: number })
+            : { type, buffered: false },
+        );
         observers.push(observer);
       } catch {
         /* Unsupported observer never breaks training. */
@@ -296,12 +418,46 @@ export function diagnosticWorkerDelivery() {
 }
 
 /** Bind async loading spans to their original capture; replacement captures never inherit stale work. */
-export function diagnosticSpan(kind:TimingKind) {
- const owner=capture;if(!owner || owner.stopped)return ()=>{};
- const started=performance.now();let finished=false;
- return ()=>{if(finished)return;finished=true;if(capture===owner && !owner.stopped){const now=performance.now();owner.sample(kind,now-started,now);}};
+export function diagnosticSpan(kind: TimingKind) {
+  const owner = capture;
+  if (!owner || owner.stopped) return () => {};
+  const started = performance.now();
+  let finished = false;
+  return () => {
+    if (finished) return;
+    finished = true;
+    if (capture === owner && !owner.stopped) {
+      const now = performance.now();
+      owner.sample(kind, now - started, now);
+    }
+  };
 }
 
-export function diagnosticWork<T>(kind:TimingKind, work:()=>T):T {
- const finish=diagnosticSpan(kind);try{return work();}finally{finish();}
+export function diagnosticWork<T>(kind: TimingKind, work: () => T): T {
+  const finish = diagnosticSpan(kind);
+  try {
+    return work();
+  } finally {
+    finish();
+  }
+}
+
+const noRendererSample = (_info: RendererInfo) => {};
+/** Call at entry to a layered render callback and finish with gl.info after its
+ * last render. Disabled mode neither allocates a closure nor reads the clock.
+ * Capture ownership and once-only completion match other diagnostic spans. */
+export function diagnosticRendererSubmit(): (info: RendererInfo) => void {
+  const owner = capture;
+  if (!owner || owner.stopped) return noRendererSample;
+  const start = performance.now();
+  let finished = false;
+  return (info) => {
+    if (finished) return;
+    finished = true;
+    if (capture !== owner || owner.stopped) return;
+    const now = performance.now();
+    if (typeof document !== "undefined" && document.hidden) return;
+    owner.sample("renderer_cpu_submit", now - start, now);
+    owner.renderer(info, now);
+  };
 }
